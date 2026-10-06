@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Anaesthesia Physics Lab</title>
+<meta name="description" content="Try the physical laws behind anaesthesia with interactive models. The physics lab of the Anaesthesia Machine Atlas.">
+<link rel="canonical" href="https://atlas.anesthesiabriefs.com/en/fizik.html">
+<link rel="alternate" hreflang="tr" href="https://atlas.anesthesiabriefs.com/fizik.html">
+<link rel="alternate" hreflang="en" href="https://atlas.anesthesiabriefs.com/en/fizik.html">
+<link rel="alternate" hreflang="es" href="https://atlas.anesthesiabriefs.com/es/fizik.html">
+<link rel="alternate" hreflang="x-default" href="https://atlas.anesthesiabriefs.com/fizik.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Anaesthesia Machine Atlas">
+<meta property="og:title" content="Anaesthesia Physics Lab">
+<meta property="og:description" content="Try the physical laws behind anaesthesia with interactive models. The physics lab of the Anaesthesia Machine Atlas.">
+<meta property="og:url" content="https://atlas.anesthesiabriefs.com/en/fizik.html">
+<meta property="og:image" content="https://atlas.anesthesiabriefs.com/og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_GB">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html#makine" aria-label="Anaesthesia Machine Atlas, back to top">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="bmTop" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M20.5 38.5 L27 25.5 H37 L43.5 38.5 Z" fill="#000"/></mask></defs><g class="bm-pills" mask="url(#bmTop)"><rect x="17" y="6" width="30" height="13" rx="6.5"/><rect x="12" y="21" width="40" height="16" rx="8"/><rect x="10" y="41" width="44" height="15" rx="7.5"/></g><path class="bm-line" d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span>Anaesthesia Machine Atlas</span>
+    </a>
+    <a class="ab-back" href="https://www.anesthesiabriefs.com/" aria-label="Back to Anesthesia Briefs"><span aria-hidden="true">←</span> Anesthesia Briefs</a>
+    <nav class="chapters" aria-label="Chapters">
+      <a href="index.html#makine">Machine</a>
+      <a href="index.html#gazyolu">Gas pathway</a>
+      <a href="fizik.html" aria-current="page">Physics</a>
+      <a class="ext" href="ekipman.html">Equipment →</a>
+      <a href="index.html#ventilator">Ventilator</a>
+      <a href="index.html#monitor">Monitor</a>
+      <a href="index.html#guvenlik">Safety</a>
+      <a href="index.html#test">Quiz</a>
+      <a class="ab-back-nav" href="https://www.anesthesiabriefs.com/">← Back to Anesthesia Briefs</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Dil · Language · Idioma"><a href="../fizik.html" lang="tr" hreflang="tr">TR</a><a href="fizik.html" lang="en" hreflang="en" aria-current="true">EN</a><a href="../es/fizik.html" lang="es" hreflang="es">ES</a></div>
+  </div>
+</header>
+<main>
+<section id="fizik" class="chapter page-top">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="eyebrow">Physics page · Part 1 · Physical laws</p><h2>The physics that runs the machine</h2></div>
+      <p class="lede">The gas laws explain how long a cylinder lasts, fluid mechanics explains what a flowmeter actually measures, and vapour pressure explains how a vaporiser works. The calculators on each card use values encountered in clinical practice.</p>
+    </div>
+    <nav class="law-index" id="lawIndex" aria-label="Physical laws">
+      <a href="#fizik-boyle">Boyle · Gay-Lussac</a><a href="#fizik-dalton">Dalton</a><a href="#fizik-thorpe">Laminar · turbulent</a><a href="#fizik-poiseuille">Hagen–Poiseuille</a><a href="#fizik-vapor">Vapour pressure</a><a href="#fizik-henry">Henry · solubility</a><a href="#fizik-laplace">Laplace</a><a href="#fizik-motion">Equation of motion</a><a href="#fizik-beer">Beer–Lambert</a><a href="#fizik-venturi">Bernoulli · Venturi</a>
+    </nav>
+    <div class="lab">
+      <div class="lab-stick">
+        <div class="stage lab-stage" id="stageLab" data-fs-panels="#labCap,#lawIndex,.law.active-law"><div class="fs-side" aria-label="Information panel"></div>
+        <div class="pins"></div><div class="pad" role="group" aria-label="Pan the model"><button type="button" data-pan="0,1" aria-label="Pan up" style="grid-area:u"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="1,0" aria-label="Pan left" style="grid-area:l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="c" aria-label="Centre" style="grid-area:c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg></button><button type="button" data-pan="-1,0" aria-label="Pan right" style="grid-area:r"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="0,-1" aria-label="Pan down" style="grid-area:d"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+        <div class="stage-tools">
+          <button type="button" data-act="in" aria-label="Zoom in">+</button>
+          <button type="button" data-act="out" aria-label="Zoom out">−</button>
+          <button type="button" data-act="pan" aria-pressed="false" aria-label="Pan mode">Pan</button><button type="button" data-act="reset" aria-label="Reset view">Reset</button>
+          <button type="button" data-side aria-pressed="true">Panel</button><button type="button" data-fs aria-pressed="false" aria-label="Full screen"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><span>Full screen</span></button>
+        </div>
+        <div class="stage-hint">Drag: rotate · choose a law to change the scene</div></div>
+        <div class="card lab-cap" id="labCap" aria-live="polite"></div>
+      </div>
+    <div class="laws">
+
+      <article class="card law" id="fizik-boyle">
+        <span class="tag">Gas laws · Cylinder</span>
+        <h3>Boyle and Gay-Lussac: how long will the cylinder last?</h3>
+        <div class="formula">P₁·V₁ = P₂·V₂ &nbsp;&nbsp;·&nbsp;&nbsp; P₁/T₁ = P₂/T₂<span class="lbl">At constant temperature, pressure and volume are inversely proportional. At constant volume, pressure is directly proportional to absolute temperature.</span></div>
+        <p>O₂ is stored in the cylinder as a gas, so the contents fall in direct proportion to the pressure. A 10-litre cylinder at 150 bar delivers roughly 10 × 150 = 1500 L of gas at atmospheric pressure. N₂O, by contrast, liquefies below its critical temperature (36.5 °C): the gauge stays at ≈ 51 bar until the liquid is used up. The contents of an N₂O cylinder can only be known by weighing it.</p>
+        <div class="widget">
+          <div class="ctl-row"><label for="bV">Cylinder volume</label><input type="range" id="bV" min="2" max="40" step="1" value="10"><output id="bVo">10</output><span class="u">L</span></div>
+          <div class="ctl-row"><label for="bP">Gauge</label><input type="range" id="bP" min="5" max="200" step="5" value="150"><output id="bPo">150</output><span class="u">bar</span></div>
+          <div class="ctl-row"><label for="bF">O₂ flow</label><input type="range" id="bF" min="0.5" max="15" step="0.5" value="6"><output id="bFo">6</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="bT">Ambient temp.</label><input type="range" id="bT" min="-10" max="60" step="1" value="20"><output id="bTo">20</output><span class="u">°C</span></div>
+          <div class="wout">
+            <div class="stat"><div class="k">Usable gas</div><div class="v" id="bGas">1500<small>L</small></div></div>
+            <div class="stat"><div class="k">Time remaining</div><div class="v" id="bTime">4 h 10 min</div></div>
+            <div class="stat"><div class="k">Pressure at that temp.</div><div class="v" id="bHot">150<small>bar</small></div></div>
+          </div>
+          <p class="muted" style="font-size:13.5px">The calculation uses gauge pressure and ignores the 1 atm of gas that remains in the cylinder. The temperature slider shows the pressure, at that temperature, of a cylinder filled at 20 °C (Gay-Lussac).</p>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-dalton">
+        <span class="tag">Partial pressures · Altitude</span>
+        <h3>Dalton: the real pressure of oxygen</h3>
+        <div class="formula">P<sub>total</sub> = P₁ + P₂ + … &nbsp;·&nbsp; PiO₂ = FiO₂ × (P<sub>B</sub> − 47)<span class="lbl">Each gas in a mixture exerts the pressure it would exert if it filled the volume alone. 47 mmHg is the saturated water vapour pressure at 37 °C.</span></div>
+        <p>O₂ sensors and vaporisers actually respond to partial pressure. As altitude rises, barometric pressure falls, so the same FiO₂ means a lower oxygen pressure. In a city such as Kayseri (≈ 1054 m), PB is about 88% of its sea-level value.</p>
+        <div class="widget">
+          <div class="chips" id="altChips" role="group" aria-label="Altitude presets"></div>
+          <div class="ctl-row"><label for="dAlt">Altitude</label><input type="range" id="dAlt" min="0" max="5000" step="1" value="1054"><output id="dAlto">1054</output><span class="u">m</span></div>
+          <div class="ctl-row"><label for="dFi2">FiO₂</label><input type="range" id="dFi2" min="0.21" max="1" step="0.01" value="0.5"><output id="dFio">0.50</output><span class="u"></span></div>
+          <svg class="wfig" id="daltonFig" viewBox="0 0 520 120" role="img" aria-label="Partial pressure breakdown of the inspired gas"></svg>
+          <div class="wout">
+            <div class="stat"><div class="k">P<sub>B</sub></div><div class="v" id="dPB">—</div></div>
+            <div class="stat"><div class="k">PiO₂</div><div class="v" id="dPi">—</div></div>
+            <div class="stat"><div class="k">PAO₂ (PaCO₂ 40)</div><div class="v" id="dPA">—</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-thorpe">
+        <span class="tag">Fluids · Flowmeter</span>
+        <h3>Laminar and turbulent flow: what does a Thorpe tube measure?</h3>
+        <div class="formula">Laminar: Q ∝ ΔP / μ &nbsp;·&nbsp; Turbulent: Q ∝ √(ΔP / ρ)<span class="lbl">μ: viscosity, ρ: density. Above Re = ρ·v·d / μ ≈ 2000, flow becomes turbulent.</span></div>
+        <p>A Thorpe tube is a glass cone that widens upwards. The bobbin rises until the pressure difference beneath it supports its weight; the pressure difference stays constant and what changes is the width of the annular gap (the orifice). At low flow the narrow, long gap between bobbin and wall behaves like a tube, so viscosity dominates. At high flow the gap widens into a short orifice, so density dominates. That is why each tube is calibrated for its own gas.</p>
+        <div class="widget">
+          <div class="chips" id="thGas" role="group" aria-label="Gas flowing through the tube"></div>
+          <div class="ctl-row"><label for="thQ">Indicated flow</label><input type="range" id="thQ" min="0.2" max="12" step="0.1" value="2"><output id="thQo">2.0</output><span class="u">L/min</span></div>
+          <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+            <svg class="wfig" id="thFig" viewBox="0 0 150 300" role="img" aria-label="Thorpe tube and bobbin"></svg>
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+              <div class="stat"><div class="k">Dominant property</div><div class="v" id="thReg" style="font-size:16px;white-space:normal">—</div></div>
+              <div class="stat"><div class="k">True flow</div><div class="v" id="thAct">—</div></div>
+              <p class="muted" style="font-size:13.5px" id="thTxt"></p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-poiseuille">
+        <span class="tag">Resistance · Airway</span>
+        <h3>Hagen–Poiseuille: the fourth power of the radius</h3>
+        <div class="formula">R = 8·μ·L / (π·r⁴)<span class="lbl">In laminar flow, resistance is directly proportional to length and viscosity and inversely proportional to the fourth power of the radius. In turbulent flow, resistance is approximately proportional to 1/r⁵ (an inverse dependence).</span></div>
+        <p>A small reduction in tracheal tube diameter increases resistance substantially. The same principle applies to soda lime granule size (4–8 mesh), to the Thorpe tube and to intravenous cannulae.</p>
+        <div class="widget">
+          <div class="ctl-row"><label for="pID">ETT internal diameter</label><input type="range" id="pID" min="5" max="9" step="0.5" value="7"><output id="pIDo">7.0</output><span class="u">mm</span></div>
+          <svg class="wfig" id="poiFig" viewBox="0 0 520 130" role="img" aria-label="Resistance relative to an 8.0 mm tube"></svg>
+          <div class="wout">
+            <div class="stat"><div class="k">Laminar R (vs 8.0)</div><div class="v" id="pLam">—</div></div>
+            <div class="stat"><div class="k">Turbulent R (≈ r⁻⁵)</div><div class="v" id="pTur">—</div></div>
+            <div class="stat"><div class="k">Cross-sectional area</div><div class="v" id="pArea">—</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-vapor">
+        <span class="tag">Vapour pressure · Vaporiser</span>
+        <h3>Saturated vapour pressure and the splitting ratio</h3>
+        <div class="formula">C<sub>chamber</sub> = SVP / P<sub>B</sub> &nbsp;·&nbsp; F<sub>chamber</sub> = F<sub>vapour</sub> · (P<sub>B</sub> − SVP) / SVP<span class="lbl">Gas passing through the vaporising chamber is loaded with vapour in proportion to the agent's saturated vapour pressure (SVP). The dial sets the ratio between chamber flow and bypass flow.</span></div>
+        <p>A variable-bypass vaporiser splits the fresh gas in two. A small portion is loaded with saturated vapour in the chamber; the rest passes through the bypass, and the two streams rejoin at the outlet. Because vaporisation absorbs latent heat, the liquid cools and its SVP falls; a bimetallic strip compensates by narrowing the bypass. Desflurane's SVP is very close to atmospheric pressure (669 mmHg, boiling point 22.8 °C): a Tec 6–type device heats the agent to 39 °C and injects a metered amount at ≈ 2 atm.</p>
+        <div class="widget">
+          <div class="chips" id="vAgent" role="group" aria-label="Agent"></div>
+          <div class="ctl-row"><label for="vDial">Dial</label><input type="range" id="vDial" min="0.2" max="8" step="0.1" value="2"><output id="vDialo">2.0</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="vFGF">Fresh gas</label><input type="range" id="vFGF" min="0.5" max="10" step="0.5" value="2"><output id="vFGFo">2.0</output><span class="u">L/min</span></div>
+          <svg class="wfig" id="vapFig" viewBox="0 0 520 170" role="img" aria-label="Flow splitting in the vaporiser"></svg>
+          <div class="wout">
+            <div class="stat"><div class="k">Splitting ratio</div><div class="v" id="vSplit">—</div></div>
+            <div class="stat"><div class="k">Output (at altitude)</div><div class="v" id="vOut">—</div></div>
+            <div class="stat"><div class="k">Liquid consumption</div><div class="v" id="vUse">—</div></div>
+          </div>
+          <p class="muted" style="font-size:13.5px" id="vTxt"></p>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-henry">
+        <span class="tag">Solubility · Pharmacokinetics</span>
+        <h3>Henry's law and the blood/gas partition coefficient</h3>
+        <div class="formula">C<sub>dissolved</sub> = k · P<sub>gas</sub> &nbsp;·&nbsp; λ = C<sub>blood</sub> / C<sub>gas</sub><span class="lbl">The amount of gas dissolved in a liquid is proportional to the partial pressure above the liquid. O₂ solubility coefficient ≈ 0.003 mL·dL⁻¹·mmHg⁻¹; dissolved O₂ ≈ 0.003 × PaO₂ (mL/dL).</span></div>
+        <p>An agent that is poorly soluble in blood (low λ) raises its alveolar partial pressure quickly, so induction and emergence are fast. The effect depends on the partial pressure in the brain, not on the amount in the blood. The bars below are drawn to scale.</p>
+        <svg class="wfig" id="henryFig" viewBox="0 0 520 200" role="img" aria-label="Blood/gas partition coefficients of inhaled agents"></svg>
+        <div class="tbl-wrap">
+          <table class="ptable">
+            <thead><tr><th>Agent</th><th>Blood/gas</th><th>Oil/gas</th><th>MAC %</th><th>SVP 20 °C</th></tr></thead>
+            <tbody>
+              <tr><td>Desflurane</td><td>0.42</td><td>19</td><td>6.0</td><td>669</td></tr>
+              <tr><td>N₂O</td><td>0.47</td><td>1.4</td><td>104</td><td>gas</td></tr>
+              <tr><td>Sevoflurane</td><td>0.65</td><td>47</td><td>2.0</td><td>157</td></tr>
+              <tr><td>Isoflurane</td><td>1.4</td><td>91</td><td>1.15</td><td>238</td></tr>
+              <tr><td>Halothane</td><td>2.4</td><td>224</td><td>0.75</td><td>243</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:13px">MAC: adult aged about 40, in O₂, at 1 atm. SVP: mmHg.</p>
+      </article>
+
+      <article class="card law" id="fizik-laplace">
+        <span class="tag">Wall tension · Bag, alveolus</span>
+        <h3>Laplace's law</h3>
+        <div class="formula">P = 2T / r &nbsp;(sphere) &nbsp;·&nbsp; P = T / r &nbsp;(cylinder)<span class="lbl">T: wall tension, r: radius.</span></div>
+        <p>When a reservoir bag is overdistended its radius increases; although wall tension rises, the pressure levels off at a plateau. Under ISO 5362, a bag inflated to four times its nominal volume must hold a pressure between 30 and 60 cmH₂O. This plateau depends on the bag material; it does not replace the APL valve or guarantee protection against barotrauma. The ISO limit is a test condition, not a clinically safe pressure threshold. In the alveolus, surfactant lowers surface tension in small alveoli and so stops a small alveolus from emptying into a larger one.</p>
+        <svg class="wfig" viewBox="0 0 520 150" role="img" aria-label="Pressure–volume curve of a reservoir bag">
+          <line x1="60" y1="120" x2="500" y2="120" class="ink" stroke-width="1.2"/>
+          <line x1="60" y1="120" x2="60" y2="14" class="ink" stroke-width="1.2"/>
+          <path d="M60 120 C 100 40, 150 34, 200 38 S 420 44, 495 40" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="60" y1="40" x2="500" y2="40" class="ln" stroke-dasharray="4 4"/>
+          <text x="52" y="44" text-anchor="end" font-size="12" class="dim">≈ 30–60</text>
+          <text x="52" y="124" text-anchor="end" font-size="12" class="dim">0</text>
+          <text x="280" y="142" text-anchor="middle" font-size="12" class="dim">Bag volume (multiples of nominal volume) →</text>
+          <text x="66" y="12" font-size="12" class="dim">Pressure cmH₂O</text>
+          <text x="330" y="32" font-size="12">Plateau: pressure limited when overstretched</text>
+        </svg>
+      </article>
+
+      <article class="card law" id="fizik-motion">
+        <span class="tag">Respiratory mechanics · Ventilator</span>
+        <h3>The equation of motion of the respiratory system</h3>
+        <div class="formula">P<sub>aw</sub> = V / C + R · V̇ + PEEP<sub>tot</sub><span class="lbl">Elastic component (volume / compliance) + resistive component (resistance × flow) + end-expiratory pressure.</span></div>
+        <p>In volume-controlled ventilation, if a short pause is added at the end of a constant-flow breath, flow falls to zero and the resistive component disappears. Ppeak − Pplat then reflects resistance, and Pplat − PEEP (the driving pressure) reflects compliance. The time constant is τ = R × C; about 3τ is needed for 95% of passive expiration.</p>
+        <p><a class="linkbtn" href="index.html#ventilator">Go to the ventilator simulator</a></p>
+      </article>
+
+      <article class="card law" id="fizik-beer">
+        <span class="tag">Optics · Monitor</span>
+        <h3>The Beer–Lambert law</h3>
+        <div class="formula">A = ε · c · d &nbsp;·&nbsp; I = I₀ · e<sup>−ε·c·d</sup><span class="lbl">Absorbance (A) is proportional to the molar absorption coefficient, the concentration and the length of the light path.</span></div>
+        <p>A pulse oximeter takes the ratio of the pulsatile absorption of 660 nm (red) and 940 nm (infrared) light: R = (AC₆₆₀/DC₆₆₀) / (AC₉₄₀/DC₉₄₀). R ≈ 0.4 corresponds to SpO₂ ≈ 100%, and R = 1 to ≈ 85%. A capnometer measures CO₂ by infrared absorption at 4.26 µm, and anaesthetic agents in the 3.3 µm or 8–9 µm band (8–9 µm is free from methane and CO₂ interference).</p>
+        <p><a class="linkbtn" href="index.html#monitor">Go to the monitor section</a></p>
+      </article>
+
+      <article class="card law" id="fizik-venturi">
+        <span class="tag">Conservation of energy · Entrainment</span>
+        <h3>Bernoulli and the Venturi effect</h3>
+        <div class="formula">P + ½ρv² + ρgh = constant<span class="lbl">At a constriction the velocity rises and the lateral pressure falls; the low pressure draws ambient air in through a side port (entrainment).</span></div>
+        <p>Venturi masks deliver a fixed FiO₂: as the O₂ jet passes through a narrow orifice it entrains room air in a fixed ratio. The same principle is used in nebulisers, jet ventilation and some scavenging systems. The density dependence of turbulent flow through an orifice is also the basis of Venturi flowmeters.</p>
+      </article>
+    </div>
+    </div>
+  </div>
+</section>
+<section id="farmakokinetik" class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="eyebrow">Physics page · Part 2 · Pharmacokinetics</p><h2>Pharmacokinetics and low flow</h2></div>
+      <p class="lede">The alveolar partial pressure of an inhaled agent rises at a rate set by its solubility in blood, by cardiac output and by ventilation. At low flow, the composition of gas in the circuit differs from that of the fresh gas: as the patient takes up O₂ and agent, the agent concentration in the circuit differs from the dial setting.</p>
+    </div>
+
+    <div class="card pk-card" id="pkWash">
+      <div class="pk-grid">
+        <div class="pk-ctl">
+          <h3>Wash-in and wash-out (FA/FI)</h3>
+          <p class="muted pk-small">Alveolus + vessel-rich group + muscle + fat: a four-compartment physiological model, solved numerically every 0.3 seconds. At the cut-off time, agent delivery stops and the curve begins to show wash-out.</p>
+          <div class="chips" id="pkAgents" role="group" aria-label="Agents shown"></div>
+          <div class="ctl-row"><label for="pkCO">Cardiac output</label><input type="range" id="pkCO" min="2" max="10" step="0.5" value="5"><output id="pkCOo">5.0</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="pkVA">Alveolar vent.</label><input type="range" id="pkVA" min="2" max="10" step="0.5" value="4"><output id="pkVAo">4.0</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="pkFI">Inspired N₂O</label><input type="range" id="pkFI" min="10" max="80" step="5" value="70"><output id="pkFIo">70</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="pkCut">Cut-off time</label><input type="range" id="pkCut" min="5" max="50" step="1" value="20"><output id="pkCuto">20</output><span class="u">min</span></div>
+          <label class="pk-check" for="pkSecond"><input type="checkbox" id="pkSecond"> Second gas effect: give the volatile agent with 70% N₂O</label>
+          <div class="note pk-small" id="pkWashNote"></div>
+        </div>
+        <div class="pk-plot">
+          <canvas id="pkWashCv" role="img" aria-label="FA/FI curves over time for the selected agents"></canvas>
+          <div class="tbl-wrap"><table class="ptable" id="pkWashTbl"></table></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card pk-card" id="pkLow" style="margin-top:18px">
+      <div class="pk-grid">
+        <div class="pk-ctl">
+          <h3>Low-flow anaesthesia</h3>
+          <p class="muted pk-small">Circle system + FRC ≈ 6 L. The patient consumes 250 mL/min of O₂; sevoflurane uptake follows Lowe's square-root-of-time approximation (uptake ∝ 1/√t). At the start the circuit is full of fresh gas and contains no agent.</p>
+          <div class="ctl-row"><label for="lfFGF">Fresh gas flow (FGF)</label><input type="range" id="lfFGF" min="0.3" max="8" step="0.1" value="1"><output id="lfFGFo">1.0</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="lfO2">O₂ in fresh gas</label><input type="range" id="lfO2" min="21" max="100" step="1" value="50"><output id="lfO2o">50</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="lfDial">Sevo dial</label><input type="range" id="lfDial" min="0" max="8" step="0.1" value="2.5"><output id="lfDialo">2.5</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="lfKg">Patient weight</label><input type="range" id="lfKg" min="40" max="120" step="1" value="70"><output id="lfKgo">70</output><span class="u">kg</span></div>
+          <div class="pk-price">
+            <label for="lfPrice" class="pk-small"><b>Price of 250 mL sevoflurane</b> <span class="muted">(sample price, enter your own)</span></label>
+            <input type="number" id="lfPrice" min="0" step="10" value="1500" inputmode="decimal"> <span class="mono pk-small">TRY</span>
+          </div>
+          <div class="note pk-small" id="lfNote"></div>
+        </div>
+        <div class="pk-plot">
+          <canvas id="lfO2Cv" role="img" aria-label="FiO₂ in fresh gas and in the circuit over 60 minutes"></canvas>
+          <canvas id="lfAgCv" role="img" aria-label="Dial setting and circuit sevoflurane concentration over 60 minutes"></canvas>
+          <div class="tbl-wrap"><table class="ptable" id="lfTbl"></table></div>
+          <p class="muted pk-small">Absorbent: as fresh gas flow falls below minute ventilation, a larger share of the exhaled gas passes through the absorber; at low flow the absorbent is exhausted sooner, so its colour and FiCO₂ require close monitoring.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap foot-brand"><svg class="foot-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="bmFoot" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M20.5 38.5 L27 25.5 H37 L43.5 38.5 Z" fill="#000"/></mask></defs><g class="bm-pills" mask="url(#bmFoot)"><rect x="17" y="6" width="30" height="13" rx="6.5"/><rect x="12" y="21" width="40" height="16" rx="8"/><rect x="10" y="41" width="44" height="15" rx="7.5"/></g><path class="bm-line" d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/></svg><div class="foot-name"><span class="foot-title">Anaesthesia Machine Atlas</span><span class="foot-partners"><span class="foot-by"><a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="../brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309"><img class="ab-logo ab-dark" src="../brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309"></a><span class="partner-divider" aria-hidden="true"></span><img class="ar-logo ab-light" src="../brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async"><img class="ar-logo ab-dark" src="../brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async"></span><span class="foot-credit">by Anesthesia Briefs and Anestezi Rehberi</span></span></div></div>
+  
+  <div class="wrap cols">
+    <div>
+      <h4>References</h4>
+      <ul>
+        <li><a href="kaynakca.html"><b>All references and verification notes →</b></a></li>
+        <li>Dorsch JA, Dorsch SE. <i>Understanding Anesthesia Equipment</i>. 5th ed. Lippincott Williams &amp; Wilkins.</li>
+        <li>Ehrenwerth J, Eisenkraft JB, Berry JM. <i>Anesthesia Equipment: Principles and Applications</i>. Elsevier.</li>
+        <li>Gropper MA et al. <i>Miller's Anesthesia</i>, chapter "Inhaled Anesthetic Delivery Systems".</li>
+        <li>ASA. <i>Recommendations for Pre-Anesthesia Checkout Procedures</i> (2008).</li>
+        <li>Davis PD, Kenny GNC. <i>Basic Physics and Measurement in Anaesthesia</i>. Butterworth-Heinemann.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Note on use</h4>
+      <p style="margin-top:8px">This atlas is for education. The 3D model represents a generic anaesthesia workstation, not a particular brand. Numerical values are approximate and illustrative, and the simulations are simplified models. It is not a substitute for clinical judgement, the device's instructions for use or local protocols.</p>
+    </div>
+  </div>
+</footer>
+<script src="../vendor/three-r128.min.js"></script>
+<script src="../locales/en.js"></script>
+<script src="../i18n.js"></script>
+<script src="../core.js"></script>
+<script src="../curriculum.js"></script>
+<script src="../progress-model.js"></script>
+<script src="../progress.js"></script>
+<script src="../fizik.js"></script>
+<script src="../pk.js"></script>
+<script src="../experience.js"></script>
+</body>
+</html>

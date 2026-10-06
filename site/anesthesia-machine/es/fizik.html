@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Laboratorio de Física de la Anestesia</title>
+<meta name="description" content="Pruebe las leyes físicas en las que se basa la anestesia con modelos interactivos. El laboratorio de física del Atlas de la Máquina de Anestesia.">
+<link rel="canonical" href="https://atlas.anesthesiabriefs.com/es/fizik.html">
+<link rel="alternate" hreflang="tr" href="https://atlas.anesthesiabriefs.com/fizik.html">
+<link rel="alternate" hreflang="en" href="https://atlas.anesthesiabriefs.com/en/fizik.html">
+<link rel="alternate" hreflang="es" href="https://atlas.anesthesiabriefs.com/es/fizik.html">
+<link rel="alternate" hreflang="x-default" href="https://atlas.anesthesiabriefs.com/fizik.html">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Atlas de la Máquina de Anestesia">
+<meta property="og:title" content="Laboratorio de Física de la Anestesia">
+<meta property="og:description" content="Pruebe las leyes físicas en las que se basa la anestesia con modelos interactivos. El laboratorio de física del Atlas de la Máquina de Anestesia.">
+<meta property="og:url" content="https://atlas.anesthesiabriefs.com/es/fizik.html">
+<meta property="og:image" content="https://atlas.anesthesiabriefs.com/og-es.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html#makine" aria-label="Atlas de la Máquina de Anestesia, volver al inicio">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="bmTop" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M20.5 38.5 L27 25.5 H37 L43.5 38.5 Z" fill="#000"/></mask></defs><g class="bm-pills" mask="url(#bmTop)"><rect x="17" y="6" width="30" height="13" rx="6.5"/><rect x="12" y="21" width="40" height="16" rx="8"/><rect x="10" y="41" width="44" height="15" rx="7.5"/></g><path class="bm-line" d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/></svg>
+      <span>Atlas de la Máquina de Anestesia</span>
+    </a>
+    <a class="ab-back" href="https://www.anesthesiabriefs.com/" aria-label="Volver a Anesthesia Briefs"><span aria-hidden="true">←</span> Anesthesia Briefs</a>
+    <nav class="chapters" aria-label="Secciones">
+      <a href="index.html#makine">Máquina</a>
+      <a href="index.html#gazyolu">Recorrido del gas</a>
+      <a href="fizik.html" aria-current="page">Física</a>
+      <a class="ext" href="ekipman.html">Equipamiento →</a>
+      <a href="index.html#ventilator">Ventilador</a>
+      <a href="index.html#monitor">Monitor</a>
+      <a href="index.html#guvenlik">Seguridad</a>
+      <a href="index.html#test">Test</a>
+      <a class="ab-back-nav" href="https://www.anesthesiabriefs.com/">← Volver a Anesthesia Briefs</a>
+    </nav>
+    <div class="lang-switch" role="group" aria-label="Dil · Language · Idioma"><a href="../fizik.html" lang="tr" hreflang="tr">TR</a><a href="../en/fizik.html" lang="en" hreflang="en">EN</a><a href="fizik.html" lang="es" hreflang="es" aria-current="true">ES</a></div>
+  </div>
+</header>
+<main>
+<section id="fizik" class="chapter page-top">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="eyebrow">Página de física · Parte 1 · Leyes físicas</p><h2>La física que hace funcionar la máquina</h2></div>
+      <p class="lede">Las leyes de los gases explican cuánto dura un cilindro, la mecánica de fluidos explica qué mide realmente un caudalímetro y la presión de vapor explica cómo funciona un vaporizador. Las calculadoras de cada tarjeta trabajan con valores clínicos reales.</p>
+    </div>
+    <nav class="law-index" id="lawIndex" aria-label="Leyes físicas">
+      <a href="#fizik-boyle">Boyle · Gay-Lussac</a><a href="#fizik-dalton">Dalton</a><a href="#fizik-thorpe">Laminar · turbulento</a><a href="#fizik-poiseuille">Hagen–Poiseuille</a><a href="#fizik-vapor">Presión de vapor</a><a href="#fizik-henry">Henry · solubilidad</a><a href="#fizik-laplace">Laplace</a><a href="#fizik-motion">Ecuación del movimiento</a><a href="#fizik-beer">Beer–Lambert</a><a href="#fizik-venturi">Bernoulli · Venturi</a>
+    </nav>
+    <div class="lab">
+      <div class="lab-stick">
+        <div class="stage lab-stage" id="stageLab" data-fs-panels="#labCap,#lawIndex,.law.active-law"><div class="fs-side" aria-label="Panel de información"></div>
+        <div class="pins"></div><div class="pad" role="group" aria-label="Desplazar el modelo"><button type="button" data-pan="0,1" aria-label="Desplazar hacia arriba" style="grid-area:u"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="1,0" aria-label="Desplazar a la izquierda" style="grid-area:l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="c" aria-label="Centrar" style="grid-area:c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg></button><button type="button" data-pan="-1,0" aria-label="Desplazar a la derecha" style="grid-area:r"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="0,-1" aria-label="Desplazar hacia abajo" style="grid-area:d"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+        <div class="stage-tools">
+          <button type="button" data-act="in" aria-label="Acercar">+</button>
+          <button type="button" data-act="out" aria-label="Alejar">−</button>
+          <button type="button" data-act="pan" aria-pressed="false" aria-label="Modo desplazamiento">Desplazar</button><button type="button" data-act="reset" aria-label="Restablecer la vista">Restablecer</button>
+          <button type="button" data-side aria-pressed="true">Panel</button><button type="button" data-fs aria-pressed="false" aria-label="Pantalla completa"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><span>Pantalla completa</span></button>
+        </div>
+        <div class="stage-hint">Arrastrar: girar · elija una ley para cambiar la escena</div></div>
+        <div class="card lab-cap" id="labCap" aria-live="polite"></div>
+      </div>
+    <div class="laws">
+
+      <article class="card law" id="fizik-boyle">
+        <span class="tag">Leyes de los gases · Cilindro</span>
+        <h3>Boyle y Gay-Lussac: ¿cuánto durará el cilindro?</h3>
+        <div class="formula">P₁·V₁ = P₂·V₂ &nbsp;&nbsp;·&nbsp;&nbsp; P₁/T₁ = P₂/T₂<span class="lbl">A temperatura constante, la presión y el volumen son inversamente proporcionales. A volumen constante, la presión es directamente proporcional a la temperatura absoluta.</span></div>
+        <p>El O₂ se almacena en el cilindro en estado gaseoso, por lo que el contenido disminuye en proporción directa a la presión. Un cilindro de 10 litros a 150 bar suministra aproximadamente 10 × 150 = 1500 L de gas a presión atmosférica. El N₂O, en cambio, se licúa por debajo de su temperatura crítica (36,5 °C): el manómetro se mantiene en ≈ 51 bar hasta que se agota el líquido. El contenido de un cilindro de N₂O solo puede conocerse pesándolo.</p>
+        <div class="widget">
+          <div class="ctl-row"><label for="bV">Volumen del cilindro</label><input type="range" id="bV" min="2" max="40" step="1" value="10"><output id="bVo">10</output><span class="u">L</span></div>
+          <div class="ctl-row"><label for="bP">Manómetro</label><input type="range" id="bP" min="5" max="200" step="5" value="150"><output id="bPo">150</output><span class="u">bar</span></div>
+          <div class="ctl-row"><label for="bF">Flujo de O₂</label><input type="range" id="bF" min="0.5" max="15" step="0.5" value="6"><output id="bFo">6</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="bT">Temp. ambiente</label><input type="range" id="bT" min="-10" max="60" step="1" value="20"><output id="bTo">20</output><span class="u">°C</span></div>
+          <div class="wout">
+            <div class="stat"><div class="k">Gas utilizable</div><div class="v" id="bGas">1500<small>L</small></div></div>
+            <div class="stat"><div class="k">Tiempo restante</div><div class="v" id="bTime">4 h 10 min</div></div>
+            <div class="stat"><div class="k">Presión a esa temperatura</div><div class="v" id="bHot">150<small>bar</small></div></div>
+          </div>
+          <p class="muted" style="font-size:13.5px">El cálculo utiliza la presión manométrica y no tiene en cuenta la atmósfera de gas que queda en el cilindro. El control de temperatura muestra la presión, a esa temperatura, de un cilindro llenado a 20 °C (Gay-Lussac).</p>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-dalton">
+        <span class="tag">Presiones parciales · Altitud</span>
+        <h3>Dalton: la presión real del oxígeno</h3>
+        <div class="formula">P<sub>total</sub> = P₁ + P₂ + … &nbsp;·&nbsp; PiO₂ = FiO₂ × (P<sub>B</sub> − 47)<span class="lbl">Cada gas de una mezcla ejerce la presión que ejercería si ocupara él solo todo el volumen. 47 mmHg es la presión de vapor de agua saturado a 37 °C.</span></div>
+        <p>Los sensores de O₂ y los vaporizadores responden en realidad a la presión parcial. Al aumentar la altitud disminuye la presión barométrica, de modo que la misma FiO₂ supone una presión de oxígeno menor. En una ciudad como Kayseri (≈ 1054 m), la P<sub>B</sub> es aproximadamente el 88 % de su valor a nivel del mar.</p>
+        <div class="widget">
+          <div class="chips" id="altChips" role="group" aria-label="Altitudes predefinidas"></div>
+          <div class="ctl-row"><label for="dAlt">Altitud</label><input type="range" id="dAlt" min="0" max="5000" step="1" value="1054"><output id="dAlto">1054</output><span class="u">m</span></div>
+          <div class="ctl-row"><label for="dFi2">FiO₂</label><input type="range" id="dFi2" min="0.21" max="1" step="0.01" value="0.5"><output id="dFio">0,50</output><span class="u"></span></div>
+          <svg class="wfig" id="daltonFig" viewBox="0 0 520 120" role="img" aria-label="Desglose de las presiones parciales del gas inspirado"></svg>
+          <div class="wout">
+            <div class="stat"><div class="k">P<sub>B</sub></div><div class="v" id="dPB">—</div></div>
+            <div class="stat"><div class="k">PiO₂</div><div class="v" id="dPi">—</div></div>
+            <div class="stat"><div class="k">PAO₂ (PaCO₂ 40)</div><div class="v" id="dPA">—</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-thorpe">
+        <span class="tag">Fluidos · Caudalímetro</span>
+        <h3>Flujo laminar y turbulento: ¿qué mide un tubo de Thorpe?</h3>
+        <div class="formula">Laminar: Q ∝ ΔP / μ &nbsp;·&nbsp; Turbulento: Q ∝ √(ΔP / ρ)<span class="lbl">μ: viscosidad, ρ: densidad. Por encima de un número de Reynolds Re = ρ·v·d / μ ≈ 2000, el flujo se vuelve turbulento.</span></div>
+        <p>El tubo de Thorpe es un cono de vidrio que se ensancha hacia arriba. El flotador asciende hasta que la diferencia de presión bajo él sostiene su peso; esa diferencia de presión es constante y lo que cambia es la anchura del espacio anular (el orificio). Con flujos bajos, el espacio estrecho y largo entre el flotador y la pared se comporta como un tubo, y predomina la viscosidad. Con flujos altos, el espacio se ensancha y se convierte en un orificio corto, y predomina la densidad. Por eso cada tubo está calibrado para su propio gas.</p>
+        <div class="widget">
+          <div class="chips" id="thGas" role="group" aria-label="Gas que circula por el tubo"></div>
+          <div class="ctl-row"><label for="thQ">Flujo indicado</label><input type="range" id="thQ" min="0.2" max="12" step="0.1" value="2"><output id="thQo">2,0</output><span class="u">L/min</span></div>
+          <div style="display:grid;grid-template-columns:150px minmax(0,1fr);gap:14px;align-items:center">
+            <svg class="wfig" id="thFig" viewBox="0 0 150 300" role="img" aria-label="Tubo de Thorpe y flotador"></svg>
+            <div style="display:flex;flex-direction:column;gap:8px;min-width:0">
+              <div class="stat"><div class="k">Propiedad dominante</div><div class="v" id="thReg" style="font-size:16px;white-space:normal">—</div></div>
+              <div class="stat"><div class="k">Flujo real</div><div class="v" id="thAct">—</div></div>
+              <p class="muted" style="font-size:13.5px" id="thTxt"></p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-poiseuille">
+        <span class="tag">Resistencia · Vía aérea</span>
+        <h3>Hagen-Poiseuille: la cuarta potencia del radio</h3>
+        <div class="formula">R = 8·μ·L / (π·r⁴)<span class="lbl">En flujo laminar, la resistencia es directamente proporcional a la longitud y a la viscosidad, e inversamente proporcional a la cuarta potencia del radio. En flujo turbulento, la resistencia es aproximadamente proporcional a 1/r⁵ (dependencia inversa).</span></div>
+        <p>Una pequeña reducción del diámetro del tubo endotraqueal aumenta mucho la resistencia. El mismo principio se aplica al tamaño de los gránulos de cal sodada (malla 4–8), al tubo de Thorpe y a las cánulas intravenosas.</p>
+        <div class="widget">
+          <div class="ctl-row"><label for="pID">Diámetro interno del TET</label><input type="range" id="pID" min="5" max="9" step="0.5" value="7"><output id="pIDo">7,0</output><span class="u">mm</span></div>
+          <svg class="wfig" id="poiFig" viewBox="0 0 520 130" role="img" aria-label="Resistencia relativa a un tubo de 8,0 mm"></svg>
+          <div class="wout">
+            <div class="stat"><div class="k">R laminar (frente a 8,0)</div><div class="v" id="pLam">—</div></div>
+            <div class="stat"><div class="k">R turbulenta (≈ r⁻⁵)</div><div class="v" id="pTur">—</div></div>
+            <div class="stat"><div class="k">Área de sección</div><div class="v" id="pArea">—</div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-vapor">
+        <span class="tag">Presión de vapor · Vaporizador</span>
+        <h3>Presión de vapor saturado y relación de división</h3>
+        <div class="formula">C<sub>cámara</sub> = PVS / P<sub>B</sub> &nbsp;·&nbsp; F<sub>cámara</sub> = F<sub>vapor</sub> · (P<sub>B</sub> − PVS) / PVS<span class="lbl">El gas que atraviesa la cámara de vaporización se carga de vapor en proporción a la presión de vapor saturado (PVS) del agente. El dial fija la relación entre el flujo por la cámara y el flujo de derivación (bypass).</span></div>
+        <p>El vaporizador de derivación variable divide el gas fresco en dos. Una pequeña parte se carga de vapor saturado en la cámara; el resto pasa por la derivación, y ambas corrientes se reúnen a la salida. Como la vaporización consume calor latente, el líquido se enfría y su PVS disminuye; una lámina bimetálica lo compensa estrechando la derivación. La PVS del desflurano está muy próxima a la atmosférica (669 mmHg, punto de ebullición 22,8 °C): un dispositivo de tipo Tec 6 calienta el agente a 39 °C y lo inyecta de forma dosificada a ≈ 2 atm.</p>
+        <div class="widget">
+          <div class="chips" id="vAgent" role="group" aria-label="Agente"></div>
+          <div class="ctl-row"><label for="vDial">Dial</label><input type="range" id="vDial" min="0.2" max="8" step="0.1" value="2"><output id="vDialo">2,0</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="vFGF">Gas fresco</label><input type="range" id="vFGF" min="0.5" max="10" step="0.5" value="2"><output id="vFGFo">2,0</output><span class="u">L/min</span></div>
+          <svg class="wfig" id="vapFig" viewBox="0 0 520 170" role="img" aria-label="División del flujo en el vaporizador"></svg>
+          <div class="wout">
+            <div class="stat"><div class="k">Relación de división</div><div class="v" id="vSplit">—</div></div>
+            <div class="stat"><div class="k">Salida (en altitud)</div><div class="v" id="vOut">—</div></div>
+            <div class="stat"><div class="k">Consumo de líquido</div><div class="v" id="vUse">—</div></div>
+          </div>
+          <p class="muted" style="font-size:13.5px" id="vTxt"></p>
+        </div>
+      </article>
+
+      <article class="card law" id="fizik-henry">
+        <span class="tag">Solubilidad · Farmacocinética</span>
+        <h3>Ley de Henry y coeficiente de partición sangre/gas</h3>
+        <div class="formula">C<sub>disuelto</sub> = k · P<sub>gas</sub> &nbsp;·&nbsp; λ = C<sub>sangre</sub> / C<sub>gas</sub><span class="lbl">La cantidad de gas disuelto en un líquido es proporcional a la presión parcial del gas sobre el líquido. Coeficiente de solubilidad del O₂ ≈ 0,003 mL·dL⁻¹·mmHg⁻¹; O₂ disuelto ≈ 0,003 × PaO₂ (mL/dL).</span></div>
+        <p>Un agente poco soluble en sangre (λ bajo) eleva rápidamente su presión parcial alveolar, por lo que la inducción y el despertar son rápidos. El efecto depende de la presión parcial en el cerebro, no de la cantidad presente en la sangre. Las barras de abajo están a escala.</p>
+        <svg class="wfig" id="henryFig" viewBox="0 0 520 200" role="img" aria-label="Coeficientes de partición sangre/gas de los agentes inhalatorios"></svg>
+        <div class="tbl-wrap">
+          <table class="ptable">
+            <thead><tr><th>Agente</th><th>Sangre/gas</th><th>Aceite/gas</th><th>CAM %</th><th>PVS 20 °C</th></tr></thead>
+            <tbody>
+              <tr><td>Desflurano</td><td>0,42</td><td>19</td><td>6,0</td><td>669</td></tr>
+              <tr><td>N₂O</td><td>0,47</td><td>1,4</td><td>104</td><td>gas</td></tr>
+              <tr><td>Sevoflurano</td><td>0,65</td><td>47</td><td>2,0</td><td>157</td></tr>
+              <tr><td>Isoflurano</td><td>1,4</td><td>91</td><td>1,15</td><td>238</td></tr>
+              <tr><td>Halotano</td><td>2,4</td><td>224</td><td>0,75</td><td>243</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted" style="font-size:13px">CAM: adulto de unos 40 años, en O₂, a 1 atm. PVS: mmHg.</p>
+      </article>
+
+      <article class="card law" id="fizik-laplace">
+        <span class="tag">Tensión de pared · Bolsa, alvéolo</span>
+        <h3>Ley de Laplace</h3>
+        <div class="formula">P = 2T / r &nbsp;(esfera) &nbsp;·&nbsp; P = T / r &nbsp;(cilindro)<span class="lbl">T: tensión de pared, r: radio.</span></div>
+        <p>Cuando la bolsa reservorio se sobredistiende, su radio aumenta; aunque la tensión de la pared crece, la presión se estabiliza en una meseta. Según la norma ISO 5362, una bolsa inflada a cuatro veces su volumen nominal debe mantener una presión de entre 30 y 60 cmH₂O. Esta meseta depende del material de la bolsa; no sustituye a la válvula APL ni garantiza protección frente al barotrauma. El límite ISO es una condición de ensayo, no un umbral clínico de seguridad. En el alvéolo, el surfactante reduce la tensión superficial de los alvéolos pequeños e impide así que un alvéolo pequeño se vacíe en uno más grande.</p>
+        <svg class="wfig" viewBox="0 0 520 150" role="img" aria-label="Curva presión-volumen de una bolsa reservorio">
+          <line x1="60" y1="120" x2="500" y2="120" class="ink" stroke-width="1.2"/>
+          <line x1="60" y1="120" x2="60" y2="14" class="ink" stroke-width="1.2"/>
+          <path d="M60 120 C 100 40, 150 34, 200 38 S 420 44, 495 40" fill="none" stroke="var(--accent)" stroke-width="3"/>
+          <line x1="60" y1="40" x2="500" y2="40" class="ln" stroke-dasharray="4 4"/>
+          <text x="52" y="44" text-anchor="end" font-size="12" class="dim">≈ 30–60</text>
+          <text x="52" y="124" text-anchor="end" font-size="12" class="dim">0</text>
+          <text x="280" y="142" text-anchor="middle" font-size="12" class="dim">Volumen de la bolsa (múltiplos del volumen nominal) →</text>
+          <text x="66" y="12" font-size="12" class="dim">Presión cmH₂O</text>
+          <text x="330" y="32" font-size="12">Meseta: presión limitada con la sobredistensión</text>
+        </svg>
+      </article>
+
+      <article class="card law" id="fizik-motion">
+        <span class="tag">Mecánica respiratoria · Ventilador</span>
+        <h3>La ecuación del movimiento del sistema respiratorio</h3>
+        <div class="formula">P<sub>aw</sub> = V / C + R · V̇ + PEEP<sub>tot</sub><span class="lbl">Componente elástico (volumen / distensibilidad) + componente resistivo (resistencia × flujo) + presión al final de la espiración.</span></div>
+        <p>En la ventilación controlada por volumen, si se añade una breve pausa al final de una respiración de flujo constante, el flujo cae a cero y desaparece el componente resistivo. Entonces Ppico − Pmeseta refleja la resistencia y Pmeseta − PEEP (la presión de distensión, <i>driving pressure</i>) refleja la distensibilidad. La constante de tiempo es τ = R × C; se necesitan unas 3τ para completar el 95 % de la espiración pasiva.</p>
+        <p><a class="linkbtn" href="index.html#ventilator">Ir al simulador de ventilador</a></p>
+      </article>
+
+      <article class="card law" id="fizik-beer">
+        <span class="tag">Óptica · Monitor</span>
+        <h3>La ley de Beer-Lambert</h3>
+        <div class="formula">A = ε · c · d &nbsp;·&nbsp; I = I₀ · e<sup>−ε·c·d</sup><span class="lbl">La absorbancia (A) es proporcional al coeficiente de absorción molar, a la concentración y a la longitud del trayecto de la luz.</span></div>
+        <p>El pulsioxímetro calcula el cociente de la absorción pulsátil de la luz de 660 nm (roja) y de 940 nm (infrarroja): R = (CA₆₆₀/CC₆₆₀) / (CA₉₄₀/CC₉₄₀). R ≈ 0,4 corresponde a una SpO₂ ≈ 100 %, y R = 1 a ≈ 85 %. El capnómetro mide el CO₂ por absorción infrarroja a 4,26 µm, y los agentes anestésicos en la banda de 3,3 µm o de 8–9 µm (la de 8–9 µm no sufre interferencias del metano ni del CO₂).</p>
+        <p><a class="linkbtn" href="index.html#monitor">Ir a la sección del monitor</a></p>
+      </article>
+
+      <article class="card law" id="fizik-venturi">
+        <span class="tag">Conservación de la energía · Arrastre</span>
+        <h3>Bernoulli y el efecto Venturi</h3>
+        <div class="formula">P + ½ρv² + ρgh = constante<span class="lbl">En un estrechamiento la velocidad aumenta y la presión lateral disminuye; esa baja presión aspira aire ambiente a través de una entrada lateral (arrastre).</span></div>
+        <p>Las mascarillas Venturi administran una FiO₂ fija: al pasar el chorro de O₂ por un orificio estrecho, arrastra aire ambiente en una proporción fija. El mismo principio se utiliza en los nebulizadores, la ventilación jet y algunos sistemas de evacuación de gases. El hecho de que el flujo turbulento a través de un orificio dependa de la densidad es también la base de los caudalímetros Venturi.</p>
+      </article>
+    </div>
+    </div>
+  </div>
+</section>
+<section id="farmakokinetik" class="chapter">
+  <div class="wrap">
+    <div class="chapter-head">
+      <div><p class="eyebrow">Página de física · Parte 2 · Farmacocinética</p><h2>Farmacocinética y bajo flujo</h2></div>
+      <p class="lede">La presión parcial alveolar de un agente inhalatorio aumenta a una velocidad que depende de su solubilidad en sangre, del gasto cardiaco y de la ventilación. Con bajo flujo, el gas del circuito se aleja de la composición del gas fresco: a medida que el paciente capta O₂ y agente, el circuito transporta una mezcla distinta de la que indica el dial.</p>
+    </div>
+
+    <div class="card pk-card" id="pkWash">
+      <div class="pk-grid">
+        <div class="pk-ctl">
+          <h3>Lavado de entrada y de salida (FA/FI)</h3>
+          <p class="muted pk-small">Alvéolo + grupo ricamente vascularizado + músculo + grasa: un modelo fisiológico de cuatro compartimentos que se resuelve numéricamente cada 0,3 segundos. En el momento de la suspensión se interrumpe la administración del agente y la curva pasa a mostrar su eliminación (wash-out).</p>
+          <div class="chips" id="pkAgents" role="group" aria-label="Agentes mostrados"></div>
+          <div class="ctl-row"><label for="pkCO">Gasto cardiaco</label><input type="range" id="pkCO" min="2" max="10" step="0.5" value="5"><output id="pkCOo">5,0</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="pkVA">Vent. alveolar</label><input type="range" id="pkVA" min="2" max="10" step="0.5" value="4"><output id="pkVAo">4,0</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="pkFI">N₂O inspirado</label><input type="range" id="pkFI" min="10" max="80" step="5" value="70"><output id="pkFIo">70</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="pkCut">Momento de suspensión</label><input type="range" id="pkCut" min="5" max="50" step="1" value="20"><output id="pkCuto">20</output><span class="u">min</span></div>
+          <label class="pk-check" for="pkSecond"><input type="checkbox" id="pkSecond"> Efecto del segundo gas: administrar el agente volátil con N₂O al 70 %</label>
+          <div class="note pk-small" id="pkWashNote"></div>
+        </div>
+        <div class="pk-plot">
+          <canvas id="pkWashCv" role="img" aria-label="Curvas de FA/FI en el tiempo para los agentes seleccionados"></canvas>
+          <div class="tbl-wrap"><table class="ptable" id="pkWashTbl"></table></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card pk-card" id="pkLow" style="margin-top:18px">
+      <div class="pk-grid">
+        <div class="pk-ctl">
+          <h3>Anestesia de bajo flujo</h3>
+          <p class="muted pk-small">Sistema circular + CRF ≈ 6 L. El paciente consume 250 mL/min de O₂; la captación de sevoflurano sigue la aproximación de la raíz cuadrada del tiempo de Lowe (captación ∝ 1/√t). Al inicio el circuito está lleno de gas fresco y no contiene agente.</p>
+          <div class="ctl-row"><label for="lfFGF">Flujo de gas fresco (FGF)</label><input type="range" id="lfFGF" min="0.3" max="8" step="0.1" value="1"><output id="lfFGFo">1,0</output><span class="u">L/min</span></div>
+          <div class="ctl-row"><label for="lfO2">O₂ en el gas fresco</label><input type="range" id="lfO2" min="21" max="100" step="1" value="50"><output id="lfO2o">50</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="lfDial">Dial de sevo</label><input type="range" id="lfDial" min="0" max="8" step="0.1" value="2.5"><output id="lfDialo">2,5</output><span class="u">%</span></div>
+          <div class="ctl-row"><label for="lfKg">Peso del paciente</label><input type="range" id="lfKg" min="40" max="120" step="1" value="70"><output id="lfKgo">70</output><span class="u">kg</span></div>
+          <div class="pk-price">
+            <label for="lfPrice" class="pk-small"><b>Precio de 250 mL de sevoflurano</b> <span class="muted">(precio de ejemplo, introduzca el suyo)</span></label>
+            <input type="number" id="lfPrice" min="0" step="10" value="1500" inputmode="decimal"> <span class="mono pk-small">TRY</span>
+          </div>
+          <div class="note pk-small" id="lfNote"></div>
+        </div>
+        <div class="pk-plot">
+          <canvas id="lfO2Cv" role="img" aria-label="FiO₂ en el gas fresco y en el circuito durante 60 minutos"></canvas>
+          <canvas id="lfAgCv" role="img" aria-label="Ajuste del dial y concentración de sevoflurano en el circuito durante 60 minutos"></canvas>
+          <div class="tbl-wrap"><table class="ptable" id="lfTbl"></table></div>
+          <p class="muted pk-small">Absorbente: cuando el flujo de gas fresco es inferior a la ventilación minuto, una mayor proporción del gas espirado atraviesa el absorbedor; con bajo flujo el absorbente se agota antes, por lo que hay que vigilar de cerca su color y la FiCO₂.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+<footer>
+  <div class="wrap foot-brand"><svg class="foot-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="bmFoot" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M20.5 38.5 L27 25.5 H37 L43.5 38.5 Z" fill="#000"/></mask></defs><g class="bm-pills" mask="url(#bmFoot)"><rect x="17" y="6" width="30" height="13" rx="6.5"/><rect x="12" y="21" width="40" height="16" rx="8"/><rect x="10" y="41" width="44" height="15" rx="7.5"/></g><path class="bm-line" d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/></svg><div class="foot-name"><span class="foot-title">Atlas de la Máquina de Anestesia</span><span class="foot-partners"><span class="foot-by"><a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="../brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309"><img class="ab-logo ab-dark" src="../brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309"></a><span class="partner-divider" aria-hidden="true"></span><img class="ar-logo ab-light" src="../brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async"><img class="ar-logo ab-dark" src="../brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async"></span><span class="foot-credit">por Anesthesia Briefs y Anestezi Rehberi</span></span></div></div>
+  
+  <div class="wrap cols">
+    <div>
+      <h4>Referencias</h4>
+      <ul>
+        <li><a href="kaynakca.html"><b>Todas las referencias y notas de verificación →</b></a></li>
+        <li>Dorsch JA, Dorsch SE. <i>Understanding Anesthesia Equipment</i>. 5.ª ed. Lippincott Williams &amp; Wilkins.</li>
+        <li>Ehrenwerth J, Eisenkraft JB, Berry JM. <i>Anesthesia Equipment: Principles and Applications</i>. Elsevier.</li>
+        <li>Gropper MA et al. <i>Miller's Anesthesia</i>, capítulo «Inhaled Anesthetic Delivery Systems».</li>
+        <li>ASA. <i>Recommendations for Pre-Anesthesia Checkout Procedures</i> (2008).</li>
+        <li>Davis PD, Kenny GNC. <i>Basic Physics and Measurement in Anaesthesia</i>. Butterworth-Heinemann.</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Nota de uso</h4>
+      <p style="margin-top:8px">Este atlas tiene fines docentes. El modelo 3D representa una estación de anestesia genérica, no una marca concreta. Los valores numéricos son aproximados e ilustrativos, y las simulaciones son modelos simplificados. No sustituye al juicio clínico, a las instrucciones de uso del equipo ni a los protocolos locales.</p>
+    </div>
+  </div>
+</footer>
+<script src="../vendor/three-r128.min.js"></script>
+<script src="../locales/es.js"></script>
+<script src="../i18n.js"></script>
+<script src="../core.js"></script>
+<script src="../curriculum.js"></script>
+<script src="../progress-model.js"></script>
+<script src="../progress.js"></script>
+<script src="../fizik.js"></script>
+<script src="../pk.js"></script>
+<script src="../experience.js"></script>
+</body>
+</html>

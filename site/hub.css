@@ -1,0 +1,172 @@
+/* Anesthesia Atlas landing page. Tokens follow the machine atlas (site.css there) so the
+   hub and the atlases read as one family; device screens and 3D scenes stay dark in every theme. */
+:root{
+  --bg:#E6EBEE; --paper:#F7F9FA; --ink:#0F1920; --muted:#4D5E69; --line:#C3CED5; --chip:#DAE2E7;
+  --accent:#1C4ED0; --accent-soft:#DCE5FB; --on-accent:#FFFFFF; --ok:#14804A;
+  --scr:#04080B; --scr-line:#18262E; --scr-ink:#E6EEF2; --scr-dim:#7890A0;
+  --lift:0 1px 2px rgba(15,25,32,.06),0 12px 32px -14px rgba(15,25,32,.28);
+  --f-display:"Archivo","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1014; --paper:#111A20; --ink:#E1E9EE; --muted:#93A4AF; --line:#22313A; --chip:#1A262E;
+    --accent:#8AA8FF; --accent-soft:#1A2547; --on-accent:#0A1014; --ok:#4CC789; --lift:none;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1014; --paper:#111A20; --ink:#E1E9EE; --muted:#93A4AF; --line:#22313A; --chip:#1A262E;
+  --accent:#8AA8FF; --accent-soft:#1A2547; --on-accent:#0A1014; --ok:#4CC789; --lift:none;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,3.2vw,40px)}
+h1,h2{font-family:var(--f-display);text-wrap:balance;margin:0;line-height:1.04}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2.5px solid var(--accent);outline-offset:3px;border-radius:6px}
+.eyebrow{font:500 12px/1.2 var(--f-mono);text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+
+/* top bar: solid, no blur (blur on sticky elements cost scroll smoothness on the main site) */
+.topbar{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:14px;min-height:64px}
+.brand{display:flex;align-items:center;gap:10px;font:800 17px/1 var(--f-display);font-stretch:120%;color:var(--ink);text-decoration:none;white-space:nowrap;margin-right:auto;min-width:0}
+.brand span{overflow:hidden;text-overflow:ellipsis}
+.brand-mark{width:30px;height:30px;flex:none}
+.bm-pills{fill:var(--accent)}
+.bm-line{stroke:var(--ink)}
+.ab-back{flex:none;font:650 12px/1 var(--f-display);font-stretch:108%;color:var(--muted);text-decoration:none;white-space:nowrap;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
+.ab-back:hover{color:var(--ink);background:var(--chip)}
+.lang-switch{display:flex;flex:none;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px;background:var(--paper)}
+.lang-switch a{font:700 11.5px/1 var(--f-mono);letter-spacing:.05em;padding:8px 9px;border-radius:999px;color:var(--muted);text-decoration:none}
+.lang-switch a:hover{color:var(--accent)}
+.lang-switch a[aria-current="true"]{background:var(--ink);color:var(--paper)}
+
+/* hero */
+.hero{padding-block:clamp(44px,7vw,96px) clamp(28px,4vw,48px)}
+.hero h1{margin-top:16px;font-size:clamp(46px,8vw,104px);font-weight:850;font-stretch:120%;letter-spacing:-.02em}
+.hero .lede{margin-top:20px;max-width:62ch;font-size:clamp(18px,1.6vw,20.5px);color:var(--muted);text-wrap:pretty}
+.by-row{display:flex;align-items:center;flex-wrap:wrap;gap:12px 18px;margin-top:30px}
+.by-label{font:600 11.5px/1 var(--f-display);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.by-logos{display:flex;align-items:center;gap:16px}
+.ab-logo-link{display:inline-flex;border-radius:6px}
+.ab-logo{display:block;height:44px;width:auto}
+.ar-logo{display:block;height:68px;width:auto;object-fit:contain}
+.partner-divider{width:1px;height:36px;background:var(--line);flex:none}
+.ab-dark{display:none!important}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .ab-light{display:none!important}:root:not([data-theme="light"]) .ab-dark{display:block!important}}
+:root[data-theme="dark"] .ab-light{display:none!important}
+:root[data-theme="dark"] .ab-dark{display:block!important}
+
+/* atlas banners */
+.atlases{padding-bottom:clamp(56px,8vw,104px)}
+.atlas-list{list-style:none;margin:0;padding:0;display:grid;gap:clamp(18px,2.4vw,28px)}
+.atlas-card{--tone:#1C4ED0;--tone-ink:var(--accent);position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);min-height:400px;background:var(--paper);border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:var(--lift);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.tone-teal{--tone:#0F9B8E;--tone-ink:#0B7F74}
+.tone-orange{--tone:#E07A2E;--tone-ink:#B85A16}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tone-blue{--tone-ink:#8AA8FF}:root:not([data-theme="light"]) .tone-teal{--tone-ink:#4FD1C1}:root:not([data-theme="light"]) .tone-orange{--tone-ink:#FFA463}}
+:root[data-theme="dark"] .tone-blue{--tone-ink:#8AA8FF}
+:root[data-theme="dark"] .tone-teal{--tone-ink:#4FD1C1}
+:root[data-theme="dark"] .tone-orange{--tone-ink:#FFA463}
+.atlas-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--tone);z-index:2}
+.card-text{display:flex;flex-direction:column;align-items:flex-start;gap:16px;padding:clamp(26px,3.4vw,44px)}
+.card-meta{display:flex;align-items:center;gap:12px}
+.card-no{font:700 13px/1 var(--f-mono);color:var(--tone-ink);letter-spacing:.06em}
+.status{display:inline-flex;align-items:center;gap:7px;font:700 11px/1 var(--f-display);letter-spacing:.09em;text-transform:uppercase;padding:7px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.status-live{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 40%,var(--line))}
+.status-live::before{box-shadow:0 0 0 3px color-mix(in srgb,var(--ok) 22%,transparent)}
+.atlas-card h2{font-size:clamp(28px,3.1vw,40px);font-weight:820;font-stretch:114%;letter-spacing:-.012em}
+.card-link{color:inherit;text-decoration:none}
+.card-link::after{content:"";position:absolute;inset:0;z-index:3;border-radius:inherit}
+.card-text > p{color:var(--muted);font-size:17px;max-width:52ch;text-wrap:pretty}
+.card-facts{list-style:none;margin:2px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.card-facts li{font:500 13px/1 var(--f-display);color:var(--muted);background:var(--chip);border-radius:999px;padding:8px 12px;white-space:nowrap}
+.card-facts b{font:700 13px/1 var(--f-mono);color:var(--ink);margin-right:3px}
+.cta{margin-top:auto;display:inline-flex;align-items:center;gap:10px;font:700 15px/1 var(--f-display);font-stretch:108%;padding:15px 20px;border-radius:12px;background:var(--tone);color:#fff}
+.cta .arr{transition:transform .25s ease}
+.cta-soon{background:transparent;color:var(--muted);border:1px dashed var(--line);font-weight:600}
+.card-visual{position:relative;background:radial-gradient(120% 90% at 60% 40%,#1A2A35 0%,#0B1419 62%,#070C10 100%);border-left:1px solid var(--line);min-height:100%}
+.card-visual img,.card-visual svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.tone-blue .card-visual img{object-position:50% 46%}
+.tone-teal .card-visual img{object-position:40% 38%}
+.tone-orange .card-visual{background:#04080B}
+.is-soon .card-visual > *{filter:saturate(.82) brightness(.9)}
+.is-live:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--tone) 55%,var(--line));box-shadow:0 2px 4px rgba(15,25,32,.06),0 22px 44px -18px rgba(15,25,32,.36)}
+.is-live:hover .cta .arr{transform:translateX(4px)}
+.is-live:has(.card-link:focus-visible){outline:2.5px solid var(--accent);outline-offset:3px}
+.card-link:focus-visible{outline:none}
+@media (prefers-reduced-motion: reduce){.atlas-card,.cta .arr{transition:none}.is-live:hover{transform:none}}
+
+/* ventilator screen drawing (mechanical ventilation banner) */
+.vent-screen{font-family:var(--f-mono)}
+.vs-bg{fill:#04080B}
+.vs-strip{fill:#0A141A;stroke:#18262E}
+.vs-zero{stroke:#2A3B45;stroke-dasharray:3 4}
+.vs-mode{fill:#FF9A4A}
+.vs-mode-t{fill:#04080B;font:700 13px var(--f-mono)}
+.vs-head{fill:#7890A0;font:500 12px var(--f-mono)}
+.vs-lab{font:600 11px var(--f-mono)}
+.vs-lab.p,.vs-v.p{fill:#FF9A4A}.vs-lab.f,.vs-v.f{fill:#7FB2FF}.vs-lab.v,.vs-v.v{fill:#EDEFF0}
+.tr-p,.tr-f,.tr-v{fill:none;stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.tr-p{stroke:#FF9A4A}.tr-f{stroke:#7FB2FF}.tr-v{stroke:#EDEFF0}
+.vs-gap{fill:#04080B}
+.vs-div{stroke:#18262E}
+.vs-k{fill:#7890A0;font:600 11px var(--f-mono)}
+.vs-u{fill:#4F6573;font:500 10px var(--f-mono)}
+.vs-v{font:700 26px var(--f-mono)}
+
+/* footer */
+footer{border-top:1px solid var(--line);padding-block:40px 56px;font-size:14px;color:var(--muted)}
+.foot-brand{display:flex;align-items:flex-start;gap:14px;margin-bottom:26px}
+.foot-mark{width:52px;height:52px;flex:none}
+.foot-name{display:flex;flex-direction:column;gap:4px;min-width:0}
+.foot-title{font:800 20px/1.1 var(--f-display);font-stretch:118%;color:var(--ink)}
+.foot-partners{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.foot-by{display:flex;align-items:center;flex-wrap:wrap;gap:16px}
+.foot-by .ab-logo{height:48px}
+.foot-by .ar-logo{height:80px}
+.foot-credit{font:500 12px/1.5 var(--f-display);color:var(--muted)}
+.foot-cols{display:grid;gap:12px;padding-top:24px;position:relative}
+.foot-cols::before{content:"";position:absolute;top:0;left:clamp(16px,3.2vw,40px);right:clamp(16px,3.2vw,40px);border-top:1px solid var(--line)}
+.foot-note{max-width:80ch}
+.foot-rights{font:600 12.5px/1.4 var(--f-display);color:var(--ink)}
+.visitor-stats{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;padding-top:14px;border-top:1px solid var(--line);font:500 12.5px/1.4 var(--f-display);color:var(--muted)}
+.visitor-stats[hidden]{display:none}
+.visitor-stats b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.visitor-stats .live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#2FB872;box-shadow:0 0 6px #2FB872;vertical-align:1px}
+
+/* tablets and phones: the visual sits on top of each banner */
+@media (max-width:860px){
+  .atlas-card{grid-template-columns:1fr;min-height:0;border-radius:18px}
+  .card-visual{order:-1;aspect-ratio:16/10;border-left:0;border-bottom:1px solid var(--line)}
+  .atlas-card::before{top:0;bottom:auto;right:0;width:auto;height:4px}
+  .cta{margin-top:6px}
+}
+@media (max-width:600px){
+  body{font-size:16px}
+  .topbar .wrap{gap:9px;min-height:58px}
+  .brand{font-size:15.5px;gap:8px}
+  .brand-mark{width:26px;height:26px}
+  .ab-back{padding:9px 10px;font-size:0;line-height:0}
+  .ab-back span{font-size:15px;line-height:1}
+  .lang-switch a{padding:9px 7px;font-size:10.5px}
+  .hero h1{font-size:clamp(40px,12vw,56px)}
+  .by-row{gap:10px 14px;margin-top:24px}
+  .by-logos{gap:12px}
+  .ab-logo{height:36px}
+  .ar-logo{height:56px}
+  .partner-divider{height:30px}
+  .card-text{gap:13px;padding:22px 20px 24px}
+  .card-text > p{font-size:16px}
+  .card-facts li{font-size:12.5px;padding:7px 10px}
+  .cta{width:100%;justify-content:center}
+  .card-visual{aspect-ratio:4/3}
+  .foot-by{gap:10px}
+  .foot-by .ab-logo{height:34px}
+  .foot-by .ar-logo{height:64px}
+}
