@@ -127,10 +127,10 @@ const LANGS = Object.keys(T);
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
 
-// The hub's own mark: an open atlas with a monitor trace running across both pages.
-// The trace cuts a gap through the book's lines where it crosses them (mask), so it reads cleanly at 16 px.
-const HUB_TRACE = 'M7.5 36 H21 L24 31.5 L27.5 40 L31.5 21.5 L35.5 44 L38.5 36 H56.5';
-const mark = (cls, id) => `<svg class="${cls}" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="${HUB_TRACE}" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><g class="hm-book" mask="url(#${id})" fill="none" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"><path d="M32 17 C25 12.5 14 12 5 14.5 V50 C14 47.5 25 48 32 52.5 C39 48 50 47.5 59 50 V14.5 C50 12 39 12.5 32 17 Z"/><path d="M32 17 V52.5"/></g><path class="hm-trace" d="${HUB_TRACE}" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+// The hub's own mark: an "A" (Anestezi / Anesthesia / Anestesia) whose crossbar is a monitor trace.
+// The letter opens where the trace crosses it (mask), so the mark reads cleanly at 16 px.
+const HUB_TRACE = 'M4 39 H21.5 L25 34.5 L28.5 42 L32.5 22.5 L36.5 46 L39.5 39 H60';
+const mark = (cls, id) => `<svg class="${cls}" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="${HUB_TRACE}" fill="none" stroke="#000" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><path class="hm-letter" d="M12.5 54 L32 10.5 L51.5 54" mask="url(#${id})" fill="none" stroke-width="7.4" stroke-linecap="round" stroke-linejoin="round"/><path class="hm-trace" d="${HUB_TRACE}" fill="none" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const logos = (up, lazy) => {
   const l = lazy ? ' loading="lazy" decoding="async"' : '';
