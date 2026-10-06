@@ -1,0 +1,3 @@
+'use strict';
+/* Arama eş anlamlıları. Otomatik üretildi: tools/build-content.cjs */
+window.ICA_ALIASES = {"bis-advance":["BIS","entegre BIS"],"conox":["CONOX","qCON","qNOX"],"ge-entropy":["E-Entropy"],"lidco":["PulseCO"],"ori":["ORi","Oxygen Reserve Index","oksijen rezerv indeksi"],"pi":["Pi","PI","Perfusion Index","perfüzyon indeksi"],"pvi":["PVi","Pleth Variability Index","pletismografik değişkenlik indeksi"],"rra":["RRa","akustik solunum sayısı","rainbow Acoustic Monitoring","RAM"],"spco":["SpCO","karboksihemoglobin","COHb","karbon monoksit"],"sphb":["SpHb","noninvaziv hemoglobin","total hemoglobin","Pulse CO-Oximetry hemoglobin"],"spmet":["SpMet","methemoglobin","MetHb","methemoglobinemi"]};

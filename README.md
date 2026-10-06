@@ -7,7 +7,7 @@ Everything served at https://atlas.anesthesiabriefs.com, and nothing else. This 
 | `site/index.html`, `site/en/`, `site/es/` | Landing page with the three atlas banners | `tools/build-hub.cjs` (generated, do not hand-edit) |
 | `site/fizik.html`, `site/ekipman.html`, `site/kaynakca.html` (+ `en/`, `es/`) | Redirects from the machine atlas's old root addresses | `tools/build-hub.cjs` |
 | `site/anesthesia-machine/` | Anesthesia Machine Atlas | `tools/sync-machine.sh` from `../Anestezi-Atlasi` |
-| `site/advanced-monitoring/` | Advanced Monitoring Atlas (coming soon) | not published yet |
+| `site/advanced-monitoring/` | Advanced Monitoring Atlas | `tools/sync-monitoring.sh` from `../Ileri-Cihaz-Atlasi` |
 | `site/mechanical-ventilation/` | Mechanical Ventilation Modes Atlas (coming soon) | not published yet |
 
 ## Updating
@@ -15,6 +15,7 @@ Everything served at https://atlas.anesthesiabriefs.com, and nothing else. This 
 ```sh
 node tools/build-hub.cjs      # after editing landing-page text or adding an atlas
 ./tools/sync-machine.sh       # runs the machine atlas's checks, then copies its site/
+./tools/sync-monitoring.sh    # same for the Advanced Monitoring Atlas
 node tools/check-links.cjs    # the same check the deploy runs
 ```
 

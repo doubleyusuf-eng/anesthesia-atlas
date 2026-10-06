@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title data-i18n="site.name">İleri Monitörizasyon Atlası</title>
+<meta name="description" data-i18n-attr="content:site.desc" content="Anestezide kullanılan ileri düzey cihazların çalışma ilkelerini, hastaya uygulanmasını ve ölçümlerinin yorumlanmasını anlatan, 3B modellerle desteklenmiş üç dilli eğitim atlası.">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2.5"/><path d="M5.5 11h3l1.6-3.2 2.4 6 1.8-3.8h4.2"/><path d="M8 21h8M12 17v4"/></svg>
+      <span data-i18n="site.name">İleri Monitörizasyon Atlası</span>
+    </a>
+    <nav class="topnav" data-i18n-attr="aria-label:nav.catalog">
+      <a class="nav-hub" href="https://atlas.anesthesiabriefs.com/es/" data-i18n="nav.atlas">← Todos los atlas</a>
+      <a href="#sahneler" data-i18n="nav.scenes">3B sahneler</a>
+      <a href="#katalog" data-i18n="nav.catalog">Katalog</a>
+      <a href="sinav.html" data-i18n="nav.quiz">Sınav</a>
+    </nav>
+    <div class="lang-switch" role="group" data-i18n-attr="aria-label:nav.lang"></div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1 data-i18n="hero.title">İleri anestezi cihazlarını 3B keşfedin</h1>
+      <p class="lede" data-i18n="hero.lede"></p>
+      <ul class="facts" id="facts"></ul>
+    </div>
+    <figure class="hero-fig">
+      <div class="stage stage-hero" id="heroStage">
+        <div class="pins"></div>
+        <div class="stage-tools">
+          <button type="button" data-act="in" data-i18n-attr="aria-label:stage.in;title:stage.in">+</button>
+          <button type="button" data-act="out" data-i18n-attr="aria-label:stage.out;title:stage.out">−</button>
+          <button type="button" data-act="reset" data-i18n-attr="aria-label:stage.reset;title:stage.reset">⟲</button>
+        </div>
+        <span class="stage-hint" data-i18n="stage.hint"></span>
+      </div>
+      <figcaption><span data-i18n="hero.cap"></span><a href="cihaz.html?id=bis-advance#uygulama" data-i18n="hero.cta">Adım adım izle →</a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="chapter" id="sahneler">
+  <div class="wrap">
+    <div class="chapter-head">
+      <h2 data-i18n="scenes.title">3B uygulama sahneleri</h2>
+      <p class="lede" data-i18n="scenes.lede"></p>
+    </div>
+    <div class="scene-grid" id="scenes"></div>
+  </div>
+</section>
+
+<section class="chapter" id="sinav">
+  <div class="wrap">
+    <div class="quiz-teaser">
+      <div>
+        <h2 data-i18n="quiz.title">Kendini sına</h2>
+        <p class="lede" data-i18n="quiz.teaser"></p>
+      </div>
+      <div class="qt-side" id="progSummary"></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="katalog">
+  <div class="wrap">
+    <div class="chapter-head">
+      <h2 data-i18n="cat.title">Cihaz kataloğu</h2>
+      <p class="lede" data-i18n="cat.lede"></p>
+    </div>
+    <p class="moved-note"><span data-i18n="cat.wsMoved">Anestezi iş istasyonları Anestezi Makinesi Atlası'na taşındı.</span> <a id="wsMovedLink" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/istasyonlar.html" data-i18n="cat.wsMovedLink">İş istasyonlarını aç →</a></p>
+    <div class="toolbar">
+      <label class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="sr" data-i18n="cat.search"></span>
+        <input id="q" type="search" autocomplete="off" data-i18n-attr="placeholder:cat.searchPh">
+      </label>
+      <label><span class="sr" data-i18n="cat.kindLabel"></span><select class="select" id="kind"></select></label>
+      <label class="check"><input type="checkbox" id="only3d"><span data-i18n="cat.only3d"></span></label>
+      <span class="count" id="count" aria-live="polite"></span>
+    </div>
+    <div id="results"></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot-brand">
+    <svg class="foot-mark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2.5"/><path d="M5.5 11h3l1.6-3.2 2.4 6 1.8-3.8h4.2"/><path d="M8 21h8M12 17v4"/></svg>
+    <div class="foot-name">
+      <span class="foot-title" data-i18n="site.name">İleri Monitörizasyon Atlası</span>
+      <span class="foot-partners">
+        <span class="foot-by">
+          <a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="../brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309" loading="lazy" decoding="async"><img class="ab-logo ab-dark" src="../brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309" loading="lazy" decoding="async"></a>
+          <span class="partner-divider" aria-hidden="true"></span>
+          <img class="ar-logo ab-light" src="../brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async"><img class="ar-logo ab-dark" src="../brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async">
+        </span>
+        <span class="foot-credit" data-i18n="foot.by">Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanmıştır.</span>
+      </span>
+    </div>
+  </div>
+  <div class="wrap">
+    <span data-i18n="foot.edu"></span>
+    <span data-i18n="foot.tm"></span>
+    <span data-i18n="foot.model"></span>
+    <span class="foot-takedown"><span data-i18n="foot.takedown">Görsellerle ilgili hak sahibi talepleri ve kaldırma istekleri için:</span> <a href="mailto:support@anesthesiabriefs.com">support@anesthesiabriefs.com</a></span>
+  </div>
+</footer>
+
+<script src="../locales/es.js"></script>
+<script src="../i18n.js"></script>
+<script src="../data/categories.js"></script>
+<script src="../data/devices-1.js"></script>
+<script src="../data/devices-2.js"></script>
+<script src="../data/devices-3.js"></script>
+<script src="../data/aliases.js"></script>
+<script src="../content/index.js"></script>
+<script src="../vendor/three-r128.min.js"></script>
+<script src="../vendor/GLTFLoader.js"></script>
+<script src="../core3d.js"></script>
+<script src="../patient3d.js"></script>
+<script src="../device3d.js"></script>
+<script src="../dm/dm-core.js"></script>
+<script src="../dm/dm-a.js"></script>
+<script src="../dm/dm-b.js"></script>
+<script src="../dm/dm-c.js"></script>
+<script src="../dm/dm-d.js"></script>
+<script src="../dm/dm-e.js"></script>
+<script src="../dm/dm-f.js"></script>
+<script src="../dm/dm-g.js"></script>
+<script src="../common.js"></script>
+<script src="../progress.js"></script>
+<script src="../catalog.js"></script>
+</body>
+</html>
