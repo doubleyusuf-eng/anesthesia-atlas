@@ -39,8 +39,8 @@ a{color:var(--accent)}
 .brand{display:flex;align-items:center;gap:10px;font:800 17px/1 var(--f-display);font-stretch:120%;color:var(--ink);text-decoration:none;white-space:nowrap;margin-right:auto;min-width:0}
 .brand span{overflow:hidden;text-overflow:ellipsis}
 .brand-mark{width:30px;height:30px;flex:none}
-.bm-pills{fill:var(--accent)}
-.bm-line{stroke:var(--ink)}
+.hm-book{stroke:var(--ink)}
+.hm-trace{stroke:var(--accent)}
 .ab-back{flex:none;font:650 12px/1 var(--f-display);font-stretch:108%;color:var(--muted);text-decoration:none;white-space:nowrap;padding:9px 12px;border:1px solid var(--line);border-radius:999px;background:var(--paper)}
 .ab-back:hover{color:var(--ink);background:var(--chip)}
 .lang-switch{display:flex;flex:none;gap:2px;border:1px solid var(--line);border-radius:999px;padding:2px;background:var(--paper)}

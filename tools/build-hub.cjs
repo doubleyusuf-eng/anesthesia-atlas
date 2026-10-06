@@ -127,8 +127,10 @@ const LANGS = Object.keys(T);
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#x27;');
 
-// The atlas family mark (same drawing as the machine atlas and the favicon).
-const mark = (cls, id) => `<svg class="${cls}" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke="#000" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M20.5 38.5 L27 25.5 H37 L43.5 38.5 Z" fill="#000"/></mask></defs><g class="bm-pills" mask="url(#${id})"><rect x="17" y="6" width="30" height="13" rx="6.5"/><rect x="12" y="21" width="40" height="16" rx="8"/><rect x="10" y="41" width="44" height="15" rx="7.5"/></g><path class="bm-line" d="M2 38H18.5c1.4 0 2.2-.6 2.8-1.8L26 26.2c.6-1.2 1.4-1.8 2.8-1.8h6.4c1.4 0 2.2.6 2.8 1.8l4.7 10c.6 1.2 1.4 1.8 2.8 1.8H62" fill="none" stroke-width="3.6" stroke-linejoin="round" stroke-linecap="round"/></svg>`;
+// The hub's own mark: an open atlas with a monitor trace running across both pages.
+// The trace cuts a gap through the book's lines where it crosses them (mask), so it reads cleanly at 16 px.
+const HUB_TRACE = 'M7.5 36 H21 L24 31.5 L27.5 40 L31.5 21.5 L35.5 44 L38.5 36 H56.5';
+const mark = (cls, id) => `<svg class="${cls}" viewBox="0 0 64 64" aria-hidden="true"><defs><mask id="${id}" maskUnits="userSpaceOnUse" x="0" y="0" width="64" height="64"><rect width="64" height="64" fill="#fff"/><path d="${HUB_TRACE}" fill="none" stroke="#000" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></mask></defs><g class="hm-book" mask="url(#${id})" fill="none" stroke-width="3.8" stroke-linejoin="round" stroke-linecap="round"><path d="M32 17 C25 12.5 14 12 5 14.5 V50 C14 47.5 25 48 32 52.5 C39 48 50 47.5 59 50 V14.5 C50 12 39 12.5 32 17 Z"/><path d="M32 17 V52.5"/></g><path class="hm-trace" d="${HUB_TRACE}" fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
 const logos = (up, lazy) => {
   const l = lazy ? ' loading="lazy" decoding="async"' : '';
