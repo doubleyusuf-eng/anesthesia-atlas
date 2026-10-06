@@ -1,0 +1,26 @@
+/* İş istasyonları sayfası (İleri Monitörizasyon Atlası 3B cihaz sistemi stilleriyle uyumlu) */
+.ws-filters{display:grid;gap:8px;margin:4px 0 14px}
+.ws-filters .chips button{font-size:12.5px}
+.ws-grid{display:grid;grid-template-columns:minmax(0,1fr) 400px;gap:20px;align-items:start}
+@media (max-width:1020px){.ws-grid{grid-template-columns:1fr}}
+.stage.stage-tall{height:clamp(460px,78vh,780px)}
+.tag3d[hidden]{display:none!important}
+.tag3d.num{min-width:22px;height:22px;padding:0;display:grid;place-items:center;border-radius:11px;background:var(--ink);color:var(--paper);border-color:var(--paper)}
+.tag3d.pin3d{pointer-events:auto;cursor:pointer}
+.tag3d.pin3d.on{background:var(--accent);color:var(--on-accent)}
+.tag3d.pin3d.behind:not(.on):not(:hover){opacity:.28}
+.ws-name{font-size:24px;margin:2px 0 10px}
+.ws-points{margin:10px 0 0;padding-left:18px}.ws-points li{margin:4px 0;line-height:1.5}
+.ws-fam,.ws-ev{margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}
+.ws-fam a{color:var(--accent);font-weight:600}
+.evcode{display:inline-grid;place-items:center;min-width:26px;height:26px;border-radius:7px;font:800 14px/1 var(--f-mono);margin-right:6px;background:var(--chip);color:var(--ink)}
+.evcode.ev-K{background:color-mix(in srgb,var(--ok) 18%,var(--paper));color:var(--ok)}
+.evcode.ev-S{background:color-mix(in srgb,var(--warn) 16%,var(--paper));color:var(--warn)}
+.ws-src{margin:6px 0 0;padding-left:18px;font-size:14px}.ws-src li{margin:3px 0}
+.ws-note{font-size:13.5px;margin-top:12px}
+.ws-parts .part-list{display:flex;flex-direction:column;gap:4px;max-height:300px;overflow:auto;margin:8px 0 12px}
+.ws-parts .part-list button{text-align:left;font:600 14px/1.3 var(--f-display);padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.ws-parts .part-list button b{font-family:var(--f-mono);color:var(--accent);margin-right:6px}
+.ws-parts .part-list button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.ws-parts h4{font-size:16px;margin:0 0 4px}.ws-parts p{font-size:15px;line-height:1.5;margin:0}
+.ws-foot{margin-top:18px;font-size:14px;max-width:900px}

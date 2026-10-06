@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Anaesthesia Equipment Workshop</title>
-<meta name="description" content="Examine anaesthesia equipment part by part with interactive 3D models. The equipment workshop of the Anaesthesia Machine Atlas.">
-<link rel="canonical" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/en/ekipman.html">
-<link rel="alternate" hreflang="tr" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/ekipman.html">
-<link rel="alternate" hreflang="en" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/en/ekipman.html">
-<link rel="alternate" hreflang="es" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/es/ekipman.html">
-<link rel="alternate" hreflang="x-default" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/ekipman.html">
+<title>Anaesthesia Workstations</title>
+<meta name="description" content="Explore anaesthesia workstations by brand and model in 3D: Dräger, GE HealthCare, Mindray, Getinge and Löwenstein. Anesthesia Machine Atlas.">
+<link rel="canonical" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/en/istasyonlar.html">
+<link rel="alternate" hreflang="tr" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/istasyonlar.html">
+<link rel="alternate" hreflang="en" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/en/istasyonlar.html">
+<link rel="alternate" hreflang="es" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/es/istasyonlar.html">
+<link rel="alternate" hreflang="x-default" href="https://atlas.anesthesiabriefs.com/anesthesia-machine/istasyonlar.html">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../apple-touch-icon.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Anaesthesia Machine Atlas">
-<meta property="og:title" content="Anaesthesia Equipment Workshop">
-<meta property="og:description" content="Examine anaesthesia equipment part by part with interactive 3D models. The equipment workshop of the Anaesthesia Machine Atlas.">
-<meta property="og:url" content="https://atlas.anesthesiabriefs.com/anesthesia-machine/en/ekipman.html">
+<meta property="og:title" content="Anaesthesia Workstations">
+<meta property="og:description" content="Explore anaesthesia workstations by brand and model in 3D: Dräger, GE HealthCare, Mindray, Getinge and Löwenstein. Anesthesia Machine Atlas.">
+<meta property="og:url" content="https://atlas.anesthesiabriefs.com/anesthesia-machine/en/istasyonlar.html">
 <meta property="og:image" content="https://atlas.anesthesiabriefs.com/anesthesia-machine/og-en.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -26,6 +26,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../ws/ws.css">
 </head>
 <body>
 <header class="topbar">
@@ -39,40 +40,44 @@
       <a href="index.html#makine">Machine</a>
       <a href="index.html#gazyolu">Gas pathway</a>
       <a href="fizik.html">Physics</a>
-      <a class="ext" href="ekipman.html" aria-current="page">Equipment</a>
-      <a class="ext" href="istasyonlar.html">Workstations</a>
+      <a class="ext" href="ekipman.html">Equipment</a>
+      <a class="ext" href="istasyonlar.html" aria-current="page">Workstations</a>
       <a href="index.html#ventilator">Ventilator</a>
       <a href="index.html#monitor">Monitor</a>
       <a href="index.html#guvenlik">Safety</a>
       <a href="index.html#test">Quiz</a>
       <a class="ab-back-nav" href="https://atlas.anesthesiabriefs.com/en/">← All atlases</a>
     </nav>
-    <div class="lang-switch" role="group" aria-label="Dil · Language · Idioma"><a href="../ekipman.html" lang="tr" hreflang="tr">TR</a><a href="ekipman.html" lang="en" hreflang="en" aria-current="true">EN</a><a href="../es/ekipman.html" lang="es" hreflang="es">ES</a></div>
+    <div class="lang-switch" role="group" aria-label="Dil · Language · Idioma"><a href="../istasyonlar.html" lang="tr" hreflang="tr">TR</a><a href="istasyonlar.html" lang="en" hreflang="en" aria-current="true">EN</a><a href="../es/istasyonlar.html" lang="es" hreflang="es">ES</a></div>
   </div>
 </header>
 <main>
-<section id="ekipman" class="chapter page-top">
+<section id="istasyonlar" class="chapter page-top">
   <div class="wrap">
     <div class="chapter-head">
-      <div><p class="eyebrow">Equipment workshop</p><h2>Airway, breathing systems and scavenging</h2></div>
-      <p class="lede">Explore in 3D the equipment we handle every day in anaesthesia, from the laryngoscope to the scavenging interface. Each model has numbered parts, key figures and calculators: tube size, LMA size, cuff pressure, Mapleson fresh gas requirement and occupational exposure limits.</p>
+      <div><p class="eyebrow">Anaesthesia workstations</p><h2>Brands and models</h2></div>
+      <p class="lede">Explore an overview of the anaesthesia workstations you may encounter in clinical practice. Rotate each model and zoom in or out; tap the numbered parts to learn what they do. Each entry also lists evidence of use and supporting sources.</p>
     </div>
-    <div class="chips eq-tabs" id="eqTabs" role="group" aria-label="Models"></div>
-    <div class="eq-grid">
-      <div class="stage" id="stageEq" data-fs-panels="#eqTabs,#eqInfo,#eqCalc"><div class="fs-side" aria-label="Information panel"></div>
-        <div class="pins"></div><div class="pad" role="group" aria-label="Move the device"><button type="button" data-pan="0,1" aria-label="Move up" style="grid-area:u"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="1,0" aria-label="Move left" style="grid-area:l"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="c" aria-label="Centre" style="grid-area:c"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="currentColor"/></svg></button><button type="button" data-pan="-1,0" aria-label="Move right" style="grid-area:r"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" data-pan="0,-1" aria-label="Move down" style="grid-area:d"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    <div class="ws-filters">
+      <div class="chips" id="wsBrands" role="group" aria-label="Brands"></div>
+      <div class="chips" id="wsModels" role="group" aria-label="Models"></div>
+    </div>
+    <div class="ws-grid">
+      <div class="stage" id="wsStage" data-fs-panels="#wsInfo,#wsParts"><div class="fs-side" aria-label="Model information"></div>
+        <div class="pins"></div>
         <div class="stage-tools">
           <button type="button" data-act="in" aria-label="Zoom in">+</button>
           <button type="button" data-act="out" aria-label="Zoom out">−</button>
-          <button type="button" data-act="pan" aria-pressed="false" aria-label="Pan mode">Pan</button><button type="button" data-act="reset" aria-label="Reset view">Reset</button>
+          <button type="button" data-act="reset" aria-label="Reset view">Reset</button>
           <button type="button" data-side aria-pressed="true">Panel</button><button type="button" data-fs aria-pressed="false" aria-label="Full screen"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" fill="none" stroke="currentColor" stroke-width="2.4"/></svg><span>Full screen</span></button>
         </div>
-        <div class="stage-hint">Drag: rotate · Shift + drag: move · Ctrl + wheel: zoom</div></div>
+        <div class="stage-hint">Drag: rotate · Ctrl + wheel: zoom · tap the numbers</div></div>
       <div class="panel">
-        <div class="card info" id="eqInfo" aria-live="polite"></div>
-        <div class="card ctl" id="eqCalc"></div>
+        <div class="card info" id="wsInfo" aria-live="polite"></div>
+        <div class="card ws-parts" id="wsParts"><p class="eyebrow">Parts</p><div class="part-list" id="wsPartList"></div><div id="wsPartInfo" aria-live="polite"></div></div>
       </div>
     </div>
+    <p class="muted ws-foot">These representative models were created independently for teaching; no manufacturer photo, CAD file or manual drawing was used as a texture. On-screen values are examples, not real measurements. Evidence of use: <b>K</b> use in a recent clinical publication, <b>P</b> manufacturer portfolio (not evidence of hospital use), <b>S</b> official support record. This list is not a current inventory of hospitals in Türkiye.</p>
   </div>
 </section>
 </main>
@@ -93,7 +98,7 @@
     </div>
     <div>
       <h4>Note on use</h4>
-      <p style="margin-top:8px">This atlas is for education. The 3D model represents a generic anaesthesia workstation, not a specific brand. Numerical values are approximate and illustrative; the simulations are simplified models. When making clinical decisions, follow the device's instructions for use and your institution's protocols; this atlas does not replace them.</p>
+      <p style="margin-top:8px">The 3D models on this page represent specific workstation brands and models for teaching purposes. Their dimensions and component positions have not been checked for exact correspondence with the manual. For clinical use, follow the device’s current instructions for use.</p>
     </div>
   </div>
 </footer>
@@ -104,7 +109,17 @@
 <script src="../curriculum.js"></script>
 <script src="../progress-model.js"></script>
 <script src="../progress.js"></script>
-<script src="../ekipman.js"></script>
+<script src="../ws/ws-shim.js"></script>
+<script src="../ws/ws-core.js"></script>
+<script src="../ws/device3d.js"></script>
+<script src="../ws/dm-core.js"></script>
+<script src="../ws/dm-d.js"></script>
+<script src="../ws/dm-h.js"></script>
+<script src="../ws/dm-i.js"></script>
+<script src="../ws/dm-j.js"></script>
+<script src="../ws/ws-data.js"></script>
+<script src="../ws/ws-text.js"></script>
+<script src="../ws/ws-page.js"></script>
 <script src="../experience.js"></script>
 </body>
 </html>
