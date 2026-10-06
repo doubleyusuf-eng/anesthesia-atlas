@@ -141,7 +141,7 @@ footer{border-top:1px solid var(--line);padding-block:40px 56px;font-size:14px;c
 .visitor-stats .live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#2FB872;box-shadow:0 0 6px #2FB872;vertical-align:1px}
 
 /* tablets and phones: the visual sits on top of each banner */
-@media (max-width:860px){
+@media (max-width:700px){
   .atlas-card{grid-template-columns:1fr;min-height:0;border-radius:18px}
   .card-visual{order:-1;aspect-ratio:16/10;border-left:0;border-bottom:1px solid var(--line)}
   .atlas-card::before{top:0;bottom:auto;right:0;width:auto;height:4px}
@@ -169,4 +169,16 @@ footer{border-top:1px solid var(--line);padding-block:40px 56px;font-size:14px;c
   .foot-by{gap:10px}
   .foot-by .ab-logo{height:34px}
   .foot-by .ar-logo{height:64px}
+}
+@media (max-width:400px){
+  .brand{font-size:15px;font-stretch:100%;gap:7px}
+  .brand-mark{width:24px;height:24px}
+  .lang-switch a{padding:9px 6px}
+}
+@media (max-width:340px){.brand{white-space:normal;line-height:1.05;font-size:14px}.brand span{overflow:visible}}
+@media (min-width:701px) and (max-width:960px){
+  .atlas-card{min-height:340px;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+  .card-text{padding:26px 24px}
+  .atlas-card h2{font-size:26px}
+  .card-text > p{font-size:15.5px}
 }
