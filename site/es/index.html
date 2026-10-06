@@ -35,47 +35,31 @@ if(location.hash.length>1)location.replace("../anesthesia-machine/es/"+location.
   </div>
 </header>
 
-<main>
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Gratuito · Interactivo · En 3 idiomas</p>
-    <h1>Atlas de Anestesia</h1>
-    <p class="lede">Aprenda los equipos que usamos a diario en quirófano con modelos 3D, simulaciones en vivo y casos. Cada atlas funciona como un curso independiente; juntos forman una biblioteca de anestesia.</p>
-    <div class="by-row"><span class="by-label">Elaborado por</span><span class="by-logos"><a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="../brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309"><img class="ab-logo ab-dark" src="../brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309"></a><span class="partner-divider" aria-hidden="true"></span><img class="ar-logo ab-light" src="../brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320"><img class="ar-logo ab-dark" src="../brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320"></span></div>
-  </div>
-</section>
-
-<section class="atlases" aria-label="Atlas">
-  <div class="wrap">
-    <ol class="atlas-list">
+<main class="hub">
+  <h1 class="sr-only">Atlas de Anestesia</h1>
+  <div class="wrap hub-inner">
+    <ol class="atlas-list" aria-label="Atlas">
 <li class="atlas-card tone-blue is-live" id="anesthesia-machine">
+  <div class="card-visual"><img src="../img/anesthesia-machine.jpg" alt="Modelo 3D de una máquina de anestesia: caudalímetros, vaporizadores, fuelle y monitor del paciente" width="1200" height="786" fetchpriority="high" decoding="async"></div>
   <div class="card-text">
     <div class="card-meta"><span class="card-no">01</span><span class="status status-live">Disponible</span></div>
     <h2><a class="card-link" href="../anesthesia-machine/es/">Atlas de la Máquina de Anestesia</a></h2>
-    <p>Explore una estación de anestesia pieza a pieza: el recorrido del gas desde la toma de pared hasta el alvéolo, las leyes físicas que lo rigen, el ventilador de fuelle y el monitor del paciente.</p>
+    <p class="card-desc">Explore una estación de anestesia pieza a pieza: el recorrido del gas desde la toma de pared hasta el alvéolo, las leyes físicas que lo rigen, el ventilador de fuelle y el monitor del paciente.</p>
     <ul class="card-facts"><li><b>18</b> piezas</li><li><b>10</b> leyes físicas</li><li><b>8</b> modelos de equipamiento</li><li><b>4</b> casos</li></ul>
     <span class="cta" aria-hidden="true">Abrir el atlas <span class="arr">→</span></span>
   </div>
-  <div class="card-visual"><img src="../img/anesthesia-machine.jpg" alt="Modelo 3D de una máquina de anestesia: caudalímetros, vaporizadores, fuelle y monitor del paciente" width="1200" height="786" decoding="async"></div>
 </li>
 <li class="atlas-card tone-teal is-soon" id="advanced-monitoring">
+  <div class="card-visual"><img src="../img/advanced-monitoring.jpg" alt="Modelo 3D de la cabeza de un paciente con un sensor de profundidad anestésica en la frente" width="900" height="846" fetchpriority="low" decoding="async"></div>
   <div class="card-text">
     <div class="card-meta"><span class="card-no">02</span><span class="status status-soon">Próximamente</span></div>
     <h2>Atlas de Monitorización Avanzada</h2>
-    <p>Desde monitores de profundidad anestésica y nocicepción hasta hemodinámica avanzada, monitorización neuromuscular y NIRS: cómo funciona cada equipo, cómo se aplica al paciente y cómo se interpretan sus datos.</p>
+    <p class="card-desc">Desde monitores de profundidad anestésica y nocicepción hasta hemodinámica avanzada, monitorización neuromuscular y NIRS: cómo funciona cada equipo, cómo se aplica al paciente y cómo se interpretan sus datos.</p>
     <ul class="card-facts"><li><b>BIS</b> profundidad</li><li><b>NIRS</b> oximetría cerebral</li><li><b>TOF</b> neuromuscular</li><li><b>GC</b> hemodinámica</li></ul>
     <span class="cta cta-soon">En preparación</span>
   </div>
-  <div class="card-visual"><img src="../img/advanced-monitoring.jpg" alt="Modelo 3D de la cabeza de un paciente con un sensor de profundidad anestésica en la frente" width="900" height="846" loading="lazy" decoding="async"></div>
 </li>
 <li class="atlas-card tone-orange is-soon" id="mechanical-ventilation">
-  <div class="card-text">
-    <div class="card-meta"><span class="card-no">03</span><span class="status status-soon">Próximamente</span></div>
-    <h2>Atlas de Modos de Ventilación Mecánica</h2>
-    <p>De los modos controlados por volumen y por presión a los modos de soporte: vea paso a paso cómo funciona cada modo sobre curvas de presión, flujo y volumen en vivo.</p>
-    <ul class="card-facts"><li><b>VC</b> control por volumen</li><li><b>PC</b> control por presión</li><li><b>PS</b> presión de soporte</li><li><b>SIMV</b> sincronizada</li></ul>
-    <span class="cta cta-soon">En preparación</span>
-  </div>
   <div class="card-visual"><svg class="vent-screen" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Pantalla de ventilador en modo controlado por presión: curvas de presión, flujo y volumen">
 <rect class="vs-bg" width="600" height="450"/>
 <rect class="vs-mode" x="18" y="14" width="74" height="24" rx="5"/><text class="vs-mode-t" x="55" y="31" text-anchor="middle">PC-AC</text>
@@ -90,10 +74,17 @@ if(location.hash.length>1)location.replace("../anesthesia-machine/es/"+location.
 <line class="vs-div" x1="462" x2="462" y1="52" y2="424"/>
 <text class="vs-k" x="472" y="70">Ppeak</text><text class="vs-v p" x="472" y="100">17</text><text class="vs-u" x="582" y="70" text-anchor="end">cmH₂O</text><text class="vs-k" x="472" y="140">PEEP</text><text class="vs-v p" x="472" y="170">5</text><text class="vs-u" x="582" y="140" text-anchor="end">cmH₂O</text><text class="vs-k" x="472" y="210">VTe</text><text class="vs-v v" x="472" y="240">532</text><text class="vs-u" x="582" y="210" text-anchor="end">mL</text><text class="vs-k" x="472" y="280">f</text><text class="vs-v f" x="472" y="310">14</text><text class="vs-u" x="582" y="280" text-anchor="end">/min</text><text class="vs-k" x="472" y="350">I:E</text><text class="vs-v f" x="472" y="380">1:2.9</text><text class="vs-u" x="582" y="350" text-anchor="end"></text>
 </svg></div>
+  <div class="card-text">
+    <div class="card-meta"><span class="card-no">03</span><span class="status status-soon">Próximamente</span></div>
+    <h2>Atlas de Modos de Ventilación Mecánica</h2>
+    <p class="card-desc">De los modos controlados por volumen y por presión a los modos de soporte: vea paso a paso cómo funciona cada modo sobre curvas de presión, flujo y volumen en vivo.</p>
+    <ul class="card-facts"><li><b>VC</b> control por volumen</li><li><b>PC</b> control por presión</li><li><b>PS</b> presión de soporte</li><li><b>SIMV</b> sincronizada</li></ul>
+    <span class="cta cta-soon">En preparación</span>
+  </div>
 </li>
     </ol>
+    <div class="by-row"><span class="by-label">Elaborado por</span><span class="by-logos"><a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="../brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309"><img class="ab-logo ab-dark" src="../brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309"></a><span class="partner-divider" aria-hidden="true"></span><img class="ar-logo ab-light" src="../brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320"><img class="ar-logo ab-dark" src="../brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320"></span></div>
   </div>
-</section>
 </main>
 
 <footer>

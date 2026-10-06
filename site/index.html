@@ -35,47 +35,31 @@ if(location.hash.length>1)location.replace("anesthesia-machine/"+location.hash);
   </div>
 </header>
 
-<main>
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">Ücretsiz · Etkileşimli · 3 dilde</p>
-    <h1>Anestezi Atlası</h1>
-    <p class="lede">Ameliyathanede her gün kullandığımız cihazları 3B modeller, canlı simülasyonlar ve vakalarla öğrenin. Her atlas tek başına bir kurs gibi; birlikte bir anestezi kütüphanesi.</p>
-    <div class="by-row"><span class="by-label">Hazırlayanlar</span><span class="by-logos"><a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309"><img class="ab-logo ab-dark" src="brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309"></a><span class="partner-divider" aria-hidden="true"></span><img class="ar-logo ab-light" src="brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320"><img class="ar-logo ab-dark" src="brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320"></span></div>
-  </div>
-</section>
-
-<section class="atlases" aria-label="Atlaslar">
-  <div class="wrap">
-    <ol class="atlas-list">
+<main class="hub">
+  <h1 class="sr-only">Anestezi Atlası</h1>
+  <div class="wrap hub-inner">
+    <ol class="atlas-list" aria-label="Atlaslar">
 <li class="atlas-card tone-blue is-live" id="anesthesia-machine">
+  <div class="card-visual"><img src="img/anesthesia-machine.jpg" alt="Anestezi makinesinin 3B modeli: akış ölçerler, vaporizatörler, körük ve hasta monitörü" width="1200" height="786" fetchpriority="high" decoding="async"></div>
   <div class="card-text">
     <div class="card-meta"><span class="card-no">01</span><span class="status status-live">Yayında</span></div>
     <h2><a class="card-link" href="anesthesia-machine/">Anestezi Makinesi Atlası</a></h2>
-    <p>Anestezi iş istasyonunu parça parça inceleyin: gazın duvardaki prizden alveole uzanan yolu, bu yolu yöneten fizik yasaları, körüklü ventilatör ve hasta monitörü.</p>
+    <p class="card-desc">Anestezi iş istasyonunu parça parça inceleyin: gazın duvardaki prizden alveole uzanan yolu, bu yolu yöneten fizik yasaları, körüklü ventilatör ve hasta monitörü.</p>
     <ul class="card-facts"><li><b>18</b> parça</li><li><b>10</b> fizik yasası</li><li><b>8</b> ekipman modeli</li><li><b>4</b> vaka</li></ul>
     <span class="cta" aria-hidden="true">Atlası aç <span class="arr">→</span></span>
   </div>
-  <div class="card-visual"><img src="img/anesthesia-machine.jpg" alt="Anestezi makinesinin 3B modeli: akış ölçerler, vaporizatörler, körük ve hasta monitörü" width="1200" height="786" decoding="async"></div>
 </li>
 <li class="atlas-card tone-teal is-soon" id="advanced-monitoring">
+  <div class="card-visual"><img src="img/advanced-monitoring.jpg" alt="Alnına derinlik monitörü sensörü yerleştirilmiş hastanın 3B baş modeli" width="900" height="846" fetchpriority="low" decoding="async"></div>
   <div class="card-text">
     <div class="card-meta"><span class="card-no">02</span><span class="status status-soon">Yakında</span></div>
     <h2>İleri Monitörizasyon Atlası</h2>
-    <p>Anestezi derinliği ve nosisepsiyon monitörlerinden ileri hemodinamiye, nöromüsküler izlemden NIRS’e: her cihaz nasıl çalışır, hastaya nasıl uygulanır, verisi nasıl yorumlanır.</p>
+    <p class="card-desc">Anestezi derinliği ve nosisepsiyon monitörlerinden ileri hemodinamiye, nöromüsküler izlemden NIRS’e: her cihaz nasıl çalışır, hastaya nasıl uygulanır, verisi nasıl yorumlanır.</p>
     <ul class="card-facts"><li><b>BIS</b> derinlik</li><li><b>NIRS</b> serebral oksimetri</li><li><b>TOF</b> nöromüsküler</li><li><b>CO</b> hemodinami</li></ul>
     <span class="cta cta-soon">Hazırlanıyor</span>
   </div>
-  <div class="card-visual"><img src="img/advanced-monitoring.jpg" alt="Alnına derinlik monitörü sensörü yerleştirilmiş hastanın 3B baş modeli" width="900" height="846" loading="lazy" decoding="async"></div>
 </li>
 <li class="atlas-card tone-orange is-soon" id="mechanical-ventilation">
-  <div class="card-text">
-    <div class="card-meta"><span class="card-no">03</span><span class="status status-soon">Yakında</span></div>
-    <h2>Mekanik Ventilatör Modları Atlası</h2>
-    <p>Volüm ve basınç kontrollü modlardan destek modlarına: her modun nasıl çalıştığını canlı basınç, akım ve hacim eğrileri üzerinde adım adım görün.</p>
-    <ul class="card-facts"><li><b>VC</b> volüm kontrol</li><li><b>PC</b> basınç kontrol</li><li><b>PS</b> basınç destek</li><li><b>SIMV</b> senkronize</li></ul>
-    <span class="cta cta-soon">Hazırlanıyor</span>
-  </div>
   <div class="card-visual"><svg class="vent-screen" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Basınç kontrollü modda ventilatör ekranı: basınç, akım ve hacim eğrileri">
 <rect class="vs-bg" width="600" height="450"/>
 <rect class="vs-mode" x="18" y="14" width="74" height="24" rx="5"/><text class="vs-mode-t" x="55" y="31" text-anchor="middle">PC-AC</text>
@@ -90,10 +74,17 @@ if(location.hash.length>1)location.replace("anesthesia-machine/"+location.hash);
 <line class="vs-div" x1="462" x2="462" y1="52" y2="424"/>
 <text class="vs-k" x="472" y="70">Ppeak</text><text class="vs-v p" x="472" y="100">17</text><text class="vs-u" x="582" y="70" text-anchor="end">cmH₂O</text><text class="vs-k" x="472" y="140">PEEP</text><text class="vs-v p" x="472" y="170">5</text><text class="vs-u" x="582" y="140" text-anchor="end">cmH₂O</text><text class="vs-k" x="472" y="210">VTe</text><text class="vs-v v" x="472" y="240">532</text><text class="vs-u" x="582" y="210" text-anchor="end">mL</text><text class="vs-k" x="472" y="280">f</text><text class="vs-v f" x="472" y="310">14</text><text class="vs-u" x="582" y="280" text-anchor="end">/min</text><text class="vs-k" x="472" y="350">I:E</text><text class="vs-v f" x="472" y="380">1:2.9</text><text class="vs-u" x="582" y="350" text-anchor="end"></text>
 </svg></div>
+  <div class="card-text">
+    <div class="card-meta"><span class="card-no">03</span><span class="status status-soon">Yakında</span></div>
+    <h2>Mekanik Ventilatör Modları Atlası</h2>
+    <p class="card-desc">Volüm ve basınç kontrollü modlardan destek modlarına: her modun nasıl çalıştığını canlı basınç, akım ve hacim eğrileri üzerinde adım adım görün.</p>
+    <ul class="card-facts"><li><b>VC</b> volüm kontrol</li><li><b>PC</b> basınç kontrol</li><li><b>PS</b> basınç destek</li><li><b>SIMV</b> senkronize</li></ul>
+    <span class="cta cta-soon">Hazırlanıyor</span>
+  </div>
 </li>
     </ol>
+    <div class="by-row"><span class="by-label">Hazırlayanlar</span><span class="by-logos"><a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309"><img class="ab-logo ab-dark" src="brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309"></a><span class="partner-divider" aria-hidden="true"></span><img class="ar-logo ab-light" src="brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320"><img class="ar-logo ab-dark" src="brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320"></span></div>
   </div>
-</section>
 </main>
 
 <footer>

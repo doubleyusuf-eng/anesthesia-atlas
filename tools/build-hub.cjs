@@ -22,9 +22,7 @@ const T = {
     title: 'Anestezi Atlası · 3B eğitim atlasları',
     desc: 'Anestezi makinesi, ileri monitörizasyon ve mekanik ventilatör modları için ücretsiz, etkileşimli 3B eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
     back: 'Anesthesia Briefs', backAria: "Anesthesia Briefs'e dön", langAria: 'Dil · Language · Idioma',
-    eyebrow: 'Ücretsiz · Etkileşimli · 3 dilde',
     h1: 'Anestezi Atlası',
-    lede: 'Ameliyathanede her gün kullandığımız cihazları 3B modeller, canlı simülasyonlar ve vakalarla öğrenin. Her atlas tek başına bir kurs gibi; birlikte bir anestezi kütüphanesi.',
     by: 'Hazırlayanlar',
     listTitle: 'Atlaslar', listAria: 'Atlaslar',
     live: 'Yayında', soon: 'Yakında', open: 'Atlası aç', soonCta: 'Hazırlanıyor',
@@ -59,9 +57,7 @@ const T = {
     title: 'Anesthesia Atlas · 3D teaching atlases',
     desc: 'Free, interactive 3D teaching atlases for the anaesthesia machine, advanced monitoring and mechanical ventilation modes. By Anesthesia Briefs and Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Back to Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
-    eyebrow: 'Free · Interactive · In 3 languages',
     h1: 'Anesthesia Atlas',
-    lede: 'Learn the equipment we use in theatre every day through 3D models, live simulations and cases. Each atlas works as a course on its own; together they form an anaesthesia library.',
     by: 'Made by',
     listTitle: 'Atlases', listAria: 'Atlases',
     live: 'Live', soon: 'Coming soon', open: 'Open the atlas', soonCta: 'In preparation',
@@ -96,9 +92,7 @@ const T = {
     title: 'Atlas de Anestesia · atlas docentes en 3D',
     desc: 'Atlas docentes en 3D, gratuitos e interactivos, sobre la máquina de anestesia, la monitorización avanzada y los modos de ventilación mecánica. Por Anesthesia Briefs y Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Volver a Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
-    eyebrow: 'Gratuito · Interactivo · En 3 idiomas',
     h1: 'Atlas de Anestesia',
-    lede: 'Aprenda los equipos que usamos a diario en quirófano con modelos 3D, simulaciones en vivo y casos. Cada atlas funciona como un curso independiente; juntos forman una biblioteca de anestesia.',
     by: 'Elaborado por',
     listTitle: 'Atlas', listAria: 'Atlas',
     live: 'Disponible', soon: 'Próximamente', open: 'Abrir el atlas', soonCta: 'En preparación',
@@ -198,21 +192,21 @@ function page(lang) {
     const href = up + a.id + '/' + s.dir;
     const visual = a.svg
       ? VENT.replace('{{ALT}}', esc(c.alt))
-      : `<img src="${up}${a.img}" alt="${esc(c.alt)}" width="${a.w}" height="${a.h}"${i ? ' loading="lazy"' : ''} decoding="async">`;
+      : `<img src="${up}${a.img}" alt="${esc(c.alt)}" width="${a.w}" height="${a.h}"${i ? ' fetchpriority="low"' : ' fetchpriority="high"'} decoding="async">`;
     const facts = c.facts.map(([n, l]) => `<li><b>${esc(n)}</b> ${esc(l)}</li>`).join('');
     const title = live ? `<a class="card-link" href="${href}">${esc(c.name)}</a>` : esc(c.name);
     const cta = live
       ? `<span class="cta" aria-hidden="true">${esc(s.open)} <span class="arr">→</span></span>`
       : `<span class="cta cta-soon">${esc(s.soonCta)}</span>`;
     return `<li class="atlas-card tone-${a.tone}${live ? ' is-live' : ' is-soon'}" id="${a.id}">
+  <div class="card-visual">${visual}</div>
   <div class="card-text">
     <div class="card-meta"><span class="card-no">${String(i + 1).padStart(2, '0')}</span><span class="status ${live ? 'status-live' : 'status-soon'}">${esc(live ? s.live : s.soon)}</span></div>
     <h2>${title}</h2>
-    <p>${esc(c.text)}</p>
+    <p class="card-desc">${esc(c.text)}</p>
     <ul class="card-facts">${facts}</ul>
     ${cta}
   </div>
-  <div class="card-visual">${visual}</div>
 </li>`;
   }).join('\n');
 
@@ -251,23 +245,14 @@ if(location.hash.length>1)location.replace(${JSON.stringify(machineHome)}+locati
   </div>
 </header>
 
-<main>
-<section class="hero">
-  <div class="wrap">
-    <p class="eyebrow">${esc(s.eyebrow)}</p>
-    <h1>${esc(s.h1)}</h1>
-    <p class="lede">${esc(s.lede)}</p>
-    <div class="by-row"><span class="by-label">${esc(s.by)}</span><span class="by-logos">${logos(up, false)}</span></div>
-  </div>
-</section>
-
-<section class="atlases" aria-label="${esc(s.listAria)}">
-  <div class="wrap">
-    <ol class="atlas-list">
+<main class="hub">
+  <h1 class="sr-only">${esc(s.h1)}</h1>
+  <div class="wrap hub-inner">
+    <ol class="atlas-list" aria-label="${esc(s.listAria)}">
 ${cards}
     </ol>
+    <div class="by-row"><span class="by-label">${esc(s.by)}</span><span class="by-logos">${logos(up, false)}</span></div>
   </div>
-</section>
 </main>
 
 <footer>
