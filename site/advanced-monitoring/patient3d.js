@@ -611,7 +611,10 @@ const ICA3D = (() => {
     return {go, home: steps[0].cam};
   }
 
-  /* ---------- Radiyal arter kateteri ve basınç transdüseri ---------- */
+  /* ---------- Radiyal arter kateteri ve basınç transdüseri ----------
+     Kanülasyon (adım 3–6) iğne üzerinden kateter tekniğiyle, iki eşzamanlı kopya halinde canlandırılır:
+     bileğin üzerinde gerçek boyutta ve hemen yukarıda ×5 büyütülmüş kesit (deri, deri altı, yarı açık arter).
+     Yerel çerçeve milimetre cinsindendir: x arter boyunca proksimale, y cilt normali (yukarı), cilt yüzeyi y = 0. */
   function buildRadial(view, kit) {
     currentKit = kit;
     const {lm, project} = kit;
@@ -620,16 +623,123 @@ const ICA3D = (() => {
     const rad = thumb.clone().sub(wrist); rad.addScaledVector(axis, -rad.dot(axis)); rad.y = 0; rad.normalize();
     const art = project(wrist.clone().addScaledVector(axis, -.022).addScaledVector(rad, .013), 0);
     const up = art.normal.clone();
-    /* Kanül: distalden proksimale, cilde sığ açıyla */
-    const dirIn = axis.clone().negate().multiplyScalar(Math.cos(.5)).addScaledVector(up, -Math.sin(.5)).normalize();
-    const tip = art.point.clone().addScaledVector(up, -.004);
-    const needle = new THREE.Group();
-    const cath = new THREE.Mesh(new THREE.CylinderGeometry(.0006, .0006, .032, 10), std(0xE8ECEF, .3, .1)); cath.position.y = .016; needle.add(cath);
-    const hub = new THREE.Mesh(new THREE.CylinderGeometry(.0035, .0028, .014, 16), std(0xE68AA8, .5, 0)); hub.position.y = .039; needle.add(hub);   // 20G pembe
-    const wings = new THREE.Mesh(new THREE.BoxGeometry(.016, .0012, .006), std(0xE68AA8, .5, 0)); wings.position.y = .034; needle.add(wings);
-    needle.position.copy(tip); needle.quaternion.setFromUnitVectors(V3(0, 1, 0), dirIn.clone().negate()); view.root.add(needle);
-    const nf = fader(needle, dirIn.clone().multiplyScalar(-.03));
-    const hubEnd = tip.clone().addScaledVector(dirIn, -.046);
+    const xl = axis.clone().negate().addScaledVector(up, axis.dot(up)).normalize(), zl = new THREE.Vector3().crossVectors(xl, up).normalize();
+    const basis = new THREE.Matrix4().makeBasis(xl, up, zl);
+
+    /* Ölçüler (mm): arter derinliği/yarıçapı, kateter ve iğne */
+    const DEP = 3, AR = 1.2, CL = 20, HUB = 8, NL = 31, D2R = Math.PI / 180;
+    const THB = 15 * D2R, ENTRY = V3(-(DEP - .3) / Math.tan(THB), 0, 0);     // arterde baştan dar açı
+    const dirOf = th => V3(Math.cos(th), -Math.sin(th), 0);
+    const LB = (DEP - .3) / Math.sin(THB), L0 = -5;
+    const P2 = ENTRY.clone().addScaledVector(dirOf(THB), LB);
+    /* İğne ucundan sonra lümen boyunca ilerleyen kateter yolu */
+    const lumen = new THREE.CurvePath();
+    const Q = V3(P2.x + 2.6, -DEP + .2, 0);
+    lumen.add(new THREE.QuadraticBezierCurve3(P2.clone(), P2.clone().addScaledVector(dirOf(THB), 1.4), Q));
+    lumen.add(new THREE.LineCurve3(Q, V3(Q.x + 40, Q.y, 0)));
+    const lumenLen = lumen.getLength(), S_END = CL - 13.4;     // göbek ön ucu cildin ~3 mm dışında
+    /* Durum: iğne açısı, giriş noktasından uç uzaklığı, kateter ucu (iğne ucuna göre yay uzunluğu), iğnenin geri çekilmesi */
+    const ease = u => u < .5 ? 2 * u * u : 1 - (-2 * u + 2) ** 2 / 2;
+    const yIn = -(DEP - AR), uIn = ((-yIn / Math.sin(THB)) - L0) / (LB - L0);
+    function pose(ph, u) {
+      /* 0: ponksiyon ve geri akım, 2: kateter iğne üzerinden ilerler, 3: iğne çekilir, 4: son durum */
+      const s = {th: THB, L: LB, cat: -1.5, lumen: false, w: 0, nOp: 1, flash: 1, blood: 0};
+      if (ph === 0) { s.L = L0 + (LB - L0) * u; s.flash = clamp((u - uIn) / .3, 0, 1); }
+      else { s.lumen = true; s.cat = ph === 2 ? -1.5 + (S_END + 1.5) * u : S_END; }
+      if (ph === 3) { s.w = 70 * u; s.nOp = 1 - clamp((u - .7) / .3, 0, 1); s.blood = clamp((u - .45) / .3, 0, 1); }
+      if (ph === 4) { s.w = 70; s.nOp = 0; s.blood = 1; }
+      return s;
+    }
+    const tipOf = s => ENTRY.clone().addScaledVector(dirOf(s.th), s.L);
+    function pathAt(s, a) {
+      const T = tipOf(s), d = dirOf(s.th);
+      if (a <= 0 || !s.lumen) return {p: T.addScaledVector(d, a), t: d};
+      const k = Math.min(a / lumenLen, 1);
+      return {p: lumen.getPointAt(k), t: lumen.getTangentAt(k)};
+    }
+
+    const M = {
+      steel: std(0x6F7C85, .3, .9), cath: std(0xF4F8FA, .3, 0, {transparent: true, opacity: .62}),
+      hub: std(0xE68AA8, .5, 0), clear: std(0xEAF2F5, .1, 0, {transparent: true, opacity: .35, depthWrite: false}),
+      grip: std(0xF4F6F7, .5, 0), blood: std(0xB0131E, .4, 0, {transparent: true})
+    };
+    M.cath.userData.maxOp = .62; M.clear.userData.maxOp = .35;
+    function assembly() {
+      const A = new THREE.Group();
+      /* İğne: uç orijinde, gövde −x yönünde */
+      const needle = new THREE.Group();
+      const shaft = new THREE.Mesh(new THREE.CylinderGeometry(.36, .36, NL - 1.2, 10), M.steel);
+      shaft.geometry.rotateZ(-Math.PI / 2); shaft.position.x = -(NL - 1.2) / 2 - 1.2; needle.add(shaft);
+      const bevel = new THREE.Mesh(new THREE.ConeGeometry(.36, 1.2, 10), M.steel); bevel.geometry.rotateZ(-Math.PI / 2); bevel.position.x = -.6; needle.add(bevel);
+      const chamber = new THREE.Mesh(new THREE.CylinderGeometry(1.7, 1.7, 10, 20), M.clear.clone()); chamber.geometry.rotateZ(-Math.PI / 2); chamber.position.x = -NL - 5; needle.add(chamber);
+      const flash = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 9.4, 16), M.blood.clone()); flash.geometry.rotateZ(-Math.PI / 2); flash.geometry.translate(-4.7, 0, 0); flash.position.x = -NL - .3; needle.add(flash);
+      const grip = new THREE.Mesh(new THREE.BoxGeometry(14, 3.4, 4.4), M.grip.clone()); grip.position.x = -NL - 17; needle.add(grip);
+      A.add(needle);
+      /* Kateter: yolu her karede yeniden çizilen saydam tüp + göbek (20G pembe) ve kanatlar */
+      const cath = new THREE.Mesh(new THREE.BufferGeometry(), M.cath.clone()); A.add(cath);
+      const hub = new THREE.Group();
+      const hb = new THREE.Mesh(new THREE.CylinderGeometry(1.4, 1.9, HUB, 18), M.hub.clone()); hb.geometry.rotateZ(-Math.PI / 2); hb.position.x = -HUB / 2; hub.add(hb);
+      const wing = new THREE.Mesh(new THREE.BoxGeometry(5, .7, 13), M.hub.clone()); wing.position.set(-2.5, -.6, 0); hub.add(wing);
+      const hubBlood = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.1, HUB - 1, 14), M.blood.clone()); hubBlood.geometry.rotateZ(-Math.PI / 2); hubBlood.position.x = -HUB / 2; hub.add(hubBlood);
+      A.add(hub);
+      A.traverse(o => { if (o.isMesh) o.castShadow = true; });
+      let lastKey = '';
+      function set(s) {
+        const T = tipOf(s), d = dirOf(s.th);
+        needle.position.copy(T).addScaledVector(d, -s.w); needle.rotation.z = -s.th;
+        needle.visible = s.nOp > .01;
+        needle.traverse(o => { if (o.isMesh && o !== flash) { o.material.transparent = true; o.material.opacity = (o === chamber ? .35 : 1) * s.nOp; } });
+        flash.scale.x = Math.max(.001, s.flash); flash.visible = s.flash > .01; flash.material.opacity = s.nOp;
+        const key = [s.th, s.L, s.cat, s.lumen].map(v => +v).join();
+        if (key !== lastKey) {
+          lastKey = key;
+          const curve = new THREE.Curve(); curve.getPoint = (u, tgt = V3()) => tgt.copy(pathAt(s, s.cat - CL + u * CL).p);
+          cath.geometry.dispose(); cath.geometry = new THREE.TubeGeometry(curve, 60, .55, 10, false);
+          const r = pathAt(s, s.cat - CL); hub.position.copy(r.p); hub.rotation.z = Math.atan2(r.t.y, r.t.x);
+        }
+        hubBlood.visible = s.blood > .01; hubBlood.scale.x = Math.max(.001, s.blood);
+      }
+      return {A, set, hub, cath};
+    }
+    /* Gerçek boyut: bileğin üzerinde (iğne cildin altında kaybolur) */
+    const real = new THREE.Group(); real.position.copy(art.point); real.quaternion.setFromRotationMatrix(basis); real.scale.setScalar(.001); view.root.add(real); real.updateMatrixWorld(true);
+    const R = assembly(); real.add(R.A);
+    /* Büyütülmüş kesit: bileğin üstünde, kesit yüzü hastanın sol (dış) yanına bakar */
+    const K = 5, inset = new THREE.Group();
+    inset.position.copy(art.point).addScaledVector(up, .13).addScaledVector(zl, .02); inset.quaternion.copy(real.quaternion); inset.scale.setScalar(.001 * K);
+    view.root.add(inset);
+    const tissue = new THREE.Group(); inset.add(tissue);
+    const X0 = -20, X1 = 20, ZD = 7, YB = -8;
+    const slab = (y0, y1, mat) => { const m = new THREE.Mesh(new THREE.BoxGeometry(X1 - X0, y1 - y0, ZD), mat); m.position.set((X0 + X1) / 2, (y0 + y1) / 2, -ZD / 2); tissue.add(m); return m; };
+    slab(-.9, 0, std(0xD99A80, .7, 0)); slab(-(DEP - AR) + .02, -.9, std(0xEBD3A0, .85, 0)); slab(YB, -(DEP + AR) - .02, std(0xEBD3A0, .85, 0));
+    /* Arter: kesit düzleminde yarıya bölünmüş tüp; iç yüz koyu kan rengi */
+    const wallG = new THREE.CylinderGeometry(AR, AR, X1 - X0, 32, 1, true, Math.PI / 2, Math.PI); wallG.rotateZ(-Math.PI / 2);
+    const wall = new THREE.Mesh(wallG, std(0x8E1F2A, .55, 0, {side: THREE.DoubleSide})); wall.position.set((X0 + X1) / 2, -DEP, 0); tissue.add(wall);
+    const sideG = new THREE.CylinderGeometry(AR + .35, AR + .35, X1 - X0, 32, 1, true, Math.PI / 2, Math.PI); sideG.rotateZ(-Math.PI / 2);
+    const outer = new THREE.Mesh(sideG, std(0xC4525A, .6, 0, {side: THREE.BackSide})); outer.position.copy(wall.position); tissue.add(outer);
+    /* Kesit yüzünün çerçevesi: arter çevresindeki deri altı boşluk */
+    const fill = new THREE.Mesh(new THREE.PlaneGeometry(X1 - X0, 2 * AR + .7), std(0xEBD3A0, .85, 0)); fill.position.set((X0 + X1) / 2, -DEP, -AR - .4); tissue.add(fill);
+    const I = assembly(); inset.add(I.A);
+    const arrow = new THREE.Mesh(new THREE.ConeGeometry(1.1, 3, 16), new THREE.MeshBasicMaterial({color: ACCENT}));
+    arrow.geometry.rotateZ(-Math.PI / 2); arrow.rotation.z = -THB; arrow.visible = false; inset.add(arrow);
+    const tf = fader(tissue, V3(0, 0, 0)), af = fader(I.A, V3(0, 0, 0));
+    inset.updateMatrixWorld(true);
+    const at = (x, y) => inset.localToWorld(V3(x, y, 0));
+    const tags = {
+      inset: view.addTag(ICA.t('pl.art.inset'), at(X0 + 8, YB - 2.5), 'side'),
+      skin: view.addTag(ICA.t('pl.art.skin'), at(X1 - 4, .5), 'side'),
+      artery: view.addTag(ICA.t('pl.art.artery'), at(X1 - 5, YB - 2.5), 'side'),
+      flash: view.addTag(ICA.t('pl.art.flash'), V3(), 'side'),
+      fixed: view.addTag(ICA.t('pl.art.fixed'), V3(), 'side'),
+      slide: view.addTag(ICA.t('pl.art.slide'), V3(), 'side'),
+      press: view.addTag(ICA.t('pl.art.press'), real.localToWorld(V3(S_END + 14, 2, 0)).addScaledVector(up, .02), 'side')
+    };
+    Object.values(tags).forEach(t => { t.show = false; });
+    const pressRing = pulseRing(project(real.localToWorld(V3(S_END + 14, 0, 0)), 0), .008); view.root.add(pressRing);
+
+    const fin = pose(4, 1);
+    R.set(fin); real.updateMatrixWorld(true);
+    const hubEnd = real.localToWorld(pathAt(fin, fin.cat - CL - HUB).p);
     /* Şeffaf örtü */
     const dress = currentKit.patch(project(lerp(art.point, hubEnd, .5), .002), .05, .04, std(0xE9F3F7, .2, 0, {transparent: true, opacity: .35, depthWrite: false}), .0025);
     dress.material.userData.maxOp = .35; view.root.add(dress); const df = fader(dress, V3(0, .01, 0));
@@ -640,7 +750,8 @@ const ICA3D = (() => {
     const tb = new THREE.Mesh(new THREE.BoxGeometry(.03, .02, .06), MATS.white()); tb.castShadow = true; trans.add(tb);
     const stop = new THREE.Mesh(new THREE.CylinderGeometry(.006, .006, .016, 12), std(0x2F7DD1, .4, 0)); stop.position.set(0, .016, -.018); trans.add(stop);
     trans.position.copy(td); view.root.add(trans);
-    const line = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([hubEnd, hubEnd.clone().addScaledVector(dirIn, -.03).add(V3(0, .006, 0)), lerp(wrist, elbow, .4).add(V3(0, .02, 0)), lerp(wrist, elbow, .9).add(V3(0, .025, .05)), V3(td.x - .05, td.y + .05, td.z - .05), td.clone().add(V3(0, 0, -.03))]), 120, .0022, 8, false), MATS.tube());
+    const dIn = hubEnd.clone().sub(real.localToWorld(V3(0, 0, 0))).normalize();
+    const line = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([hubEnd, hubEnd.clone().addScaledVector(dIn, .03).add(V3(0, .006, 0)), lerp(wrist, elbow, .4).add(V3(0, .02, 0)), lerp(wrist, elbow, .9).add(V3(0, .025, .05)), V3(td.x - .05, td.y + .05, td.z - .05), td.clone().add(V3(0, 0, -.03))]), 120, .0022, 8, false), MATS.tube());
     line.material.userData.maxOp = .75; view.root.add(line); const lf = fader(line, V3(0, 0, 0));
     /* Seviye çizgisi: transdüser → flebostatik eksen */
     const lvl = new THREE.Line(new THREE.BufferGeometry().setFromPoints([td, ph]), new THREE.LineDashedMaterial({color: ACCENT, dashSize: .02, gapSize: .012, transparent: true}));
@@ -649,25 +760,54 @@ const ICA3D = (() => {
     const tagZero = view.addTag(ICA.t('pl.art.zero'), td.clone().add(V3(0, .05, 0)), 'ok'); tagZero.show = false;
     const pulse = pulseRing(art, .01); view.root.add(pulse);
     const glow = currentKit.patch(project(lerp(art.point, wrist, .1), .001), .07, .05, glowMat(), .0012); view.root.add(glow);
-    const wave = waveTag(view, art.point.clone().add(V3(0, .07, 0)), 'art', ICA.t('pl.art.val')); 
-    const S = {glow: 0, pulse: false, lvl: false};
+    const wave = waveTag(view, art.point.clone().add(V3(0, .07, 0)), 'art', ICA.t('pl.art.val'));
+    const S = {glow: 0, pulse: false, lvl: false, cann: -1, t0: 0, now: 0};
     const near = [art.point, .3, .25, .62];
+    /* Kesit kamerası: kesit yüzüne (zl) hafif yukarıdan bakar; bilek de kadrajda kalır */
+    const cdir = zl.clone().multiplyScalar(Math.cos(.32)).addScaledVector(up, Math.sin(.32)).normalize();
+    const camIn = [lerp(at(-9, 6), art.point, .12), .5, Math.atan2(cdir.x, cdir.z), Math.acos(clamp(cdir.y, -1, 1))];
     const steps = [
       {cam: overview(kit, art.point)},
       {cam: near, pulse: true},
       {cam: near, glow: 1},
-      {cam: [art.point, .26, .9, .95], needle: true},
-      {cam: near, needle: true, dress: true},
-      {cam: [lerp(art.point, td, .5), .9, .7, .7], needle: true, dress: true, line: true},
-      {cam: [lerp(ph, td, .5), .6, 1.3, 1.25], needle: true, dress: true, line: true, lvl: true},
-      {cam: [art.point, .4, .35, .6], needle: true, dress: true, line: true, wave: true}
+      {cam: camIn, cann: 0},
+      {cam: camIn, cann: 2},
+      {cam: camIn, cann: 3},
+      {cam: near, cann: 4, dress: true},
+      {cam: [lerp(art.point, td, .5), .9, .7, .7], cann: 4, dress: true, line: true},
+      {cam: [lerp(ph, td, .5), .6, 1.3, 1.25], cann: 4, dress: true, line: true, lvl: true},
+      {cam: [art.point, .4, .35, .6], cann: 4, dress: true, line: true, wave: true}
     ];
+    const inCann = c => c === 0 || c === 2 || c === 3;
     const go = stepper(view, steps, (st, instant) => {
-      nf.on = !!st.needle; df.on = !!st.dress; lf.on = !!st.line; if (instant) { nf.jump(); df.jump(); lf.jump(); }
+      const c = st.cann == null ? -1 : st.cann;
+      S.cann = c; S.t0 = S.now;
+      tf.on = af.on = inCann(c); df.on = !!st.dress; lf.on = !!st.line;
+      if (instant) { tf.jump(); af.jump(); df.jump(); lf.jump(); }
+      R.A.visible = c >= 0;
+      tags.inset.show = tags.skin.show = tags.artery.show = inCann(c); tags.flash.show = c === 0; tags.fixed.show = tags.slide.show = c === 2; arrow.visible = c === 2;
+      tags.press.show = c === 3;
       S.glow = st.glow || 0; S.pulse = !!st.pulse; S.lvl = !!st.lvl; tagPh.show = tagZero.show = S.lvl; wave.show = !!st.wave;
     });
+    /* Her kanülasyon adımı: 2,8 s hareket, 1,6 s bekleme, sonra baştan */
+    const RUN = 2.8, HOLD = 1.6, RUN_SLIDE = 4.5;
+    const fp = new THREE.Vector3();
     view.tick.push((dt, t) => {
-      nf.step(dt); df.step(dt); lf.step(dt);
+      S.now = t;
+      tf.step(dt); af.step(dt); df.step(dt); lf.step(dt);
+      if (S.cann >= 0) {
+        const run = S.cann === 2 ? RUN_SLIDE : RUN, e = t - S.t0, u = REDUCED_MOTION || S.cann === 4 ? 1 : ease(clamp((e % (run + HOLD)) / run, 0, 1));
+        const s = pose(S.cann, u); R.set(s); I.set(s);
+        if (S.cann === 2) {
+          /* İğne sabit, kateter göbeği ileri: ok göbeğin önünde, kateter vurgulanır */
+          fp.copy(tipOf(s)).addScaledVector(dirOf(s.th), -NL - 5).add(V3(0, 4.5, 0)); tags.fixed.pos.copy(inset.localToWorld(fp));
+          tags.slide.pos.copy(inset.localToWorld(I.hub.position.clone().add(V3(0, 5, 0))));
+          arrow.position.copy(I.hub.position).addScaledVector(dirOf(s.th), 3 + 1.5 * Math.sin(t * 5)).add(V3(0, 3.2, 0));
+          I.cath.material.emissive.setHex(ACCENT); I.cath.material.emissiveIntensity = .35 + .25 * Math.sin(t * 5);
+        } else I.cath.material.emissiveIntensity = 0;
+        if (tags.flash.show) { fp.copy(tipOf(s)).addScaledVector(dirOf(s.th), -NL - 5).add(V3(0, 4.5, 0)); tags.flash.pos.copy(inset.localToWorld(fp)); }
+      }
+      pressRing.material.opacity = S.cann === 3 ? .5 + .4 * Math.sin(t * 4) : 0;
       lvl.visible = S.lvl;
       glow.material.opacity = S.glow ? .22 + .14 * Math.sin(t * 3) : 0;
       const p = (t * 1.2) % 1; pulse.material.opacity = S.pulse ? (1 - p) * .9 : 0; pulse.scale.setScalar(1 + p);
@@ -952,41 +1092,176 @@ const ICA3D = (() => {
     return {go, home: steps[0].cam};
   }
 
-  /* ---------- Transpulmoner termodilüsyon (PiCCO): CVC + femoral arter termistörlü kateteri ---------- */
+  /* ---------- Transpulmoner termodilüsyon (PiCCO): CVC + femoral arter termistörlü kateteri ----------
+     Femoral arter kateteri Seldinger tekniğiyle (adım 2–6) kasığın üstünde ×2,5 büyütülmüş kesitte gösterilir;
+     aynı hareket yarı saydam deri altında gerçek boyutta da oynar. Yerel çerçeve mm: x kraniyale, y cilt normali. */
   function buildPiCCO(view, kit) {
     currentKit = kit;
     const an = anatomy(view, kit), W = an.W;
     tube2([[.085, .905, .07], [.092, .84, .068], [.1, .74, .06]], .007, std(0xC8443C, .5, 0, {transparent: true, opacity: .92}));
     function tube2(pts, r, m) { const t = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts.map(p => W(...p))), 40, r, 10, false), m); view.root.add(t); return t; }
     tube2([[.022, 1.0, -.02], [.05, .95, .0], [.085, .905, .07]], .008, std(0xC8443C, .5, 0, {transparent: true, opacity: .92}));
-    /* CVC boyunda, femoral kateter kasıkta */
+    /* CVC boyunda, enjektat sensör yuvası lümene dik */
     const cvc = new THREE.Mesh(new THREE.CylinderGeometry(.003, .003, .08, 12), std(0xF2F4F5, .4, 0)); const c0 = W(-.042, 1.58, .075), c1 = W(-.042, 1.5, .033);
     cvc.position.copy(lerp(c0, c1, .5)); cvc.quaternion.setFromUnitVectors(V3(0, 1, 0), c0.clone().sub(c1).normalize()); view.root.add(cvc);
     const sensor = new THREE.Mesh(new THREE.BoxGeometry(.016, .016, .03), std(0x3E7CB1, .4, .1)); sensor.position.copy(c0).add(V3(0, .01, 0)); view.root.add(sensor);
     const cf = fader(cvc, V3(0, .03, 0)), sf = fader(sensor, V3(0, .03, 0));
-    const ac = new THREE.Mesh(new THREE.CylinderGeometry(.0025, .0025, .09, 12), std(0xF2F4F5, .4, 0)); const a0 = W(.07, .78, .14), a1 = W(.09, .85, .07);
-    ac.position.copy(lerp(a0, a1, .5)); ac.quaternion.setFromUnitVectors(V3(0, 1, 0), a0.clone().sub(a1).normalize()); view.root.add(ac);
-    const af = fader(ac, V3(0, .03, 0));
+
+    /* Femoral giriş yeri ve yerel çerçeve */
+    const S0 = kit.project(W(.092, .8, .2), 0), up = S0.normal.clone();
+    const xl = W(0, 1, 0).sub(W(0, 0, 0)).addScaledVector(up, -W(0, 1, 0).sub(W(0, 0, 0)).dot(up)).normalize();
+    const zl = new THREE.Vector3().crossVectors(xl, up).normalize();
+    const quat = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(xl, up, zl));
+    /* Ölçüler (mm; şematik) */
+    const DEP = 20, AR = 4, TH = 40 * Math.PI / 180, NL = 70, CL = 70;
+    const d = V3(Math.cos(TH), -Math.sin(TH), 0), P = V3(0, -(DEP - AR + 1.5), 0), LIN = -P.y / Math.sin(TH);
+    const Q = V3(P.x + 12, -DEP + 1, 0);
+    const bez = new THREE.QuadraticBezierCurve3(P.clone(), P.clone().addScaledVector(d, 4), Q), bezLen = bez.getLength();
+    const X0 = -50, X1 = 50, YB = -34, aMax = bezLen + (X1 - Q.x) - .5;
+    const pathAt = a => a <= 0 ? {p: P.clone().addScaledVector(d, a), t: d.clone()}
+      : a <= bezLen ? {p: bez.getPointAt(a / bezLen), t: bez.getTangentAt(a / bezLen)} : {p: V3(Q.x + a - bezLen, Q.y, 0), t: V3(1, 0, 0)};
+    const S_END = CL - (LIN + 6), W_END = 45;
+    /* Aşamalar: 0 ponksiyon, 1 tel, 2 iğne çekilir, 3 kateter tel üzerinden, 4 tel çekilir, 5 son durum */
+    function pose(ph, u) {
+      const s = {nL: LIN, nW: 0, nOp: 1, flash: 1, wTip: null, wOp: 1, cTip: null};
+      if (ph === 0) { s.nL = -6 + (LIN + 6) * u; s.flash = clamp((u - .62) / .25, 0, 1); }
+      if (ph >= 1) s.wTip = ph === 1 ? -NL + 20 + (W_END + NL - 20) * u : W_END;
+      if (ph === 2) { s.nW = (NL + 50) * u; s.nOp = 1 - clamp((u - .75) / .25, 0, 1); }
+      if (ph >= 3) { s.nOp = 0; s.cTip = ph === 3 ? -LIN - 30 + (S_END + LIN + 30) * u : S_END; }
+      if (ph === 4) { s.wTip = W_END - 420 * u; s.wOp = 1 - clamp((u - .6) / .4, 0, 1); }
+      if (ph === 5) s.wOp = 0;
+      return s;
+    }
+    const M = {
+      steel: std(0x6F7C85, .3, .9), wire: std(0xDCE3E8, .2, .8), cath: std(0xF4F8FA, .3, 0, {transparent: true, opacity: .62}),
+      clear: std(0xEAF2F5, .1, 0, {transparent: true, opacity: .35, depthWrite: false}), blood: std(0xB0131E, .4, 0, {transparent: true}),
+      hub: std(0xDDE3E8, .45, .1), red: std(0xC7372F, .45, 0), therm: std(0x1E2A33, .4, .3)
+    };
+    M.cath.userData.maxOp = .62; M.clear.userData.maxOp = .35;
+    function seg(mesh, a0, a1, r, key) {
+      if (mesh.userData.key === key) return; mesh.userData.key = key;
+      a1 = Math.min(a1, aMax); mesh.visible = a1 > a0 + .2; if (!mesh.visible) return;
+      const c = new THREE.Curve(); c.getPoint = (u, tgt = V3()) => tgt.copy(pathAt(a0 + u * (a1 - a0)).p);
+      mesh.geometry.dispose(); mesh.geometry = new THREE.TubeGeometry(c, Math.max(8, Math.round((a1 - a0) / 1.5)), r, 8, false);
+    }
+    function assembly(withHub) {
+      const A = new THREE.Group();
+      const needle = new THREE.Group();
+      const shaft = new THREE.Mesh(new THREE.CylinderGeometry(.6, .6, NL - 2, 10), M.steel.clone()); shaft.geometry.rotateZ(-Math.PI / 2); shaft.position.x = -(NL - 2) / 2 - 2; needle.add(shaft);
+      const bevel = new THREE.Mesh(new THREE.ConeGeometry(.6, 2, 10), M.steel.clone()); bevel.geometry.rotateZ(-Math.PI / 2); bevel.position.x = -1; needle.add(bevel);
+      const chamber = new THREE.Mesh(new THREE.CylinderGeometry(3, 2.2, 14, 20), M.clear.clone()); chamber.geometry.rotateZ(-Math.PI / 2); chamber.position.x = -NL - 7; needle.add(chamber);
+      const flash = new THREE.Mesh(new THREE.CylinderGeometry(1.9, 1.9, 13, 16), M.blood.clone()); flash.geometry.rotateZ(-Math.PI / 2); flash.geometry.translate(-6.5, 0, 0); flash.position.x = -NL - .4; needle.add(flash);
+      needle.rotation.z = -TH; A.add(needle);
+      const wire = new THREE.Mesh(new THREE.BufferGeometry(), M.wire.clone()); A.add(wire);
+      const cath = new THREE.Mesh(new THREE.BufferGeometry(), M.cath.clone()); A.add(cath);
+      const therm = new THREE.Mesh(new THREE.CylinderGeometry(.95, .95, 2.5, 14), M.therm.clone()); A.add(therm);
+      const hub = new THREE.Group();
+      const hb = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 3, 14, 18), M.hub.clone()); hb.geometry.rotateZ(-Math.PI / 2); hb.position.x = -7; hub.add(hb);
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(2.4, 2.4, 4, 16), M.red.clone()); cap.geometry.rotateZ(-Math.PI / 2); cap.position.x = -16; hub.add(cap);
+      const side = new THREE.Mesh(new THREE.CylinderGeometry(1.2, 1.2, 10, 12), M.therm.clone()); side.position.set(-8, 5, 0); hub.add(side);
+      hub.rotation.z = -TH; A.add(hub);
+      A.traverse(o => { if (o.isMesh) o.castShadow = true; });
+      function set(s) {
+        needle.position.copy(P).addScaledVector(d, s.nL - LIN - s.nW); needle.visible = s.nOp > .01;
+        needle.traverse(o => { if (o.isMesh && o !== flash) { o.material.transparent = true; o.material.opacity = (o === chamber ? .35 : 1) * s.nOp; } });
+        flash.scale.x = Math.max(.001, s.flash); flash.visible = s.flash > .01; flash.material.opacity = s.nOp;
+        if (s.wTip == null || s.wOp < .01) wire.visible = false;
+        else { seg(wire, s.wTip - 380, s.wTip, .45, 'w' + s.wTip.toFixed(2)); wire.material.transparent = true; wire.material.opacity = s.wOp; }
+        if (s.cTip == null) { cath.visible = therm.visible = hub.visible = false; }
+        else {
+          seg(cath, s.cTip - CL, s.cTip, .85, 'c' + s.cTip.toFixed(2));
+          const tp = pathAt(Math.min(s.cTip, aMax) - 3); therm.position.copy(tp.p); therm.quaternion.setFromUnitVectors(V3(0, 1, 0), tp.t);
+          therm.visible = s.cTip - 3 < aMax; hub.visible = true; hub.position.copy(pathAt(s.cTip - CL).p);
+        }
+      }
+      return {A, set, cath, hub};
+    }
+    /* Gerçek boyut (yarı saydam derinin altında) */
+    const real = new THREE.Group(); real.position.copy(S0.point); real.quaternion.copy(quat); real.scale.setScalar(.001); view.root.add(real); real.updateMatrixWorld(true);
+    const R = assembly(); real.add(R.A); R.A.visible = false;
+    /* Büyütülmüş kesit: kasığın üstünde, kesit yüzü hastanın sol yanına bakar */
+    const K = 2.5, inset = new THREE.Group();
+    inset.position.copy(S0.point).addScaledVector(up, .2).addScaledVector(zl, .05); inset.quaternion.copy(quat); inset.scale.setScalar(.001 * K); view.root.add(inset);
+    const tissue = new THREE.Group(); inset.add(tissue);
+    const ZD = 18, box = (y0, y1, mat) => { const m = new THREE.Mesh(new THREE.BoxGeometry(X1 - X0, y1 - y0, ZD), mat); m.position.set((X0 + X1) / 2, (y0 + y1) / 2, -ZD / 2); tissue.add(m); };
+    const fat = std(0xEBD3A0, .85, 0);
+    box(-2, 0, std(0xD99A80, .7, 0)); box(-(DEP - AR) + .05, -2, fat);
+    box(YB + 8, -(DEP + AR) - .05, fat); box(YB, YB + 8, std(0xB56A5E, .8, 0));
+    const halfTube = (r, mat) => { const g = new THREE.CylinderGeometry(r, r, X1 - X0, 40, 1, true, Math.PI / 2, Math.PI); g.rotateZ(-Math.PI / 2); const m = new THREE.Mesh(g, mat); m.position.set((X0 + X1) / 2, -DEP, 0); tissue.add(m); };
+    halfTube(AR, std(0x8E1F2A, .55, 0, {side: THREE.DoubleSide})); halfTube(AR + .7, std(0xC4525A, .6, 0, {side: THREE.BackSide}));
+    const back = new THREE.Mesh(new THREE.PlaneGeometry(X1 - X0, 2 * AR + 1.4), fat); back.position.set((X0 + X1) / 2, -DEP, -AR - .8); tissue.add(back);
+    const I = assembly(); inset.add(I.A);
+    const arrow = new THREE.Mesh(new THREE.ConeGeometry(1.8, 5, 16), new THREE.MeshBasicMaterial({color: ACCENT})); arrow.geometry.rotateZ(-Math.PI / 2); arrow.visible = false; inset.add(arrow);
+    const tf = fader(tissue, V3(0, 0, 0)), ifd = fader(I.A, V3(0, 0, 0));
+    inset.updateMatrixWorld(true);
+    const at = (x, y) => inset.localToWorld(V3(x, y, 0));
+    const tag = (k, pos, cls = 'side') => { const t = view.addTag(ICA.t(k), pos, cls); t.show = false; return t; };
+    const T = {
+      inset: tag('pl.art.inset', at(X0 + 18, YB - 6)), skin: tag('pl.art.skin', at(X1 - 8, 1.5)), artery: tag('pl.picco.fa', at(X1 - 12, YB - 6)),
+      needle: tag('pl.art.needle', V3()), wire: tag('pl.picco.wire', V3()), cath: tag('pl.picco.cath', V3()), therm: tag('pl.picco.therm', V3()),
+      press: tag('pl.art.press', real.localToWorld(V3(60, 8, 0)))
+    };
+    /* Bağlantılar: basınç hattı ve termistör kablosu masanın sol yanına */
+    const fin = pose(5, 1); R.set(fin); real.updateMatrixWorld(true);
+    const hubEnd = real.localToWorld(pathAt(fin.cTip - CL - 18).p), side = TABLE_HALF + .12;
+    const lineP = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([hubEnd, hubEnd.clone().add(V3(.02, .02, .05)), V3(side - .05, hubEnd.y + .03, hubEnd.z + .12), V3(side, TABLE_TOP - .05, hubEnd.z + .2)]), 60, .0022, 8, false), MATS.tube());
+    lineP.material.userData.maxOp = .75; view.root.add(lineP);
+    const thermC = cable([hubEnd.clone().add(V3(0, .004, 0)), hubEnd.clone().add(V3(.03, .025, .03)), V3(side - .06, hubEnd.y + .05, hubEnd.z + .08), V3(side, TABLE_TOP - .05, hubEnd.z + .14)], .0018);
+    view.root.add(thermC);
+    const lpf = fader(lineP, V3(0, 0, 0)), tcf = fader(thermC, V3(0, 0, 0));
+
     /* Soğuk bolus yolu: SVC → sağ kalp → akciğer → sol kalp → aort → femoral arter */
     const route = new THREE.CatmullRomCurve3([[-.04, 1.42, .02], [-.035, 1.27, .038], [-.03, 1.24, .05], [0, 1.215, .075], [.012, 1.285, .07], [-.05, 1.28, .02], [-.02, 1.27, .0], [.012, 1.27, 0], [.038, 1.215, .04], [-.004, 1.31, .052], [0, 1.36, .025], [.026, 1.26, -.036], [.022, 1.05, -.03], [.05, .95, .0], [.09, .85, .068]].map(p => W(...p)), false, 'centripetal');
     const bolus = new THREE.Mesh(new THREE.SphereGeometry(.009, 16, 12), std(0x5BB7DE, .3, 0, {emissive: new THREE.Color(0x5BB7DE), emissiveIntensity: .8})); view.root.add(bolus);
-    const thermo = waveTag(view, W(.2, .95, .25), 'thermo', ICA.t('pl.picco.curve')); 
+    const thermo = waveTag(view, W(.2, .95, .25), 'thermo', ICA.t('pl.picco.curve'));
     const res = view.addTag(ICA.t('pl.picco.val'), W(.15, 1.2, .3), 'ok'); res.show = false;
-    const S = {bolus: false, t0: 0};
+    const S = {bolus: false, ph: -1, t0: 0, now: 0};
     const camHeart = [W(.03, 1.12, .03), .95, 1.1, .5];
+    const cdir = zl.clone().multiplyScalar(Math.cos(.38)).addScaledVector(up, Math.sin(.38)).normalize();
+    const camIn = [lerp(at(-14, 8), S0.point, .1), .8, Math.atan2(cdir.x, cdir.z), Math.acos(clamp(cdir.y, -1, 1))];
     const steps = [
       {cam: overview(kit, W(0, 1.15, .05), 1.6)},
       {cam: [W(-.04, 1.52, .05), .5, -.6, .85], cvc: true, show: ['svc']},
-      {cam: [W(.09, .84, .07), .55, .7, .8], cvc: true, art: true},
-      {cam: camHeart, cvc: true, art: true, bolus: true, show: ['ra', 'rv', 'pa', 'la', 'lv', 'ao']},
-      {cam: camHeart, cvc: true, art: true, bolus: true, curve: true},
-      {cam: camHeart, cvc: true, art: true, res: true}
+      {cam: camIn, cvc: true, ph: 0},
+      {cam: camIn, cvc: true, ph: 1},
+      {cam: camIn, cvc: true, ph: 2},
+      {cam: camIn, cvc: true, ph: 3},
+      {cam: camIn, cvc: true, ph: 4, lines: true},
+      {cam: camHeart, cvc: true, ph: 5, lines: true, bolus: true, show: ['ra', 'rv', 'pa', 'la', 'lv', 'ao']},
+      {cam: camHeart, cvc: true, ph: 5, lines: true, bolus: true, curve: true},
+      {cam: camHeart, cvc: true, ph: 5, lines: true, res: true}
     ];
     const go = stepper(view, steps, (st, instant) => {
-      cf.on = sf.on = !!st.cvc; af.on = !!st.art; if (instant) { cf.jump(); sf.jump(); af.jump(); }
+      const ph = st.ph == null ? -1 : st.ph, ins = ph >= 0 && ph <= 4;
+      S.ph = ph; S.t0 = S.now;
+      cf.on = sf.on = !!st.cvc; tf.on = ifd.on = ins; lpf.on = tcf.on = !!st.lines;
+      if (instant) { cf.jump(); sf.jump(); tf.jump(); ifd.jump(); lpf.jump(); tcf.jump(); }
+      R.A.visible = ph >= 0;
+      T.inset.show = T.skin.show = T.artery.show = ins;
+      T.needle.show = ph === 0; T.wire.show = ph === 1 || ph === 2; T.cath.show = ph === 3; T.therm.show = ph === 4; T.press.show = ph === 2;
+      arrow.visible = ph === 1 || ph === 3;
       S.bolus = !!st.bolus; thermo.show = !!st.curve; res.show = !!st.res; an.show(st.show || []);
     });
-    view.tick.push((dt, t) => { cf.step(dt); sf.step(dt); af.step(dt); const u = (t % 5) / 5; bolus.visible = S.bolus; if (S.bolus) bolus.position.copy(route.getPointAt(u)); });
+    const RUN = 3.4, HOLD = 1.6;
+    view.tick.push((dt, t) => {
+      S.now = t;
+      cf.step(dt); sf.step(dt); tf.step(dt); ifd.step(dt); lpf.step(dt); tcf.step(dt);
+      if (S.ph >= 0) {
+        const u = REDUCED_MOTION || S.ph === 5 ? 1 : (v => v < .5 ? 2 * v * v : 1 - (-2 * v + 2) ** 2 / 2)(clamp(((t - S.t0) % (RUN + HOLD)) / RUN, 0, 1));
+        const s = pose(S.ph, u); R.set(s); I.set(s);
+        const L = (a, dy = 6) => inset.localToWorld(pathAt(a).p.add(V3(0, dy, 0)));
+        if (T.needle.show) T.needle.pos.copy(inset.localToWorld(P.clone().addScaledVector(d, s.nL - LIN - NL - 7).add(V3(0, 7, 0))));
+        if (T.wire.show && s.wTip != null) T.wire.pos.copy(L(Math.min(s.wTip, aMax) - 4, 6));
+        if (T.cath.show) T.cath.pos.copy(inset.localToWorld(I.hub.position.clone().add(V3(0, 8, 0))));
+        if (T.therm.show) T.therm.pos.copy(L(Math.min(S_END, aMax) - 3, -9));
+        if (arrow.visible) {
+          const a = S.ph === 1 ? Math.min(s.wTip, aMax) + 6 : s.cTip - CL - 20, p = pathAt(a);
+          arrow.position.copy(p.p).add(V3(0, S.ph === 1 ? 0 : 6, 0)).addScaledVector(p.t, 1.5 * Math.sin(t * 5)); arrow.rotation.z = Math.atan2(p.t.y, p.t.x);
+        }
+        I.cath.material.emissive.setHex(ACCENT); I.cath.material.emissiveIntensity = S.ph === 3 ? .35 + .25 * Math.sin(t * 5) : 0;
+      }
+      const u = (t % 5) / 5; bolus.visible = S.bolus; if (S.bolus) bolus.position.copy(route.getPointAt(u));
+    });
     return {go, home: steps[0].cam};
   }
 
@@ -1353,7 +1628,7 @@ const ICA3D = (() => {
     'forehead-nirs': {id: 'nirs', count: 6, build: buildNIRS},
     'forearm-nmt':   {id: 'nmt', count: 7, build: buildNMT, body: true},
     'finger-probe':  {id: 'spo2', count: 5, build: buildFingerProbe, body: true},
-    'radial-artery': {id: 'art', count: 8, build: buildRadial, body: true},
+    'radial-artery': {id: 'art', count: 10, build: buildRadial, body: true},
     'chest-ecg':     {id: 'ecg', count: 7, build: buildECG, body: true},
     'upper-arm-cuff':{id: 'nibp', count: 5, build: buildNIBP, body: true},
     'finger-cuff':   {id: 'fc', count: 6, build: buildFingerCuff, body: true},
@@ -1361,7 +1636,7 @@ const ICA3D = (() => {
     'suprasternal-doppler': {id: 'uscom', count: 5, build: buildSuprasternal, body: true},
     'palm-electrodes': {id: 'palm', count: 5, build: buildPalm, body: true},
     'pa-catheter':   {id: 'pac', count: 7, build: buildPAC, body: true, theatre: {xray: true}},
-    'femoral-artery-cvc': {id: 'picco', count: 6, build: buildPiCCO, body: true, theatre: {xray: true, groin: true}},
+    'femoral-artery-cvc': {id: 'picco', count: 10, build: buildPiCCO, body: true, theatre: {xray: true, groin: true}},
     'esophageal-probe': {id: 'eso', count: 5, build: (v, k) => buildEsophageal(v, k, false), body: true, theatre: {xray: true}},
     'tee-probe':     {id: 'tee', count: 5, build: (v, k) => buildEsophageal(v, k, true), body: true, theatre: {xray: true}},
     'thorax-bioreactance': {id: 'star', count: 6, build: buildBioreactance, body: true},
