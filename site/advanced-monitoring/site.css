@@ -392,3 +392,58 @@ a.btn{display:inline-flex;align-items:center;justify-content:center;text-decorat
 .visitor-stats[hidden]{display:none}
 .visitor-stats b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
 .visitor-stats .live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#2FB872;box-shadow:0 0 6px #2FB872;vertical-align:1px}
+
+/* Nöromüsküler blok senaryoları (nmt/nmt-scen.js) */
+.nmt-lede{max-width:72ch}
+.nmt-pick{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px 22px;margin:18px 0 20px}
+.nmt-grp .eyebrow{margin:0 0 8px}
+.nmt-chips{display:flex;flex-wrap:wrap;gap:6px}
+.nmt-chips .chip{font:600 13.5px/1.25 var(--f-display);text-align:left;padding:8px 11px;border-radius:9px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.nmt-chips .chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.nmt-main{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:start}
+@media (max-width:900px){.nmt-main{grid-template-columns:1fr}}
+.nmt-fig,.nmt-res{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}
+.nmt-fig{display:flex;flex-direction:column;gap:10px}
+.nmt-replay{align-self:flex-start}
+.nmt-steps{display:flex;flex-wrap:wrap;gap:6px}
+.nmt-steps button{font:700 12.5px/1.2 var(--f-mono);padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);cursor:pointer}
+.nmt-steps button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.nmt-draw{display:grid;grid-template-columns:1fr;gap:6px;align-items:end}
+.nmt-draw.two{grid-template-columns:minmax(0,392fr) minmax(0,180fr)}
+.nmt-draw.two.wide2{grid-template-columns:minmax(0,392fr) minmax(0,330fr)}
+@media (max-width:620px){.nmt-draw.two,.nmt-draw.two.wide2{grid-template-columns:1fr}}
+.nmt-draw:not(.two) .nmt-svg{max-width:460px}
+.nmt-svg{display:block;width:100%;height:auto}
+.nmt-svg .ax{stroke:var(--muted);stroke-width:1.5}
+.nmt-svg .ctl{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:5 5}
+.nmt-svg .lbl{font:500 11.5px var(--f-mono);fill:var(--muted)}
+.nmt-svg .tn{font:700 13px var(--f-mono);fill:var(--ink)}
+.nmt-svg .val{font:700 13px var(--f-mono);fill:var(--ink);animation:nmtFade .3s both}
+.nmt-svg .big{font:800 20px var(--f-mono);fill:var(--accent-ink)}
+.nmt-svg .tw{fill:var(--accent);transform-box:fill-box;transform-origin:50% 100%;animation:nmtGrow .28s cubic-bezier(.2,.8,.3,1) both}
+.nmt-svg .tet{stroke:var(--accent);stroke-width:1.1;transform-box:fill-box;transform-origin:50% 100%;animation:nmtGrow .1s both}
+.nmt-svg .tetz{stroke:var(--accent);stroke-width:2}
+.nmt-svg .zero{fill:var(--muted)}
+.nmt-svg .stim{fill:none;stroke:#E0A030;stroke-width:1.8;stroke-linecap:round}
+@keyframes nmtGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes nmtFade{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.nmt-svg .tw,.nmt-svg .tet,.nmt-svg .val{animation:none}}
+.nmt-dl{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;margin:0}
+.nmt-dl div{min-width:0}
+.nmt-dl .wide{grid-column:1/-1}
+.nmt-dl dt{font:500 11.5px/1.3 var(--f-mono);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.nmt-dl dd{margin:4px 0 0;font-size:15px;line-height:1.45}
+.nmt-big{font:800 26px/1 var(--f-mono)}
+.nmt-cat{display:inline-block;font-weight:700;padding:4px 9px;border-radius:7px;background:var(--chip)}
+.nmt-cat.c-complete,.nmt-cat.c-deep{background:#F6D3D0;color:#7A1D16}
+.nmt-cat.c-moderate,.nmt-cat.c-shallow{background:#F8E2C4;color:#6B3E05}
+.nmt-cat.c-minimal,.nmt-cat.c-dep{background:#F3EDC0;color:#5A4C00}
+.nmt-cat.c-ok,.nmt-cat.c-none{background:var(--accent-soft);color:var(--accent-ink)}
+.nmt-ext{font-weight:700}
+.nmt-ext.ok{color:var(--accent-ink)}
+.nmt-ext.no{color:#B3261E}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .nmt-ext.no{color:#FF8A80}}
+:root[data-theme="dark"] .nmt-ext.no{color:#FF8A80}
+.nmt-text{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:6px 22px;margin-top:18px}
+.nmt-text h3{font-size:16px;margin:10px 0 6px}
+.nmt-text p{margin:0;font-size:15.5px;line-height:1.55}

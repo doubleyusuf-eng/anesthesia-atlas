@@ -44,6 +44,7 @@ window.ICA_MESSAGES = {
   "dev.sec.use": "Use and setup",
   "dev.sec.params": "Parameters",
   "dev.sec.eval": "Assessment and interpretation",
+  "dev.sec.scen": "Scenarios",
   "dev.sec.trouble": "Troubleshooting and limitations",
   "dev.sec.roles": "Notes by professional role",
   "dev.sec.images": "Images",
