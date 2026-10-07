@@ -8,7 +8,7 @@ Everything served at https://atlas.anesthesiabriefs.com, and nothing else. This 
 | `site/fizik.html`, `site/ekipman.html`, `site/kaynakca.html` (+ `en/`, `es/`) | Redirects from the machine atlas's old root addresses | `tools/build-hub.cjs` |
 | `site/anesthesia-machine/` | Anesthesia Machine Atlas | `tools/sync-machine.sh` from `../Anestezi-Atlasi` |
 | `site/advanced-monitoring/` | Advanced Monitoring Atlas | `tools/sync-monitoring.sh` from `../Ileri-Cihaz-Atlasi` |
-| `site/mechanical-ventilation/` | Mechanical Ventilation Modes Atlas (coming soon) | not published yet |
+| `site/mechanical-ventilation/` | Mechanical Ventilation Atlas (coming soon) | not published yet |
 
 ## Updating
 

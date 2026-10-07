@@ -5,7 +5,7 @@ window.ICA_MESSAGES = {
   "nav.atlas": "← Todos los atlas",
   "nav.back": "Anesthesia Briefs",
   "nav.lang": "Idioma",
-  "hero.title": "Equipos avanzados de anestesia, en 3D",
+  "hero.title": "Atlas de Monitorización Avanzada",
   "hero.lede": "Desde la monitorización de la profundidad anestésica y la nocicepción hasta la hemodinámica avanzada, la monitorización neuromuscular y los equipos de infusión y manejo de la vía aérea: aprenda paso a paso cómo funciona cada equipo, cómo se aplica al paciente y cómo interpretar sus datos.",
   "hero.f.devices": "{n} registros",
   "hero.f.cats": "{n} categorías",

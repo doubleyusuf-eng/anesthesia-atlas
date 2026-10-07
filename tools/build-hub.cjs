@@ -20,7 +20,7 @@ const T = {
   tr: {
     locale: 'tr_TR', dir: '', name: 'Anestezi Atlası',
     title: 'Anestezi Atlası · 3B eğitim atlasları',
-    desc: 'Anestezi makinesi, ileri monitörizasyon ve mekanik ventilatör modları için ücretsiz, etkileşimli 3B eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
+    desc: 'Anestezi makinesi, ileri monitörizasyon ve mekanik ventilasyon için ücretsiz, etkileşimli 3B eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
     back: 'Anesthesia Briefs', backAria: "Anesthesia Briefs'e dön", langAria: 'Dil · Language · Idioma',
     h1: 'Anestezi Atlası',
     by: 'Hazırlayanlar',
@@ -40,7 +40,7 @@ const T = {
         alt: 'Alnına derinlik monitörü sensörü yerleştirilmiş hastanın 3B baş modeli',
       },
       'mechanical-ventilation': {
-        name: 'Mekanik Ventilatör Modları Atlası',
+        name: 'Mekanik Ventilasyon Atlası',
         text: 'Volüm ve basınç kontrollü modlardan destek modlarına: her modun nasıl çalıştığını canlı basınç, akım ve hacim eğrileri üzerinde adım adım görün.',
         facts: [['VC', 'volüm kontrol'], ['PC', 'basınç kontrol'], ['PS', 'basınç destek'], ['SIMV', 'senkronize']],
         alt: 'Basınç kontrollü modda ventilatör ekranı: basınç, akım ve hacim eğrileri',
@@ -55,7 +55,7 @@ const T = {
   en: {
     locale: 'en_US', dir: 'en/', name: 'Anesthesia Atlas',
     title: 'Anesthesia Atlas · 3D teaching atlases',
-    desc: 'Free, interactive 3D teaching atlases for the anaesthesia machine, advanced monitoring and mechanical ventilation modes. By Anesthesia Briefs and Anestezi Rehberi.',
+    desc: 'Free, interactive 3D teaching atlases for the anaesthesia machine, advanced monitoring and mechanical ventilation. By Anesthesia Briefs and Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Back to Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Anesthesia Atlas',
     by: 'Made by',
@@ -75,7 +75,7 @@ const T = {
         alt: '3D head model of a patient with a depth-of-anaesthesia sensor on the forehead',
       },
       'mechanical-ventilation': {
-        name: 'Mechanical Ventilation Modes Atlas',
+        name: 'Mechanical Ventilation Atlas',
         text: 'From volume- and pressure-controlled modes to support modes: see step by step how each mode works on live pressure, flow and volume waveforms.',
         facts: [['VC', 'volume control'], ['PC', 'pressure control'], ['PS', 'pressure support'], ['SIMV', 'synchronized']],
         alt: 'Ventilator screen in pressure-controlled mode: pressure, flow and volume waveforms',
@@ -90,7 +90,7 @@ const T = {
   es: {
     locale: 'es_ES', dir: 'es/', name: 'Atlas de Anestesia',
     title: 'Atlas de Anestesia · atlas docentes en 3D',
-    desc: 'Atlas docentes en 3D, gratuitos e interactivos, sobre la máquina de anestesia, la monitorización avanzada y los modos de ventilación mecánica. Por Anesthesia Briefs y Anestezi Rehberi.',
+    desc: 'Atlas docentes en 3D, gratuitos e interactivos, sobre la máquina de anestesia, la monitorización avanzada y la ventilación mecánica. Por Anesthesia Briefs y Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Volver a Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Atlas de Anestesia',
     by: 'Elaborado por',
@@ -110,7 +110,7 @@ const T = {
         alt: 'Modelo 3D de la cabeza de un paciente con un sensor de profundidad anestésica en la frente',
       },
       'mechanical-ventilation': {
-        name: 'Atlas de Modos de Ventilación Mecánica',
+        name: 'Atlas de Ventilación Mecánica',
         text: 'De los modos controlados por volumen y por presión a los modos de soporte: vea paso a paso cómo funciona cada modo sobre curvas de presión, flujo y volumen en vivo.',
         facts: [['VC', 'control por volumen'], ['PC', 'control por presión'], ['PS', 'presión de soporte'], ['SIMV', 'sincronizada']],
         alt: 'Pantalla de ventilador en modo controlado por presión: curvas de presión, flujo y volumen',

@@ -5,7 +5,7 @@ window.ICA_MESSAGES = {
   "nav.atlas": "← Tüm atlaslar",
   "nav.back": "Anesthesia Briefs",
   "nav.lang": "Dil",
-  "hero.title": "İleri anestezi cihazlarını 3B keşfedin",
+  "hero.title": "İleri Monitörizasyon Atlası",
   "hero.lede": "Anestezi derinliği ve nosisepsiyon monitörlerinden ileri hemodinamik izleme, nöromüsküler izlemden infüzyon ve hava yolu cihazlarına kadar her cihazın nasıl çalıştığını, hastaya nasıl uygulandığını ve ölçümlerinin nasıl yorumlandığını adım adım inceleyin.",
   "hero.f.devices": "{n} kayıt",
   "hero.f.cats": "{n} kategori",

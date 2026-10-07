@@ -5,7 +5,7 @@ window.ICA_MESSAGES = {
   "nav.atlas": "← All atlases",
   "nav.back": "Anesthesia Briefs",
   "nav.lang": "Language",
-  "hero.title": "Advanced anesthesia devices, in 3D",
+  "hero.title": "Advanced Monitoring Atlas",
   "hero.lede": "From depth-of-anesthesia and nociception monitors to advanced hemodynamics, neuromuscular monitoring, infusion and airway devices: learn step by step how each device works, how it is applied to the patient and how to interpret its data.",
   "hero.f.devices": "{n} entries",
   "hero.f.cats": "{n} categories",
