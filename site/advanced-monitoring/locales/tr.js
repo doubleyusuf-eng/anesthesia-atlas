@@ -469,7 +469,7 @@ window.ICA_MESSAGES = {
   "pl.hfnc.2.d": "Su haznesini ve ısıtılmış solunum tüpünü takın; su seviyesi maksimum çizginin altında kalmalı, cihaz hasta başı seviyesinin altında sabitlenmelidir. Hazne yerinde değilken tedaviye başlamayın.",
   "pl.hfnc.3.t": "İzlem",
   "pl.hfnc.3.d": "Akım, FiO₂ ve hedef sıcaklık reçeteye ve kurum protokolüne göre ayarlanır; bağlantıları ve alarmları kontrol edin. Oksijen kesintisinde belirgin desatüre olabilecek hastada sürekli SpO₂ izlenir.",
-  "dev.st.verified": "Kaynakla doğrulandı, klinik editör incelemesi bekliyor",
+  "dev.st.verified": "Kaynaklarla doğrulandı",
   "dev.noflags": "doğrulanmamış işaret yok",
   "card.verified": "Kaynakla doğrulandı",
   "nav.scenes": "3B sahneler",

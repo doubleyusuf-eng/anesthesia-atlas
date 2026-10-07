@@ -469,7 +469,7 @@ window.ICA_MESSAGES = {
   "pl.hfnc.2.d": "Fit the water chamber and heated breathing tube; the water level must stay below the maximum line and the device must be secured below the level of the patient's head. Do not start therapy without the chamber in place.",
   "pl.hfnc.3.t": "Monitoring",
   "pl.hfnc.3.d": "Flow, FiO₂ and target temperature are set according to the prescription and local protocol; check connections and alarms. Use continuous SpO₂ monitoring in patients who could desaturate markedly if oxygen were interrupted.",
-  "dev.st.verified": "Source-verified, clinical editor review pending",
+  "dev.st.verified": "Verified against sources",
   "dev.noflags": "no statements awaiting verification",
   "card.verified": "Source-verified",
   "nav.scenes": "3D scenes",

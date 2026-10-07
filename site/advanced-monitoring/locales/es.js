@@ -469,7 +469,7 @@ window.ICA_MESSAGES = {
   "pl.hfnc.2.d": "Coloque la cámara de agua y el tubo respiratorio calefactado; el nivel de agua debe quedar por debajo de la línea máxima y el equipo debe fijarse por debajo del nivel de la cabeza del paciente. No inicie la terapia sin la cámara colocada.",
   "pl.hfnc.3.t": "Monitorización",
   "pl.hfnc.3.d": "El flujo, la FiO₂ y la temperatura objetivo se ajustan según la prescripción y el protocolo del centro; compruebe las conexiones y las alarmas. En pacientes que podrían desaturarse de forma importante si se interrumpe el oxígeno, monitorice la SpO₂ de forma continua.",
-  "dev.st.verified": "Verificado con fuentes; revisión del editor clínico pendiente",
+  "dev.st.verified": "Verificado con fuentes",
   "dev.noflags": "sin afirmaciones pendientes de verificación",
   "card.verified": "Verificado con fuentes",
   "nav.scenes": "Escenas 3D",

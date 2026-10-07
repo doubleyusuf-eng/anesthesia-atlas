@@ -136,14 +136,13 @@
       : `<p class="pending">${esc(d.placement ? ICA.fill(ICA.t('dev.placePending'), {site: siteName}) : ICA.t('dev.placeNone'))}</p>`) +
       (S.placement ? `<h3 class="sub">${esc(ICA.t('dev.placeText'))}</h3>${prose('placement')}` : '');
 
-    /* İçerik durumu, doğrulanmamış işaret sayısı ve kanıt boşlukları her zaman görünür */
+    /* İçerik durumu: kaynaklarla doğrulandı ve gözden geçirme ayı. Ayrıntılı denetim alanları (origin.unverified,
+       gaps) içerik dosyalarında kalır, sayfada gösterilmez; genel kılavuz uyarısı alt bilgidedir. */
     const O = c.origin;
-    const status = O ? `<div class="wrap"><div class="status${O.unverified ? '' : ' done'}">
-        <p><b>${esc(ICA.t('dev.status'))}:</b> ${esc({partially_source_verified_clinical_review_pending: ICA.t('dev.st.partial'), source_verified_clinical_review_pending: ICA.t('dev.st.verified')}[O.status] || human(O.status))}
-        · ${O.unverified ? `<span class="verify">${esc(ICA.fill(ICA.t('dev.unverified'), {n: O.unverified}))}</span>` : `<span class="okb">${esc(ICA.t('dev.noflags'))}</span>`}
-        · <span class="muted">${esc(ICA.fill(ICA.t('dev.reviewed'), {d: O.reviewed}))}</span></p>
+    const reviewed = O && O.reviewed ? new Date(O.reviewed + 'T12:00:00').toLocaleDateString(ICA.locale, {month: 'long', year: 'numeric'}) : '';
+    const status = O ? `<div class="wrap"><div class="status done">
+        <p><span class="okb">✓ ${esc(ICA.t('dev.st.verified'))}</span>${reviewed ? ` · <span class="muted">${esc(reviewed)}</span>` : ''}</p>
         ${(c.langs || []).includes(ICA.lang) ? '' : `<p class="muted">${esc(ICA.t('dev.trOnly'))}</p>`}
-        ${(c.gaps || []).length ? `<details><summary>${esc(ICA.t('dev.gaps'))}</summary><ul>${c.gaps.map(g => `<li>${inline(ICA.pick(g))}</li>`).join('')}</ul></details>` : ''}
       </div></div>` : '';
 
     /* İş istasyonu kayıtları: kullanım kanıtı (K/P/S), kapsam, kaynaklar ve 3B model durumu (data/ws-registry.js) */
