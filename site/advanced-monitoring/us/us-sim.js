@@ -42,10 +42,10 @@ const USIM = (() => {
     /* Ven: basınçla kapanan elips; arter: nabızla genişleyen, basınçla kapanmayan */
     const IN = S.incl || 0, v = cyl(PH.vein, z, IN), pr = S.press || 0, vry = PH.vein.r * Math.max(.06, 1 - pr * .94), vrx = PH.vein.r * (1 + pr * .45);
     const vn = ((x - v.x) / vrx) ** 2 + ((d - (v.d + PH.vein.r - vry)) / vry) ** 2;
-    if (vn < 1) { out.e = .015; out.a = .06; out.sp = .2; out.k = 3; out.flow = -.7; return out; }
+    if (vn < 1) { out.e = .015; out.a = .06; out.sp = .2; out.k = 3; out.flow = -.7 * (1.25 - .6 * vn); return out; }   /* akım profili: merkezde hızlı */
     if (vn < 1.35) { out.e = .55; out.k = 13; return out; }
     const ar = cyl(PH.artery, z, IN), arr = PH.artery.r * (1 + .07 * (S.pulse || 0)), an = Math.hypot(x - ar.x, d - ar.d);
-    if (an < arr) { out.e = .012; out.a = .06; out.sp = .2; out.k = 2; out.flow = 1; return out; }
+    if (an < arr) { out.e = .012; out.a = .06; out.sp = .2; out.k = 2; out.flow = 1.25 - .7 * (an / arr) ** 2; return out; }
     if (an < arr + .55) { out.e = 1.05; out.k = 12; return out; }
     /* Enjeksiyon: iğne ucunda küçük sıvı cebi ve sinir çevresinde halka (sıvı anekoiktir) */
     const n = cyl(PH.nerve, z, IN), nd = Math.hypot(x - n.x, d - n.d), inj = S.inj || 0;
@@ -99,25 +99,26 @@ const USIM = (() => {
 
   /* ---------- Görüntüleyici ----------
      canvas: görünür tuval. o: {geom, depth (mm), freq (MHz), gain (dB), tgc:[yakın, orta, uzak] (dB), doppler, labels,
-     marker:true, head:{model, preset}}. state(): her karede anlık durum (prob pozu, iğneler, basınç...). */
+     marker:true, head:{model, preset}; bare: yazısız görüntü, cx/padT/padB/fillW: yerleşim, dr: dinamik aralık (dB), chroma, compound, smooth: ışınlar arası ara değer, cz: yükseklik yönünde benek (mm), nr: ışın sayısı, cgain: renk ölçeği}. state(): her karede anlık durum (prob pozu, iğneler, basınç...). */
   function Scanner(canvas, o) {
     const g = canvas.getContext('2d');
     const off = document.createElement('canvas'), og = off.getContext('2d');
-    let NR = 0, NS = 200, R = [], map = null, mapKey = '', img = null, buf = null, col = null;
+    let NR = 0, NS = 200, R = [], map = null, mapKey = '', img = null, buf = null, col = null, fr = null, fs2 = null;
     const tmp = {};
     const self = {o, canvas, frozen: false, last: null, labelsAt: []};
 
     function build() {
       const key = JSON.stringify([o.geom, o.depth, canvas.width, canvas.height]);
       if (key === mapKey) return; mapKey = key;
-      NR = o.geom.type === 'linear' ? 112 : 140; NS = Math.round(clamp(o.depth * 3.2, 150, 260));
+      NR = o.nr || (o.geom.type === 'linear' ? 112 : 140); NS = Math.round(clamp(o.depth * 3.2, 150, 260));
       R = rays(o.geom, NR); buf = new Float32Array(NR * NS); col = new Uint8Array(NR * NS);
       /* Ekran (yarım çözünürlük) → ışın/örnek eşlemesi */
       const W = Math.max(60, Math.round(canvas.width / 2)), H = Math.max(60, Math.round(canvas.height / 2));
       off.width = W; off.height = H; img = og.createImageData(W, H);
-      const ex = extent(o.geom, o.depth), padT = H * .06, padB = H * .04, sc = Math.min((H - padT - padB) / (ex.bot - ex.top), W * .86 / (2 * ex.hw));
-      self.geo = {W, H, sc, cx: W * .47, top: padT - ex.top * sc, ex};
+      const ex = extent(o.geom, o.depth), padT = H * (o.padT ?? .06), padB = H * (o.padB ?? .04), sc = Math.min((H - padT - padB) / (ex.bot - ex.top), W * (o.fillW ?? .86) / (2 * ex.hw));
+      self.geo = {W, H, sc, cx: W * (o.cx ?? .47), top: padT - ex.top * sc, ex};
       map = new Int32Array(W * H).fill(-1);
+      if (o.smooth) { fr = new Float32Array(W * H); fs2 = new Float32Array(W * H); }
       const Rc = o.geom.type === 'convex' ? o.geom.R : 0, th = o.geom.fov / 2 * Math.PI / 180;
       for (let yy = 0; yy < H; yy++) for (let xx = 0; xx < W; xx++) {
         const X = (xx - self.geo.cx) / sc, Y = (yy - self.geo.top) / sc;
@@ -125,6 +126,7 @@ const USIM = (() => {
         if (o.geom.type === 'linear') { if (Y < 0 || Y > o.depth || Math.abs(X) > o.geom.W / 2) continue; ri = (X / o.geom.W + .5) * (NR - 1); si = Y / o.depth * (NS - 1); }
         else { const yy2 = Y + Rc, r = Math.hypot(X, yy2), a = Math.atan2(X, yy2); if (Math.abs(a) > th || r < Rc || r > Rc + o.depth) continue; ri = (a / (2 * th) + .5) * (NR - 1); si = (r - Rc) / o.depth * (NS - 1); }
         map[yy * W + xx] = Math.round(si) * NR + Math.round(ri);
+        if (o.smooth) { fr[yy * W + xx] = ri; fs2[yy * W + xx] = si; }
       }
     }
 
@@ -136,9 +138,9 @@ const USIM = (() => {
     function compute(S, t) {
       const f = o.freq, depth = o.depth, P = S.pose, ds = depth / (NS - 1);
       const att = .1 * f * ds; /* dB, gidiş-dönüş ≈ 0,5 dB/cm/MHz */
-      const cx = .34 * 7 / f, cd = .2 * 7 / f, cz = .9;
+      const cx = .34 * 7 / f, cd = .2 * 7 / f, cz = o.cz || .9;
       const nd = (S.needles || []).filter(Boolean), bw = .55 + 3 / f;
-      const T = o.tgc || [0, 0, 0], G = o.gain || 0, DR = 50, noise = .0009;
+      const T = o.tgc || [0, 0, 0], G = o.gain || 0, DR = o.dr || 50, noise = .0009;
       /* Needle Enhance: iğne yansıması için ışın iğne tarafına doğru yönlendirilmiş gibi hesaplanır (side: −1 sol, +1 sağ) */
       const NE = o.ne ? {s: Math.sin(o.ne.steer || .45) * (o.ne.side || 1), c: Math.cos(o.ne.steer || .45)} : null;
       const EL = o.elasto, CF = o.doppler || o.power;
@@ -165,7 +167,7 @@ const USIM = (() => {
           }
           if (ne > 0) { e = Math.max(e, ne); k = 20; }
           const sp = tmp.sp ? (.15 + .95 * -Math.log(1e-3 + hash3(Math.floor(x / cx), Math.floor(d / cd), Math.floor(z / cz)))) * tmp.sp + (1 - tmp.sp) : 1;
-          const amp = e * sp * Math.pow(10, -loss / 20) * shadow;
+          const amp = e * (o.compound ? 1 + (sp - 1) * .55 : sp) * Math.pow(10, -loss / 20) * shadow;   /* SonoCompound: benek daha az */
           /* TGC: üç bölge (yakın / orta / uzak), doğrusal geçiş */
           const u = s / depth, tg = u < .5 ? T[0] + (T[1] - T[0]) * u * 2 : T[1] + (T[2] - T[1]) * (u - .5) * 2;
           const nz = noise * (.5 + hash3(i, j, (t * 30) | 0));
@@ -175,9 +177,9 @@ const USIM = (() => {
              Power Doppler: yön yok, yalnız akımın gücü; açıya daha az bağımlı. Elastografi: göreli sertlik haritası. */
           if (EL && inRoi(i, j)) { const st = STIFF[k] ?? .4; elAcc = j ? elAcc * .72 + st * .28 : st; col[j * NR + i] = 1 + Math.round(Math.max(0, Math.min(1, elAcc + .05 * (hash3(i >> 2, j >> 2, (t * 4) | 0) - .5))) * 253); }
           else if (CF && tmp.flow && inRoi(i, j)) {
-            const fz = tmp.flow, cosF = -(dz + dd * (S.incl || 0)) / Math.hypot(1, S.incl || 0) * Math.sign(fz), pulse = tmp.k === 2 ? .45 + .55 * Math.max(0, S.pulse || 0) : .5;
+            const fz = tmp.flow * (.8 + .4 * hash3(i >> 1, j >> 1, (t * 9) | 0)), cosF = -(dz + dd * (S.incl || 0)) / Math.hypot(1, S.incl || 0) * Math.sign(fz), pulse = tmp.k === 2 ? .45 + .55 * Math.max(0, S.pulse || 0) : .5;
             if (o.power) { const pw = Math.abs(fz) * pulse * Math.min(1, .3 + 3.2 * Math.abs(cosF)); col[j * NR + i] = pw < .06 ? 0 : 1 + Math.min(253, pw * 300) | 0; }
-            else { const vv = cosF * Math.abs(fz) * pulse; col[j * NR + i] = Math.abs(vv) < .045 ? 0 : vv > 0 ? 1 + Math.min(126, vv * 160) | 0 : 128 + Math.min(126, -vv * 160) | 0; }
+            else { const vv = cosF * Math.abs(fz) * pulse; const cg = o.cgain || 300; col[j * NR + i] = Math.abs(vv) < .045 ? 0 : vv > 0 ? 1 + Math.min(126, vv * cg) | 0 : 128 + Math.min(126, -vv * cg) | 0; }
           }
           else col[j * NR + i] = 0;
           loss += att * tmp.a;
@@ -191,10 +193,15 @@ const USIM = (() => {
       for (let p = 0, q = 0; p < W * H; p++, q += 4) {
         const m = map[p];
         if (m < 0) { D[q] = D[q + 1] = D[q + 2] = 0; D[q + 3] = 255; continue; }
-        const v = buf[m] * 255, c = col[m];
+        let v = buf[m] * 255; const c = col[m];
+        if (o.smooth) {   /* çift doğrusal ara değer: ışınlar arası basamak görünmez */
+          const ri = fr[p], si = fs2[p], i0 = Math.min(NR - 2, ri | 0), j0 = Math.min(NS - 2, si | 0), a = ri - i0, b = si - j0, k0 = j0 * NR + i0;
+          v = ((buf[k0] * (1 - a) + buf[k0 + 1] * a) * (1 - b) + (buf[k0 + NR] * (1 - a) + buf[k0 + NR + 1] * a) * b) * 255;
+        }
         if (c && o.elasto) { const s = (c - 1) / 253, rgb = elastoRGB(s), w = .55; D[q] = v * (1 - w) + rgb[0] * w; D[q + 1] = v * (1 - w) + rgb[1] * w; D[q + 2] = v * (1 - w) + rgb[2] * w; }
         else if (c && o.power) { const a = (c - 1) / 253; D[q] = 150 + 105 * Math.min(1, a * 1.6); D[q + 1] = 40 + 190 * a; D[q + 2] = 20 + 60 * a * a; }
-        else if (c) { const red = c < 128, a = ((red ? c : c - 127) / 127) * .5 + .5; D[q] = red ? 220 * a + 30 : 20; D[q + 1] = red ? 40 * a : 90 * a + 30; D[q + 2] = red ? 30 : 230 * a + 25; }
+        else if (c) { const red = c < 128, a = ((red ? c : c - 127) / 127) * .5 + .5, hi = Math.max(0, a - .78) * 4.5; D[q] = red ? 220 * a + 30 : 20 + 60 * hi; D[q + 1] = red ? 40 * a + 170 * hi : 90 * a + 30 + 150 * hi; D[q + 2] = red ? 30 : 230 * a + 25; }   /* yüksek hız: sarı / açık mavi */
+        else if (o.chroma) { D[q] = v; D[q + 1] = v * .53; D[q + 2] = v * .14; }   /* Chroma: amber renk haritası */
         else { D[q] = v; D[q + 1] = v; D[q + 2] = v * 1.02; }
         D[q + 3] = 255;
       }
@@ -207,6 +214,7 @@ const USIM = (() => {
     /* Ekran üstü bilgiler: model, ön ayar, frekans, derinlik ölçeği, yön işareti, etiketler */
     function overlay() {
       const cw = canvas.width, ch = canvas.height, k = cw / self.geo.W, {sc, cx, top} = self.geo, fs = Math.max(10, Math.round(ch * .03));
+      if (o.bare) { drawLabels(cw, ch, k, sc, cx, top, fs); return; }   /* çıplak görüntü: yazıları çağıran çizer */
       g.font = `600 ${fs}px "JetBrains Mono", ui-monospace, monospace`; g.textBaseline = 'top'; g.fillStyle = '#C9D6DC';
       const h = o.head || {};
       if (h.model) g.fillText(h.model, cw * .025, ch * .012);
@@ -220,14 +228,17 @@ const USIM = (() => {
       g.textAlign = 'left';
       /* Yön işareti: ekranın sol üstü, probun işaretli tarafına karşılık gelir */
       if (o.marker !== false) { const mx = o.markerRight ? (cx + self.geo.ex.hw * sc) * k - 14 : (cx - self.geo.ex.hw * sc) * k + 2, my = (top + (o.geom.type === 'linear' ? 0 : self.geo.ex.top) * sc) * k + fs * 3.4; g.fillStyle = '#7FE0D1'; g.beginPath(); g.arc(mx + 6, my, Math.max(4, fs * .35), 0, 7); g.fill(); }
-      /* Etiketler */
+      drawLabels(cw, ch, k, sc, cx, top, fs);
+      if (self.frozen) { g.fillStyle = '#FFD24A'; g.font = `700 ${fs}px "JetBrains Mono", monospace`; g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText('❚❚ FREEZE', cw / 2, ch * .985); g.textAlign = 'left'; }
+    }
+    /* Etiketler */
+    function drawLabels(cw, ch, k, sc, cx, top, fs) {
       self.labelsAt.forEach(L => {
         const X = (cx + L.X * sc) * k, Y = (top + L.Y * sc) * k; if (!(Y > ch * .05 && Y < ch * .98)) return;
         g.font = `700 ${fs}px "Archivo", Arial, sans-serif`; const tw = g.measureText(L.t).width + 10, bx = Math.min(cw - tw - 4, Math.max(4, X + (L.dx || 10))), by = Y + (L.dy || -fs * 1.6);
         g.strokeStyle = L.c || '#FFD24A'; g.lineWidth = 1.2; g.beginPath(); g.moveTo(X, Y); g.lineTo(bx + (bx > X ? 0 : tw), by + fs * .7); g.stroke();
         g.fillStyle = 'rgba(5,9,12,.78)'; g.fillRect(bx, by, tw, fs * 1.45); g.fillStyle = L.c || '#FFD24A'; g.textBaseline = 'top'; g.fillText(L.t, bx + 5, by + fs * .2);
       });
-      if (self.frozen) { g.fillStyle = '#FFD24A'; g.font = `700 ${fs}px "JetBrains Mono", monospace`; g.textAlign = 'center'; g.textBaseline = 'bottom'; g.fillText('❚❚ FREEZE', cw / 2, ch * .985); g.textAlign = 'left'; }
     }
 
     /* Dünya noktasını görüntü koordinatına çevir (etiketler için); düzlemden uzaksa null */

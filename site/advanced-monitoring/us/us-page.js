@@ -80,7 +80,7 @@
     <div class="us-appgrid">
       <div class="us-tabletwrap" id="tabletWrap">
         <div class="us-tablet"><canvas id="appCanvas" width="1200" height="800" aria-label="${esc(P(S.app.h))}"></canvas></div>
-        <button type="button" class="btn us-full" id="appFull" hidden>⤢ <span>${esc(P(S.app.full))}</span></button>
+        <div class="us-tabbar"><button type="button" class="btn us-full" id="appFull" hidden>⤢ <span>${esc(P(S.app.full))}</span></button><span class="us-simtag">${esc(P(S.app.ui.sim))}</span></div>
       </div>
       <aside class="us-ctl us-appside" id="appSide">
         <p class="eyebrow">${esc(P(S.app.simH))}</p>
@@ -90,6 +90,7 @@
         <label class="check"><input type="checkbox" data-k="needle"><span>${esc(P(S.app.needle))}</span></label>
         <label class="us-sl"><span>${esc(P(S.app.adv))}</span><input type="range" data-k="adv" min="5" max="100" step="1" value="70" disabled><output data-o="adv">70</output><em>%</em></label>
         <div class="us-modeinfo" id="appMode" aria-live="polite"></div>
+        <p class="us-readout" id="appRead"></p>
       </aside>
     </div>
     <p class="proto">${esc(P(S.app.note))}</p>
@@ -279,6 +280,7 @@
     });
     draw();
     const IMG = TX(S.img);
+    const readEl = $('#appRead'); let lastRead = 0;
     (function loop(now) {
       if (visible(cv)) {
         const t = now / 1000;
@@ -334,8 +336,12 @@
       });
       document.addEventListener('fullscreenchange', () => { fb.querySelector('span').textContent = P(document.fullscreenElement ? S.app.exitFull : S.app.full); });
     }
+    const readEl = $('#appRead'); let lastRead = 0;
     (function loop(now) {
-      if (visible(cv)) { APP.render(now / 1000); g.drawImage(APP.canvas, 0, 0, cv.width, cv.height); modeInfo(); }
+      if (visible(cv)) {
+        APP.render(now / 1000); g.drawImage(APP.canvas, 0, 0, cv.width, cv.height); modeInfo();
+        if (now - lastRead > 300) { lastRead = now; const r = APP.readout(); if (r !== readEl.textContent) readEl.textContent = r; }
+      }
       requestAnimationFrame(loop);
     })(performance.now());
   })();
