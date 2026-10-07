@@ -183,6 +183,7 @@
       <nav class="toc" aria-label="${esc(ICA.t('dev.toc'))}"><div class="wrap">${SECTIONS.map(s => `<a href="#${s.id}">${esc(ICA.t('dev.sec.' + s.key))}</a>`).join('')}</div></nav>
       ${status}
       ${evBox}
+      ${['ultrasound', 'tee', 'tte'].includes(d.id) ? `<div class="wrap"><p class="moved-note">${esc(ICA.t('dev.usPage'))} <a href="ultrason.html">${esc(ICA.t('dev.usPageLink'))}</a></p></div>` : ''}
       ${SECTIONS.map(s => `<section class="sec" id="${s.id}"><div class="wrap"><h2>${esc(ICA.t('dev.sec.' + s.key))}</h2>${body[s.key] || pending()}</div></section>`).join('')}
       <section class="related"><div class="wrap"><h2>${esc(ICA.t('dev.related'))}</h2><div class="grid">${
         DB.devices.filter(x => x.id !== d.id && DB.inCat(x, d.cat)).slice(0, 8).map(cardHTML).join('')}</div></div></section>`;

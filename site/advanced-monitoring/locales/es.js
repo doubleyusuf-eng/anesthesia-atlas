@@ -611,5 +611,12 @@ window.ICA_MESSAGES = {
   "dev.ev.docs": "Documentos oficiales revisados para el modelado ({n})",
   "dev.ev.modelPart": "Modelo 3D: modelo docente representativo creado de forma independiente. Algunas medidas y piezas proceden de documentos oficiales; la geometría no ha sido revisada por expertos y no hay animación de conexión clínica aprobada.",
   "cat.wsMoved": "Las estaciones de anestesia se han trasladado al Atlas de la Máquina de Anestesia.",
-  "cat.wsMovedLink": "Abrir estaciones →"
+  "cat.wsMovedLink": "Abrir estaciones →",
+  "nav.us": "Ecografía",
+  "us.teaserEyebrow": "Nueva sección",
+  "us.teaserTitle": "Sistema de ecografía",
+  "us.teaserText": "Los ocho modelos Clarius HD3 en 3D, cómo funciona la ecografía con una simulación de imagen en vivo y las técnicas en plano y fuera de plano con la aguja VygoPlex Echo, paso a paso sobre un fantoma de gel.",
+  "us.teaserCta": "Abrir la sección de ecografía →",
+  "dev.usPage": "La familia Clarius HD3, la física de la ecografía y las técnicas de aguja en plano y fuera de plano se explican en una sección aparte.",
+  "dev.usPageLink": "Abrir la sección de ecografía →"
 };

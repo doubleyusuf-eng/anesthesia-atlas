@@ -66,19 +66,32 @@ const K3 = (() => {
     bind() {
       const c = this.renderer.domElement, pts = new Map(); let pinch = null, mode = 'rot';
       const pinfo = () => { const a = [...pts.values()]; return {mx: (a[0].x + a[1].x) / 2, my: (a[0].y + a[1].y) / 2, d: Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y)}; };
+      /* Dokunulabilir ekranlar (this.hits: [{mesh, on(type, u, v) → bool, hover(u, v) → bool}]): ışın ilk çarptığı nesne
+         kayıtlı ekransa dokunuş ekrana gider, sahne dönmez. */
+      const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(); let scr = null;
+      const hitAt = e => {
+        if (!this.hits || !this.hits.length) return null;
+        const r = c.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
+        ray.setFromCamera(ndc, this.camera);
+        const f = ray.intersectObject(this.root, true).find(h => h.object.visible); if (!f || !f.uv) return null;
+        const H = this.hits.find(h => h.mesh === f.object); return H ? {H, u: f.uv.x, v: f.uv.y} : null;
+      };
       c.addEventListener('contextmenu', e => e.preventDefault());
       c.addEventListener('pointerdown', e => {
+        if (!pts.size) { const s = hitAt(e); if (s && s.H.on('down', s.u, s.v)) { scr = {id: e.pointerId, H: s.H}; this.auto = false; this.goal = null; try { c.setPointerCapture(e.pointerId); } catch (_) {} return; } }
         pts.set(e.pointerId, {x: e.clientX, y: e.clientY}); this.auto = false; this.goal = null;
         try { c.setPointerCapture(e.pointerId); } catch (_) {}
         c.classList.add('drag'); mode = (e.button === 1 || e.button === 2 || e.shiftKey) ? 'pan' : 'rot'; pinch = pts.size === 2 ? pinfo() : null;
       });
       c.addEventListener('pointermove', e => {
+        if (scr && e.pointerId === scr.id) { const s = hitAt(e); if (s && s.H === scr.H) scr.H.on('move', s.u, s.v); return; }
+        if (!pts.size && this.hits && this.hits.length && e.pointerType === 'mouse') { const s = hitAt(e); c.style.cursor = s && s.H.hover && s.H.hover(s.u, s.v) ? 'pointer' : ''; }
         const p = pts.get(e.pointerId); if (!p) return;
         const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
         if (pts.size >= 2) { const n = pinfo(); if (pinch) { this.pan(n.mx - pinch.mx, n.my - pinch.my); if (n.d > 0 && pinch.d > 0) this.v.dist = clamp(this.v.dist * pinch.d / n.d, this.o.minD, this.o.maxD); } pinch = n; return; }
         if (mode === 'pan') this.pan(dx, dy); else { this.v.theta -= dx * .008; this.v.phi = clamp(this.v.phi - dy * .006, .25, 1.75); }
       });
-      const end = e => { if (!pts.has(e.pointerId)) return; pts.delete(e.pointerId); pinch = pts.size === 2 ? pinfo() : null; if (!pts.size) c.classList.remove('drag'); };
+      const end = e => { if (scr && e.pointerId === scr.id) { scr.H.on('up', 0, 0); scr = null; return; } if (!pts.has(e.pointerId)) return; pts.delete(e.pointerId); pinch = pts.size === 2 ? pinfo() : null; if (!pts.size) c.classList.remove('drag'); };
       c.addEventListener('pointerup', end); c.addEventListener('pointercancel', end);
       /* Sayfa kaydırmasını bozmamak için yalnızca Ctrl/⌘ + tekerlek yakınlaştırır */
       c.addEventListener('wheel', e => { if (!(e.ctrlKey || e.metaKey)) return; e.preventDefault(); this.zoom(Math.exp(e.deltaY * .01)); }, {passive: false});

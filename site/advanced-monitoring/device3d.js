@@ -437,6 +437,7 @@ const DEV3D = (() => {
     if (size.y > Math.max(size.x, size.z) * 1.1) stage.classList.add('stage-tall'); /* arabalı / ayaklı cihazlar için daha yüksek sahne */
     const view = new K3.Viewer(stage, {target: [ctr.x, ctr.y, ctr.z], dist, theta: cfg.theta ?? .55, phi: cfg.phi ?? 1.25, minD: dist * .25, maxD: dist * 2.4, fov: 30, shadow: Math.max(.4, R * 2.5), groundR: Math.max(.3, R * 2.2), panLim: R * 1.5, fitAspect: 1.2});
     view.root.add(group);
+    view.hits = built.hits || [];
     view.occluders = [group];
     view.auto = !REDUCED_MOTION;
     const screens = built.screens || [];
@@ -456,7 +457,8 @@ const DEV3D = (() => {
       selected = i;
       tags.forEach((tg, k) => tg.el.classList.toggle('on', k === i));
       const p = parts[i]; if (!p) return;
-      view.focus(p.at.clone(), dist * .55, view.v.theta, view.v.phi);
+      /* İsteğe bağlı parça kadrajı: {look: {at, dist, theta, phi}} (ör. ekranı karşıdan göstermek için) */
+      if (p.look) view.focus(p.look.at.clone(), p.look.dist, p.look.theta, p.look.phi); else view.focus(p.at.clone(), dist * .55, view.v.theta, view.v.phi);
       if (onPick) onPick(p.key, i);
     }
     view.onReset = () => { view.reset(); view.auto = !REDUCED_MOTION; tags.forEach(tg => tg.el.classList.remove('on')); selected = -1; if (onPick) onPick(null); };

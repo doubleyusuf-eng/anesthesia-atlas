@@ -611,5 +611,12 @@ window.ICA_MESSAGES = {
   "dev.ev.docs": "Official documents reviewed for modelling ({n})",
   "dev.ev.modelPart": "3D model: independently created representative teaching model. Some dimensions and parts were taken from official documents; the geometry has not been expert-reviewed and no clinical connection animation is approved.",
   "cat.wsMoved": "Anaesthesia workstations have moved to the Anesthesia Machine Atlas.",
-  "cat.wsMovedLink": "Open workstations →"
+  "cat.wsMovedLink": "Open workstations →",
+  "nav.us": "Ultrasound",
+  "us.teaserEyebrow": "New section",
+  "us.teaserTitle": "Ultrasound system",
+  "us.teaserText": "All eight Clarius HD3 models in 3D, how ultrasound works with a live image simulation, and in-plane / out-of-plane techniques with the VygoPlex Echo needle, step by step on a gel phantom.",
+  "us.teaserCta": "Open the ultrasound section →",
+  "dev.usPage": "The Clarius HD3 family, ultrasound physics and in-plane / out-of-plane needle techniques are covered in a separate section.",
+  "dev.usPageLink": "Open the ultrasound section →"
 };

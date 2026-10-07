@@ -611,5 +611,12 @@ window.ICA_MESSAGES = {
   "dev.ev.docs": "Modelleme için incelenen resmî belgeler ({n})",
   "dev.ev.modelPart": "3B model: bağımsız oluşturulmuş temsili eğitim modeli. Bazı ölçü ve parçalar resmî belgelerden alındı; geometri uzman incelemesinden geçmedi, klinik bağlantı animasyonu onaylanmadı.",
   "cat.wsMoved": "Anestezi iş istasyonları Anestezi Makinesi Atlası'na taşındı.",
-  "cat.wsMovedLink": "İş istasyonlarını aç →"
+  "cat.wsMovedLink": "İş istasyonlarını aç →",
+  "nav.us": "Ultrason",
+  "us.teaserEyebrow": "Yeni bölüm",
+  "us.teaserTitle": "Ultrason sistemi",
+  "us.teaserText": "Clarius HD3 ailesinin sekiz modeli 3B olarak, ultrasonun çalışma mantığı canlı görüntü benzetimiyle ve VygoPlex Echo iğnesiyle plan içi / plan dışı teknikler jel fantom üzerinde adım adım.",
+  "us.teaserCta": "Ultrason bölümünü aç →",
+  "dev.usPage": "Clarius HD3 ailesi, ultrason fiziği ve plan içi / plan dışı iğne teknikleri ayrı bir bölümde anlatılıyor.",
+  "dev.usPageLink": "Ultrason bölümünü aç →"
 };

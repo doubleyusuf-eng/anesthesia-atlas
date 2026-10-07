@@ -3,13 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title data-i18n="site.name">İleri Monitörizasyon Atlası</title>
-<meta name="description" data-i18n-attr="content:site.desc" content="Anestezide kullanılan ileri düzey cihazlar: nasıl çalışır, hastaya nasıl uygulanır, nasıl değerlendirilir.">
+<title>Ultrason sistemi · İleri Monitörizasyon Atlası</title>
+<meta name="description" content="Clarius HD3 kablosuz ultrason ailesinin 3B modelleri, ultrasonun çalışma mantığı ve VygoPlex Echo iğnesiyle plan içi ve plan dışı teknikler.">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
 <link rel="stylesheet" href="../site.css">
+<link rel="stylesheet" href="../us/us.css">
 </head>
 <body>
 <header class="topbar">
@@ -21,20 +22,14 @@
     <nav class="topnav" data-i18n-attr="aria-label:nav.catalog">
       <a class="nav-hub" href="https://atlas.anesthesiabriefs.com/es/" data-i18n="nav.atlas">← Tüm atlaslar</a>
       <a href="index.html#katalog" data-i18n="nav.catalog">Katalog</a>
-      <a href="ultrason.html" data-i18n="nav.us">Ultrason</a>
+      <a href="ultrason.html" aria-current="page" data-i18n="nav.us">Ultrason</a>
       <a href="sinav.html" data-i18n="nav.quiz">Sınav</a>
     </nav>
     <div class="lang-switch" role="group" data-i18n-attr="aria-label:nav.lang"></div>
   </div>
 </header>
 
-<main class="quiz-page">
-  <div class="wrap">
-    <p class="crumb"><a href="index.html" data-i18n="quiz.home">← Ana sayfa</a></p>
-    <h1 data-i18n="quiz.title">Kendini sına</h1>
-    <div id="quizApp" class="quiz-app"></div>
-  </div>
-</main>
+<main id="usMain"></main>
 
 <footer>
   <div class="wrap foot-brand">
@@ -66,16 +61,18 @@
 <script src="../data/devices-2.js"></script>
 <script src="../data/devices-3.js"></script>
 <script src="../data/aliases.js"></script>
-<script src="../data/quiz-a.js"></script>
-<script src="../data/quiz-b.js"></script>
-<script src="../data/quiz-c.js"></script>
-<script src="../data/quiz-d.js"></script>
-<script src="../data/quiz-e.js"></script>
-<script src="../data/quiz-f.js"></script>
-<script src="../data/quiz-g.js"></script>
+<script src="../content/index.js"></script>
+<script src="../vendor/three-r128.min.js"></script>
+<script src="../core3d.js"></script>
+<script src="../device3d.js"></script>
+<script src="../dm/dm-core.js"></script>
+<script src="../us/us-sim.js"></script>
+<script src="../us/us-models.js"></script>
+<script src="../us/us-app.js"></script>
+<script src="../us/us-text.js"></script>
+<script src="../us/us-lab.js"></script>
 <script src="../common.js"></script>
 <script src="../progress.js"></script>
-<script src="../quiz.js"></script>
-<script src="../quiz-page.js"></script>
+<script src="../us/us-page.js"></script>
 </body>
 </html>
