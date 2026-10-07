@@ -13,7 +13,7 @@ const YEAR = 2026;
 const ATLASES = [
   { id: 'anesthesia-machine', status: 'live', img: 'img/anesthesia-machine.jpg', w: 1200, h: 786, tone: 'blue' },
   { id: 'advanced-monitoring', status: 'live', img: 'img/advanced-monitoring.jpg', w: 900, h: 846, tone: 'teal' },
-  { id: 'mechanical-ventilation', status: 'soon', svg: 'vent', tone: 'orange' },
+  { id: 'mechanical-ventilation', status: 'live', svg: 'vent', tone: 'orange' },
 ];
 
 const T = {
