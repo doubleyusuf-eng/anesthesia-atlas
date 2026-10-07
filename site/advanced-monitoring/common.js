@@ -45,3 +45,15 @@ function mountStage(stage, mount) {
 }
 
 document.addEventListener('DOMContentLoaded', () => ICA.applyStatic());
+
+/* Anonymous visitor counters on the last line of the footer. Shares the atlas.anesthesiabriefs.com
+   counter (siteStats/atlas) with the hub and the other atlases, so one browser counts once a day. */
+(function setupVisitors() {
+  const foot = document.querySelector('footer');
+  if (!foot || document.getElementById('visitor-stats')) return;
+  const box = document.createElement('div');
+  box.className = 'visitor-stats'; box.id = 'visitor-stats'; box.dataset.site = 'atlas'; box.hidden = true;
+  box.innerHTML = `<span data-k="active"><i class="live" aria-hidden="true"></i><b class="v">–</b> ${esc(ICA.t('foot.visActive'))}</span><span data-k="today">${esc(ICA.t('foot.visToday'))} <b class="v">–</b></span><span data-k="month">${esc(ICA.t('foot.visMonth'))} <b class="v">–</b></span>`;
+  (foot.querySelector('.wrap:last-child') || foot).append(box);
+  const sc = document.createElement('script'); sc.src = ICA.root + 'visitors.js'; sc.defer = true; document.body.append(sc);
+})();

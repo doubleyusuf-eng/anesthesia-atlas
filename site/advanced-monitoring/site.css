@@ -387,3 +387,8 @@ a.btn{display:inline-flex;align-items:center;justify-content:center;text-decorat
 /* Home page: the title is just the atlas's name, sized as a title rather than a slogan */
 .hero h1{font-size:clamp(28px,2.8vw,38px);letter-spacing:-.02em}
 @media (max-width:700px){.hero h1{font-size:26px}}
+/* Anonymous visitor counters (visitors.js), last line of the footer */
+.visitor-stats{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font:500 12.5px/1.4 var(--f-display);color:var(--muted)}
+.visitor-stats[hidden]{display:none}
+.visitor-stats b{color:var(--ink);font-weight:700;font-variant-numeric:tabular-nums}
+.visitor-stats .live{display:inline-block;width:7px;height:7px;margin-right:6px;border-radius:50%;background:#2FB872;box-shadow:0 0 6px #2FB872;vertical-align:1px}
