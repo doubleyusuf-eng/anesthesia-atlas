@@ -1,7 +1,7 @@
 'use strict';
 /* Mekanik Ventilasyon Atlası · tek sayfalı uygulama
    Uzun kaydırma yerine sekmeler: her üst sekme kendi görünümünü, alt sekmeler de kendi panelini açar.
-   Rotalar: #/ · #/ekran/<alt> · #/temel/<alt> · #/modlar · #/mod/<id>[/<bölüm>] · #/klinik[/<id>] · #/vakalar · #/simulator · #/sinav · #/kaynaklar[/<n>] */
+   Rotalar: #/ · #/ekran/<alt> · #/temel/<alt> · #/modlar · #/mod/<id>[/<bölüm>] · #/klinik[/<id>] · #/vakalar · #/simulator · #/laboratuvar[/<alt>] · #/sinav · #/kaynaklar[/<n>] */
 const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
 const C = window.MVA_CONTENT;
@@ -105,7 +105,7 @@ V.home = (el) => {
   <section class="wrap path">
     <h2 class="h-sm">${T('home.path')}</h2>
     <ol class="steps">
-      ${[['ekran/degerler', 'ekran'], ['temel/fizik', 'temel'], ['modlar', 'modlar'], ['klinik', 'klinik'], ['vakalar', 'vakalar'], ['simulator', 'sim'], ['sinav', 'sinav']].map(([h, k], i) => `<li><a href="#/${h}"><span class="n">${i + 1}</span><b>${T('tab.' + k)}</b><span>${T('home.step.' + k)}</span></a></li>`).join('')}
+      ${[['ekran/degerler', 'ekran'], ['temel/fizik', 'temel'], ['modlar', 'modlar'], ['klinik', 'klinik'], ['vakalar', 'vakalar'], ['simulator', 'sim'], ['laboratuvar', 'lab'], ['sinav', 'sinav']].map(([h, k], i) => `<li><a href="#/${h}"><span class="n">${i + 1}</span><b>${T('tab.' + k)}</b><span>${T('home.step.' + k)}</span></a></li>`).join('')}
     </ol>
   </section>`;
   const st = mountViz($('#heroViz'), {id: 'pc-cmv', noChips: true});
@@ -366,6 +366,7 @@ V.mod = (el, id, sec) => {
   <section class="wrap mode-viz" id="mv">
     ${vizHTML({stage: true})}
     <div class="curve-note"><b>${esc(curve.title)}</b> ${curve.html}</div>
+    ${labLink(id)}
     ${disclaimer()}
   </section>
   <section class="wrap mode-body" id="katman">
@@ -394,6 +395,11 @@ V.mod = (el, id, sec) => {
   if (sec) setTimeout(() => $('#katman').scrollIntoView({block: 'start'}), 50);
   $('[data-open]', el).addEventListener('click', e => { sessionStorage.setItem('mva-open', e.target.dataset.open); });
 };
+/* Ventilasyon Laboratuvarı bağlantısı: yalnız laboratuvar motorunun desteklediği dört kartta deneye geçiş; diğerlerinde açık not */
+function labLink(id) {
+  return VLAB_VIEW.CARD2MODE[id] ? `<p class="lab-link"><a href="#/laboratuvar/mod/${id}">${T('lab.cardTry')} →</a> <span class="muted small">${T('lab.cardTryD')}</span></p>`
+    : `<p class="lab-link muted small">${T('lab.cardNo')}</p>`;
+}
 /* V2 katmanlarında atıf yapılan kaynaklar (metindeki [n] ve kaynak_ids) */
 function v2Sources(m) {
   const set = new Set(), add = a => (a || []).forEach(n => set.add(n));
@@ -479,7 +485,7 @@ V.simulator = (el) => {
   let mode = sessionStorage.getItem('mva-sim') || 'pc-cmv';
   if (!SIM_MODES.includes(mode)) mode = 'pc-cmv';
   const P = {R: 10, C: .05, eff: 0, effRate: 18, leak: 0};
-  el.innerHTML = `<header class="page-head wrap"><p class="eyebrow">${T('tab.sim')}</p><h1>${T('si.title')}</h1><p class="lede">${T('si.lede')}</p></header>
+  el.innerHTML = `<header class="page-head wrap"><p class="eyebrow">${T('tab.sim')}</p><h1>${T('si.title')}</h1><p class="lede">${T('si.lede')}</p><p class="lab-link"><a href="#/laboratuvar">${T('lab.fromSim')} →</a></p></header>
   <section class="wrap sim">
     <aside class="sim-ctrl">
       <label class="fld"><span>${T('si.mode')}</span><select id="smode">${SIM_MODES.map(k => `<option value="${k}"${k === mode ? ' selected' : ''}>${esc(shortName(MODE.get(k)))}</option>`).join('')}</select></label>
@@ -540,7 +546,7 @@ V.sinav = (el) => QUIZ.page(el);
 /* =====================================================================
    Yönlendirici
    ===================================================================== */
-const TABS = ['ekran', 'temel', 'modlar', 'klinik', 'vakalar', 'simulator', 'sinav', 'kaynaklar'];
+const TABS = ['ekran', 'temel', 'modlar', 'klinik', 'vakalar', 'simulator', 'laboratuvar', 'sinav', 'kaynaklar'];
 function route() {
   const h = location.hash.replace(/^#\/?/, ''), [a, b, c] = h.split('/').map(decodeURIComponent);
   /* sayfa içi çapa (#bolum-id) */
@@ -558,6 +564,7 @@ function route() {
     else if (a === 'klinik') V.klinik(el, b, c);
     else if (a === 'vakalar') V.vakalar(el);
     else if (a === 'simulator') V.simulator(el);
+    else if (a === 'laboratuvar') live.push(VLAB_VIEW.mount(el, b, c));
     else if (a === 'sinav') V.sinav(el);
     else if (a === 'kaynaklar') V.kaynaklar(el, b);
     else V.home(el);
@@ -566,7 +573,7 @@ function route() {
   const og = sessionStorage.getItem('mva-open');
   if (a === 'modlar' && og) { sessionStorage.removeItem('mva-open'); const d = $(`details[data-g="${og}"]`); if (d) { d.open = true; } }
   if (a !== 'kaynaklar') window.scrollTo(0, 0);
-  document.title = (a ? T('tab.' + (tab === 'simulator' ? 'sim' : tab === 'kaynaklar' ? 'src' : tab)) + ' · ' : '') + T('site.name');
+  document.title = (a ? T('tab.' + (tab === 'simulator' ? 'sim' : tab === 'kaynaklar' ? 'src' : tab === 'laboratuvar' ? 'lab' : tab)) + ' · ' : '') + T('site.name');
 }
 /* İçerikteki iç çapalar (#bolum) rotayı bozmasın */
 document.addEventListener('click', e => {
