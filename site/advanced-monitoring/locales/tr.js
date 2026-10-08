@@ -602,7 +602,7 @@ window.ICA_MESSAGES = {
   "dev.ev.S": "Resmî destek kaydı mevcut; güncel hastane kullanımı ayrıca doğrulanmadı.",
   "dev.ev.scope": "Kapsam",
   "dev.ev.model": "3B model: bağımsız oluşturulmuş temsili eğitim modeli. Geometri resmî kılavuzla doğrulanmadı; klinik bağlantı animasyonu onaylanmadı.",
-  "dev.ev.note": "Bu liste Türkiye hastanelerinin güncel envanteri değildir; yayın yılı cihazın bugün kullanımda olduğunu kanıtlamaz.",
+  "dev.ev.note": "Bu liste hastanelerin güncel cihaz envanteri değildir; yayın yılı cihazın bugün kullanımda olduğunu kanıtlamaz.",
   "dev.family": "Cihaz ailesi sayfası",
   "dev.variants": "Bu ailenin model kayıtları",
   "dev.familyModels": "Bu sayfa cihaz ailesini tanıtır. 3B modelleri, ilgili modelin sayfasında bulabilirsiniz:",

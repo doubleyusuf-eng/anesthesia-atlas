@@ -602,7 +602,7 @@ window.ICA_MESSAGES = {
   "dev.ev.S": "Existe un registro oficial de soporte; el uso hospitalario actual no se ha confirmado por separado.",
   "dev.ev.scope": "Alcance",
   "dev.ev.model": "Modelo 3D: modelo docente representativo creado de forma independiente. Geometría no verificada con el manual oficial; animación de conexión clínica no aprobada.",
-  "dev.ev.note": "Esta lista no es un inventario actual de los hospitales de Turquía; el año de publicación no prueba que el equipo se use hoy.",
+  "dev.ev.note": "Esta lista no es un inventario actual del equipamiento hospitalario; el año de publicación no prueba que el equipo se use hoy.",
   "dev.family": "Página de la familia de equipos",
   "dev.variants": "Modelos de esta familia",
   "dev.familyModels": "Esta página presenta una familia de equipos; los modelos 3D se encuentran en las páginas de cada modelo:",

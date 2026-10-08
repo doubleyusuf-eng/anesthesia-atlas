@@ -5,7 +5,7 @@ window.WS_DATA = {
  "checked": "2026-10-06",
  "sources": {
   "D1": {
-   "title": "Anestezi cihazları — Türkiye ürün bulucu",
+   "title": "Anestezi cihazları — ürün bulucu",
    "publisher": "Dräger",
    "year": null,
    "url": "https://www.draeger.com/tr_tr/Productfinder/Anaesthesia/Anaesthesia-Machines",
@@ -139,9 +139,9 @@ window.WS_DATA = {
     "maker": "Dräger",
     "ev": "P",
     "region": {
-     "tr": "Üreticinin Türkiye kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
-     "en": "Listed in the manufacturer’s catalogue for Türkiye; use in individual hospitals has not been confirmed",
-     "es": "Incluido en el catálogo del fabricante para Turquía; no se ha confirmado su uso en hospitales concretos"
+     "tr": "Üretici kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
+     "en": "Listed in the manufacturer’s catalogue; use in individual hospitals has not been confirmed",
+     "es": "Incluido en el catálogo del fabricante; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "D1"
@@ -214,9 +214,9 @@ window.WS_DATA = {
     "maker": "GE HealthCare",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "G1"
@@ -251,9 +251,9 @@ window.WS_DATA = {
     "maker": "Mindray",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "M1"
@@ -288,9 +288,9 @@ window.WS_DATA = {
     "maker": "Mindray",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "M1"
@@ -325,9 +325,9 @@ window.WS_DATA = {
     "maker": "Mindray",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "M1"
@@ -362,9 +362,9 @@ window.WS_DATA = {
     "maker": "Getinge / Maquet",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "F1"
@@ -399,9 +399,9 @@ window.WS_DATA = {
     "maker": "Getinge / Maquet",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "F1"
@@ -436,9 +436,9 @@ window.WS_DATA = {
     "maker": "Getinge / Maquet",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "F1"
@@ -469,9 +469,9 @@ window.WS_DATA = {
     "maker": "Dräger",
     "ev": "P",
     "region": {
-     "tr": "Üreticinin Türkiye kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
-     "en": "Listed in the manufacturer’s catalogue for Türkiye; use in individual hospitals has not been confirmed",
-     "es": "Incluido en el catálogo del fabricante para Turquía; no se ha confirmado su uso en hospitales concretos"
+     "tr": "Üretici kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
+     "en": "Listed in the manufacturer’s catalogue; use in individual hospitals has not been confirmed",
+     "es": "Incluido en el catálogo del fabricante; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "D1"
@@ -507,9 +507,9 @@ window.WS_DATA = {
     "maker": "Dräger",
     "ev": "P",
     "region": {
-     "tr": "Üreticinin Türkiye kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
-     "en": "Listed in the manufacturer’s catalogue for Türkiye; use in individual hospitals has not been confirmed",
-     "es": "Incluido en el catálogo del fabricante para Turquía; no se ha confirmado su uso en hospitales concretos"
+     "tr": "Üretici kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
+     "en": "Listed in the manufacturer’s catalogue; use in individual hospitals has not been confirmed",
+     "es": "Incluido en el catálogo del fabricante; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "D1"
@@ -545,9 +545,9 @@ window.WS_DATA = {
     "maker": "Dräger",
     "ev": "P",
     "region": {
-     "tr": "Üreticinin Türkiye kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
-     "en": "Listed in the manufacturer’s catalogue for Türkiye; use in individual hospitals has not been confirmed",
-     "es": "Incluido en el catálogo del fabricante para Turquía; no se ha confirmado su uso en hospitales concretos"
+     "tr": "Üretici kataloğunda yer alıyor; hastane bazında kullanım teyit edilmedi",
+     "en": "Listed in the manufacturer’s catalogue; use in individual hospitals has not been confirmed",
+     "es": "Incluido en el catálogo del fabricante; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "D1"
@@ -578,9 +578,9 @@ window.WS_DATA = {
     "maker": "Dräger",
     "ev": "K",
     "region": {
-     "tr": "Karaman, Türkiye; 2025 yayını, 2022 çalışma kaydı",
-     "en": "Karaman, Türkiye; published 2025, study registered 2022",
-     "es": "Karaman, Turquía; publicado en 2025, estudio registrado en 2022"
+     "tr": "Klinik yayın 2025; çalışma kaydı 2022",
+     "en": "Clinical publication 2025; study registered 2022",
+     "es": "Publicación clínica de 2025; estudio registrado en 2022"
     },
     "src": [
      "K1"
@@ -653,9 +653,9 @@ window.WS_DATA = {
     "maker": "GE HealthCare",
     "ev": "S",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "G4"
@@ -691,9 +691,9 @@ window.WS_DATA = {
     "maker": "GE HealthCare",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "G2"
@@ -728,9 +728,9 @@ window.WS_DATA = {
     "maker": "GE HealthCare / Datex-Ohmeda",
     "ev": "K",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "K5"
@@ -766,9 +766,9 @@ window.WS_DATA = {
     "maker": "Mindray",
     "ev": "K",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "M1",
@@ -803,9 +803,9 @@ window.WS_DATA = {
     "maker": "Löwenstein Medical",
     "ev": "P",
     "region": {
-     "tr": "Uluslararası kaynaklar; Türkiye’deki hastanelerde kullanım teyit edilmedi",
-     "en": "International sources; use in hospitals in Türkiye has not been confirmed",
-     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales de Turquía"
+     "tr": "Uluslararası kaynaklar; hastane bazında kullanım teyit edilmedi",
+     "en": "International sources; use in individual hospitals has not been confirmed",
+     "es": "Fuentes internacionales; no se ha confirmado su uso en hospitales concretos"
     },
     "src": [
      "L1"
