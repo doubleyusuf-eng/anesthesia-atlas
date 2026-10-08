@@ -355,14 +355,16 @@ const ICA3D = (() => {
     const ring = add(new THREE.TorusGeometry(.065, .028, 16, 40), M.gel, 0, Math.max(TABLE_TOP + .02, headBack - .02), hd.z + .03);
     ring.rotation.x = Math.PI / 2;
 
-    /* Cerrahi örtü: göbek altından ayak ucuna; gövde köşelerinden yükseklik haritası, yanlardan sarkar */
+    /* Cerrahi örtü: göbek altından ayak ucuna; gövde köşelerinden yükseklik haritası, yanlardan sarkar.
+       expose: 'leftLeg' → örtü sağ bacak ve pelvis orta hattında biter; sol kasık, uyluk ve diz açıkta kalır */
     const hip = lm('upperleg01.L'), z0 = hip.z + (opts.groin ? .16 : -.14), z1 = bb.max.z + .1, X = TABLE_HALF + .16, step = .018;
-    const nx = Math.round(2 * X / step), nz = Math.round((z1 - z0) / step);
+    const xA = -X, xB = opts.expose === 'leftLeg' ? .035 : X;
+    const nx = Math.round((xB - xA) / step), nz = Math.round((z1 - z0) / step);
     const H = new Float32Array((nx + 1) * (nz + 1)).fill(TABLE_TOP);
     const at = (i, j) => j * (nx + 1) + i;
     for (const p of W) {
-      if (p.z < z0 || p.z > z1 || Math.abs(p.x) > TABLE_HALF) continue;
-      const i = Math.round((p.x + X) / step), j = Math.round((p.z - z0) / step);
+      if (p.z < z0 || p.z > z1 || Math.abs(p.x) > TABLE_HALF || p.x > xB) continue;
+      const i = Math.round((p.x - xA) / step), j = Math.round((p.z - z0) / step);
       if (p.y > H[at(i, j)]) H[at(i, j)] = p.y;
     }
     /* Genişlet (boşlukları kapat) ve yumuşat: kumaşın gövde üzerine gerilmesi */
@@ -371,11 +373,11 @@ const ICA3D = (() => {
     for (let pass = 0; pass < 4; pass++) { const D = new Float32Array(G.length); for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) { let sum = 0, n = 0; for (let dj = -2; dj <= 2; dj++) for (let di = -2; di <= 2; di++) { const a = i + di, b = j + dj; if (a >= 0 && b >= 0 && a <= nx && b <= nz) { sum += G[at(a, b)]; n++; } } D[at(i, j)] = Math.max(sum / n, H[at(i, j)]); } G = D; }
     const dg = new THREE.PlaneGeometry(1, 1, nx, nz), dp = dg.attributes.position;
     for (let j = 0; j <= nz; j++) for (let i = 0; i <= nx; i++) {
-      let x = -X + i * step, z = z0 + j * step, y = G[at(i, j)] + .012 + .003 * Math.sin(x * 31 + z * 9) * Math.sin(z * 13);
+      let x = xA + i * step, z = z0 + j * step, y = G[at(i, j)] + .012 + .003 * Math.sin(x * 31 + z * 9) * Math.sin(z * 13);
       const ox = Math.abs(x) - TABLE_HALF - .01, oz = z - (bb.max.z + .02);
       if (ox > 0) { y = TABLE_TOP + .01 - ox * 1.6; x = Math.sign(x) * (TABLE_HALF + .012 + ox * .12); }      // yandan sarkma
       if (oz > 0) { y -= oz * 1.4; z = bb.max.z + .02 + oz * .15; }                                              // ayak ucundan sarkma
-      if (j === 0) y += .004;                                                                                    // kıvrık kenar
+      if (j === 0 || (i === nx && xB < X)) y += .004;                                                            // kıvrık kenar
       dp.setXYZ(at(i, j), x, y, z);
     }
     dg.computeVertexNormals();
@@ -405,7 +407,7 @@ const ICA3D = (() => {
     }
     /* Ayakta duruş koordinatında (x, y) verilen ön yüz noktasını gövde yüzeyine indir */
     const front = (x, y, off = 0) => project(t.toWorld(V3(x, y, .4)), off);
-    return {lm: t.lm, bounds: t.bounds, toWorld: t.toWorld, project, front, limbRadius, ...tools(project)};
+    return {lm: t.lm, bounds: t.bounds, toWorld: t.toWorld, body: t.body, project, front, limbRadius, ...tools(project)};
   }
 
 
@@ -550,6 +552,247 @@ const ICA3D = (() => {
       if (S.tof) tof.el.textContent = n < 4 ? `TOF ${n + 1}/4` : ICA.t('pl.nmt.tof');
     });
     return {go, home: steps[0].cam};
+  }
+
+
+  /* ---------- Periferik sinir stimülatörü: rejyonel blokta sinir lokalizasyonu (örnek: femoral sinir bloğu) ----------
+     Teknik (NYSORA, femoral blok, landmark + sinir stimülatörü): hasta sırtüstü; femoral kıvrımda arter nabzının ~1 cm
+     lateralinden, cilde 30–45° kraniyale giriş; stimülatör 1 mA, 0,1 ms, 2 Hz. Patella seğirmesi 0,3–0,5 mA'de sürüyorsa
+     konum uygun; <0,3 mA'de yanıt varken enjeksiyon yapılmaz; sartorius seğirmesinde iğne laterale yönlendirilip 1–3 mm
+     derinleştirilir; negatif aspirasyondan sonra 15–20 mL. ≤0,2 mA'de yanıt intranöral konumu düşündürür (Bigeleisen 2009).
+     Kesitteki derinlikler ve eşik akım–uzaklık ilişkisi şematiktir (ölçüm değil); yalnız sıralamayı göstermek içindir. */
+  function buildPNS(view, kit) {
+    currentKit = kit;
+    const {lm, front, patch} = kit;
+    const UPW = V3(0, 1, 0);
+    const hipJ = lm('upperleg02.L'), knee = lm('lowerleg01.L');
+    const S0 = front(.10, .822), pulse = front(.089, .826);
+    const patC = front(.152, .532), elC = front(.178, .69);
+    const sA = front(.128, .915), sB = front(.127, .545);
+
+    /* --- Seğirme: bu sahnenin vücut kopyasında uyluk ön yüzü ve patella köşeleri her uyarıda oynatılır --- */
+    const body = kit.body; body.geometry = body.geometry.clone();
+    const pos = body.geometry.attributes.position, base = pos.array.slice();
+    const m3 = new THREE.Matrix3().setFromMatrix4(new THREE.Matrix4().copy(body.matrixWorld).invert());
+    const axis = hipJ.clone().sub(knee), axLen = axis.length(); axis.normalize();
+    const sDir = sA.point.clone().sub(sB.point), sLen = sDir.length(); sDir.normalize();
+    const VQ = [], VP = [], VS = [], wp = V3(), loc = V3();
+    const bump = (x, a, b) => x <= a || x >= b ? 0 : Math.sin(Math.PI * (x - a) / (b - a));
+    for (let i = 0; i < pos.count; i++) {
+      wp.set(base[i * 3], base[i * 3 + 1], base[i * 3 + 2]).applyMatrix4(body.matrixWorld);
+      if (wp.x < .03) continue;
+      const rel = wp.clone().sub(knee), t = rel.dot(axis) / axLen, radial = rel.clone().addScaledVector(axis, -rel.dot(axis));
+      const r = radial.length(), ant = r > 1e-4 ? Math.max(0, radial.y / r) : 0;
+      const q = bump(t, .12, .86) * Math.pow(ant, 1.5) * (r < .1 ? 1 : 0);
+      if (q > .02) VQ.push(i, q);
+      const dp = wp.distanceTo(patC.point), pw = Math.exp(-Math.pow(dp / .028, 2));
+      if (pw > .03 && ant > .2) VP.push(i, pw);
+      const rs = wp.clone().sub(sB.point), ts = rs.dot(sDir) / sLen, ds = rs.addScaledVector(sDir, -rs.dot(sDir)).length();
+      const sw = bump(ts, .05, .95) * Math.exp(-Math.pow(ds / .014, 2)) * ant;
+      if (sw > .03) VS.push(i, sw);
+    }
+    const toLocal = v => v.clone().applyMatrix3(m3);
+    const dQ = toLocal(UPW.clone().multiplyScalar(.006)), dP = toLocal(axis.clone().multiplyScalar(.011)), dS = toLocal(UPW.clone().multiplyScalar(.005));
+    let lastQ = -1, lastS = -1;
+    function deform(qa, sa) {
+      if (Math.abs(qa - lastQ) < .004 && Math.abs(sa - lastS) < .004) return; lastQ = qa; lastS = sa;
+      const A = pos.array;
+      const reset = L => { for (let k = 0; k < L.length; k += 2) { const j = L[k] * 3; A[j] = base[j]; A[j + 1] = base[j + 1]; A[j + 2] = base[j + 2]; } };
+      reset(VQ); reset(VP); reset(VS);
+      const add = (L, d, amp) => { if (amp <= 0) return; for (let k = 0; k < L.length; k += 2) { const j = L[k] * 3, w = L[k + 1] * amp; A[j] += d.x * w; A[j + 1] += d.y * w; A[j + 2] += d.z * w; } };
+      add(VQ, dQ, qa); add(VP, dP, qa); add(VS, dS, sa);
+      pos.needsUpdate = true;
+    }
+
+    /* --- Cilt işaretleri: femoral arter nabzı (kırmızı, atar) ve giriş noktası --- */
+    const pulseDot = patch(pulse, .012, .012, new THREE.MeshBasicMaterial({color: 0xC8443C, transparent: true, opacity: 0, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2}), .0012);
+    const entryDot = patch(S0, .008, .008, new THREE.MeshBasicMaterial({color: ACCENT, transparent: true, opacity: 0, depthWrite: false, polygonOffset: true, polygonOffsetFactor: -2}), .0012);
+    view.root.add(pulseDot, entryDot);
+
+    /* --- Seğirme vurgusu: kasılan kas üzerinde her uyarıda parlayan şerit, patellada kraniyal ok --- */
+    const quadG = kit.ribbon([front(.112, .79).point, front(.125, .70).point, front(.14, .61).point, front(.15, .565).point], .085, glowMat(), .0016, 30);
+    const sartG = kit.ribbon([sA.point, lerp(sA.point, sB.point, .5), sB.point], .03, glowMat(), .0018, 30);
+    quadG.reveal(quadG.N); sartG.reveal(sartG.N); view.root.add(quadG.mesh, sartG.mesh);
+    const arrow = new THREE.Mesh(new THREE.ConeGeometry(.012, .028, 20), new THREE.MeshBasicMaterial({color: ACCENT, transparent: true, opacity: 0, depthWrite: false}));
+    arrow.position.copy(patC.point).addScaledVector(patC.normal, .03).addScaledVector(axis, .03); arrow.quaternion.setFromUnitVectors(V3(0, 1, 0), axis); view.root.add(arrow);
+    const arrowBase = arrow.position.clone();
+
+    /* --- Dönüş elektrodu (+, kırmızı klips) uyluğun yan yüzünde --- */
+    const el = patch(elC, .03, .03, snapElectrodeMat(), .0022); view.root.add(el);
+    const elD = dropper(el);
+    const red = std(0xC7372F, .45, .05), black = std(0x1C2125, .45, .1);
+    const clip = new THREE.Mesh(new THREE.BoxGeometry(.012, .008, .022), red); clip.position.copy(elC.point).addScaledVector(elC.normal, .007); clip.lookAt(clip.position.clone().add(axis)); view.root.add(clip);
+
+    /* --- Stimülatör: masanın sol kenarında, ekranı yukarı bakar --- */
+    const devP = V3(TABLE_HALF - .045, TABLE_TOP + .017, patC.point.z + .15);
+    const dev = new THREE.Group(); dev.position.copy(devP); view.root.add(dev);
+    const shell = new THREE.Mesh(new THREE.BoxGeometry(.07, .03, .145), std(0xF2F4F4, .5, 0)); shell.castShadow = true; dev.add(shell);
+    const lcdC = document.createElement('canvas'); lcdC.width = 256; lcdC.height = 160;
+    const lcdT = new THREE.CanvasTexture(lcdC); lcdT.encoding = THREE.sRGBEncoding;
+    const lcd = new THREE.Mesh(new THREE.PlaneGeometry(.056, .035), new THREE.MeshBasicMaterial({map: lcdT})); lcd.rotation.set(-Math.PI / 2, Math.PI / 2, 0, 'YXZ'); lcd.position.set(0, .0152, -.035); dev.add(lcd);
+    const dial = new THREE.Mesh(new THREE.CylinderGeometry(.017, .018, .006, 32), std(0xE8EEF0, .6, 0)); dial.position.set(0, .017, .02); dev.add(dial);
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(.0145, .0012, 8, 32), std(0x2A9D8A, .35, 0)); ring.rotation.x = Math.PI / 2; ring.position.set(0, .0205, .02); dev.add(ring);
+    const led = new THREE.Mesh(new THREE.SphereGeometry(.0026, 12, 8), new THREE.MeshBasicMaterial({color: 0x9AE6B4})); led.position.set(.024, .016, .055); dev.add(led);
+    const devTop = devP.clone().add(V3(0, .006, -.0725));
+    const num = v => { const s2 = v.toFixed(2); return (ICA.lang === 'en') ? s2 : s2.replace('.', ','); };
+    let lcdKey = '';
+    function drawLCD(mA, on, warn) {
+      const key = `${mA.toFixed(2)}|${on}|${warn}`; if (key === lcdKey) return; lcdKey = key;
+      const c = lcdC.getContext('2d'), Wc = 256, Hc = 160;
+      c.fillStyle = warn ? '#F3D9A6' : '#BEE0D3'; c.fillRect(0, 0, Wc, Hc);
+      c.fillStyle = '#1F3B37'; c.font = '600 20px sans-serif'; c.textBaseline = 'top';
+      c.fillText(`${(ICA.lang === 'en' ? '0.1' : '0,1')} ms · 2 Hz`, 12, 10);
+      c.font = '600 96px sans-serif'; c.textBaseline = 'alphabetic'; c.fillText(num(mA), 10, 128);
+      c.font = '700 26px sans-serif'; c.fillText('mA', 196, 128);
+      if (warn) { c.font = '800 34px sans-serif'; c.fillText('!', 222, 46); }
+      if (on) { c.strokeStyle = '#1F3B37'; c.lineWidth = 3; c.beginPath(); const x0 = 170, y0 = 46, y1 = 30; c.moveTo(x0, y0); for (let k = 0; k < 3; k++) { c.lineTo(x0 + k * 14, y1); c.lineTo(x0 + k * 14 + 6, y1); c.lineTo(x0 + k * 14 + 6, y0); c.lineTo(x0 + (k + 1) * 14, y0); } c.stroke(); }
+      c.fillRect(220, 138, 26, 12);
+      lcdT.needsUpdate = true;
+    }
+    drawLCD(1, false, false);
+
+    /* --- Yerel çerçeve (mm): x kraniyal, y cilt normali, z yan --- */
+    const up = S0.normal.clone();
+    const xl = axis.clone().addScaledVector(up, -axis.dot(up)).normalize();
+    const zl = new THREE.Vector3().crossVectors(xl, up).normalize();
+    const quat = new THREE.Quaternion().setFromRotationMatrix(new THREE.Matrix4().makeBasis(xl, up, zl));
+    const TH = 40 * Math.PI / 180, dN = V3(Math.cos(TH), -Math.sin(TH), 0), NL = 50;
+    const FL = -8, FI = -18.5, NY = -24, NR = 3, NTOP = NY + NR;           // fasya lata, fasya iliaka, sinir merkezi/yarıçapı
+    const M = {
+      ins: std(0xE6ECEF, .45, 0), tip: std(0x8A979F, .3, .9), hub: std(0xF4F6F7, .45, .05), lead: black,
+      la: std(0x7FD3E8, .3, 0, {transparent: true, opacity: .5, depthWrite: false, emissive: new THREE.Color(0x5BB7DE), emissiveIntensity: .35})
+    };
+    function needle() {
+      const g = new THREE.Group();
+      const shaft = new THREE.Mesh(new THREE.CylinderGeometry(.55, .55, NL - 2, 10), M.ins.clone()); shaft.geometry.rotateZ(-Math.PI / 2); shaft.position.x = -(NL - 2) / 2 - 2; g.add(shaft);
+      const tip = new THREE.Mesh(new THREE.ConeGeometry(.5, 2, 10), M.tip.clone()); tip.geometry.rotateZ(-Math.PI / 2); tip.position.x = -1; g.add(tip);
+      const hub = new THREE.Mesh(new THREE.CylinderGeometry(2.6, 2.2, 14, 18), M.hub.clone()); hub.geometry.rotateZ(-Math.PI / 2); hub.position.x = -NL - 7; g.add(hub);
+      const lead = new THREE.Mesh(new THREE.CylinderGeometry(.9, .9, 10, 10), M.lead.clone()); lead.position.set(-NL - 6, 5, 0); g.add(lead);
+      g.rotation.z = -TH; g.traverse(o => { if (o.isMesh) o.castShadow = true; });
+      return g;
+    }
+    const real = new THREE.Group(); real.position.copy(S0.point); real.quaternion.copy(quat); real.scale.setScalar(.001); view.root.add(real);
+    const RN = needle(); real.add(RN); const rnF = fader(RN, V3(0, 0, 0));
+    /* --- Kesit paneli (şematik, 2B): sahnenin sol üst köşesinde; iğne ucu, fasyalar, sinir ve LA yayılımı --- */
+    const SVGNS = 'http://www.w3.org/2000/svg', PX = 4, Y0 = 34, XE = 46;          // 1 mm = 4 px; cilt y=34, giriş x=46
+    const yy = d => Y0 - d * PX;                                                 // d: derinlik (mm, negatif aşağı)
+    const panelEl = document.createElement('div'); panelEl.className = 'pns-panel'; panelEl.hidden = true;
+    panelEl.innerHTML = `<svg viewBox="0 0 300 196" role="img" aria-label="${ICA.t('pl.pns.inset')}">
+      <rect x="0" y="${Y0}" width="300" height="3" fill="#D99A80"/>
+      <rect x="0" y="${Y0 + 3}" width="300" height="${yy(FL) - Y0 - 3}" fill="#EBD3A0"/>
+      <rect x="0" y="${yy(FL)}" width="300" height="${yy(FI) - yy(FL)}" fill="#EFDCB2"/>
+      <rect x="0" y="${yy(FI)}" width="300" height="${yy(-29) - yy(FI)}" fill="#EBD3A0"/>
+      <rect x="0" y="${yy(-29)}" width="300" height="${196 - yy(-29)}" fill="#B56A5E"/>
+      <line x1="0" x2="300" y1="${yy(FL)}" y2="${yy(FL)}" stroke="#fff" stroke-width="2"/>
+      <line x1="0" x2="300" y1="${yy(FI)}" y2="${yy(FI)}" stroke="#fff" stroke-width="2"/>
+      <rect x="0" y="${yy(NY + NR)}" width="300" height="${2 * NR * PX}" rx="10" fill="#E9C34A"/>
+      <ellipse class="la" cx="0" cy="${yy(NY)}" rx="0" ry="0" fill="#7FD3E8" fill-opacity=".55"/>
+      <g class="ndl"><line class="sh" stroke="#DCE3E8" stroke-width="4" stroke-linecap="round"/><line class="tp" stroke="#7D8A92" stroke-width="4" stroke-linecap="round"/><circle class="sp" r="7" fill="#FFF3A0" opacity="0"/></g>
+      <text x="296" y="${yy(FL) - 4}" text-anchor="end" class="lb">${ICA.t('pl.pns.fl')}</text>
+      <text x="296" y="${yy(FI) - 4}" text-anchor="end" class="lb">${ICA.t('pl.pns.fi')}</text>
+      <text x="296" y="${yy(NY) + 4}" text-anchor="end" class="lb">${ICA.t('pl.pns.nerve')}</text>
+      <text x="296" y="188" text-anchor="end" class="ip">${ICA.t('pl.pns.ip')}</text>
+      <text class="lat lb" x="0" y="${yy(NY) - 20}" opacity="0">${ICA.t('pl.pns.la')}</text>
+      <text x="6" y="14" class="ttl">${ICA.t('pl.pns.inset')}</text>
+      <text x="6" y="27" class="dir">${ICA.t('pl.pns.dir')}</text>
+    </svg><div class="pns-stat"></div>`;
+    (view.layer && view.layer.parentElement || document.body).appendChild(panelEl);
+    const pq = c => panelEl.querySelector(c);
+    const sh = pq('.sh'), tp = pq('.tp'), sp = pq('.sp'), laE = pq('.la'), laT = pq('.lat'), statEl = pq('.pns-stat');
+    let panelKey = '';
+    function drawPanel(a, fire, la) {
+      const key = `${a.toFixed(1)}|${fire ? 1 : 0}|${la.toFixed(2)}`; if (key === panelKey) return; panelKey = key;
+      const c = Math.cos(TH), sn = Math.sin(TH), tx = XE + a * c * PX, ty = Y0 + a * sn * PX, hx = tx - 70 * c * PX, hy = ty - 70 * sn * PX;
+      sh.setAttribute('x1', hx); sh.setAttribute('y1', hy); sh.setAttribute('x2', tx - 2 * c * PX); sh.setAttribute('y2', ty - 2 * sn * PX);
+      tp.setAttribute('x1', tx - 2 * c * PX); tp.setAttribute('y1', ty - 2 * sn * PX); tp.setAttribute('x2', tx); tp.setAttribute('y2', ty);
+      sp.setAttribute('cx', tx); sp.setAttribute('cy', ty); sp.setAttribute('opacity', fire ? .95 : 0);
+      laE.setAttribute('cx', tx + 6); laE.setAttribute('rx', 8 + 46 * la); laE.setAttribute('ry', la > 0 ? 6 + 16 * la : 0);
+      laT.setAttribute('x', tx - 30); laT.setAttribute('opacity', la > .3 ? 1 : 0);
+    }
+    const tag = (k, p, cls = 'side') => { const t = view.addTag(ICA.t(k), p, cls); t.show = false; return t; };
+    const T = {
+      pulse: tag('pl.pns.artery', pulse.point.clone().addScaledVector(pulse.normal, .02)), entry: tag('pl.pns.entry', S0.point.clone().addScaledVector(up, .03).addScaledVector(xl, -.03)),
+      ret: tag('pl.pns.ret', elC.point.clone().addScaledVector(elC.normal, .03)), stim: tag('pl.pns.stim', devP.clone().add(V3(0, .05, 0))),
+      needle: tag('pl.pns.needle', real.localToWorld(V3(-40, 25, 0))),
+      pat: tag('pl.pns.patella', patC.point.clone().addScaledVector(patC.normal, .035)), sart: tag('pl.pns.sart', sB.point.clone().add(V3(0, .035, 0)))
+    };
+
+    /* --- Kablolar: siyah → iğne (katot, −), kırmızı → cilt elektrodu (anot, +) --- */
+    const redC = new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3([devTop.clone().add(V3(.01, 0, 0)), devTop.clone().add(V3(.0, .03, -.02)), lerp(devTop, clip.position, .5).add(V3(0, .05, 0)), clip.position.clone().add(V3(0, .012, 0))], false, 'centripetal'), 64, .0018, 8, false), red);
+    view.root.add(redC); const redF = fader(redC, V3(0, 0, 0));
+    const blackC = new THREE.Mesh(new THREE.BufferGeometry(), black); blackC.castShadow = true; view.root.add(blackC);
+    let blackKey = '';
+    function routeBlack(a) {
+      const key = a.toFixed(1); if (key === blackKey) return; blackKey = key;
+      real.updateMatrixWorld(true);
+      const h = real.localToWorld(dN.clone().multiplyScalar(a - NL - 6).add(V3(-3, 10, 0)));
+      blackC.geometry.dispose();
+      blackC.geometry = new THREE.TubeGeometry(new THREE.CatmullRomCurve3([devTop.clone().add(V3(-.01, 0, 0)), devTop.clone().add(V3(-.005, .04, -.03)), lerp(devTop, h, .55).add(V3(0, .09, 0)), h.clone().add(V3(0, .03, 0)), h], false, 'centripetal'), 80, .0018, 8, false);
+    }
+    const blackF = fader(blackC, V3(0, 0, 0));
+
+    /* --- Şematik eşik: iğne ucu–sinir uzaklığına göre motor yanıt için gereken akım (mA) --- */
+    const tipY = a => -a * Math.sin(TH);
+    const gap = a => Math.max(0, tipY(a) - NTOP);
+    const thr = a => .15 + .12 * gap(a);
+    const sartZone = a => a > 12 && tipY(a) > FI && tipY(a) < FL;
+    const ease = u => u <= 0 ? 0 : u >= 1 ? 1 : u * u * (3 - 2 * u);
+    const ramp = (u, t0, t1, a0, a1) => a0 + (a1 - a0) * ease((u - t0) / (t1 - t0));
+    /* Her adım: kamera ve zamana bağlı durum (iğne ilerlemesi a mm, akım mA, LA yayılımı) */
+    const mid = lerp(S0.point, patC.point, .45), legV = [lerp(S0.point, patC.point, .6), .82, 1.3, .78];
+    const steps = [
+      {cam: [lerp(S0.point, patC.point, .35), 1.25, .95, .9]},
+      {cam: [S0.point, .3, 1.2, .5], marks: true},
+      {cam: [lerp(mid, devP, .45), .85, 1.15, .72], marks: true, conn: true, s: () => ({a: 0, I: 1, on: false})},
+      {cam: legV, conn: true, panel: true, s: u => ({a: ramp(u, .3, 3.2, 0, 20), I: 1, on: true})},
+      {cam: legV, conn: true, panel: true, s: u => ({a: ramp(u, .4, 2.6, 20, 29), I: 1, on: true})},
+      {cam: legV, conn: true, panel: true, s: u => ({a: ramp(u, 0, 1.4, 29, 31), I: u < 1.4 ? 1 : [1, .8, .6, .5, .4][Math.min(4, Math.floor((u - 1.4) / .7))], on: true})},
+      {cam: legV, conn: true, panel: true, s: u => ({a: u < 3.2 ? ramp(u, .2, 1.4, 31, 33) : ramp(u, 3.2, 4.2, 33, 30.5), I: .2, on: true})},
+      {cam: [S0.point.clone().addScaledVector(xl, .03), .42, 1.2, .62], conn: true, panel: true, s: u => ({a: 31, I: .4, on: false, la: ease((u - .3) / 3.5)})}
+    ];
+    const N = steps.length;
+    let cur = 0, t0 = 0, now = 0, st = {a: 0, I: 1, on: false, la: 0};
+    function go(i, instant) {
+      cur = i; t0 = instant ? now - 60 : now;
+      const s = steps[i];
+      rnF.on = !!s.s; elD.on = redF.on = blackF.on = !!s.conn; panelEl.hidden = !s.panel;
+      if (instant) { rnF.jump(); elD.jump(); redF.jump(); blackF.jump(); }
+      T.pulse.show = T.entry.show = !!s.marks && i < 2; T.ret.show = T.stim.show = T.needle.show = i === 2;
+      const [tg, d, th, ph] = s.cam; if (instant) view.jumpTo(tg, d, th, ph); else view.focus(tg, d, th, ph);
+    }
+    const L = k => ICA.t('pl.pns.' + k);
+    view.tick.push((dt, t) => {
+      now = t; const s = steps[cur], u = t - t0;
+      st = Object.assign({a: 0, I: 1, on: false, la: 0}, s.s ? s.s(u) : {});
+      rnF.step(dt); elD.step(dt); redF.step(dt); blackF.step(dt);
+      clip.visible = el.visible;
+      pulseDot.material.opacity = steps[cur].marks ? .55 + .35 * Math.max(0, Math.sin(t * 7.5)) : 0;
+      entryDot.material.opacity = steps[cur].marks || cur >= 2 ? .9 : 0;
+      /* İğne konumu (gerçek boyut ve kesit aynı) */
+      RN.position.copy(dN).multiplyScalar(st.a);
+      if (s.conn) routeBlack(st.a);
+      /* 2 Hz uyarı: her 0,5 s'de bir darbe; yanıt eşik aşılırsa */
+      const ph = (t % .5) / .5, fire = st.on && ph < .14;
+      const quad = st.on && st.I >= thr(st.a) && !sartZone(st.a) && st.a > 20;
+      const sart = st.on && sartZone(st.a) && st.I >= .5;
+      const tw = fire ? Math.sin(Math.PI * ph / .14) : 0;
+      quadG.mesh.material.opacity = quad ? tw * .55 : 0; sartG.mesh.material.opacity = sart ? tw * .6 : 0;
+      arrow.material.opacity = quad ? tw * .95 : 0; arrow.position.copy(arrowBase).addScaledVector(axis, tw * .012);
+      const amp = quad ? Math.min(1, .45 + 1.5 * (st.I - thr(st.a)) / thr(st.a)) : 0;
+      deform(quad ? tw * amp : 0, sart ? tw : 0);
+      T.pat.show = quad && cur >= 4 && cur <= 6; T.sart.show = sart;
+      led.material.color.setHex(fire ? 0x2EE07A : 0x9AE6B4);
+      if (s.panel) drawPanel(st.a, fire, st.la || 0);
+      const warn = st.on && st.I < .3 && quad;
+      drawLCD(st.I, st.on, warn);
+      if (s.panel) {
+        const I = `${num(st.I)} mA`;
+        const txt = cur === 7 ? L('inject') : warn ? `${I} · ${L('low')}` : quad ? `${I} · ${L('quad')}` : sart ? `${I} · ${L('sartR')}` : `${I} · ${L('none')}`;
+        if (statEl.textContent !== txt) statEl.textContent = txt;
+        statEl.classList.toggle('warn', warn);
+      }
+    });
+    return {go, home: steps[0].cam, count: N};
   }
 
   /* Ortak: kamera adımları ve adım geçişi */
@@ -1627,6 +1870,7 @@ const ICA3D = (() => {
     'forehead-eeg':  {id: 'eeg', count: 7, build: buildEEG},
     'forehead-nirs': {id: 'nirs', count: 6, build: buildNIRS},
     'forearm-nmt':   {id: 'nmt', count: 7, build: buildNMT, body: true},
+    'femoral-nerve-stim': {id: 'pns', count: 8, build: buildPNS, body: true, theatre: {expose: 'leftLeg'}},
     'finger-probe':  {id: 'spo2', count: 5, build: buildFingerProbe, body: true},
     'radial-artery': {id: 'art', count: 10, build: buildRadial, body: true},
     'chest-ecg':     {id: 'ecg', count: 7, build: buildECG, body: true},
