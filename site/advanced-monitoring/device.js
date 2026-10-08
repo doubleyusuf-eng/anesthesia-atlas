@@ -62,9 +62,9 @@
 
   function render(content) {
     const c = content || {}, S = c.sections || {};
-    /* Nöromüsküler blok monitörlerinde "Senaryolar" bölümü (nmt/nmt-scen.js), değerlendirmeden hemen sonra */
-    const nmt = typeof NMTSCEN !== 'undefined' && DB.inCat(d, 'nmt');
-    const SECS = nmt ? SECTIONS.flatMap(s => s.key === 'eval' ? [s, {id: 'senaryolar', key: 'scen'}] : [s]) : SECTIONS;
+    /* Senaryo kaydı olan cihazlarda "Senaryolar" bölümü (scen/scen-core.js), değerlendirmeden hemen sonra */
+    const scen = typeof SCN !== 'undefined' && SCN.has(d.id);
+    const SECS = scen ? SECTIONS.flatMap(s => s.key === 'eval' ? [s, {id: 'senaryolar', key: 'scen'}] : [s]) : SECTIONS;
     refNums = new Set((c.references || []).map(r => r.n));
     const cat = DB.cat(d.cat), kind = ICA.pick(DB.kinds[d.kind]);
     const siteName = d.placement ? ICA.t('pl.' + d.placement) : ICA.t('dev.none');
@@ -115,7 +115,7 @@
       </div>` : variantsWithModel().length ? `<p class="pending">${esc(ICA.t('dev.familyModels'))} ${variantsWithModel().map(v => `<a href="${DB.url(v.id)}#model">${esc(DB.name(v))}</a>`).join(' · ')}</p>` : `<p class="pending">${esc(ICA.t('dev.modelPending'))}</p>`;
     /* Kendini sına: cihaz başına bir soru (data/quiz-*.js) */
     body.quiz = `<div class="quiz-host" id="quizHost"></div>`;
-    body.scen = `<div class="nmt-scen" id="nmtScen"></div>`;
+    body.scen = `<div class="scn" id="scenHost"></div>`;
     const has3D = d.placement && DB.has3D(d);
     const animNote = c.animation && !c.animation.ready ? ` ${ICA.t('dev.anim.notReady')}` : '';
     body.placement = (has3D
@@ -192,7 +192,7 @@
       <section class="related"><div class="wrap"><h2>${esc(ICA.t('dev.related'))}</h2><div class="grid">${
         DB.devices.filter(x => x.id !== d.id && DB.inCat(x, d.cat)).slice(0, 8).map(cardHTML).join('')}</div></div></section>`;
 
-    if (nmt) NMTSCEN.mount($('#nmtScen'));
+    if (scen) SCN.mount($('#scenHost'), d.id);
     if (typeof QUIZ !== 'undefined') QUIZ.mountDevice($('#quizHost'), d.id);
     if (typeof PROG !== 'undefined') PROG.seen(d.id);
     if (hasModel) setupModel();

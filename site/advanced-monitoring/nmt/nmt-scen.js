@@ -1,6 +1,6 @@
 'use strict';
 /* İleri Monitörizasyon Atlası · nöromüsküler izlem (TOF) senaryoları
-   Nöromüsküler blok monitörlerinin cihaz sayfalarında gösterilir (kategori "nmt"). Her senaryoda:
+   Nöromüsküler blok monitörlerinin cihaz sayfalarında, ortak senaryo motoruyla (scen/scen-core.js) gösterilir. Her senaryoda:
    TOF yanıtının çizimi (dört seğirme; gerekirse tetanik yanıt ve PTC dizisi), sonuçlar (TOF sayısı, TOF oranı, T1, PTC,
    blok düzeyi, ekstübasyon ölçütü), kalitatif (göz/el) değerlendirmenin ne göstereceği, yorum ve yapılacaklar.
    Blok düzeyleri: Naguib 2018 uzlaşı bildirisi Tablo 1 ve ASA 2023 Tablo 5. Seğirme yükseklikleri ve TOF oranları örnek
@@ -227,54 +227,27 @@ const NMTSCEN = (() => {
     return out.join('');
   }
 
-  /* ---------- Arayüz ---------- */
-  function mount(el) {
-    if (!el) return;
-    let cur = SC[0], si = 0;
-    const groups = Object.keys(UI.groups);
-    el.innerHTML = `
-      <p class="lede nmt-lede">${cite(P(UI.lede))}</p>
-      <div class="nmt-pick">${groups.map(g => `<div class="nmt-grp"><p class="eyebrow">${escH(P(UI.groups[g]))}</p><div class="nmt-chips">${SC.filter(s => s.g === g).map(s => `<button type="button" class="chip" data-s="${s.id}" aria-pressed="false">${escH(P(s.title))}</button>`).join('')}</div></div>`).join('')}</div>
-      <div class="nmt-main">
-        <div class="nmt-fig">
-          <div class="nmt-steps" role="group"></div>
-          <div class="nmt-draw"></div>
-          <button type="button" class="btn nmt-replay">↻ ${escH(P(UI.replay))}</button>
-        </div>
-        <div class="nmt-res" aria-live="polite"></div>
-      </div>
-      <div class="nmt-text"></div>
-      <p class="proto">${escH(P(UI.note))}</p>
-      <h3 class="sub">${escH(P(UI.refsH))}</h3>
-      <ol class="refs">${REFS.map(r => `<li id="sref-${r.n}" value="${r.n}">${escH(r.t)}. <span class="muted">${escH(r.p)}</span>.${r.doi ? ` <a href="https://doi.org/${escH(r.doi)}" rel="noopener">doi:${escH(r.doi)}</a>` : ` <a href="${escH(r.url)}" rel="noopener">${escH(new URL(r.url).hostname.replace(/^www\./, ''))}</a>`}</li>`).join('')}</ol>`;
-    const $q = s => el.querySelector(s);
-    function draw() {
-      const st = cur.steps[si], m = measure(cur, st);
-      const dr = $q('.nmt-draw'); dr.innerHTML = svg(st); dr.classList.toggle('two', st.ptc != null || !!st.tet); dr.classList.toggle('wide2', st.ptc != null);
-      $q('.nmt-steps').innerHTML = cur.steps.length > 1 ? cur.steps.map((s, i) => `<button type="button" data-i="${i}" aria-pressed="${i === si}">${escH(P(s.lab))}</button>`).join('') : '';
-      $q('.nmt-steps').hidden = cur.steps.length < 2;
+  /* ---------- Ortak senaryo motoruna kayıt (scen/scen-core.js) ---------- */
+  const spec = {
+    lede: UI.lede, groups: UI.groups, SC, refs: REFS, note: UI.note, replay: UI.replay,
+    draw: st => svg(st),
+    drawClass: st => (st.ptc != null || st.tet ? 'two' : '') + (st.ptc != null ? ' wide2' : ''),
+    results(st, sc) {
+      const m = measure(sc, st);
       const ratioTxt = m.ratio == null ? `<span class="muted">${escH(P(UI.na))}</span>`
         : m.norm != null ? `${pct(m.ratio * 100)} <span class="muted">(${escH(P(UI.raw))})</span> → <b>${pct(m.norm * 100)}</b> <span class="muted">(${escH(P(UI.norm))})</span>` : `<b>${pct(m.ratio * 100)}</b>`;
-      $q('.nmt-res').innerHTML = `<dl class="nmt-dl">
-          <div><dt>${escH(P(UI.tofc))}</dt><dd><b class="nmt-big">${m.tofc}</b> / 4</dd></div>
-          <div><dt>${escH(P(UI.tofr))}</dt><dd>${ratioTxt}</dd></div>
-          <div><dt>${escH(P(UI.t1))}</dt><dd>${pct(m.t1)}</dd></div>
-          ${st.ptc != null ? `<div><dt>${escH(P(UI.ptc))}</dt><dd><b>${st.ptc}</b></dd></div>` : ''}
-          <div class="wide"><dt>${escH(P(UI.depth))}</dt><dd><span class="nmt-cat c-${m.cat}">${escH(P(UI.cat[m.cat]))}</span></dd></div>
-          <div class="wide"><dt>${escH(P(UI.ext))}</dt><dd><span class="nmt-ext ${m.ext ? 'ok' : 'no'}">${m.ext ? '✓ ' : '✕ '}${escH(P(m.ext ? UI.met : UI.notMet))}</span></dd></div>
-          <div class="wide"><dt>${escH(P(UI.qual))}</dt><dd>${cite(P(m.q))}</dd></div>
-        </dl>`;
-      $q('.nmt-text').innerHTML = [['situation', cur.sit], ['interp', cur.interp], ['act', cur.act]].map(([k2, v]) => `<div><h3>${escH(P(UI[k2]))}</h3><p>${cite(P(v))}</p></div>`).join('');
-      el.querySelectorAll('.nmt-chips .chip').forEach(b => b.setAttribute('aria-pressed', b.dataset.s === cur.id));
+      return [
+        {l: UI.tofc, v: `<b class="scn-big">${m.tofc}</b> / 4`},
+        {l: UI.tofr, v: ratioTxt},
+        {l: UI.t1, v: pct(m.t1)},
+        ...(st.ptc != null ? [{l: UI.ptc, v: `<b>${st.ptc}</b>`}] : []),
+        {l: UI.depth, v: `<span class="scn-cat c-${m.cat}">${escH(P(UI.cat[m.cat]))}</span>`, wide: true},
+        {l: UI.ext, v: `<span class="scn-ext ${m.ext ? 'ok' : 'no'}">${m.ext ? '✓ ' : '✕ '}${escH(P(m.ext ? UI.met : UI.notMet))}</span>`, wide: true},
+        {l: UI.qual, v: cite(P(m.q)), wide: true}
+      ];
     }
-    el.addEventListener('click', e => {
-      const c = e.target.closest('[data-s]'), s = e.target.closest('.nmt-steps [data-i]');
-      if (c) { cur = SC.find(x => x.id === c.dataset.s); si = 0; draw(); }
-      else if (s) { si = +s.dataset.i; draw(); }
-      else if (e.target.closest('.nmt-replay')) draw();
-    });
-    draw();
-  }
+  };
+  if (typeof SCN !== 'undefined') SCN.reg(['tetragraph', 'twitchview', 'tofscan', 'stimpod-nms450x', 'ge-carescape-nmt'], spec);
 
-  return {mount, SC, measure, UI};
+  return {SC, measure, UI, spec};
 })();
