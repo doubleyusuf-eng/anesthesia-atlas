@@ -16,9 +16,9 @@ Object.assign(window.ICA_QUIZ, {
     ],
     a: 2,
     ex: {
-      tr: 'Entübasyon sonrası düz kapnogram aksi kanıtlanana kadar özofagus entübasyonu kabul edilir; trakea entübe ise kardiyak arrestte bile zayıflamış bir kapnogram izi bulunur.',
-      en: 'A flat capnogram after intubation is regarded as oesophageal intubation until excluded; if the trachea is intubated, an attenuated trace is present even in cardiac arrest.',
-      es: 'Un capnograma plano tras la intubación se considera intubación esofágica hasta que se descarte; si la tráquea está intubada, hay un trazado atenuado incluso en parada cardiaca.'
+      tr: 'Entübasyondan sonra sürdürülen ekshale CO₂ saptanamıyorsa özofagus entübasyonu dışlanmalıdır; CO₂ yokluğu yalnızca kardiyak arreste bağlanmamalıdır.',
+      en: 'Failure to detect sustained exhaled CO₂ after intubation requires exclusion of oesophageal intubation; absent CO₂ must not be attributed solely to cardiac arrest.',
+      es: 'Si no se detecta CO₂ espirado sostenido tras la intubación, debe descartarse la intubación esofágica; su ausencia no debe atribuirse solo a la parada cardiaca.'
     },
     src: 'eval'
   },
@@ -170,15 +170,15 @@ Object.assign(window.ICA_QUIZ, {
     },
     o: [
       {tr: 'Disfonksiyonel hemoglobinler pulsatil absorbans sinyalini tamamen ortadan kaldırır', en: 'Dyshaemoglobins completely abolish the pulsatile absorbance signal', es: 'Las dishemoglobinas eliminan por completo la señal pulsátil de absorbancia'},
-      {tr: 'Disfonksiyonel hemoglobinler oksijenlenmiş hemoglobin olarak algılanır', en: 'Dyshaemoglobins are recognised as oxygenated haemoglobin', es: 'Las dishemoglobinas se reconocen como hemoglobina oxigenada'},
+      {tr: 'İki dalga boyu bu hemoglobin türlerini ayrı ayrı ölçemez', en: 'Two wavelengths cannot measure these haemoglobin species separately', es: 'Dos longitudes de onda no miden estas hemoglobinas por separado'},
       {tr: 'Disfonksiyonel hemoglobinler yalnızca nabız hızını değiştirir', en: 'Dyshaemoglobins change only the pulse rate', es: 'Las dishemoglobinas solo modifican la frecuencia de pulso'},
       {tr: 'Disfonksiyonel hemoglobinler perfüzyon indeksini sıfırlar', en: 'Dyshaemoglobins reset the perfusion index to zero', es: 'Las dishemoglobinas reducen a cero el índice de perfusión'}
     ],
     a: 1,
     ex: {
-      tr: 'Pulse oksimetre fonksiyonel satürasyonu ölçecek şekilde kalibre edilir; disfonksiyonel hemoglobinler oksijen taşıyamaz ancak konvansiyonel pulse oksimetri tarafından oksijenlenmiş hemoglobin olarak tanınır.',
-      en: 'Pulse oximeters are calibrated to measure functional saturation; dyshaemoglobins cannot transport oxygen but are recognised as oxygenated haemoglobin by conventional pulse oximetry.',
-      es: 'El pulsioxímetro está calibrado para medir la saturación funcional; las dishemoglobinas no transportan oxígeno, pero la pulsioximetría convencional las reconoce como hemoglobina oxigenada.'
+      tr: 'İki dalga boylu oksimetri dishemoglobinleri ayrı ayrı ölçemez. COHb, SpO₂ değerini yanıltıcı biçimde normal veya yüksek gösterebilir; MetHb artışı ise SpO₂ değerini yaklaşık %85’e yöneltir.',
+      en: 'Two-wavelength oximetry cannot measure individual dyshaemoglobins. COHb can produce misleadingly normal or high SpO₂; increasing MetHb drives SpO₂ towards approximately 85%.',
+      es: 'La oximetría de dos longitudes de onda no mide por separado las dishemoglobinas. La COHb puede producir una SpO₂ engañosamente normal o alta; el aumento de MetHb aproxima la SpO₂ al 85 %.'
     },
     src: 'principle'
   },

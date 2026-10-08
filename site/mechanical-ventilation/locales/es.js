@@ -180,7 +180,7 @@ window.MVA_MESSAGES = {
   'foot.note': 'El contenido es un recurso educativo basado en fuentes. Para la aplicación específica de cada dispositivo, la referencia son las instrucciones de uso (IFU) vigentes del modelo de dispositivo.',
   'foot.model': 'Modelo 3D del paciente: MakeHuman (CC0). Las curvas y el movimiento 3D se generan con el modelo físico del sitio.',
   'foot.sib': 'Sitios hermanos:', 'foot.contact': 'Contacto',
-  'foot.atlas1': 'Atlas de la Máquina de Anestesia', 'foot.atlas2': 'Atlas de Monitorización Avanzada',
+  'foot.atlas1': 'Atlas de la Máquina de Anestesia', 'foot.atlas2': 'Atlas de Monitorización Avanzada', 'foot.atlas3': 'Atlas de Gasometría',
   'nav.atlas': '← Todos los atlas', 'foot.by': 'Elaborado por Anesthesia Briefs y Anestezi Rehberi.', 'foot.visActive': 'activos ahora', 'foot.visToday': 'Hoy', 'foot.visMonth': 'Este mes',
   'nav.lang': 'Idioma', 'unit.perMin': '/min', 'val.flow': 'flujo'
 };

@@ -180,7 +180,7 @@ window.MVA_MESSAGES = {
   'foot.note': 'İçerik kaynaklara dayanan eğitim amaçlı bir anlatımdır. Cihaza özgü uygulama için cihaz modelinin yürürlükteki kullanım kılavuzu (IFU) esastır.',
   'foot.model': '3B hasta modeli: MakeHuman (CC0). Eğriler ve 3B hareket, sitedeki fizik modelinden üretilir.',
   'foot.sib': 'Kardeş siteler:', 'foot.contact': 'İletişim',
-  'foot.atlas1': 'Anestezi Makinesi Atlası', 'foot.atlas2': 'İleri Monitörizasyon Atlası',
+  'foot.atlas1': 'Anestezi Makinesi Atlası', 'foot.atlas2': 'İleri Monitörizasyon Atlası', 'foot.atlas3': 'Kan Gazı Atlası',
   'nav.atlas': '← Tüm atlaslar', 'foot.by': 'Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanmıştır.', 'foot.visActive': 'şu an aktif', 'foot.visToday': 'Bugün', 'foot.visMonth': 'Bu ay',
   'nav.lang': 'Dil', 'unit.perMin': '/dk', 'val.flow': 'akım'
 };

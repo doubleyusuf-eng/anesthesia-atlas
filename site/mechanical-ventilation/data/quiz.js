@@ -634,7 +634,7 @@ window.MVA_QUIZ = [
       "Tam oklüzyonda ölçülen en yüksek inspiratuvar kuvvettir"
     ],
     a: 0,
-    ex: "P0.1 oklüzyonun ilk 100 ms'sindeki basınç düşüşüdür ve solunum dürtüsüne yaklaşım sağlar; kas gücü ve eforla birebir aynı değildir. Araştırmalarda kullanılan eşikler cihazdan bağımsız kesin tedavi eşikleri değildir.",
+    ex: "P0.1, hava yolu oklüdeyken inspiratuvar çabanın ilk 100 ms’sinde oluşan basınç düşüşüdür ve solunum dürtüsüne yaklaşım sağlar; kas gücü ve eforla birebir aynı değildir. Araştırmalarda kullanılan eşikler cihazdan bağımsız kesin tedavi eşikleri değildir.",
     src: [42]
   },
   {
@@ -823,13 +823,13 @@ window.MVA_QUIZ = [
     id: "p03", mode: null, topic: "pediatri",
     q: "Küçük çocukta cihazın gösterdiği VT ile hastaya ulaşan hacim neden farklı olabilir?",
     o: [
-      "Sensör ölü boşluğu, devre kompliyansı ve kaçak",
+      "Ölçüm yeri, devre kompliyansı ve kaçak",
       "Çocukta Boyle yasasının geçerli olmaması",
       "Pediatrik cihazlarda VTe ölçümünün olmaması",
       "Küçük hacimlerde kaçağın etkisinin ihmal edilmesi"
     ],
     a: 0,
-    ex: "Proksimal sensörün ölü boşluğu, devre kompliyansı ve kaçak özellikle küçük çocukta önemlidir. Cihazın gösterdiği hacmin hastaya ulaşan hacimle eşliği kontrol edilmelidir.",
+    ex: "Ölçüm yeri, devrede gazın sıkışması ve kaçak, cihazda ölçülen VT ile hastaya ulaşan hacim arasında fark oluşturabilir. Devre kompliyansı kompanzasyonu ve sensör doğruluğu kontrol edilir. Sensörün eklediği ölü boşluk ise aynı VT’de etkili alveoler ventilasyonu azaltabilir; bu, hacim ölçüm hatasından farklıdır.",
     src: [50]
   }
 ];

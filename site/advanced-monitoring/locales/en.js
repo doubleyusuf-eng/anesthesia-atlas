@@ -144,6 +144,7 @@ window.ICA_MESSAGES = {
   "pl.nmt.6.t": "Calibration and TOF",
   "pl.nmt.6.d": "With the patient anesthetized and before the neuromuscular blocking agent is given, complete the device's calibration or reference step (e.g. supramaximal current search, REF measurement). Then monitor with train-of-four stimulation at 2 Hz; the TOF ratio must be ≥0.9 before extubation. (Value shown is an example.)",
   "dev.sec.special": "Special patient groups",
+  "dev.sec.notes": "Technical notes",
   "dev.placeText": "Source-based application steps",
   "dev.status": "Content status",
   "dev.st.partial": "Partially source-verified, clinical review pending",
@@ -615,9 +616,9 @@ window.ICA_MESSAGES = {
   "cat.wsMovedLink": "Open workstations →",
   "nav.us": "Ultrasound",
   "us.teaserEyebrow": "New section",
-  "us.teaserTitle": "Ultrasound system",
-  "us.teaserText": "All eight Clarius HD3 models in 3D, how ultrasound works with a live image simulation, and in-plane / out-of-plane techniques with the VygoPlex Echo needle, step by step on a gel phantom.",
+  "us.teaserTitle": "Ultrasonography",
+  "us.teaserText": "Ultrasonography from first principles: how the image forms, imaging modes, an illustrated guide to every control on the GE LOGIQ P8 panel, image optimisation, 3D probe and needle labs where you slide and tilt the probe yourself, and artefacts.",
   "us.teaserCta": "Open the ultrasound section →",
-  "dev.usPage": "The Clarius HD3 family, ultrasound physics and in-plane / out-of-plane needle techniques are covered in a separate section.",
+  "dev.usPage": "Ultrasound basics, machine controls, probe movements and in-plane / out-of-plane needle techniques are covered in a separate section.",
   "dev.usPageLink": "Open the ultrasound section →"
 };

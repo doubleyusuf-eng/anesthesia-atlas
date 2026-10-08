@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title data-i18n="site.name">Kan Gazı Atlası</title>
+<meta name="description" data-i18n-attr="content:site.desc" content="Kan gazını adım adım değerlendirme ve öğrenme: asit–baz, kompansasyon, anyon açıklığı, oksijenasyon, laktat ve DKA.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="site.css?v=c56a28b4">
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#/">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.8C8.7 7.6 6 11 6 14.2a6 6 0 0 0 12 0C18 11 15.3 7.6 12 2.8z"/><path d="M8.6 14.6h1.8l1.1-2.4 1.6 4.4 1.1-2h1.6"/></svg>
+      <span data-i18n="site.name">Kan Gazı Atlası</span>
+    </a>
+    <nav class="topnav" data-i18n-attr="aria-label:nav.main">
+      <a class="nav-hub" href="https://atlas.anesthesiabriefs.com/" data-i18n="nav.atlas">← Tüm atlaslar</a>
+      <a href="#/degerlendir" data-tab="eval" data-i18n="tab.eval">Değerlendir</a>
+      <a href="#/seri" data-tab="serial" data-i18n="tab.serial">Seri</a>
+      <a href="#/ogren/temeller" data-tab="learn" data-i18n="tab.learn">Öğren</a>
+      <a href="#/olgular" data-tab="cases" data-i18n="tab.cases">Olgular</a>
+      <a href="#/formuller" data-tab="formulas" data-i18n="tab.formulas">Formüller</a>
+      <a href="#/kaynaklar" data-tab="src" data-i18n="tab.src">Kaynaklar</a>
+    </nav>
+    <div class="lang-switch" role="group" data-i18n-attr="aria-label:nav.lang"></div>
+  </div>
+</header>
+
+<main id="view"></main>
+
+<footer>
+  <div class="wrap foot-brand">
+    <div class="foot-name">
+      <span class="foot-title" data-i18n="site.name">Kan Gazı Atlası</span>
+      <span class="foot-partners">
+        <span class="foot-by">
+          <a class="ab-logo-link" href="https://www.anesthesiabriefs.com/"><img class="ab-logo ab-light" src="brand/ab-logo.png" alt="Anesthesia Briefs" width="917" height="309" loading="lazy" decoding="async"><img class="ab-logo ab-dark" src="brand/ab-logo-white.png" alt="Anesthesia Briefs" width="917" height="309" loading="lazy" decoding="async"></a>
+          <span class="partner-divider" aria-hidden="true"></span>
+          <img class="ar-logo ab-light" src="brand/anestezi-rehberi.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async"><img class="ar-logo ab-dark" src="brand/anestezi-rehberi-white.png" alt="Anestezi Rehberi" width="291" height="320" loading="lazy" decoding="async">
+        </span>
+        <span class="foot-credit" data-i18n="foot.by">Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanmıştır.</span>
+      </span>
+    </div>
+  </div>
+  <div class="wrap foot-txt">
+    <span data-i18n="foot.note"></span>
+    <span data-i18n="foot.privacy"></span>
+    <span><span data-i18n="foot.sib"></span> <a href="https://atlas.anesthesiabriefs.com/anesthesia-machine/" data-i18n="foot.atlas1">Anestezi Makinesi Atlası</a> · <a href="https://atlas.anesthesiabriefs.com/advanced-monitoring/" data-i18n="foot.atlas2">İleri Monitörizasyon Atlası</a> · <a href="https://atlas.anesthesiabriefs.com/mechanical-ventilation/" data-i18n="foot.atlas3">Mekanik Ventilasyon Atlası</a></span>
+    <span><span data-i18n="foot.contact"></span>: <a href="mailto:support@anesthesiabriefs.com">support@anesthesiabriefs.com</a></span>
+    <div class="visitor-stats" id="visitor-stats" data-site="atlas" hidden><span data-k="active"><i class="live" aria-hidden="true"></i><b class="v">–</b> <span data-i18n="foot.visActive">şu an aktif</span></span><span data-k="today"><span data-i18n="foot.visToday">Bugün</span> <b class="v">–</b></span><span data-k="month"><span data-i18n="foot.visMonth">Bu ay</span> <b class="v">–</b></span></div>
+  </div>
+</footer>
+
+<script src="locales/tr.js?v=dd8d9b4e"></script>
+<script src="js/i18n.js?v=af13190c"></script>
+<script src="data/content.js?v=b868f169"></script>
+<script src="data/tests.js?v=3fb36138"></script>
+<script src="js/engine.js?v=7191d81c"></script>
+<script src="js/charts.js?v=28d29c39"></script>
+<script src="js/progress.js?v=b665a94e"></script>
+<script src="js/app.js?v=37d5fc0a"></script>
+<script src="visitors.js" defer></script>
+</body>
+</html>

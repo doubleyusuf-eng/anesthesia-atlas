@@ -51,7 +51,7 @@ window.MVA_ABBR = {
   'PL': 'Transpulmonary pressure — presión transpulmonar (alveolar − pleural)',
   'Pinsp': 'Ajuste de presión inspiratoria (en la mayoría de los dispositivos, sobre la PEEP)',
   'ΔP': 'Driving pressure — presión de distensión: Pplat − PEEPtotal',
-  'P0.1': 'Caída de presión en los primeros 100 ms de una oclusión; aproximación al impulso respiratorio',
+  'P0.1': 'Caída de presión durante los primeros 100 ms del esfuerzo inspiratorio contra una vía aérea ocluida; aproximación al impulso respiratorio',
   'Pocc': 'Occlusion pressure — caída de presión generada por el esfuerzo inspiratorio durante una oclusión completa',
   'IPAP': 'Inspiratory positive airway pressure — presión positiva inspiratoria en la vía aérea (NIV)',
   'EPAP': 'Expiratory positive airway pressure — presión positiva espiratoria en la vía aérea (NIV)',

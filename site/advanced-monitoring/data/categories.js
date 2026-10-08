@@ -14,6 +14,10 @@
      desc:      {tr,en,es},             // 1–2 cümle: cihaz nedir, ne ölçer
      note:      {tr,en,es},             // isteğe bağlı: önemli ayrım/uyarı
      placement: 'forehead-eeg'          // isteğe bağlı: 3B hasta uygulama sahnesi (PLACEMENTS)
+     sub:       'portable',             // isteğe bağlı: kategorinin alt grubu (CATEGORIES[].subs)
+     lean:      true,                   // isteğe bağlı: içeriği olmayan bölümler cihaz sayfasında gösterilmez
+     ext:       ['us/us-dev.js'],       // isteğe bağlı: cihaz sayfasından önce yüklenen uzantı dosyaları (ICA_EXT)
+     model3d:   true                    // isteğe bağlı: 3B modeli uzantıda (katalog kartında "3B model" rozeti)
    }
 */
 window.ICA_DEVICES = window.ICA_DEVICES || [];
@@ -31,7 +35,11 @@ window.ICA_CATEGORIES = [
    short:{tr:'Nöromüsküler',en:'Neuromuscular',es:'Neuromuscular'}},
   {id:'masimo',      n:6, name:{tr:'Masimo cihazları ve parametreleri',en:'Masimo devices and parameters',es:'Equipos y parámetros de Masimo'},
    short:{tr:'Masimo',en:'Masimo',es:'Masimo'}},
-  {id:'other',       n:7, name:{tr:'Diğer anestezi cihaz grupları',en:'Other anesthesia device groups',es:'Otros grupos de equipos de anestesia'},
+  {id:'us',          n:7, name:{tr:'Ultrasonografi cihazları',en:'Ultrasound systems',es:'Equipos de ecografía'},
+   short:{tr:'Ultrason',en:'Ultrasound',es:'Ecografía'},
+   subs:[{id:'portable', name:{tr:'Portatif ultrasonlar',en:'Portable ultrasound systems',es:'Ecógrafos portátiles'}},
+         {id:'cart',     name:{tr:'Arabalı (sabit) ultrasonlar',en:'Cart-based ultrasound systems',es:'Ecógrafos de carro'}}]},
+  {id:'other',       n:8, name:{tr:'Diğer anestezi cihaz grupları',en:'Other anesthesia device groups',es:'Otros grupos de equipos de anestesia'},
    short:{tr:'Diğer gruplar',en:'Other groups',es:'Otros grupos'}}
 ];
 

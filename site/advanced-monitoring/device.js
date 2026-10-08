@@ -2,7 +2,10 @@
 /* İleri Monitörizasyon Atlası · cihaz sayfası
    Kayıt bilgisi data/devices-*.js'ten gelir. Ayrıntılı içerik varsa content/<id>.js dosyasından yüklenir
    (window.ICA_CONTENT[id], tools/import-content.cjs ile üretilir); yoksa bölümler "hazırlanıyor" olarak gösterilir.
-   İçerik taslak durumundadır: [DOĞRULANMALI] işaretleri, içerik durumu ve kanıt boşlukları görünür tutulur. */
+   İçerik taslak durumundadır: [DOĞRULANMALI] işaretleri, içerik durumu ve kanıt boşlukları görünür tutulur.
+   Uzantılar: kayıttaki ext: ['us/us-dev.js', 'us/us.css', ...] dosyaları sayfa çizilmeden önce yüklenir; window.ICA_EXT[id]
+   {model: {html(), mount(el)}, sections: [{id, after, title, html(), mount(el)}]} modeli değiştirir ya da bölüm ekler.
+   lean: true kayıtlarda içeriği olmayan bölümler gösterilmez (ürün sayfaları). */
 (() => {
   const main = $('#device');
   const id = new URLSearchParams(location.search).get('id');
@@ -64,7 +67,9 @@
     const c = content || {}, S = c.sections || {};
     /* Senaryo kaydı olan cihazlarda "Senaryolar" bölümü (scen/scen-core.js), değerlendirmeden hemen sonra */
     const scen = typeof SCN !== 'undefined' && SCN.has(d.id);
-    const SECS = scen ? SECTIONS.flatMap(s => s.key === 'eval' ? [s, {id: 'senaryolar', key: 'scen'}] : [s]) : SECTIONS;
+    const X = (window.ICA_EXT || {})[d.id] || null, XS = (X && X.sections) || [];
+    let SECS = scen ? SECTIONS.flatMap(s => s.key === 'eval' ? [s, {id: 'senaryolar', key: 'scen'}] : [s]) : SECTIONS;
+    if (XS.length) SECS = SECS.flatMap(s => [s, ...XS.filter(x => x.after === s.key).map(x => ({id: x.id, key: 'x:' + x.id, title: x.title}))]);
     refNums = new Set((c.references || []).map(r => r.n));
     const cat = DB.cat(d.cat), kind = ICA.pick(DB.kinds[d.kind]);
     const siteName = d.placement ? ICA.t('pl.' + d.placement) : ICA.t('dev.none');
@@ -115,6 +120,8 @@
       </div>` : variantsWithModel().length ? `<p class="pending">${esc(ICA.t('dev.familyModels'))} ${variantsWithModel().map(v => `<a href="${DB.url(v.id)}#model">${esc(DB.name(v))}</a>`).join(' · ')}</p>` : `<p class="pending">${esc(ICA.t('dev.modelPending'))}</p>`;
     /* Kendini sına: cihaz başına bir soru (data/quiz-*.js) */
     body.quiz = `<div class="quiz-host" id="quizHost"></div>`;
+    if (X && X.model) body.model = X.model.html();
+    XS.forEach(x => { body['x:' + x.id] = x.html(); });
     body.scen = `<div class="scn" id="scenHost"></div>`;
     const has3D = d.placement && DB.has3D(d);
     const animNote = c.animation && !c.animation.ready ? ` ${ICA.t('dev.anim.notReady')}` : '';
@@ -140,6 +147,9 @@
       : `<p class="pending">${esc(d.placement ? ICA.fill(ICA.t('dev.placePending'), {site: siteName}) : ICA.t('dev.placeNone'))}</p>`) +
       (S.placement ? `<h3 class="sub">${esc(ICA.t('dev.placeText'))}</h3>${prose('placement')}` : '');
 
+    /* Ürün sayfaları: içeriği olmayan bölümleri atla */
+    if (d.lean) SECS = SECS.filter(s => s.key.startsWith('x:') || ['quiz', 'refs'].includes(s.key) || (s.key === 'model' ? (hasModel || (X && X.model)) : s.key === 'images' ? (c.images || []).length : s.key === 'scen' ? scen : s.key === 'placement' ? (has3D || S.placement) : !!S[s.key]));
+    const secTitle = s => s.title ? ICA.pick(s.title) : ICA.t('dev.sec.' + (d.lean && s.key === 'special' ? 'notes' : s.key));
     /* İçerik durumu: kaynaklarla doğrulandı ve gözden geçirme ayı. Ayrıntılı denetim alanları (origin.unverified,
        gaps) içerik dosyalarında kalır, sayfada gösterilmez; genel kılavuz uyarısı alt bilgidedir. */
     const O = c.origin;
@@ -184,18 +194,19 @@
           </dl></div>
         </div>
       </div>
-      <nav class="toc" aria-label="${esc(ICA.t('dev.toc'))}"><div class="wrap">${SECS.map(s => `<a href="#${s.id}">${esc(ICA.t('dev.sec.' + s.key))}</a>`).join('')}</div></nav>
+      <nav class="toc" aria-label="${esc(ICA.t('dev.toc'))}"><div class="wrap">${SECS.map(s => `<a href="#${s.id}">${esc(secTitle(s))}</a>`).join('')}</div></nav>
       ${status}
       ${evBox}
-      ${['ultrasound', 'tee', 'tte'].includes(d.id) ? `<div class="wrap"><p class="moved-note">${esc(ICA.t('dev.usPage'))} <a href="ultrason.html">${esc(ICA.t('dev.usPageLink'))}</a></p></div>` : ''}
-      ${SECS.map(s => `<section class="sec" id="${s.id}"><div class="wrap"><h2>${esc(ICA.t('dev.sec.' + s.key))}</h2>${body[s.key] || pending()}</div></section>`).join('')}
+      ${['ultrasound', 'tee', 'tte'].includes(d.id) || d.cat === 'us' ? `<div class="wrap"><p class="moved-note">${esc(ICA.t('dev.usPage'))} <a href="ultrason.html">${esc(ICA.t('dev.usPageLink'))}</a></p></div>` : ''}
+      ${SECS.map(s => `<section class="sec" id="${s.id}"><div class="wrap"><h2>${esc(secTitle(s))}</h2>${body[s.key] || pending()}</div></section>`).join('')}
       <section class="related"><div class="wrap"><h2>${esc(ICA.t('dev.related'))}</h2><div class="grid">${
         DB.devices.filter(x => x.id !== d.id && DB.inCat(x, d.cat)).slice(0, 8).map(cardHTML).join('')}</div></div></section>`;
 
     if (scen) SCN.mount($('#scenHost'), d.id);
     if (typeof QUIZ !== 'undefined') QUIZ.mountDevice($('#quizHost'), d.id);
     if (typeof PROG !== 'undefined') PROG.seen(d.id);
-    if (hasModel) setupModel();
+    if (X && X.model) X.model.mount($('#model'), {inline, refNums}); else if (hasModel) setupModel();
+    XS.forEach(x => x.mount && x.mount($('#' + x.id), {inline, refNums}));
     if (has3D) setupSteps();
     if (location.hash) { const t = document.getElementById(location.hash.slice(1)); if (t) requestAnimationFrame(() => t.scrollIntoView()); }
     spy();
@@ -205,7 +216,7 @@
     const list = $('#partList'), info = $('#partInfo');
     const show = (key, i) => {
       $$('#partList button').forEach((b, k) => b.setAttribute('aria-pressed', k === i));
-      info.innerHTML = key ? `<h3>${i + 1}. ${esc(DEV3D.part(key, 0))}</h3><p>${esc(DEV3D.part(key, 1))}</p>` : `<p class="muted">${esc(ICA.t('dev.partHint'))}</p>`;
+      info.innerHTML = key ? `<h3>${i + 1}. ${esc(DEV3D.part(key, 0))}</h3><p>${inline(DEV3D.part(key, 1))}</p>` : `<p class="muted">${esc(ICA.t('dev.partHint'))}</p>`;
     };
     const ctl = mountStage($('#modelStage'), el => DEV3D.mount(el, d.id, show));
     if (!ctl) return;
@@ -242,10 +253,19 @@
     $$('.sec').forEach(s => io.observe(s));
   }
 
-  /* İçerik dosyası yalnızca dizinde varsa yüklenir */
-  if (DB.hasContent(d)) {
-    const s = document.createElement('script'); s.src = ICA.root + 'content/' + d.id + '.js';
-    s.onload = () => render((window.ICA_CONTENT || {})[d.id]); s.onerror = () => render(null);
-    document.body.appendChild(s);
-  } else render(null);
+  /* Uzantı dosyaları (sırayla), sonra içerik dosyası (yalnızca dizinde varsa) */
+  function loadExt(list, done) {
+    list.filter(f => f.endsWith('.css')).forEach(h => { const l = document.createElement('link'); l.rel = 'stylesheet'; l.href = ICA.root + h; document.head.appendChild(l); });
+    const js = list.filter(f => f.endsWith('.js')); let i = 0;
+    const next = () => { if (i >= js.length) return done(); const s = document.createElement('script'); s.src = ICA.root + js[i++]; s.onload = s.onerror = next; document.body.appendChild(s); };
+    next();
+  }
+  function start() {
+    if (DB.hasContent(d)) {
+      const s = document.createElement('script'); s.src = ICA.root + 'content/' + d.id + '.js';
+      s.onload = () => render((window.ICA_CONTENT || {})[d.id]); s.onerror = () => render(null);
+      document.body.appendChild(s);
+    } else render(null);
+  }
+  if (d.ext && d.ext.length) loadExt(d.ext, start); else start();
 })();

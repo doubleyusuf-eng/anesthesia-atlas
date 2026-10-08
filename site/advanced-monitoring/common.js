@@ -20,7 +20,7 @@ function cardHTML(d) {
   const kind = ICA.pick(DB.kinds[d.kind]);
   const ms = (d.measures || []).slice(0, 4).map(m => `<span class="badge">${esc(m)}</span>`).join('');
   const b3d = DB.has3D(d) ? `<span class="badge b3d">${esc(ICA.t('card.3d'))}</span>` : '';
-  const bm = typeof DEV3D !== 'undefined' && DEV3D.has(d.id) ? `<span class="badge b3d">${esc(ICA.t('card.model'))}</span>` : '';
+  const bm = d.model3d || (typeof DEV3D !== 'undefined' && DEV3D.has(d.id)) ? `<span class="badge b3d">${esc(ICA.t('card.model'))}</span>` : '';
   const wsr = ((window.ICA_WS || {}).bySite || {})[d.id];
   const bev = wsr ? `<span class="badge ev-${wsr.ev}" title="${esc(ICA.t('dev.ev.' + wsr.ev))}">${esc(ICA.t('card.ev.' + wsr.ev))}</span>` : '';
   const st = (window.ICA_CONTENT_STATUS || {})[d.id];

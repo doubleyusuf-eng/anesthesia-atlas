@@ -14,13 +14,14 @@ const ATLASES = [
   { id: 'anesthesia-machine', status: 'live', img: 'img/anesthesia-machine.jpg', w: 1200, h: 786, tone: 'blue' },
   { id: 'advanced-monitoring', status: 'live', img: 'img/advanced-monitoring.jpg', w: 900, h: 846, tone: 'teal' },
   { id: 'mechanical-ventilation', status: 'live', svg: 'vent', tone: 'orange' },
+  { id: 'blood-gas', status: 'live', svg: 'gas', tone: 'wine' },
 ];
 
 const T = {
   tr: {
     locale: 'tr_TR', dir: '', name: 'Anestezi Atlası',
-    title: 'Anestezi Atlası · 3B eğitim atlasları',
-    desc: 'Anestezi makinesi, ileri monitörizasyon ve mekanik ventilasyon için ücretsiz, etkileşimli 3B eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
+    title: 'Anestezi Atlası · etkileşimli eğitim atlasları',
+    desc: 'Anestezi makinesi, ileri monitörizasyon, mekanik ventilasyon ve kan gazı için ücretsiz, etkileşimli eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
     back: 'Anesthesia Briefs', backAria: "Anesthesia Briefs'e dön", langAria: 'Dil · Language · Idioma',
     h1: 'Anestezi Atlası',
     by: 'Hazırlayanlar',
@@ -45,6 +46,12 @@ const T = {
         facts: [['VC', 'volüm kontrol'], ['PC', 'basınç kontrol'], ['PS', 'basınç destek'], ['SIMV', 'senkronize']],
         alt: 'Basınç kontrollü modda ventilatör ekranı: basınç, akım ve hacim eğrileri',
       },
+      'blood-gas': {
+        name: 'Kan Gazı Atlası',
+        text: 'Kan gazını örnekten başlayarak adım adım okuyun: tutarlılık, pH yönü, olası süreçler, kompansasyon, anyon açıklığı ve oksijenasyon. Erişkin, çocuk, yenidoğan ve gebede; her adım gerekçesi ve kaynağıyla.',
+        facts: [['pH', 'asidemi · alkalemi'], ['HCO₃', 'kompansasyon'], ['AG', 'anyon açıklığı'], ['PF', 'oksijenasyon']],
+        alt: 'pH–PCO₂ haritası: eşit HCO₃ eğrileri, normal aralık ve örnek kan gazı değerleri',
+      },
     },
     credit: 'Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanmıştır.',
     note: 'Atlaslar eğitim amaçlıdır. Modeller belirli bir markayı değil, genel cihazları temsil eder; sayısal değerler yaklaşıktır. Klinik değerlendirmenin, cihaz kılavuzunun veya kurum protokollerinin yerini tutmaz.',
@@ -54,8 +61,8 @@ const T = {
   },
   en: {
     locale: 'en_US', dir: 'en/', name: 'Anesthesia Atlas',
-    title: 'Anesthesia Atlas · 3D teaching atlases',
-    desc: 'Free, interactive 3D teaching atlases for the anaesthesia machine, advanced monitoring and mechanical ventilation. By Anesthesia Briefs and Anestezi Rehberi.',
+    title: 'Anesthesia Atlas · interactive teaching atlases',
+    desc: 'Free, interactive teaching atlases for the anaesthesia machine, advanced monitoring, mechanical ventilation and blood gases. By Anesthesia Briefs and Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Back to Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Anesthesia Atlas',
     by: 'Made by',
@@ -80,6 +87,12 @@ const T = {
         facts: [['VC', 'volume control'], ['PC', 'pressure control'], ['PS', 'pressure support'], ['SIMV', 'synchronized']],
         alt: 'Ventilator screen in pressure-controlled mode: pressure, flow and volume waveforms',
       },
+      'blood-gas': {
+        name: 'Blood Gas Atlas',
+        text: 'Read a blood gas step by step, starting from the sample: consistency, pH direction, possible processes, compensation, anion gap and oxygenation. In adults, children, newborns and pregnancy, each step with its reasoning and source.',
+        facts: [['pH', 'acidaemia · alkalaemia'], ['HCO₃', 'compensation'], ['AG', 'anion gap'], ['PF', 'oxygenation']],
+        alt: 'pH–PCO₂ map: iso-bicarbonate curves, normal range and sample blood gas values',
+      },
     },
     credit: 'by Anesthesia Briefs and Anestezi Rehberi',
     note: 'The atlases are for education. The models represent generic equipment rather than a specific brand, and numerical values are approximate. They do not replace clinical judgement, the device manual or local protocols.',
@@ -89,8 +102,8 @@ const T = {
   },
   es: {
     locale: 'es_ES', dir: 'es/', name: 'Atlas de Anestesia',
-    title: 'Atlas de Anestesia · atlas docentes en 3D',
-    desc: 'Atlas docentes en 3D, gratuitos e interactivos, sobre la máquina de anestesia, la monitorización avanzada y la ventilación mecánica. Por Anesthesia Briefs y Anestezi Rehberi.',
+    title: 'Atlas de Anestesia · atlas docentes interactivos',
+    desc: 'Atlas docentes gratuitos e interactivos sobre la máquina de anestesia, la monitorización avanzada, la ventilación mecánica y la gasometría. Por Anesthesia Briefs y Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Volver a Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Atlas de Anestesia',
     by: 'Elaborado por',
@@ -114,6 +127,12 @@ const T = {
         text: 'De los modos controlados por volumen y por presión a los modos de soporte: vea paso a paso cómo funciona cada modo sobre curvas de presión, flujo y volumen en vivo.',
         facts: [['VC', 'control por volumen'], ['PC', 'control por presión'], ['PS', 'presión de soporte'], ['SIMV', 'sincronizada']],
         alt: 'Pantalla de ventilador en modo controlado por presión: curvas de presión, flujo y volumen',
+      },
+      'blood-gas': {
+        name: 'Atlas de Gasometría',
+        text: 'Lea una gasometría paso a paso, empezando por la muestra: coherencia, dirección del pH, procesos posibles, compensación, anión gap y oxigenación. En adultos, niños, recién nacidos y embarazo, cada paso con su razonamiento y su fuente.',
+        facts: [['pH', 'acidemia · alcalemia'], ['HCO₃', 'compensación'], ['AG', 'anión gap'], ['PF', 'oxigenación']],
+        alt: 'Mapa pH–PCO₂: curvas de bicarbonato constante, rango normal y valores de gasometría de ejemplo',
       },
     },
     credit: 'por Anesthesia Briefs y Anestezi Rehberi',
@@ -177,6 +196,33 @@ ${num(70, 'Ppeak', '17', 'cmH₂O', 'p')}${num(140, 'PEEP', '5', 'cmH₂O', 'p')
 }
 const VENT = ventScreen();
 
+/* A blood gas screen: pH–PCO2 map with iso-bicarbonate lines from Henderson–Hasselbalch
+   (pH = 6.1 + log10(HCO3 / (0.0307 × PCO2))), the adult arterial reference box and a sample
+   result whose three values agree with that equation (pH 7.19, PCO2 58, HCO3 22). */
+function gasScreen() {
+  const x0 = 46, x1 = 446, y0 = 52, y1 = 420, pH0 = 6.9, pH1 = 7.7, P0 = 10, P1 = 100;
+  const X = (ph) => (x0 + ((ph - pH0) / (pH1 - pH0)) * (x1 - x0)).toFixed(1);
+  const Y = (p) => (y1 - ((p - P0) / (P1 - P0)) * (y1 - y0)).toFixed(1);
+  const iso = (hco3) => { const pts = []; for (let ph = pH0; ph <= pH1 + 1e-9; ph += 0.01) { const p = hco3 / (0.0307 * Math.pow(10, ph - 6.1)); if (p >= P0 && p <= P1) pts.push(X(ph) + ',' + Y(p)); } return pts; };
+  const lines = [8, 12, 16, 24, 32, 40, 48].map((h) => { const pts = iso(h); if (!pts.length) return ''; const [lx, ly] = pts[pts.length - 1].split(','); return `<polyline class="gs-iso${h === 24 ? ' n' : ''}" points="${pts.join(' ')}"/><text class="gs-isol" x="${(+lx + 4).toFixed(1)}" y="${(+ly + 3).toFixed(1)}">${h}</text>`; }).join('');
+  const grid = [7.0, 7.2, 7.4, 7.6].map((ph) => `<line class="gs-grid" x1="${X(ph)}" x2="${X(ph)}" y1="${y0}" y2="${y1}"/><text class="gs-ax" x="${X(ph)}" y="${y1 + 16}" text-anchor="middle">${ph.toFixed(1)}</text>`).join('')
+    + [20, 40, 60, 80, 100].map((p) => `<line class="gs-grid" x1="${x0}" x2="${x1}" y1="${Y(p)}" y2="${Y(p)}"/><text class="gs-ax" x="${x0 - 6}" y="${(+Y(p) + 4).toFixed(1)}" text-anchor="end">${p}</text>`).join('');
+  const box = `<rect class="gs-norm" x="${X(7.35)}" y="${Y(45)}" width="${(X(7.45) - X(7.35)).toFixed(1)}" height="${(Y(35) - Y(45)).toFixed(1)}" rx="2"/>`;
+  const dot = (ph, p, cls) => `<circle class="gs-dot ${cls}" cx="${X(ph)}" cy="${Y(p)}" r="${cls === 'main' ? 7 : 5}"/>`;
+  const dots = dot(7.26, 60, 'o') + dot(7.29, 26, 'o') + dot(7.45, 18, 'o') + dot(7.55, 47, 'o') + dot(7.19, 58, 'main');
+  const num = (y, k, v, u, cls) => `<text class="vs-k" x="472" y="${y}">${k}</text><text class="vs-v ${cls}" x="472" y="${y + 30}">${v}</text><text class="vs-u" x="582" y="${y}" text-anchor="end">${u}</text>`;
+  return `<svg class="vent-screen gas-screen" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{ALT}}">
+<rect class="vs-bg" width="600" height="450"/>
+<rect class="gs-mode" x="18" y="14" width="56" height="24" rx="5"/><text class="vs-mode-t" x="46" y="31" text-anchor="middle">ABG</text>
+<text class="vs-head" x="86" y="31">pH · PCO₂ · HCO₃</text>
+<rect class="vs-strip" x="${x0}" y="${y0}" width="${x1 - x0}" height="${y1 - y0}" rx="4"/>
+${grid}${box}${lines}${dots}
+<line class="vs-div" x1="462" x2="462" y1="52" y2="424"/>
+${num(70, 'pH', '7.19', '', 'g')}${num(140, 'PCO₂', '58', 'mmHg', 'w')}${num(210, 'HCO₃', '22', 'mmol/L', 'w')}${num(280, 'PO₂', '84', 'mmHg', 'b')}${num(350, 'Lac', '1.4', 'mmol/L', 'b')}
+</svg>`;
+}
+const GAS = gasScreen();
+
 function page(lang) {
   const s = T[lang];
   const up = lang === 'tr' ? '' : '../';
@@ -193,7 +239,7 @@ function page(lang) {
     const live = a.status === 'live';
     const href = up + a.id + '/' + s.dir;
     const visual = a.svg
-      ? VENT.replace('{{ALT}}', esc(c.alt))
+      ? (a.svg === 'gas' ? GAS : VENT).replace('{{ALT}}', esc(c.alt))
       : `<img src="${up}${a.img}" alt="${esc(c.alt)}" width="${a.w}" height="${a.h}"${i ? ' fetchpriority="low"' : ' fetchpriority="high"'} decoding="async">`;
     const facts = c.facts.map(([n, l]) => `<li><b>${esc(n)}</b> ${esc(l)}</li>`).join('');
     const title = live ? `<a class="card-link" href="${href}">${esc(c.name)}</a>` : esc(c.name);

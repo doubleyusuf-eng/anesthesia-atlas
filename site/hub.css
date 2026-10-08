@@ -50,17 +50,18 @@ a{color:var(--accent)}
 
 /* the first screen: three banners + the "made by" strip */
 .hub-inner{height:calc(100vh - var(--topbar));height:calc(100svh - var(--topbar));min-height:480px;max-height:900px;display:flex;flex-direction:column;gap:14px;padding-block:20px 12px}
-.atlas-list{flex:1;min-height:0;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.atlas-list{flex:1;min-height:0;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
 
 .atlas-card{--tone:#2F63E8;--tone-ink:#9DB6FF;position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:0;overflow:hidden;border-radius:20px;background:var(--card);color:var(--card-ink);border:1px solid var(--card-line);isolation:isolate;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
 .tone-teal{--tone:#0F9B8E;--tone-ink:#5FD9CA}
 .tone-orange{--tone:#E07A2E;--tone-ink:#FFA463}
+.tone-wine{--tone:#B8386A;--tone-ink:#F28DB2}
 .atlas-card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--tone);z-index:2}
 .card-visual{position:absolute;inset:0 0 34% 0;z-index:-1;background:radial-gradient(120% 90% at 55% 40%,#1A2A35 0%,#0B1419 70%);-webkit-mask-image:linear-gradient(to bottom,#000 62%,transparent);mask-image:linear-gradient(to bottom,#000 62%,transparent)}
 .card-visual img,.card-visual svg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .tone-blue .card-visual img{object-position:50% 40%}
 .tone-teal .card-visual img{object-position:42% 34%}
-.tone-orange .card-visual{background:#04080B}
+.tone-orange .card-visual,.tone-wine .card-visual{background:#04080B}
 .is-soon .card-visual > *{filter:saturate(.85) brightness(.88)}
 .card-text{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:22px 24px 24px}
 .card-meta{display:flex;align-items:center;gap:10px}
@@ -114,6 +115,17 @@ a{color:var(--accent)}
 .vs-k{fill:#7890A0;font:600 11px var(--f-mono)}
 .vs-u{fill:#4F6573;font:500 10px var(--f-mono)}
 .vs-v{font:700 26px var(--f-mono)}
+/* Kan gazı ekranı (pH–PCO2 haritası) */
+.gs-mode{fill:#F28DB2}
+.gs-grid{stroke:#14222A;stroke-width:1}
+.gs-ax{fill:#4F6573;font:500 10px var(--f-mono)}
+.gs-norm{fill:rgba(127,178,255,.16);stroke:#7FB2FF;stroke-width:1;stroke-dasharray:3 3}
+.gs-iso{fill:none;stroke:#3C5260;stroke-width:1.4}
+.gs-iso.n{stroke:#7FB2FF;stroke-width:2}
+.gs-isol{fill:#4F6573;font:500 10px var(--f-mono)}
+.gs-dot.o{fill:#6E8796}
+.gs-dot.main{fill:#F28DB2;stroke:#04080B;stroke-width:2}
+.vs-v.g{fill:#F28DB2}.vs-v.w{fill:#EDEFF0}.vs-v.b{fill:#7FB2FF}
 
 /* footer (below the first screen) */
 footer{border-top:1px solid var(--line);padding-block:36px 52px;font-size:14px;color:var(--muted)}
@@ -146,7 +158,7 @@ footer{border-top:1px solid var(--line);padding-block:36px 52px;font-size:14px;c
   :root{--topbar:58px}
   .topbar .wrap{gap:9px}
   .hub-inner{gap:10px;padding-block:12px 10px;min-height:440px;max-height:none}
-  .atlas-list{grid-template-columns:1fr;grid-template-rows:repeat(3,minmax(0,1fr));gap:10px}
+  .atlas-list{grid-template-columns:1fr;grid-template-rows:repeat(4,minmax(0,1fr));gap:10px}
   .atlas-card{justify-content:center;border-radius:16px}
   .atlas-card::before{right:auto;bottom:0;width:4px;height:auto}
   .card-visual{inset:0 0 0 36%;-webkit-mask-image:linear-gradient(to right,transparent,#000 42%);mask-image:linear-gradient(to right,transparent,#000 42%)}
@@ -190,7 +202,7 @@ footer{border-top:1px solid var(--line);padding-block:36px 52px;font-size:14px;c
 @media (orientation:landscape) and (max-height:520px){
   :root{--topbar:52px}
   .hub-inner{min-height:230px;max-height:none;padding-block:10px 8px;gap:8px}
-  .atlas-list{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-rows:1fr;gap:10px}
+  .atlas-list{grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:1fr;gap:10px}
   .atlas-card{justify-content:flex-end}
   .atlas-card::before{right:0;bottom:auto;width:auto;height:4px}
   .card-visual{inset:0 0 30% 0;-webkit-mask-image:linear-gradient(to bottom,#000 55%,transparent);mask-image:linear-gradient(to bottom,#000 55%,transparent)}
@@ -200,3 +212,7 @@ footer{border-top:1px solid var(--line);padding-block:36px 52px;font-size:14px;c
   .by-label{display:none}
   .ab-logo{height:22px}.ar-logo{height:30px}.partner-divider{height:20px}
 }
+/* Dört atlas: geniş ekranda 4 sütun, orta genişlikte 2 × 2 */
+.atlas-card h2{font-size:clamp(20px,1.75vw,27px)}
+@media (min-width:901px) and (max-width:1149px){.atlas-list{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr))}.card-desc{-webkit-line-clamp:2}.card-facts{display:none}.card-visual{inset:0 0 40% 0}}
+@media (max-width:900px) and (max-height:700px){.atlas-card .card-meta{display:none}}

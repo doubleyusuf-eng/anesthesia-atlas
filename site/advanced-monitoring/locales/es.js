@@ -144,6 +144,7 @@ window.ICA_MESSAGES = {
   "pl.nmt.6.t": "Calibración y TOF",
   "pl.nmt.6.d": "Con el paciente anestesiado y antes de administrar el bloqueante neuromuscular, complete el paso de calibración o referencia del equipo (p. ej., búsqueda de la corriente supramáxima, medición REF). Después monitorice con tren de cuatro a 2 Hz; antes de la extubación el cociente TOF debe ser ≥0,9. (El valor mostrado es un ejemplo.)",
   "dev.sec.special": "Grupos especiales de pacientes",
+  "dev.sec.notes": "Notas técnicas",
   "dev.placeText": "Pasos de aplicación según las fuentes",
   "dev.status": "Estado del contenido",
   "dev.st.partial": "Verificado parcialmente con fuentes; revisión clínica pendiente",
@@ -615,9 +616,9 @@ window.ICA_MESSAGES = {
   "cat.wsMovedLink": "Abrir estaciones →",
   "nav.us": "Ecografía",
   "us.teaserEyebrow": "Nueva sección",
-  "us.teaserTitle": "Sistema de ecografía",
-  "us.teaserText": "Los ocho modelos Clarius HD3 en 3D, cómo funciona la ecografía con una simulación de imagen en vivo y las técnicas en plano y fuera de plano con la aguja VygoPlex Echo, paso a paso sobre un fantoma de gel.",
+  "us.teaserTitle": "Ecografía",
+  "us.teaserText": "La ecografía desde sus fundamentos: cómo se forma la imagen, los modos de imagen, una guía ilustrada de cada control del panel del GE LOGIQ P8, el ajuste de la imagen, laboratorios 3D de sonda y aguja en los que usted mismo desliza e inclina la sonda, y los artefactos.",
   "us.teaserCta": "Abrir la sección de ecografía →",
-  "dev.usPage": "La familia Clarius HD3, la física de la ecografía y las técnicas de aguja en plano y fuera de plano se explican en una sección aparte.",
+  "dev.usPage": "Los fundamentos de la ecografía, los controles del equipo, los movimientos de la sonda y las técnicas de aguja en plano y fuera de plano se explican en una sección aparte.",
   "dev.usPageLink": "Abrir la sección de ecografía →"
 };

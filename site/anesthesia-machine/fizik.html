@@ -174,7 +174,7 @@
         <svg class="wfig" id="henryFig" viewBox="0 0 520 200" role="img" aria-label="İnhalasyon ajanlarının kan/gaz dağılım katsayıları"></svg>
         <div class="tbl-wrap">
           <table class="ptable">
-            <thead><tr><th>Ajan</th><th>Kan/gaz</th><th>Yağ/gaz</th><th>MAC %</th><th>SVP 20 °C</th></tr></thead>
+            <thead><tr><th>Ajan</th><th>Kan/gaz</th><th>Zeytinyağı/gaz</th><th>MAC %</th><th>SVP 20 °C</th></tr></thead>
             <tbody>
               <tr><td>Desfluran</td><td>0,42</td><td>19</td><td>6,0</td><td>669</td></tr>
               <tr><td>N₂O</td><td>0,47</td><td>1,4</td><td>104</td><td>gaz</td></tr>
@@ -184,14 +184,14 @@
             </tbody>
           </table>
         </div>
-        <p class="muted" style="font-size:13px">MAC: 40 yaş civarı erişkin, %O₂ içinde, 1 atm. SVP: mmHg.</p>
+        <p class="muted" style="font-size:13px">MAC: yaklaşık 40 yaşındaki erişkinde O₂ içinde, 1 atm’de referans değer; yaşa göre değişir. N₂O’nun MAC değeri %100’ün üzerindedir. Zeytinyağı/gaz katsayısı yağ dokusu/gaz katsayısıyla aynı değildir. SVP: mmHg.</p>
       </article>
 
       <article class="card law" id="fizik-laplace">
         <span class="tag">Duvar gerilimi · Balon, alveol</span>
         <h3>Laplace yasası</h3>
         <div class="formula">P = 2T / r &nbsp;(küre) &nbsp;·&nbsp; P = T / r &nbsp;(silindir)<span class="lbl">T: duvar gerilimi, r: yarıçap.</span></div>
-        <p>Rezervuar balon aşırı şişirildiğinde yarıçap büyür; gerilim artsa da basınç bir platoya oturur. ISO 5362'ye göre nominal hacminin 4 katına şişirilen balonda basınç 30–60 cmH₂O arasında kalmalıdır. Bu plato balonun malzemesine bağlıdır; APL valfinin yerini tutmaz ve barotravmaya karşı güvence vermez. ISO sınırı bir test koşuludur, klinik güvenli basınç eşiği değildir. Alveolde ise surfaktan küçük alveollerde yüzey gerilimini düşürerek, küçük alveolün büyüğe boşalmasını önler.</p>
+        <p>Rezervuar balon aşırı şişirildiğinde yarıçap büyür; gerilim artsa da basınç bir platoya oturur. ISO 5362'ye göre nominal hacminin 4 katına şişirilen balonda basınç 30–60 cmH₂O arasında kalmalıdır. Bu plato balonun malzemesine bağlıdır; APL valfinin yerini tutmaz ve barotravmaya karşı güvence vermez. ISO sınırı bir test koşuludur, klinik güvenli basınç eşiği değildir. Alveolde ise sürfaktan küçük alveollerde yüzey gerilimini düşürerek, küçük alveolün büyüğe boşalmasını önler.</p>
         <svg class="wfig" viewBox="0 0 520 150" role="img" aria-label="Rezervuar balonun basınç–hacim eğrisi">
           <line x1="60" y1="120" x2="500" y2="120" class="ink" stroke-width="1.2"/>
           <line x1="60" y1="120" x2="60" y2="14" class="ink" stroke-width="1.2"/>
@@ -209,14 +209,14 @@
         <span class="tag">Solunum mekaniği · Ventilatör</span>
         <h3>Solunum sisteminin hareket denklemi</h3>
         <div class="formula">P<sub>aw</sub> = V / C + R · V̇ + PEEP<sub>tot</sub><span class="lbl">Elastik bileşen (hacim / kompliyans) + dirence bağlı bileşen (direnç × akım) + ekspiryum sonu basınç.</span></div>
-        <p>Hacim kontrollü solutmada sabit akımla verilen nefesin sonunda kısa bir duraklama yapılırsa akım sıfırlanır ve dirence bağlı bileşen kaybolur. Böylece Ppeak − Pplat farkı direnci, Pplat − PEEP farkı (sürüş basıncı) kompliyansı gösterir. Zaman sabiti τ = R × C; pasif ekspiryumun %95'i için ≈ 3τ gerekir.</p>
+        <p>Pasif hastada, sabit akımlı hacim kontrollü soluk sonunda inspiratuvar bekletme yapıldığında akım sıfırlanır. Ppeak − Pplat dirence bağlı basınçtır; direnç R = (Ppeak − Pplat) / akım ile hesaplanır. Sürücü basınç ΔP = Pplat − toplam PEEP, statik kompliyans C = Vt / ΔP’dir. Tek kompartmanlı modelde τ = R × C; pasif hacim değişiminin yaklaşık %95’i 3τ’da tamamlanır.</p>
         <p><a class="linkbtn" href="./#ventilator">Ventilatör simülatörüne git</a></p>
       </article>
 
       <article class="card law" id="fizik-beer">
         <span class="tag">Optik · Monitör</span>
         <h3>Beer–Lambert yasası</h3>
-        <div class="formula">A = ε · c · d &nbsp;·&nbsp; I = I₀ · e<sup>−ε·c·d</sup><span class="lbl">Emilim (A), molar emilim katsayısı, konsantrasyon ve ışık yolunun uzunluğu ile orantılıdır.</span></div>
+        <div class="formula">A = log₁₀(I₀/I) = ε · c · d &nbsp;·&nbsp; I = I₀ · 10<sup>−ε·c·d</sup><span class="lbl">Absorbans (A), onluk tabana göre molar absorpsiyon katsayısı, konsantrasyon ve ışık yolunun uzunluğu ile orantılıdır.</span></div>
         <p>Pulse oksimetre 660 nm (kırmızı) ve 940 nm (kızılötesi) ışığın pulsatil emilimini oranlar: R = (AC₆₆₀/DC₆₆₀) / (AC₉₄₀/DC₉₄₀). R ≈ 0,4 ise SpO₂ ≈ %100, R = 1 ise ≈ %85. Kapnometre CO₂'yi 4,26 µm'de, anestezik ajanları 3,3 µm ya da 8–9 µm bandında kızılötesi emilimle ölçer (8–9 µm, metan ve CO₂ girişiminden etkilenmez).</p>
         <p><a class="linkbtn" href="./#monitor">Monitör bölümüne git</a></p>
       </article>
@@ -225,7 +225,7 @@
         <span class="tag">Enerji korunumu · Sürüklenme</span>
         <h3>Bernoulli ve Venturi etkisi</h3>
         <div class="formula">P + ½ρv² + ρgh = sabit<span class="lbl">Darlıkta hız artar, yanal basınç düşer; düşen basınç yan girişten ortam havasını sürükler (entrainment).</span></div>
-        <p>Venturi maskeleri sabit FiO₂ verir: O₂ jeti dar bir delikten geçerken oda havasını belirli oranda sürükler. Aynı ilke nebülizörlerde, jet ventilasyonda ve bazı atık gaz sistemlerinde kullanılır. Orifisten geçen türbülan akımın yoğunluğa bağlı olması, Venturi akım ölçerlerin de temelidir.</p>
+        <p>Venturi maskesi, O₂ jetinin oda havasını belirli oranda sürüklemesiyle hedef FiO₂’yi sağlar. Bunun için üreticinin belirttiği O₂ akımı kullanılmalı, hava girişleri açık kalmalı ve toplam akım hastanın inspiratuvar talebini karşılamalıdır. Geri basınç ve yüksek hasta talebi verilen FiO₂’yi değiştirebilir. Gazla sürüklenme ilkesi nebülizörlerde ve bazı atık gaz sistemlerinde de kullanılır.</p>
       </article>
     </div>
     </div>

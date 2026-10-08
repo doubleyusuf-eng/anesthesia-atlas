@@ -47,10 +47,13 @@
     return true;
   }
 
+  /* Alt gruplar: "Diğer" kategorisinde alanlar (area), diğerlerinde kategorinin subs listesi (sub); alt grubu olmayanlar başta */
   function groupBody(c, items) {
-    if (c.id !== 'other') return items.map(cardHTML).join('');
-    return DB.areas.map(a => {
-      const sub = items.filter(d => d.area === a.id);
+    const subs = c.id === 'other' ? DB.areas.map(a => ({id: a.id, name: a.name, k: 'area'})) : (c.subs || []).map(x => Object.assign({k: 'sub'}, x));
+    if (!subs.length) return items.map(cardHTML).join('');
+    const rest = items.filter(d => !subs.some(x => d[x.k] === x.id && d.cat === c.id));
+    return rest.map(cardHTML).join('') + subs.map(a => {
+      const sub = items.filter(d => d[a.k] === a.id && d.cat === c.id);
       return sub.length ? `<p class="area">${esc(ICA.pick(a.name))}</p>` + sub.map(cardHTML).join('') : '';
     }).join('');
   }

@@ -634,7 +634,7 @@ window.MVA_QUIZ = [
       "It is the maximal inspiratory force measured during a complete occlusion"
     ],
     a: 0,
-    ex: "P0.1 is the pressure drop in the first 100 ms of an occlusion and provides a surrogate for respiratory drive; it is not identical to muscle strength and effort. Thresholds used in research are not definitive device-independent treatment thresholds.",
+    ex: "P0.1 is the pressure drop during the first 100 ms of inspiratory effort against an occluded airway and provides a surrogate for respiratory drive; it is not identical to muscle strength and effort. Thresholds used in research are not definitive device-independent treatment thresholds.",
     src: [42]
   },
   {
@@ -823,13 +823,13 @@ window.MVA_QUIZ = [
     id: "p03", mode: null, topic: "pediatri",
     q: "In a small child, why may the VT shown by the device differ from the volume reaching the patient?",
     o: [
-      "Sensor dead space, circuit compliance and leak",
+      "Measurement location, circuit compliance and leak",
       "Boyle's law not applying in children",
       "The absence of VTe measurement on pediatric devices",
       "The effect of leak being negligible at small volumes"
     ],
     a: 0,
-    ex: "The dead space of the proximal sensor, circuit compliance and leak are especially important in small children. The agreement between the volume shown by the device and the volume reaching the patient should be checked.",
+    ex: "Measurement location, gas compression in the circuit and leaks can cause differences between the VT measured by the device and the volume reaching the patient. Check circuit compliance compensation and sensor accuracy. The dead space added by the sensor may reduce effective alveolar ventilation at the same VT; this is different from a volume measurement error.",
     src: [50]
   }
 ];

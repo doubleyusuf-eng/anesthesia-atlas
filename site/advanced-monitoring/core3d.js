@@ -67,25 +67,28 @@ const K3 = (() => {
       const c = this.renderer.domElement, pts = new Map(); let pinch = null, mode = 'rot';
       const pinfo = () => { const a = [...pts.values()]; return {mx: (a[0].x + a[1].x) / 2, my: (a[0].y + a[1].y) / 2, d: Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y)}; };
       /* Dokunulabilir ekranlar (this.hits: [{mesh, on(type, u, v) → bool, hover(u, v) → bool}]): ışın ilk çarptığı nesne
-         kayıtlı ekransa dokunuş ekrana gider, sahne dönmez. */
+         kayıtlı ekransa dokunuş ekrana gider, sahne dönmez. Sürüklenebilir nesne: {obj (grup), drag: true, on(type, u, v, ray)};
+         sürükleme sürerken işaretçi nesneden çıksa da 'move' olayı ışınla birlikte gelir. */
       const ray = new THREE.Raycaster(), ndc = new THREE.Vector2(); let scr = null;
+      const setRay = e => { const r = c.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1); ray.setFromCamera(ndc, this.camera); return ray; };
+      const within = (o, g) => { for (; o; o = o.parent) if (o === g) return true; return false; };
       const hitAt = e => {
         if (!this.hits || !this.hits.length) return null;
-        const r = c.getBoundingClientRect(); ndc.set((e.clientX - r.left) / r.width * 2 - 1, -(e.clientY - r.top) / r.height * 2 + 1);
-        ray.setFromCamera(ndc, this.camera);
-        const f = ray.intersectObject(this.root, true).find(h => h.object.visible); if (!f || !f.uv) return null;
-        const H = this.hits.find(h => h.mesh === f.object); return H ? {H, u: f.uv.x, v: f.uv.y} : null;
+        setRay(e);
+        const f = ray.intersectObject(this.root, true).find(h => h.object.visible); if (!f) return null;
+        const H = this.hits.find(h => h.mesh ? h.mesh === f.object : h.obj && within(f.object, h.obj)); if (!H || (H.mesh && !f.uv)) return null;
+        return {H, u: f.uv ? f.uv.x : 0, v: f.uv ? f.uv.y : 0};
       };
       c.addEventListener('contextmenu', e => e.preventDefault());
       c.addEventListener('pointerdown', e => {
-        if (!pts.size) { const s = hitAt(e); if (s && s.H.on('down', s.u, s.v)) { scr = {id: e.pointerId, H: s.H}; this.auto = false; this.goal = null; try { c.setPointerCapture(e.pointerId); } catch (_) {} return; } }
+        if (!pts.size) { const s = hitAt(e); if (s && s.H.on('down', s.u, s.v, ray)) { scr = {id: e.pointerId, H: s.H}; this.auto = false; this.goal = null; try { c.setPointerCapture(e.pointerId); } catch (_) {} return; } }
         pts.set(e.pointerId, {x: e.clientX, y: e.clientY}); this.auto = false; this.goal = null;
         try { c.setPointerCapture(e.pointerId); } catch (_) {}
         c.classList.add('drag'); mode = (e.button === 1 || e.button === 2 || e.shiftKey) ? 'pan' : 'rot'; pinch = pts.size === 2 ? pinfo() : null;
       });
       c.addEventListener('pointermove', e => {
-        if (scr && e.pointerId === scr.id) { const s = hitAt(e); if (s && s.H === scr.H) scr.H.on('move', s.u, s.v); return; }
-        if (!pts.size && this.hits && this.hits.length && e.pointerType === 'mouse') { const s = hitAt(e); c.style.cursor = s && s.H.hover && s.H.hover(s.u, s.v) ? 'pointer' : ''; }
+        if (scr && e.pointerId === scr.id) { if (scr.H.drag) { scr.H.on('move', 0, 0, setRay(e)); return; } const s = hitAt(e); if (s && s.H === scr.H) scr.H.on('move', s.u, s.v); return; }
+        if (!pts.size && this.hits && this.hits.length && e.pointerType === 'mouse') { const s = hitAt(e); c.style.cursor = s && s.H.hover && s.H.hover(s.u, s.v) ? (s.H.drag ? 'grab' : 'pointer') : ''; }
         const p = pts.get(e.pointerId); if (!p) return;
         const dx = e.clientX - p.x, dy = e.clientY - p.y; p.x = e.clientX; p.y = e.clientY;
         if (pts.size >= 2) { const n = pinfo(); if (pinch) { this.pan(n.mx - pinch.mx, n.my - pinch.my); if (n.d > 0 && pinch.d > 0) this.v.dist = clamp(this.v.dist * pinch.d / n.d, this.o.minD, this.o.maxD); } pinch = n; return; }

@@ -174,7 +174,7 @@
         <svg class="wfig" id="henryFig" viewBox="0 0 520 200" role="img" aria-label="Blood/gas partition coefficients of inhaled agents"></svg>
         <div class="tbl-wrap">
           <table class="ptable">
-            <thead><tr><th>Agent</th><th>Blood/gas</th><th>Oil/gas</th><th>MAC %</th><th>SVP 20 °C</th></tr></thead>
+            <thead><tr><th>Agent</th><th>Blood/gas</th><th>Olive oil/gas</th><th>MAC %</th><th>SVP 20 °C</th></tr></thead>
             <tbody>
               <tr><td>Desflurane</td><td>0.42</td><td>19</td><td>6.0</td><td>669</td></tr>
               <tr><td>N₂O</td><td>0.47</td><td>1.4</td><td>104</td><td>gas</td></tr>
@@ -184,7 +184,7 @@
             </tbody>
           </table>
         </div>
-        <p class="muted" style="font-size:13px">MAC: adult aged about 40, in O₂, at 1 atm. SVP: mmHg.</p>
+        <p class="muted" style="font-size:13px">MAC: reference values for adults around age 40 in O₂ at 1 atm; values vary with age. N₂O MAC exceeds 100%. Olive oil/gas is not the same as adipose tissue/gas. SVP: mmHg.</p>
       </article>
 
       <article class="card law" id="fizik-laplace">
@@ -209,14 +209,14 @@
         <span class="tag">Respiratory mechanics · Ventilator</span>
         <h3>The equation of motion of the respiratory system</h3>
         <div class="formula">P<sub>aw</sub> = V / C + R · V̇ + PEEP<sub>tot</sub><span class="lbl">Elastic component (volume / compliance) + resistive component (resistance × flow) + end-expiratory pressure.</span></div>
-        <p>In volume-controlled ventilation, if a short pause is added at the end of a constant-flow breath, flow falls to zero and the resistive component disappears. Ppeak − Pplat then reflects resistance, and Pplat − PEEP (the driving pressure) reflects compliance. The time constant is τ = R × C; about 3τ is needed for 95% of passive expiration.</p>
+        <p>In a passive patient, an inspiratory hold after a constant-flow volume-controlled breath brings flow to zero. Ppeak − Pplat is resistive pressure; resistance is R = (Ppeak − Pplat) / flow. Driving pressure is ΔP = Pplat − total PEEP, and static compliance is C = Vt / ΔP. In a single-compartment model, τ = R × C; about 95% of the passive volume change occurs within 3τ.</p>
         <p><a class="linkbtn" href="index.html#ventilator">Go to the ventilator simulator</a></p>
       </article>
 
       <article class="card law" id="fizik-beer">
         <span class="tag">Optics · Monitor</span>
         <h3>The Beer–Lambert law</h3>
-        <div class="formula">A = ε · c · d &nbsp;·&nbsp; I = I₀ · e<sup>−ε·c·d</sup><span class="lbl">Absorbance (A) is proportional to the molar absorption coefficient, the concentration and the length of the light path.</span></div>
+        <div class="formula">A = log₁₀(I₀/I) = ε · c · d &nbsp;·&nbsp; I = I₀ · 10<sup>−ε·c·d</sup><span class="lbl">Absorbance (A) is proportional to the molar decadic absorption coefficient, the concentration and the length of the light path.</span></div>
         <p>A pulse oximeter takes the ratio of the pulsatile absorption of 660 nm (red) and 940 nm (infrared) light: R = (AC₆₆₀/DC₆₆₀) / (AC₉₄₀/DC₉₄₀). R ≈ 0.4 corresponds to SpO₂ ≈ 100%, and R = 1 to ≈ 85%. A capnometer measures CO₂ by infrared absorption at 4.26 µm, and anaesthetic agents in the 3.3 µm or 8–9 µm band (8–9 µm is free from methane and CO₂ interference).</p>
         <p><a class="linkbtn" href="index.html#monitor">Go to the monitor section</a></p>
       </article>
@@ -225,7 +225,7 @@
         <span class="tag">Conservation of energy · Entrainment</span>
         <h3>Bernoulli and the Venturi effect</h3>
         <div class="formula">P + ½ρv² + ρgh = constant<span class="lbl">At a constriction the velocity rises and the lateral pressure falls; the low pressure draws ambient air in through a side port (entrainment).</span></div>
-        <p>Venturi masks deliver a fixed FiO₂: as the O₂ jet passes through a narrow orifice it entrains room air in a fixed ratio. The same principle is used in nebulisers, jet ventilation and some scavenging systems. The density dependence of turbulent flow through an orifice is also the basis of Venturi flowmeters.</p>
+        <p>A Venturi mask entrains room air with an O₂ jet to deliver a target FiO₂. Use the specified O₂ flow, keep air-entry ports clear and ensure that total flow meets inspiratory demand. Back pressure and high patient demand can alter delivered FiO₂. Gas entrainment is also used in nebulizers and some scavenging systems.</p>
       </article>
     </div>
     </div>

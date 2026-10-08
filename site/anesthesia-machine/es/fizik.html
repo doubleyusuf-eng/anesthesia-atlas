@@ -174,7 +174,7 @@
         <svg class="wfig" id="henryFig" viewBox="0 0 520 200" role="img" aria-label="Coeficientes de partición sangre/gas de los agentes inhalatorios"></svg>
         <div class="tbl-wrap">
           <table class="ptable">
-            <thead><tr><th>Agente</th><th>Sangre/gas</th><th>Aceite/gas</th><th>CAM %</th><th>PVS 20 °C</th></tr></thead>
+            <thead><tr><th>Agente</th><th>Sangre/gas</th><th>Aceite de oliva/gas</th><th>CAM %</th><th>PVS 20 °C</th></tr></thead>
             <tbody>
               <tr><td>Desflurano</td><td>0,42</td><td>19</td><td>6,0</td><td>669</td></tr>
               <tr><td>N₂O</td><td>0,47</td><td>1,4</td><td>104</td><td>gas</td></tr>
@@ -184,7 +184,7 @@
             </tbody>
           </table>
         </div>
-        <p class="muted" style="font-size:13px">CAM: adulto de unos 40 años, en O₂, a 1 atm. PVS: mmHg.</p>
+        <p class="muted" style="font-size:13px">CAM: valores de referencia en adultos de unos 40 años, en O₂ a 1 atm; varían con la edad. La CAM del N₂O supera el 100 %. Aceite de oliva/gas no equivale a tejido adiposo/gas. PVS: mmHg.</p>
       </article>
 
       <article class="card law" id="fizik-laplace">
@@ -209,14 +209,14 @@
         <span class="tag">Mecánica respiratoria · Ventilador</span>
         <h3>La ecuación del movimiento del sistema respiratorio</h3>
         <div class="formula">P<sub>aw</sub> = V / C + R · V̇ + PEEP<sub>tot</sub><span class="lbl">Componente elástico (volumen / distensibilidad) + componente resistivo (resistencia × flujo) + presión al final de la espiración.</span></div>
-        <p>En la ventilación controlada por volumen, si se añade una breve pausa al final de una respiración de flujo constante, el flujo cae a cero y desaparece el componente resistivo. Entonces Ppico − Pmeseta refleja la resistencia y Pmeseta − PEEP (la presión de distensión, <i>driving pressure</i>) refleja la distensibilidad. La constante de tiempo es τ = R × C; se necesitan unas 3τ para completar el 95 % de la espiración pasiva.</p>
+        <p>En un paciente pasivo, una pausa inspiratoria tras una respiración de volumen controlado y flujo constante lleva el flujo a cero. Ppico − Pmeseta es la presión resistiva; R = (Ppico − Pmeseta) / flujo. La presión de distensión es ΔP = Pmeseta − PEEP total, y la distensibilidad estática es C = Vt / ΔP. En un modelo de un compartimento, τ = R × C; aproximadamente el 95 % del cambio pasivo de volumen ocurre en 3τ.</p>
         <p><a class="linkbtn" href="index.html#ventilator">Ir al simulador de ventilador</a></p>
       </article>
 
       <article class="card law" id="fizik-beer">
         <span class="tag">Óptica · Monitor</span>
         <h3>La ley de Beer-Lambert</h3>
-        <div class="formula">A = ε · c · d &nbsp;·&nbsp; I = I₀ · e<sup>−ε·c·d</sup><span class="lbl">La absorbancia (A) es proporcional al coeficiente de absorción molar, a la concentración y a la longitud del trayecto de la luz.</span></div>
+        <div class="formula">A = log₁₀(I₀/I) = ε · c · d &nbsp;·&nbsp; I = I₀ · 10<sup>−ε·c·d</sup><span class="lbl">La absorbancia (A) es proporcional al coeficiente de absorción molar decimal, a la concentración y a la longitud del trayecto de la luz.</span></div>
         <p>El pulsioxímetro calcula el cociente de la absorción pulsátil de la luz de 660 nm (roja) y de 940 nm (infrarroja): R = (CA₆₆₀/CC₆₆₀) / (CA₉₄₀/CC₉₄₀). R ≈ 0,4 corresponde a una SpO₂ ≈ 100 %, y R = 1 a ≈ 85 %. El capnómetro mide el CO₂ por absorción infrarroja a 4,26 µm, y los agentes anestésicos en la banda de 3,3 µm o de 8–9 µm (la de 8–9 µm no sufre interferencias del metano ni del CO₂).</p>
         <p><a class="linkbtn" href="index.html#monitor">Ir a la sección del monitor</a></p>
       </article>
@@ -225,7 +225,7 @@
         <span class="tag">Conservación de la energía · Arrastre</span>
         <h3>Bernoulli y el efecto Venturi</h3>
         <div class="formula">P + ½ρv² + ρgh = constante<span class="lbl">En un estrechamiento la velocidad aumenta y la presión lateral disminuye; esa baja presión aspira aire ambiente a través de una entrada lateral (arrastre).</span></div>
-        <p>Las mascarillas Venturi administran una FiO₂ fija: al pasar el chorro de O₂ por un orificio estrecho, arrastra aire ambiente en una proporción fija. El mismo principio se utiliza en los nebulizadores, la ventilación jet y algunos sistemas de evacuación de gases. El hecho de que el flujo turbulento a través de un orificio dependa de la densidad es también la base de los caudalímetros Venturi.</p>
+        <p>La mascarilla Venturi arrastra aire ambiente mediante un chorro de O₂ para obtener una FiO₂ objetivo. Utilice el flujo indicado por el fabricante, mantenga libres las entradas de aire y asegure un flujo total que cubra la demanda inspiratoria. La contrapresión y una demanda elevada pueden modificar la FiO₂ administrada. El arrastre de gas también se utiliza en nebulizadores y algunos sistemas de evacuación.</p>
       </article>
     </div>
     </div>

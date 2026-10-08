@@ -44,7 +44,7 @@ const USIM = (() => {
     const vn = ((x - v.x) / vrx) ** 2 + ((d - (v.d + PH.vein.r - vry)) / vry) ** 2;
     if (vn < 1) { out.e = .015; out.a = .06; out.sp = .2; out.k = 3; out.flow = -.7 * (1.25 - .6 * vn); return out; }   /* akım profili: merkezde hızlı */
     if (vn < 1.35) { out.e = .55; out.k = 13; return out; }
-    const ar = cyl(PH.artery, z, IN), arr = PH.artery.r * (1 + .07 * (S.pulse || 0)), an = Math.hypot(x - ar.x, d - ar.d);
+    const ar = cyl(PH.artery, z, IN), arr = PH.artery.r * (1 + (S.pamp ?? .07) * (S.pulse || 0)), an = Math.hypot(x - ar.x, d - ar.d);
     if (an < arr) { out.e = .012; out.a = .06; out.sp = .2; out.k = 2; out.flow = 1.25 - .7 * (an / arr) ** 2; return out; }
     if (an < arr + .55) { out.e = 1.05; out.k = 12; return out; }
     /* Enjeksiyon: iğne ucunda küçük sıvı cebi ve sinir çevresinde halka (sıvı anekoiktir) */
@@ -99,7 +99,9 @@ const USIM = (() => {
 
   /* ---------- Görüntüleyici ----------
      canvas: görünür tuval. o: {geom, depth (mm), freq (MHz), gain (dB), tgc:[yakın, orta, uzak] (dB), doppler, labels,
-     marker:true, head:{model, preset}; bare: yazısız görüntü, cx/padT/padB/fillW: yerleşim, dr: dinamik aralık (dB), chroma, compound, smooth: ışınlar arası ara değer, cz: yükseklik yönünde benek (mm), nr: ışın sayısı, cgain: renk ölçeği}. state(): her karede anlık durum (prob pozu, iğneler, basınç...). */
+     marker:true, head:{model, preset}; bare: yazısız görüntü, cx/padT/padB/fillW: yerleşim, dr: dinamik aralık (dB), chroma, compound, smooth: ışınlar arası ara değer, cz: yükseklik yönünde benek (mm), nr: ışın sayısı, cgain: renk ölçeği,
+     tissue: fantom yerine kullanılacak doku işlevi (aynı imza), haze: sıvı içinde düşük düzeyli yalancı yankı (yan lob / gürültü), alias: renk ölçeği aşılınca renk ters döner (Nyquist)}.
+     state(): her karede anlık durum (prob pozu, iğneler, basınç...). */
   function Scanner(canvas, o) {
     const g = canvas.getContext('2d');
     const off = document.createElement('canvas'), og = off.getContext('2d');
@@ -131,7 +133,8 @@ const USIM = (() => {
     }
 
     /* Renk kutusu (renkli/power Doppler, elastografi): ışın ve örnek kesirleri {a0, a1, s0, s1}; yoksa tüm alan */
-    const inRoi = (i, j) => { const q = o.roi; if (!q) return true; const a = i / (NR - 1), s = j / (NS - 1); return a >= q.a0 && a <= q.a1 && s >= q.s0 && s <= q.s1; };
+    /* steer: Doppler ışınının yönlendirme açısı (rad, + = görüntünün sağına); lineer probda kutu paralelkenar olur */
+    const inRoi = (i, j) => { const q = o.roi; if (!q) return true; let a = i / (NR - 1); const s = j / (NS - 1); if (o.steer && o.geom.type === 'linear') a -= (s - q.s0) * o.depth * Math.tan(o.steer) / o.geom.W; return a >= q.a0 && a <= q.a1 && s >= q.s0 && s <= q.s1; };
     /* Elastografi: doku türüne göre göreli sertlik (0 yumuşak … 1 sert); eğitim amaçlı, ölçüm değildir */
     const STIFF = {0: .3, 1: .62, 2: .05, 3: .04, 5: .02, 6: 1, 7: .55, 8: .14, 9: .72, 10: .22, 11: .42, 12: .7, 13: .45, 20: .9};
     /* Işın ışın darbe-yankı: zayıflama birikir, yansıtıcılık × benek × kalan enerji → logaritmik sıkıştırma */
@@ -143,19 +146,21 @@ const USIM = (() => {
       const T = o.tgc || [0, 0, 0], G = o.gain || 0, DR = o.dr || 50, noise = .0009;
       /* Needle Enhance: iğne yansıması için ışın iğne tarafına doğru yönlendirilmiş gibi hesaplanır (side: −1 sol, +1 sağ) */
       const NE = o.ne ? {s: Math.sin(o.ne.steer || .45) * (o.ne.side || 1), c: Math.cos(o.ne.steer || .45)} : null;
-      const EL = o.elasto, CF = o.doppler || o.power;
+      const EL = o.elasto, CF = o.doppler || o.power, TIS = o.tissue || tissue, HZ = o.haze || 0;
       S.tilt = P.tilt || 0; S.rot = P.rot || 0;
       for (let i = 0; i < NR; i++) {
         const r = R[i];
         /* Işın başlangıcı ve yönü (dünya): O + L·u + Dn·v */
         let ox = P.O.x + P.L.x * r.u0 + P.Dn.x * r.v0, od = P.O.d + P.L.d * r.u0 + P.Dn.d * r.v0, oz = P.O.z + P.L.z * r.u0 + P.Dn.z * r.v0;
         const dx = P.L.x * r.du + P.Dn.x * r.dv, dd = P.L.d * r.du + P.Dn.d * r.dv, dz = P.L.z * r.du + P.Dn.z * r.dv;
+        const cS = Math.cos(o.steer || 0), sS = Math.sin(o.steer || 0), bdd = dd * cS + P.L.d * sS, bdz = dz * cS + P.L.z * sS;   /* Doppler ışını */
         const sx = NE ? dx * NE.c - P.L.x * NE.s : 0, sd = NE ? dd * NE.c - P.L.d * NE.s : 0, sz = NE ? dz * NE.c - P.L.z * NE.s : 0;
         let loss = 0, shadow = 1, elAcc = 0;
         for (let j = 0; j < NS; j++) {
           const s = j * ds, x = ox + dx * s, d = od + dd * s, z = oz + dz * s;
-          tissue(x, d, z, S, tmp);
+          TIS(x, d, z, S, tmp);
           let e = tmp.e, k = tmp.k;
+          if (HZ && tmp.a < .1) e += HZ * (.3 + hash3(i, j >> 1, 7));
           /* İğne: yansıma yüzeye dik gelişte en güçlü; ekojenik bölge açıdan daha az etkilenir; altında yankılanma */
           let ne = 0;
           for (const N of nd) {
@@ -177,9 +182,13 @@ const USIM = (() => {
              Power Doppler: yön yok, yalnız akımın gücü; açıya daha az bağımlı. Elastografi: göreli sertlik haritası. */
           if (EL && inRoi(i, j)) { const st = STIFF[k] ?? .4; elAcc = j ? elAcc * .72 + st * .28 : st; col[j * NR + i] = 1 + Math.round(Math.max(0, Math.min(1, elAcc + .05 * (hash3(i >> 2, j >> 2, (t * 4) | 0) - .5))) * 253); }
           else if (CF && tmp.flow && inRoi(i, j)) {
-            const fz = tmp.flow * (.8 + .4 * hash3(i >> 1, j >> 1, (t * 9) | 0)), cosF = -(dz + dd * (S.incl || 0)) / Math.hypot(1, S.incl || 0) * Math.sign(fz), pulse = tmp.k === 2 ? .45 + .55 * Math.max(0, S.pulse || 0) : .5;
+            const fz = tmp.flow * (.8 + .4 * hash3(i >> 1, j >> 1, (t * 9) | 0)), cosF = -(bdz + bdd * (S.incl || 0)) / Math.hypot(1, S.incl || 0) * Math.sign(fz), pulse = tmp.k === 2 ? .45 + .55 * Math.max(0, S.pulse || 0) : .5;
             if (o.power) { const pw = Math.abs(fz) * pulse * Math.min(1, .3 + 3.2 * Math.abs(cosF)); col[j * NR + i] = pw < .06 ? 0 : 1 + Math.min(253, pw * 300) | 0; }
-            else { const vv = cosF * Math.abs(fz) * pulse; const cg = o.cgain || 300; col[j * NR + i] = Math.abs(vv) < .045 ? 0 : vv > 0 ? 1 + Math.min(126, vv * cg) | 0 : 128 + Math.min(126, -vv * cg) | 0; }
+            else {
+              const vv = cosF * Math.abs(fz) * pulse, cg = o.cgain || 300;
+              let q = vv * cg / 126; if (o.alias) q = ((q + 1) % 2 + 2) % 2 - 1;   /* Nyquist aşılınca karşı renge sarar */
+              col[j * NR + i] = Math.abs(vv) < .045 ? 0 : q > 0 ? 1 + Math.min(126, q * 126) | 0 : 128 + Math.min(126, -q * 126) | 0;
+            }
           }
           else col[j * NR + i] = 0;
           loss += att * tmp.a;
@@ -291,5 +300,5 @@ const USIM = (() => {
     return out;
   }
 
-  return {PH, cyl, Scanner, pose, rays, extent, anatomyLabels, C, FASC, elastoRGB};
+  return {PH, cyl, Scanner, pose, rays, extent, anatomyLabels, C, FASC, elastoRGB, tissue, hash3};
 })();

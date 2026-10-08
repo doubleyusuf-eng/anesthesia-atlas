@@ -97,12 +97,15 @@ const USAPP = (() => {
     function pose() {
       const a = sim.angle * D2R;
       if (sim.view === 'long') {
-        const ax = USIM.cyl(USIM.PH.artery, 0).x, f = S.flip ? -1 : 1;
-        return {O: {x: ax, d: 0, z: 0}, L: {x: 0, d: 0, z: f}, Dn: {x: 0, d: 1, z: 0}, rot: Math.PI / 2, tilt: 0};
+        /* Düzlem arterin seyrine hizalı; damar yerinde durur, açı Doppler ışınının yönlendirilmesiyle verilir (steer) */
+        const A = USIM.PH.artery, ax = USIM.cyl(A, 0).x, f = S.flip ? -1 : 1, n = Math.hypot(A.sx, 1);
+        return {O: {x: ax, d: 0, z: 0}, L: {x: A.sx / n * f, d: 0, z: f / n}, Dn: {x: 0, d: 1, z: 0}, rot: Math.PI / 2, tilt: 0};
       }
       return USIM.pose(0, 0, S.flip ? Math.PI : 0, a, sim.press);
     }
-    const incl = () => sim.view === 'long' ? Math.tan(sim.angle * D2R) : 0;
+    const incl = () => 0;
+    /* Uzun eksende kaydırıcı Doppler ışınını yönlendirir (±30°); kısa eksende probun eğimidir */
+    const steer = () => sim.view === 'long' && (S.mode === 'CD' || S.mode === 'PD' || S.mode === 'PW') && isLin() ? clamp(sim.angle, -30, 30) * D2R : 0;
     /* Plan içi benzetim iğnesi (kısa eksende): Needle Enhance tarafından girer, dik açıyla sinire yönelir */
     function needle(P) {
       if (!sim.needle || sim.view !== 'short') return null;
@@ -147,7 +150,7 @@ const USAPP = (() => {
         doppler: S.mode === 'CD', power: S.mode === 'PD', elasto: S.mode === 'EL', chroma: S.chroma && S.mode === 'B', compound: S.compound,
         roi: (S.mode === 'CD' || S.mode === 'PD' || S.mode === 'EL') ? S.roi : null,
         ne: S.ne ? {side: S.neSide * (S.flip ? -1 : 1), steer: .5} : null,
-        padT: isLin() ? .03 : .02, fillW: S.split ? .94 : .9, cz: .5 * 7 / S.freq, nr: isLin() ? 150 : 170, cgain: 900
+        padT: isLin() ? .03 : .02, fillW: S.split ? .94 : .9, cz: .5 * 7 / S.freq, nr: isLin() ? 150 : 170, cgain: sim.view === 'long' ? 480 : 900, steer: steer()
       });
       scan.frozen = S.frozen;
     }
@@ -166,7 +169,7 @@ const USAPP = (() => {
       const pxp = {x: S.gate.x * bc.width, y: S.gate.y * bc.height}, mm = px2mm(pxp.x, pxp.y);
       const w = {x: P.O.x + P.L.x * mm.X + P.Dn.x * mm.Y, d: P.O.d + P.L.d * mm.X + P.Dn.d * mm.Y, z: P.O.z + P.L.z * mm.X + P.Dn.z * mm.Y};
       if (sim.press) w.d += sim.press * 2.6 * Math.exp(-w.d / 26);
-      const gm = USM.GEOM[geomId()]; let bu = 0, bv = 1;
+      const gm = USM.GEOM[geomId()]; let bu = Math.sin(steer()), bv = Math.cos(steer());
       if (gm.type !== 'linear') { const R = gm.type === 'convex' ? gm.R : 0, n = Math.hypot(mm.X, mm.Y + R) || 1; bu = mm.X / n; bv = (mm.Y + R) / n; }
       const beam = {x: P.L.x * bu + P.Dn.x * bv, d: P.L.d * bu + P.Dn.d * bv, z: P.L.z * bu + P.Dn.z * bv};
       const out = {vessel: null, v: 0, cos: 0, theta: 90, psv: 0, edv: 0, mm};
@@ -416,7 +419,8 @@ const USAPP = (() => {
         for (let i = 0; i <= 12; i++) pts.push([R.a1, R.s0 + (R.s1 - R.s0) * i / 12]);
         for (let i = 12; i >= 0; i--) pts.push([R.a0 + (R.a1 - R.a0) * i / 12, R.s1]);
         for (let i = 12; i >= 0; i--) pts.push([R.a0, R.s0 + (R.s1 - R.s0) * i / 12]);
-        pts.forEach(([a, s], i) => { const m = frac2mm(a, s), p = toC(mm2px(m.X, m.Y)); i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y); });
+        const st = steer(), y0 = frac2mm(R.a0, R.s0).Y;
+        pts.forEach(([a, s], i) => { const m = frac2mm(a, s), p = toC(mm2px(m.X + (m.Y - y0) * Math.tan(st), m.Y)); i ? g.lineTo(p.x, p.y) : g.moveTo(p.x, p.y); });
         g.closePath(); g.stroke();
         const sx = ox + 26, sh = 64, sy = oy + bh * .5 - sh / 2;
         for (let i = 0; i < sh; i++) {
@@ -435,11 +439,12 @@ const USAPP = (() => {
       /* M çizgisi / PW kapısı */
       if (S.mode === 'M') { const x = ox + S.mx * bc.width; g.setLineDash([2, 5]); line(x, oy, x, oy + bh, C.roi, 1.6); g.setLineDash([]); }
       if (S.mode === 'PW') {
-        const x = ox + S.gate.x * bc.width, y = oy + S.gate.y * bc.height, gl = 14;
-        line(x, oy, x, y - gl / 2 - 3, C.roi, 1.3); line(x, y + gl / 2 + 3, x, oy + bh, C.roi, 1.3);
-        line(x - 11, y - gl / 2, x + 11, y - gl / 2, C.roi, 1.6); line(x - 11, y + gl / 2, x + 11, y + gl / 2, C.roi, 1.6);
+        const x = ox + S.gate.x * bc.width, y = oy + S.gate.y * bc.height, gl = 14, st = steer(), bx = Math.sin(st), by = Math.cos(st);
+        const t0 = (y - oy) / by, t1 = (oy + bh - y) / by;   /* yönlendirilmiş PW çizgisi kapıdan geçer */
+        line(x - bx * t0, oy, x - bx * (gl / 2 + 3), y - by * (gl / 2 + 3), C.roi, 1.3); line(x + bx * (gl / 2 + 3), y + by * (gl / 2 + 3), x + bx * t1, oy + bh, C.roi, 1.3);
+        [-1, 1].forEach(sd => { const cx = x + bx * sd * gl / 2, cy = y + by * sd * gl / 2; line(cx - by * 11, cy + bx * 11, cx + by * 11, cy - bx * 11, C.roi, 1.6); });
         /* Açı düzeltme çizgisi: damar eksenine paralel */
-        const a = sim.view === 'long' ? Math.atan(incl()) * (S.flip ? -1 : 1) : 0, ca = Math.cos(a) * 22, sa = Math.sin(a) * 22;
+        const a = sim.view === 'long' ? Math.atan(USIM.PH.artery.sd) * (S.flip ? -1 : 1) : 0, ca = Math.cos(a) * 22, sa = Math.sin(a) * 22;
         line(x - ca - 16 * Math.cos(a), y - sa - 16 * Math.sin(a), x - ca, y - sa, C.roi, 1.6); line(x + ca, y + sa, x + ca + 16 * Math.cos(a), y + sa + 16 * Math.sin(a), C.roi, 1.6);
       }
       /* Ölçümler ve açıklamalar */
@@ -718,7 +723,7 @@ const USAPP = (() => {
       return `${v} · θ ${fmt(gi.theta, 0)}°${gi.theta > 60 ? ' · ' + tr('angleWarn') : ''}`;
     }
 
-    const api = {canvas: cv, W, H, sim, state: S, render: renderWrap, pointer, setProbe, onProbe: null, readout, zones,
+    const api = {canvas: cv, W, H, sim, state: S, render: renderWrap, pointer, setProbe, setMode, onProbe: null, readout, zones,
       hover: (x, y) => { const z = find(x, y); return !!z && z.id !== 'noop' && z.id !== 'img' && z.id !== 'strip'; },
       setText(t) { T = t || {}; }};
     setProbe('clarius-l7');

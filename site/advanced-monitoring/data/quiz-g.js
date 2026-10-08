@@ -324,7 +324,7 @@ Object.assign(window.ICA_QUIZ, {
   },
   'intraop-emg': {
     q: {
-      tr: 'Serbest akışlı (spontan) EMG’nin önemli bir sınırlılığı aşağıdakilerden hangisidir?',
+      tr: 'Spontan (free-running) EMG’nin önemli bir sınırlılığı aşağıdakilerden hangisidir?',
       en: 'Which of the following is an important limitation of free-running (spontaneous) EMG?',
       es: '¿Cuál de las siguientes es una limitación importante de la EMG espontánea (de libre curso)?'
     },
@@ -336,7 +336,7 @@ Object.assign(window.ICA_QUIZ, {
     ],
     a: 2,
     ex: {
-      tr: 'Serbest akışlı EMG künt irritasyona duyarlıdır, ancak keskin kök kesisinde yanıltıcı olabilir (yalancı negatif). Aktivasyonun özgüllüğü düşüktür (bir seride %23,7); TOF sinir bütünlüğünü değil blok düzeyini gösterir.',
+      tr: 'Spontan EMG künt irritasyona duyarlıdır, ancak keskin kök kesisinde yanıltıcı olabilir (yalancı negatif). Aktivasyonun özgüllüğü düşüktür (bir seride %23,7); TOF sinir bütünlüğünü değil blok düzeyini gösterir.',
       en: 'Free-running EMG is sensitive to blunt irritation but may mislead with a sharp root transection (false negative). Activation has low specificity (23.7% in one series), and TOF shows the level of block, not nerve integrity.',
       es: 'La EMG espontánea es sensible a la irritación roma, pero puede inducir a error ante una sección limpia de la raíz (falso negativo). La activación tiene baja especificidad (23,7% en una serie) y el TOF muestra el nivel de bloqueo, no la integridad nerviosa.'
     },

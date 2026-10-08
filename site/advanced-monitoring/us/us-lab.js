@@ -2,7 +2,9 @@
 /* İleri Monitörizasyon Atlası · ultrason bölümü · 3B uygulama laboratuvarı
    Jel fantom (deri, yağ, fasya, kas, sinir, arter, ven, kemik), Clarius L7 HD3 ve Vygon VygoPlex Echo iğnesi. Probun
    görüntü düzlemi yarı saydam gösterilir; yandaki ekran aynı anda USIM ile hesaplanır. Üç adım dizisi:
-   part (prob manevraları ve yönelim), ip (plan içi), oop (plan dışı). Fantom koordinatları mm: (x, d, z) → 3B (x, −d, z). */
+   part (prob manevraları ve yönelim), ip (plan içi), oop (plan dışı). Fantom koordinatları mm: (x, d, z) → 3B (x, −d, z).
+   Serbest mod (setFree): adım dizisi yerine kullanıcının verdiği prob konumu (ileri-geri/yana kaydırma, eğim, rotasyon,
+   basınç) ve iğne ilerlemesi kullanılır; prob sahnede sürüklenerek de kaydırılır. */
 const USLAB = (() => {
   if (typeof K3 === 'undefined' || !K3 || typeof USM === 'undefined' || !USM) return null;
   const {std, lin} = K3, V3 = (x, y, z) => new THREE.Vector3(x, y, z), D2R = Math.PI / 180;
@@ -127,11 +129,56 @@ const USLAB = (() => {
       ]
     };
 
+    /* ---------- Serbest mod ----------
+       f: {x, z (mm), tilt, rot (°), press (0–1), adv (iğne yolu oranı), doppler}. Plan içi sahnede prob x = 8 mm'den başlar.
+       İğne giriş noktası fantoma bağlıdır: prob hareket eder, iğne yerinde kalır (hizalama böyle öğrenilir). */
+    const FREE_LIM = {x: 20, z: 22};
+    function freeRun() {
+      const f = S.free, tr = S.track;
+      const probe = {x: f.x + (tr === 'ip' ? 8 : 0), z: f.z, rot: f.rot * D2R, tilt: f.tilt * D2R, press: f.press};
+      if (tr === 'part') return {probe, doppler: f.doppler, tags: ['nerve', 'artery', 'vein']};
+      const N = tr === 'ip' ? ipN : opN;
+      return {probe, n: extend(N, Math.max(0, N.Lf * f.adv)), doppler: f.doppler, tags: ['tip'], tip: tr === 'ip', dot: tr === 'oop', over: tr === 'oop' && f.adv > 1.03};
+    }
+    /* İğnenin görüntü düzlemine göre durumu: ucu düzlemde mi, gövdenin ne kadarı düzlemde (ışın kalınlığı ≈ ±1 mm) */
+    const planeN = pz => ({x: pz.L.d * pz.Dn.z - pz.L.z * pz.Dn.d, d: pz.L.z * pz.Dn.x - pz.L.x * pz.Dn.z, z: pz.L.x * pz.Dn.d - pz.L.d * pz.Dn.x});
+    /* İğne ekseninin görüntü düzlemini kestiği uzaklık (girişten mm; paralelse ∞) */
+    function crossAt(N, pz) {
+      const n = planeN(pz), un = N.u.x * n.x + N.u.d * n.d + N.u.z * n.z;
+      return Math.abs(un) < 1e-6 ? Infinity : ((pz.O.x - N.E.x) * n.x + (0 - N.E.d) * n.d + (pz.O.z - N.E.z) * n.z) / un;
+    }
+    function needleView(r, pz) {
+      if (!r.n || r.n.L <= 0) return null;
+      const {x: nx, d: nd, z: nz} = planeN(pz);
+      const dist = s => { const px = r.n.E.x + r.n.u.x * s - pz.O.x, pd = r.n.E.d + r.n.u.d * s, pzz = r.n.E.z + r.n.u.z * s - pz.O.z; return {off: Math.abs(px * nx + pd * nd + pzz * nz), lat: px * pz.L.x + pzz * pz.L.z}; };
+      const hw = 19, ok = q => q.off < 1.1 && Math.abs(q.lat) < hw;
+      let k = 0, n = 0; for (let s = 0; s <= r.n.L; s += 1, n++) if (ok(dist(s))) k++;
+      return {tip: ok(dist(r.n.L)), frac: n ? k / n : 0, tc: crossAt(r.n, pz), L: r.n.L};
+    }
+
     /* ---------- Durum ve döngü ---------- */
-    const S = {track: 'part', i: 0, t0: 0, now: 0};
-    let cur = null;
+    const S = {track: 'part', i: 0, t0: 0, now: 0, free: null};
+    let cur = null, info = null;
+    function setFree(f) {
+      const was = !!S.free;
+      S.free = f ? Object.assign({x: 0, z: 0, tilt: 0, rot: 0, press: 0, adv: 0, doppler: false}, S.free || {}, f) : null;
+      S.free && (S.free.x = clamp(S.free.x, -FREE_LIM.x, FREE_LIM.x), S.free.z = clamp(S.free.z, -FREE_LIM.z, FREE_LIM.z));
+      if (S.free && !was) { const c = S.track === 'part' ? CAM.top : S.track === 'ip' ? CAM.ip : CAM.oop; view.focus(V3(...c[0]), c[1], c[2], c[3]); }
+      if (!S.free && was) go(S.track, S.i);
+    }
+    /* Probu sürükleme: işaretçi ışını deri düzlemini nerede kesiyorsa prob o kadar kayar */
+    const skinPlane = new THREE.Plane(V3(0, 1, 0), -SKIN_Y), hitP = new THREE.Vector3();
+    let drag = null;
+    const onSkin = ray => ray.ray.intersectPlane(skinPlane, hitP) ? F.worldToLocal(hitP.clone()) : null;
+    view.hits = (view.hits || []).concat({obj: P.g, drag: true, hover: () => true, on(type, u, v, ray) {
+      if (type === 'down') { const q = ray && onSkin(ray); if (!q) return false; if (!S.free) setFree({}); drag = {q, x: S.free.x, z: S.free.z}; api.onDrag && api.onDrag(S.free); return true; }
+      if (type === 'move' && drag) { const q = onSkin(ray); if (q) { setFree({x: drag.x + q.x - drag.q.x, z: drag.z + q.z - drag.q.z}); api.onDrag && api.onDrag(S.free); } return true; }
+      if (type === 'up') drag = null;
+      return true;
+    }});
     function go(track, i, instant) {
       S.track = track; S.i = i; S.t0 = S.now;
+      if (S.free) { S.free = null; drag = null; }
       const st = TRACKS[track][i], [t, d, th, ph] = st.cam;
       if (instant) view.jumpTo(V3(...t), d, th, ph); else view.focus(V3(...t), d, th, ph);
       view.auto = false;
@@ -139,8 +186,11 @@ const USLAB = (() => {
     function frame(t) {
       const st = TRACKS[S.track][S.i], loop = st.loop || 0, e = t - S.t0;
       const u = REDUCED_MOTION || !loop ? 1 : st.linear ? (e % loop) / loop : ease(clamp((e % (loop + 1.2)) / loop, 0, 1));
-      const r = st.run(u, t); cur = r;
+      const r = S.free ? freeRun() : st.run(u, t); cur = r;
       const pr = r.probe, pz = USIM.pose(pr.x, pr.z, pr.rot, pr.tilt, pr.press); pz.press = pr.press;
+      info = S.free ? needleView(r, pz) : null;
+      /* Plan dışı serbest modda: düzlemi uçtan önce kesen iğne gövdesidir (ekrandaki parlak nokta uç sanılabilir) */
+      if (S.free && S.track === 'oop' && r.n) { const tc = crossAt(r.n, pz); r.over = tc > 0 && tc < r.n.L - 1.5; if (r.over) r.tags = ['shaft']; }
       placeProbe(pz);
       placeNeedle(r.n ? (r.n.L > 0 ? r.n : extend(r.n, -.5)) : null);   /* L ≤ 0: uç cildin hemen üstünde */
       /* Ven basınçla yassılır (yalnız y ekseninde, merkezi aşağı kayar) */
@@ -161,7 +211,7 @@ const USLAB = (() => {
             if (p && (r.tip || r.dot) && !r.over) out.push({t: TX.img.tip, X: p.X, Y: p.Y, c: '#7FE0D1', dx: 14, dy: 10});
             if (r.dot && r.n) {
               /* Plan dışı: düzlemi kesen nokta (gövde olabilir) */
-              const tc = (pz.O.z - r.n.E.z) / r.n.u.z;
+              const tc = crossAt(r.n, pz);
               if (r.over && tc > 0 && tc < r.n.L) { const q = toImage(r.n.E.x + r.n.u.x * tc, r.n.E.d + r.n.u.d * tc, r.n.E.z + r.n.u.z * tc, 1.5); if (q) out.push({t: TX.img.shaft, X: q.X, Y: q.Y, c: '#FF8A80', dx: 14, dy: 8}); }
             }
           }
@@ -185,9 +235,10 @@ const USLAB = (() => {
       }
     }
     view.tick.push((dt, t) => { S.now = t; frame(t); });
-    view.onReset = () => go(S.track, S.i);
+    view.onReset = () => { if (S.free) { const c = S.track === 'part' ? CAM.top : S.track === 'ip' ? CAM.ip : CAM.oop; view.focus(V3(...c[0]), c[1], c[2], c[3]); } else go(S.track, S.i); };
     go('part', 0, true);
-    return {go, count: k => TRACKS[k].length, scan, view, state: () => cur};
+    const api = {go, count: k => TRACKS[k].length, scan, view, state: () => cur, setFree, free: () => S.free, info: () => info, track: () => S.track, onDrag: null};
+    return api;
   }
   const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
   return {mount};

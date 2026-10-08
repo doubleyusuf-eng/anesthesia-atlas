@@ -9,6 +9,7 @@ Everything served at https://atlas.anesthesiabriefs.com, and nothing else. This 
 | `site/anesthesia-machine/` | Anesthesia Machine Atlas | `tools/sync-machine.sh` from `../Anestezi-Atlasi` |
 | `site/advanced-monitoring/` | Advanced Monitoring Atlas | `tools/sync-monitoring.sh` from `../Ileri-Cihaz-Atlasi` |
 | `site/mechanical-ventilation/` | Mechanical Ventilation Atlas | `tools/sync-ventilation.sh` from `../Mekanik-Ventilasyon-Atlasi` |
+| `site/blood-gas/` | Blood Gas Atlas | `tools/sync-bloodgas.sh` from `../Kan-Gazi-Atlasi` |
 
 ## Updating
 
@@ -17,6 +18,7 @@ node tools/build-hub.cjs      # after editing landing-page text or adding an atl
 ./tools/sync-machine.sh       # runs the machine atlas's checks, then copies its site/
 ./tools/sync-monitoring.sh    # same for the Advanced Monitoring Atlas
 ./tools/sync-ventilation.sh   # same for the Mechanical Ventilation Atlas
+./tools/sync-bloodgas.sh      # same for the Blood Gas Atlas (its check runs the engine tests)
 node tools/check-links.cjs    # the same check the deploy runs
 ```
 

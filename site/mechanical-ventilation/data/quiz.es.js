@@ -634,7 +634,7 @@ window.MVA_QUIZ = [
       "Es la fuerza inspiratoria máxima medida durante una oclusión completa"
     ],
     a: 0,
-    ex: "La P0.1 es la caída de presión en los primeros 100 ms de una oclusión y aproxima el impulso respiratorio; no es idéntica a la fuerza muscular ni al esfuerzo. Los umbrales utilizados en investigación no son umbrales de tratamiento definitivos independientes del dispositivo.",
+    ex: "La P0.1 es la caída de presión durante los primeros 100 ms del esfuerzo inspiratorio contra una vía aérea ocluida y aproxima el impulso respiratorio; no es idéntica a la fuerza muscular ni al esfuerzo. Los umbrales utilizados en investigación no son umbrales de tratamiento definitivos independientes del dispositivo.",
     src: [42]
   },
   {
@@ -823,13 +823,13 @@ window.MVA_QUIZ = [
     id: "p03", mode: null, topic: "pediatri",
     q: "En el niño pequeño, ¿por qué puede diferir el VT que muestra el dispositivo del volumen que llega al paciente?",
     o: [
-      "Espacio muerto del sensor, distensibilidad del circuito y fuga",
+      "Lugar de medición, distensibilidad del circuito y fuga",
       "Porque la ley de Boyle no es válida en el niño",
       "Porque los dispositivos pediátricos no miden el VTe",
       "Porque el efecto de la fuga es despreciable en volúmenes pequeños"
     ],
     a: 0,
-    ex: "El espacio muerto del sensor proximal, la distensibilidad del circuito y la fuga son importantes sobre todo en el niño pequeño. Debe comprobarse la concordancia entre el volumen que muestra el dispositivo y el que llega al paciente.",
+    ex: "El lugar de medición, la compresión del gas en el circuito y las fugas pueden causar diferencias entre el VT medido por el dispositivo y el volumen que llega al paciente. Se comprueban la compensación de la distensibilidad del circuito y la precisión del sensor. El espacio muerto añadido por el sensor puede reducir la ventilación alveolar efectiva con el mismo VT; esto es distinto de un error de medición del volumen.",
     src: [50]
   }
 ];

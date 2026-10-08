@@ -50,7 +50,7 @@ window.MVA_ABBR = {
   'PL': 'Transpulmonary pressure — transpulmoner basınç (alveoler − plevral)',
   'Pinsp': 'İnspiratuvar basınç ayarı (çoğu cihazda PEEP üstü)',
   'ΔP': 'Driving pressure — sürücü basınç: Pplat − PEEPtotal',
-  'P0.1': 'Oklüzyonun ilk 100 ms’sindeki basınç düşüşü; solunum dürtüsüne yaklaşım',
+  'P0.1': 'Oklüde hava yoluna karşı inspiratuvar çabanın ilk 100 ms’sindeki basınç düşüşü; solunum dürtüsüne yaklaşım',
   'Pocc': 'Occlusion pressure — tam oklüzyonda inspiratuvar çabanın oluşturduğu basınç düşüşü',
   'IPAP': 'Inspiratory positive airway pressure — inspiratuvar pozitif hava yolu basıncı (NIV)',
   'EPAP': 'Expiratory positive airway pressure — ekspiratuvar pozitif hava yolu basıncı (NIV)',

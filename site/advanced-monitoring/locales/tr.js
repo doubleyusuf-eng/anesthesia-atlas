@@ -15,7 +15,7 @@ window.ICA_MESSAGES = {
   "hero.cta": "Adım adım izle →",
 
   "cat.title": "Cihaz kataloğu",
-  "cat.lede": "Ekim 2026 itibarıyla üreticilerin güncel olarak sunduğu başlıca sistemler ve yaygın kullanılan cihaz türleri. Türkiye'de bulunabilirlik değişebilir.",
+  "cat.lede": "Ekim 2026 itibarıyla üreticilerin güncel olarak sunduğu başlıca sistemler ve yaygın kullanılan cihaz türleri. Bulunabilirlik ülkeye göre değişir.",
   "cat.search": "Cihaz, üretici veya ölçüm ara",
   "cat.searchPh": "Örn. BIS, rSO2, Masimo, TOF…",
   "cat.all": "Tümü",
@@ -144,6 +144,7 @@ window.ICA_MESSAGES = {
   "pl.nmt.6.t": "Kalibrasyon ve TOF",
   "pl.nmt.6.d": "Hasta anestezi altındayken, kas gevşetici verilmeden önce cihazın kalibrasyon ya da referans adımını tamamlayın (ör. supramaksimal akım belirleme, REF ölçümü). Ardından 2 Hz'de dört uyarı (TOF) ile izleyin; ekstübasyondan önce TOF oranı ≥0,9 olmalıdır. (Gösterilen değer örnektir.)",
   "dev.sec.special": "Özel hasta grupları",
+  "dev.sec.notes": "Teknik notlar",
   "dev.placeText": "Kaynaklı uygulama adımları",
   "dev.status": "İçerik durumu",
   "dev.st.partial": "Kısmen kaynakla doğrulandı, klinik inceleme bekliyor",
@@ -615,9 +616,9 @@ window.ICA_MESSAGES = {
   "cat.wsMovedLink": "İş istasyonlarını aç →",
   "nav.us": "Ultrason",
   "us.teaserEyebrow": "Yeni bölüm",
-  "us.teaserTitle": "Ultrason sistemi",
-  "us.teaserText": "Clarius HD3 ailesinin sekiz modeli 3B olarak, ultrasonun çalışma mantığı canlı görüntü benzetimiyle ve VygoPlex Echo iğnesiyle plan içi / plan dışı teknikler jel fantom üzerinde adım adım.",
+  "us.teaserTitle": "Ultrasonografi",
+  "us.teaserText": "Ultrasonografi temelden: görüntünün oluşumu, görüntüleme modları, GE LOGIQ P8 kontrol panelindeki her tuşun resimli anlatımı, görüntü ayarı, probu kendiniz kaydırıp eğebildiğiniz 3B prob ve iğne laboratuvarları ve artefaktlar.",
   "us.teaserCta": "Ultrason bölümünü aç →",
-  "dev.usPage": "Clarius HD3 ailesi, ultrason fiziği ve plan içi / plan dışı iğne teknikleri ayrı bir bölümde anlatılıyor.",
+  "dev.usPage": "Ultrasonun temelleri, cihaz tuşları, prob hareketleri ve plan içi / plan dışı iğne teknikleri ayrı bir bölümde anlatılıyor.",
   "dev.usPageLink": "Ultrason bölümünü aç →"
 };
