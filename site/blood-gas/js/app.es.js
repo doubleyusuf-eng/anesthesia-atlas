@@ -72,7 +72,7 @@
     og_profile: [['none', "No seleccionado"], ['ideal_4_6', "Ideal: etanol ÷ 4,6"], ['purssell', "Purssell empírico: etanol ÷ 3,7 − 0,35"]],
     salicylate_unit: [['', "¿unidad?"], ['mg/dL', 'mg/dL'], ['mg/L', 'mg/L']]
   };
-  const U = {pco2: ['mmHg', 'kPa'], pao2: ['mmHg', 'kPa'], fio2: [['fraction', 'kesir'], ['percent', '%']], albumin: ['g/dL', 'g/L'], hb: ['g/dL', 'g/L'], saturation: [['percent', '%'], ['fraction', 'kesir']], glucose: ['mg/dL', 'mmol/L'], cord_pco2_art: ['kPa', 'mmHg'],
+  const U = {pco2: ['mmHg', 'kPa'], pao2: ['mmHg', 'kPa'], fio2: [['fraction', "fracción"], ['percent', '%']], albumin: ['g/dL', 'g/L'], hb: ['g/dL', 'g/L'], saturation: [['percent', '%'], ['fraction', "fracción"]], glucose: ['mg/dL', 'mmol/L'], cord_pco2_art: ['kPa', 'mmHg'],
     total_ca: [['', "¿unidad?"], 'mmol/L', 'mg/dL'], ionized_ca: [['', "¿unidad?"], 'mmol/L', 'mg/dL'], salicylate_value: [['', "¿unidad?"], 'mg/dL', 'mg/L']};
   const LBL = {
     sample_type: "Tipo de muestra", age_group: "Grupo de edad", care_context: "Contexto asistencial", sample_site: "Sitio de extracción de la gasometría", perfusion: "Perfusión periférica (capilar)", pregnancy: "Embarazo", temperature_reporting: "Informe de temperatura", sample_time: "Momento de la muestra", analysis_time: "Momento del análisis",
@@ -218,7 +218,7 @@
   const ORDER = ['quality', 'sample', 'cord', 'cordpair', 'hie', 'hh', 'ph', 'proc', 'hcap', 'ag', 'agk', 'agc', 'delta', 'tox', 'og', 'salicylate', 'lacgap', 'renal', 'uag', 'urine', 'caratio', 'pf', 'aa', 'cao2', 'oi', 'osi', 'pards', 'nards', 'rds', 'delivery', 'preg', 'co2rel', 'o2target', 'fetal', 'pe', 'o2delivery', 'sepsis', 'dyshb', 'lactate', 'dka', 'dkares', 'base', 'age'];
   const MCTX = Object.fromEntries(OPT.maternal_context);
   const AGE = {adult: "adulto", pediatric: "niño", neonatal: "neonato"};
-  const SEV = {mild: 'hafif', moderate: 'orta', severe: "grave", not_severe: "por debajo del umbral de grave"};
+  const SEV = {mild: "leve", moderate: "moderada", severe: "grave", not_severe: "por debajo del umbral de grave"};
   const BETYPE = Object.fromEntries(OPT.be_type);
   const SAMPLE = Object.fromEntries(OPT.sample_type);
   const stChip = s => `<span class="st ${s}">${esc(t('status.' + s))}</span>`;
@@ -271,7 +271,7 @@
       case 'ph':
         if (m.local) return card(m, null, `<p class="big">${esc(num(m.value, 3))}<small>${esc({below: "por debajo de la referencia local", within: "dentro del intervalo de referencia local", above: "por encima de la referencia local"}[m.cls])} (${esc(num(m.ref[0], 2))}–${esc(num(m.ref[1], 2))})</small></p>${m.pco2Cls ? `<p>PCO₂ ${esc(n1(n.pco2))} mmHg: ${esc({below: "por debajo de la referencia local", within: "dentro del intervalo de referencia local", above: "por encima de la referencia local"}[m.pco2Cls])} (${esc(num(m.pco2Ref[0], 0))}–${esc(num(m.pco2Ref[1], 0))})</p>` : ''}${m.refSrc ? `<p class="small">Referencia: ${esc(m.refSrc)}</p>` : ''}${msgs(m.msgs)}`);
         if (!m.dir) return card(m, null, (m.value != null ? `<p class="big">${esc(num(m.value, 3))}</p>` : '') + needs(m.need) + msgs(m.msgs));
-        return card(m, null, `<p class="big">${esc(num(m.value, 3))}<small>${esc({acidemia: 'asidemi', alkalemia: 'alkalemi', within: "dentro del intervalo de referencia"}[m.dir])}</small></p><p class="small">Referencia educativa arterial del adulto: pH 7,35–7,45. La dirección del pH es una observación; los procesos ácido–base son hipótesis separadas.</p>${msgs(m.msgs)}` +
+        return card(m, null, `<p class="big">${esc(num(m.value, 3))}<small>${esc({acidemia: "acidemia", alkalemia: "alcalemia", within: "dentro del intervalo de referencia"}[m.dir])}</small></p><p class="small">Referencia educativa arterial del adulto: pH 7,35–7,45. La dirección del pH es una observación; los procesos ácido–base son hipótesis separadas.</p>${msgs(m.msgs)}` +
           (has(n.pco2) ? KGC.map([{ph: m.value, pco2: n.pco2, label: "esta muestra"}]) : ''));
       case 'proc':
         if (!m.hyps) return card(m, null, needs(m.need) + msgs(m.msgs));
@@ -326,7 +326,7 @@
       }
       case 'dkares': {
         const yn = v => v === true ? "cumplido" : v === false ? "no cumplido" : "sin datos";
-        return card(m, null, `<ul class="msgs"><li>Cetonas plasmáticas (β-hidroxibutirato) &lt;0,6 mmol/L: <b>${yn(m.ket)}</b></li><li>${m.phVenous ? "Venoso " : ''}pH ≥7,3: <b>${yn(m.phr)}</b>${m.phVenous ? '' : " (el criterio se define con el pH venoso)"} · o HCO₃ ≥18 mmol/L: <b>${yn(m.br)}</b></li><li>Glucosa idealmente &lt;200 mg/dL: <b>${m.glucoseBelow == null ? "sin datos" : m.glucoseBelow ? 'evet' : "no"}</b></li></ul>
+        return card(m, null, `<ul class="msgs"><li>Cetonas plasmáticas (β-hidroxibutirato) &lt;0,6 mmol/L: <b>${yn(m.ket)}</b></li><li>${m.phVenous ? "Venoso " : ''}pH ≥7,3: <b>${yn(m.phr)}</b>${m.phVenous ? '' : " (el criterio se define con el pH venoso)"} · o HCO₃ ≥18 mmol/L: <b>${yn(m.br)}</b></li><li>Glucosa idealmente &lt;200 mg/dL: <b>${m.glucoseBelow == null ? "sin datos" : m.glucoseBelow ? "sí" : "no"}</b></li></ul>
           <p>Criterios de resolución (componente de cetonas <b>y</b> de acidosis): <b>${{yes: "cumplido numéricamente", no: "no cumplido", missing: "faltan datos"}[m.all]}</b></p>${msgs(m.msgs)}`);
       }
       case 'preg': {
@@ -346,7 +346,7 @@
       case 'sepsis':
         return card(m, null, `${m.branch ? `<p>Rama de alto riesgo de NICE (lactato &gt;4 mmol/L o presión sistólica ≤90 mmHg): <b>${{met: "cumplido", not_met: "no cumplido", missing: "faltan datos"}[m.branch]}</b>${m.lac != null ? ` · lactato ${esc(n1(m.lac))}` : ''}${m.sbp != null ? ` · sistólica ${esc(num(m.sbp, 0))}` : ''}</p>` : ''}${msgs(m.msgs)}`);
       case 'sample': {
-        const PRM = {po2: 'PO₂', pco2: 'PCO₂', ph: 'pH', hco3: 'HCO₃', lytes: 'elektrolitler', glucose: 'glukoz', sat: "saturación/cooximetría", thb: 'tHb', lactate: 'laktat', be: 'BE'};
+        const PRM = {po2: 'PO₂', pco2: 'PCO₂', ph: 'pH', hco3: 'HCO₃', lytes: "electrolitos", glucose: "glucosa", sat: "saturación/cooximetría", thb: 'tHb', lactate: "lactato", be: 'BE'};
         const li = w => `<li>${esc(t('qw.' + w.code))}${w.params.length ? ` <span class="small muted">· puede verse afectado: ${w.params.map(p => PRM[p]).join(', ')}</span>` : ''} <span class="small muted">· campo desencadenante: ${esc(LBL[w.field] || w.field)}</span> ${cite(w.src)}</li>`;
         const mm = v => v == null ? '–' : num(v, 0) + " min";
         const times = `<dl class="kv"><dt>Muestra → análisis</dt><dd>${mm(m.delay)}${m.protocol != null ? ` · protocolo institucional ${num(m.protocol, 0)} min` : " · protocolo institucional no introducido"}</dd>${m.supportMin != null && m.supportMin >= 0 ? `<dt>Último cambio de soporte → muestra</dt><dd>${mm(m.supportMin)}</dd>` : ''}${m.cord ? `<dt>Nacimiento → pinzamiento</dt><dd>${mm(m.cord.birthToClamp)}</dd><dt>Pinzamiento → muestra</dt><dd>${mm(m.cord.clampToSample)}</dd>` : ''}</dl>`;
@@ -425,7 +425,7 @@
       }
       case 'tox': {
         const TA = Object.fromEntries(OPT.tox_agent);
-        return card(m, null, `<dl class="kv"><dt>Sospecha</dt><dd>${esc({yes: 'var', no: "no (introducido)", unknown: 'bilinmiyor'}[m.suspicion])}</dd><dt>Sustancia</dt><dd>${esc(TA[m.agent])}</dd></dl>${msgs(m.msgs)}<p class="small muted">Ficha educativa (ronda 9). Las tablas EXTRIP no son un algoritmo de tratamiento personal; no se aplican automáticamente al paciente. Detalles: <a href="#/ogren/t01">lecciones de toxicología</a>.</p>`);
+        return card(m, null, `<dl class="kv"><dt>Sospecha</dt><dd>${esc({yes: "presente", no: "no (introducido)", unknown: "desconocido"}[m.suspicion])}</dd><dt>Sustancia</dt><dd>${esc(TA[m.agent])}</dd></dl>${msgs(m.msgs)}<p class="small muted">Ficha educativa (ronda 9). Las tablas EXTRIP no son un algoritmo de tratamiento personal; no se aplican automáticamente al paciente. Detalles: <a href="#/ogren/t01">lecciones de toxicología</a>.</p>`);
       }
       case 'salicylate':
         if (m.mgdl == null) return card(m, null, needs(m.need) + msgs(m.msgs));
@@ -485,7 +485,7 @@
     else if (Mo.ph && Mo.ph.status === 'veri_eksik' && Mo.ph.value != null) L.push(`<b>pH ${esc(num(Mo.ph.value, 3))}:</b> no se introdujo referencia local; sin etiqueta normal/anormal`);
     if (R.errors.length) L.push(`<b>Entrada que debe corregirse:</b> ${R.errors.map(e => esc(LBL[e.field] || e.field)).join(', ')}`);
     if (R.suspended) L.push(`<b>Interpretación integrada suspendida.</b> ${esc(Mo.hh && Mo.hh.status === 'gozden_gecirilmeli' ? "El pH, la PCO₂ y el HCO₃ introducidos no son coherentes entre sí." : t('m.temp_mixed'))}`);
-    if (Mo.ph && Mo.ph.dir && !Mo.ph.local) L.push(`<b>pH ${esc(num(Mo.ph.value, 3))}:</b> ${esc({acidemia: 'asidemi', alkalemia: 'alkalemi', within: "dentro del rango de referencia; la evaluación continúa"}[Mo.ph.dir])}${Mo.ph.assume ? " · bajo el supuesto de adulto no embarazada" : ''}`);
+    if (Mo.ph && Mo.ph.dir && !Mo.ph.local) L.push(`<b>pH ${esc(num(Mo.ph.value, 3))}:</b> ${esc({acidemia: "acidemia", alkalemia: "alcalemia", within: "dentro del rango de referencia; la evaluación continúa"}[Mo.ph.dir])}${Mo.ph.assume ? " · bajo el supuesto de adulto no embarazada" : ''}`);
     if (Mo.proc && Mo.proc.hyps) {
       if (!Mo.proc.hyps.length) L.push(esc(t('m.proc_none')));
       for (const h of Mo.proc.hyps) {
@@ -530,7 +530,7 @@
     if (Mo.pe) L.push(`<b>Sospecha de TEP:</b> la gasometría no la descarta`);
     if (Mo.o2delivery) L.push(`<b>Aporte de oxígeno:</b> aunque la PaO₂ sea buena, no se descarta el efecto de la anemia/hemorragia`);
     if (Mo.sepsis) L.push(`<b>Contexto de sepsis:</b> ${Mo.sepsis.branch === 'met' ? "rama de alto riesgo de NICE cumplida; evaluación para cuidados de mayor nivel" : Mo.sepsis.branch === 'not_met' ? "rama de NICE no cumplida; esto no significa bajo riesgo" : "falta el contexto de riesgo; los umbrales no se usan como un algoritmo completo"}${Mo.sepsis.msgs.includes('sepsis_consider_smfm') ? " · disfunción orgánica: se considera sepsis aunque no haya fiebre" : ''}`);
-    if (Mo.dka && Mo.dka.preg && Mo.dka.anyInput) L.push(`<b>Cetoacidosis (embarazo/lactancia):</b> criterio de cetonas de CAD ${({yes: "cumplido", no: "no cumplido", missing: "faltan datos"})[Mo.dka.comp.dkaKetone.state]}${Mo.dka.ketDetected && Mo.dka.comp.dkaKetone.state === 'no' ? " (cetonas medidas; esto no significa que no haya cetosis)" : ''}, acidosis ${({yes: 'var', no: 'yok', missing: "faltan datos"})[Mo.dka.comp.acidosis.state]}; la glucosa no es criterio de exclusión${Mo.dka.diff.length ? " · diagnósticos diferenciales en la sección paso a paso" : ''}`);
+    if (Mo.dka && Mo.dka.preg && Mo.dka.anyInput) L.push(`<b>Cetoacidosis (embarazo/lactancia):</b> criterio de cetonas de CAD ${({yes: "cumplido", no: "no cumplido", missing: "faltan datos"})[Mo.dka.comp.dkaKetone.state]}${Mo.dka.ketDetected && Mo.dka.comp.dkaKetone.state === 'no' ? " (cetonas medidas; esto no significa que no haya cetosis)" : ''}, acidosis ${({yes: "presente", no: "ausente", missing: "faltan datos"})[Mo.dka.comp.acidosis.state]}; la glucosa no es criterio de exclusión${Mo.dka.diff.length ? " · diagnósticos diferenciales en la sección paso a paso" : ''}`);
     if (Mo.preg && n.pregnancy === 'yes') L.push(`<b>${esc(MCTX[n.maternal_context])}:</b> clasificación estándar de adulto detenida; los rangos fisiológicos de la revisión están en la sección paso a paso, no como etiqueta de normalidad.`);
     const counts = {}; Object.values(Mo).forEach(m => { counts[m.status] = (counts[m.status] || 0) + 1; });
     return `<ul class="summary">${L.map(x => `<li>${x}</li>`).join('')}</ul>
@@ -668,7 +668,7 @@
     view.innerHTML = `<section class="wrap hero">
       <div><p class="eyebrow">Para anestesia y cuidados intensivos</p><h1>Leer la gasometría paso a paso</h1>
         <p class="lede">Evalúa la gasometría en adultos, embarazadas, niños y neonatos partiendo de la muestra, con la justificación y la fuente de cada paso. Comprueba qué cálculos pueden hacerse con los datos que introduces y por qué no pueden hacerse los demás.</p>
-        <ul class="facts"><li><b>${C.formulas.length + C.ped.formulas.length + C.r810.formulas.length}</b> definiciones de cálculo</li><li><b>${C.rules.length + C.ped.rules.length + C.preg.rules.length + C.sample.rules.length + C.serial.rules.length + C.koah.rules.length + C.r810.rules.length}</b> kural</li><li><b>${C.cases.length + C.ped.cases.length + C.preg.cases.length + C.serial.cases.length + C.koah.cases.length + C.r810.cases.length}</b> casos sintéticos y escenarios</li><li><b>${C.lessons.length}</b> ders</li><li><b>${C.sources.length}</b> fuentes</li></ul>
+        <ul class="facts"><li><b>${C.formulas.length + C.ped.formulas.length + C.r810.formulas.length}</b> definiciones de cálculo</li><li><b>${C.rules.length + C.ped.rules.length + C.preg.rules.length + C.sample.rules.length + C.serial.rules.length + C.koah.rules.length + C.r810.rules.length}</b> reglas</li><li><b>${C.cases.length + C.ped.cases.length + C.preg.cases.length + C.serial.cases.length + C.koah.cases.length + C.r810.cases.length}</b> casos sintéticos y escenarios</li><li><b>${C.lessons.length}</b> lecciones</li><li><b>${C.sources.length}</b> fuentes</li></ul>
         <div class="row"><a class="btn" href="#/degerlendir">Evaluar la gasometría</a><a class="btn ghost" href="#/ogren/temeller">Aprender desde cero</a></div></div>
       <div class="panel">${KGC.map(cases, {aria: "Posición de cuatro casos sintéticos en el mapa pH–PCO₂"})}<p class="small muted">Cuatro casos sintéticos en el mapa pH–PCO₂. Las curvas son líneas de igual HCO₃ (Henderson–Hasselbalch); la banda gris es la referencia de pH arterial del adulto (7,35–7,45) [2].</p></div>
     </section>
@@ -712,7 +712,7 @@
       const draw = () => {
         ids.forEach(k => { document.getElementById('o-' + k).textContent = num(+el(k).value, k === 'f' ? 2 : 0); });
         const oi = KG.F['P-F01'](+el('f').value, +el('w').value, +el('o').value), osi = KG.F['P-F02'](+el('f').value, +el('w').value, +el('s').value), sp = +el('s').value, ok = sp >= 88 && sp <= 97;
-        const mont = oi >= 16 ? "grave" : oi >= 8 ? 'orta' : oi >= 4 ? 'hafif' : "por debajo del rango";
+        const mont = oi >= 16 ? "grave" : oi >= 8 ? "moderada" : oi >= 4 ? "leve" : "por debajo del rango";
         document.getElementById('lab-oi-out').innerHTML = `<div class="grid2"><div class="panel"><p class="big" style="font:800 26px var(--f-display)">OI ${num(oi, 1)}</p><p class="small">PALICC-2 (pediátrico, invasivo): criterio de oxigenación OI ≥4 → ${oi >= 4 ? "se cumple" : "no se cumple"}; umbral de grave OI ≥16 → ${oi >= 16 ? "por encima" : "por debajo"} ${cite([22])}</p><p class="small">Montreux (neonato, si el NARDS está confirmado): ${mont} ${cite([33])}</p></div>
           <div class="panel"><p class="big" style="font:800 26px var(--f-display)">OSI ${num(osi, 1)}</p><p class="small">${ok ? `PALICC-2: criterio OSI ≥5 → ${osi >= 5 ? "se cumple" : "no se cumple"}; umbral de grave OSI ≥12 → ${osi >= 12 ? "por encima" : "por debajo"}` : "SpO₂ fuera de 88–97 %: no se realiza la clasificación OSI de PALICC-2"} ${cite([22])}</p><p class="small">La tabla de Montreux no incluye el OSI.</p></div></div>
           <p class="small muted">Ningún umbral es por sí solo un diagnóstico; la etiqueta de gravedad se asigna junto con el diagnóstico clínico, la duración y las condiciones de exclusión.</p>`;
@@ -724,7 +724,7 @@
       const draw = () => {
         const ph = KG.F['hh-ph'](+h.value, +p.value), within = ph >= 7.35 && ph <= 7.45;
         document.getElementById('o-h').textContent = h.value; document.getElementById('o-p').textContent = p.value;
-        document.getElementById('o-ph').textContent = `pH ${num(ph, 2)} · ${ph < 7.35 ? 'asidemi' : ph > 7.45 ? 'alkalemi' : "dentro del intervalo de referencia"}`;
+        document.getElementById('o-ph').textContent = `pH ${num(ph, 2)} · ${ph < 7.35 ? "acidemia" : ph > 7.45 ? "alcalemia" : "dentro del intervalo de referencia"}`;
         const tags = []; if (+h.value < 24) tags.push("HCO₃ hacia abajo (acidificante)"); if (+h.value > 24) tags.push("HCO₃ hacia arriba (alcalinizante)"); if (+p.value > 40) tags.push("PCO₂ hacia arriba (acidificante)"); if (+p.value < 40) tags.push("PCO₂ hacia abajo (alcalinizante)");
         document.getElementById('lab-map').innerHTML = KGC.map([{ph, pco2: +p.value, label: 'pH ' + num(ph, 2)}]) + `<p class="small">${tags.length ? esc(tags.join(' · ')) : "Ambos valores están en los puntos de partida de la fórmula."}${within && tags.length >= 2 ? " — aunque el pH esté dentro de la referencia, pueden coexistir dos procesos." : ''}</p>`;
       };
@@ -746,7 +746,7 @@
             KGC.map([{ph, pco2: e.center, label: "centro esperado"}, {ph: KG.F['hh-ph'](v, e.lo), pco2: e.lo, hollow: true, r: 4}, {ph: KG.F['hh-ph'](v, e.hi), pco2: e.hi, hollow: true, r: 4}]); }
         else { const a = KG.F[k === 'resp_acid' ? 'resp-ac-acute' : 'resp-alk-acute'](v), c = KG.F[k === 'resp_acid' ? 'resp-ac-chronic' : 'resp-alk-chronic'](v);
           out.innerHTML = `<p>HCO₃ esperado: modelo agudo <b>${n2(a)}</b>, modelo crónico <b>${n2(c)} mmol/L</b> ${cite(KG.FSRC[k === 'resp_acid' ? 'resp-ac-acute' : 'resp-alk-acute'])}. Son estimaciones puntuales; la gasometría por sí sola no determina la duración, y es posible un estado intermedio agudo–crónico.</p>` +
-            KGC.map([{ph: KG.F['hh-ph'](a, v), pco2: v, label: 'akut'}, {ph: KG.F['hh-ph'](c, v), pco2: v, label: 'kronik', hollow: true}]); }
+            KGC.map([{ph: KG.F['hh-ph'](a, v), pco2: v, label: "aguda"}, {ph: KG.F['hh-ph'](c, v), pco2: v, label: "crónica", hollow: true}]); }
       };
       sl.oninput = set; document.querySelectorAll('input[name=cp]').forEach(r => r.onchange = set); set();
     }
@@ -778,7 +778,7 @@
   /* ================= Olgular ================= */
   const SHOW = ['sample_type', 'age_group', 'pregnancy', 'ph', 'pco2', 'hco3_actual', 'na', 'cl', 'tco2', 'albumin', 'pao2', 'fio2', 'cohb', 'saturation', 'saturation_type'];
   const caseVals = g => SHOW.filter(k => g[k] != null).map(k => [(LBL[k] || k).replace(/ \(.*\)/, ''),
-    (OPT[k] ? (OPT[k].find(o => o[0] === g[k]) || [0, g[k]])[1] : num(g[k], 3)) + (k === 'pco2' || k === 'pao2' ? ' ' + (g[k + '_unit'] || 'mmHg') : k === 'fio2' ? ` (${g.fio2_unit === 'percent' ? '%' : 'kesir'})` : '')]);
+    (OPT[k] ? (OPT[k].find(o => o[0] === g[k]) || [0, g[k]])[1] : num(g[k], 3)) + (k === 'pco2' || k === 'pao2' ? ' ' + (g[k + '_unit'] || 'mmHg') : k === 'fio2' ? ` (${g.fio2_unit === 'percent' ? '%' : "fracción"})` : '')]);
   function viewCases() {
     view.innerHTML = `<div class="wrap page-head"><p class="eyebrow">Resolver casos</p><h1>Casos</h1><p class="lede">${C.cases.length} casos didácticos sintéticos. Primero escribe tu propia interpretación y después abre la respuesta razonada y la salida del motor. Los casos no son datos de pacientes reales.</p></div>
       <div class="wrap"><h2 class="h-sm" style="margin-bottom:10px">Casos de muestra única</h2></div>
@@ -877,7 +877,7 @@
       <h3 class="h-sm" style="margin:16px 0 8px">Eventos</h3>
       <p class="small muted" style="margin-bottom:6px">Si se conoce la hora del evento, introdúcela. Si no se conoce, sitúalo entre dos puntos con "Intervalo"; un evento no se asigna por estimación a una hora o a un intervalo.</p>
       <div class="tbl"><table><thead><tr><th>Hora</th><th>Intervalo (si no hay hora)</th><th>Tipo</th><th>Nota</th><th></th></tr></thead><tbody>${SS.events.map((e, i) => `<tr><td><input type="datetime-local" data-ev="${i}" data-k="time" value="${esc((e.time || '').slice(0, 16))}"${e.between ? " disabled" : ''}></td>
-        <td><select data-ev="${i}" data-k="between"><option value="">—</option>${SS.points.slice(1).map((p, j) => { const v = SS.points[j].id + '|' + p.id; return `<option value="${esc(v)}"${e.between && e.between.join('|') === v ? " selected" : ''}>${esc(SS.points[j].id)} → ${esc(p.id)}</option>`; }).join('')}</select></td><td><select data-ev="${i}" data-k="type">${SER_EV.map(([o, l]) => `<option value="${o}"${e.type === o ? " selected" : ''}>${esc(l)}</option>`).join('')}</select></td><td><input type="text" data-ev="${i}" data-k="note" value="${esc(e.note || '')}"></td><td><button type="button" class="linkbtn" data-evdel="${i}">sil</button></td></tr>`).join('')}</tbody></table></div>
+        <td><select data-ev="${i}" data-k="between"><option value="">—</option>${SS.points.slice(1).map((p, j) => { const v = SS.points[j].id + '|' + p.id; return `<option value="${esc(v)}"${e.between && e.between.join('|') === v ? " selected" : ''}>${esc(SS.points[j].id)} → ${esc(p.id)}</option>`; }).join('')}</select></td><td><select data-ev="${i}" data-k="type">${SER_EV.map(([o, l]) => `<option value="${o}"${e.type === o ? " selected" : ''}>${esc(l)}</option>`).join('')}</select></td><td><input type="text" data-ev="${i}" data-k="note" value="${esc(e.note || '')}"></td><td><button type="button" class="linkbtn" data-evdel="${i}">eliminar</button></td></tr>`).join('')}</tbody></table></div>
       <button type="button" class="btn ghost sm" id="evAdd" style="margin-top:8px">+ Evento</button>`;
   }
   const SER_LBL = {ph: 'pH', pco2: 'PCO₂', hco3: 'HCO₃', pao2: 'PO₂', pf: 'PaO₂/FiO₂', oi: 'OI', osi: 'OSI', lactate: "Lactato", glucose: "Glucosa", bhb: "β-hidroxibutirato", na: 'Na⁺', cl: 'Cl⁻', ag: 'AG', agc: "AG corregida", salicylate: "Salicilato"};
