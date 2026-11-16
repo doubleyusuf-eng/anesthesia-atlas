@@ -1,0 +1,119 @@
+/* Sinir Bloğu Atlası — Anestezi Atlası ailesinin renk ve yazı düzeni.
+   Açık tema varsayılan; koyu tema yalnız sağ üstteki düğmeyle (theme.js, data-theme). */
+:root {
+  --bg: #E8ECF1; --paper: #F8FAFC; --ink: #0F1722; --muted: #4D5B6B; --line: #C5CFDA; --chip: #DCE3EB;
+  --accent: #2156A8; --accent-ink: #1B4A92; --accent-soft: #DCE7F7; --on-accent: #FFFFFF;
+  --stage-a: #F4F7FA; --stage-b: #C6D1DD;
+  --f-display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --f-body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+  --topbar: 59px;
+}
+:root[data-theme="dark"] {
+  --bg: #0A0F15; --paper: #111923; --ink: #E1E8F0; --muted: #94A4B6; --line: #223040; --chip: #1A2532;
+  --accent: #6FA4F5; --accent-ink: #9CC2FF; --accent-soft: #15294A; --on-accent: #06101E;
+  --stage-a: #1A2633; --stage-b: #0A0F15;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.55;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+.wrap { max-width: 1320px; margin-inline: auto; padding-inline: clamp(16px, 3.2vw, 40px); }
+a { color: var(--accent-ink); }
+:focus-visible { outline: 2.5px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+[hidden] { display: none !important; }
+code { font-family: var(--f-mono); font-size: .9em; }
+
+/* ---- üst şerit ---- */
+.topbar { position: sticky; top: 0; z-index: 30; background: var(--bg); border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; gap: 12px; min-height: 58px; max-width: none; }
+.brand { font: 800 17px/1 var(--f-display); font-stretch: 118%; white-space: nowrap; color: var(--ink); text-decoration: none;
+  display: flex; align-items: center; gap: 10px; flex: none; min-width: 0; }
+.brand svg { width: 26px; height: 26px; flex: none; color: var(--accent); }
+.brand span { overflow: hidden; text-overflow: ellipsis; }
+.topnav { display: flex; gap: 2px; margin-left: auto; }
+.topnav a.nav-hub { font: 650 12.5px/1 var(--f-display); font-stretch: 108%; color: var(--muted); text-decoration: none; white-space: nowrap;
+  border: 1px solid var(--line); border-radius: 999px; padding: 9px 12px; background: var(--paper); }
+.topnav a.nav-hub:hover { color: var(--ink); background: var(--chip); }
+.topnav a.nav-hub::before { content: "← "; }
+.lang-switch { display: flex; flex: none; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.lang-switch a { font: 700 11.5px/1 var(--f-mono); padding: 8px 9px; color: var(--muted); text-decoration: none; }
+.lang-switch a[aria-current="true"] { background: var(--ink); color: var(--paper); }
+
+/* ---- uygulama: 3B sahne + yan panel (ilk ekranı doldurur) ---- */
+.uygulama { display: flex; height: calc(100vh - var(--topbar)); height: calc(100svh - var(--topbar)); min-height: 520px; }
+#sahne { position: relative; flex: 1; min-width: 0;
+  background: radial-gradient(120% 95% at 50% 38%, var(--stage-a) 0%, var(--stage-b) 100%); }
+#sahne canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+#durum { position: absolute; left: 16px; top: 12px; color: var(--muted); pointer-events: none; font: 500 13px/1.4 var(--f-display); }
+aside { width: 390px; flex: none; overflow-y: auto; background: var(--paper); border-left: 1px solid var(--line); padding: 16px 16px 22px; }
+
+.blok-ust { margin-bottom: 12px; }
+.blok-sec { display: flex; align-items: center; gap: 8px; margin: 2px 0 8px; color: var(--muted); font: 600 12px/1 var(--f-mono);
+  text-transform: uppercase; letter-spacing: .08em; }
+.blok-sec select { flex: 1; min-width: 0; font: 600 15px/1.2 var(--f-display); color: var(--ink); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; text-transform: none; letter-spacing: 0; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; }
+h1 { font-size: 23px; font-weight: 850; font-stretch: 112%; line-height: 1.1; }
+h2 { font-size: 18px; font-weight: 750; font-stretch: 105%; margin: 6px 0 6px; line-height: 1.2; }
+h3 { font: 600 11.5px/1.2 var(--f-mono); color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-bottom: 9px; }
+section { background: var(--bg); border: 1px solid var(--line); border-radius: 14px; padding: 13px 14px; margin-bottom: 10px; }
+.adim-ust { display: flex; justify-content: space-between; align-items: center; color: var(--muted); font: 600 12px/1 var(--f-mono); }
+#noktalar { display: flex; gap: 6px; }
+.nokta { width: 12px; height: 12px; border-radius: 50%; border: 0; padding: 0; background: var(--line); cursor: pointer; }
+.nokta.aktif { background: var(--accent); }
+#adim-metin { margin: 0 0 12px; font-size: 15.5px; line-height: 1.55; }
+.gezinti { display: flex; gap: 8px; }
+button { font: 650 14px/1.2 var(--f-display); color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: 10px;
+  padding: 9px 12px; cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--accent); }
+button:disabled { opacity: .45; cursor: default; }
+.gezinti button { flex: 1; }
+button.ar { width: 100%; background: var(--accent); border-color: var(--accent); color: var(--on-accent); padding: 11px; }
+#katmanlar { display: grid; grid-template-columns: 1fr 1fr; gap: 7px 10px; font: 500 14px/1.3 var(--f-display); }
+#katmanlar label { display: flex; align-items: center; gap: 7px; cursor: pointer; }
+#katmanlar input { accent-color: var(--accent); }
+.renk { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+.kalin { font: 700 15px/1.3 var(--f-display); margin: 0 0 4px; }
+#secili p { margin: 0 0 6px; }
+.kucuk { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 6px 0 0; }
+.aside-alt { padding: 2px 4px 0; }
+
+/* ---- alt bilgi (ailenin düzeni) ---- */
+footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size: 14px; color: var(--muted); }
+footer .wrap { display: flex; flex-direction: column; gap: 6px; }
+.foot-brand { flex-direction: row !important; align-items: center; gap: 14px !important; margin-bottom: 18px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.foot-name { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.foot-title { font: 800 20px/1.1 var(--f-display); font-stretch: 118%; color: var(--ink); }
+.foot-partners { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; margin-top: 12px; }
+.foot-by { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.foot-credit { font: 500 12px/1.5 var(--f-display); color: var(--muted); }
+.ab-logo-link { display: inline-flex; border-radius: 6px; }
+.ab-logo { height: 44px; width: auto; display: block; }
+.ar-logo { width: auto; height: 72px; object-fit: contain; }
+.partner-divider { width: 1px; height: 36px; background: var(--line); flex: none; }
+.ab-dark { display: none !important; }
+:root[data-theme="dark"] .ab-light { display: none !important; }
+:root[data-theme="dark"] .ab-dark { display: block !important; }
+.foot-txt span { display: block; }
+.visitor-stats { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--line);
+  font: 500 12.5px/1.4 var(--f-display); color: var(--muted); }
+.visitor-stats b { color: var(--ink); font-weight: 700; font-variant-numeric: tabular-nums; }
+.visitor-stats .live { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #2FB872; box-shadow: 0 0 6px #2FB872; vertical-align: 1px; }
+
+/* ---- telefon ve dikey tablet: sahne üstte, panel altta ---- */
+@media (max-width: 860px) {
+  .uygulama { flex-direction: column; height: auto; min-height: 0; }
+  #sahne { flex: none; height: 62vh; height: 62svh; min-height: 340px; }
+  aside { width: 100%; border-left: 0; border-top: 1px solid var(--line); padding: 14px 16px 18px; overflow: visible; }
+}
+@media (max-width: 600px) {
+  .topnav a.nav-hub { font-size: 0; padding: 8px 12px; }
+  .topnav a.nav-hub::before { content: "←"; font-size: 15px; line-height: 1; }
+  .brand { font-size: 15.5px; gap: 8px; }
+  .brand svg { width: 23px; height: 23px; }
+  .foot-by { gap: 10px; }
+  .foot-by .ab-logo { height: 32px; }
+  .foot-by .ar-logo { height: 58px; }
+}

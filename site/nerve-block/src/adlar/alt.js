@@ -1,0 +1,25 @@
+// Ek Türkçe adlar: { MeshAdı: ['Türkçe ad', 'kısa açıklama'] } — anatomy.js NAMES'e eklenir
+// Kalça (gluteal) bölgesi — subgluteal siyatik blok
+export default {
+  Gluteus_maximus_muscler: ['Gluteus maksimus', 'Subgluteal blokta siyatik sinirin üzerini örten yüzeyel kas; sinir bunun derin fasyasının altındadır.'],
+  Gluteus_medius_muscler: ['Gluteus medius', ''],
+  Gluteus_minimus_muscler: ['Gluteus minimus', ''],
+  Piriformis_muscler: ['Piriformis', 'Siyatik sinir pelvisten çoğunlukla bu kasın alt kenarının altından çıkar.'],
+  Superior_gemellus_muscler: ['Gemellus süperior', ''],
+  Inferior_gemellus_muscler: ['Gemellus inferior', ''],
+  Obturator_internusr: ['Obturator internus', ''],
+  Quadratus_femoris_muscler: ['Kuadratus femoris', 'Trokanter ile tüberosite arasında; subgluteal seviyede siyatik sinirin derininde (tabanında) uzanır.'],
+  Superior_gluteal_nerver: ['Süperior gluteal sinir', ''],
+  Pudendal_nerver: ['Pudendal sinir', ''],
+  Nerve_to_quadratus_femoris_muscler: ['Kuadratus femoris siniri', ''],
+  Nerve_to_piriformis_muscler: ['Piriformis siniri', ''],
+  Inferior_gluteal_arteryr: ['İnferior gluteal arter', 'Piriformisin altından çıkar; proksimalde siyatik sinire eşlik eder.'],
+  Superior_gluteal_arteryr: ['Süperior gluteal arter', ''],
+  Internal_pudendal_arteryr: ['İnternal pudendal arter', ''],
+  Inferior_gluteal_veinsr: ['İnferior gluteal venler', ''],
+  Superior_gluteal_veinsr: ['Süperior gluteal venler', ''],
+  Perforating_veinsr: ['Perforan venler', ''],
+  Sacrum: ['Sakrum', ''],
+  Coccyx: ['Koksiks', ''],
+  Sacrotuberous_ligamentr: ['Sakrotuberal ligament', 'Sakrumdan iskiyal tüberositeye uzanır.'],
+};

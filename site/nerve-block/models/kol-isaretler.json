@@ -1,0 +1,21 @@
+{
+  "kaynak": "Z-Anatomy (Lluís Vinent), BodyParts3D (DBCLS) tabanlı — CC BY-SA 4.0",
+  "koordinat": "metre; +x hastanın solu, +y kraniyal, +z anterior",
+  "isaretler": {
+    "medialEpikondil": [
+      0.04794034194946288,
+      -0.07560539245605469,
+      0.004250874519348144
+    ],
+    "pektoralisYapisma": [
+      0.032878200531005854,
+      0.1185107421875,
+      0.023649033308029175
+    ],
+    "cerrahiBoyun": [
+      0.06490420532226562,
+      0.16886505126953125,
+      0.018056304454803468
+    ]
+  }
+}

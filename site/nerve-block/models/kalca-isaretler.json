@@ -1,0 +1,21 @@
+{
+  "kaynak": "Z-Anatomy (Lluís Vinent), BodyParts3D (DBCLS) tabanlı — CC BY-SA 4.0",
+  "koordinat": "metre; +x hastanın solu, +y kraniyal, +z anterior",
+  "isaretler": {
+    "trokanterMajor": [
+      -0.05053293228149414,
+      0.013467483520507813,
+      0.02577329635620117
+    ],
+    "iskiyalTuber": [
+      0.027358016967773437,
+      -0.015108718872070312,
+      -0.007616310119628906
+    ],
+    "sips": [
+      0.056935017108917234,
+      0.1193853759765625,
+      -0.04174415588378906
+    ]
+  }
+}

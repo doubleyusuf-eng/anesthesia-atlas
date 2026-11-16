@@ -1,0 +1,16 @@
+{
+  "kaynak": "Z-Anatomy (Lluís Vinent), BodyParts3D (DBCLS) tabanlı — CC BY-SA 4.0",
+  "koordinat": "metre; +x hastanın solu, +y kraniyal, +z anterior",
+  "isaretler": {
+    "korakoid": [
+      -0.05357592582702637,
+      0.100509033203125,
+      -0.0097286138497293
+    ],
+    "akromion": [
+      -0.07694940567016602,
+      0.12494903564453125,
+      -0.05757405757904053
+    ]
+  }
+}

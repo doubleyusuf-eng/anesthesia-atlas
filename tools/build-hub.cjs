@@ -15,13 +15,15 @@ const ATLASES = [
   { id: 'advanced-monitoring', status: 'live', img: 'img/advanced-monitoring.jpg', w: 900, h: 846, tone: 'teal' },
   { id: 'mechanical-ventilation', status: 'live', svg: 'vent', tone: 'orange' },
   { id: 'blood-gas', status: 'live', svg: 'gas', tone: 'wine' },
+  // Turkish only for now: live in TR; the EN/ES cards say "coming soon" until the atlas is translated
+  { id: 'nerve-block', status: 'live', langs: ['tr'], img: 'img/nerve-block.jpg', w: 800, h: 800, tone: 'violet' },
 ];
 
 const T = {
   tr: {
     locale: 'tr_TR', dir: '', name: 'Anestezi Atlası',
     title: 'Anestezi Atlası · etkileşimli eğitim atlasları',
-    desc: 'Anestezi makinesi, ileri monitörizasyon, mekanik ventilasyon ve kan gazı için ücretsiz, etkileşimli eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
+    desc: 'Anestezi makinesi, ileri monitörizasyon, mekanik ventilasyon, kan gazı ve sinir blokları için ücretsiz, etkileşimli eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
     back: 'Anesthesia Briefs', backAria: "Anesthesia Briefs'e dön", langAria: 'Dil · Language · Idioma',
     h1: 'Anestezi Atlası',
     by: 'Hazırlayanlar',
@@ -52,9 +54,15 @@ const T = {
         facts: [['pH', 'asidemi · alkalemi'], ['HCO₃', 'kompansasyon'], ['AG', 'anyon açıklığı'], ['PF', 'oksijenasyon']],
         alt: 'pH–PCO₂ haritası: eşit HCO₃ eğrileri, normal aralık ve örnek kan gazı değerleri',
       },
+      'nerve-block': {
+        name: 'Sinir Bloğu Atlası',
+        text: 'Ultrason eşliğinde 18 periferik sinir ve fasyal plan bloğu, gerçek anatomi verisiyle: ilgili anatomi, sono-anatomi, prob yerleşimi, iğne yolu ve lokal anestezik yayılımı. Meta Quest 3 ile karma gerçeklikte de açılır.',
+        facts: [['18', 'blok'], ['8', 'bölge modeli'], ['6', 'adım'], ['AR', 'Quest 3']],
+        alt: 'Boyun ve omzun 3B anatomisi: brakiyal pleksus, damarlar, ultrason probu ve interskalen bloğa ilerleyen iğne',
+      },
     },
     credit: 'Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanmıştır.',
-    note: 'Atlaslar eğitim amaçlıdır. Modeller belirli bir markayı değil, genel cihazları temsil eder; sayısal değerler yaklaşıktır. Klinik değerlendirmenin, cihaz kılavuzunun veya kurum protokollerinin yerini tutmaz.',
+    note: 'Atlaslar eğitim amaçlıdır. Cihaz modelleri belirli bir markayı değil, genel cihazları temsil eder; anatomi modelleri tek bir model bedene dayanır; sayısal değerler yaklaşıktır. Klinik değerlendirmenin, cihaz kılavuzunun veya kurum protokollerinin yerini tutmaz.',
     rights: `© ${YEAR} Anesthesia Briefs ve Anestezi Rehberi. Tüm hakları saklıdır.`,
     visitors: ['şu an aktif', 'Bugün', 'Bu ay'],
     redirect: 'Bu sayfa taşındı:',
@@ -62,7 +70,7 @@ const T = {
   en: {
     locale: 'en_US', dir: 'en/', name: 'Anesthesia Atlas',
     title: 'Anesthesia Atlas · interactive teaching atlases',
-    desc: 'Free, interactive teaching atlases for the anaesthesia machine, advanced monitoring, mechanical ventilation and blood gases. By Anesthesia Briefs and Anestezi Rehberi.',
+    desc: 'Free, interactive teaching atlases for the anaesthesia machine, advanced monitoring, mechanical ventilation, blood gases and nerve blocks. By Anesthesia Briefs and Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Back to Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Anesthesia Atlas',
     by: 'Made by',
@@ -93,9 +101,15 @@ const T = {
         facts: [['pH', 'acidaemia · alkalaemia'], ['HCO₃', 'compensation'], ['AG', 'anion gap'], ['PF', 'oxygenation']],
         alt: 'pH–PCO₂ map: iso-bicarbonate curves, normal range and sample blood gas values',
       },
+      'nerve-block': {
+        name: 'Nerve Block Atlas',
+        text: '18 ultrasound-guided peripheral nerve and fascial plane blocks on real anatomical data: relevant anatomy, sono-anatomy, probe placement, needle path and local anaesthetic spread, also in mixed reality on Meta Quest 3. English edition in preparation.',
+        facts: [['18', 'blocks'], ['8', 'body regions'], ['6', 'steps'], ['AR', 'Quest 3']],
+        alt: '3D anatomy of the neck and shoulder: brachial plexus, vessels, ultrasound probe and a needle advancing for an interscalene block',
+      },
     },
     credit: 'by Anesthesia Briefs and Anestezi Rehberi',
-    note: 'The atlases are for education. The models represent generic equipment rather than a specific brand, and numerical values are approximate. They do not replace clinical judgement, the device manual or local protocols.',
+    note: 'The atlases are for education. Equipment models represent generic devices rather than a specific brand, anatomical models come from a single model body, and numerical values are approximate. They do not replace clinical judgement, the device manual or local protocols.',
     rights: `© ${YEAR} Anesthesia Briefs and Anestezi Rehberi. All rights reserved.`,
     visitors: ['active now', 'Today', 'This month'],
     redirect: 'This page has moved:',
@@ -103,7 +117,7 @@ const T = {
   es: {
     locale: 'es_ES', dir: 'es/', name: 'Atlas de Anestesia',
     title: 'Atlas de Anestesia · atlas docentes interactivos',
-    desc: 'Atlas docentes gratuitos e interactivos sobre la máquina de anestesia, la monitorización avanzada, la ventilación mecánica y la gasometría. Por Anesthesia Briefs y Anestezi Rehberi.',
+    desc: 'Atlas docentes gratuitos e interactivos sobre la máquina de anestesia, la monitorización avanzada, la ventilación mecánica, la gasometría y los bloqueos nerviosos. Por Anesthesia Briefs y Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Volver a Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Atlas de Anestesia',
     by: 'Elaborado por',
@@ -134,9 +148,15 @@ const T = {
         facts: [['pH', 'acidemia · alcalemia'], ['HCO₃', 'compensación'], ['AG', 'anión gap'], ['PF', 'oxigenación']],
         alt: 'Mapa pH–PCO₂: curvas de bicarbonato constante, rango normal y valores de gasometría de ejemplo',
       },
+      'nerve-block': {
+        name: 'Atlas de Bloqueos Nerviosos',
+        text: '18 bloqueos ecoguiados de nervio periférico y de plano fascial sobre datos anatómicos reales: anatomía relevante, sonoanatomía, colocación de la sonda, trayecto de la aguja y difusión del anestésico local, también en realidad mixta con Meta Quest 3. Edición en español en preparación.',
+        facts: [['18', 'bloqueos'], ['8', 'regiones'], ['6', 'pasos'], ['RA', 'Quest 3']],
+        alt: 'Anatomía 3D del cuello y el hombro: plexo braquial, vasos, sonda ecográfica y una aguja que avanza para un bloqueo interescalénico',
+      },
     },
     credit: 'por Anesthesia Briefs y Anestezi Rehberi',
-    note: 'Los atlas tienen fines docentes. Los modelos representan equipos genéricos, no una marca concreta, y los valores numéricos son aproximados. No sustituyen el juicio clínico, el manual del equipo ni los protocolos del centro.',
+    note: 'Los atlas tienen fines docentes. Los modelos de equipos representan equipos genéricos, no una marca concreta; los modelos anatómicos proceden de un único cuerpo modelo, y los valores numéricos son aproximados. No sustituyen el juicio clínico, el manual del equipo ni los protocolos del centro.',
     rights: `© ${YEAR} Anesthesia Briefs y Anestezi Rehberi. Todos los derechos reservados.`,
     visitors: ['activos ahora', 'Hoy', 'Este mes'],
     redirect: 'Esta página se ha trasladado:',
@@ -236,7 +256,7 @@ function page(lang) {
 
   const cards = ATLASES.map((a, i) => {
     const c = s.atlases[a.id];
-    const live = a.status === 'live';
+    const live = a.status === 'live' && (!a.langs || a.langs.includes(lang));
     const href = up + a.id + '/' + s.dir;
     const visual = a.svg
       ? (a.svg === 'gas' ? GAS : VENT).replace('{{ALT}}', esc(c.alt))
