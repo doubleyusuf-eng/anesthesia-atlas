@@ -4,6 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { loadAnatomy, LAYERS, TOGGLES, setLayerOpacity, setHighlight } from './anatomy.js';
 import { BLOKLAR } from './bloklar/index.js';
 import { setupXR } from './xr.js';
+import { SanalUSG } from './usg.js';
 
 const $ = (id) => document.getElementById(id);
 const host = $('sahne');
@@ -46,6 +47,7 @@ const app = {
   bolgeMerkez: new THREE.Vector3(), bolgeKutu: new THREE.Box3(),
 };
 window.__app = app;
+app.usg = new SanalUSG(app);
 
 function yayinla() { for (const f of app.degisti) f(); }
 
@@ -73,6 +75,8 @@ function adimUygula(i, kamera = true) {
   app.etiketGrup.visible = app.etiketler;
   merkez.add(app.etiketGrup);
   if (kamera && !renderer.xr.isPresenting) kameraUc(st.kamera);
+  app.igneBas = performance.now();
+  app.usg.gorunurluk();
   arayuz();
   yayinla();
 }
@@ -254,6 +258,19 @@ renderer.setAnimationLoop((t, frame) => {
       o.la.scale.copy(o.la.userData.tam).multiplyScalar(window.__laSabit ? 1 : Math.max(0.06, k));
     }
   }
+  // İğne adımında iğne deriden hedefe ilerler (3 s), bekler (2,5 s), yeniden başlar
+  if (o?.igne?.visible && o.igne.userData.yon) {
+    const st = app.blok.steps[app.adim];
+    const L = o.igne.userData.ilerleme;
+    let k = 1;
+    if (!window.__laSabit && !st.goster.includes('la')) {
+      const f = ((performance.now() - (app.igneBas || 0)) / 1000) % 5.5;
+      k = f < 3 ? f / 3 : 1;
+      k = k * k * (3 - 2 * k);
+    }
+    o.igne.position.copy(o.igne.userData.yon).multiplyScalar(-(1 - k) * L);
+  }
+  app.usg.guncelle(t);
   xr?.guncelle(frame);
   renderer.render(scene, camera);
 });
@@ -307,6 +324,9 @@ async function blokYukle(id, ilkAdim = 0) {
     tween = null;
   }
   app.bolgeDegisti?.();
+  app.adim = ilk;
+  app.usg.blokDegisti();
+  gorselleriGoster(tanim);
   adimUygula(ilk, false);
   $('durum').textContent = '';
   $('secili').hidden = true;
@@ -317,6 +337,42 @@ app.blokKaydir = (d) => {
   const i = BLOKLAR.findIndex((b) => b.id === app.blokTanim.id);
   return blokYukle(BLOKLAR[(i + d + BLOKLAR.length) % BLOKLAR.length].id);
 };
+
+// ---- Anesthesia Briefs uygulamasındaki çizimler (yapay zekâ ile oluşturulmuş eğitim görselleri) ----
+const GORSEL_NOT = 'Anesthesia Briefs uygulamasından; yapay zekâ ile oluşturulmuş açıklayıcı eğitim çizimleridir (İngilizce etiketli). '
+  + 'Gerçek hasta veya gerçek ultrason görüntüsü değildir; anatomik yönelim içindir.';
+const GORSEL_EK = {
+  fasyailiaka: 'Not: uygulamadaki çizim infrainguinal yaklaşımı gösterir; bu atlastaki blok suprainguinaldir.',
+};
+async function gorselleriGoster(tanim) {
+  const bolum = $('gorseller');
+  const liste = bolum.querySelector('.gorsel-liste');
+  liste.innerHTML = '';
+  bolum.hidden = true;
+  const turler = [['sono', 'Sono-anatomi'], ['anatomi', 'Anatomi']];
+  for (const [dosya, ad] of turler) {
+    const src = `gorseller/${tanim.id}/${dosya}.webp`;
+    const b = document.createElement('button');
+    b.className = 'gorsel';
+    // loading="lazy" olmaz: bölüm resim yüklenene dek gizli (display:none) ve gizli lazy resim hiç yüklenmez
+    b.innerHTML = `<img src="${src}" alt="${tanim.kisa || tanim.ad}: ${ad} çizimi" decoding="async"><span>${ad}</span>`;
+    const img = b.querySelector('img');
+    img.onload = () => { bolum.hidden = false; };
+    img.onerror = () => b.remove();
+    b.onclick = () => buyukAc(src, `${tanim.ad} · ${ad} (Anesthesia Briefs çizimi; yapay zekâ ile oluşturulmuştur, gerçek görüntü değildir)`);
+    liste.appendChild(b);
+  }
+  $('gorsel-not').textContent = GORSEL_NOT + (GORSEL_EK[tanim.id] ? ' ' + GORSEL_EK[tanim.id] : '');
+}
+function buyukAc(src, yazi) {
+  const k = $('buyuk');
+  k.querySelector('img').src = src;
+  k.querySelector('figcaption').textContent = yazi;
+  k.hidden = false;
+  k.querySelector('.buyuk-kapat').focus();
+}
+$('buyuk').addEventListener('click', (e) => { if (e.target.closest('img')) return; $('buyuk').hidden = true; });
+window.addEventListener('keydown', (e) => { if (e.key === 'Escape') $('buyuk').hidden = true; });
 
 function blokSecici() {
   const sec = $('blok-sec');

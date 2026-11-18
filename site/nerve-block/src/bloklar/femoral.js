@@ -188,5 +188,5 @@ function kur(anat, isaretler) {
     metin: `sinir derinliği ≈ ${fmt(sinirDerinlikCm)} cm, giriş–hedef ≈ ${fmt(derinlikCm)} cm, iğne–deri açısı ≈ ${Math.round(aciDer)}°`,
     kesitBulundu: { sinir: !!N, arter: !!Ak, ven: !!Vk, fasya: !!F },
   };
-  return { grup, objects, steps, etiketleriKur: etiketKurucu(steps), olcum, noktalar: { S, E, T, N, Ak, Vk, F, sias, pt, nabiz } };
+  return { grup, objects, steps, etiketleriKur: etiketKurucu(steps), olcum, P, noktalar: { S, E, T, N, Ak, Vk, F, sias, pt, nabiz } };
 }

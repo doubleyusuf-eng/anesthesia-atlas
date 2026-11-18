@@ -210,6 +210,9 @@ export class Arac {
     gobek.position.copy(bas.clone().sub(dir.clone().multiplyScalar(0.009)));
     gobek.quaternion.copy(saft.quaternion);
     igne.add(saft, gobek);
+    // İğne ilerleme animasyonu için: yön ve deri girişinden hedefe uzaklık
+    igne.userData.yon = dir.clone();
+    igne.userData.ilerleme = T.distanceTo(E);
     objects.igne = igne;
 
     const giris = new THREE.Mesh(new THREE.TorusGeometry(0.004, 0.0009, 8, 32), new THREE.MeshBasicMaterial({ color: 0xff4fd8, depthTest: false, transparent: true }));

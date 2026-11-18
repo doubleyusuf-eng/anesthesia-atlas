@@ -80,6 +80,38 @@ button.ar { width: 100%; background: var(--accent); border-color: var(--accent);
 .kucuk { font-size: 13px; line-height: 1.5; color: var(--muted); margin: 6px 0 0; }
 .aside-alt { padding: 2px 4px 0; }
 
+/* ---- sanal USG paneli: masaüstünde sahnenin sol altında, telefonda sahnenin altında ---- */
+.uygulama { position: relative; }
+.usg { position: absolute; left: 12px; bottom: 12px; z-index: 5; width: clamp(250px, 27vw, 400px);
+  background: #0b1016; color: #dfe7ef; border: 1px solid #263342; border-radius: 14px; padding: 8px 8px 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.28); }
+.usg.ikili { width: clamp(440px, 50vw, 760px); }
+.usg-ust { display: flex; align-items: center; gap: 6px; margin-bottom: 6px; }
+.usg-baslik { font: 700 12.5px/1 var(--f-display); letter-spacing: .02em; margin-right: auto; padding-left: 4px; }
+.usg button { font: 650 11.5px/1 var(--f-display); color: #c9d6e2; background: #16202b; border: 1px solid #2a394a;
+  border-radius: 8px; padding: 6px 8px; }
+.usg button:hover { border-color: #6fa4f5; }
+.usg-mod { display: flex; }
+.usg-mod button { border-radius: 0; margin-left: -1px; }
+.usg-mod button:first-child { border-radius: 8px 0 0 8px; margin-left: 0; }
+.usg-mod button:last-child { border-radius: 0 8px 8px 0; }
+.usg button[aria-pressed="true"] { background: #2156a8; border-color: #2f6fd0; color: #fff; }
+.usg-tuval canvas { display: block; width: 100%; height: auto; border-radius: 8px; }
+.usg-not { margin: 6px 2px 0; font: 500 10.5px/1.35 var(--f-display); color: #8ea0b3; }
+.usg-ac { position: absolute; left: 12px; bottom: 12px; z-index: 5; font: 650 13px/1 var(--f-display); color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 10px 14px; box-shadow: 0 4px 14px rgba(0,0,0,.15); }
+
+/* ---- çizimler ve büyük görünüm ---- */
+.gorsel-liste { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.gorsel { display: flex; flex-direction: column; gap: 5px; padding: 5px; text-align: left; background: var(--paper); }
+.gorsel img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 7px; background: #0b1016; }
+.gorsel span { font: 650 12.5px/1.2 var(--f-display); color: var(--muted); }
+.buyuk { position: fixed; inset: 0; z-index: 60; display: grid; place-items: center; padding: 20px; background: rgba(6, 10, 14, .82); }
+.buyuk figure { margin: 0; max-width: min(1000px, 96vw); max-height: 92vh; display: flex; flex-direction: column; gap: 8px; }
+.buyuk img { max-width: 100%; max-height: calc(92vh - 50px); object-fit: contain; border-radius: 10px; background: #fff; }
+.buyuk figcaption { color: #dfe7ef; font: 500 13px/1.45 var(--f-display); }
+.buyuk-kapat { position: absolute; top: 14px; right: 14px; background: #16202b; color: #fff; border-color: #2a394a; }
+
 /* ---- alt bilgi (ailenin düzeni) ---- */
 footer { border-top: 1px solid var(--line); padding-block: 28px 40px; font-size: 14px; color: var(--muted); }
 footer .wrap { display: flex; flex-direction: column; gap: 6px; }
@@ -105,6 +137,9 @@ footer .wrap { display: flex; flex-direction: column; gap: 6px; }
 /* ---- telefon ve dikey tablet: sahne üstte, panel altta ---- */
 @media (max-width: 860px) {
   .uygulama { flex-direction: column; height: auto; min-height: 0; }
+  .usg, .usg.ikili { position: static; width: auto; margin: 8px 10px 0; order: 1; }
+  .usg-ac { position: static; order: 1; margin: 8px 10px 0; align-self: flex-start; }
+  aside { order: 2; }
   #sahne { flex: none; height: 62vh; height: 62svh; min-height: 340px; }
   aside { width: 100%; border-left: 0; border-top: 1px solid var(--line); padding: 14px 16px 18px; overflow: visible; }
 }

@@ -64,6 +64,12 @@
       <div id="katmanlar"></div>
     </section>
 
+    <section id="gorseller" hidden>
+      <h3>Çizimler · Anesthesia Briefs</h3>
+      <div class="gorsel-liste"></div>
+      <p class="kucuk" id="gorsel-not"></p>
+    </section>
+
     <section id="secili" hidden>
       <h3>Seçilen yapı</h3>
       <p id="secili-ad" class="kalin"></p>
@@ -84,6 +90,11 @@
   </aside>
 </main>
 
+<div id="buyuk" class="buyuk" hidden role="dialog" aria-modal="true" aria-label="Çizim">
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="buyuk-kapat" aria-label="Kapat">✕</button>
+</div>
+
 <footer>
   <div class="wrap foot-brand">
     <div class="foot-name">
@@ -101,6 +112,7 @@
   <div class="wrap foot-txt">
     <span>Atlas eğitim amaçlıdır; klinik değerlendirmenin, kurum protokollerinin ve uygulamalı eğitimin yerini tutmaz. Derinlik ve açılar tek bir model bedende ölçülmüştür.</span>
     <span>3B anatomi: <a href="https://github.com/LluisV/Z-Anatomy" target="_blank" rel="noopener">Z-Anatomy</a> (Lluís Vinent), <a href="https://dbarchive.biosciencedbc.jp/en/bodyparts3d/" target="_blank" rel="noopener">BodyParts3D</a> (DBCLS) tabanlı. Bu sitedeki 3B anatomi modelleri (<code>models/</code>) bu verilerden uyarlanmıştır ve <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.tr" target="_blank" rel="noopener">CC BY-SA 4.0</a> lisanslıdır. Kaynakta olmayan birkaç yapı türetilmiş ya da şematik çizilmiştir ve öyle etiketlenir.</span>
+    <span>Sanal USG görüntüsü 3B modelin prob düzlemindeki kesitinden tarayıcıda üretilir; gerçek ultrason görüntüsü değildir. Yan paneldeki sono-anatomi ve anatomi çizimleri Anesthesia Briefs uygulamasındandır ve yapay zekâ ile oluşturulmuş açıklayıcı eğitim görselleridir.</span>
     <span>Kardeş atlaslar: <a href="https://atlas.anesthesiabriefs.com/anesthesia-machine/">Anestezi Makinesi Atlası</a> · <a href="https://atlas.anesthesiabriefs.com/advanced-monitoring/">İleri Monitörizasyon Atlası</a> · <a href="https://atlas.anesthesiabriefs.com/mechanical-ventilation/">Mekanik Ventilasyon Atlası</a> · <a href="https://atlas.anesthesiabriefs.com/blood-gas/">Kan Gazı Atlası</a></span>
     <span>İletişim: <a href="mailto:support@anesthesiabriefs.com">support@anesthesiabriefs.com</a></span>
     <span>© 2026 Anesthesia Briefs ve Anestezi Rehberi. Uygulama ve metinler için tüm hakları saklıdır; 3B anatomi modelleri CC BY-SA 4.0.</span>

@@ -154,6 +154,25 @@ export async function setupXR(app, dugme, durum) {
   rig.add(panel.mesh);
   app.xrPanel = panel;
   app.degisti.push(() => { if (panel.mesh.visible) panel.ciz(); });
+
+  // ---- Sanal USG ekranı: AR'da panelin üstünde, USG tuvali doku olarak ----
+  const usgDoku = new THREE.CanvasTexture(app.usg.tuval);
+  usgDoku.colorSpace = THREE.SRGBColorSpace;
+  const usgEkran = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ map: usgDoku, transparent: true, depthWrite: false }));
+  usgEkran.renderOrder = 25;
+  usgEkran.visible = false;
+  usgEkran.rotation.y = -0.38;
+  rig.add(usgEkran);
+  let usgBoyut = '';
+  app.usg.cizildi.push(() => {
+    if (!renderer.xr.isPresenting) return;
+    const { width: w, height: h } = app.usg.tuval;
+    if (usgBoyut !== w + 'x' + h) { usgBoyut = w + 'x' + h; usgDoku.dispose(); }
+    usgDoku.needsUpdate = true;
+    const yuk = 0.2;
+    usgEkran.scale.set(yuk * w / h, yuk, 1);
+    usgEkran.position.set(panel.mesh.position.x, panel.mesh.position.y + 0.2 + yuk / 2, panel.mesh.position.z);
+  });
   if (new URLSearchParams(location.search).has('paneltest')) {
     // Masaüstünde panel çizimini ve düğmeleri sınamak için
     panel.mesh.visible = true;
@@ -340,6 +359,7 @@ export async function setupXR(app, dugme, durum) {
   }
 
   function guncelle() {
+    usgEkran.visible = renderer.xr.isPresenting && app.usg.aktif && usgBoyut !== '';
     if (!renderer.xr.isPresenting) return;
     if (yerlesBekle > 0 && --yerlesBekle === 0) yerlestir();
 
