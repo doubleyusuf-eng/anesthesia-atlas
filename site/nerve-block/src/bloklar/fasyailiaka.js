@@ -85,15 +85,16 @@ function kur(anat, isaretler) {
     return sk ? sk.p.addScaledVector(b, Math.max(0.008, fasyaDerinlikCm / 100 * 0.45)) : p;
   })();
 
-  // ---- Nesneler; prob işareti kraniyale (sagital kesit geleneği): işaret küresini -u ucuna al ----
+  // ---- Nesneler; prob işareti kraniyale (sagital kesit geleneği): işaret −u ucunda ----
   const { grup, objects } = a.nesneler(P, {
     E, T,
     kesitDerinlik: 0.07,
     la: { merkez: T.clone().addScaledVector(u, -0.009).addScaledVector(b, 0.001), boyut: new THREE.Vector3(0.024, 0.0032, 0.016) },
     isaretler: [[sias, 0xffe14d], [pt, 0xffe14d], [S, 0x35e07a]],
   });
-  const isaretKure = objects.prob.children[4];
-  if (isaretKure) isaretKure.position.x = -0.0215;
+  // L7'nin işaret üçgenini −u (kraniyal) yanına çevir; sanal USG görüntüsü de buna göre aynalanır (sol = işaret)
+  objects.prob.userData.isaretTers = true;
+  objects.prob.children[0].rotation.y = 0;
 
   // ---- Etiket noktaları ----
   const ligOrta = sias.clone().lerp(pt, 0.35).add(new THREE.Vector3(0, -0.006, 0.004));

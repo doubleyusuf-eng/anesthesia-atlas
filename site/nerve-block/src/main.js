@@ -5,6 +5,7 @@ import { loadAnatomy, LAYERS, TOGGLES, setLayerOpacity, setHighlight } from './a
 import { BLOKLAR } from './bloklar/index.js';
 import { setupXR } from './xr.js';
 import { SanalUSG } from './usg.js';
+import { ProbSurucu } from './prob.js';
 
 const $ = (id) => document.getElementById(id);
 const host = $('sahne');
@@ -48,6 +49,7 @@ const app = {
 };
 window.__app = app;
 app.usg = new SanalUSG(app);
+app.prob = new ProbSurucu(app); // kullanıcı probu deride gezdirir
 
 function yayinla() { for (const f of app.degisti) f(); }
 
@@ -61,12 +63,14 @@ function adimUygula(i, kamera = true) {
   app.secili = null;
   setHighlight(anat, st.vurgu);
   for (const [k, o] of Object.entries(blok.objects)) o.visible = st.goster.includes(k);
-  // Yakın adımlarda prob yarı saydam olabilir (sapı derindeki yapıları kapatmasın)
-  const probOp = st.probSaydam ? 0.3 : 1;
+  // Yakın adımlarda prob yarı saydam olabilir (sapı derindeki yapıları kapatmasın). Clarius L7 gerçek boyutunda
+  // (147 mm) olduğundan masaüstünde sapı hep yarı saydam; baş ve lens tam görünür. Gözlükte gerçek nesne gibi opak.
+  const xrde = renderer.xr.isPresenting;
   blok.objects.prob.traverse((m) => {
     if (!m.material) return;
+    const probOp = st.probSaydam ? 0.3 : (m.userData.sap && !xrde ? 0.35 : 1);
     if (m.material.transparent !== probOp < 1) m.material.needsUpdate = true;
-    m.material.transparent = probOp < 1;
+    m.material.transparent = probOp < 1 || !!m.material.alphaTest;
     m.material.opacity = probOp;
     m.material.depthWrite = probOp >= 1;
   });
@@ -76,6 +80,7 @@ function adimUygula(i, kamera = true) {
   merkez.add(app.etiketGrup);
   if (kamera && !renderer.xr.isPresenting) kameraUc(st.kamera);
   app.igneBas = performance.now();
+  app.prob.sifirla(); // her adım önerilen prob konumuyla başlar
   app.usg.gorunurluk();
   arayuz();
   yayinla();
@@ -345,12 +350,14 @@ const GORSEL_EK = {
   fasyailiaka: 'Not: uygulamadaki çizim infrainguinal yaklaşımı gösterir; bu atlastaki blok suprainguinaldir.',
 };
 let gorselSira = 0;
+const GORSEL_YOK = new Set(['subgluteal']); // uygulamada çizimi olmayan bloklar (boşuna istek atılmasın)
 function gorselleriGoster(tanim) {
   const bolum = $('gorseller');
   const liste = bolum.querySelector('.gorsel-liste');
   const sira = ++gorselSira; // blok değişirse eski yüklemeler bu bölüme dokunmasın
   liste.innerHTML = '';
   bolum.hidden = true;
+  if (GORSEL_YOK.has(tanim.id)) return;
   $('gorsel-not').textContent = GORSEL_NOT + (GORSEL_EK[tanim.id] ? ' ' + GORSEL_EK[tanim.id] : '');
   const turler = [['sono', 'Sono-anatomi'], ['anatomi', 'Anatomi']];
   for (const [dosya, ad] of turler) {

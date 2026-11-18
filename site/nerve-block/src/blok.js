@@ -3,6 +3,7 @@
 import * as THREE from 'three';
 import { partVertices } from './anatomy.js';
 import { makeLabel } from './labels.js';
+import { clariusL7 } from './clarius.js';
 
 export const V = (a) => new THREE.Vector3(a[0], a[1], a[2]);
 export const fmt = (x) => x.toFixed(1).replace('.', ',');
@@ -168,22 +169,11 @@ export class Arac {
     const objects = {};
     const basis = new THREE.Matrix4().makeBasis(u, n, mz);
 
+    // Prob: Clarius L7 HD3 (38 mm lineer); yeşil üçgen = prob işareti (+u)
     const prob = new THREE.Group();
     prob.applyMatrix4(basis);
     prob.position.copy(S);
-    const gri = new THREE.MeshStandardMaterial({ color: 0xd9dde3, roughness: 0.4 });
-    const koyu = new THREE.MeshStandardMaterial({ color: 0x2b2f36, roughness: 0.6 });
-    const kafa = new THREE.Mesh(new THREE.BoxGeometry(0.042, 0.014, 0.012), gri);
-    kafa.position.y = 0.007;
-    const lens = new THREE.Mesh(new THREE.BoxGeometry(0.038, 0.0015, 0.0095), koyu);
-    lens.position.y = 0.0008;
-    const boyun = new THREE.Mesh(new THREE.BoxGeometry(0.03, 0.02, 0.011), gri);
-    boyun.position.y = 0.024;
-    const sap = new THREE.Mesh(new THREE.CylinderGeometry(0.0095, 0.011, 0.07, 24), gri);
-    sap.position.y = 0.068;
-    const isaret = new THREE.Mesh(new THREE.SphereGeometry(0.0022, 16, 10), new THREE.MeshBasicMaterial({ color: 0x35e07a }));
-    isaret.position.set(0.0215, 0.011, 0);
-    prob.add(kafa, lens, boyun, sap, isaret);
+    prob.add(clariusL7());
     objects.prob = prob;
 
     const kesitGeo = new THREE.PlaneGeometry(kesitGenislik, kesitDerinlik);

@@ -213,7 +213,7 @@ export async function setupXR(app, dugme, durum) {
     return { guncelle() {} };
   }
   dugme.disabled = false;
-  durum.textContent = 'Düğmeye basın; model önünüzde gerçek boyutta belirir. Tetik ya da çimdik: seç/tut, iki elle: büyüt-küçült.';
+  durum.textContent = 'Düğmeye basın; model önünüzde gerçek boyutta belirir. Tetik ya da çimdik: seç/tut (probu tutup deriye koyabilirsiniz), iki elle: büyüt-küçült.';
 
 
   // ---- Kumandalar / eller ----
@@ -274,6 +274,7 @@ export async function setupXR(app, dugme, durum) {
     const hm = rc.intersectObjects([app.anat.root, app.blok.grup], true).find((h) => gorunur(h.object))
       || kutuIsabet();
     if (hp && (!hm || hp.distance <= hm.distance)) { panel.tikla(hp.uv); return; }
+    if (app.prob.xrTut(c, rc)) return; // ışın probu ya da kesiti vuruyorsa probu tut
     if (!hm) return;
     tutan.set(c, tutmaOfseti(c));
     if (tutan.size === 2) {
@@ -282,6 +283,7 @@ export async function setupXR(app, dugme, durum) {
     }
   }
   function secBit(c) {
+    if (app.prob.xrBirak(c)) return;
     if (!tutan.delete(c)) return;
     ikiEl = null;
     for (const k of tutan.keys()) tutan.set(k, tutmaOfseti(k));
@@ -362,6 +364,7 @@ export async function setupXR(app, dugme, durum) {
     usgEkran.visible = renderer.xr.isPresenting && app.usg.aktif && usgBoyut !== '';
     if (!renderer.xr.isPresenting) return;
     if (yerlesBekle > 0 && --yerlesBekle === 0) yerlestir();
+    app.prob.xrGuncelle();
 
     // Tutma ve iki elle ölçek
     if (tutan.size) {
