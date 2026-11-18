@@ -344,25 +344,35 @@ const GORSEL_NOT = 'Anesthesia Briefs uygulamasından; yapay zekâ ile oluşturu
 const GORSEL_EK = {
   fasyailiaka: 'Not: uygulamadaki çizim infrainguinal yaklaşımı gösterir; bu atlastaki blok suprainguinaldir.',
 };
-async function gorselleriGoster(tanim) {
+let gorselSira = 0;
+function gorselleriGoster(tanim) {
   const bolum = $('gorseller');
   const liste = bolum.querySelector('.gorsel-liste');
+  const sira = ++gorselSira; // blok değişirse eski yüklemeler bu bölüme dokunmasın
   liste.innerHTML = '';
   bolum.hidden = true;
+  $('gorsel-not').textContent = GORSEL_NOT + (GORSEL_EK[tanim.id] ? ' ' + GORSEL_EK[tanim.id] : '');
   const turler = [['sono', 'Sono-anatomi'], ['anatomi', 'Anatomi']];
   for (const [dosya, ad] of turler) {
     const src = `gorseller/${tanim.id}/${dosya}.webp`;
     const b = document.createElement('button');
     b.className = 'gorsel';
-    // loading="lazy" olmaz: bölüm resim yüklenene dek gizli (display:none) ve gizli lazy resim hiç yüklenmez
-    b.innerHTML = `<img src="${src}" alt="${tanim.kisa || tanim.ad}: ${ad} çizimi" decoding="async"><span>${ad}</span>`;
-    const img = b.querySelector('img');
-    img.onload = () => { bolum.hidden = false; };
-    img.onerror = () => b.remove();
+    b.hidden = true;
+    b.innerHTML = `<img alt="${tanim.kisa || tanim.ad}: ${ad} çizimi" decoding="async"><span>${ad}</span>`;
     b.onclick = () => buyukAc(src, `${tanim.ad} · ${ad} (Anesthesia Briefs çizimi; yapay zekâ ile oluşturulmuştur, gerçek görüntü değildir)`);
     liste.appendChild(b);
+    // Ayrı ön yükleme: gizli (display:none) bölümdeki <img> en düşük öncelikte kalır ve
+    // sürekli çizim döngüsü varken yavaş bağlantıda hiç inmeyebilir (canlı sitede görüldü).
+    const on = new Image();
+    on.onload = () => {
+      if (sira !== gorselSira) return;
+      b.querySelector('img').src = src;
+      b.hidden = false;
+      bolum.hidden = false;
+    };
+    on.onerror = () => { if (sira === gorselSira) b.remove(); };
+    on.src = src;
   }
-  $('gorsel-not').textContent = GORSEL_NOT + (GORSEL_EK[tanim.id] ? ' ' + GORSEL_EK[tanim.id] : '');
 }
 function buyukAc(src, yazi) {
   const k = $('buyuk');
