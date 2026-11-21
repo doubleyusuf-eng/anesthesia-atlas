@@ -17,13 +17,15 @@ const ATLASES = [
   { id: 'blood-gas', status: 'live', svg: 'gas', tone: 'wine' },
   // Turkish only for now: live in TR; the EN/ES cards say "coming soon" until the atlas is translated
   { id: 'nerve-block', status: 'live', langs: ['tr'], img: 'img/nerve-block.jpg', w: 800, h: 800, tone: 'violet' },
+  // Turkish only for now, like the Nerve Block Atlas
+  { id: 'edaic', status: 'live', langs: ['tr'], svg: 'exam', tone: 'gold' },
 ];
 
 const T = {
   tr: {
     locale: 'tr_TR', dir: '', name: 'Anestezi Atlası',
     title: 'Anestezi Atlası · etkileşimli eğitim atlasları',
-    desc: 'Anestezi makinesi, ileri monitörizasyon, mekanik ventilasyon, kan gazı ve sinir blokları için ücretsiz, etkileşimli eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
+    desc: 'Anestezi makinesi, ileri monitörizasyon, mekanik ventilasyon, kan gazı, sinir blokları ve EDAIC sınav hazırlığı için ücretsiz, etkileşimli eğitim atlasları. Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanır.',
     back: 'Anesthesia Briefs', backAria: "Anesthesia Briefs'e dön", langAria: 'Dil · Language · Idioma',
     h1: 'Anestezi Atlası',
     by: 'Hazırlayanlar',
@@ -60,6 +62,12 @@ const T = {
         facts: [['18', 'blok'], ['8', 'bölge modeli'], ['6', 'adım'], ['AR', 'Quest 3']],
         alt: 'Boyun ve omzun 3B anatomisi: brakiyal pleksus, damarlar, ultrason probu ve interskalen bloğa ilerleyen iğne',
       },
+      'edaic': {
+        name: 'EDAIC Sınav Atlası',
+        text: 'Avrupa Anesteziyoloji ve Yoğun Bakım Diploması sınavına hazırlık: Part I ve Part II nasıl yapılır ve puanlanır, ESAIC’in resmi hazırlık rehberine göre nasıl çalışılır. Ders bölümleri fizyolojiyle başlıyor.',
+        facts: [['Part I', 'yazılı'], ['Part II', 'sözlü'], ['TR', 'Türkçe sınav'], ['Fizyoloji', 'ilk ders']],
+        alt: 'Sınav ekranı: Part I optik cevap formu ve iki yazılı kâğıt ile dört sözlü sınavın özeti',
+      },
     },
     credit: 'Anesthesia Briefs ve Anestezi Rehberi tarafından hazırlanmıştır.',
     note: 'Atlaslar eğitim amaçlıdır. Cihaz modelleri belirli bir markayı değil, genel cihazları temsil eder; anatomi modelleri tek bir model bedene dayanır; sayısal değerler yaklaşıktır. Klinik değerlendirmenin, cihaz kılavuzunun veya kurum protokollerinin yerini tutmaz.',
@@ -70,7 +78,7 @@ const T = {
   en: {
     locale: 'en_US', dir: 'en/', name: 'Anesthesia Atlas',
     title: 'Anesthesia Atlas · interactive teaching atlases',
-    desc: 'Free, interactive teaching atlases for the anaesthesia machine, advanced monitoring, mechanical ventilation, blood gases and nerve blocks. By Anesthesia Briefs and Anestezi Rehberi.',
+    desc: 'Free, interactive teaching atlases for the anaesthesia machine, advanced monitoring, mechanical ventilation, blood gases, nerve blocks and EDAIC exam preparation. By Anesthesia Briefs and Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Back to Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Anesthesia Atlas',
     by: 'Made by',
@@ -107,6 +115,12 @@ const T = {
         facts: [['18', 'blocks'], ['8', 'body regions'], ['6', 'steps'], ['AR', 'Quest 3']],
         alt: '3D anatomy of the neck and shoulder: brachial plexus, vessels, ultrasound probe and a needle advancing for an interscalene block',
       },
+      'edaic': {
+        name: 'EDAIC Exam Atlas',
+        text: 'Preparing for the European Diploma in Anaesthesiology and Intensive Care: how Part I and Part II work and are marked, and how to prepare following the official ESAIC guide. Lessons start with physiology. English edition in preparation.',
+        facts: [['Part I', 'written'], ['Part II', 'oral'], ['MTF', '2 × 60'], ['SOE', '4 × 25 min']],
+        alt: 'Exam screen: a Part I answer sheet and a summary of the two written papers and four structured oral examinations',
+      },
     },
     credit: 'by Anesthesia Briefs and Anestezi Rehberi',
     note: 'The atlases are for education. Equipment models represent generic devices rather than a specific brand, anatomical models come from a single model body, and numerical values are approximate. They do not replace clinical judgement, the device manual or local protocols.',
@@ -117,7 +131,7 @@ const T = {
   es: {
     locale: 'es_ES', dir: 'es/', name: 'Atlas de Anestesia',
     title: 'Atlas de Anestesia · atlas docentes interactivos',
-    desc: 'Atlas docentes gratuitos e interactivos sobre la máquina de anestesia, la monitorización avanzada, la ventilación mecánica, la gasometría y los bloqueos nerviosos. Por Anesthesia Briefs y Anestezi Rehberi.',
+    desc: 'Atlas docentes gratuitos e interactivos sobre la máquina de anestesia, la monitorización avanzada, la ventilación mecánica, la gasometría, los bloqueos nerviosos y la preparación del examen EDAIC. Por Anesthesia Briefs y Anestezi Rehberi.',
     back: 'Anesthesia Briefs', backAria: 'Volver a Anesthesia Briefs', langAria: 'Dil · Language · Idioma',
     h1: 'Atlas de Anestesia',
     by: 'Elaborado por',
@@ -153,6 +167,12 @@ const T = {
         text: '18 bloqueos ecoguiados de nervio periférico y de plano fascial sobre datos anatómicos reales: anatomía relevante, sonoanatomía, colocación de la sonda, trayecto de la aguja y difusión del anestésico local, también en realidad mixta con Meta Quest 3. Edición en español en preparación.',
         facts: [['18', 'bloqueos'], ['8', 'regiones'], ['6', 'pasos'], ['RA', 'Quest 3']],
         alt: 'Anatomía 3D del cuello y el hombro: plexo braquial, vasos, sonda ecográfica y una aguja que avanza para un bloqueo interescalénico',
+      },
+      'edaic': {
+        name: 'Atlas del Examen EDAIC',
+        text: 'Preparación para el Diploma Europeo de Anestesiología y Cuidados Intensivos: cómo son y cómo se puntúan la Parte I y la Parte II, y cómo prepararse según la guía oficial de la ESAIC. Las lecciones empiezan por la fisiología. Edición en español en preparación.',
+        facts: [['Parte I', 'escrita'], ['Parte II', 'oral'], ['MTF', '2 × 60'], ['SOE', '4 × 25 min']],
+        alt: 'Pantalla de examen: una hoja de respuestas de la Parte I y el resumen de los dos exámenes escritos y los cuatro exámenes orales',
       },
     },
     credit: 'por Anesthesia Briefs y Anestezi Rehberi',
@@ -243,6 +263,35 @@ ${num(70, 'pH', '7.19', '', 'g')}${num(140, 'PCO₂', '58', 'mmHg', 'w')}${num(2
 }
 const GAS = gasScreen();
 
+/* An exam screen (EDAIC banner): a Part I optical answer sheet (five T/F pairs per question)
+   beside the shape of the exam: two 60-question papers, four 25-minute structured orals. */
+function examScreen() {
+  const rows = 8, x0 = 62, colW = 76, y0 = 82, rowH = 42;
+  // a fixed, made-up answer pattern (1 = T filled, 0 = F filled)
+  const PAT = ['10110', '01101', '11001', '00111', '10010', '11100', '01011', '10101'];
+  let g = '';
+  for (let c = 0; c < 5; c++) g += `<text class="ex-col" x="${x0 + c * colW + 12}" y="62" text-anchor="middle">${'ABCDE'[c]}</text>`;
+  for (let r = 0; r < rows; r++) {
+    const y = y0 + r * rowH;
+    g += `<text class="ex-qn" x="26" y="${y + 5}">${r + 1}</text>`;
+    for (let c = 0; c < 5; c++) {
+      const cx = x0 + c * colW, t = PAT[r][c] === '1', done = r < 6;
+      g += `<circle class="ex-b${done && t ? ' on' : ''}" cx="${cx}" cy="${y}" r="9"/><circle class="ex-b${done && !t ? ' on' : ''}" cx="${cx + 24}" cy="${y}" r="9"/>`;
+    }
+  }
+  const num = (y, k, v, u, cls) => `<text class="vs-k" x="472" y="${y}">${k}</text><text class="vs-v ${cls}" x="472" y="${y + 30}">${v}</text><text class="vs-u" x="582" y="${y}" text-anchor="end">${u}</text>`;
+  return `<svg class="vent-screen exam-screen" viewBox="0 0 600 450" preserveAspectRatio="xMidYMid meet" role="img" aria-label="{{ALT}}">
+<rect class="vs-bg" width="600" height="450"/>
+<rect class="ex-mode" x="18" y="14" width="66" height="24" rx="5"/><text class="vs-mode-t" x="51" y="31" text-anchor="middle">EDAIC</text>
+<text class="vs-head" x="96" y="31">Part I · Part II</text>
+<rect class="vs-strip" x="12" y="44" width="440" height="380" rx="4"/>
+${g}
+<line class="vs-div" x1="462" x2="462" y1="52" y2="424"/>
+${num(70, 'Paper A', '60', 'MTF', 'ex-a')}${num(140, 'Paper B', '60', 'MTF', 'ex-c')}${num(210, 'Part II', '4', 'SOE', 'ex-g')}${num(280, 'SOE', '25′', '×4', 'ex-g')}${num(350, 'T/F', '300', '/paper', 'w')}
+</svg>`;
+}
+const EXAM = examScreen();
+
 function page(lang) {
   const s = T[lang];
   const up = lang === 'tr' ? '' : '../';
@@ -259,7 +308,7 @@ function page(lang) {
     const live = a.status === 'live' && (!a.langs || a.langs.includes(lang));
     const href = up + a.id + '/' + s.dir;
     const visual = a.svg
-      ? (a.svg === 'gas' ? GAS : VENT).replace('{{ALT}}', esc(c.alt))
+      ? (a.svg === 'gas' ? GAS : a.svg === 'exam' ? EXAM : VENT).replace('{{ALT}}', esc(c.alt))
       : `<img src="${up}${a.img}" alt="${esc(c.alt)}" width="${a.w}" height="${a.h}"${i ? ' fetchpriority="low"' : ' fetchpriority="high"'} decoding="async">`;
     const facts = c.facts.map(([n, l]) => `<li><b>${esc(n)}</b> ${esc(l)}</li>`).join('');
     const title = live ? `<a class="card-link" href="${href}">${esc(c.name)}</a>` : esc(c.name);

@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 const SITE = path.join(__dirname, '..', 'site');
-const ATLAS_DIRS = ['anesthesia-machine', 'advanced-monitoring', 'mechanical-ventilation', 'blood-gas', 'nerve-block'];
+const ATLAS_DIRS = ['anesthesia-machine', 'advanced-monitoring', 'mechanical-ventilation', 'blood-gas', 'nerve-block', 'edaic'];
 const pages = [];
 (function walk(dir) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
