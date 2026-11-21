@@ -9,12 +9,12 @@ window.SAYFALAR = {};
 
 /* ================= GİRİŞ ================= */
 SAYFALAR['giris'] = {
-  baslik: 'EDAIC Sınav Atlası',
+  baslik: 'EDAIC’e Hazırlık Atlası',
   html: `
 <section class="wrap hero">
   <div>
     <p class="eyebrow" lang="en">European Diploma in Anaesthesiology and Intensive Care</p>
-    <h1>EDAIC Sınav Atlası</h1>
+    <h1>EDAIC’e Hazırlık Atlası</h1>
     <p class="lede">EDAIC, uzman anesteziyoloğun bilmesi gereken temel bilimleri ve klinik konuları kapsayan, çok dilli, iki aşamalı bir eğitim sonu sınavıdır. Part I yazılı, Part II sözlüdür. [[S6 s. 3]] Bu atlas iki sınavı tanıtır, ESAIC'in resmi hazırlık rehberine göre nasıl çalışılacağını anlatır ve sınav konularını animasyonlu derslerle işler.</p>
     <ul class="facts">
       <li><b>Part I</b> · 2 × 60 MTF</li>
@@ -563,7 +563,7 @@ SAYFALAR['dersler'] = {
   html: `
 <section class="wrap blk">
   <div class="modul">
-    <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Hazırlanıyor</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
+    <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · 1/89 bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
     <div class="card planned"><span class="no">02 · Planlanıyor</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezi ve yoğun bakım ilaçları.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
     <div class="card planned"><span class="no">03 · Planlanıyor</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, makine ve ventilatör; elektrik güvenliği.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
     <div class="card planned"><span class="no">04 · Planlanıyor</span><h3>Anatomi</h3><p class="small muted">Baş, boyun, toraks, omurga; periferik sinirler ve damarlar; yüzey işaretleri.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></div>
@@ -579,7 +579,7 @@ SAYFALAR['dersler'] = {
 
 SAYFALAR['dersler/fizyoloji'] = {
   grup: 'dersler', eyebrow: 'Dersler · 01', baslik: 'Fizyoloji',
-  lede: 'Fizyoloji Part I\'de Paper A\'nın, Part II\'de SOE 1\'in konusudur. SOE 1, 10 dakika önce verilen bir fizyoloji sorusuyla açılır; rehbere göre kardiyovasküler ve solunum fizyolojisi ayrıntılı sorulur. [[S6 s. 7]] [[S6 s. 9]]',
+  lede: 'Fizyoloji Part I\'de Paper A\'nın, Part II\'de SOE 1\'in konusudur. SOE 1, 10 dakika önce verilen bir fizyoloji sorusuyla açılır; rehbere göre kardiyovasküler ve solunum fizyolojisi ayrıntılı sorulur. [[S6 s. 7]] [[S6 s. 9]] Dersler Chambers, Huang ve Matthews\'in Basic Physiology for Anaesthetists kitabının 89 bölümünü sırayla izler [[K1]]; kitapta olmayan konular Power ve Kam\'dan ek derslerle tamamlanır [[K2]].',
   html: `
 <section class="wrap blk">
   <h2>Kapsam (rehbere göre)</h2>
@@ -613,14 +613,15 @@ SAYFALAR['dersler/fizyoloji'] = {
 
 <section class="wrap blk">
   <h2>Bölümler</h2>
-  <div class="empty" style="margin-top:14px"><b>İlk bölümler hazırlanıyor</b>Fizyoloji modülü kaynak kitabın bölüm sırasını izleyecek; her bölüm yayımlandıkça burada listelenecek.</div>
+  <p class="intro">Hazır bölümler bağlantılıdır; tamamladıklarınız bu tarayıcıda işaretli kalır. Ders metinleri ve çizimler bu atlas için yazılmıştır; kitaplardan kopyalanmaz.</p>
+  <div class="viz"><div data-viz="icindekiler"></div></div>
 </section>`,
 };
 
 /* ================= KAYNAKLAR ================= */
 SAYFALAR['kaynaklar'] = {
-  grup: 'kaynaklar', eyebrow: 'Kaynaklar', baslik: 'Resmi belgeler',
-  lede: 'Atlastaki sınav bilgilerinin dayandığı ESAIC belgeleri. Metindeki kaynak işaretlerine (S1, S6 s. 7 gibi) basınca ilgili belge ve sayfa görünür.',
+  grup: 'kaynaklar', eyebrow: 'Kaynaklar', baslik: 'Kaynaklar',
+  lede: 'S: sınav bilgilerinin dayandığı resmi ESAIC belgeleri. K: fizyoloji derslerinin kaynak kitapları. Metindeki kaynak işaretlerine (S6 · 7, K1 · 3 gibi) basınca ilgili belge ve sayfa görünür.',
   html: `
 <section class="wrap blk">
   <div data-viz="kaynaklar"></div>

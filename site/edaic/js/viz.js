@@ -1,4 +1,4 @@
-/* EDAIC Sınav Atlası · etkileşimli bileşenler.
+/* EDAIC’e Hazırlık Atlası · etkileşimli bileşenler.
    Her bileşen VIZ.ad(el) ile kurulur ve bir temizleme işlevi döndürür (sayfa değişince animasyonlar durur).
    Metinlerdeki [[S6 s. 7]] işaretleri REF() ile kaynak düğmesine çevrilir. */
 (function () {
@@ -8,7 +8,7 @@
   const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
   /* [[S6 s. 7]] → kaynak düğmesi */
-  const REF = (window.REF = (html) => String(html).replace(/\[\[(S\d+)(?:\s+([^\]]+))?\]\]/g, (m, k, s) => {
+  const REF = (window.REF = (html) => String(html).replace(/\[\[([SK]\d+)(?:\s+([^\]]+))?\]\]/g, (m, k, s) => {
     const lbl = k + (s ? ' · ' + s.replace(/^s\.\s*/, '') : '');
     return `<button type="button" class="ref" data-k="${k}"${s ? ` data-s="${esc(s)}"` : ''} aria-label="Kaynak ${esc(lbl)}">${esc(lbl)}</button>`;
   }));
@@ -103,16 +103,16 @@
 
   /* ---------- Part I: MTF örneği + optik form ---------- */
   VIZ.mtf = (el) => {
-    const Q = VERI.mtf, L = 'ABCDE';
+    const Q = (el.dataset.q && VERI.sorular && VERI.sorular[el.dataset.q]) || VERI.mtf, L = 'ABCDE', omr = !el.dataset.q;
     let ans = [null, null, null, null, null], scored = false, timers = [];
     el.innerHTML = `<div class="mtf">
-      <div class="mtf-meta">ÖRNEK · bu atlas için yazıldı, resmi soru değildir · ${esc(Q.kagit)}</div>
-      <div class="mtf-stem">1. ${esc(Q.kok)}</div>
-      ${Q.onermeler.map((o, i) => `<div class="mtf-row" data-i="${i}"><span class="let">${L[i]}</span><span class="txt">${esc(o.t)}<span class="res"></span></span><span class="tf" role="group" aria-label="${L[i]} önermesi"><button type="button" data-v="1" aria-pressed="false" title="Doğru">D</button><button type="button" data-v="0" aria-pressed="false" title="Yanlış">Y</button></span><span class="why">${esc(o.n)}</span></div>`).join('')}
-      <div class="btn-row" style="margin-top:14px"><button type="button" class="btn" data-a="puan">Puanla</button><button type="button" class="btn ghost" data-a="aktar">Cevap kâğıdına aktar</button><button type="button" class="btn ghost" data-a="sifir">Sıfırla</button></div>
+      <div class="mtf-meta">ÖRNEK · bu atlas için yazıldı, resmi soru değildir · ${esc(Q.kagit)}${Q.kaynak ? ' · doğruluk: ' + REF(Q.kaynak) : ''}</div>
+      <div class="mtf-stem">${Q.no || 1}. ${esc(Q.kok)}</div>
+      ${Q.onermeler.map((o, i) => `<div class="mtf-row" data-i="${i}"><span class="let">${L[i]}</span><span class="txt">${esc(o.t)}<span class="res"></span></span><span class="tf" role="group" aria-label="${L[i]} önermesi"><button type="button" data-v="1" aria-pressed="false" title="Doğru">D</button><button type="button" data-v="0" aria-pressed="false" title="Yanlış">Y</button></span><span class="why">${REF(esc(o.n))}</span></div>`).join('')}
+      <div class="btn-row" style="margin-top:14px"><button type="button" class="btn" data-a="puan">Puanla</button>${omr ? '<button type="button" class="btn ghost" data-a="aktar">Cevap kâğıdına aktar</button>' : ''}<button type="button" class="btn ghost" data-a="sifir">Sıfırla</button></div>
       <div class="mtf-score" hidden></div>
-      <div class="omr" aria-label="Şematik optik cevap formu"><div class="omr-h">Optik cevap formu · şematik</div><div class="omr-row"><span class="q">1</span>${[...L].map((c) => `<span class="omr-col"><span class="cl">${c}</span><span class="bb"><i data-c="${c}" data-v="1">T</i><i data-c="${c}" data-v="0">F</i></span></span>`).join('')}</div></div>
-      <p class="viz-foot">${REF('İngilizce talimatta formdaki daireler T (true, doğru) ve F (false, yanlış) diye adlandırılır; HB kurşun kalemle tamamen doldurulur. [[S9]]')}</p>
+      ${omr ? `<div class="omr" aria-label="Şematik optik cevap formu"><div class="omr-h">Optik cevap formu · şematik</div><div class="omr-row"><span class="q">1</span>${[...L].map((c) => `<span class="omr-col"><span class="cl">${c}</span><span class="bb"><i data-c="${c}" data-v="1">T</i><i data-c="${c}" data-v="0">F</i></span></span>`).join('')}</div></div>
+      <p class="viz-foot">${REF('İngilizce talimatta formdaki daireler T (true, doğru) ve F (false, yanlış) diye adlandırılır; HB kurşun kalemle tamamen doldurulur. [[S9]]')}</p>` : ''}
     </div>`;
     const box = el.querySelector('.mtf'), sc = el.querySelector('.mtf-score');
     const paint = () => el.querySelectorAll('.mtf-row').forEach((r, i) => r.querySelectorAll('.tf button').forEach((b) => b.setAttribute('aria-pressed', String(ans[i] !== null && +b.dataset.v === (ans[i] ? 1 : 0)))));
@@ -545,10 +545,10 @@
     const kpa = (m) => (m / 7.50062).toFixed(1).replace('.', ',');
     const STEPS = [
       { k: 'Eksenler', t: 'Eksenleri adlandırarak başlayın: yatay eksende PO₂ (kPa ya da mmHg), dikeyde hemoglobinin oksijen satürasyonu (%).' },
-      { k: 'Normal eğri', t: 'Sigmoid biçimli eğri: hemoglobinin dört alt birimi oksijeni kooperatif bağlar; bir oksijen bağlandıkça diğerlerinin afinitesi artar.' },
-      { k: 'Değerler', t: 'Önemli noktaları işaretleyin: P50 ≈ 3,5 kPa (27 mmHg) → %50; karışık venöz ≈ 5,3 kPa (40 mmHg) → ≈%75; arteriyel ≈ 13,3 kPa (100 mmHg) → ≈%97.' },
-      { k: 'Sağa kayma', t: 'Sağa kayma (afinite azalır, P50 artar): sıcaklık artışı, PCO₂ artışı ve pH düşüşü (Bohr etkisi), 2,3-DPG artışı. Dokuya oksijen bırakmak kolaylaşır.' },
-      { k: 'Sola kayma', t: 'Sola kayma (afinite artar, P50 düşer): hipotermi, PCO₂ düşüşü ve alkaloz, 2,3-DPG azalması, fetal hemoglobin, karbonmonoksit.' },
+      { k: 'Normal eğri', t: 'Sigmoid biçimli eğri: kooperatif bağlanma. İlk O₂ molekülü güç bağlanır; bağlanan her molekül sonrakinin bağlanmasını kolaylaştırır. Eğrinin üst kısmı düz, orta kısmı diktir. [[K1 s. 32]]' },
+      { k: 'Değerler', t: 'Önemli noktaları işaretleyin: P50 ≈ 3,5 kPa (≈27 mmHg) → %50; venöz ≈ 5,3 kPa (40 mmHg) → %75; arteriyel ≈ 13,3 kPa (100 mmHg) → ≈%97. [[K1 s. 32–33]]' },
+      { k: 'Sağa kayma', t: 'Sağa kayma (afinite azalır, P50 artar): PCO₂ artışı, asidoz, 2,3-DPG artışı, egzersiz, sıcaklık artışı, orak hücre hemoglobini (HbS). Metabolik olarak aktif dokuda oksijen kolay bırakılır (Bohr etkisi). [[K1 s. 32]]' },
+      { k: 'Sola kayma', t: 'Sola kayma (afinite artar, P50 düşer): PCO₂ düşüşü, alkaloz, 2,3-DPG azalması, hipotermi, karboksihemoglobin (COHb), methemoglobin (MetHb), fetal hemoglobin (HbF). [[K1 s. 33]]' },
     ];
     const ticks = [0, 20, 40, 60, 80, 100];
     el.innerHTML = `<div class="viz-head"><div class="seg" role="group" aria-label="Çizim adımı">${STEPS.map((s, i) => `<button type="button" data-i="${i}" aria-pressed="false">${i + 1}. ${s.k}</button>`).join('')}</div><button type="button" class="btn ghost play">Baştan çiz</button></div>
@@ -584,7 +584,7 @@
         c.style.opacity = vis ? 1 : 0;
         c.style.strokeDashoffset = vis ? 0 : L;
       });
-      cap.textContent = STEPS[s].t;
+      cap.innerHTML = REF(STEPS[s].t);
     };
     const auto = () => {
       timers.forEach(clearTimeout); timers = [];
@@ -638,7 +638,10 @@
 
   /* ---------- kaynak listesi ---------- */
   VIZ.kaynaklar = (el) => {
-    el.innerHTML = `<ol class="src-list">${Object.entries(KAYNAKLAR).map(([k, s]) => `<li id="kaynak-${k}"><span class="id">${k}</span><div><b>${esc(s.ad)}</b><div class="m">${esc(s.tur)} · ${esc(s.tarih)}</div><p class="small" style="margin-top:6px">${esc(s.not)}</p><a class="small" href="${s.url}" target="_blank" rel="noopener">${esc(s.url.replace(/^https:\/\//, ''))}</a></div></li>`).join('')}</ol>`;
+    el.innerHTML = `<ol class="src-list">${Object.entries(KAYNAKLAR).map(([k, s]) => `<li id="kaynak-${k}"><span class="id">${k}</span><div><b>${esc(s.ad)}</b><div class="m">${esc(s.tur)} · ${esc(s.tarih)}</div><p class="small" style="margin-top:6px">${esc(s.not)}</p>${s.url ? `<a class="small" href="${s.url}" target="_blank" rel="noopener">${esc(s.url.replace(/^https:\/\//, ''))}</a>` : ''}</div></li>`).join('')}</ol>`;
     return () => {};
   };
+
+  /* ders bileşenleri (js/ders-viz.js) için ortak yardımcılar */
+  window.VIZ_YARDIM = { ticker, esc, REF, RM, store, mmss };
 })();

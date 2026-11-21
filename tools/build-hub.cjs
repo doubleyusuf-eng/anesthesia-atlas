@@ -63,9 +63,9 @@ const T = {
         alt: 'Boyun ve omzun 3B anatomisi: brakiyal pleksus, damarlar, ultrason probu ve interskalen bloğa ilerleyen iğne',
       },
       'edaic': {
-        name: 'EDAIC Sınav Atlası',
-        text: 'Avrupa Anesteziyoloji ve Yoğun Bakım Diploması sınavına hazırlık: Part I ve Part II nasıl yapılır ve puanlanır, ESAIC’in resmi hazırlık rehberine göre nasıl çalışılır. Ders bölümleri fizyolojiyle başlıyor.',
-        facts: [['Part I', 'yazılı'], ['Part II', 'sözlü'], ['TR', 'Türkçe sınav'], ['Fizyoloji', 'ilk ders']],
+        name: 'EDAIC’e Hazırlık Atlası',
+        text: 'Avrupa Anesteziyoloji ve Yoğun Bakım Diploması sınavına hazırlık: Part I ve Part II nasıl yapılır ve puanlanır, ESAIC’in resmi rehberine göre nasıl çalışılır; fizyoloji dersleri animasyonlarla, bölüm bölüm.',
+        facts: [['Part I', 'yazılı'], ['Part II', 'sözlü'], ['TR', 'Türkçe sınav'], ['Fizyoloji', '89 bölüm']],
         alt: 'Sınav ekranı: Part I optik cevap formu ve iki yazılı kâğıt ile dört sözlü sınavın özeti',
       },
     },
@@ -116,7 +116,7 @@ const T = {
         alt: '3D anatomy of the neck and shoulder: brachial plexus, vessels, ultrasound probe and a needle advancing for an interscalene block',
       },
       'edaic': {
-        name: 'EDAIC Exam Atlas',
+        name: 'EDAIC Preparation Atlas',
         text: 'Preparing for the European Diploma in Anaesthesiology and Intensive Care: how Part I and Part II work and are marked, and how to prepare following the official ESAIC guide. Lessons start with physiology. English edition in preparation.',
         facts: [['Part I', 'written'], ['Part II', 'oral'], ['MTF', '2 × 60'], ['SOE', '4 × 25 min']],
         alt: 'Exam screen: a Part I answer sheet and a summary of the two written papers and four structured oral examinations',
@@ -169,7 +169,7 @@ const T = {
         alt: 'Anatomía 3D del cuello y el hombro: plexo braquial, vasos, sonda ecográfica y una aguja que avanza para un bloqueo interescalénico',
       },
       'edaic': {
-        name: 'Atlas del Examen EDAIC',
+        name: 'Atlas de Preparación para el EDAIC',
         text: 'Preparación para el Diploma Europeo de Anestesiología y Cuidados Intensivos: cómo son y cómo se puntúan la Parte I y la Parte II, y cómo prepararse según la guía oficial de la ESAIC. Las lecciones empiezan por la fisiología. Edición en español en preparación.',
         facts: [['Parte I', 'escrita'], ['Parte II', 'oral'], ['MTF', '2 × 60'], ['SOE', '4 × 25 min']],
         alt: 'Pantalla de examen: una hoja de respuestas de la Parte I y el resumen de los dos exámenes escritos y los cuatro exámenes orales',

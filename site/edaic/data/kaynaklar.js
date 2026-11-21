@@ -1,4 +1,4 @@
-/* Atlasın dayandığı resmi ESAIC belgeleri. Metindeki [[S6 s. 7]] işaretleri bu kimliklere bağlanır
+/* Atlasın dayandığı kaynaklar: S = resmi ESAIC belgeleri, K = ders kitapları. Metindeki [[S6 s. 7]] işaretleri bu kimliklere bağlanır
    (tools/check-site.cjs her işaretin burada karşılığı olduğunu denetler).
    Erişim tarihi: 21 Kasım 2026. Belgelerin yerel kopyaları ve metin dökümleri: content-src/resmi/ */
 window.KAYNAK_TARIH = '21 Kasım 2026';
@@ -80,5 +80,16 @@ window.KAYNAKLAR = {
     tur: 'PDF', tarih: 'ESAIC hazırlık sayfasından',
     not: 'Part I: İngilizce, Fransızca, İtalyanca, Almanca, İspanyolca, Türkçe. Part II: İngilizce, Fransızca, İtalyanca, Almanca, İspanyolca. ESAIC bu soruların bilimsel içeriğine dair soruları yanıtlamaz.',
     url: 'https://esaic.org/professional-growth/edaic/how-to-prepare-for-the-exam/',
+  },
+  K1: {
+    ad: 'Chambers D, Huang C, Matthews G. Basic Physiology for Anaesthetists, 2. baskı',
+    tur: 'Kitap · Cambridge University Press', tarih: '2019 · sayfa numaraları İngilizce özgün baskıya göredir',
+    not: 'Fizyoloji derslerinin ana kaynağı; dersler bu kitabın bölüm sırasını izler. Ders metinleri, örnek sorular ve çizimler bu atlas için yazılmıştır; kitaptan metin ya da şekil kopyalanmamıştır.',
+    url: 'https://doi.org/10.1017/9781108565011',
+  },
+  K2: {
+    ad: 'Power I, Kam P. Principles of Physiology for the Anaesthetist, 3. baskı',
+    tur: 'Kitap · CRC Press (Taylor & Francis)', tarih: '2015 · sayfa numaraları İngilizce özgün baskıya göredir',
+    not: 'Fizyoloji modülünün ek dersleri: K1\'de olmayan ya da kısa kalan konular (refleksler ve EEG, venöz dönüş, asit–baz kompansasyonu, bağışıklık, termoregülasyon, özel ortamlar). Metinler bu atlas için yazılır, kitaptan kopyalanmaz.',
   },
 };

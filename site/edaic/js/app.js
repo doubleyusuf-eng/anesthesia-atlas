@@ -1,9 +1,9 @@
-/* EDAIC Sınav Atlası · yönlendirici. #/grup/sekme adreslerini data/sayfalar.js'teki sayfalara bağlar,
+/* EDAIC’e Hazırlık Atlası · yönlendirici. #/grup/sekme adreslerini data/sayfalar.js'teki sayfalara bağlar,
    [data-viz] alanlarına js/viz.js bileşenlerini kurar, kaynak işaretleri için açılır kutu gösterir. */
 (function () {
   'use strict';
   const view = document.getElementById('view');
-  const SITE = 'EDAIC Sınav Atlası';
+  const SITE = 'EDAIC’e Hazırlık Atlası';
   const VARSAYILAN = { sinav: 'sinav/genel', hazirlik: 'hazirlik/bilgi' };
   let temizle = [];
 
@@ -35,7 +35,7 @@
       try { temizle.push(f(el) || (() => {})); } catch (e) { console.error('[EDAIC] ' + el.dataset.viz, e); el.textContent = 'Bu bileşen yüklenemedi.'; }
     });
     document.querySelectorAll('.topnav a[data-tab]').forEach((a) => { if (a.dataset.tab === S.grup) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
-    document.title = k === 'giris' ? SITE + ' · EDAIC\'e hazırlık' : S.baslik + ' · ' + SITE;
+    document.title = k === 'giris' ? SITE : S.baslik + ' · ' + SITE;
     window.scrollTo(0, 0);
   }
 
@@ -48,7 +48,7 @@
     if (!K) return;
     pop = document.createElement('div');
     pop.className = 'ref-pop'; pop.setAttribute('role', 'dialog'); pop.setAttribute('aria-label', 'Kaynak');
-    pop.innerHTML = `<b>${btn.dataset.k}${btn.dataset.s ? ' · ' + btn.dataset.s : ''}</b><div>${K.ad}</div><div class="muted">${K.tur} · ${K.tarih}</div><a href="${K.url}" target="_blank" rel="noopener">Belgeyi aç ↗</a> · <a href="#/kaynaklar">Tüm kaynaklar</a>`;
+    pop.innerHTML = `<b>${btn.dataset.k}${btn.dataset.s ? ' · ' + btn.dataset.s : ''}</b><div>${K.ad}</div><div class="muted">${K.tur} · ${K.tarih}</div>${K.url ? `<a href="${K.url}" target="_blank" rel="noopener">Belgeyi aç ↗</a> · ` : ''}<a href="#/kaynaklar">Tüm kaynaklar</a>`;
     document.body.appendChild(pop);
     const r = btn.getBoundingClientRect(), w = pop.offsetWidth;
     const left = Math.max(12, Math.min(window.scrollX + r.left - 20, window.scrollX + document.documentElement.clientWidth - w - 12));
@@ -61,6 +61,11 @@
     if (pop && !e.target.closest('.ref-pop')) kapatPop();
   });
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') kapatPop(); });
+  /* sayfa içi bağlantılar: adres çubuğundaki #/rota bozulmasın diye kaydırma düğmeyle yapılır */
+  document.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-scroll]'); if (!b) return;
+    const h = document.getElementById(b.dataset.scroll); if (h) h.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
   window.addEventListener('resize', kapatPop);
 
   window.addEventListener('hashchange', ciz);

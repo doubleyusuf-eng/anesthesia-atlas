@@ -11,7 +11,7 @@ Everything served at https://atlas.anesthesiabriefs.com, and nothing else. This 
 | `site/mechanical-ventilation/` | Mechanical Ventilation Atlas | `tools/sync-ventilation.sh` from `../Mekanik-Ventilasyon-Atlasi` |
 | `site/blood-gas/` | Blood Gas Atlas | `tools/sync-bloodgas.sh` from `../Kan-Gazi-Atlasi` |
 | `site/nerve-block/` | Nerve Block Atlas (Sinir Bloğu Atlası; Turkish only for now) | `tools/sync-nerveblock.sh` from `../AR-Sinir-Blogu` |
-| `site/edaic/` | EDAIC Exam Atlas (EDAIC Sınav Atlası; Turkish only for now) | `tools/sync-edaic.sh` from `../EDAIC-Sinav-Atlasi` |
+| `site/edaic/` | EDAIC Preparation Atlas (EDAIC’e Hazırlık Atlası; Turkish only for now) | `tools/sync-edaic.sh` from `../EDAIC-Sinav-Atlasi` |
 
 ## Updating
 
@@ -22,7 +22,7 @@ node tools/build-hub.cjs      # after editing landing-page text or adding an atl
 ./tools/sync-ventilation.sh   # same for the Mechanical Ventilation Atlas
 ./tools/sync-bloodgas.sh      # same for the Blood Gas Atlas (its check runs the engine tests)
 ./tools/sync-nerveblock.sh    # same for the Nerve Block Atlas (its check: links, blocks, region models, JS syntax)
-./tools/sync-edaic.sh         # same for the EDAIC Exam Atlas (its check: links, JS syntax, source markers, components, tabs)
+./tools/sync-edaic.sh         # same for the EDAIC Preparation Atlas (its check: links, JS syntax, source markers, components, tabs)
 node tools/check-links.cjs    # the same check the deploy runs
 ```
 

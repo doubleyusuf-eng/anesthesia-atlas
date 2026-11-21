@@ -33,13 +33,13 @@ VERI.soe = [
 /* Part I soru biçimi: bu atlas için yazılmış örnek (resmi soru değildir) */
 VERI.mtf = {
   kok: 'Oksihemoglobin dissosiyasyon eğrisini sağa kaydırır:',
-  kagit: 'Paper A · temel bilim (fizyoloji)',
+  kagit: 'Paper A · temel bilim (fizyoloji)', kaynak: '[[K1 s. 32–33]]',
   onermeler: [
-    { t: 'Vücut sıcaklığının artması', d: true, n: 'Doğru. Sıcaklık arttıkça hemoglobinin oksijene afinitesi azalır; eğri sağa kayar ve dokuya oksijen bırakmak kolaylaşır.' },
-    { t: 'Eritrositte 2,3-DPG düzeyinin artması', d: true, n: 'Doğru. 2,3-DPG deoksihemoglobine bağlanıp onu kararlı kılar, afiniteyi azaltır: sağa kayma.' },
-    { t: 'Arteriyel pH\'ın 7,50\'ye yükselmesi', d: false, n: 'Yanlış. Alkaloz (H⁺ azalması) afiniteyi artırır ve eğriyi sola kaydırır (Bohr etkisi).' },
-    { t: 'PaCO₂\'nin artması', d: true, n: 'Doğru. CO₂ artışı H⁺\'yı artırır ve karbamino bileşikleri oluşturur; afinite azalır, eğri sağa kayar (Bohr etkisi).' },
-    { t: 'Fetal hemoglobin oranının artması', d: false, n: 'Yanlış. Fetal hemoglobin 2,3-DPG\'yi zayıf bağlar, afinitesi yüksektir; eğri sola kayar.' },
+    { t: 'Vücut sıcaklığının artması', d: true, n: 'Doğru. Sıcaklık artışı eğriyi sağa kaydırır: afinite azalır, dokuya oksijen bırakmak kolaylaşır. [[K1 s. 32]]' },
+    { t: 'Eritrositte 2,3-DPG düzeyinin artması', d: true, n: 'Doğru. 2,3-DPG deoksihemoglobinin β zincirlerine bağlanıp bu yapıyı kararlı kılar ve afiniteyi azaltır: sağa kayma. [[K1 s. 32–33]]' },
+    { t: 'Arteriyel pH\'ın 7,50\'ye yükselmesi', d: false, n: 'Yanlış. Alkaloz eğriyi sola kaydırır, afinite artar. Sağa kaydıran asidozdur. [[K1 s. 32–33]]' },
+    { t: 'PaCO₂\'nin artması', d: true, n: 'Doğru. Bohr etkisi: PCO₂ artışı ya da pH düşüşü P50\'yi daha yüksek PO₂ değerlerine kaydırır; eğri sağa kayar. [[K1 s. 32]]' },
+    { t: 'Fetal hemoglobin oranının artması', d: false, n: 'Yanlış. HbF eğriyi sola kaydırır. 2,3-DPG yalnızca β-globin zincirlerine bağlanır, HbF\'nin γ zincirlerine bağlanamaz; bu da HbF\'nin O₂ afinitesini artırır. [[K1 s. 33]]' },
   ],
 };
 
