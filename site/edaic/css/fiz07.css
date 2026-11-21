@@ -1,0 +1,142 @@
+/* Fizyoloji Bölüm 7 · Alt hava yolları: bölüme özgü stiller (önek f07-) */
+.f07-t{font:600 12px var(--f-mono);fill:var(--muted)}
+.f07-tb{font:700 13px var(--f-display);fill:var(--ink)}
+.f07-fig{margin:0;min-width:0}
+.f07-fig svg{width:100%;height:auto;display:block}
+.f07-fig figcaption{font:600 12.5px/1.3 var(--f-mono);color:var(--muted);text-align:center;margin-top:4px;min-height:2.6em}
+.f07-range{display:inline-flex;align-items:center;gap:10px;font:650 13.5px/1.2 var(--f-display);color:var(--ink)}
+.f07-range input{width:150px;accent-color:var(--accent)}
+.f07-range input:disabled{opacity:.4}
+.f07-range b{font:700 13px var(--f-mono);color:var(--accent-ink);white-space:nowrap}
+.f07-range-blok{display:grid;grid-template-columns:auto minmax(0,1fr) auto;width:100%;margin-top:12px}
+.f07-range-blok input{width:100%}
+.f07-bars{display:grid;gap:12px;align-content:center}
+.f07-bar{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:5px 10px;align-items:baseline;font:650 13.5px/1.25 var(--f-display)}
+.f07-bar b{font:600 12px/1.2 var(--f-mono);color:var(--muted);text-align:right}
+.f07-bar .trk{grid-column:1 / -1;height:10px;border-radius:6px;background:var(--chip);overflow:hidden}
+.f07-bar .trk i{display:block;height:100%;border-radius:6px;transition:width .25s linear,background .25s}
+
+/* 1 · PEEP */
+.f07-peep{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1fr) minmax(0,1.1fr);gap:18px;align-items:center}
+@media (max-width:820px){.f07-peep{grid-template-columns:1fr 1fr}.f07-peep .f07-bars{grid-column:1 / -1}}
+
+/* 2 · bronş ağacı */
+.f07-ag{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:820px){.f07-ag{grid-template-columns:1fr}}
+.f07-ag-cizim{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:10px;align-items:center}
+@media (max-width:520px){.f07-ag-cizim{grid-template-columns:1fr}}
+.f07-ag-cizim svg{width:100%;height:auto;display:block}
+.f07-ag-agac{max-height:300px}
+.f07-ag-not{grid-column:1 / -1;min-height:1.5em}
+.t-s{stroke:var(--c-basic);stroke-linecap:round;opacity:.75;transition:opacity .2s,stroke .2s}
+.t-s.on{stroke:var(--accent);opacity:1}
+.t-s.fade{opacity:.18}
+.t-s.resp{stroke:var(--c-clin);opacity:1}
+.ac-yol{stroke:var(--c-basic);stroke-linecap:round;fill:none;opacity:.55}
+.ac-alv{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:1.4;opacity:.55}
+.ac text{opacity:.6}
+.ac.on .ac-yol{stroke:var(--accent);opacity:1}
+.ac.on .ac-alv{fill:var(--accent-soft);stroke:var(--accent);opacity:1}
+.ac.on text{opacity:1;fill:var(--accent-ink);font-weight:700}
+.f07-ag-bilgi{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:0}
+.f07-ag-bas{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:8px}
+.f07-zno{font:700 12px/1 var(--f-mono);color:var(--accent-ink);text-transform:uppercase;letter-spacing:.06em}
+.f07-ag-ad{font-size:19px}
+.f07-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.f07-chips .tag{line-height:1.25;text-transform:none;letter-spacing:.02em}
+.f07-ag-t{min-height:5.6em}
+.f07-ag-say{margin-top:8px;color:var(--muted)}
+.f07-ag-say b{color:var(--ink);font-family:var(--f-mono);font-weight:700}
+.f07-ag-egri{width:100%;height:auto;display:block;margin-top:8px;max-width:400px}
+.f07-serit{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:2px;margin-top:16px}
+.f07-serit button{height:30px;border:0;border-radius:4px;padding:0;cursor:pointer;font:700 10.5px/1 var(--f-mono);color:var(--muted)}
+.f07-serit button.il{background:var(--c-basic-soft)}
+.f07-serit button.so{background:var(--c-clin-soft)}
+.f07-serit button.on{background:var(--accent);color:var(--on-accent)}
+.f07-serit-alt{display:grid;grid-template-columns:repeat(24,minmax(0,1fr));gap:2px;margin-top:4px;font:600 11px/1.2 var(--f-mono);color:var(--muted)}
+.f07-serit-alt span{border-top:2px solid var(--line);padding-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.f07-serit-alt .kk{border-top-color:var(--gold)}
+.f07-serit-alt .il{border-top-color:var(--c-basic);color:var(--c-basic)}
+.f07-serit-alt .so{border-top-color:var(--c-clin);color:var(--c-clin)}
+@media (max-width:560px){.f07-serit button span{display:none}.f07-serit button.on span{display:inline;font-size:9px}}
+
+/* 3 · mukosiliyer taşıma */
+.f07-sil{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);gap:8px 20px;align-items:center}
+.f07-sil .legend{grid-column:1;grid-row:2}
+.f07-sil .f07-bars-2{grid-column:2;grid-row:1 / 3}
+@media (max-width:760px){.f07-sil{grid-template-columns:1fr}.f07-sil .legend,.f07-sil .f07-bars-2{grid-column:1;grid-row:auto}}
+.f07-sil-svg{width:100%;height:auto;display:block}
+.f07-sayac{display:flex;flex-wrap:wrap;gap:6px 18px;font:600 12.5px/1.3 var(--f-mono);color:var(--muted)}
+.f07-sayac b{font-size:16px;color:var(--ink)}
+
+/* 4 · çift lümenli tüp */
+.f07-clt{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px;align-items:center}
+@media (max-width:820px){.f07-clt{grid-template-columns:1fr}}
+.f07-clt-svg{width:100%;height:auto;display:block;max-width:600px;margin-inline:auto}
+.f07-clt-yan .f07-range-blok{grid-template-columns:minmax(0,1fr) auto;margin-top:0}
+.f07-clt-yan .f07-range-blok span{grid-column:1 / -1}
+.f07-clt-yan .f07-range-blok input{grid-column:1}
+.f07-durum{margin:12px 0 2px}
+.f07-durum .tag{font-size:12px;padding:7px 10px}
+.c-x{font:800 26px var(--f-display);fill:var(--crit)}
+
+/* 5 · alveol */
+.f07-alv-ust{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.f07-chip{font:650 13px/1 var(--f-display);border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:999px;padding:9px 12px;cursor:pointer}
+.f07-chip[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.f07-alveol{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;align-items:center}
+@media (max-width:700px){.f07-alveol{grid-template-columns:1fr}}
+.f07-alveol svg{width:100%;height:auto;display:block;max-width:420px;margin-inline:auto}
+.f07-alveol [class^="h-"],.f07-alveol [class*=" h-"]{transition:opacity .25s}
+.f07-alveol[data-h="tip1"] .f07-alv-a > g:not(.h-tip1):not(.a-gaz),
+.f07-alveol[data-h="tip2"] .f07-alv-a > g:not(.h-tip2):not(.a-gaz),
+.f07-alveol[data-h="mak"] .f07-alv-a > g:not(.h-mak):not(.a-gaz),
+.f07-alveol[data-h="bar"] .f07-alv-a > g:not(.h-bar):not(.h-tip1):not(.a-gaz),
+.f07-alveol[data-h="kap"] .f07-alv-a > g:not(.h-kap):not(.a-gaz){opacity:.3}
+.f07-alveol[data-h="tip1"] .f07-alv-b > g:not(.h-tip1):not(.b-gaz),
+.f07-alveol[data-h="tip2"] .f07-alv-b > g:not(.b-gaz),
+.f07-alveol[data-h="mak"] .f07-alv-b > g:not(.b-gaz),
+.f07-alveol[data-h="kap"] .f07-alv-b > g:not(.h-kap):not(.b-gaz){opacity:.35}
+
+/* 6 · tidal solunum mekaniği */
+.f07-mk-bas{align-items:flex-start}
+.f07-mk{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px;align-items:center}
+@media (max-width:820px){.f07-mk{grid-template-columns:1fr}}
+.f07-mk-gogus{width:100%;height:auto;display:block;max-width:380px;margin-inline:auto}
+.f07-mk-graf{width:100%;height:auto;display:block;margin-top:10px}
+.f07-oku{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.f07-oku span{display:grid;grid-template-columns:auto 1fr;align-items:baseline;gap:0 8px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+.f07-oku i{font:700 13px/1.2 var(--f-display);font-style:normal;color:var(--muted)}
+.f07-oku b{font:700 17px/1.2 var(--f-mono);color:var(--ink);text-align:right;white-space:nowrap}
+.f07-oku em{grid-column:1 / -1;font:500 11px/1.25 var(--f-mono);font-style:normal;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:520px){.f07-oku{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* 7 · metabolik işlevler */
+.f07-md{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:6px;margin-bottom:12px}
+.f07-mb{display:flex;flex-direction:column;align-items:flex-start;gap:3px;text-align:left;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:10px;padding:9px 10px;cursor:pointer;min-width:0}
+.f07-mb b{font:700 13px/1 var(--f-mono);color:var(--accent-ink)}
+.f07-mb span{font:650 13.5px/1.2 var(--f-display)}
+.f07-mb .f07-mi{font:600 11px/1.2 var(--f-mono);font-style:normal;color:var(--ok);min-height:0}
+.f07-mb .f07-mi:empty{display:none}
+.f07-mb[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.f07-pk{width:100%;height:auto;display:block;max-width:720px;margin-inline:auto}
+.f07-tahmin{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:10px}
+.f07-tahmin .btn{padding:9px 12px;font-size:13px}
+.f07-skor{min-height:1.4em;margin-top:6px}
+
+/* dar ekran: ölçeklenen SVG'lerde yazıyı büyüt */
+@media (max-width:560px){
+  .f07-glot .f07-t{font-size:18px}
+  .f07-sil-svg .f07-t{font-size:16px}.f07-sil-svg .f07-tb{font-size:17px}
+  .f07-clt-svg .f07-t{font-size:15.5px}.f07-clt-svg .f07-tb{font-size:17px}
+  .f07-mk-graf .f07-t{font-size:15px}
+  .f07-pk .f07-t{font-size:16px}.f07-pk .f07-tb{font-size:18px}
+  .f07-pk .p-alt,.f07-pk .p-alv{display:none}
+  .f07-pk{margin-inline:-6px;width:calc(100% + 12px);max-width:none}
+}
+
+/* sağ–sol akciğer kartları */
+.f07-dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;margin:10px 0 0;font-size:15.5px;line-height:1.4}
+.f07-dl dt{font:700 13px/1.4 var(--f-display);color:var(--muted)}
+.f07-dl dd{margin:0}
+@media (max-width:420px){.f07-dl{grid-template-columns:1fr;gap:2px}.f07-dl dd{margin-bottom:6px}}

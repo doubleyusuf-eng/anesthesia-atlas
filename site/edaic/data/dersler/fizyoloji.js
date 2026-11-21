@@ -15,7 +15,7 @@ window.FIZYOLOJI = {
     { no: 10, ad: 'Gelişim fizyolojisi', b: [[82, 'Gebelikte maternal fizyoloji', 405], [83, 'Fetal fizyoloji', 411], [84, 'Pediatrik fizyoloji', 418], [85, 'Yaşlanma fizyolojisi', 422], [86, 'Obezite fizyolojisi', 427]] },
     { no: 11, ad: 'Çevresel fizyoloji', b: [[87, 'İrtifa', 431], [88, 'Dalış', 434], [89, 'Sıcaklık düzenlenmesi', 436]] },
   ],
-  yazilan: [1], // yayımlanan dersler (SAYFALAR['dersler/fizyoloji/NN'])
+  // Hazır bölümler SAYFALAR['dersler/fizyoloji/NN'] var mı diye kendiliğinden bulunur (her bölüm kendi dosyasında: data/dersler/fizyoloji-NN.js).
   /* Ek dersler: Chambers'ta olmayan ya da kısa kalan konular, K2'den (Power & Kam, 3. baskı) ilgili bölümün ardına.
      Kaynak: kullanıcının "Chambers_Fizyoloji_Eki_Kam_Power_TR.pdf" seçkisi; s. = K2 özgün sayfaları. */
   ekler: [
@@ -168,7 +168,7 @@ SAYFALAR['dersler/fizyoloji/01'] = {
   <div data-viz="tamam" data-bolum="1"></div>
   <nav class="ders-gec" aria-label="Bölümler arasında">
     <a href="#/dersler/fizyoloji">← Fizyoloji modülü</a>
-    <span class="sonraki">Sonraki: Bölüm 2 · Hücrenin bileşenleri ve işlevi <em>(hazırlanıyor)</em></span>
+    <a href="#/dersler/fizyoloji/02">Sonraki: Bölüm 2 · Hücrenin bileşenleri ve işlevi →</a>
   </nav>
 </section>`,
 };

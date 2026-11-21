@@ -563,7 +563,7 @@ SAYFALAR['dersler'] = {
   html: `
 <section class="wrap blk">
   <div class="modul">
-    <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · 1/89 bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
+    <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · bölüm bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
     <div class="card planned"><span class="no">02 · Planlanıyor</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezi ve yoğun bakım ilaçları.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
     <div class="card planned"><span class="no">03 · Planlanıyor</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, makine ve ventilatör; elektrik güvenliği.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
     <div class="card planned"><span class="no">04 · Planlanıyor</span><h3>Anatomi</h3><p class="small muted">Baş, boyun, toraks, omurga; periferik sinirler ve damarlar; yüzey işaretleri.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></div>

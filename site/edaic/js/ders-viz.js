@@ -407,11 +407,12 @@
   /* ---------- fizyoloji içindekiler ---------- */
   VIZ.icindekiler = (el) => {
     const F = window.FIZYOLOJI, durum = store.get(ANAHTAR) || {};
-    const top = F.kisimlar.reduce((a, k) => a + k.b.length, 0), yaz = F.yazilan.length, bit = Object.keys(durum).length;
+    const hazirMi = (no) => !!SAYFALAR['dersler/fizyoloji/' + String(no).padStart(2, '0')];
+    const top = F.kisimlar.reduce((a, k) => a + k.b.length, 0), yaz = F.kisimlar.reduce((a, k) => a + k.b.filter(([no]) => hazirMi(no)).length, 0), bit = Object.keys(durum).length;
     const ek = (no) => F.ekler.filter((x) => x.sonra === no).map((x) => `<li class="icd-ek"><span class="no">Ek</span><span class="ad">${esc(x.ad)}</span><span class="sy">K2 s. ${x.s}</span><span class="st">sırada</span></li>`).join('');
     el.innerHTML = `<div class="chk-prog"><span>${yaz}/${top} bölüm hazır · ${bit} tamamladınız</span><span class="trk"><span class="fl" style="width:${(yaz / top) * 100}%"></span></span></div>
       ${F.kisimlar.map((k, ki) => `<details class="acc icd"${ki === 0 ? ' open' : ''}><summary>Kısım ${k.no} · ${esc(k.ad)} <span class="small muted" style="margin-left:auto;margin-right:12px;font-weight:500">${k.b.length} bölüm</span></summary><div class="acc-b"><ol class="icd-l">${k.b.map(([no, ad, s]) => {
-        const hazir = F.yazilan.includes(no), id = String(no).padStart(2, '0');
+        const hazir = hazirMi(no), id = String(no).padStart(2, '0');
         const icerik = `<span class="no">${no}</span><span class="ad">${esc(ad)}</span><span class="sy">K1 s. ${s}</span><span class="st ${hazir ? (durum[no] ? 'ok' : 'hazir') : ''}">${hazir ? (durum[no] ? '✓ tamamlandı' : 'hazır') : 'sırada'}</span>`;
         return (hazir ? `<li class="icd-h"><a href="#/dersler/fizyoloji/${id}">${icerik}</a></li>` : `<li>${icerik}</li>`) + ek(no);
       }).join('')}</ol></div></details>`).join('')}
