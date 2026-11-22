@@ -1,0 +1,253 @@
+/* Bölüm 32 · Kardiyak iskemi · bölüme özgü stiller (f32- önekli). Renkler yalnız site.css değişkenleriyle.
+   Renk sözlüğü: normal miyokard --accent, talep --warn, sunum/akım --ok, iskemi/hasar --crit,
+   afferent sinir --c-basic, klinik/tedavi --c-clin, pasif --chip/--line/--muted. */
+
+/* ---------- ortak ---------- */
+.f32-svg{display:block;width:100%;height:auto;overflow:visible}
+.f32-svg text{font-family:var(--f-display)}
+.f32-ctl{display:flex;flex-wrap:wrap;align-items:flex-end;gap:10px 18px;margin:12px 0}
+.f32-segk{display:grid;gap:5px;min-width:0;max-width:100%}
+.f32-segk > span{font:650 12px/1.2 var(--f-mono);color:var(--muted);letter-spacing:.02em}
+.f32-segk .seg{max-width:100%}
+.f32-dar .f32-ctl{display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
+.f32-dar .seg button{padding:8px 10px;font-size:12.5px}
+.seg button[disabled]{opacity:.4;cursor:default}
+.f32-rng{display:grid;gap:5px;min-width:0;flex:1 1 280px;max-width:460px}
+.f32-rng > span{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:650 13.5px/1.3 var(--f-display);color:var(--ink)}
+.f32-rng b{font:700 13.5px/1.3 var(--f-mono);color:var(--accent-ink)}
+.f32-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+.f32-rng small{display:flex;justify-content:space-between;font:500 12px/1.2 var(--f-mono);color:var(--muted)}
+.f32-dar .f32-rng{max-width:none}
+.f32-not{font:500 12.5px/1.45 var(--f-mono);color:var(--muted);margin:10px 0 0}
+.f32-cipler{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.f32-cip-bas{font:650 12px/1.2 var(--f-mono);color:var(--muted)}
+.f32-kart{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:0}
+
+/* adım denetimi */
+.f32-adim{margin-bottom:6px}
+.f32-adim .phase{margin-top:10px}
+.f32-faz button{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:6px;font:650 12.5px/1.2 var(--f-display);text-align:center;padding:8px 4px;border-radius:8px;border:0;background:var(--chip);color:var(--muted);cursor:pointer;transition:background .25s,color .25s}
+.f32-faz button b{font:700 11.5px/1 var(--f-mono)}
+.f32-faz button.on{background:var(--accent);color:var(--on-accent)}
+.f32-faz button.past{background:var(--accent-soft);color:var(--accent-ink)}
+.f32-dar .f32-faz span{display:none}
+.f32-dar .f32-faz button b{font-size:13px}
+.f32-dar .f32-adim-dug{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.f32-dar .f32-adim-dug .btn{justify-content:center}
+.f32-dar .f32-adim-dug [data-a="oyn"]{grid-column:1 / -1}
+
+/* SVG yazıları */
+.f32-bas{font:750 14px var(--f-display);fill:var(--ink)}
+.f32-tk{font:500 12px var(--f-mono);fill:var(--muted)}
+.f32-tk2{font:700 12.5px var(--f-mono);fill:var(--ink)}
+.f32-lb{font:600 12.5px var(--f-display);fill:var(--ink)}
+.f32-lbb{font-weight:800}
+.f32-dar .f32-tk,.f32-dar .f32-tk2,.f32-dar .f32-lb{font-size:13px}
+.f32-dar .f32-bas{font-size:14.5px}
+.f32-hale{paint-order:stroke fill;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.f32-crt{fill:var(--crit)}.f32-wrn{fill:var(--warn)}.f32-okt{fill:var(--ok)}.f32-bsc{fill:var(--c-basic)}.f32-acc{fill:var(--accent-ink)}.f32-cln{fill:var(--c-clin)}
+.f32-izg{stroke:var(--line);stroke-width:1}
+.f32-eks{stroke:var(--muted);stroke-width:1.2}
+.f32-izo{stroke:var(--line);stroke-width:1.2;stroke-dasharray:4 3}
+.f32-okuc{fill:var(--muted)}
+.f32-kilavuz{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 2}
+.f32-soluk{opacity:.35}
+.f32-nokta{fill:var(--ok)}
+.legend i.f32-li-a{background:var(--c-basic);height:3px;border-radius:2px;width:18px}
+.legend i.f32-li-b{background:var(--accent);height:3px;border-radius:2px;width:18px}
+.legend i.f32-li-zk{background:var(--crit-soft);border:2px solid var(--crit)}
+.legend i.f32-li-zo{background:var(--crit-soft);border:2px dashed var(--crit)}
+
+/* ---------- 1 · OER ---------- */
+.f32-oer-iz{display:grid;grid-template-columns:minmax(0,300fr) minmax(0,420fr);gap:24px;max-width:900px;align-items:start}
+.f32-dar .f32-oer-iz{grid-template-columns:minmax(0,1fr);gap:14px}
+.f32-bar-kalp{fill:var(--crit)}
+.f32-bar-org{fill:var(--accent)}
+.f32-bar-ara{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.2}
+.f32-centik{stroke:var(--accent);stroke-width:2.5}
+.f32-bar-tal{fill:var(--warn-soft);stroke:var(--warn);stroke-width:2}
+.f32-bar-sun{fill:var(--ok-soft);stroke:var(--ok);stroke-width:2}
+.f32-bar-def{fill:url(#f32-oer-tar);stroke:var(--crit);stroke-width:1.5;transition:opacity .3s}
+.f32-tar-z{fill:var(--crit-soft)}
+.f32-tar-c{stroke:var(--crit);stroke-width:2;opacity:.55}
+.f32-tavan{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:6 4}
+.f32-rozet{transition:opacity .3s}
+.f32-rozet rect{fill:var(--crit)}
+.f32-rozet text{font:800 12.5px var(--f-mono);fill:var(--paper)}
+.f32-lumen{fill:var(--accent-soft)}
+.f32-plak{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1}
+.f32-duvar{fill:none;stroke:var(--accent);stroke-width:4;stroke-linecap:round}
+
+/* ---------- 2 · AKS ---------- */
+.f32-aks-iz{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:16px;max-width:980px;align-items:start}
+.f32-dar .f32-aks-iz{grid-template-columns:minmax(0,1fr)}
+.f32-aks-den{display:grid;gap:14px}
+.f32-olc{border:0;margin:0;padding:0;display:grid;gap:6px}
+.f32-olc legend{font:650 12px/1.2 var(--f-mono);color:var(--muted);margin-bottom:6px;padding:0}
+.f32-chk{display:flex;align-items:center;gap:9px;font:500 14px/1.35 var(--f-body);color:var(--ink);cursor:pointer}
+.f32-chk input{width:18px;height:18px;flex:none;accent-color:var(--crit);margin:0}
+.f32-chk span{flex:1;min-width:0}
+.f32-mini{width:60px;height:30px;flex:none;display:block}
+.f32-mini-iz{fill:none;stroke:var(--ink);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.f32-st-seg button{display:inline-flex;align-items:center;gap:6px;line-height:1.2;text-align:left}
+.f32-st-seg button .f32-mini{width:44px;height:22px}
+.f32-st-seg button[aria-pressed="true"] .f32-mini-iz{stroke:var(--paper)}
+.f32-st-seg button[aria-pressed="true"] .f32-izo{stroke:var(--paper);opacity:.5}
+.f32-aks-son{border-width:2px;transition:border-color .25s,background .25s}
+.f32-aks-son .f32-ust{font:650 12px/1.2 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.f32-aks-son h4{margin:6px 0 8px;font:800 22px/1.2 var(--f-display);color:var(--ink)}
+.f32-aks-son p{margin:0;font:500 14.5px/1.5 var(--f-body);color:var(--ink)}
+.f32-son-mi{border-color:var(--crit);background:var(--crit-soft)}
+.f32-son-mi h4{color:var(--crit)}
+.f32-son-isk{border-color:var(--warn);background:var(--warn-soft)}
+.f32-son-isk h4{color:var(--warn)}
+.f32-sol{animation:f32-sol .2s ease-out}
+@keyframes f32-sol{from{opacity:.15}to{opacity:1}}
+.f32-serit-bas{font:650 12px/1.2 var(--f-mono);color:var(--muted);margin:14px 0 6px;letter-spacing:.04em;text-transform:uppercase}
+.f32-aks-serit{max-width:980px}
+.f32-ys-k{fill:var(--chip);stroke:var(--line);stroke-width:1.5;transition:fill .25s,stroke .25s}
+.f32-ys-t{font:650 13px var(--f-display);fill:var(--muted)}
+.f32-ys.on .f32-ys-k{fill:var(--crit-soft);stroke:var(--crit);stroke-width:2.5}
+.f32-ys.on .f32-ys-t{fill:var(--crit);font-weight:800}
+
+/* ---------- 3 · yansıyan ağrı ---------- */
+.f32-ya-sahne{max-width:900px}
+.f32-sil circle,.f32-sil rect,.f32-sil path{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f32-zon{transition:opacity .4s}
+.f32-zk > *{fill:var(--crit-soft);stroke:var(--crit);stroke-width:2;opacity:.9}
+.f32-zo > *{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.6;stroke-dasharray:5 4;opacity:.75}
+.f32-atipik .f32-zk > *{stroke-dasharray:5 4;opacity:.6}
+.f32-kalp{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2;transform-box:fill-box;transform-origin:center}
+.f32-kalp.f32-isk{fill:var(--crit-soft);stroke:var(--crit)}
+.f32-kalp.f32-atar{animation:f32-atis 1s ease-in-out infinite}
+@keyframes f32-atis{0%,100%{transform:scale(1)}15%{transform:scale(1.1)}30%{transform:scale(.98)}}
+.f32-koro{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.f32-koro.f32-greft{stroke:var(--warn);stroke-width:3}
+.f32-yol-a,.f32-yol-b,.f32-yol-c{fill:none;stroke-linecap:round;transition:opacity .3s,stroke-width .3s}
+.f32-yol-a{stroke:var(--c-basic);stroke-width:2;opacity:.4}
+.f32-yol-a.on{opacity:1;stroke-width:3}
+.f32-yol-a.f32-zayif{stroke-dasharray:5 5;opacity:.35}
+.f32-yol-a.f32-kopuk{opacity:.4}
+.f32-yol-b{stroke:var(--accent);stroke-width:2;opacity:.35}
+.f32-yol-b.on{opacity:1;stroke-width:2.5}
+.f32-yol-c{stroke:var(--muted);stroke-width:2;opacity:.35}
+.f32-yol-c.on{stroke:var(--ink);opacity:1;stroke-width:2.5}
+.f32-plx circle{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:1.5}
+.f32-ak{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.f32-gri > *{fill:var(--muted);opacity:.35}
+.f32-sinaps{fill:none;stroke:var(--c-basic);stroke-width:2.5;opacity:0}
+.f32-sinaps.on{opacity:1;animation:f32-yan 1s ease-in-out infinite}
+@keyframes f32-yan{0%,100%{opacity:1}50%{opacity:.25}}
+.f32-kes line{stroke:var(--crit);stroke-width:2.5}
+.f32-bosluk{fill:var(--paper);stroke:none}
+.f32-nk-a{fill:var(--c-basic)}
+.f32-nk-b{fill:var(--accent)}
+.f32-sz{transition:opacity .3s}
+.f32-sz rect{fill:var(--paper);stroke:var(--crit);stroke-width:1.8}
+.f32-sz text{font:800 12.5px var(--f-mono);fill:var(--crit)}
+.f32-dar .f32-sz text{font-size:13px}
+
+/* ---------- 4 · tıkanma ---------- */
+.f32-ti-svg{max-width:900px}
+.f32-ad{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.f32-alum{fill:var(--paper)}
+.f32-aterom{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.8}
+.f32-catlak{fill:none;stroke:var(--crit);stroke-width:2.2;stroke-linejoin:round}
+.f32-tr-g{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.2}
+.f32-tr-t{fill:var(--crit)}
+.f32-trombus{transition:opacity .4s}
+.f32-lvd{fill:none;stroke:var(--accent-soft)}
+.f32-lvc{fill:none;stroke:var(--accent);stroke-width:1.8}
+.f32-hasar{fill:var(--crit-soft);stroke:var(--crit);stroke-width:2;stroke-linejoin:round}
+.f32-ekg{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;stroke-linecap:round}
+.f32-ekg-ref{fill:none;stroke:var(--muted);stroke-width:1.4;stroke-dasharray:4 3;transition:opacity .3s}
+
+/* ---------- 5 · EKG haritası ---------- */
+.f32-ek-iz{display:grid;grid-template-columns:minmax(0,300fr) minmax(0,410fr);gap:22px;max-width:920px;align-items:start}
+.f32-dar .f32-ek-iz{grid-template-columns:minmax(0,1fr);gap:12px}
+.f32-dar .f32-ek-k{max-width:300px;margin-inline:auto;width:100%}
+.f32-kalp-d{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.f32-aort{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f32-yama{fill:transparent;stroke:transparent;stroke-width:1.5;cursor:pointer;transition:fill .2s,stroke .2s}
+.f32-yama:hover{fill:var(--chip);stroke:var(--line)}
+.f32-yama.on{fill:var(--crit-soft);stroke:var(--crit)}
+.f32-yama-arka{fill:var(--paper);stroke:var(--line);stroke-dasharray:4 3}
+.f32-yama-arka.on{fill:var(--crit-soft);stroke:var(--crit)}
+.f32-ar{fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;transition:stroke .2s,stroke-width .2s}
+.f32-ar-arka{stroke-dasharray:5 4}
+.f32-ar.on{stroke:var(--crit);stroke-width:3.5}
+.f32-ar.pasif{opacity:.6}
+.f32-hc-k{fill:var(--chip);stroke:var(--line);stroke-width:1;transition:fill .2s var(--gec,0ms),stroke .2s var(--gec,0ms)}
+.f32-hc.on .f32-hc-k{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.8}
+.f32-hc-ad{font:750 13px var(--f-mono);fill:var(--ink)}
+.f32-hc-st{font:800 12.5px var(--f-mono);fill:var(--crit)}
+.f32-hc-iz{fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linejoin:round}
+.f32-hc.on .f32-hc-iz{stroke:var(--crit);stroke-width:2.2}
+.f32-dar .f32-hc-ad,.f32-dar .f32-hc-st{font-size:13.5px}
+.f32-rm .f32-hc-k{transition:none}
+.f32-kv{margin-top:10px;max-width:920px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.f32-kv dd{font:500 14.5px/1.5 var(--f-body);color:var(--ink);min-width:0}
+.f32-dar .f32-kv{grid-template-columns:minmax(0,1fr);gap:2px}
+.f32-dar .f32-kv dd{margin-bottom:6px}
+
+/* ---------- 6 · yol ---------- */
+.f32-yol-iz{max-width:900px}
+.f32-yk{transition:opacity .25s}
+.f32-yk.soluk{opacity:.35}
+.f32-yk-k{fill:var(--paper);stroke:var(--line);stroke-width:1.5;transition:fill .25s,stroke .25s}
+.f32-yt{font:500 12.5px var(--f-display);fill:var(--ink)}
+.f32-dar .f32-yt{font-size:13px}
+.f32-yt-b{font-weight:800}
+.f32-yt-c{font-weight:800;fill:var(--crit)}
+.f32-yk-clin .f32-yk-k{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:2.2}
+.f32-yk-warn .f32-yk-k,.f32-yk-warn .f32-cip-k{fill:var(--warn-soft);stroke:var(--warn);stroke-width:2.2}
+.f32-yk-warn .f32-venn{stroke:var(--warn);stroke-width:2.2}
+.f32-cip-k{fill:var(--chip);stroke:var(--line);stroke-width:1.2}
+.f32-venn{fill:var(--warn-soft);fill-opacity:.55;stroke:var(--line);stroke-width:1.5}
+.f32-yb{fill:none;stroke:var(--muted);stroke-width:1.6;transition:opacity .25s,stroke .25s}
+.f32-yb.on{stroke:var(--c-clin);stroke-width:2.4}
+.f32-yb.f32-yb-warn{stroke:var(--warn)}
+.f32-yb.soluk{opacity:.35}
+.f32-ynok{fill:var(--c-clin);stroke:var(--paper);stroke-width:2}
+.f32-ynok-w{fill:var(--warn)}
+
+/* ---------- 7 · İRH ---------- */
+.f32-iri-iz{display:grid;grid-template-columns:minmax(0,440fr) minmax(0,300fr);gap:20px;max-width:980px;align-items:start;margin-top:12px}
+.f32-dar .f32-iri-iz{grid-template-columns:minmax(0,1fr);gap:12px}
+.f32-endo{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.3}
+.f32-lokosit{fill:var(--warn-soft);stroke:var(--warn);stroke-width:2}
+.f32-no{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.5}
+.f32-tem rect{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.2}
+.f32-tem text{font:650 12.5px var(--f-display);fill:var(--ok)}
+.f32-dar .f32-tem text{font-size:13px}
+.f32-met-z{fill:var(--chip);stroke:var(--line)}
+.f32-met{fill:var(--accent);transition:width .5s}
+.f32-miy{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.f32-miy-k{stroke:var(--crit);stroke-width:2.5}
+.f32-miy-h{fill:var(--crit-soft);stroke:var(--crit);stroke-dasharray:4 3}
+.f32-cizgi{stroke:var(--accent);stroke-width:1;opacity:.45}
+.f32-ca{fill:var(--c-basic)}
+.f32-ros{font:700 15px var(--f-body);fill:var(--crit);animation:f32-yan 1.4s ease-in-out infinite;animation-delay:var(--d,0s)}
+.f32-kartlar{display:grid;gap:10px}
+.f32-kom{display:block;width:100%;text-align:left;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--ink);cursor:default;opacity:.4;transition:opacity .35s var(--gec,0ms),border-color .35s var(--gec,0ms),background .35s var(--gec,0ms),box-shadow .2s}
+.f32-kom b{font:750 14px/1.3 var(--f-display);color:var(--ink)}
+.f32-kom ul{margin:6px 0 0;padding-left:18px;font:500 13.5px/1.45 var(--f-body);color:var(--ink)}
+.f32-kom li + li{margin-top:2px}
+.f32-kom.on{opacity:1;border-color:var(--crit);background:var(--crit-soft);cursor:pointer}
+.f32-kom.on b{color:var(--crit)}
+.f32-kom.acik{box-shadow:0 0 0 3px var(--crit);transform:scale(1.01)}
+@media (prefers-reduced-motion:reduce){.f32-kom{transition:none}.f32-ros{animation:none}}
+
+/* ---------- 8 · ön koşullama ---------- */
+.f32-ok-zc{max-width:900px}
+.f32-blok-uzun{fill:var(--crit)}
+.f32-blok-t{font:750 13px var(--f-display);fill:var(--paper)}
+.f32-blok-kisa{fill:var(--warn)}
+.f32-ilac{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:2}
+.f32-mans rect{fill:var(--paper);stroke:var(--ink);stroke-width:1.5;opacity:.85}
+.f32-ok-iz{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:20px;max-width:900px;align-items:center;margin-top:10px}
+.f32-dar .f32-ok-iz{grid-template-columns:minmax(0,1fr);gap:8px}
+.f32-ok-kesit{max-width:300px;margin-inline:auto}
+.f32-mek{display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start;opacity:.3;transition:opacity .35s}
+.f32-mek.on{opacity:1}
+.f32-mek-bas{width:100%;margin:0;font:650 12.5px/1.3 var(--f-mono);color:var(--muted)}
