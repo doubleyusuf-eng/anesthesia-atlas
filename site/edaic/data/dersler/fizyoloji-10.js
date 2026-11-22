@@ -227,7 +227,7 @@ SAYFALAR['dersler/fizyoloji/10'] = {
   <div data-viz="tamam" data-bolum="10"></div>
   <nav class="ders-gec" aria-label="Bölümler arasında">
     <a href="#/dersler/fizyoloji/09">← Bölüm 9 · Karbondioksit taşınması</a>
-    <span class="sonraki">Sonraki: Bölüm 11 · Ventilasyon ve ölü boşluk (hazırlanıyor)</span>
+    <a href="#/dersler/fizyoloji/11">Sonraki: Bölüm 11 · Ventilasyon ve ölü boşluk →</a>
   </nav>
 </section>`,
 };

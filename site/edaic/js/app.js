@@ -7,11 +7,29 @@
   const VARSAYILAN = { sinav: 'sinav/genel', hazirlik: 'hazirlik/bilgi' };
   let temizle = [];
 
+  const ham = () => decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
+  const BOLUM = /^dersler\/fizyoloji\/(ek\d\d|\d\d)$/;
   function anahtar() {
-    const h = decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
+    const h = ham();
     if (!h) return 'giris';
     if (VARSAYILAN[h]) return VARSAYILAN[h];
-    return SAYFALAR[h] ? h : 'giris';
+    if (SAYFALAR[h]) return h;
+    return BOLUM.test(h) ? 'dersler/fizyoloji' : 'giris'; // henüz yazılmamış bölüm → içindekiler
+  }
+
+  /* bölüm dosyaları yalnız o bölüm açılınca yüklenir (data/dersler/hazir.js) */
+  const yuklenen = {}, yuklendi = {}; // yuklendi: dosyalar geldi (sayfa yine yoksa içindekilere düşülür)
+  function bolumYukle(id) {
+    if (yuklenen[id]) return yuklenen[id];
+    const ekle = (tag, a) => new Promise((ok, no) => {
+      const e = document.createElement(tag); if (tag === 'script') e.async = false; Object.assign(e, a);
+      e.onload = ok; e.onerror = () => no(new Error(a.src || a.href)); document.head.appendChild(e);
+    });
+    return (yuklenen[id] = Promise.all([
+      ekle('link', { rel: 'stylesheet', href: `css/fiz${id}.css` }),
+      ekle('script', { src: `data/dersler/fizyoloji-${id}.js` }),
+      ekle('script', { src: `js/ders/fiz${id}.js` }),
+    ]).catch((e) => { delete yuklenen[id]; throw e; }));
   }
 
   function sekmeler(grup, aktif) {
@@ -24,6 +42,13 @@
     temizle.forEach((f) => { try { f(); } catch (e) { /* bileşen zaten durmuş */ } });
     temizle = [];
     kapatPop();
+    const h = ham(), m = h.match(BOLUM);
+    if (m && !SAYFALAR[h] && !yuklendi[m[1]] && (window.FIZ_HAZIR || []).includes(m[1])) {
+      view.innerHTML = '<div class="page"><p class="wrap muted" style="padding:64px 0">Bölüm yükleniyor…</p></div>';
+      bolumYukle(m[1]).then(() => { yuklendi[m[1]] = true; if (ham() === h) ciz(); })
+        .catch(() => { if (ham() === h) view.innerHTML = '<div class="page"><p class="wrap" style="padding:64px 0">Bölüm yüklenemedi. Bağlantınızı kontrol edip sayfayı yenileyin. <a href="#/dersler/fizyoloji">İçindekiler →</a></p></div>'; });
+      return;
+    }
     const k = anahtar(), S = SAYFALAR[k];
     const bas = S.grup
       ? `<header class="wrap page-head"><p class="eyebrow">${S.eyebrow || ''}</p><h1>${S.baslik}</h1>${S.lede ? `<p class="lede">${REF(S.lede)}</p>` : ''}${sekmeler(S.grup, k)}</header>`

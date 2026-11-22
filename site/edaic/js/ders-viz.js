@@ -407,9 +407,14 @@
   /* ---------- fizyoloji içindekiler ---------- */
   VIZ.icindekiler = (el) => {
     const F = window.FIZYOLOJI, durum = store.get(ANAHTAR) || {};
-    const hazirMi = (no) => !!SAYFALAR['dersler/fizyoloji/' + String(no).padStart(2, '0')];
+    const HZ = window.FIZ_HAZIR || [], pad = (n) => String(n).padStart(2, '0');
+    const hazirMi = (no) => !!SAYFALAR['dersler/fizyoloji/' + pad(no)] || HZ.includes(pad(no));
     const top = F.kisimlar.reduce((a, k) => a + k.b.length, 0), yaz = F.kisimlar.reduce((a, k) => a + k.b.filter(([no]) => hazirMi(no)).length, 0), bit = Object.keys(durum).length;
-    const ek = (no) => F.ekler.filter((x) => x.sonra === no).map((x) => `<li class="icd-ek"><span class="no">Ek</span><span class="ad">${esc(x.ad)}</span><span class="sy">K2 s. ${x.s}</span><span class="st">sırada</span></li>`).join('');
+    const ek = (no) => F.ekler.filter((x) => x.sonra === no).map((x) => {
+      const id = 'ek' + pad(x.sonra), hz = HZ.includes(id), tm = durum[id];
+      const ic = `<span class="no">Ek</span><span class="ad">${esc(x.ad)}</span><span class="sy">K2 s. ${x.s}</span><span class="st ${hz ? (tm ? 'ok' : 'hazir') : ''}">${hz ? (tm ? '✓ tamamlandı' : 'hazır') : 'sırada'}</span>`;
+      return hz ? `<li class="icd-ek icd-h"><a href="#/dersler/fizyoloji/${id}">${ic}</a></li>` : `<li class="icd-ek">${ic}</li>`;
+    }).join('');
     el.innerHTML = `<div class="chk-prog"><span>${yaz}/${top} bölüm hazır · ${bit} tamamladınız</span><span class="trk"><span class="fl" style="width:${(yaz / top) * 100}%"></span></span></div>
       ${F.kisimlar.map((k, ki) => `<details class="acc icd"${ki === 0 ? ' open' : ''}><summary>Kısım ${k.no} · ${esc(k.ad)} <span class="small muted" style="margin-left:auto;margin-right:12px;font-weight:500">${k.b.length} bölüm</span></summary><div class="acc-b"><ol class="icd-l">${k.b.map(([no, ad, s]) => {
         const hazir = hazirMi(no), id = String(no).padStart(2, '0');

@@ -1,0 +1,375 @@
+/* Bölüm 23 · Pulmoner dolaşım · bölüme özgü stiller (f23- önekli). Renkler yalnız site.css değişkenleriyle.
+   Renk sözlüğü: oksijeni azalmış kan --accent (dolgu --accent-soft), oksijenli kan --crit (dolgu --crit-soft),
+   alveol/parankim --chip + --line, alveoler damar --c-basic, ekstra-alveoler damar --c-clin, toplam/ana eğri --ink. */
+
+/* ---------- ortak ---------- */
+.f23-svg{display:block;width:100%;height:auto}
+.f23-svg text{font-family:var(--f-display)}
+.f23-sahne{max-width:900px;margin-inline:auto;min-width:0}
+.f23-dar .f23-sahne{max-width:520px}
+.f23-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-bottom:12px}
+.f23-ctl .seg{max-width:100%}
+.f23-dar .f23-ctl{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.f23-dar .f23-ctl .btn{justify-content:center}
+.f23-dar .seg button{padding:8px 10px;font-size:12.5px}
+
+/* kaydırıcı */
+.f23-rng{display:grid;gap:5px;min-width:0;max-width:620px;margin:0 0 12px}
+.f23-rng > span:first-child{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:2px 10px;font:650 13.5px/1.3 var(--f-display);color:var(--ink)}
+.f23-rng b{font:700 13.5px/1.3 var(--f-mono);color:var(--accent-ink)}
+.f23-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+.f23-dar .f23-rng{max-width:none}
+
+/* okuma kutucukları */
+.f23-oku{display:grid;gap:10px 14px;margin:14px 0 0}
+.f23-oku-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.f23-dar .f23-oku-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.f23-oku > div{min-width:0;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.f23-oku dt{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
+.f23-oku dd{margin:3px 0 0;font:700 15px/1.3 var(--f-mono);color:var(--ink);overflow-wrap:anywhere}
+.f23-oku dd small{font:500 11.5px/1.3 var(--f-mono);color:var(--muted);display:block}
+.f23-dar .f23-oku dd{font-size:14px}
+
+/* SVG yazıları: geniş yerleşimde viewBox 720 birim ≈ 900 px (×1,25); dar yerleşimde 360 birim ≈ 330 px (×0,91) */
+.f23-tk{font:500 11px var(--f-mono);fill:var(--muted)}
+.f23-tk2{font:600 11px var(--f-display);fill:var(--ink)}
+.f23-et{font:600 11.5px var(--f-mono);fill:var(--muted)}
+.f23-lb{font:650 12.5px var(--f-display);fill:var(--ink)}
+.f23-bas{font:750 13px var(--f-display);fill:var(--ink)}
+.f23-bas2{font:750 12px var(--f-display);fill:var(--ink)}
+.f23-bt{font:700 10.5px var(--f-display)}
+.f23-bt-a{fill:var(--c-basic)}
+.f23-bt-g{fill:var(--c-clin)}
+.f23-nok-t{font:750 12px var(--f-mono);fill:var(--accent-ink);paint-order:stroke fill;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
+.f23-durum{font:600 12px var(--f-display);fill:var(--muted)}
+.f23-r2{font:750 12px var(--f-display);fill:var(--ink)}
+.f23-ce{font:750 11.5px var(--f-display)}
+.f23-ce-top{fill:var(--ink)}
+.f23-ce-alv{fill:var(--c-basic)}
+.f23-ce-ext{fill:var(--c-clin)}
+.f23-lej{font:650 12.5px var(--f-display);fill:var(--ink)}
+.f23-birim{font:800 16px var(--f-display);fill:var(--ink)}
+.f23-buyuk{font:800 26px var(--f-mono);fill:var(--ink)}
+.f23-buyuk2{font:800 24px var(--f-mono);fill:var(--ink)}
+.f23-yuz{font:800 12px var(--f-mono);fill:var(--ink);paint-order:stroke fill;stroke:var(--chip);stroke-width:3px;stroke-linejoin:round}
+.f23-yuz2{font:750 12px var(--f-mono);fill:var(--ink)}
+.f23-sant{font:800 13px var(--f-mono);fill:var(--ink)}
+.f23-tepe{font:700 11px var(--f-mono);fill:var(--muted)}
+.f23-iz-et{font:750 11px var(--f-mono);fill:var(--muted)}
+.f23-iz-et.on{fill:var(--accent-ink)}
+.f23-olay-t{font:600 10px var(--f-mono);fill:var(--muted)}
+.f23-mut{fill:var(--muted)}
+.f23-acc{fill:var(--accent-ink)}
+.f23-crt{fill:var(--crit)}
+.f23-wrn{fill:var(--warn)}
+.f23-bsc{fill:var(--c-basic)}
+.f23-okt{fill:var(--ok)}
+.f23-hale{paint-order:stroke fill;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
+.f23-dar .f23-tk{font-size:12.5px}
+.f23-dar .f23-tk2{font-size:12.5px}
+.f23-dar .f23-et{font-size:12.5px}
+.f23-dar .f23-lb{font-size:13px}
+.f23-dar .f23-bas{font-size:13.5px}
+.f23-dar .f23-bas2{font-size:13px}
+.f23-dar .f23-bt{font-size:12.5px}
+.f23-dar .f23-nok-t{font-size:13px}
+.f23-dar .f23-durum{font-size:12.5px}
+.f23-dar .f23-r2{font-size:13px}
+.f23-dar .f23-yuz,.f23-dar .f23-yuz2{font-size:13px}
+.f23-dar .f23-sant{font-size:14px}
+.f23-dar .f23-tepe,.f23-dar .f23-iz-et{font-size:12.5px}
+.f23-dar .f23-olay-t{font-size:12px}
+.f23-dar .f23-buyuk{font-size:28px}
+.f23-dar .f23-buyuk2{font-size:22px}
+
+/* eksenler */
+.f23-izg{stroke:var(--line);stroke-width:1;opacity:.7}
+.f23-eks{stroke:var(--muted);stroke-width:1}
+
+/* oksijen gradyan durakları */
+.f23-st-az{stop-color:var(--accent)}
+.f23-st-o2{stop-color:var(--crit)}
+.f23-st-o2s{stop-color:var(--crit-soft)}
+
+/* damar boruları: dış çizgi + iç dolgu */
+.f23-t-az-o{fill:none;stroke:var(--accent);stroke-linecap:round;stroke-linejoin:round}
+.f23-t-az-i{fill:none;stroke:var(--accent-soft);stroke-linecap:round;stroke-linejoin:round}
+.f23-t-o2-o{fill:none;stroke:var(--crit);stroke-linecap:round;stroke-linejoin:round}
+.f23-t-o2-i{fill:none;stroke:var(--crit-soft);stroke-linecap:round;stroke-linejoin:round}
+.f23-t-ov{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.f23-t-ln-o{fill:none;stroke:var(--line);stroke-linecap:round}
+.f23-nk-az{fill:var(--accent)}
+.f23-nk-o2{fill:var(--crit)}
+.f23-sonuc{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.f23-alveol{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+
+/* ---------- 1 · açılma ve genişleme ---------- */
+.f23-alv circle{fill:var(--chip);stroke:var(--line);stroke-width:1}
+.f23-art{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.5}
+.f23-ven{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.5}
+.f23-kap-k{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:3 4;opacity:.8}
+.f23-kap-a{stroke:url(#f23-kap-grad);stroke-linecap:round}
+.f23-eri circle{fill:var(--paper);stroke:var(--ink);stroke-width:1;stroke-opacity:.45}
+.f23-bant-a{fill:var(--c-basic-soft)}
+.f23-bant-g{fill:var(--c-clin-soft)}
+.f23-egri{fill:none;stroke:var(--ink);stroke-width:2}
+.f23-egri-b{fill:none;stroke:var(--accent);stroke-width:2.5}
+.f23-ist{fill:var(--paper);stroke:var(--ink);stroke-width:1.5}
+.f23-nok{fill:var(--accent);stroke:var(--paper);stroke-width:2}
+.f23-nok-s{fill:var(--paper);stroke:var(--muted);stroke-width:1.6}
+.f23-sabit{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4}
+.f23-fark{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.f23-denk{margin:12px auto 0;max-width:900px;text-align:center;font:500 15px/1.55 var(--f-mono);color:var(--muted);overflow-wrap:anywhere}
+.f23-denk b{color:var(--ink)}
+.f23-dar .f23-denk{font-size:13px;text-align:left}
+
+/* ---------- 2 · akciğer hacmi ---------- */
+.f23-kutu{fill:var(--bg);stroke:var(--line);stroke-width:1}
+.f23-kapr{fill:var(--accent);stroke:var(--paper);stroke-width:1}
+.f23-halka{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 4}
+.f23-bag{stroke:var(--muted);stroke-linecap:round;opacity:.75}
+.f23-damar{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.f23-tidal{fill:var(--ok-soft);opacity:.75;transition:opacity .3s}
+.f23-tidal.on{opacity:1;stroke:var(--ok);stroke-width:1}
+.f23-sirt{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:4 4}
+.f23-c-alv{fill:none;stroke:var(--c-basic);stroke-width:2}
+.f23-c-ext{fill:none;stroke:var(--c-clin);stroke-width:2}
+.f23-c-top{fill:none;stroke:var(--ink);stroke-width:3}
+.f23-imlec{stroke:var(--muted);stroke-width:1}
+.f23-n-alv{fill:var(--c-basic);stroke:var(--paper);stroke-width:1.5}
+.f23-n-ext{fill:var(--c-clin);stroke:var(--paper);stroke-width:1.5}
+.f23-n-top{fill:var(--ink);stroke:var(--paper);stroke-width:2}
+
+/* ---------- 3 · HPV ---------- */
+.f23-kip{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.f23-kip-et{font:750 13px/1 var(--f-display);color:var(--ink)}
+.f23-kip-not{margin:6px 0 12px;font:500 12.5px/1.4 var(--f-mono);color:var(--muted)}
+.f23-rng-esik{margin-bottom:22px}
+.f23-esik-ray{position:relative;display:block}
+.f23-esik-cent{position:absolute;top:-5px;width:2px;height:8px;margin-left:-1px;background:var(--crit);border-radius:1px;pointer-events:none}
+.f23-esik-et{position:absolute;bottom:-18px;transform:translateX(-50%);white-space:nowrap;font:600 11px/1 var(--f-mono);color:var(--crit);pointer-events:none}
+.f23-rng-esik{position:relative}
+.f23-alv-hip{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.5}
+.f23-centik{fill:none;stroke:var(--crit);stroke-width:2.2;stroke-linecap:round}
+.f23-akim{display:flex;flex-wrap:wrap;align-items:center;gap:6px 14px;margin:12px auto 0;max-width:900px}
+.f23-akim-bar{flex:1 1 280px;display:flex;height:28px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.f23-akim-bar span{display:flex;align-items:center;justify-content:center;min-width:0;overflow:hidden;white-space:nowrap;font:750 12.5px/1 var(--f-mono);color:var(--ink);transition:width .8s ease}
+.f23-akim-a{background:var(--crit-soft)}
+.f23-akim-b{background:var(--warn-soft);border-left:1px solid var(--line)}
+.f23-akim-not{font:500 12.5px/1.35 var(--f-mono);color:var(--muted)}
+@media (prefers-reduced-motion: reduce){.f23-akim-bar span{transition:none}.f23-tidal{transition:none}}
+
+/* ---------- 4 · tek akciğer ventilasyonu ---------- */
+.f23-serbest{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:0 0 12px;padding-top:10px;border-top:1px solid var(--line)}
+.f23-alan{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+.f23-alan > span{font:650 13px/1.25 var(--f-display);color:var(--ink)}
+.f23-tog{display:inline-flex;align-items:center;gap:8px;font:650 13px/1.2 var(--f-display);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 12px;cursor:pointer;text-align:left}
+.f23-tog::before{content:"";flex:0 0 14px;height:14px;border-radius:4px;border:1.5px solid var(--muted);background:var(--paper)}
+.f23-tog[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-ink)}
+.f23-tog[aria-pressed="true"]::before{border-color:var(--accent);background:var(--accent);box-shadow:inset 0 0 0 2.5px var(--accent-soft)}
+.f23-tog:disabled{opacity:.45;cursor:not-allowed}
+.f23-dar .f23-serbest{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.f23-akc{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f23-akc-cpap{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:1.5;opacity:0}
+.f23-atel{fill:var(--warn-soft)}
+.f23-atel-c{stroke:var(--warn);stroke-width:1.5;stroke-dasharray:4 3}
+.f23-hava-o{fill:none;stroke:var(--muted);stroke-width:8;stroke-linecap:round}
+.f23-hava-i{fill:none;stroke:var(--paper);stroke-width:3.5;stroke-linecap:round}
+.f23-med{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.f23-ok{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.f23-sik-k{stroke:var(--accent);stroke-width:3.5;stroke-linecap:round}
+.f23-sik-o{stroke:var(--crit)}
+.f23-bar-z{fill:var(--bg);stroke:var(--line);stroke-width:1}
+.f23-bar-v{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1}
+.f23-bar-a{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1}
+.f23-bar-u{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}
+.f23-parantez{fill:none;stroke:var(--ink);stroke-width:1.5}
+.f23-mg{fill:none;stroke:var(--ink);stroke-width:2}
+.f23-mg-soluk{fill:none;stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4}
+.f23-mg-n{fill:var(--ink)}
+.f23-mg-sec{fill:var(--accent);stroke:var(--paper);stroke-width:2}
+
+/* ---------- 5 · PAC ---------- */
+.f23-pac-btn{display:flex;flex-wrap:wrap;gap:8px 10px;margin-bottom:12px}
+.f23-dar .f23-pac-btn{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}
+.f23-dar .f23-pac-btn .btn{justify-content:center;padding:10px 8px}
+.f23-kilif{fill:var(--chip);stroke:var(--muted);stroke-width:1.2}
+.f23-oda-o{fill:none;stroke:var(--accent);stroke-width:3;stroke-linejoin:round}
+.f23-oda-i{fill:var(--accent-soft);stroke:none}
+.f23-dal{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.2;transition:opacity .3s}
+.f23-dal.kapali{opacity:.35;stroke-dasharray:3 2}
+.f23-kapak{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round}
+.f23-kateter{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.f23-balon{fill:var(--ink);stroke:none}
+.f23-balon.on{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.f23-mon{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.f23-mon-izg{stroke:var(--line);stroke-width:1;opacity:.6}
+.f23-iz{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round}
+.f23-iz-oz{fill:none;stroke:var(--muted);stroke-width:1.6;opacity:.7}
+.f23-iz-oz.on{stroke:var(--accent);stroke-width:2.2;opacity:1}
+.f23-ayrac{stroke:var(--line);stroke-width:1.2}
+.f23-olay{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 3}
+.f23-ipucu{margin:12px 0 0;padding:10px 14px;border-radius:10px;background:var(--chip);font:500 13px/1.45 var(--f-body);color:var(--ink)}
+@media (prefers-reduced-motion: reduce){.f23-dal{transition:none}}
+
+/* ---------- 6 · Yapı (üç panel) ---------- */
+.f23-y-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;max-width:420px;margin-inline:auto}
+.f23-y-genis .f23-y-grid{grid-template-columns:repeat(3,minmax(0,1fr));max-width:none}
+.f23-y-pan{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:4px;cursor:pointer;opacity:.5;transition:opacity .25s,border-color .25s;min-width:0}
+.f23-y-pan:hover{opacity:.8}
+.f23-y-pan.on{opacity:1;border:2px solid var(--accent);padding:3px}
+.f23-y-pan:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.f23-y-bas{font:750 14px var(--f-display);fill:var(--ink)}
+.f23-y-k{font:500 11px var(--f-display);fill:var(--ink)}
+.f23-y-k2{font:700 11.5px var(--f-display);fill:var(--ink)}
+.f23-y-buyuk{font:800 13px var(--f-mono);fill:var(--ink)}
+.f23-y-akc{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f23-y-alv{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f23-y-trk{fill:none;stroke:var(--muted);stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.f23-y-pa{fill:none;stroke:var(--accent);stroke-width:5;stroke-linecap:round;stroke-linejoin:round}
+.f23-y-pv{fill:none;stroke:var(--crit);stroke-width:3.5;stroke-linecap:round}
+.f23-y-br,.f23-y-ar,.f23-y-vn{fill:none;stroke-width:1.8;stroke-linecap:round}
+.f23-y-br{stroke:var(--muted)}
+.f23-y-ar{stroke:var(--accent)}
+.f23-y-vn{stroke:var(--crit)}
+.f23-y-okA{fill:none;stroke:var(--paper);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.f23-y-la{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.5}
+.f23-y-isaret{fill:none;stroke:var(--ink);stroke-width:1.2;stroke-dasharray:2.5 2}
+.f23-y-kilavuz{fill:none;stroke:var(--muted);stroke-width:1.2;stroke-dasharray:3 3}
+.f23-y-hex{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f23-y-soluk{opacity:.55}
+.f23-y-ark{fill:var(--accent)}
+.f23-y-bro{fill:none;stroke:var(--muted);stroke-width:2.2}
+.f23-y-pvL{fill:none;stroke:var(--crit);stroke-width:3;stroke-linecap:round}
+.f23-y-kapic{fill:var(--accent-soft)}
+.f23-y-cep{fill:none;stroke:var(--line);stroke-width:1.5}
+.f23-y-cepK{stroke:var(--muted);stroke-width:1.3;stroke-dasharray:2 3}
+.f23-y-eri{fill:var(--crit)}
+.f23-y-cap{stroke:var(--ink);stroke-width:1.3}
+.f23-y-okI{fill:var(--ink)}
+.f23-y-tm{stroke:var(--c-basic);stroke-width:3.5;stroke-linecap:round}
+.f23-y-okB{fill:var(--c-basic)}
+.f23-y-dam{fill:var(--c-basic)}
+.f23-y-uyari{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.5}
+.f23-y-bron{fill:var(--paper);stroke:var(--muted);stroke-width:2;stroke-linejoin:round}
+.f23-y-hlk{stroke:var(--muted);stroke-width:2;stroke-linecap:round}
+.f23-y-pvK{stroke:var(--crit);stroke-width:6;stroke-linecap:round}
+.f23-y-okV{fill:var(--crit)}
+.f23-y-bart{fill:none;stroke:var(--crit);stroke-width:2.5;stroke-linecap:round}
+.f23-y-bkap{fill:none;stroke:url(#f23-bron-grad);stroke-width:1.8;stroke-linecap:round}
+.f23-y-bven{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round}
+.f23-y-kar-a{fill:var(--accent)}
+.f23-y-kar-o{fill:var(--crit)}
+.f23-y-kes{font:800 15px var(--f-display);fill:var(--c-clin)}
+.f23-y-nakil{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f23-y-etk{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:1}
+.f23-y-etk-t{font:750 11px var(--f-display);fill:var(--c-clin)}
+@media (prefers-reduced-motion: reduce){.f23-y-pan{transition:none}}
+
+/* ---------- 7 · Direnç (iki devre) ---------- */
+.f23-d-sahne{max-width:940px}
+.f23-d-satir{cursor:pointer;transition:opacity .25s}
+.f23-d-satir:focus{outline:none}
+.f23-d-satir:focus-visible .f23-d-zemin{stroke:var(--accent);stroke-width:2}
+.f23-d-zemin{fill:transparent;stroke:none}
+.f23-d-satir:hover .f23-d-zemin{fill:var(--bg)}
+.f23-d-soluk{opacity:.45}
+.f23-d-cub{transition:opacity .25s}
+.f23-d-ad{font:750 13px var(--f-display);fill:var(--ink)}
+.f23-d-kutu{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.f23-d-kad{font:750 12px var(--f-display);fill:var(--ink)}
+.f23-d-kalt{font:500 11px var(--f-display);fill:var(--muted)}
+.f23-d-kdeg{font:800 14px var(--f-mono);fill:var(--ink)}
+.f23-d-roz-ok{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1}
+.f23-d-roz-no{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1}
+.f23-d-roz-t{font:700 10.5px var(--f-display);fill:var(--ink)}
+.f23-d-boruS,.f23-d-boruP{stroke-width:7;stroke-linecap:round}
+.f23-d-boruS{stroke:var(--crit)}
+.f23-d-boruP{stroke:var(--accent)}
+.f23-d-zz{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.f23-d-okb{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.f23-d-co{font:700 12px var(--f-mono);fill:var(--ink)}
+.f23-d-taban{stroke:var(--line);stroke-width:1}
+.f23-d-pro{fill:none;stroke-width:2.5;stroke-linejoin:round}
+.f23-d-proS{stroke:var(--crit)}
+.f23-d-proP{stroke:var(--accent)}
+.f23-d-ayr{fill:none;stroke:var(--ink);stroke-width:1.3}
+.f23-d-dp{font:750 13px var(--f-display);fill:var(--ink)}
+.f23-d-tk{font:500 11px var(--f-mono);fill:var(--muted)}
+.f23-d-f{font:500 13px var(--f-mono);fill:var(--ink)}
+.f23-d-fb{font-weight:800}
+.f23-d-ohm{font:600 15px var(--f-mono);fill:var(--ink)}
+.f23-d-sim path{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.f23-d-sim .f23-d-pil{stroke-width:2.2}
+.f23-d-cubS{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.2}
+.f23-d-cubP{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.2}
+.f23-d-cubT{font:800 12px var(--f-mono);fill:var(--ink)}
+.f23-d-cubA{font:750 12px var(--f-display);fill:var(--ink)}
+.f23-d-oran{font:800 13px var(--f-display);fill:var(--ink)}
+.f23-d-not{margin:8px 0 0;font:500 12px/1.4 var(--f-mono);color:var(--muted)}
+.f23-dar .f23-d-ad{font-size:14px}
+.f23-dar .f23-d-kad{font-size:13px}
+.f23-dar .f23-d-kalt{font-size:12px}
+.f23-dar .f23-d-kdeg{font-size:14px}
+.f23-dar .f23-d-roz-t{font-size:12px}
+.f23-dar .f23-d-co,.f23-dar .f23-d-tk,.f23-dar .f23-d-cubT,.f23-dar .f23-d-cubA{font-size:12.5px}
+.f23-dar .f23-d-f{font-size:13px}
+.f23-dar .f23-d-ohm{font-size:14px}
+@media (prefers-reduced-motion: reduce){.f23-d-satir,.f23-d-cub{transition:none}}
+
+/* ---------- 8 · HPV'nin iki yüzü (kartlar) ---------- */
+.f23-k-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
+.f23-k-genis .f23-k-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.f23-k-kol{display:grid;gap:8px;align-content:start;min-width:0}
+.f23-k-bas{display:flex;align-items:center;gap:12px;padding:4px 2px 6px;border-bottom:1px solid var(--line);margin-bottom:2px}
+.f23-k-bas > div{display:grid;gap:2px;min-width:0}
+.f23-k-bas b{font:750 15px/1.25 var(--f-display);color:var(--ink)}
+.f23-k-bas span{font:500 13px/1.35 var(--f-body);color:var(--muted)}
+.f23-k-sim{flex:none;width:120px;height:60px}
+.f23-k-kart{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink);font:inherit;transition:background-color .2s,border-color .2s}
+.f23-k-kart:hover{border-color:var(--accent)}
+.f23-k-kart.on{border:2px solid var(--accent);padding:9px 11px;background:var(--accent-soft)}
+.f23-k-kart:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.f23-k-metin{display:grid;gap:4px;min-width:0;flex:1}
+.f23-k-kart b{font:750 14px/1.3 var(--f-display);color:var(--ink)}
+.f23-k-zin{font:500 12.5px/1.45 var(--f-body);color:var(--ink)}
+.f23-k-not{font:500 11.5px/1.4 var(--f-body);color:var(--muted)}
+.f23-k-mini{flex:none;width:60px;height:80px}
+.f23-dar .f23-k-yanli{flex-direction:column}
+.f23-dar .f23-k-yanli .f23-k-mini{align-self:center}
+.f23-k-dongu{display:block;width:100%;max-width:340px;height:auto;margin:6px auto 0}
+.f23-k-cub{display:grid;gap:6px;margin-top:4px}
+.f23-k-cubS{display:grid;grid-template-columns:minmax(0,7.5em) minmax(0,1fr);align-items:center;gap:2px 8px}
+.f23-k-cubS span{font:600 12px/1.3 var(--f-display);color:var(--muted)}
+.f23-k-cubS i{display:block;height:12px;border-radius:6px;background:var(--chip);border:1px solid var(--line);overflow:hidden}
+.f23-k-cubS i b{display:block;height:100%;background:var(--accent)}
+.f23-k-cubS i b.f23-k-cubC{width:90%;background:linear-gradient(90deg,var(--accent) 80%,var(--chip))}
+.f23-k-cubS em{grid-column:2;font:500 11.5px/1.3 var(--f-mono);font-style:normal;color:var(--ink)}
+.f23-dar .f23-k-cubS{grid-template-columns:minmax(0,1fr)}
+.f23-dar .f23-k-cubS em{grid-column:1}
+.f23-k-serit{display:grid;gap:8px;margin-top:14px}
+.f23-k-grup{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.f23-k-gad{font:700 12.5px/1.3 var(--f-display);color:var(--ink);min-width:9.5em}
+.f23-k-cip{display:inline-block;font:500 12px/1.3 var(--f-body);color:var(--ink);padding:4px 10px;border-radius:999px;background:var(--chip);border:1px solid var(--line)}
+.f23-k-cip small{font:600 11px var(--f-mono);color:var(--muted);margin-left:4px}
+.f23-k-cipG{background:var(--crit-soft);border-color:var(--crit)}
+.f23-k-cipA{background:var(--accent-soft);border-color:var(--accent)}
+.f23-dar .f23-k-gad{min-width:0;flex-basis:100%}
+/* SVG simgeleri */
+.f23-k-tz{fill:var(--chip)}
+.f23-k-tc{stroke:var(--muted);stroke-width:1.6}
+.f23-k-alv{fill:var(--chip);stroke:var(--muted);stroke-width:1.5}
+.f23-k-alvH{stroke:var(--muted);stroke-width:1.5}
+.f23-k-dmr{fill:none;stroke:var(--accent);stroke-linecap:round}
+.f23-k-okc{fill:var(--accent)}
+.f23-k-okl{fill:none;stroke:var(--accent);stroke-width:2.5;stroke-linecap:round}
+.f23-k-pvr{font:800 11px var(--f-display);fill:var(--crit)}
+.f23-k-akc{fill:var(--chip);stroke:var(--muted);stroke-width:1.5}
+.f23-k-odm{fill:var(--c-basic)}
+.f23-k-dok{fill:none;stroke:var(--crit);stroke-width:1.8}
+.f23-k-ucu{fill:var(--crit)}
+.f23-k-dk{fill:var(--paper);stroke:var(--line);stroke-width:1.3}
+.f23-k-dt{font:600 12px var(--f-display);fill:var(--ink)}
+.f23-k-dm{font:800 13px var(--f-display);fill:var(--muted)}
+.f23-k-dh{font:800 12px var(--f-display);fill:var(--crit)}
+@media (prefers-reduced-motion: reduce){.f23-k-kart{transition:none}}
