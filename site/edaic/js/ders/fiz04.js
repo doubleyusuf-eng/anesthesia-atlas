@@ -116,7 +116,7 @@
       ['glk', 'Glikoprotein, glikolipit', '<b>Glikoprotein ve glikolipit.</b> Dış yüzdeki kısa karbonhidrat zincirleri bir proteine bağlıysa glikoprotein, bir lipide bağlıysa glikolipit adını alır. Zincirler etiket işlevi görür: hücrenin, bağışıklık hücreleri dahil diğer hücrelerce tanınmasını sağlar. [[K1 s. 14]]'],
       ['kol', 'Kolesterol', '<b>Kolesterol.</b> Fosfolipitlerin arasına yerleşir; çift tabakayı sağlamlaştırır ve suya geçirgenliğini daha da azaltır. [[K1 s. 14]]'],
     ];
-    const GENEL = '<b>Akışkan çift tabaka.</b> Zar katı değil, iki boyutlu bir sıvıdır: fosfolipitler kendi yarıları içinde serbestçe yer değiştirir. Başı dolgulu fosfolipidi izleyin: yanlara gezer ama öbür yarıya geçmez (Atlas notu: kendiliğinden öbür yarıya geçiş çok seyrektir). Proteinler de lipitlerin arasında yüzer. Bir yapıya basınca o yapı öne çıkar. [[K1 s. 13–14]]';
+    const GENEL = '<b>Akışkan çift tabaka.</b> Zar katı değil, iki boyutlu bir sıvıdır: fosfolipitler kendi yarıları içinde serbestçe yer değiştirir. Başı dolgulu fosfolipiti izleyin: yanlara gezer ama öbür yarıya geçmez (Atlas notu: kendiliğinden öbür yarıya geçiş çok seyrektir). Proteinler de lipitlerin arasında yüzer. Bir yapıya basınca o yapı öne çıkar. [[K1 s. 13–14]]';
     const mk = (n, kol, gl) => Array.from({ length: n }, (_, i) => ({ tip: kol.includes(i) ? 'kol' : i === gl ? 'gl' : 'pl', ph: rnd(i + n) * 6.28, w: 0.9 + rnd(i * 3 + n) * 1.1 }));
     const UST = mk(28, [5, 17], 21), ALT = mk(28, [9, 23], -1);
     UST[12].isaret = true;
@@ -242,7 +242,7 @@
         akt: [...uc((i) => ({ t: 'na', kf: [[0, 140 + i * 40, 38], [0.18, CX - 8 + i * 8, MY - 6], [0.2, CX - 8 + i * 8, MY - 6], [0.34, CX - 8 + i * 8, MY + 6], [0.5, 146 + i * 38, 206]] })),
           { t: 'ca', kf: [[0.44, 238, 206], [0.6, CX, MY + 6], [0.62, CX, MY + 6], [0.76, CX, MY - 6], [0.95, 220, 38]] }],
         oz: [['Protein', 'Taşıyıcı; ATP hidrolize etmez'], ['Enerji', 'Dolaylı: Na⁺ gradyanı'], ['Yön', 'Zıt yönlerde: Na⁺ gradyanı yönünde içeri, öbür iyon gradyanına karşı dışarı'], ['Örnek', 'Na⁺/Ca²⁺ değiştiricisi: 3 Na⁺ içeri, 1 Ca²⁺ dışarı (Atlas notu)']],
-        cap: '<b>Sekonder aktif: karşı taşıma (antiport).</b> İyonlar zıt yönlerde taşınır: Na⁺ gradyanı yönünde girerken öbür iyonu gradyanına karşı dışarı çıkarır. Kitabın örneği toplayıcı kanal esas hücrelerindeki Na⁺/K⁺ antiporteridir; çizimdeki Na⁺/Ca²⁺ değiştiricisi atlasın seçtiği örnektir (aşağıdaki Atlas notuna bakın). [[K1 s. 16]]',
+        cap: '<b>Sekonder aktif: karşı taşıma (antiport).</b> İyonlar zıt yönlerde taşınır: Na⁺ gradyanı yönünde girerken öbür iyonu gradyanına karşı dışarı çıkarır. Kitabın örneği toplayıcı kanal esas hücrelerindeki Na⁺/K⁺ antiporteridir; çizimdeki Na⁺/Ca²⁺ değiştiricisi atlasın seçtiği örnektir (Aktif taşıma bölümündeki ikinci Atlas notuna bakın). [[K1 s. 16]]',
       },
     };
     const TAM = { basit: 'Basit difüzyon', kanal: 'İyon kanalı', kolay: 'Kolaylaştırılmış difüzyon', primer: 'Primer aktif taşıma', simport: 'Sekonder aktif: birlikte taşıma (simport)', antiport: 'Sekonder aktif: karşı taşıma (antiport)' };
@@ -653,7 +653,7 @@
       fago: { ad: 'Fagositoz', sure: 6.2, as: [[0, 'Parçacık hücreye yaklaşır'], [0.8, 'Zar parçacığın çevresini sarar'], [3.4, 'Fagozom oluşur ve içeri taşınır']],
         cap: '<b>Fagositoz.</b> Mikroplar (bakteri, virüs), hücreler ve hücre artıkları gibi parçacıkların endositozla alınmasıdır. Nötrofiller ve makrofajlar mikropları bu yolla yutar ve öldürür (Bölüm 75). Çizimdeki psödopod sarması Atlas notudur. [[K1 s. 17]]' },
       pino: { ad: 'Pinositoz', sure: 6, as: [[0, 'Makromoleküller zar yüzeyinde'], [1, 'Çukur oluşur'], [2.4, 'Zar maddeyi sarar'], [3.6, 'Vezikül oluşur, içeri taşınır']],
-        cap: '<b>Pinositoz.</b> Makromoleküllerin endositozla alınmasıdır. Vezikül maddeyle birlikte az miktarda ECF\'yi de içeri taşır (küçük noktalar). Kitabın örneği anne sütündeki IgA\'nın yenidoğan bağırsağında zardan geçişidir. [[K1 s. 16–17]]' },
+        cap: '<b>Pinositoz.</b> Makromoleküllerin endositozla alınmasıdır. Vezikül maddeyle birlikte az miktarda ECF\'yi de içeri taşır (küçük noktalar). Kitabın örneği anne sütündeki IgA\'nın yenidoğan bağırsağında zardan geçişidir (Atlas notu: insanda sütteki IgA büyük ölçüde emilmez, bağırsak lümeninde korur). [[K1 s. 16–17]]' },
       res: { ad: 'Reseptör aracılı', sure: 6.4, as: [[0, 'Madde reseptörüne bağlanır'], [1.4, 'Çukur oluşur'], [2.8, 'Zar kompleksi sarar'], [4, 'Vezikül oluşur, içeri taşınır']],
         cap: '<b>Reseptör aracılı endositoz.</b> Madde önce zarın dış yüzündeki reseptörüne bağlanır; reseptör–madde kompleksi endositozla içeri alınır. Demir ve kolesterol bu yolla taşınır. [[K1 s. 17]]' },
       ekzo: { ad: 'Ekzositoz', sure: 5.8, as: [[0, 'Vezikül zara yaklaşır'], [1.4, 'SNARE proteinleriyle kenetlenir'], [2.2, 'Zarla kaynaşır'], [3.2, 'İçerik ECF\'ye salınır']],
