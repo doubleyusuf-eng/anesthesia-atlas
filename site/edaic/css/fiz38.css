@@ -1,1 +1,148 @@
-/* Bölüm 38 · Venöz basınç dalga biçimleri */
+/* Bölüm 38 · Venöz basınç dalga biçimleri · bölüme özgü stiller (f38- önekli). Renkler yalnız site.css değişkenleriyle. */
+.f38-svg{width:100%;height:auto;display:block;margin:0 auto;max-width:880px}
+.f38-svg.f38-dar{max-width:520px}
+.f38-ust{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;margin-bottom:10px}
+.f38-ust [hidden]{display:none}
+.f38-seg{max-width:100%}
+.f38-ok{min-width:42px;justify-content:center;padding:10px 12px;font-size:17px}
+.f38-harf button{font:700 15px/1 var(--f-mono);min-width:36px;padding:9px 10px}
+.f38-tgl[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+
+/* SVG yazıları */
+.f38-t{font:700 12px var(--f-display);fill:var(--ink)}
+.f38-ts{font:500 11px var(--f-mono);fill:var(--muted)}
+.f38-tk{font:500 11px var(--f-mono);fill:var(--muted)}
+.f38-b{font-weight:700;fill:var(--ink)}
+.f38-dar .f38-t{font-size:13.5px}
+.f38-dar .f38-ts,.f38-dar .f38-tk{font-size:13px}
+.f38-acc{fill:var(--accent-ink)}
+.f38-warn{fill:var(--warn)}
+.f38-okt{fill:var(--ok)}
+.f38-uc-b{fill:var(--c-basic)}
+.f38-uc-w{fill:var(--warn)}
+.f38-uc-m{fill:var(--muted)}
+.f38-uc-a{fill:var(--accent)}
+.f38-uc-c{fill:var(--crit)}
+.f38-izg{stroke:var(--line);stroke-width:1}
+.f38-eks{stroke:var(--ink);stroke-width:1.4}
+
+/* ---------- 1 · dalga ---------- */
+.f38-faz{fill:var(--chip)}
+.f38-ekg{fill:none;stroke:var(--muted);stroke-width:1.6;stroke-linejoin:round}
+.f38-iz-k{fill:none;stroke:var(--muted);stroke-width:1.8;opacity:.7;stroke-linejoin:round}
+.f38-iz-v{fill:none;stroke:var(--accent);stroke-width:3.6;stroke-linecap:round;opacity:0;transition:opacity .25s}
+.f38-iz-v.on{opacity:1}
+.f38-imlec{stroke:var(--accent);stroke-width:1.4;stroke-dasharray:4 4}
+.f38-imlec-n{fill:var(--accent);stroke:var(--paper);stroke-width:2}
+.f38-harf-g{cursor:pointer;outline:none}
+.f38-hedef{fill:transparent}
+.f38-harf-z{fill:var(--paper);stroke:var(--line);stroke-width:1.4;transition:fill .2s,stroke .2s}
+.f38-harf-t{font:700 15px var(--f-mono);fill:var(--ink);pointer-events:none}
+.f38-harf-g.on .f38-harf-z{fill:var(--accent);stroke:var(--accent)}
+.f38-harf-g.on .f38-harf-t{fill:var(--on-accent)}
+.f38-harf-g:focus-visible .f38-harf-z{stroke:var(--ink);stroke-width:2.4}
+.f38-ven{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:1.2}
+.f38-kat{stroke:var(--ink);stroke-width:2}
+.f38-kat-u{fill:var(--accent);stroke:var(--paper);stroke-width:1.5}
+.f38-ra{fill:var(--c-basic-soft);stroke:var(--ink);stroke-width:1.6}
+.f38-ra-dol{fill:var(--c-basic);stroke:none;opacity:.3}
+.f38-rv{fill:var(--c-basic-soft);stroke:var(--ink);stroke-width:1.6}
+.f38-annul{stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.f38-yap{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.f38-yap.sis{stroke:var(--warn)}
+.f38-akim{fill:none;stroke:var(--c-basic);stroke-width:2.4;stroke-linecap:round}
+.f38-akim-w{fill:none;stroke:var(--warn);stroke-width:2.4;stroke-linecap:round}
+.f38-kalp .f38-t{font-size:14px}
+
+/* ---------- 2 · aritmi ---------- */
+.f38-ekran{fill:var(--bg);stroke:var(--line);stroke-width:1}
+.f38-iz-a{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-linejoin:round}
+.f38-rozet{font:700 12.5px var(--f-display);fill:var(--accent-ink)}
+.f38-dar .f38-rozet{font-size:13.5px}
+.f38-balon{font:700 12px var(--f-mono);fill:var(--accent-ink)}
+.f38-balon.crit{fill:var(--crit)}
+.f38-balon-k{font:500 11px var(--f-mono);fill:var(--muted)}
+.f38-dar .f38-balon{font-size:13px}
+.f38-dar .f38-balon-k{font-size:12.5px}
+.f38-ayok{stroke:var(--muted);stroke-width:1.3;stroke-dasharray:3 3}
+.f38-durum{min-height:30px;margin:0 0 6px;font:600 13px/1.3 var(--f-display);color:var(--muted)}
+.f38-av{display:inline-flex;align-items:center;gap:8px}
+.f38-av svg{width:96px;height:24px;flex:none}
+.f38-av svg.f38-mini{width:36px;height:34px}
+.f38-av-k{fill:var(--chip);stroke:var(--ink);stroke-width:1.4}
+.f38-av-t{font:700 11px var(--f-mono);fill:var(--ink)}
+.f38-av-o{stroke:var(--muted);stroke-width:2;fill:none}
+.f38-av-x{stroke:var(--crit);stroke-width:3;stroke-linecap:round;fill:none}
+.f38-av-g{stroke:var(--crit);stroke-width:3;fill:none}
+
+/* ---------- 3 · değer ---------- */
+.f38-zemin{stroke:var(--line);stroke-width:2}
+.f38-masa{fill:var(--chip);stroke:var(--line)}
+.f38-masa-a{stroke:var(--line);stroke-width:2}
+.f38-govde{fill:var(--chip);stroke:var(--muted);stroke-width:1.4}
+.f38-kat-ic{fill:none;stroke:var(--ink);stroke-width:1.6;stroke-dasharray:3 3}
+.f38-ra-n{fill:var(--accent);stroke:var(--paper);stroke-width:1.5}
+.f38-ra-cz{stroke:var(--accent);stroke-width:1.5;stroke-dasharray:6 5}
+.f38-direk{stroke:var(--muted);stroke-width:3;stroke-linecap:round}
+.f38-hat{fill:none;stroke:var(--ink);stroke-width:1.6}
+.f38-trd{fill:var(--c-basic);stroke:var(--ink);stroke-width:1.2}
+.f38-fark{stroke:var(--warn);stroke-width:2;transition:opacity .2s}
+.f38-bd.dus{fill:var(--c-basic-soft)}
+.f38-bd.nor{fill:var(--ok-soft)}
+.f38-bd.yuk{fill:var(--warn-soft)}
+.f38-sut-c{fill:none;stroke:var(--line);stroke-width:1.2}
+.f38-sut{fill:var(--accent);transform-box:fill-box;transform-origin:50% 100%;transition:transform .4s ease}
+.f38-dar .f38-sut{transform-origin:0 50%}
+.f38-cent{stroke:var(--muted);stroke-width:1.2}
+.f38-ibre{stroke:var(--ink);stroke-width:2.5;transition:all .4s ease}
+.f38-buyuk{font:750 16px var(--f-mono);fill:var(--ink)}
+.f38-dar .f38-buyuk{font-size:17px}
+.f38-soz-nor{fill:var(--ok)}
+.f38-soz-yuk{fill:var(--warn)}
+.f38-soz-dus{fill:var(--c-basic)}
+.f38-rng{display:grid;gap:4px;margin-top:10px}
+.f38-rng > span{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 10px;font:650 13.5px/1.25 var(--f-display);color:var(--ink)}
+.f38-rng b{font:700 13px/1.25 var(--f-mono);color:var(--accent-ink)}
+.f38-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+.f38-cipler{display:flex;flex-wrap:wrap;gap:6px 6px;align-items:center;margin-top:10px}
+.f38-cl{font:700 12px/1 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em;min-width:100px}
+.f38-cip{font:650 13px/1.15 var(--f-display);border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 11px;border-radius:999px;cursor:pointer}
+.f38-cip:hover{border-color:var(--warn)}
+.f38-cip[aria-pressed="true"]{background:var(--warn-soft);border-color:var(--warn);color:var(--ink)}
+.f38-cip.dus[aria-pressed="true"]{background:var(--c-basic-soft);border-color:var(--c-basic)}
+.f38-sifir{padding:8px 12px;font-size:13px}
+
+/* ---------- 4 · Starling ---------- */
+.f38-kutu{cursor:pointer;outline:none}
+.f38-kutu rect{fill:var(--chip);stroke:var(--ink);stroke-width:1.3;transition:fill .2s}
+.f38-kutu:hover rect,.f38-kutu:focus-visible rect{fill:var(--accent-soft);stroke:var(--accent)}
+.f38-zok{fill:none;stroke:var(--muted);stroke-width:1.8}
+.f38-zayif{fill:none;stroke:var(--warn);stroke-width:1.8;stroke-dasharray:6 4}
+.f38-bol.ok{fill:var(--ok-soft)}
+.f38-bol.pla{fill:var(--chip)}
+.f38-bol.crit{fill:var(--crit-soft)}
+.f38-egri{fill:none;stroke:var(--ink);stroke-width:2.6;stroke-linecap:round}
+.f38-nok{fill:var(--accent);stroke:var(--paper);stroke-width:2}
+.f38-nok.ok{fill:var(--ok)}
+.f38-nok.crit{fill:var(--crit)}
+.f38-nok.muted{fill:var(--accent)}
+.f38-nok0{fill:var(--paper);stroke:var(--muted);stroke-width:2;stroke-dasharray:3 2}
+.f38-sok{fill:none;stroke:var(--accent);stroke-width:1.8;transition:opacity .2s}
+.f38-sv-ok{fill:var(--ok)}
+.f38-sv-muted{fill:var(--muted)}
+.f38-sv-crit{fill:var(--crit)}
+.f38-hb{fill:none;stroke:none}
+.f38-hb.on{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1}
+.f38-hb.sol{fill:none;stroke:var(--ok);stroke-width:1;stroke-dasharray:4 4;opacity:.6}
+.f38-hb.kes.on{stroke-dasharray:5 3}
+.f38-bolok{stroke:var(--accent);stroke-width:2}
+.f38-rozetler{display:flex;flex-wrap:wrap;gap:6px;min-height:32px;margin-top:8px;align-items:center}
+.f38-rz{display:inline-flex;align-items:center;gap:6px;font:650 12.5px/1.2 var(--f-display);padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:var(--chip);color:var(--ink)}
+.f38-rz.ok{background:var(--ok-soft);border-color:var(--ok)}
+.f38-rz.warn{background:var(--warn-soft);border-color:var(--warn)}
+.f38-rz.crit{background:var(--crit-soft);border-color:var(--crit)}
+.f38-lif svg{width:44px;height:12px}
+.f38-lif path{fill:none;stroke:var(--crit);stroke-width:2}
+
+@media (prefers-reduced-motion:reduce){.f38-sut,.f38-ibre,.f38-iz-v{transition:none}}
+.f38-halo{paint-order:stroke;stroke:var(--paper);stroke-width:3.5px;stroke-linejoin:round}
