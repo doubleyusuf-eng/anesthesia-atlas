@@ -178,7 +178,7 @@
       </div>
       <div class="f07-serit" role="group" aria-label="Kuşaklar">${ALAN.map((_, z) => `<button type="button" data-z="${z}" class="${z <= 16 ? 'il' : 'so'}" aria-label="Kuşak ${z}"><span>${z}</span></button>`).join('')}</div>
       <div class="f07-serit-alt"><span class="kk" style="grid-column:1/13">kıkırdaklı 0–11</span><span style="grid-column:13/25">kıkırdaksız 12–23</span></div>
-      <div class="f07-serit-alt"><span class="il" style="grid-column:1/18">iletici bölge 0–16</span><span class="so" style="grid-column:18/25">solunum 17–23</span></div>
+      <div class="f07-serit-alt"><span class="il" style="grid-column:1/18">iletici bölge 0–16</span><span class="so" style="grid-column:18/25">solunumsal 17–23</span></div>
       <label class="f07-range f07-range-blok"><span>Kuşak</span><input type="range" min="0" max="23" step="1" value="0" aria-label="Hava yolu kuşağı"><b class="f07-zv">0</b></label>
       <p class="viz-foot">${REF('Ağaç şematiktir; yalnız ilk 8 kuşak (0–7) çizildi. Hava yolu sayısı (2ᶻ) ve eğrilerin biçimi Weibel’in simetrik modeline göredir (Atlas notu; gerçek ağaç asimetriktir, eğriler göreli ve sayısızdır). Kuşak adları, bölgeler ve kıkırdak sınırı kitaptandır. [[K1 s. 25–26]]')}</p>`;
     const $ = (s) => el.querySelector(s);
@@ -710,5 +710,199 @@
       if (g && cur) goster(g.dataset.g === 'goster' ? null : g.dataset.g);
     });
     return ticker(el, (dt) => { if (T < 0 || T > 3.4 || RM) return; T += dt; draw(); });
+  };
+})();
+
+/* Okur-sade (2026-11-22) ile eklenen iki durağan şema: 8 · f07_islev, 9 · f07_brons (docs/tasarim/fiz07.md). */
+(function () {
+  'use strict';
+  const { REF, RM } = window.VIZ_YARDIM;
+  const VIZ = window.VIZ;
+
+  /* Ortak seçim düzeni: data-k = tıklanınca seçilen anahtar; data-p = hangi anahtarlarda vurgulu kalacağı (boşlukla ayrılmış).
+     Seçim yokken kök .sec sınıfını kaybeder, sayfadaki varsayılan viz-cap geri gelir. Esc ya da ikinci tık seçimi kaldırır. */
+  const secici = (el, CAP, ekle) => {
+    const kutu = el.closest('.viz');
+    const cap = kutu && kutu.querySelector(':scope > .viz-cap');
+    const cap0 = cap ? cap.innerHTML : '';
+    let cur = null;
+    const uygula = (k) => {
+      cur = k;
+      el.classList.toggle('sec', !!k);
+      el.querySelectorAll('[data-p]').forEach((n) => n.classList.toggle('on', !!k && n.dataset.p.split(' ').includes(k)));
+      el.querySelectorAll('[data-k]').forEach((n) => { if (n.tagName === 'BUTTON' || n.getAttribute('role') === 'button') n.setAttribute('aria-pressed', String(n.dataset.k === k)); });
+      if (cap) cap.innerHTML = k ? REF(CAP[k]) : cap0;
+      if (ekle) ekle(k);
+    };
+    const tik = (e) => {
+      if (e.target.closest('.ref') || e.target.closest('[data-scroll]')) return;
+      const n = e.target.closest('[data-k]'); if (!n || !el.contains(n)) return;
+      uygula(cur === n.dataset.k ? null : n.dataset.k);
+    };
+    const tus = (e) => {
+      if (e.key === 'Escape' && cur) { uygula(null); return; }
+      const n = e.target.closest && e.target.closest('[data-k]');
+      if (n && n.tagName !== 'BUTTON' && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); uygula(cur === n.dataset.k ? null : n.dataset.k); }
+    };
+    el.addEventListener('click', tik); el.addEventListener('keydown', tus);
+    return () => { el.removeEventListener('click', tik); el.removeEventListener('keydown', tus); if (cap) cap.innerHTML = cap0; };
+  };
+
+  /* ---------- 8 · Solunumsal ve solunum dışı işlevler (K1 s. 24, 26, 27, 29) ---------- */
+  VIZ.f07_islev = (el) => {
+    const ok = (x1, y1, x2, y2, renk) => {
+      const a = Math.atan2(y2 - y1, x2 - x1), u = 4.2;
+      const p1 = [x2 - u * Math.cos(a - 0.5), y2 - u * Math.sin(a - 0.5)], p2 = [x2 - u * Math.cos(a + 0.5), y2 - u * Math.sin(a + 0.5)];
+      return `<path d="M${x1} ${y1}L${x2} ${y2}M${p1[0].toFixed(1)} ${p1[1].toFixed(1)}L${x2} ${y2}L${p2[0].toFixed(1)} ${p2[1].toFixed(1)}" stroke="${renk}" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+    };
+    const alv = '<circle cx="8" cy="14" r="6" fill="var(--c-basic-soft)" stroke="var(--c-basic)" stroke-width="1.6"/>';
+    const tup = '<rect x="20" y="3" width="6" height="22" rx="3" fill="var(--crit-soft)" stroke="var(--crit)" stroke-width="1.6"/>';
+    const SIM = {
+      gaz: `${ok(14, 12, 14, 2, 'var(--c-basic)')}${ok(14, 4, 14, 15, 'var(--c-basic)')}<circle cx="14" cy="22" r="4.5" fill="var(--c-basic-soft)" stroke="var(--c-basic)" stroke-width="1.6"/>`,
+      o2: `${alv}${tup}${ok(14.5, 14, 19, 14, 'var(--c-basic)')}`,
+      co2: `${alv}${tup}${ok(19, 14, 14.5, 14, 'var(--muted)')}`,
+      surf: '<circle cx="14" cy="14" r="11" fill="var(--c-basic-soft)" stroke="var(--c-basic)" stroke-width="1.6"/><circle cx="14" cy="14" r="8.2" fill="none" stroke="var(--c-basic)" stroke-width="1" stroke-dasharray="2 1.6"/>',
+      ph: '<rect x="2" y="5" width="24" height="18" rx="4" fill="var(--c-clin-soft)" stroke="var(--c-clin)" stroke-width="1.4"/><text x="14" y="18.5" text-anchor="middle" style="font:800 11px var(--f-display);fill:var(--c-clin)">pH</text>',
+      kal: '<path d="M14 3L24 7V13C24 19 19.5 23.5 14 25.5C8.5 23.5 4 19 4 13V7Z" fill="var(--c-clin-soft)" stroke="var(--c-clin)" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 14L12.8 17.2L18.5 10.5" stroke="var(--c-clin)" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+      dam: '<path d="M14 26V15M14 15L5 6M14 15L23 6M9 10.5L6 13M19 10.5L22 13M14 15V4" stroke="var(--crit)" stroke-width="2.2" fill="none" stroke-linecap="round"/>',
+      sur: '<path d="M3 5H25L17 15V24L11 21V15Z" fill="var(--c-clin-soft)" stroke="var(--c-clin)" stroke-width="1.6" stroke-linejoin="round"/><circle cx="9" cy="8.5" r="1.2" fill="var(--c-clin)"/><circle cx="14" cy="8.5" r="1.2" fill="var(--c-clin)"/><circle cx="19" cy="8.5" r="1.2" fill="var(--c-clin)"/>',
+    };
+    const SOL = [
+      ['gaz', 'Atmosfer ↔ alveol gaz hareketi', '<b>Gaz hareketi.</b> Gazların atmosfer ile alveoller arasında taşınması: bu bölümde tidal solunum mekaniği olarak işlenir. [[K1 s. 24, 27]]'],
+      ['o2', 'O₂: alveol → pulmoner kapiller', '<b>O₂ geçişi.</b> O₂ alveollerden pulmoner kapillerlere geçer; geçtiği yer alveoler–kapiller bariyerdir (bu bölümde “Alveol”, difüzyon Bölüm 10). [[K1 s. 24, 27]]'],
+      ['co2', 'CO₂: pulmoner kapiller → alveol', '<b>CO₂ geçişi.</b> CO₂ pulmoner kapillerlerden alveollere geçer, aynı bariyerden ters yönde. [[K1 s. 24, 27]]'],
+      ['surf', 'Sürfaktan sentezi', '<b>Sürfaktan sentezi.</b> Kitap bunu solunumsal işlevler arasında sayar; sürfaktanı tip II pnömositler salgılar. Solunum dışı işlevlerdeki sentez listesinde (sürfaktan, nitrik oksit, heparinler) yeniden geçer. [[K1 s. 24, 26, 29]]'],
+    ];
+    const DIS = [
+      ['ph', 'Asit–baz dengesi', '<b>Asit–baz dengesi.</b> Kitap bunu solunum dışı işlevler arasında sayar; bu bölümde ayrıca işlenmez. [[K1 s. 24]]'],
+      ['kal', 'İmmünolojik savunma ve akciğer savunması', '<b>Savunma.</b> Korunacak alveoler yüzey 70 m² (kitaba göre deri 2 m², bağırsak 300 m²; bağırsak değeri için bölüm sonundaki Atlas notuna bakın). Mekanizmalar: solunan havanın süzülmesi, mukosiliyer taşıma, alveoler makrofajlar, IgA salgısı; öksürük ve hapşırık refleksleri. Ayrıntı bölüm sonunda. [[K1 s. 29]]'],
+      ['dam', 'Vasküler işlevler', '<b>Vasküler işlevler.</b> Pulmoner dolaşım Bölüm 23’te işlenir. [[K1 s. 24, 29]]'],
+      ['sur', 'Metabolik ve endokrin işlevler', '<b>Metabolik ve endokrin.</b> Kalp debisinin neredeyse tamamı akciğerden geçer: maddeleri inaktive eder, dönüştürür (ACE), sentezler ve salar. Ayrıntı ve etkileşimli süzgeç bölüm sonunda. [[K1 s. 29]]'],
+    ];
+    const CAP = Object.fromEntries([...SOL, ...DIS].map(([k, , t]) => [k, t]));
+    const kart = ([k, ad]) => `<div class="f07-ik f07-dim" data-p="${k}">
+        <button type="button" class="f07-ib" data-k="${k}" aria-pressed="false"><svg viewBox="0 0 28 28" width="28" height="28" aria-hidden="true">${SIM[k]}</svg><span>${ad}</span></button>
+        ${k === 'surf' ? '<span class="f07-rz">iki listede</span>' : ''}
+        ${k === 'kal' || k === 'sur' ? '<button type="button" class="f07-il" data-scroll="d07-metab">↓ bölüm sonu</button>' : ''}
+      </div>`;
+    el.innerHTML = `<div class="f07-is">
+        <div class="f07-isu f07-isu-s"><h4>Solunumsal işlevler<small>gaz değişimine hizmet eder</small></h4>${SOL.map(kart).join('')}</div>
+        <div class="f07-isu f07-isu-d"><h4>Solunum dışı işlevler<small>gaz değişimi dışında</small></h4>${DIS.map(kart).join('')}</div>
+      </div>
+      <p class="viz-foot">${REF('Şematik; dört + dört işlev kitabın listesidir. [[K1 s. 24]]')}</p>`;
+    return secici(el, CAP);
+  };
+
+  /* ---------- 9 · Trakeadan bronşiyole: duvar, loblar ve uzaklıklar (K1 s. 25–26) ---------- */
+  VIZ.f07_brons = (el) => {
+    const CAP = {
+      trakea: '<b>Trakea.</b> Krikoid kıkırdağın alt kenarında (C6) başlar, karinada (T4/5) ikiye ayrılır. Ön ve yan duvarı C şeklinde kıkırdak halkalarla desteklenir; arka açıklığı trakealis kası kapatır. Halkalar, yüksek negatif hava yolu basıncının eşlik ettiği aşırı inspiratuvar çabada kollapsı önler. [[K1 s. 25–26]]',
+      sag: '<b>Sağ ana bronş.</b> Soldakinden daha kısa, daha geniş ve daha diktir; solukla alınan yabancı cisimler ve endotrakeal tüpler bu yüzden daha çok sağa girer. [[K1 s. 26]]',
+      d2: '<b>Sağ üst lob bronşu</b> sağ ana bronştan karinanın yalnızca 2 cm distalinde çıkar; yeri kişiden kişiye değişir. Sağ taraflı çift lümenli tüpün kafı onu tıkayabilir (aşağıdaki modele bakın). [[K1 s. 26]]',
+      d5: '<b>Sol ana bronş</b> karinadan 5 cm sonra ikiye ayrılır; sol taraflı çift lümenli tüp için yeterli bir boy kalır. [[K1 s. 26]]',
+      sagak: '<b>Sağ akciğer:</b> 3 lob (üst, orta, alt), 10 bronkopulmoner segment (3 + 2 + 5). [[K1 s. 26]]',
+      solak: '<b>Sol akciğer:</b> 2 lob (üst, alt), 9 segment (üst 5, alt 4). [[K1 s. 26]]',
+      ling: '<b>Lingula</b> (Latince “küçük dil”) sol üst lobun parçasıdır; evrimde kaybolmuş sol orta lobun kalıntısı sayılır. [[K1 s. 26]]',
+      seg: '<b>Segment ve subsegment bronşları.</b> Epiteli bir düz kas tabakası çevreler; düzensiz biçimli kıkırdak plaklar hava yolunun kollabe olmasını önler. [[K1 s. 26]]',
+      bron: '<b>Bronşiyoller</b> kıkırdak içermeyen ilk kuşaktır; düz kasları gaz akımını ayarlar. Terminal bronşiyoller iletici bölgenin son, 16. kuşağıdır. [[K1 s. 26]]',
+      dil: '<b>Bronkodilatasyon:</b> sempatik etkinlik (ör. egzersiz); direnç azalır, O₂ gereksinimi arttığında daha çok ventilasyon. İlaçlar: β₂ agonistler, antikolinerjikler. [[K1 s. 26]]',
+      kon: '<b>Bronkokonstriksiyon:</b> parasempatik sistem, histamin, soğuk hava, zararlı kimyasallar ve başka etkenler. İstirahatte akım hızı düşünce partiküller mukusa çöker ve silyalarla solunumsal bölgeden uzaklaştırılır. [[K1 s. 26]]',
+    };
+    /* Geometri: karina (210,170). Ölçek 1 cm = 20 birim: sağ üst lob çıkışı 2 cm (40), sol ana bronş bölünmesi 5 cm (100). */
+    const K = [210, 170];
+    const at = (aci, L) => { const r = (aci * Math.PI) / 180; return [+(K[0] + L * Math.sin(r)).toFixed(1), +(K[1] + L * Math.cos(r)).toFixed(1)]; };
+    const RU = at(-25, 40), LB = at(45, 100); // sağ üst lob çıkışı, sol ana bronş bölünmesi
+    const P = (pts) => 'M' + pts.map((q) => q.join(' ')).join('L');
+    const YOL = [
+      // [yol, lümen genişliği]
+      [P([[210, 40], K]), 26, 'butt'],
+      [P([K, RU]), 18], [P([K, LB]), 13],
+      [P([RU, [150, 182]]), 10], [P([RU, [182, 252]]), 14], [P([[182, 252], [158, 300]]), 9], [P([[182, 252], [96, 326]]), 11],
+      [P([LB, [322, 214]]), 10], [P([[300, 228], [290, 288]]), 7], [P([LB, [340, 312]]), 10],
+    ];
+    const tup = (d, w, cap = 'round', renk = 'var(--paper)') => `<path d="${d}" stroke="${renk}" stroke-width="${w}" stroke-linecap="${cap}" stroke-linejoin="round" fill="none"/>`;
+    const hl = (d, w, cap, p) => `<g class="f07-hl f07-dim" data-p="${p}">${tup(d, w + 4, cap, 'var(--muted)')}${tup(d, w, cap, 'var(--c-basic-soft)')}</g>`;
+    const hit = (d, w, k, ad, cap = 'round') => `<path class="f07-hit" data-k="${k}" tabindex="0" role="button" aria-pressed="false" aria-label="${ad}" d="${d}" stroke="transparent" stroke-width="${w}" stroke-linecap="${cap}" fill="none"/>`;
+    const tick = (q, ux, uy, renk) => `<path d="M${(q[0] - 7 * ux).toFixed(1)} ${(q[1] - 7 * uy).toFixed(1)}L${(q[0] + 7 * ux).toFixed(1)} ${(q[1] + 7 * uy).toFixed(1)}" stroke="${renk}" stroke-width="2.6" stroke-linecap="round"/>`;
+    const olcu = (a, b, renk) => { const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), ux = -dy / L, uy = dx / L; return `<path d="${P([a, b])}" stroke="${renk}" stroke-width="3" stroke-linecap="round"/>${tick(a, ux, uy, renk)}${tick(b, ux, uy, renk)}`; };
+    const RAK = 'M168 100C120 94 58 140 46 236C38 304 50 352 86 368C124 382 168 374 180 352L182 250C180 190 178 140 168 100Z';
+    const LAK = 'M252 100C300 94 362 140 374 236C382 304 370 352 334 368C304 380 270 374 258 360C268 342 274 322 266 304C256 292 248 282 246 262L246 250C246 190 244 140 252 100Z';
+    const halkalar = Array.from({ length: 10 }, (_, i) => { const y = 50 + i * 12; return `<path d="M198 ${y}Q210 ${y + 5} 222 ${y}" stroke="var(--warn)" stroke-width="3" fill="none" stroke-linecap="round"/>`; }).join('');
+    const ana = `<svg class="f07-br-ana" viewBox="0 0 420 400" role="img" aria-label="Trakea, karina, sağ ve sol ana bronş, loblar ve segment sayıları; önden görünüş, hastanın sağı solda">
+      <defs><clipPath id="f07-cl-r"><path d="${RAK}"/></clipPath><clipPath id="f07-cl-l"><path d="${LAK}"/></clipPath></defs>
+      <text x="6" y="16" class="f07-bm">Önden görünüş: hastanın sağı solda</text>
+      <text x="108" y="88" text-anchor="middle" class="f07-bk">SAĞ</text><text x="312" y="88" text-anchor="middle" class="f07-bk">SOL</text>
+      <g class="f07-dim f07-lob" data-k="sagak" data-p="sagak" tabindex="0" role="button" aria-pressed="false" aria-label="Sağ akciğer">
+        <path d="${RAK}" fill="var(--c-basic-soft)" stroke="var(--line)" stroke-width="1.6"/>
+        <g clip-path="url(#f07-cl-r)" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="5 4" fill="none"><path d="M30 229L190 220"/><path d="M40 220L156 384"/></g>
+      </g>
+      <g class="f07-dim f07-lob" data-k="solak" data-p="solak" tabindex="0" role="button" aria-pressed="false" aria-label="Sol akciğer">
+        <path d="${LAK}" fill="var(--c-basic-soft)" stroke="var(--line)" stroke-width="1.6"/>
+        <g clip-path="url(#f07-cl-l)" stroke="var(--muted)" stroke-width="1.4" stroke-dasharray="5 4" fill="none"><path d="M386 214L282 384"/></g>
+      </g>
+      <g class="f07-dim f07-lob" data-k="ling" data-p="ling solak" tabindex="0" role="button" aria-pressed="false" aria-label="Lingula">
+        <path clip-path="url(#f07-cl-l)" d="M240 266L356 252L300 360L250 370Z" fill="var(--c-clin-soft)" stroke="var(--c-clin)" stroke-width="1.2" stroke-dasharray="3 3"/>
+      </g>
+      <g class="f07-yol">${YOL.map(([d, w, c]) => tup(d, w + 4, c || 'round', 'var(--muted)')).join('')}${YOL.map(([d, w, c]) => tup(d, w, c || 'round')).join('')}</g>
+      ${hl(YOL[0][0], 26, 'butt', 'trakea')}${hl(YOL[1][0], 18, 'round', 'sag d2')}${hl(YOL[2][0], 13, 'round', 'd5')}
+      <g class="f07-dim" data-p="trakea">${halkalar}
+        <path d="M236 40V170M231 40H241M231 170H241" stroke="var(--muted)" stroke-width="1.4" fill="none"/>
+        <text x="245" y="45" class="f07-bt">C6</text><text x="245" y="61" class="f07-bm">krikoid alt kenarı</text>
+        <text x="245" y="110" class="f07-bt">trakea</text>
+        <text x="245" y="170" class="f07-bt">T4/5 <tspan class="f07-bm">· karina</tspan></text>
+      </g>
+      <g class="f07-dim" data-p="d2 sag">${olcu(K, RU, 'var(--crit)')}</g>
+      <g class="f07-dim" data-p="d5">${olcu(K, LB, 'var(--c-basic)')}</g>
+      <g class="f07-dim f07-lab" data-p="sagak"><text x="96" y="172" text-anchor="middle" class="f07-bt">üst · 3</text><text x="152" y="320" text-anchor="middle" class="f07-bt">orta · 2</text><text x="76" y="346" text-anchor="middle" class="f07-bt">alt · 5</text><text x="112" y="396" text-anchor="middle" class="f07-bm">3 lob · 10 segment</text></g>
+      <g class="f07-dim f07-lab" data-p="solak"><text x="304" y="140" text-anchor="middle" class="f07-bt">üst · 5</text><text x="346" y="350" text-anchor="middle" class="f07-bt">alt · 4</text><text x="314" y="396" text-anchor="middle" class="f07-bm">2 lob · 9 segment</text></g>
+      <g class="f07-dim f07-lab" data-p="ling solak"><text x="296" y="322" text-anchor="middle" class="f07-bt" style="fill:var(--c-clin)">lingula</text></g>
+      ${hit(YOL[0][0], 34, 'trakea', 'Trakea', 'butt')}${hit(YOL[1][0], 24, 'sag', 'Sağ ana bronş')}${hit(YOL[2][0], 19, 'd5', 'Sol ana bronş, karinadan 5 cm')}
+      <g class="f07-dim f07-olc" data-k="d2" data-p="d2" tabindex="0" role="button" aria-pressed="false" aria-label="2 cm: sağ üst lob bronşunun karinaya uzaklığı"><rect x="196" y="217" width="46" height="24" fill="transparent"/><text x="200" y="235" class="f07-bo" style="fill:var(--crit)">2 cm</text></g>
+      <g class="f07-dim f07-olc" data-k="d5" data-p="d5" tabindex="0" role="button" aria-pressed="false" aria-label="5 cm: sol ana bronşun bölünmesine uzaklık"><rect x="254" y="179" width="46" height="24" fill="transparent"/><text x="258" y="197" class="f07-bo" style="fill:var(--c-basic)">5 cm</text></g>
+    </svg>`;
+    const kesA = `<button type="button" class="f07-kes f07-dim" data-k="trakea" data-p="trakea" aria-pressed="false">
+        <span class="f07-kt">A · Trakea kesiti</span>
+        <svg viewBox="0 0 160 140" aria-hidden="true">
+          <text x="80" y="14" text-anchor="middle" class="f07-km">ön</text>
+          <circle cx="80" cy="64" r="31" fill="var(--paper)" stroke="var(--line)" stroke-width="2"/>
+          <path d="M60 96.6A40 40 0 1 1 100 96.6" stroke="var(--warn)" stroke-width="10" fill="none"/>
+          <path d="M60 96.6Q80 104 100 96.6" stroke="var(--crit)" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <text x="80" y="124" text-anchor="middle" class="f07-km" style="fill:var(--crit)">trakealis</text>
+          <text x="128" y="44" class="f07-km" style="fill:var(--warn)">C</text>
+        </svg>
+        <span class="f07-kn">C halka: aşırı inspiratuvar çabada kollapsı önler</span>
+      </button>`;
+    const kesB = `<div class="f07-kes f07-dim" data-p="dil kon bron">
+        <span class="f07-kt">B · Bronşiyol kesiti</span>
+        <svg viewBox="0 0 160 140" aria-hidden="true">
+          <text x="80" y="14" text-anchor="middle" class="f07-km" style="fill:var(--crit)">düz kas</text>
+          <circle class="f07-kas" cx="80" cy="70" r="42" fill="var(--crit-soft)" stroke="var(--crit)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+          <circle class="f07-lum" cx="80" cy="70" r="33" fill="var(--paper)" stroke="var(--line)" stroke-width="2" vector-effect="non-scaling-stroke"/>
+          <text class="f07-lt f07-km" x="80" y="74" text-anchor="middle">lümen</text>
+          <text x="80" y="132" text-anchor="middle" class="f07-km">kıkırdak yok</text>
+        </svg>
+        <div class="seg f07-kseg" role="group" aria-label="Bronşiyol düz kası"><button type="button" data-k="dil" aria-pressed="false">Dilatasyon</button><button type="button" data-k="kon" aria-pressed="false">Konstriksiyon</button></div>
+      </div>`;
+    const SER = [
+      ['trakea', 'trakea', 'Trakea', 'kuşak 0', 'C şeklinde kıkırdak halkalar, arkada trakealis', '<path d="M8 20A11 11 0 1 1 26 20" stroke="var(--warn)" stroke-width="4" fill="none"/><path d="M8 20Q17 24 26 20" stroke="var(--crit)" stroke-width="2.4" fill="none"/>'],
+      ['seg', 'seg', 'Segment ve subsegment bronşları', '', 'Epiteli saran düz kas tabakası + düzensiz kıkırdak plaklar', '<circle cx="17" cy="14" r="9" fill="none" stroke="var(--crit)" stroke-width="2"/><path d="M6 9L9 5M26 10L23 5M8 22L12 25M27 18L24 23" stroke="var(--warn)" stroke-width="3.4" stroke-linecap="round"/>'],
+      ['bron', 'bron', 'Bronşiyoller → terminal bronşiyol', '16. kuşak', 'Kıkırdak yok (ilk kıkırdaksız kuşak), düz kas', '<circle cx="17" cy="14" r="9" fill="var(--crit-soft)" stroke="var(--crit)" stroke-width="2.4"/><circle cx="17" cy="14" r="5" fill="var(--paper)" stroke="var(--line)"/>'],
+    ];
+    const serit = `<div class="f07-ser" role="group" aria-label="Kuşaklar boyunca duvar yapısı">${SER.map(([k, p, ad, alt, t, s]) => `<button type="button" class="f07-sh f07-dim" data-k="${k}" data-p="${p}" aria-pressed="false"><svg viewBox="0 0 34 28" width="34" height="28" aria-hidden="true">${s}</svg><span><b>${ad}</b>${alt ? `<i>${alt}</i>` : ''}<small>${t}</small></span></button>`).join('')}</div>`;
+    el.innerHTML = `<div class="f07-br">
+        <div class="f07-br-sol">${ana}</div>
+        <div class="f07-br-kes">${kesA}${kesB}</div>
+        ${serit}
+      </div>
+      <p class="viz-foot">${REF('Şematik önden görünüş; açılar, çaplar ve akciğer ana hatları temsilîdir. C6, T4/5, 2 cm, 5 cm, lob ve segment sayıları kitaptandır. [[K1 s. 25–26]]')}</p>`;
+    const kas = el.querySelector('.f07-kas'), lum = el.querySelector('.f07-lum'), lt = el.querySelector('.f07-lt');
+    const durum = (d) => { // yalnız lümen çapı değişir; kas halkası aynı dış sınırda kalınlaşır
+      const s = d === 'kon' ? 11 / 33 : 1;
+      lum.style.transform = `scale(${s})`; lt.style.opacity = d === 'kon' ? '0' : '1';
+      kas.style.transform = `scale(${d === 'kon' ? 0.9 : 1})`;
+    };
+    if (RM) [kas, lum, lt].forEach((n) => { n.style.transition = 'none'; });
+    durum('dil');
+    return secici(el, CAP, (k) => { if (k === 'dil' || k === 'kon') durum(k); });
   };
 })();

@@ -234,7 +234,7 @@
         else c = '<b>Yüksek sıcaklık.</b> Protein yapısı bozuluyor (denatürasyon): aktif bölgenin biçimi değişiyor, cepler substrata uymuyor ve tepkime hızla yavaşlıyor. [[K1 s. 18]]';
       } else {
         if (Math.abs(PH - 7.4) < 0.5) c = '<b>Optimum pH.</b> Aktif bölgenin biçimi substrata uygun. Enzimler dar bir pH aralığında verimli çalışır. [[K1 s. 2]]';
-        else c = '<b>pH optimumdan uzak.</b> Aktif bölgenin biçimi değişiyor, substrat artık iyi uymuyor ve tepkime yavaşlıyor. Uç pH değerleri proteinin üçüncül ve dördüncül yapısını bozar. [[K1 s. 18]] [[K1 s. 2]]';
+        else c = '<b>pH optimumdan uzak.</b> Aktif bölgenin biçimi değişiyor, substrat artık iyi uymuyor ve tepkime yavaşlıyor. Uç pH değerleri proteinin üçüncül ya da dördüncül yapısını bozar. [[K1 s. 18]] [[K1 s. 2]]';
       }
       if (c && c !== last) { cap.innerHTML = REF(c); last = c; }
     };
@@ -643,5 +643,93 @@
       if (gor === 'nmk') { if (!RM) nmkAdim(dt); nmkCiz(); }
       else { pt += dt; plCiz(); }
     });
+  };
+
+  /* ---------- 6 · Kofaktör ve koenzim: sınıflama ağacı (docs/tasarim/fiz05.md) ---------- */
+  VIZ.f05_kofaktor = (el) => {
+    const CAP = {
+      prot: '<b>Yalnız protein.</b> Bazı enzimler yalnız proteinden oluşur ve tepkimeyi tek başına katalizler. [[K1 s. 19]]',
+      kof: '<b>Kofaktör.</b> Diğer enzimler etkinlikleri için protein olmayan yardımcı moleküllere, kofaktörlere, gereksinim duyar. Kofaktör inorganik ya da organik olabilir. [[K1 s. 19]]',
+      zn: '<b>Zn²⁺ · karbonik anhidraz.</b> Aktif bölgedeki çinkoya su bağlanır; histidin H⁺\'yı alınca çinkoda etkin OH⁻ kalır (yukarıdaki CA şekli). [[K1 s. 18–19]]',
+      fe: '<b>Fe²⁺ · sitokrom P450.</b> Kitaba göre P450 grubundaki enzimlerin tümü demir içerir; bu süperaile anestezi ilaçlarının çoğunu metabolize eder. [[K1 s. 19–20]]',
+      co: '<b>Co²⁺ · B₁₂ vitamini.</b> Kitabın listesinde B₁₂ vitamini kobalt içerir. [[K1 s. 19]]',
+      cu: '<b>Cu²⁺ · süperoksit dismutaz.</b> Kitabın listesinde süperoksit dismutaz bakır içerir. [[K1 s. 19]]',
+      mg: '<b>Mg²⁺ · hekzokinaz.</b> Kitabın listesinde hekzokinaz magnezyum içerir. [[K1 s. 19]]',
+      coa: '<b>Koenzim A (CoA).</b> Birçok enzimin (ör. asetil-CoA karboksilaz) açil grubu aktarmak için kullandığı koenzim. [[K1 s. 19]]',
+      nad: '<b>NAD⁺ (nikotinamid adenin dinükleotit).</b> Hidrür (H⁻) iyonu kabul eden koenzim; örneğin alkol dehidrogenazla birlikte kullanılır. [[K1 s. 19]]',
+    };
+    const ION = [['zn', 'Zn²⁺', ['karbonik', 'anhidraz']], ['fe', 'Fe²⁺', ['sitokrom', 'P450 grubu', '(tümü)']], ['co', 'Co²⁺', ['B₁₂', 'vitamini']], ['cu', 'Cu²⁺', ['süperoksit', 'dismutaz']], ['mg', 'Mg²⁺', ['hekzokinaz']]];
+    const KO = [['coa', 'CoA (koenzim A)', 'açil grubu taşır', 'ör. asetil-CoA karboksilaz'], ['nad', 'NAD⁺', 'hidrür (H⁻) iyonu kabul eder', 'ör. alkol dehidrogenaz']];
+    const INOR = ION.map((i) => i[0]).join(' '), ORG = 'coa nad', ALT = INOR + ' ' + ORG, HEPSI = 'prot kof ' + ALT;
+    const RENK = { prot: '--c-basic', kof: '--accent', coa: '--c-clin', nad: '--c-clin' };
+    ION.forEach((i) => { RENK[i[0]] = '--c-basic'; });
+    const bt = (k, p) => `role="button" tabindex="0" aria-pressed="false" data-k="${k}" data-p="${p}"`;
+    // protein lekesi (+ isteğe bağlı kofaktör dairesi) — cx, cy merkez
+    const blob = (cx, cy, kof) => {
+      const r = 17, n = 40, pts = [];
+      for (let i = 0; i < n; i++) { const a = (i / n) * Math.PI * 2, rr = r + 1.8 * Math.sin(3 * a) + 1.1 * Math.cos(5 * a); pts.push((cx + rr * Math.cos(a)).toFixed(1) + ',' + (cy + rr * Math.sin(a)).toFixed(1)); }
+      const nx = cx + 12, ny = cy - 12;
+      return `<g class="f05-kf-blob"><polygon points="${pts.join(' ')}"/><circle class="f05-kf-centik" cx="${nx}" cy="${ny}" r="7.5"/>${kof ? `<circle class="f05-kf-kofd" cx="${nx}" cy="${ny}" r="5.5"/>` : ''}</g>`;
+    };
+    const ln = (d, p) => `<path class="f05-kf-ln" data-p="${p}" d="${d}"/>`;
+    const kutu = (k, p, x, y, w, h, cls, baslik, alt, ikon) => `<g class="f05-kf-kt ${cls}" ${k ? bt(k, p) : `data-p="${p}"`}>
+        <rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10"/>${ikon || ''}
+        <text class="f05-kf-b" x="${ikon ? x + 56 : x + w / 2}" y="${alt.length ? y + 23 : y + h / 2 + 5}" text-anchor="${ikon ? 'start' : 'middle'}">${baslik}</text>
+        ${alt.map((s, i) => `<text class="f05-kf-s" x="${ikon ? x + 56 : x + w / 2}" y="${y + 41 + i * 14}" text-anchor="${ikon ? 'start' : 'middle'}">${s}</text>`).join('')}</g>`;
+    const IX = [44, 122, 200, 278, 356];
+    const svg = `<svg class="f05-kf-svg" viewBox="0 0 640 360" role="img" aria-label="Kofaktör sınıflaması: yalnız protein enzimler ve kofaktör gerektiren enzimler; inorganik metal iyonları Zn, Fe, Co, Cu, Mg ve organik koenzimler CoA ve NAD⁺">
+      <defs><marker id="f05-kf-ok" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L8,4L0,8z" class="f05-kf-okuc"/></marker></defs>
+      <g class="f05-kf-lns">
+        ${ln('M320,50V60', HEPSI)}${ln('M320,60H126V70', 'prot')}${ln('M320,60H430V70', 'kof ' + ALT)}
+        ${ln('M430,136V144', ALT)}${ln('M430,144H250V154', INOR)}${ln('M430,144H520V154', ORG)}
+        ${ln('M250,206V216', INOR)}${IX.map((x, i) => ln(`M250,216H${x}V230`, ION[i][0])).join('')}
+        ${ln('M520,206V214H418', ORG)}${ln('M418,214V253H430', 'coa')}${ln('M418,214V319H430', 'nad')}
+      </g>
+      ${kutu('', HEPSI, 262, 16, 116, 34, 'kok', 'Enzim', [])}
+      ${kutu('prot', 'prot', 16, 70, 220, 66, 'prot', 'Yalnız protein', ['tepkimeyi tek başına', 'katalizler'], blob(44, 103, false))}
+      ${kutu('kof', 'kof ' + ALT, 316, 70, 228, 66, 'kofk', 'Protein + kofaktör', ['protein olmayan yardımcı', 'molekül gerekir'], blob(344, 103, true))}
+      ${kutu('', INOR, 150, 154, 200, 52, 'inor', 'İnorganik · metal iyonu', ['aktif bölgedeki metal'])}
+      ${kutu('', ORG, 410, 154, 220, 52, 'org', 'Organik · koenzim', ['organik kofaktöre koenzim denir'])}
+      ${ION.map(([k, ion, et], i) => `<g class="f05-kf-ion" ${bt(k, k)}><circle cx="${IX[i]}" cy="252" r="22"/><text class="f05-kf-iy" x="${IX[i]}" y="257" text-anchor="middle">${ion}</text>${et.map((s, j) => `<text class="f05-kf-s" x="${IX[i]}" y="${292 + j * 14}" text-anchor="middle">${s}</text>`).join('')}</g>`).join('')}
+      ${KO.map(([k, ad, a1, a2], i) => { const y = i ? 292 : 226; return `<g class="f05-kf-ko" ${bt(k, k)}><rect x="430" y="${y}" width="202" height="54" rx="10"/>
+        <text class="f05-kf-b" x="440" y="${y + 19}">${ad}</text><text class="f05-kf-s" x="440" y="${y + 35}">${a1}</text><text class="f05-kf-s" x="440" y="${y + 48}">${a2}</text>
+        ${i ? `<text class="f05-kf-ik" x="532" y="${y + 19}">H⁻</text><path class="f05-kf-oki" d="M549,${y + 15}H568" marker-end="url(#f05-kf-ok)"/><text class="f05-kf-ik" x="572" y="${y + 19}">NADH</text>`
+            : `<circle class="f05-kf-e" cx="566" cy="${y + 15}" r="7"/><path class="f05-kf-oki" d="M575,${y + 15}H600" marker-end="url(#f05-kf-ok)"/><circle class="f05-kf-e" cx="611" cy="${y + 15}" r="7"/><text class="f05-kf-ik" x="588" y="${y + 5}" text-anchor="middle">açil</text>`}</g>`; }).join('')}
+    </svg>`;
+    const ikonH = (kof) => `<svg class="f05-kf-hi" viewBox="0 0 44 44" aria-hidden="true">${blob(22, 23, kof)}</svg>`;
+    const dar = `<div class="f05-kf-dar">
+        <div class="f05-kf-nk" data-p="${HEPSI}">Enzim</div>
+        <div class="f05-kf-n2">
+          <div class="f05-kf-nb prot" ${bt('prot', 'prot')}>${ikonH(false)}<span><b>Yalnız protein</b><small>tepkimeyi tek başına katalizler</small></span></div>
+          <div class="f05-kf-nb kofk" ${bt('kof', 'kof ' + ALT)}>${ikonH(true)}<span><b>Protein + kofaktör</b><small>protein olmayan yardımcı molekül gerekir</small></span></div>
+        </div>
+        <div class="f05-kf-nd inor">
+          <div class="f05-kf-nh" data-p="${INOR}"><b>İnorganik · metal iyonu</b><small>aktif bölgedeki metal</small></div>
+          <div class="f05-kf-ng">${ION.map(([k, ion, et]) => `<div class="f05-kf-ni" ${bt(k, k)}><i>${ion}</i><small>${et.join(' ')}</small></div>`).join('')}</div>
+        </div>
+        <div class="f05-kf-nd org">
+          <div class="f05-kf-nh" data-p="${ORG}"><b>Organik · koenzim</b><small>organik kofaktöre koenzim denir</small></div>
+          ${KO.map(([k, ad, a1, a2], i) => `<div class="f05-kf-nc" ${bt(k, k)}><b>${ad}<em>${i ? 'H⁻ → NADH' : 'açil →'}</em></b><small>${a1} · ${a2}</small></div>`).join('')}
+        </div>
+      </div>`;
+    el.innerHTML = `<div class="f05-kf">${svg}${dar}</div><p class="viz-foot">${REF('Şematik çizim; kitaptaki listeyi gösterir [[K1 s. 19]]. İyon yüklerinin ve B₁₂\'nin listedeki yerinin düzeltmesi sayfadaki Atlas notunda.')}</p>`;
+    const kok = el.querySelector('.f05-kf'), viz = el.closest('.viz'), cap = viz && viz.querySelector('.viz-cap'), cap0 = cap ? cap.innerHTML : '';
+    let sec = null;
+    const uygula = () => {
+      kok.classList.toggle('sec', !!sec);
+      if (sec) kok.style.setProperty('--kf-c', `var(${RENK[sec]})`); else kok.style.removeProperty('--kf-c');
+      kok.querySelectorAll('[data-p]').forEach((n) => {
+        const on = !!sec && n.dataset.p.split(' ').includes(sec);
+        n.classList.toggle('on', on);
+        if (n.dataset.k) n.setAttribute('aria-pressed', String(n.dataset.k === sec));
+        if (on && n.classList.contains('f05-kf-ln')) n.parentNode.appendChild(n);
+      });
+      if (cap) cap.innerHTML = sec ? REF(CAP[sec]) : cap0;
+    };
+    const sec_ = (k) => { sec = sec === k ? null : k; uygula(); };
+    const tik = (e) => { if (e.target.closest('.ref')) return; const b = e.target.closest('[data-k]'); if (b && kok.contains(b)) sec_(b.dataset.k); };
+    const tus = (e) => { if (e.key !== 'Enter' && e.key !== ' ') return; const b = e.target.closest('[data-k]'); if (b && kok.contains(b)) { e.preventDefault(); sec_(b.dataset.k); } };
+    kok.addEventListener('click', tik); kok.addEventListener('keydown', tus);
+    return () => { kok.removeEventListener('click', tik); kok.removeEventListener('keydown', tus); if (cap) cap.innerHTML = cap0; };
   };
 })();

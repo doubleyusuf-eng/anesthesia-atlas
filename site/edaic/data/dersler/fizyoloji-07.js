@@ -34,7 +34,7 @@ VERI.sorular['fiz07-3'] = {
 };
 
 (function () {
-  const NAV = [['d07-islev', 'İşlevler'], ['d07-larinks', 'Larinks ve PEEP'], ['d07-agac', 'Bronş ağacı'], ['d07-ileti', 'Mukosiliyer taşıma'], ['d07-brons', 'Trakea ve bronşlar'], ['d07-clt', 'Çift lümenli tüp'], ['d07-alveol', 'Alveol'], ['d07-mekanik', 'Tidal solunum'], ['d07-ptx', 'Pnömotoraks'], ['d07-metab', 'Solunum dışı işlevler'], ['d07-p1', 'Part I'], ['d07-p2', 'Part II'], ['d07-ozet', 'Özet']];
+  const NAV = [['d07-islev', 'İşlevler'], ['d07-larinks', 'Larinks ve PEEP'], ['d07-agac', 'Bronş ağacı'], ['d07-ileti', 'Mukosiliyer taşıma'], ['d07-brons', 'Trakea, bronşlar, ÇLT'], ['d07-alveol', 'Alveol'], ['d07-mekanik', 'Tidal solunum'], ['d07-metab', 'Solunum dışı işlevler'], ['d07-p1', 'Part I'], ['d07-p2', 'Part II'], ['d07-ozet', 'Özet']];
 
   SAYFALAR['dersler/fizyoloji/07'] = {
     grup: 'dersler', eyebrow: 'Fizyoloji · Kısım 2 · Solunum fizyolojisi · Bölüm 7', baslik: 'Alt hava yolları',
@@ -44,139 +44,86 @@ VERI.sorular['fiz07-3'] = {
 
 <section class="wrap blk ders-sec" id="d07-islev">
   <h2>Akciğerin işlevleri</h2>
-  <p class="intro">Akciğerin işlevleri iki gruptur: gaz değişimini sağlayan solunumsal işlevler ve solunum dışı işlevler. [[K1 s. 24]]</p>
-  <div class="cols">
-    <div class="card basic"><span class="tag basic">Solunumsal</span><h3>Gaz değişimine hizmet eder</h3><ul>
-      <li>Gazların atmosfer ile alveoller arasında taşınması</li>
-      <li>O₂’nin alveollerden pulmoner kapillerlere geçmesi</li>
-      <li>CO₂’nin pulmoner kapillerlerden alveollere geçmesi</li>
-      <li>Sürfaktan sentezi [[K1 s. 24]]</li></ul></div>
-    <div class="card clin"><span class="tag clin">Solunum dışı</span><h3>Savunmadan metabolizmaya</h3><ul>
-      <li>Asit–baz dengesi</li>
-      <li>İmmünolojik savunma ve akciğer savunması</li>
-      <li>Vasküler işlevler (pulmoner dolaşım, Bölüm 23)</li>
-      <li>Metabolik ve endokrin işlevler [[K1 s. 24, 29]]</li></ul></div>
+  <p class="intro">Akciğer yalnız gaz değiştirmez: solunumsal işlevlerinin yanında asit–baz dengesinde, savunmada ve metabolizmada da görev alır. [[K1 s. 24]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Solunumsal ve solunum dışı işlevler</h3></div>
+    <div data-viz="f07_islev"></div>
+    <p class="viz-cap" aria-live="polite"><b>İki grup işlev.</b> Solda gaz değişimine hizmet eden dört solunumsal işlev, sağda dört solunum dışı işlev. Bir kutuya dokunun: ne olduğu ve atlasta nerede işlendiği görünür. [[K1 s. 24]]</p>
   </div>
-  <p class="small muted" style="margin-top:10px">Sürfaktan sentezi kitapta solunumsal işlevler arasında sayılır, solunum dışı işlevlerdeki sentez listesinde yeniden geçer. Solunum dışı işlevler bu bölümün sonunda ayrıntılı işlenir. [[K1 s. 24, 29]]</p>
+  <p>Sürfaktan sentezi solunumsal işlevler arasında sayılır, solunum dışı işlevlerin sentez listesinde yeniden geçer. Savunma ve metabolik–endokrin işlevler bölümün sonunda, vasküler işlevler (pulmoner dolaşım) Bölüm 23’te işlenir. [[K1 s. 24, 29]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-larinks">
-  <h2>Larinks: vokal kordlar ve fizyolojik PEEP</h2>
-  <p class="intro">Alt hava yolları larinks ve trakeobronşiyal ağaçtan oluşur; trakeobronşiyal ağaç da iletici ve solunumsal bölgelere ayrılır. Larinksteki vokal kordlar solunumun iki fazında farklı konumdadır ve bu fark, entübe hastada kaybolan bir basınç desteği yaratır. [[K1 s. 24]]</p>
-  <div class="blk-body" style="margin-bottom:16px">
-    <p>İnspirasyonda kordlar abdüksiyondadır; içeri doğru gaz akımına direnç azalır. Ekspirasyonda kordlar hafifçe addüksiyona gelir ve akıma direnç artar; sonuçta yaklaşık 3–4 cmH₂O’luk bir pozitif ekspirasyon sonu basıncı (PEEP) oluşur. Bu “fizyolojik” PEEP ses çıkarma ve öksürük için önemlidir. Ekspirasyon boyunca küçük hava yollarında ve alveollerde pozitif basıncı korur; böylece alveollerin kollabe olmasını önler ve fonksiyonel rezidüel kapasiteyi (FRC) sürdürür. [[K1 s. 24]]</p>
-  </div>
+  <h2>Larinks ve fizyolojik PEEP</h2>
+  <p class="intro">Alt hava yolları larinks ve trakeobronşiyal ağaçtan oluşur; vokal kordlar ekspirasyonda hafifçe kapanarak küçük bir “fizyolojik” PEEP yaratır ve entübasyon bunu ortadan kaldırır. [[K1 s. 24]]</p>
   <div class="viz"><div data-viz="f07_peep"></div></div>
-  <h3 style="margin:22px 0 10px">Klinik önem: PEEP</h3>
-  <div class="cols cols-3">
-    <div class="card clin"><span class="tag clin">Entübasyondan sonra</span><h3>Neden PEEPe?</h3><p class="small">Tüp kordların arasından geçtiği için kordlar ekspirasyonda addüksiyon yapamaz ve fizyolojik PEEP kaybolur; atelektazi ve ventilasyon–perfüzyon (V̇/Q̇) uyumsuzluğu gelişebilir. FRC’yi korumak ve atelektaziyi önlemek için fizyolojik düzeyde (3–5 cmH₂O) ekstrinsik PEEP (PEEPe) uygulamak yaygındır. [[K1 s. 24]]</p></div>
-    <div class="card"><span class="tag warn">Bedeli</span><h3>Kafa içi basınç artışı</h3><p class="small">PEEP intratorasik basıncı artırır; venlere dışarıdan binen basınç onları daraltır ve venöz dönüşü azaltır. ICP yüksekse artan intratorasik basınç serebral venöz sinüslerin drenajını zorlaştırarak ICP’yi daha da yükseltebilir. [[K1 s. 24]]</p></div>
-    <div class="card"><span class="tag warn">Bedeli</span><h3>Tonsillektomi</h3><p class="small">Venöz basınç artışı tonsil yatağındaki kanamayı artırabilir ve cerrahın ameliyat sahasını görmesini engeller. Venöz basınç artışının klinik sonuç doğurduğu bu tür az sayıdaki durumda PEEPe uygulamamak avantajlı olabilir. [[K1 s. 24]]</p></div>
-  </div>
+  <p>İnspirasyonda kordlar abdüksiyondadır ve içe akıma direnç azalır. Ekspirasyonda hafif addüksiyon direnci artırır ve 3–4 cmH₂O’luk pozitif ekspirasyon sonu basıncı (PEEP) oluşur. Bu basınç ses çıkarma ve öksürük için önemlidir; küçük hava yollarında ve alveollerde pozitif basıncı koruyarak alveol kollapsını önler ve fonksiyonel rezidüel kapasiteyi (FRC) sürdürür. [[K1 s. 24]]</p>
+  <p><b>Klinik önem: PEEP.</b> Entübe hastada tüp yüzünden kordlar ekspirasyonda addüksiyon yapamaz; fizyolojik PEEP kaybolur, atelektazi ve ventilasyon–perfüzyon (V̇/Q̇) uyumsuzluğu gelişebilir. Bu yüzden FRC’yi korumak için fizyolojik düzeyde (3–5 cmH₂O) ekstrinsik PEEP (PEEPe) uygulamak yaygındır. [[K1 s. 24]]</p>
+  <p>Bedeli: PEEP intratorasik basıncı artırır, venlere dışarıdan binen basınç onları daraltır ve venöz dönüş azalır. Venöz basınç artışının klinik sonuç doğurduğu az sayıdaki durumda PEEPe vermemek avantajlı olabilir: yüksek kafa içi basıncında (ICP) serebral venöz sinüs drenajı zorlaşır ve ICP daha da artar; tonsillektomide tonsil yatağı kanaması artar ve cerrahın görüşü kapanır. [[K1 s. 24]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-agac">
   <h2>Trakeobronşiyal ağaç: 23 kuşak, iki bölge</h2>
-  <p class="intro">Trakeobronşiyal ağaç, her bölünmede giderek daralan hava yollarından oluşur. Trakea ile alveoller arasında en sık 23 bölünme ya da kuşak (generation) sayılır; bazı çalışmalar insanda 28’e kadar kuşak bildirir. Tek tek hava yolları daralır, ama sayıları o kadar hızlı artar ki kuşaklar ilerledikçe toplam kesit alanı üstel olarak büyür. [[K1 s. 25]]</p>
-  <div class="cols" style="margin-bottom:14px">
-    <div class="card basic"><span class="tag basic">Kuşak 0–16</span><h3>İletici bölge</h3><p class="small">Havayı larinksten solunumsal bölgeye iletir, gaz değişimine katılmaz. 70 kg’lık bir erkekte hacmi yaklaşık 150 mL’dir; bu hacme anatomik ölü boşluk denir. [[K1 s. 25]]</p></div>
-    <div class="card clin"><span class="tag clin">Kuşak 17–23</span><h3>Solunumsal bölge</h3><p class="small">Gaz değişiminden sorumludur. İstirahatte hacmi yaklaşık 3000 mL’dir. [[K1 s. 25]]</p></div>
-  </div>
+  <p class="intro">Trakeobronşiyal ağaç her bölünmede daralan hava yollarıdır: 0–16. kuşaklar havayı yalnız iletir, son kuşaklar gaz değişimi yapar. [[K1 s. 25]]</p>
   <div class="viz"><div data-viz="f07_agac"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Toplam kesit alanının büyümesi, aynı hava akımının giderek daha geniş bir toplam kesitten geçmesi demektir; bu yüzden gazın ilerleme hızı periferde çok düşer. Solunumsal bölgede gaz hareketi büyük ölçüde difüzyonla olur. Kesit alanının üstel artışı kitaptadır. [[K1 s. 25]]</div>
+  <p>Trakea ile alveoller arasında en sık 23 kuşak (generation) sayılır; bazı çalışmalar insanda 28’e kadar bildirir. Tek tek hava yolları daralsa da sayıları hızla arttığından toplam kesit alanı üstel olarak büyür. [[K1 s. 25]]</p>
+  <p>İletici bölge (kuşak 0–16) havayı larinksten solunumsal bölgeye taşır ve gaz değişimine katılmaz; 70 kg’lık bir erkekte hacmi yaklaşık 150 mL’dir: anatomik ölü boşluk. Solunumsal bölgenin (kuşak 17–23) istirahatteki hacmi yaklaşık 3000 mL’dir. [[K1 s. 25]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-ileti">
-  <h2>İletici bölge: mukosiliyer taşıma</h2>
-  <p class="intro">İlk kuşaklar, aralarına goblet hücreleri dağılmış silyalı yalancı çok katlı prizmatik epitelle döşelidir. Goblet hücrelerinin salgıladığı mukus tabakası epiteli örter, solukla gelen yabancı cisimleri ve mikroorganizmaları yakalar. Silyalar uyum içinde çarparak mukusu orofarinkse doğru iter; mukus orada yutulur ya da balgamla atılır. Bu mukosiliyer taşıma sistemi (mucociliary escalator) akciğeri mikroorganizmalardan ve partiküllerden korur, alt hava yollarında mukus birikmesini önler. [[K1 s. 25]]</p>
+  <h2>Mukosiliyer taşıma ve nemlendirme</h2>
+  <p class="intro">İletici bölgenin epiteli mukusla partikül ve mikroorganizma yakalar, silyalarla da onları yukarı taşır: mukosiliyer taşıma sistemi (mucociliary escalator). [[K1 s. 25]]</p>
   <div class="viz"><div data-viz="f07_silya"></div></div>
-  <h3 style="margin:22px 0 10px">Klinik önem: nemlendirme</h3>
-  <div class="cols">
-    <div class="card clin"><h3>Tüp üst hava yolunu atlar</h3><p class="small">Endotrakeal ve trakeostomi tüpleri üst hava yolunu devre dışı bırakır; solunan hava normalde olduğu gibi ısıtılamaz ve nemlendirilemez. Soğuk ve kuru gaz mukusun viskozitesini artırır ve mukosiliyer taşımayı bozar. Sonuç: alt hava yollarında mukus birikimi, pulmoner enfeksiyon riskinde artış ve mikroatelektazi. [[K1 s. 24]]</p></div>
-    <div class="card clin"><h3>Yapay ısıtma ve nemlendirme</h3><p class="small">Cerrahi işlemlerde çoğunlukla ısı ve nem değiştirici (HME), yoğun bakım ünitesinde sıcak su banyolu nemlendirici kullanılır. [[K1 s. 24]]</p></div>
-  </div>
+  <p>İlk kuşaklar, aralarına goblet hücreleri dağılmış silyalı yalancı çok katlı prizmatik epitelle döşelidir. Goblet hücrelerinin mukusu epiteli örter; uyum içinde çarpan silyalar onu orofarinkse iter, orada yutulur ya da balgamla atılır. Sistem akciğeri mikroorganizma ve partiküllerden korur, alt hava yollarında mukus birikmesini önler. [[K1 s. 25]]</p>
+  <p><b>Klinik önem: nemlendirme.</b> Endotrakeal ve trakeostomi tüpleri üst hava yolunu atlar; solunan gaz normal biçimde ısıtılıp nemlendirilemez. Soğuk, kuru gaz mukus viskozitesini artırıp mukosiliyer taşımayı bozar: alt hava yollarında mukus birikir, pulmoner enfeksiyon riski artar, mikroatelektazi gelişir. Cerrahide çoğunlukla ısı ve nem değiştirici (HME), yoğun bakımda sıcak su banyolu nemlendirici kullanılır. [[K1 s. 24]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-brons">
-  <h2>Trakea, bronşlar ve bronşiyoller</h2>
-  <div class="blk-body">
-    <p><b>Trakea.</b> Krikoid kıkırdağın alt kenarında (C6 vertebra düzeyi) başlar ve karinada (T4/5 düzeyi) ikiye ayrılır. Ön ve yan duvarları C şeklinde kıkırdak halkalarla desteklenir; halkaların arkadaki açıklığını trakealis kası kapatır. Yüksek negatif hava yolu basıncının eşlik ettiği aşırı inspiratuvar çabada bu halkalar trakeanın kollabe olmasını önler. [[K1 s. 25–26]]</p>
-    <p><b>Ana bronşlar.</b> Sağ ana bronş soldakinden daha kısa, daha geniş ve daha diktir; solukla alınan yabancı cisimler ve endotrakeal tüpler bu nedenle sağ ana bronşa daha kolay girer. [[K1 s. 26]]</p>
+  <h2>Trakea, bronşlar ve çift lümenli tüp</h2>
+  <p class="intro">Hava yolu duvarı kuşaklar boyunca değişir (trakeada C halkalar, bronşlarda kıkırdak plaklar, bronşiyollerde yalnız düz kas); sağ ve sol bronş ağacının farklı biçimi de tüp seçimini belirler. [[K1 s. 25–26]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Trakeadan bronşiyole: duvar, loblar ve uzaklıklar</h3></div>
+    <div data-viz="f07_brons"></div>
+    <p class="viz-cap" aria-live="polite"><b>Önden görünüş.</b> Trakea C6’dan T4/5’e uzanır; sağ üst lob bronşu karinadan 2 cm, sol ana bronşun ikiye ayrılması 5 cm uzaktadır. Bir yapıya dokunun: duvar yapısı, lob ve segment sayıları görünür. [[K1 s. 25–26]]</p>
   </div>
-  <div class="cols" style="margin:14px 0">
-    <div class="card"><span class="tag basic">Sağ akciğer</span>
-      <dl class="f07-dl"><dt>Ana bronş</dt><dd>Daha kısa, daha geniş, daha dik</dd><dt>Lob</dt><dd>3: üst, orta, alt</dd><dt>Segment</dt><dd>10: üst lob 3, orta lob 2, alt lob 5</dd><dt>Üst lob bronşu</dt><dd>Karinanın yalnızca 2 cm distalinde sağ ana bronştan çıkar</dd></dl>
-      <p class="small muted" style="margin-top:8px">[[K1 s. 26]]</p></div>
-    <div class="card"><span class="tag basic">Sol akciğer</span>
-      <dl class="f07-dl"><dt>Ana bronş</dt><dd>Karinadan 5 cm sonra ikiye ayrılır</dd><dt>Lob</dt><dd>2: üst, alt. Lingula sol üst lobun parçasıdır; evrimde kaybolmuş sol orta lobun kalıntısı sayılır</dd><dt>Segment</dt><dd>9: üst lob 5, alt lob 4</dd></dl>
-      <p class="small muted" style="margin-top:8px">[[K1 s. 26]]</p></div>
-  </div>
-  <div class="blk-body">
-    <p><b>Segment ve subsegment bronşları.</b> Epiteli bir düz kas tabakası çevreler; düzensiz biçimli kıkırdak plaklar hava yolunun kollabe olmasını önler. [[K1 s. 26]]</p>
-    <p><b>Bronşiyoller.</b> Kıkırdak içermeyen ilk kuşaktır. Duvarlarındaki düz kas kasılarak (bronkokonstriksiyon) ya da gevşeyerek (bronkodilatasyon) gaz akımını ayarlar. Terminal bronşiyoller iletici bölgenin son, 16. kuşağıdır. [[K1 s. 26]]</p>
-  </div>
-  <div class="cols" style="margin-top:14px">
-    <div class="card"><span class="tag ok">Bronkodilatasyon</span><p class="small">Egzersizdeki gibi sempatik sinir sistemi etkinliğiyle olur: gaz akımına direnç azalır ve O₂ gereksiniminin arttığı dönemde daha fazla ventilasyon sağlanır. Bronkodilatasyon yapan ilaçlar arasında β₂ agonistler ve antikolinerjikler vardır. [[K1 s. 26]]</p></div>
-    <div class="card"><span class="tag crit">Bronkokonstriksiyon</span><p class="small">Parasempatik sinir sistemi, histamin, soğuk hava, zararlı kimyasallar ve başka etkenlerle tetiklenir. Kitap, istirahatte gaz akım hızının azalmasıyla partiküllerin mukus içine çöktüğünü ve silyalarla solunumsal bölgeden uzaklaştırıldığını da belirtir. [[K1 s. 26]]</p></div>
-  </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> İnsanda hava yolu düz kasının doğrudan sempatik innervasyonu çok azdır; sempatik etkinlik sırasındaki bronkodilatasyon büyük ölçüde dolaşımdaki adrenalinin düz kastaki β₂ reseptörlerine etkisiyle oluşur. Antikolinerjikler ise parasempatik (muskarinik) bronkokonstriktör tonusu engelleyerek bronkodilatasyon yapar.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d07-clt">
-  <h2>Klinik önem: çift lümenli tüp</h2>
-  <p class="intro">Sağ üst lob bronşu sağ ana bronştan karinanın yalnızca 2 cm distalinde çıkar; sol ana bronş ise karinadan 5 cm sonra ikiye ayrılır. Bu yüzden tek akciğer ventilasyonunda, bazı sağ toraks ameliyatlarında bile, sol taraflı çift lümenli tüpler (DLETT) sağ taraflılara sıklıkla tercih edilir: sağ taraflı bir tüp yanlış konumlanırsa kafı sağ üst lob bronşunu tıkayabilir. Sağ taraflı tüplerde sağ üst lobu havalandırmak için bir yan delik vardır; ama sağ üst lob bronşunun yeri kişiden kişiye değişir. Bu nedenle tüpün ve sağ üst lob bronşunun konumu fiberoptik bronkoskopiyle kontrol edilmelidir. [[K1 s. 26]]</p>
+  <p>Trakea krikoid kıkırdağın alt kenarında (C6) başlar, karinada (T4/5) ikiye ayrılır. Ön ve yan duvarını destekleyen C şeklindeki kıkırdak halkaların arka açıklığını trakealis kası kapatır; halkalar, yüksek negatif hava yolu basıncının eşlik ettiği aşırı inspiratuvar çabada trakeanın kollabe olmasını önler. Sağ ana bronş soldakinden daha kısa, geniş ve dik olduğundan solukla alınan yabancı cisimler ve endotrakeal tüpler daha çok sağa girer. [[K1 s. 25–26]]</p>
+  <p>Sağda 3 lob (üst, orta, alt) ve 10 bronkopulmoner segment (3 + 2 + 5), solda 2 lob ve 9 segment (üst 5, alt 4) vardır. Lingula (Latince “küçük dil”) sol üst lobun parçasıdır ve evrimde kaybolmuş sol orta lobun kalıntısı sayılır. [[K1 s. 26]]</p>
+  <p>Segment ve subsegment bronşlarında epiteli bir düz kas tabakası çevreler, düzensiz kıkırdak plaklar kollapsı önler. Bronşiyoller kıkırdak içermeyen ilk kuşaktır; düz kasları kasılarak ya da gevşeyerek gaz akımını ayarlar. Terminal bronşiyoller iletici bölgenin son (16.) kuşağıdır. [[K1 s. 26]]</p>
+  <p>Bronkodilatasyon, egzersizdeki gibi sempatik etkinlikle olur: direnç azalır ve O₂ gereksinimi arttığında daha çok ventilasyon sağlanır; bronkodilatör ilaçlar arasında β₂ agonistler ve antikolinerjikler vardır. Bronkokonstriksiyonu parasempatik sistem, histamin, soğuk hava, zararlı kimyasallar ve başka etkenler tetikler. İstirahatte gaz akım hızı düşünce partiküller mukusa çöker ve silyalarla solunumsal bölgeden uzaklaştırılır. [[K1 s. 26]]</p>
+  <p><b>Klinik önem: çift lümenli tüp.</b> Tek akciğer ventilasyonunda, bazı sağ toraks ameliyatlarında bile, sol taraflı çift lümenli tüpler (DLETT) sıklıkla tercih edilir: yanlış konumlanmış sağ taraflı tüpün kafı, karinaya çok yakın çıkan sağ üst lob bronşunu tıkayabilir. Sağ taraflı tüplerde sağ üst lob için bir yan delik vardır, ama bu bronşun yeri kişiden kişiye değişir; tüpün ve sağ üst lob bronşunun konumu fiberoptik bronkoskopiyle kontrol edilmelidir. [[K1 s. 26]]</p>
   <div class="viz"><div data-viz="f07_cift"></div></div>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-alveol">
   <h2>Solunumsal bölge ve alveol</h2>
-  <p class="intro">Respiratuvar bronşiyoller ağırlıklı olarak iletici hava yollarıdır, ama duvarlarına dağılmış alveoller gaz değişimine katılır. Bunlar alveoler kanallara, alveoler keselere ve alveollere ayrılır. Alveoller ağacın son kuşağıdır: insan akciğerindeki yaklaşık 300 milyon alveol, gaz değişimi için yaklaşık 70 m²’lik bir yüzey oluşturur. Her alveolü pulmoner dolaşımdan gelen bir kapiller ağ sarar. [[K1 s. 26]]</p>
+  <p class="intro">Ağacın sonunda yaklaşık 300 milyon alveol, gaz değişimi için yaklaşık 70 m²’lik, yer yer yalnız 200 nm kalınlığında bir yüzey oluşturur. [[K1 s. 26–27]]</p>
   <div class="viz"><div data-viz="f07_alveol"></div></div>
-  <div class="cols" style="margin-top:14px">
-    <div class="card basic"><h3>Alveol duvarındaki hücreler</h3><ul class="small">
-      <li><b>Tip I pnömosit:</b> son derece ince, özelleşmiş epitel; alveol yüzeyinin yaklaşık %90’ını kaplar ve etkin gaz değişimine olanak verir. [[K1 s. 26]]</li>
-      <li><b>Tip II pnömosit:</b> kalan yaklaşık %10’u kaplayan salgı hücresi; alveol yüzeyini pulmoner sürfaktanla örter. [[K1 s. 26]]</li>
-      <li><b>Alveoler makrofaj:</b> monosit kökenlidir; alveoler septalarda ve akciğer interstisyumunda bulunur, iletici bölgenin mukosiliyer sisteminden kaçan partikülleri fagosite eder. [[K1 s. 27]]</li></ul></div>
-    <div class="card basic"><h3>Alveoler–kapiller bariyer</h3><p class="small">Üç tabakadır: alveol duvarının tip I pnömositleri, hücre dışı matriks ve pulmoner kapiller endoteli. Bazı yerlerde yalnızca 200 nm kalınlığındadır; ince olmasına karşın hücre dışı matriksteki tip IV kollajen sayesinde çok güçlüdür. O₂, CO₂, karbon monoksit, nitröz oksit (N₂O) ve volatil anestezikler gibi küçük gaz moleküllerine geçirgendir (difüzyon: Bölüm 10). [[K1 s. 27]]</p>
-      <p class="small" style="margin-top:8px"><b>İşlevleri:</b> etkin gaz değişimine olanak vermek, gaz kabarcıklarının dolaşıma girmesini önlemek, kanın alveole girmesini önlemek ve suyun transüdasyonunu sınırlamak. [[K1 s. 27]]</p></div>
-  </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Yüzey payını hücre sayısıyla karıştırmayın: alveol yüzeyinin büyük bölümünü yassı tip I hücreler kaplar, ama sayıca tip II hücreler tip I hücrelerden fazladır.</div>
+  <p>Respiratuvar bronşiyoller ağırlıklı olarak iletici yoldur, ama duvarlarına dağılmış alveoller gaz değişimine katılır; bunlar alveoler kanallara, alveoler keselere ve alveollere ayrılır. Alveoller ağacın son kuşağıdır ve her birini pulmoner dolaşımdan gelen bir kapiller ağ sarar. [[K1 s. 26]]</p>
+  <p>Son derece ince tip I pnömositler alveol yüzeyinin yaklaşık %90’ını kaplar ve etkin gaz değişimine olanak verir. Salgı hücresi olan tip II pnömositler kalan %10’u kaplar ve yüzeyi pulmoner sürfaktanla örter. Monosit kökenli alveoler makrofajlar alveoler septa ve akciğer interstisyumunda bulunur, mukosiliyer sistemden kaçan partikülleri fagosite eder. [[K1 s. 26–27]]</p>
+  <p>Alveoler–kapiller bariyer üç tabakadır: tip I pnömositler, hücre dışı matriks ve pulmoner kapiller endoteli. İnce olmasına karşın matriksteki tip IV kollajen sayesinde çok güçlüdür; O₂, CO₂, karbon monoksit, nitröz oksit (N₂O) ve volatil anestezikler gibi küçük gaz moleküllerine geçirgendir (difüzyon: Bölüm 10). İşlevleri: etkin gaz değişimi, gaz kabarcıklarının dolaşıma ve kanın alveole girmesini önlemek, suyun transüdasyonunu sınırlamak. [[K1 s. 27]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-mekanik">
-  <h2>Tidal solunumda akciğer nasıl şişer ve söner?</h2>
-  <div class="blk-body">
-    <p><b>Kaslar.</b> Normal, sakin solunumda (öpne) başlıca inspiratuvar kas diyaframdır; derin inspirasyonda eksternal interkostal kaslar yardım eder. Öpnede ekspirasyon pasiftir ve akciğerin elastik geri çekilmesiyle olur; internal interkostal kaslar zorlu ekspirasyonda çalışır. Ek çaba gerektiğinde yardımcı kaslar devreye girer: inspirasyonda sternokleidomastoid ve skalen kaslar, ekspirasyonda abdominal kaslar. [[K1 s. 27]]</p>
-    <p><b>İstirahatteki kuvvetler.</b> Akciğeri iki plevra yaprağı sarar: içteki viseral plevra akciğeri örter, dıştaki pariyetal plevra göğüs duvarına tutunur. Aradaki intraplevral boşlukta, yaprakların sürtünmesini en aza indiren birkaç mililitre plevral sıvı vardır. Göğüs duvarının dışa yaylanma eğilimi nedeniyle intraplevral basınç (Ppl) normalde negatiftir, istirahatte yaklaşık −5 cmH₂O. Akciğer parankiminin gerilmiş elastik lifleri ise akciğeri içe doğru çeker: içe elastik geri çekilme (Pel). İstirahatte akciğer FRC’dedir; Ppl ile Pel eşit ve zıttır, alveol basıncı (PA) atmosfer basıncına (PB) eşittir ve akım yoktur. [[K1 s. 27]]</p>
-    <p><b>İnspirasyon.</b> Diyaframın kasılması akciğerlerin dikey boyutunu artırır: diyafram sakin solunumda 1–2 cm, maksimal inspirasyonda 10 cm kadar iner. Eksternal interkostallerin kasılması göğüs kafesinin ön–arka çapını artırır (kitap bunu “kova sapı” mekanizması diye adlandırır; aşağıdaki Atlas notuna bakın). Akciğer mekaniğinin belki de en önemli yönü göğüs kafesinin hava geçirmez olmasıdır: toraks hacmi artınca Ppl −5’ten yaklaşık −8 cmH₂O’ya düşer, akciğerin elastik geri çekilmesini aşar ve akciğer genişler. Alveol hacmi artarken PA atmosferin altına iner ve hava girer; gerilen lifler Pel’i artırır. İnspirasyon sonunda Pel yeniden Ppl ile eşit ve zıttır, PA atmosfer basıncına döner ve akım durur. [[K1 s. 27]]</p>
-    <p><b>Tidal hacim kompliyansa bağlıdır.</b> Kompliyans, birim basınç değişikliği başına hacim değişikliğidir (Bölüm 20). Ppl’deki 3 cmH₂O’luk bir düşüş normal akciğerde yaklaşık 500 mL tidal hacim (VT) oluşturabilir; akut solunum sıkıntısı sendromunda (ARDS) çok daha azını. [[K1 s. 28]]</p>
-    <p><b>Ekspirasyon.</b> İnspiratuvar kaslar gevşer; göğüs kafesi ve diyafram pasif olarak dinlenme konumuna döner, toraks hacmi küçülür. Göğüs kafesi hava geçirmez olduğundan Ppl yeniden −5 cmH₂O’ya gelir; gerilmiş elastik lifler akciğer hacmini pasif olarak FRC’ye döndürür. Alveol hacmi küçülürken PA, PB’yi aşar ve hava dışarı atılır; akım, ekspirasyon sonunda PA yeniden PB’ye eşitlenene dek sürer. [[K1 s. 28]]</p>
-  </div>
-  <div class="viz" style="margin-top:16px"><div data-viz="f07_mekanik"></div></div>
-  <p class="small muted" style="margin-top:10px;max-width:86ch"><b>Transpulmoner basınç.</b> Kitap bu anlatımın basitleştirilmiş olduğunu not eder. Daha eksiksiz anlatım, akciğerin içi (alveol) ile dışı (intraplevral boşluk) arasındaki basınç farkını, yani transpulmoner basıncı kullanır: akciğerin şişme ya da sönme eğiliminde olduğunu transpulmoner basınç belirler. [[K1 s. 27]]</p>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu: kova sapı ve pompa kolu.</b> Kitap ön–arka çap artışını “kova sapı” mekanizmasına bağlar. Genel kabul gören anlatımda iki hareket ayrılır: <b>pompa kolu</b> hareketi (özellikle üst kaburgalar; sternum öne ve yukarı gelir) ön–arka çapı, <b>kova sapı</b> hareketi (özellikle alt kaburgalar yukarı ve dışa döner) yan (transvers) çapı artırır. Eksternal interkostaller kaburgaları kaldırarak her iki çapı da büyütür. [[K1 s. 27]]</div>
-  <div class="note plain"><b>Atlas notu: Şekil 7.3 ve “düşer”.</b> Kitabın şeklinde inspirasyondaki interkostal kaslar “internal” diye etiketlenmiştir; metinde de doğru olarak yazdığı gibi inspirasyona yardım edenler eksternal interkostallerdir, internal interkostaller zorlu ekspirasyonda çalışır. Şeklin (d) panelinde Pel +5 yazılıdır; Ppl −5 iken PA’nın PB’yi aşabilmesi için Pel ekspirasyon boyunca +5’in üstünde kalmalıdır ve +5’e ancak ekspirasyon sonunda, FRC’de döner. Ekspirasyon anlatımında Ppl’nin −5 cmH₂O’ya “geri düştüğü” yazar; −8’den −5’e geçiş sayısal olarak bir artıştır (basınç daha az negatif olur). [[K1 s. 28]]</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d07-ptx">
-  <h2>Klinik önem: pnömotoraks</h2>
-  <p class="intro">İstirahatte intraplevral basınç −5 cmH₂O’dur. Atmosfer ile plevral boşluk arasında bir bağlantı oluşursa (penetran travma ya da bir bülün yırtılması gibi), negatif intraplevral basınç havayı içeri çeker: pnömotoraks. Ppl artık PB’ye eşit olduğundan akciğer kendi içe elastik geri çekilmesine yenik düşer ve kollabe olur. [[K1 s. 29]]</p>
-  <div class="note">Yukarıdaki modelde <b>Pnömotoraks</b> düğmesine basın: Ppl sıfıra çıkar, PA geçici olarak pozitifleşir, hava dışarı çıkar ve akciğer küçülür; kaslar çalışmayı sürdürse de bu akciğere hava girmez. [[K1 s. 27–29]]</div>
+  <h2>Tidal solunum ve pnömotoraks</h2>
+  <p class="intro">Hava geçirmez göğüs kafesi genişleyince intraplevral basınç daha negatif olur ve akciğeri genişletir; alveol basıncı atmosferin altına inince hava girer, sakin ekspirasyon ise pasiftir. [[K1 s. 27–28]]</p>
+  <div class="viz"><div data-viz="f07_mekanik"></div></div>
+  <p><b>Kaslar.</b> Sakin solunumda (öpne) başlıca inspiratuvar kas diyaframdır: sakin solunumda 1–2 cm, maksimal inspirasyonda 10 cm kadar iner ve akciğerin dikey boyutunu artırır. Derin inspirasyona yardım eden eksternal interkostaller göğüs kafesinin ön–arka çapını artırır; kitap bunu “kova sapı” mekanizması diye adlandırır. Öpnede ekspirasyon akciğerin elastik geri çekilmesiyle pasiftir, internal interkostaller zorlu ekspirasyonda çalışır. Ek çabada yardımcı kaslar devreye girer: inspirasyonda sternokleidomastoid ve skalenler, ekspirasyonda abdominal kaslar. [[K1 s. 27]]</p>
+  <p><b>İstirahat.</b> Viseral plevra akciğeri örter, pariyetal plevra göğüs duvarına tutunur; aradaki birkaç mililitre plevral sıvı sürtünmeyi en aza indirir. Göğüs duvarı dışa yaylandığı için intraplevral basınç (Ppl) yaklaşık −5 cmH₂O’dur; gerilmiş elastik lifler ise akciğeri içe çeker (Pel). FRC’de ikisi eşit ve zıttır, alveol basıncı (PA) atmosfer basıncına (PB) eşittir ve akım yoktur. [[K1 s. 27]]</p>
+  <p><b>İnspirasyon ve ekspirasyon.</b> Kitap göğüs kafesinin hava geçirmezliğini akciğer mekaniğinin belki de en önemli yönü sayar: toraks hacmi artınca Ppl −8 cmH₂O’ya iner, elastik geri çekilmeyi aşar ve akciğer genişler. PA atmosferin altına iner ve hava girer; gerilen lifler Pel’i artırır, inspirasyon sonunda Pel yeniden Ppl ile eşit ve zıttır, PA = PB olur ve akım durur. Ekspirasyonda kaslar gevşer, göğüs kafesi ve diyafram dinlenme konumuna döner, Ppl −5’e geri gelir; elastik lifler hacmi FRC’ye döndürürken PA, PB’yi aşar ve hava, PA yeniden PB’ye eşitlenene dek çıkar. [[K1 s. 27–28]]</p>
+  <p><b>Kompliyans ve transpulmoner basınç.</b> Soluk hacmi kompliyansa (birim basınç değişikliği başına hacim değişikliği; Bölüm 20) bağlıdır: Ppl’deki 3 cmH₂O’luk düşüş normal akciğerde yaklaşık 500 mL tidal hacim (VT) üretir, akut solunum sıkıntısı sendromunda (ARDS) çok daha azını. Kitap bu anlatımın basitleştirilmiş olduğunu not eder: akciğerin şişme ya da sönme eğilimini, alveol ile intraplevral boşluk arasındaki fark olan transpulmoner basınç belirler. [[K1 s. 27–28]]</p>
+  <p><b>Klinik önem: pnömotoraks.</b> Plevral boşluk atmosferle bağlantı kazanırsa (penetran travma, bül yırtılması) negatif Ppl havayı içeri çeker. Ppl artık PB’ye eşit olduğundan akciğer kendi içe elastik geri çekilmesine yenik düşer ve kollabe olur; modelde <b>Pnömotoraks</b> düğmesini deneyin. [[K1 s. 29]]</p>
+  <div class="note plain"><b>Atlas notu: kova sapı ve pompa kolu.</b> Ön–arka çapı aslında üst kaburgaların pompa kolu hareketi artırır; kitabın andığı kova sapı hareketi alt kaburgalarla yan (transvers) çapı büyütür. Eksternal interkostaller kaburgaları kaldırarak her iki harekete de katkı verir. [[K1 s. 27]]</div>
+  <div class="note plain"><b>Atlas notu: Şekil 7.3.</b> Kitabın şeklinde inspirasyondaki kaslar yanlışlıkla “internal” interkostal diye etiketlenmiştir; inspirasyona eksternal interkostaller yardım eder. (d) panelindeki Pel +5 de tutarsızdır: PA’nın PB’yi aşabilmesi için Pel ekspirasyon boyunca +5’in üstünde kalır ve +5’e ancak FRC’de döner. [[K1 s. 28]]</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-metab">
   <h2>Akciğerin solunum dışı işlevleri</h2>
-  <div class="cols" style="margin-bottom:14px">
-    <div class="card"><span class="tag">Savunma</span><h3>İmmünolojik savunma ve akciğer savunması</h3><p class="small">Akciğerin, mikroorganizmalara karşı savunulması gereken yaklaşık 70 m²’lik bir alveoler yüzeyi vardır; kitap bunu deri (2 m²) ve bağırsak (300 m²) yüzeyleriyle karşılaştırır. Savunma mekanizmaları: solunan havanın süzülmesi, mukosiliyer taşıma sistemi, alveoler makrofajlar ve immünoglobulin A salgısı. Üst hava yolu refleksleri olan öksürük ve hapşırık da önemli rol oynar. [[K1 s. 29]]</p></div>
-    <div class="card"><span class="tag">Metabolik ve endokrin</span><h3>Kalp debisinin tamamına yakını buradan geçer</h3><p class="small">Kalp debisinin neredeyse tamamı akciğerden geçtiği için akciğer, dolaşımdaki maddeler üzerinde metabolik ve endokrin işlemler için son derece uygun bir yerdir. Vasküler işlevler, yani pulmoner dolaşım, Bölüm 23’te ayrıntılı işlenir. [[K1 s. 29]]</p></div>
-  </div>
-  <div class="note plain" style="margin-bottom:14px"><b>Atlas notu.</b> Bağırsak için verilen 300 m², eskiden yaygın olarak aktarılan bir tahmindir. Daha yeni morfometrik ölçümler sindirim kanalının iç yüzeyini yaklaşık 32 m² bulmuştur (Helander ve Fändriks, 2014). Bu, akciğerin dış ortamla temas eden yüzeyinin deriden çok büyük olduğu sonucunu değiştirmez. [[K1 s. 29]]</div>
+  <p class="intro">Kalp debisinin neredeyse tamamı akciğerden geçtiği için akciğer dolaşımdaki maddeleri işleyen bir süzgeçtir; dış ortama açık büyük yüzeyi de onu bir savunma organı yapar. [[K1 s. 29]]</p>
   <div class="viz"><div data-viz="f07_filtre"></div></div>
-  <div class="cols cols-3" style="margin-top:14px">
-    <div class="card"><h3>Sentezlenenler</h3><p class="small">Sürfaktan, nitrik oksit ve heparinler. [[K1 s. 29]]</p></div>
-    <div class="card"><h3>Proinflamatuvar mediyatörler</h3><p class="small">Akciğer histamin, eikozanoidler, endotelin, trombosit agregasyon faktörü ve adenozini sentezler, depolar ve salar. [[K1 s. 29]]</p></div>
-    <div class="card"><h3>İlaçların akciğerde tutulumu</h3><p class="small">Lidokain, fentanil ve noradrenalin dahil bazı anestezi ilaçları akciğerde önemli ölçüde tutulur ve ilk geçiş metabolizmasına uğrar. [[K1 s. 29]] Atlas notu: lidokain ve fentanilde bu tutulum büyük ölçüde geri dönüşlüdür; akciğer ilacı tutar ve kan düzeyi düştükçe yeniden dolaşıma verir.</p></div>
-  </div>
+  <p>Akciğer noradrenalin, serotonin, prostaglandinler, bradikinin ve asetilkolini inaktive eder; adrenalin, antidiüretik hormon ve anjiyotensin II değişmeden geçer. Anjiyotensin dönüştürücü enzim (ACE) anjiyotensin I’i II’ye çevirir ve bradikinini yıkan üç enzimden biridir: ACE inhibitörleriyle biriken bradikinin inatçı öksürüğe yol açabilir ve ACE inhibitörüne bağlı anjiyoödemle ilişkilendirilmiştir. Lidokain, fentanil ve noradrenalin akciğerde önemli tutulum ve ilk geçiş metabolizmasına uğrar. [[K1 s. 29]]</p>
+  <p>Akciğer ayrıca sürfaktan, nitrik oksit ve heparinler sentezler; histamin, eikozanoidler, endotelin, trombosit agregasyon faktörü ve adenozin gibi proinflamatuvar mediyatörleri sentezler, depolar ve salar. [[K1 s. 29]]</p>
+  <p><b>Savunma.</b> Korunacak alveoler yüzey yaklaşık 70 m²’dir; kitap bunu deri (2 m²) ve bağırsak (300 m²) yüzeyiyle karşılaştırır. Savunma mekanizmaları: solunan havanın süzülmesi, mukosiliyer taşıma, alveoler makrofajlar ve immünoglobulin A salgısı; üst hava yolu refleksleri olan öksürük ve hapşırık da önemli rol oynar. [[K1 s. 29]]</p>
+  <div class="note plain"><b>Atlas notu.</b> Bağırsak için verilen 300 m² eski bir tahmindir; yeni morfometrik ölçümler sindirim kanalının iç yüzeyini yaklaşık 32 m² bulmuştur (Helander ve Fändriks, 2014). Bu, akciğerin dış ortamla temas eden yüzeyinin deriden çok büyük olduğu sonucunu değiştirmez. [[K1 s. 29]]</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d07-p1">

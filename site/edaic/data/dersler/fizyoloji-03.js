@@ -33,135 +33,113 @@ VERI.sorular['fiz03-3'] = {
   ],
 };
 
-const D3_NAV = [['d03-kromozom', 'Kromozom'], ['d03-dna', 'DNA'], ['d03-rna', 'RNA'], ['d03-kodon', 'Kodon ve protein sentezi'], ['d03-mutasyon', 'Gen mutasyonları'], ['d03-mayoz', 'Diploit, haploit, mayoz'], ['d03-kalitim', 'Mendel kalıtımı'], ['d03-penetrans', 'Penetrans'], ['d03-p1', 'Part I'], ['d03-p2', 'Part II'], ['d03-ozet', 'Özet']];
+const D03_NAV = [['d03-kromozom', 'Kromozom'], ['d03-dna', 'DNA ve RNA'], ['d03-sentez', 'Genden proteine'], ['d03-mutasyon', 'Gen mutasyonları'], ['d03-mayoz', 'Diploit, haploit, mayoz'], ['d03-kalitim', 'Mendel kalıtımı'], ['d03-penetrans', 'Penetrans'], ['d03-p1', 'Part I'], ['d03-p2', 'Part II'], ['d03-ozet', 'Özet']];
 
 SAYFALAR['dersler/fizyoloji/03'] = {
   grup: 'dersler', eyebrow: 'Fizyoloji · Kısım 1 · Temel bilgiler · Bölüm 3', baslik: 'Genetik',
   lede: 'Genetik kod hücrede nerede ve nasıl saklanır, nasıl okunup proteine çevrilir, kopyalama hataları hangi hastalıklara yol açar ve özellikler kuşaktan kuşağa nasıl aktarılır? [[K1 s. 9–12]]',
   html: `
-<nav class="wrap ders-nav" aria-label="Bu bölümde">${D3_NAV.map(([id, ad], i) => `<button type="button" data-scroll="${id}"><span>${String(i + 1).padStart(2, '0')}</span>${ad}</button>`).join('')}</nav>
+<nav class="wrap ders-nav" aria-label="Bu bölümde">${D03_NAV.map(([id, ad], i) => `<button type="button" data-scroll="${id}"><span>${String(i + 1).padStart(2, '0')}</span>${ad}</button>`).join('')}</nav>
 
 <section class="wrap blk ders-sec" id="d03-kromozom">
   <h2>Kromozom: paketlenmiş DNA</h2>
-  <div class="blk-body">
-    <p>İnsan Genom Projesi 2003'te tamamlandığında bütün insan genlerinin dizisi çıkarılmış ve "genom çağı" başlamıştı. Genetik bilgisi tıbbı kökten değiştirdi; yine de genlerin çoğunun fenotipte ne işe yaradığı hâlâ iyi anlaşılmamıştır ve bu, fizyoloji araştırmalarının önümüzdeki dönemdeki başlıca konularından biri olacaktır. [[K1 s. 9]]</p>
-    <p>Bir kişinin genetik kodu her hücrenin çekirdeğinde, <b>kromatin</b> denen yoğun bir yapı içinde paketlenmiştir. Hücre bölünmeye hazırlanırken kromatin iplik benzeri <b>kromozomlar</b> hâlinde düzenlenir; her kromozom aslında tek parça, kıvrılmış bir DNA molekülüdür. Hücrelerde toplam 46 kromozom (23 çift) bulunur. Başlıca istisna gametlerdir: sperm ve yumurta 23 kromozom taşır. [[K1 s. 9]]</p>
+  <p class="intro">Genetik kod her hücrenin çekirdeğinde paketlenmiş DNA olarak saklanır; hücre bölünmeye hazırlanırken bu paket kromozomlara dönüşür. [[K1 s. 9]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Çekirdekten kromozoma</h3></div>
+    <div data-viz="f03_kromozom"></div>
+    <p class="viz-cap" aria-live="polite">Çekirdekteki yoğun kromatin, bölünme öncesinde iplik benzeri kromozomlara düzenlenir; her kromozom kıvrılmış tek bir DNA molekülüdür. Hücrede 46 kromozom (23 çift): 22 çift otozom ve 1 çift allozom (XX ya da XY); gamette 23. [[K1 s. 9]]</p>
+    <p class="viz-foot">Şematik çizim; kromozom boyları yaklaşık oranlıdır.</p>
   </div>
-  <div class="cols" style="margin-top:16px">
-    <div class="card basic"><span class="tag basic">22 çift</span><h3>Otozomlar</h3><p>Cinsiyet kromozomu olmayan kromozomlar. DNA taşırlar, bireyin cinsiyetini belirlemezler. [[K1 s. 9]]</p></div>
-    <div class="card basic"><span class="tag basic">1 çift</span><h3>Allozomlar (cinsiyet kromozomları)</h3><p>Kadında XX, erkekte XY. İki kromozom tipi de DNA taşır; bireyin cinsiyetini belirleyen yalnızca allozomlardır. [[K1 s. 9]]</p></div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>İki kromozom tipi de DNA taşır; bireyin cinsiyetini yalnız allozomlar (cinsiyet kromozomları) belirler. [[K1 s. 9]]</p>
+    <p>İnsan Genom Projesi 2003'te bütün insan genlerinin dizisini çıkardı ve "genom çağı"nı başlattı. Genetik tıbbı kökten değiştirdi, ama genlerin çoğunun fenotipteki önemi hâlâ iyi bilinmiyor; bu, fizyoloji araştırmalarının gelecekteki ana konularından biri. [[K1 s. 9]]</p>
   </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d03-dna">
-  <h2>DNA: dört harfli bir polimer</h2>
-  <p class="intro">DNA, dört nükleotidin art arda dizilmesiyle oluşan bir polimerdir. Çoğu zaman tamamlayıcı ikinci bir zincire bağlıdır ve onunla birlikte çift sarmal biçiminde kıvrılır. Tek bir zinciri iki bölümden oluşmuş gibi düşünmek kolaylık sağlar. [[K1 s. 9]]</p>
-  <div class="cols">
-    <div class="card"><h3>Şeker–fosfat omurgası</h3><p>Birbirini izleyen deoksiriboz şekeri ve fosfat grupları. Omurgadaki şekerler beş karbonlu (pentoz) karbonhidratlardır; kitap bunların pentoz fosfat yolundan geldiğini belirtir (Bölüm 77). [[K1 s. 9]]</p></div>
-    <div class="card"><h3>Nükleobazlar</h3><p>Dizilişleri genetik kodu oluşturan dört baz: guanin (G), adenin (A), timin (T) ve sitozin (C). Kimyasal yapılarına göre A ve G <b>pürin</b>, T ve C <b>pirimidindir</b>. [[K1 s. 9]]</p></div>
-  </div>
+  <h2>DNA ve RNA: dört harfli zincirler</h2>
+  <p class="intro">DNA dört nükleotidin art arda dizildiği bir polimerdir; çoğu zaman tamamlayıcı ikinci bir zincire bağlanıp çift sarmal hâlinde kıvrılır. [[K1 s. 9]]</p>
+  <div class="viz"><div data-viz="f03_dna"></div></div>
   <div class="blk-body" style="margin-top:16px">
-    <p>Çift sarmalın üç özelliği:</p>
-    <ul>
-      <li><b>Antiparalel zincirler.</b> İki zincir ters yönlerde uzanır: birinin 5′ ucunun karşısında öbürünün 3′ ucu durur. [[K1 s. 9–10]]</li>
-      <li><b>Tamamlayıcı baz çiftleri.</b> Zincirler yapboz parçaları gibi kenetlenir: C yalnızca G ile, A yalnızca T ile eşleşir; bir A, başka bir A'nın karşısına oturamaz. Bu yüzden iki zincirin birbirine uyması için birinin bütün dizisi öbürünün bütün dizisine karşılık gelmelidir. [[K1 s. 9]]</li>
-      <li><b>Hidrojen bağları.</b> Eşleşen bazlar arasındaki hidrojen bağları iki zinciri bir arada tutar. [[K1 s. 9]]</li>
-    </ul>
+    <p>Her zincirin iki parçası vardır. <b>Şeker–fosfat omurgası</b>, deoksiriboz ile fosfatın sırayla dizilmesidir; şekerler pentoz fosfat yolunda üretilen beş karbonlu pentozlardır (Bölüm 77). Dizilişi genetik kodu oluşturan dört <b>nükleobaz</b> guanin (G), adenin (A), timin (T) ve sitozindir (C); A ve G <b>pürin</b>, T ve C <b>pirimidindir</b>. [[K1 s. 9]]</p>
+    <p>Zincirler <b>antiparaleldir</b>: ters yönlerde uzanır [[K1 s. 9–10]]. Yapboz gibi kenetlenirler: C yalnız G ile, A yalnız T ile <b>tamamlayıcı çift</b> kurar, bir A başka bir A'nın karşısına oturamaz; bu yüzden iki zincirin bütün dizileri birbirine uymalıdır. Eşleşen bazları <b>hidrojen bağları</b> bir arada tutar. [[K1 s. 9]]</p>
+    <p>RNA da şeker–fosfat omurgasına dizilmiş bazlardan oluşur, ama üç farkı vardır: şekerinde DNA'nın şekerinde olmayan bir hidroksil grubu bulunur ("deoksi" adı buradan gelir), timin yerine urasil (U) taşır ve genellikle tek zincirlidir, çift sarmal kuracağı antiparalel eşi yoktur. Şekildeki "RNA olsaydı" düğmesi bu farkları gösterir. [[K1 s. 10]]</p>
   </div>
-  <div class="viz" style="margin-top:16px"><div data-viz="f03_dna"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap hidrojen bağını "van der Waals etkileşiminin özellikle güçlü bir türü" diye tanımlar. Biyokimya kaynaklarının çoğu hidrojen bağını van der Waals kuvvetlerinden ayrı ve onlardan daha güçlü, kovalent olmayan bir etkileşim olarak sınıflar. A–T çifti arasında iki, G–C çifti arasında üç hidrojen bağı vardır. Pentoz fosfat yolu doğrudan riboz-5-fosfat üretir; DNA'daki deoksiriboz, ribonükleotitlerden ribonükleotit redüktaz enzimiyle oluşur.</div>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap hidrojen bağını "van der Waals etkileşiminin özellikle güçlü bir türü" sayar; biyokimyada hidrojen bağı van der Waals kuvvetlerinden ayrı ve daha güçlü, kovalent olmayan bir etkileşimdir. Kitabın kodon ve mutasyon anlatımında "nükleozit" dediği zincir birimi nükleotittir (baz + şeker + fosfat; nükleozitte fosfat yoktur).</div>
 </section>
 
-<section class="wrap blk ders-sec" id="d03-rna">
-  <h2>RNA: kodun taşınabilir kopyası</h2>
-  <p class="intro">Bir proteinin amino asit dizisi çekirdekteki DNA'da yazılıdır, ama kod çekirdekte sabittir; proteini üreten aygıt (endoplazmik retikulum ve Golgi aygıtı, Bölüm 2) ise sitoplazmadadır. Bu sorunu RNA çözer: çekirdekte DNA'daki kodun kopyası olarak üretilir, sitoplazmaya taşınır ve orada protein sentezinde kullanılır. [[K1 s. 9–10]]</p>
-  <div class="tbl-wrap">
+<section class="wrap blk ders-sec" id="d03-sentez">
+  <h2>Genden proteine: RNA tipleri ve kodon</h2>
+  <p class="intro">Kod çekirdekte sabittir, proteini yapan aygıt (endoplazmik retikulum ve Golgi aygıtı, Bölüm 2) ise sitoplazmadadır; RNA, kodun kopyası olarak çekirdekte yapılıp sitoplazmaya taşınarak bu sorunu çözer. [[K1 s. 9–10]]</p>
+  <div class="viz"><div data-viz="f03_sentez"></div></div>
+  <div class="tbl-wrap" style="margin-top:16px">
     <table class="tbl">
-      <thead><tr><th>Özellik</th><th>DNA</th><th>RNA</th></tr></thead>
+      <thead><tr><th>RNA tipi</th><th>Nerede, ne yapar?</th></tr></thead>
       <tbody>
-        <tr><th>Omurga</th><td>Deoksiriboz ve fosfat</td><td>Riboz ve fosfat; şekerde DNA'nın şekerinde olmayan bir hidroksil grubu vardır (DNA'nın adındaki "deoksi" bu yüzden) [[K1 s. 10]]</td></tr>
-        <tr><th>Bazlar</th><td>A, G, C, T</td><td>A, G, C, U: timin yerine urasil [[K1 s. 10]]</td></tr>
-        <tr><th>Zincir</th><td>İki antiparalel zincir, çift sarmal</td><td>Genellikle tek zincir; çift sarmal kuracağı antiparalel bir eşi yoktur [[K1 s. 10]]</td></tr>
-        <tr><th>Görevi</th><td>Kodu çekirdekte saklar</td><td>Kodu sitoplazmaya taşır ve protein sentezinde kullanılır [[K1 s. 9–10]]</td></tr>
+        <tr><th>mRNA · haberci</th><td>Çekirdekte DNA'nın belirli bir bölümünün kopyası olarak yapılır (<b>transkripsiyon</b>); çekirdekten çıkıp hücrenin protein fabrikası olan granüllü ER'nin ribozomlarına gider. [[K1 s. 10]]</td></tr>
+        <tr><th>tRNA · taşıyıcı</th><td>Sitoplazmada 20 amino asidi toplayıp ribozoma getirir; kitaba göre 20 tip tRNA vardır. [[K1 s. 10]]</td></tr>
+        <tr><th>rRNA · ribozomal</th><td>Ribozomda amino asit yüklü tRNA'ları mRNA dizisi boyunca doğru yerlere dizer; amino asitler bağlanır ve tamamlanan protein serbest kalır. [[K1 s. 10]]</td></tr>
       </tbody>
     </table>
   </div>
-  <h3 style="margin:20px 0 10px">Üç ana RNA tipi</h3>
-  <div class="cols cols-3">
-    <div class="card"><span class="tag">mRNA · haberci</span><p>Çekirdekte DNA'nın belirli bir bölümünün kopyası olarak sentezlenir; bu sürece <b>transkripsiyon</b> denir. Sonra çekirdekten çıkar ve hücrenin protein fabrikası olan granüllü ER'nin ribozomlarına gider. [[K1 s. 10]]</p></div>
-    <div class="card"><span class="tag">tRNA · taşıyıcı</span><p>Sitoplazmada amino asitleri toplar ve protein sentezi için ribozoma getirir. Kitap 20 amino asit için 20 tip tRNA olduğunu yazar. [[K1 s. 10]]</p></div>
-    <div class="card"><span class="tag">rRNA · ribozomal</span><p>Ribozomun içinde, amino asitlerini taşıyan tRNA'ları mRNA dizisi boyunca doğru konumlara dizer. Amino asitler birbirine bağlanır ve tamamlanan protein serbest bırakılır. [[K1 s. 10]]</p></div>
+  <div class="blk-body" style="margin-top:16px">
+    <p><b>Kodon</b>, mRNA'da tek bir amino asidi kodlayan üç nükleotitlik dizidir: GCA alanini kodlar. tRNA'nın mRNA'ya bağlanan üçlüsü kodonun yapboz eşidir (<b>antikodon</b>): GCA'nın eşi CGU'dur, yani CGU antikodonlu tRNA alanin taşır. [[K1 s. 10]]</p>
   </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Genetik kod dejeneredir: 61 anlamlı kodon 20 amino asidi kodlar ve birçok amino asidi birden fazla tRNA türü taşır; bu yüzden hücredeki tRNA türlerinin sayısı 20'den fazladır. Ayrıca bütün proteinler granüllü ER'de yapılmaz: sitozolde kalacak proteinler serbest ribozomlarda, salgılanacak ya da zara yerleşecek proteinler ER'ye bağlı ribozomlarda sentezlenir.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d03-kodon">
-  <h2>Kodon, antikodon ve protein sentezi</h2>
-  <p class="intro">Kodon, mRNA'da yan yana duran ve tek bir amino asidi kodlayan üç bazlık bir dizidir. Kitabın örneğinde GCA alanini kodlar. tRNA da aynı üçlüleri kullanır: mRNA'ya bağlanabilmesi için taşıdığı üçlünün kodonun yapboz eşi olması gerekir; buna <b>antikodon</b> denir. GCA'nın eşi CGU'dur, dolayısıyla CGU antikodonlu tRNA alanin taşır. Aşağıda kısa bir genin çekirdekten proteine yolculuğunu adım adım izleyin. [[K1 s. 10]]</p>
-  <div class="viz"><div data-viz="f03_sentez"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap kodonu ve mutasyonları "nükleozit" üzerinden anlatır. Zincirin birimleri fosfat da içerdiği için doğru terim nükleotittir: nükleozit baz ve şekerden, nükleotit baz, şeker ve fosfattan oluşur. Antikodon kodonla antiparalel eşleşir. Kitaptaki CGU, antikodonun kodonla aynı hizada (3′→5′) yazılmış hâlidir; diziler kural olarak 5′→3′ yönünde yazıldığında aynı antikodon UGC olur.</div>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Genetik kod dejenere olduğu için (61 anlamlı kodon, 20 amino asit) birçok amino asidi birden çok tRNA türü taşır; tRNA türü 20'den fazladır. Bütün proteinler granüllü ER'de yapılmaz: sitozolde kalacak proteinler serbest ribozomlarda sentezlenir.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d03-mutasyon">
   <h2>Klinik önem: gen mutasyonları</h2>
-  <p class="intro">DNA kopyalanırken (replikasyon) ya da onarılırken hata olabilir. Hatalı DNA protein sentezinde kullanılmaya devam eder: hatayı taşıyan mRNA ribozoma gider ve anormal bir proteine çevrilir. Anormal proteinlerin klinik sonuçları vardır. [[K1 s. 11]]</p>
-  <div class="cols cols-3">
-    <div class="card"><h3>Nokta mutasyonu</h3><p>Dizide tek bir birimin yanlış kopyalanması. [[K1 s. 11]]</p></div>
-    <div class="card"><h3>Delesyon</h3><p>Bir ya da daha fazla birimin diziden yanlışlıkla çıkması. [[K1 s. 11]]</p></div>
-    <div class="card"><h3>İnsersiyon</h3><p>Diziye kısa bir DNA parçasının yanlışlıkla eklenmesi. [[K1 s. 11]]</p></div>
-  </div>
-  <p class="small muted" style="margin:12px 0 16px;max-width:80ch">Delesyon ve insersiyonlar nokta mutasyonlarından çok daha ağır olabilir: okuma çerçevesi kayarsa sonraki bütün kodonlar farklı okunur ve DNA belirgin biçimde değişmiş bir protein kodlar. [[K1 s. 11]]</p>
+  <p class="intro">DNA kopyalanırken (replikasyon) ya da onarılırken oluşan bir hata mRNA ile ribozoma taşınır ve klinik sonucu olan anormal bir proteine çevrilir. [[K1 s. 11]]</p>
   <div class="viz"><div data-viz="f03_mutasyon"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Çerçeve kayması yalnızca eklenen ya da silinen nükleotit sayısı üçün katı değilse olur. Üç nükleotit (ya da üçün bir katı) eklenir veya silinirse çerçeve korunur ve protein bir ya da birkaç amino asit fazla ya da eksik olur. Kistik fibrozisin ΔF508 mutasyonu bunun örneğidir.</div>
-
-  <h3 style="margin:24px 0 10px">Üç klinik örnek</h3>
-  <div class="cols cols-3">
-    <div class="card clin"><span class="tag clin">Nokta mutasyonu</span><h3>Orak hücre hastalığı</h3><p>11. kromozomdaki hemoglobin β-zinciri geninde nokta mutasyonu: altıncı amino asidin kodonu GAG (glutamik asit) yerine GTG (valin) okunur. Polar bir amino asidin yerini polar olmayan bir amino asit alır; düşük O₂ basıncında Hb kümelenir ve eritrositin biçimi değişir. Otozomal resesif geçer. [[K1 s. 11–12]]</p></div>
-    <div class="card clin"><span class="tag clin">Delesyon</span><h3>Kistik fibrozis</h3><p>Transmembran Cl⁻ kanalını kodlayan CFTR genindeki mutasyonlar. Zarın Cl⁻ geçirgenliği ve buna bağlı olarak hücreden dışarı su hareketi azalır; koyulaşan salgıları silyalı epitel temizleyemez. Küçük hava yolları (pnömoni), pankreas kanalları (sindirim enzimlerinin akışı engellenir) ve vas deferens (erkekte eksik gelişim ve infertilite) tıkanır. En sık mutasyon ΔF508: üç nükleotit silinir ve proteinde 508. konumdaki fenilalanin (F) eksilir. Otozomal resesif geçer. [[K1 s. 11–12]]</p></div>
-    <div class="card clin"><span class="tag clin">Trinükleotit tekrarı</span><h3>Huntington hastalığı</h3><p>Nörodejeneratif bir hastalık. 4. kromozomdaki Huntington geninde glutamin kodonu CAG art arda çok sayıda tekrarlanır ("trinükleotit tekrar hastalığı"). Bu bölge kararsızdır ve tekrar sayısı her kuşakta artma eğilimindedir; bu yüzden hastalık sonraki kuşaklarda daha genç yaşta ya da daha ağır görülebilir: <b>antisipasyon</b>. [[K1 s. 11]]</p></div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>Sık hata tipleri üçtür: <b>nokta mutasyonu</b> (tek nükleotidin yanlış kopyalanması), <b>delesyon</b> (bir ya da daha çok nükleotidin silinmesi) ve <b>insersiyon</b> (kısa bir DNA dizisinin araya girmesi). Delesyon ve insersiyon nokta mutasyonundan çok daha ağır olabilir: okuma çerçevesi kayarsa DNA belirgin biçimde değişmiş bir protein kodlar. [[K1 s. 11]]</p>
   </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu · orak hücre.</b> Kitap aynı paragrafta yer değiştirmenin yönünü İngilizcede ters kuran bir cümle kullanır. Doğru yön önceki cümlenin söylediğidir: polar glutamik asidin yerini polar olmayan valin alır (Glu → Val).</div>
-  <div class="note plain"><b>Atlas notu · kistik fibrozis.</b> Kitap CFTR geninde 1000'den fazla nokta mutasyonu tanımlandığını yazar. Bugün CFTR'de 2000'i aşkın varyant bilinmektedir ve bunlar yalnızca nokta mutasyonları değildir; en sık görülen ΔF508 (F508del) de bir nokta mutasyonu değil, okuma çerçevesini koruyan üç nükleotitlik bir delesyondur. Kitap bunu bir kodonun tamamının silinmesi diye anlatır; aslında silinen üç nükleotit (CTT) 507. ve 508. kodonlara yayılır, 507. amino asit (izolösin) değişmeden kalır ve proteinden yalnızca 508. konumdaki fenilalanin eksilir.</div>
+  <div class="cols cols-3" style="margin-top:16px">
+    <div class="card clin"><span class="tag clin">Nokta mutasyonu</span><h3>Orak hücre hastalığı</h3><p>11. kromozomdaki hemoglobin β-zinciri geninde altıncı amino asidin kodonu GAG (glutamik asit) yerine GTG (valin) okunur. Polar glutamik asidin yerini polar olmayan valin alır; düşük O₂ basıncında Hb kümelenir ve eritrositin biçimi değişir. [[K1 s. 11]]</p></div>
+    <div class="card clin"><span class="tag clin">Delesyon</span><h3>Kistik fibrozis</h3><p>Transmembran Cl⁻ kanalını kodlayan CFTR geninde mutasyon: zarın Cl⁻ geçirgenliği, buna bağlı olarak hücreden dışarı su hareketi azalır. Koyulaşan salgıyı silyalı epitel temizleyemez; küçük hava yolları (pnömoni), pankreas kanalları (sindirim enzimlerinin akışı engellenir) ve vas deferens (erkekte eksik gelişim, infertilite) tıkanır. 1000'den fazla mutasyon tanımlanmıştır; en sık ΔF508'de üç nükleotit silinir ve proteinden 508. konumdaki fenilalanin (F) eksilir. [[K1 s. 11]]</p></div>
+    <div class="card clin"><span class="tag clin">Trinükleotit tekrarı</span><h3>Huntington hastalığı</h3><p>Nörodejeneratif hastalık; nedeni tekrarlayan DNA parçalarının araya girmesidir: 4. kromozomdaki Huntington geninde glutamin kodonu CAG art arda çok kez tekrarlanır (trinükleotit tekrar hastalığı). Bölge kararsızlaşır, tekrar sayısı her kuşakta artma eğilimindedir; hastalık sonraki kuşaklarda daha genç yaşta ya da daha ağır görülebilir: <b>antisipasyon</b>. [[K1 s. 11]]</p></div>
+  </div>
   <div class="viz" style="margin-top:16px"><div data-viz="f03_tekrar"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu · Huntington.</b> Hastalık otozomal dominant geçer. CAG tekrar sayısı için yerleşik eşikler: 26 ve altı normal; 27–35 ara (kişide hastalık beklenmez, ama tekrar sonraki kuşakta uzayabilir); 36–39 eksik penetrans; 40 ve üstü tam penetrans. Tekrarın uzama eğilimi babadan geçişte daha belirgindir.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d03-mayoz">
   <h2>Diploit ve haploit hücreler: mayoz</h2>
-  <p class="intro">İnsan hücrelerinin hemen hepsi 46 kromozom (23 çift) taşıdığı için <b>diploittir</b>. Gametler (sperm ya da yumurta) 23 tek kromozom taşır ve <b>haploittir</b>. Gametler birleşince kromozomları eşleşir ve 23 çift kromozomlu yeni bir hücre oluşur. Gametlerin oluştuğu süreçte (<b>mayoz</b>) her çiftin hangi üyesinin gamete gideceği rastlantıyla belirlenir. Bu yüzden bir kişi kuramsal olarak 2²³ farklı gamet, bir çift de 2⁴⁶ farklı çocuk oluşturabilir. [[K1 s. 11]]</p>
+  <p class="intro">İnsan hücrelerinin hemen hepsi 46 kromozomla (23 çift) <b>diploittir</b>; gametler (sperm, yumurta) 23 tek kromozomla <b>haploittir</b>. [[K1 s. 11]]</p>
   <div class="viz"><div data-viz="f03_gamet"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> 2²³ = 8.388.608, yani yaklaşık 8,4 milyon; 2⁴⁶ yaklaşık 7 × 10¹³, yani 70 trilyon kadardır. Bu hesap yalnızca çiftlerin rastgele ayrılmasını sayar. Mayozda homolog kromozomlar arasında parça değişimi (krossing-over, rekombinasyon) de olduğu için gerçek çeşitlilik bundan çok daha büyüktür.</div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>Gametler birleşince kromozomları eşleşir ve 23 çiftli yeni bir hücre oluşur. Gametlerin oluştuğu <b>mayozda</b> her çiftin hangi üyesinin gamete gideceği rastlantıyla belirlenir; bu yüzden bir kişi kuramsal olarak 2²³ (≈ 8,4 milyon) farklı gamet, bir çift 2⁴⁶ farklı çocuk oluşturabilir. [[K1 s. 11]]</p>
+  </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d03-kalitim">
   <h2>Mendel kalıtımı</h2>
-  <div class="blk-body">
-    <p><b>Karakter</b> (trait), bir kişide bir genin kodladığı özellik, yani fenotiptir: göz rengi gibi görünür ya da bir plazma proteini gibi görünmez olabilir. Bir genin her farklı biçimine <b>alel</b> denir (ör. mavi göz alelleri ve kahverengi göz alelleri). Her kişide her karakter için biri anneden, biri babadan gelen en az iki alel bulunur ve kişinin o karakteri gösterip göstermeyeceğini bu alellerin etkileşimi belirler. <b>Dominant</b> aleller (büyük harfle gösterilir) <b>resesif</b> alellerin (küçük harfle gösterilir) etkisini örter. [[K1 s. 11]]</p>
+  <p class="intro">Her karakter için biri anneden, biri babadan en az iki alel vardır; kişinin o özelliği gösterip göstermeyeceğini bu alellerin etkileşimi belirler. [[K1 s. 11]]</p>
+  <div class="viz"><div data-viz="f03_kalitim"></div></div>
+  <div class="blk-body" style="margin-top:16px">
+    <p><b>Karakter</b> (trait), bir genin kodladığı özelliktir (fenotip): göz rengi gibi görünür ya da bir plazma proteini gibi görünmez olabilir. Bir genin her farklı biçimi bir <b>aleldir</b> (ör. mavi göz ve kahverengi göz alelleri). <b>Dominant</b> aleller (büyük harf) <b>resesif</b> alellerin (küçük harf) etkisini örter. [[K1 s. 11]]</p>
   </div>
-  <div class="tbl-wrap" style="margin-top:16px">
+  <div class="tbl-wrap" style="margin-top:12px">
     <table class="tbl">
       <thead><tr><th>Kalıtım biçimi</th><th>Fenotip ne zaman görülür?</th><th>Kitaptaki çaprazlama</th><th>Örnekler</th></tr></thead>
       <tbody>
-        <tr><th>Otozomal dominant</th><td>Tek hastalık aleli yeter (<b>A</b>a; kalın A hastalık alelidir). Kitaba göre hastanın ebeveynlerinden biri de hastadır; istisnalar için aşağıdaki Atlas notuna bakın. [[K1 s. 11]]</td><td>Hasta ebeveyn (<b>A</b>a) × sağlıklı ebeveyn (aa): her çocuk için %50 hasta (<b>A</b>a), %50 sağlıklı (aa) [[K1 s. 11–12]]</td><td>Hipertrofik kardiyomiyopati, polikistik böbrek hastalığı, miyotonik distrofi [[K1 s. 11]]</td></tr>
-        <tr><th>Otozomal resesif</th><td>Yalnızca iki alel de resesifse (aa, homozigot). Hastanın ebeveynleri çoğu zaman hasta değil, taşıyıcıdır (heterozigot, Aa). [[K1 s. 11–12]]</td><td>Aa × Aa: %25 AA (hastalıksız), %50 Aa (taşıyıcı), %25 aa (hasta) [[K1 s. 12]]</td><td>Orak hücre hastalığı, Wilson hastalığı, kistik fibrozis [[K1 s. 12]]</td></tr>
-        <tr><th>X'e bağlı resesif</th><td>Gen X kromozomundadır; hastalanan çoğunlukla erkektir (XY). Kadında (XX) öbür X'teki normal alel korur. [[K1 s. 12]]</td><td>Taşıyıcı anne × sağlıklı baba: %25 taşıyıcı kız, %25 sağlıklı kız, %25 sağlıklı oğul, %25 hasta oğul [[K1 s. 12]]</td><td>Hemofili A, Duchenne musküler distrofisi, kırmızı–yeşil renk körlüğü [[K1 s. 12]]</td></tr>
+        <tr><th>Otozomal dominant</th><td>Tek hastalık aleli yeter (<b>A</b>a; kalın A hastalık alelidir); kitaba göre ebeveynlerden biri de hastadır. [[K1 s. 11]]</td><td>Hasta (<b>A</b>a) × sağlıklı (aa): %50 hasta, %50 sağlıklı [[K1 s. 11–12]]</td><td>Hipertrofik kardiyomiyopati, polikistik böbrek hastalığı, miyotonik distrofi [[K1 s. 11]]</td></tr>
+        <tr><th>Otozomal resesif</th><td>Yalnız iki alel de resesifse (aa, homozigot); ebeveynler çoğu zaman hasta değil, taşıyıcıdır (heterozigot, Aa). [[K1 s. 11–12]]</td><td>Aa × Aa: %25 AA (hastalıksız), %50 Aa (taşıyıcı), %25 aa (hasta) [[K1 s. 12]]</td><td>Orak hücre hastalığı, Wilson hastalığı, kistik fibrozis [[K1 s. 12]]</td></tr>
+        <tr><th>X'e bağlı resesif</th><td>Gen X kromozomundadır; genellikle yalnız erkek (XY) hastalanır, kadında (XX) öbür X'teki normal alel korur. [[K1 s. 12]]</td><td>Taşıyıcı anne × sağlıklı baba: %25 taşıyıcı kız, %25 sağlıklı kız, %25 sağlıklı oğul, %25 hasta oğul [[K1 s. 12]]</td><td>Hemofili A, Duchenne musküler distrofisi, kırmızı–yeşil renk körlüğü [[K1 s. 12]]</td></tr>
       </tbody>
     </table>
   </div>
-  <p class="small muted" style="margin:12px 0 16px;max-width:80ch">Resesif hastalıklar dominant olanlara göre tipik olarak daha erken yaşta, çoğu zaman doğumdan itibaren belirti verir; dominant hastalıklar sıklıkla genç erişkinlikte ortaya çıkar. [[K1 s. 12]]</p>
-  <div class="viz"><div data-viz="f03_kalitim"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu · otozomal dominant.</b> Kitap, otozomal dominant hastalığı olan kişinin ebeveynlerinden birinin de hasta olması gerektiğini yazar. Bu her zaman geçerli değildir: hastalık yeni (de novo) bir mutasyonla ortaya çıkabilir (ör. akondroplazi olgularının çoğu) ya da eksik penetrans nedeniyle hastalığı göstermeyen bir ebeveynden geçebilir.</div>
-  <div class="note plain"><b>Atlas notu · X kromozomu.</b> Erkeklerde X kromozomundaki genlerin çoğunun tek kopyası vardır (hemizigot); "her karakter için en az iki alel" kuralı bu genler için geçerli değildir. X'e bağlı resesif hastalıkların erkeklerde görülmesinin nedeni budur.</div>
-  <div class="note plain"><b>Atlas notu · anesteziyle bağlantı.</b> Malign hipertermiye yatkınlık otozomal dominant geçer (en sık RYR1 geni). Plazma kolinesteraz (butirilkolinesteraz) eksikliği otozomal resesiftir; homozigotlarda süksinilkolinin etkisi belirgin biçimde uzar.</div>
+  <p class="small muted" style="margin:12px 0 0;max-width:80ch">Resesif hastalıklar tipik olarak daha erken yaşta, çoğu zaman doğumdan itibaren belirti verir; dominant hastalıklar sıklıkla genç erişkinlikte ortaya çıkar. [[K1 s. 12]]</p>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Otozomal dominant hastalık hasta bir ebeveyn olmadan da görülebilir: yeni (de novo) mutasyonla (ör. akondroplazi olgularının çoğu) ya da eksik penetrans nedeniyle hastalığı göstermeyen bir ebeveynden. Erkekte X'teki genlerin tek kopyası vardır (hemizigot); "en az iki alel" kuralı bu genlerde geçmez ve X'e bağlı resesif hastalığın erkekte görülmesinin nedeni budur.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d03-penetrans">
   <h2>Penetrans ve karmaşık kalıtım</h2>
-  <p class="intro">Mendel kalıtımı genotipin aktarılmasını anlatır; ama genotipi almak her zaman fenotipi göstermek demek değildir. Genotipin fenotipe dönüşme oranına <b>penetrans</b> denir. Hipertrofik kardiyomiyopatinin penetransı yaklaşık %70'tir: mutasyonu alan yaklaşık her 100 hastadan 70'inde hastalık gerçekten gelişir (eksik penetrans). Penetransın %100 olduğu duruma tam penetrans denir; örneği nörofibromatozistir. Eksik penetrans çoğunlukla otozomal dominant, bazen de otozomal resesif hastalıklar için söz konusudur. [[K1 s. 12]]</p>
+  <p class="intro">Mendel kalıtımı genotipin aktarılmasını anlatır, ama genotipi almak her zaman fenotipi göstermek demek değildir; genotipin fenotipe yansıma oranına <b>penetrans</b> denir. [[K1 s. 12]]</p>
   <div class="viz"><div data-viz="f03_penetrans"></div></div>
-  <div class="cols" style="margin-top:16px">
-    <div class="card"><h3>Tek gen kuralına uymayanlar</h3><p>Kalıtsal özelliklerin çoğu basit, tek genli Mendel kurallarına uymaz. Diyabet ve iskemik kalp hastalığı ailesel olabilir, ama kalıtımları çok daha karmaşıktır: çoğu zaman çok genlidir (poligenik), yaşla ilişkilidir ve genetik etkenlerin yanında çevresel etkenleri de içerir. [[K1 s. 12]]</p></div>
-    <div class="note plain"><b>Atlas notu.</b> Penetrans hastalığın görülüp görülmediğini, ekspresivite ise ne ağırlıkta görüldüğünü anlatır. Nörofibromatozis tip 1'de penetrans tama yakındır, ama bulgular aynı ailede bile hafiften ağıra çok değişkendir (değişken ekspresivite).</div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>Hipertrofik kardiyomiyopatinin penetransı yaklaşık %70'tir: mutasyonu alan yaklaşık her 100 kişiden 70'inde hastalık gelişir (<b>eksik penetrans</b>). Nörofibromatoziste penetrans %100'dür (<b>tam penetrans</b>). Eksik penetrans çoğunlukla otozomal dominant, bazen de otozomal resesif hastalıklar için söz konusudur. [[K1 s. 12]]</p>
+    <p>Kalıtsal özelliklerin çoğu tek genli Mendel kurallarına uymaz: diyabet ve iskemik kalp hastalığı ailede görülebilir, ama kalıtımları çok daha karmaşıktır; çoğu zaman çok genli (poligenik), yaşla ilişkilidir ve genetik etkenlerin yanında çevresel etkenleri de içerir. [[K1 s. 12]]</p>
   </div>
 </section>
 

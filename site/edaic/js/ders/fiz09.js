@@ -487,4 +487,98 @@
     draw();
     return ticker(el, (dt) => { if (!run) return; t = Math.min(TM, t + dt * (TM / 12)); if (t >= TM) run = false; draw(); });
   };
+  /* ---------- 6. YENİ (okur-sade): CO₂ bütçesi ve üç taşınma biçimi · tarif docs/tasarim/fiz09.md ---------- */
+  VIZ.f09_bicim = (el) => {
+    const M = (s, c) => `<span class="f09-m" style="--k:${c}">${s}</span>`;
+    const OP = (s) => `<span class="f09-op">${s}</span>`;
+    const OK = (ust, alt) => `<span class="f09-bc-ok">${ust ? `<small>${ust}</small>` : '<small>&nbsp;</small>'}<b>⇌</b>${alt ? `<em>${alt}</em>` : '<em>&nbsp;</em>'}</span>`;
+    const HIZ = [['Bazal O₂ tüketimi', 250, R.o2, '250 mL/dk', ''], ['Bazal CO₂ üretimi', 200, R.co2, '200 mL/dk', ''], ['Şiddetli egzersizde CO₂ üretimi', 4000, R.co2, '4000 mL/dk\'ya kadar', ' kesik']];
+    const ACIK = {
+      coz: 'Plazmada çözünen CO₂ miktarı PCO₂ ile orantılıdır (Henry yasası); çözünürlüğü O₂\'nin 20 katıdır. [[K1 s. 37]]',
+      karb: 'CO₂ Hb ve diğer proteinlerdeki uç amin gruplarına bağlanır; Hb ile oluşan bileşik karbaminohemoglobindir, COHb değil. [[K1 s. 37]]',
+      bik: 'CA, CO₂ ile suyun H₂CO₃ oluşturmasını katalizler; H₂CO₃\'ün hemen hepsi H⁺ ve HCO₃⁻\'e ayrışır. CA eritrositte bol, plazmada yok. [[K1 s. 37]]',
+    };
+    // Plazmada serbest CO₂ noktaları (şematik)
+    const NOK = [[34, 82], [82, 82], [130, 82], [178, 82], [58, 112], [106, 112], [154, 112], [202, 112]];
+    const sCoz = `<svg class="f09-svg" viewBox="0 0 240 132" aria-hidden="true">
+      <defs><marker id="f09-bc-ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10z" fill="var(--c-basic)"/></marker></defs>
+      <text x="120" y="16" text-anchor="middle" class="f09-bc-t" style="fill:var(--c-basic)">PCO₂</text>
+      <line x1="120" y1="22" x2="120" y2="48" stroke="var(--c-basic)" stroke-width="2.4" marker-end="url(#f09-bc-ar)"/>
+      <rect x="12" y="52" width="216" height="76" rx="10" fill="var(--c-basic-soft)" stroke="var(--c-basic)" stroke-width="1.4"/>
+      <text x="220" y="66" text-anchor="end" class="f09-bc-k">plazma</text>
+      ${NOK.map(([x, y]) => `<g transform="translate(${x},${y})"><circle r="13" fill="var(--paper)" stroke="var(--c-basic)" stroke-width="1.5"/><text y="3.6" text-anchor="middle" class="f09-bc-n">CO₂</text></g>`).join('')}
+    </svg>`;
+    const sKarb = `<svg class="f09-svg" viewBox="0 0 240 132" aria-hidden="true">
+      <defs><marker id="f09-bc-ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="var(--accent)"/></marker></defs>
+      <ellipse cx="52" cy="76" rx="42" ry="34" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="52" y="72" text-anchor="middle" class="f09-bc-t" style="fill:var(--accent-ink)">Hb</text>
+      <text x="52" y="91" text-anchor="middle" class="f09-bc-k">/ protein</text>
+      <line x1="94" y1="76" x2="106" y2="76" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="108" y="81" class="f09-bc-g">–NH₂</text>
+      <g transform="translate(130,30)"><circle r="12" fill="var(--paper)" stroke="var(--c-basic)" stroke-width="1.5"/><text y="3.6" text-anchor="middle" class="f09-bc-n">CO₂</text></g>
+      <path d="M142 38 Q170 44 172 62" fill="none" stroke="var(--c-basic)" stroke-width="1.6" stroke-dasharray="3 3"/>
+      <line x1="150" y1="76" x2="170" y2="76" stroke="var(--accent)" stroke-width="2.2" marker-end="url(#f09-bc-ak)"/>
+      <text x="174" y="81" class="f09-bc-g">–NHCOOH</text>
+      <text x="174" y="100" class="f09-bc-k">karbamino</text>
+    </svg>`;
+    el.innerHTML = `<div class="f09-bc" role="img" aria-label="CO₂ üretimi ve deposu O₂ ile karşılaştırması ve kanda üç taşınma biçimi">
+      <div class="f09-bc-ust">
+        <div class="f09-bc-pan">
+          <h4>Üretim ve tüketim hızı <span>mL/dk, standart sıcaklık ve basınçta</span></h4>
+          <div class="f09-bc-hiz">${HIZ.map(([a, v, c, n, k]) => `<div class="f09-bc-hr"><div class="f09-bc-ha">${a}</div><div class="f09-bc-tr"><i class="${k.trim()}" style="--c:${c};width:${((v / 4000) * 100).toFixed(2)}%"></i><b style="--c:${c};left:calc(${((v / 4000) * 100).toFixed(2)}% + 6px)"${v === 4000 ? ' class="ic"' : ''}>${n}</b></div></div>`).join('')}
+            <div class="f09-bc-ek">${[0, 1000, 2000, 3000, 4000].map((t) => `<span style="left:${t / 40}%">${t}</span>`).join('')}</div>
+          </div>
+          <p class="f09-bc-not">CO₂ üretimi O₂ tüketiminden biraz azdır; egzersizde ise ~20 kat artabilir.</p>
+        </div>
+        <div class="f09-bc-pan">
+          <h4>Vücuttaki depo <span>litre · kutu alanları yaklaşık oranlı</span></h4>
+          <div class="f09-bc-depo">
+            <div class="f09-bc-kap co2"><b>CO₂ ≈ 120 L</b><span>vücudun her yerinde, çeşitli biçimlerde</span></div>
+            <div class="f09-bc-o2"><i></i><span><b>O₂ yalnızca 1,5 L</b>(Bölüm 8)<br>CO₂ deposu ≈ 80 kat büyük</span></div>
+          </div>
+        </div>
+      </div>
+      <h4 class="f09-bc-alt">Kanda üç taşınma biçimi <span>bir şeride dokunun</span></h4>
+      <div class="f09-bc-ser">
+        <div class="f09-bc-s" data-k="coz" style="--k:var(--c-basic)" role="button" tabindex="0" aria-pressed="false">
+          <div class="f09-bc-cz">${sCoz}</div>
+          <div class="f09-bc-et"><h5>1 · Çözünmüş CO₂</h5><ul><li>Henry yasası: çözünen miktar ∝ PCO₂</li><li>Çözünürlük katsayısı O₂'nin 20 katı</li><li>Toplam taşınmaya katkısı, çözünmüş O₂'nin O₂ taşınmasına katkısından çok büyük</li></ul></div>
+        </div>
+        <div class="f09-bc-s" data-k="karb" style="--k:var(--accent)" role="button" tabindex="0" aria-pressed="false">
+          <div class="f09-bc-cz">${sKarb}</div>
+          <div class="f09-bc-et"><h5>2 · Karbamino bileşikleri</h5>
+            <p class="f09-bc-tep">Hb–NH₂ + CO₂ → Hb–NHCOOH<small>karbaminohemoglobin</small></p>
+            <ul><li>Hb ve diğer proteinler (uç amin grupları)</li><li>Deoksi-Hb daha kolay oluşturur (Haldane)</li></ul>
+            <p class="f09-bc-uy">≠ COHb (karboksihemoglobin: CO bağlı Hb)</p></div>
+        </div>
+        <div class="f09-bc-s" data-k="bik" style="--k:var(--c-clin)" role="button" tabindex="0" aria-pressed="false">
+          <div class="f09-bc-cz f09-bc-hk">
+            <div class="f09-bc-rbc"><small>eritrosit sitoplazması: CA bol</small>
+              <div class="f09-bc-dk"><span class="f09-bc-g1">${M('CO₂', R.co2)}${OP('+')}${M('H₂O', R.su)}${OK('CA', '')}${M('H₂CO₃', R.h2co3)}</span><span class="f09-bc-g1">${OK('', 'hemen tamamı ayrışır')}${M('H⁺', R.h)}${OP('+')}${M('HCO₃⁻', R.hco3)}</span></div>
+            </div>
+            <div class="f09-bc-pl"><b>plazma: CA yok</b>katalizsiz tepkime yavaş</div>
+          </div>
+          <div class="f09-bc-et"><h5>3 · Bikarbonat</h5><ul><li>CA tepkimeyi katalizler; tepkime eritrositte yürür</li><li>Çift ok: denge tepkimesi — dokuda sağa, akciğerde sola</li></ul></div>
+        </div>
+      </div>
+    </div>
+    <p class="viz-foot">${REF('Şematik çizim; depo kutularının alanları yaklaşık oranlıdır (120 L : 1,5 L = 80 : 1). Değerler [[K1 s. 37]]; denklemin yönleri [[K1 s. 37–38]]. Plazmada katalizsiz tepkimenin yavaş olması Atlas notudur.')}</p>`;
+    const cap = el.closest('.viz') && el.closest('.viz').querySelector(':scope > .viz-cap');
+    const ilk = cap ? cap.innerHTML : '';
+    const S = [...el.querySelectorAll('.f09-bc-s')];
+    let sec = null, ust = null;
+    const ciz = () => {
+      const a = ust || sec;
+      S.forEach((s) => { s.classList.toggle('on', s.dataset.k === a); s.classList.toggle('sol', !!a && s.dataset.k !== a); s.setAttribute('aria-pressed', String(s.dataset.k === sec)); });
+      if (cap) cap.innerHTML = a ? REF(ACIK[a]) : ilk;
+    };
+    const tik = (s) => { sec = sec === s.dataset.k ? null : s.dataset.k; ust = null; ciz(); };
+    S.forEach((s) => {
+      s.addEventListener('click', (e) => { if (e.target.closest('.ref')) return; tik(s); });
+      s.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tik(s); } });
+      s.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') { ust = s.dataset.k; ciz(); } });
+      s.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') { ust = null; ciz(); } });
+    });
+    return () => { if (cap) cap.innerHTML = ilk; };
+  };
 })();

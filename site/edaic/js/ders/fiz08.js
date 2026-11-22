@@ -119,7 +119,7 @@
         <div class="btn-row"><button type="button" class="btn play">Apne başlat</button><button type="button" class="btn ghost" data-a="sif">Sıfırla</button></div>
       </div>
       <p class="viz-cap" aria-live="polite"></p>
-      <p class="viz-foot">${REF('Depo hacimleri ve istirahat tüketimi (250 mL/dk) kitaptandır: 5 L kanda ≈850 mL, miyoglobine bağlı 250 mL, hava solurken akciğerlerde 450 mL; toplam ≈1550 mL [[K1 s. 30]]. Model şematiktir: depolar gerçekte eş hızda boşalmaz; ayrıca depoların tamamı çekilemez (Atlas notu), bu yüzden anlamlı hücresel hipoksi çubuk bitmeden başlar. Kitabın vurgusu, apnenin birkaç dakikada hücresel hipoksiye yol açtığıdır [[K1 s. 30]]. Zaman 20 kat hızlandırılmıştır; "tüketim artmış" ve "kapasite azalmış" senaryolarındaki katsayılar (×2 tüketim, kan deposunun yarısı) örnek amaçlı seçilmiştir.')}</p>`;
+      <p class="viz-foot">${REF('Depo hacimleri ve istirahat tüketimi (250 mL/dk) kitaptandır (deniz düzeyinde 70 kg\'lık erişkin): 5 L kanda ≈850 mL, miyoglobine bağlı 250 mL, hava solurken akciğerlerde 450 mL; toplam ≈1550 mL [[K1 s. 30]]. Model şematiktir: depolar gerçekte eş hızda boşalmaz; ayrıca depoların tamamı çekilemez (kitap dışı bilgi), bu yüzden anlamlı hücresel hipoksi çubuk bitmeden başlar. Kitabın vurgusu, apnenin birkaç dakikada hücresel hipoksiye yol açtığıdır [[K1 s. 30]]. Zaman 20 kat hızlandırılmıştır; "tüketim artmış" ve "kapasite azalmış" senaryolarındaki katsayılar (×2 tüketim, kan deposunun yarısı) örnek amaçlı seçilmiştir.')}</p>`;
     const q = (s) => el.querySelector(s);
     const segs = {}, lis = {}, mt = {};
     el.querySelectorAll('[data-c]').forEach((n) => { segs[n.dataset.c] = n; });
@@ -145,7 +145,7 @@
       let c;
       if (!run && t === 0) c = '<b>Apne öncesi.</b> Toplam depo yaklaşık 1550 mL O₂: kanda ≈850 mL, miyoglobinde 250 mL, akciğerlerde (FRK içinde, hava solurken) 450 mL. İstirahat tüketimi 250 mL/dk. [[K1 s. 30]]'
         + (sen === 'cocuk' ? ' Bu senaryoda tüketim iki katına (500 mL/dk) çıkarılmıştır.' : sen === 'anemi' ? ' Bu senaryoda kan deposu yarıya (≈425 mL; toplam ≈1125 mL) indirilmiştir.' : '');
-      else if (f <= 0) c = '<b>Depo bitti.</b> Gerçekte doku PO₂\'si çubuk tükenmeden çok önce kritik düzeye iner (Atlas notu); kitabın vurgusu, vücutta çok az O₂ depolandığı için apnenin birkaç dakikada anlamlı hücresel hipoksiye yol açtığıdır. [[K1 s. 30]]';
+      else if (f <= 0) c = '<b>Depo bitti.</b> Gerçekte doku PO₂\'si çubuk tükenmeden çok önce kritik düzeye iner (kitap dışı bilgi); kitabın vurgusu, vücutta çok az O₂ depolandığı için apnenin birkaç dakikada anlamlı hücresel hipoksiye yol açtığıdır. [[K1 s. 30]]';
       else if (f < 0.45) c = sen === 'anemi'
         ? '<b>Kapasite azalmış.</b> Anemi ya da karbonmonoksit zehirlenmesinde kan deposu küçüktür; aynı tüketimle hipoksik hasar daha hızlı gelişir. [[K1 s. 30]]'
         : sen === 'cocuk'
@@ -477,5 +477,338 @@
     el.addEventListener('input', (e) => { const s = e.target.closest('[data-s="pay"]'); if (!s) return; pay = +s.value; ciz(); });
     harita();
     return () => {};
+  };
+  /* ---------- ortak (yeni bileşenler): metin sarma, dar/geniş yerleşim, seçim ---------- */
+  const D08_sar = (s, maxW, fs) => {
+    const max = Math.max(6, Math.floor(maxW / (fs * 0.56)));
+    const out = []; let cur = '';
+    String(s).split(' ').forEach((w) => { if (!cur) cur = w; else if ((cur + ' ' + w).length <= max) cur += ' ' + w; else { out.push(cur); cur = w; } });
+    if (cur) out.push(cur);
+    return out;
+  };
+  /* satırlar → <text>; döner {svg, h} */
+  const D08_yaz = (x, y, satir, fs, cls, anchor = 'start', lh = fs * 1.3) => {
+    const sv = `<text x="${x}" y="${y}" class="${cls}" style="font-size:${fs}px" text-anchor="${anchor}">${satir.map((l, i) => `<tspan x="${x}" dy="${i ? lh : 0}">${l}</tspan>`).join('')}</text>`;
+    return { svg: sv, h: satir.length * lh };
+  };
+  /* genişliğe göre yerleşimi seçer; dar ↔ geniş değişince yeniden çizer */
+  const D08_duzen = (el, ciz) => {
+    let dar = null;
+    const bak = () => { const w = el.clientWidth || (el.closest('.viz') || el).clientWidth || 800; const d = w < 540; if (d !== dar) { dar = d; ciz(d); } };
+    bak();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(bak) : null;
+    if (ro) ro.observe(el);
+    return () => { if (ro) ro.disconnect(); };
+  };
+  /* tıklanabilir <g data-k> öğeleri: tık/Enter/Boşluk; aynı öğeye yeniden basınca seçim kalkar */
+  const D08_secim = (el, varsayilan, metinler, uygula) => {
+    const cap = el.closest('.viz').querySelector('.viz-cap');
+    const ilk = cap.innerHTML;
+    let sec = null;
+    const kur = (k) => {
+      sec = k === sec ? null : k;
+      cap.innerHTML = sec ? REF(metinler[sec]) : ilk;
+      uygula(sec);
+    };
+    el.addEventListener('click', (e) => { const g = e.target.closest('[data-k]'); if (g && el.contains(g)) kur(g.dataset.k); });
+    el.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const g = e.target.closest('[data-k]'); if (!g) return;
+      e.preventDefault(); kur(g.dataset.k);
+    });
+    return { al: () => sec };
+  };
+  const D08_isaretle = (svg, sec) => {
+    svg.classList.toggle('f08-has', !!sec);
+    svg.querySelectorAll('[data-k]').forEach((g) => { const on = g.dataset.k === sec; g.classList.toggle('sel', on); g.setAttribute('aria-pressed', String(on)); });
+  };
+
+  /* ---------- 7 · eritrosit → HbA → hem ---------- */
+  VIZ.f08_yapi = (el) => {
+    const M = {
+      rbc: '<b>Eritrosit.</b> 6–8 µm çaplı, esnek, bikonkav disk; ≈3 µm\'lik en küçük kapillerlerden biçim değiştirerek geçer. Çekirdeği ve mitokondrisi yoktur — işlevsel olarak bir "hemoglobin torbası". [[K1 s. 31]]',
+      hba: '<b>HbA · α₂β₂.</b> Dört globin alt birimi (iki α, iki β) yaklaşık tetrahedral bir düzende, zayıf elektrostatik kuvvetlerle bir arada tutulur; her zincirin kendi hem grubu vardır. Molekül başına dört O₂ bağlanabilir. [[K1 s. 31]]',
+      hem: '<b>Hem.</b> Demiri ferröz durumda (Fe²⁺) tutan, demir içeren bir porfirin halkası. O₂, Fe²⁺ iyonuna zayıf bir koordinasyon bağıyla geri dönüşümlü bağlanır; hem başına bir O₂. [[K1 s. 31]]',
+    };
+    const hex = (cx, cy, r, cls) => `<polygon class="${cls}" points="${[0, 1, 2, 3, 4, 5].map((k) => `${(cx + r * Math.cos(k * Math.PI / 3)).toFixed(1)},${(cy + r * Math.sin(k * Math.PI / 3)).toFixed(1)}`).join(' ')}"/>`;
+    /* her panelin çizimi yerel (0,0) merkezli */
+    const artA = () => {
+      const dots = [[-32, -14], [-24, -21], [-25, -7], [32, -14], [24, -21], [25, -7], [-11, -14], [11, -14]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="1.8" class="f08-hbn"/>`).join('');
+      return `<path class="f08-rbc f08-k" d="M-44,-14 C-44,-35 -18,-33 0,-23 C18,-33 44,-35 44,-14 C44,7 18,5 0,-5 C-18,5 -44,7 -44,-14Z"/>${dots}
+        <line x1="-46" y1="18" x2="46" y2="18" class="f08-cap"/><line x1="-46" y1="29" x2="46" y2="29" class="f08-cap"/>
+        <ellipse cx="8" cy="23.5" rx="26" ry="3.6" class="f08-sik"/>
+        <line x1="-42" y1="23.5" x2="-24" y2="23.5" class="f08-ince" marker-end="url(#f08-y-ok)"/>`;
+    };
+    const artB = () => {
+      const U = [['α', -28, -28, 'a'], ['α', 28, -28, 'a'], ['β', -28, 28, 'b'], ['β', 28, 28, 'b']];
+      const bag = `<g class="f08-bag"><line x1="-7" y1="-28" x2="7" y2="-28"/><line x1="-7" y1="28" x2="7" y2="28"/><line x1="-28" y1="-7" x2="-28" y2="7"/><line x1="28" y1="-7" x2="28" y2="7"/></g>`;
+      const alt = U.map(([g, x, y, c]) => {
+        const sx = Math.sign(x), sy = Math.sign(y), hx = x + sx * 21, hy = y + sy * 21, oy = hy + sy * 15;
+        return `<circle cx="${x}" cy="${y}" r="22" class="f08-su ${c} f08-k"/><text x="${x}" y="${y + 6}" class="f08-gr ${c}" text-anchor="middle">${g}</text>
+          ${hex(hx, hy, 7, 'f08-hem')}<line x1="${hx}" y1="${hy + sy * 6}" x2="${hx}" y2="${oy - sy * 4}" class="f08-o2l"/><circle cx="${hx}" cy="${oy}" r="4.5" class="f08-o2"/>`;
+      }).join('');
+      return bag + alt;
+    };
+    const artC = () => {
+      const spokes = [0, 1, 2, 3].map((k) => { const a = Math.PI / 4 + k * Math.PI / 2; return `<line x1="${(13 * Math.cos(a)).toFixed(1)}" y1="${(8 + 13 * Math.sin(a)).toFixed(1)}" x2="${(24 * Math.cos(a)).toFixed(1)}" y2="${(8 + 24 * Math.sin(a)).toFixed(1)}" class="f08-hemi"/>`; }).join('');
+      return `${hex(0, 8, 38, 'f08-hem f08-k')}${hex(0, 8, 27, 'f08-hemic')}${spokes}
+        <circle cx="0" cy="8" r="14" class="f08-fe f08-k"/><text x="0" y="12" class="f08-fet" text-anchor="middle">Fe²⁺</text>
+        <line x1="0" y1="-9" x2="0" y2="-40" class="f08-kb" marker-start="url(#f08-y-ok2)" marker-end="url(#f08-y-ok2)"/>
+        <circle cx="-4.5" cy="-49" r="6" class="f08-o2 big"/><circle cx="4.5" cy="-49" r="6" class="f08-o2 big"/>
+        <text x="14" y="-45" class="f08-o2t">O₂</text>`;
+    };
+    const P = [
+      { k: 'rbc', ad: 'Eritrosit', art: artA, sat: [['Eritrosit', 't'], ['6–8 µm · bikonkav', 's'], ['kapiller ≈ 3 µm', 'n']] },
+      { k: 'hba', ad: 'HbA molekülü', art: artB, sat: [['HbA · α₂β₂', 't'], ['4 hem, 4 O₂', 's'], ['kesikli çizgi: zayıf', 'n'], ['elektrostatik kuvvetler', 'n']] },
+      { k: 'hem', ad: 'Hem grubu', art: artC, sat: [['Hem', 't'], ['demir içeren', 's'], ['porfirin halkası', 's'], ['↕ geri dönüşümlü', 'n kr'], ['koordinasyon bağı', 'n kr']] },
+    ];
+    const OKLAR = ['içinde', 'yakından'];
+    const defs = `<defs><marker id="f08-y-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker><marker id="f08-y-ok2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--crit)"/></marker></defs>`;
+    const satirlar = (x, y, sat, fT, fS, lh, anchor) => sat.map(([t, c], i) => `<text x="${x}" y="${y + i * lh}" class="f08-yl ${c}" style="font-size:${c === 't' ? fT : c === 's' ? fS : fS - 0.5}px" text-anchor="${anchor}">${t}</text>`).join('');
+    const pg = (p, fr, ic) => `<g class="f08-p" data-k="${p.k}" role="button" tabindex="0" aria-label="${p.ad}" aria-pressed="false"><rect class="f08-fr" x="${fr[0]}" y="${fr[1]}" width="${fr[2]}" height="${fr[3]}" rx="12"/>${ic}</g>`;
+    let svg;
+    const ciz = (dar) => {
+      let s;
+      if (!dar) {
+        const C = [56, 200, 356], F = [[4, 108], [136, 264], [292, 416]];
+        s = `<svg class="f08-ysvg" viewBox="0 0 420 252" role="img" aria-label="Eritrosit, içindeki hemoglobin molekülü ve hem grubu şeması">${defs}`;
+        P.forEach((p, i) => { s += pg(p, [F[i][0], 4, F[i][1] - F[i][0], 244], `<g transform="translate(${C[i]},92)">${p.art()}</g>${satirlar(C[i], 184, p.sat, 11.5, 9.5, 12.5, 'middle')}`); });
+        [[110, 134], [266, 290]].forEach(([a, b], i) => { s += `<line x1="${a}" y1="92" x2="${b}" y2="92" class="f08-ince" marker-end="url(#f08-y-ok)"/><text x="${(a + b) / 2}" y="84" class="f08-yl n" style="font-size:9px" text-anchor="middle">${OKLAR[i]}</text>`; });
+      } else {
+        const RH = 160, ST = 186;
+        s = `<svg class="f08-ysvg dar" viewBox="0 0 320 ${3 * RH + 2 * 26 + 8}" role="img" aria-label="Eritrosit, içindeki hemoglobin molekülü ve hem grubu şeması">${defs}`;
+        P.forEach((p, i) => {
+          const y0 = 4 + i * ST, n = p.sat.length, lh = 15, ys = y0 + RH / 2 - ((n - 1) * lh) / 2 + 4;
+          s += pg(p, [4, y0, 312, RH], `<g transform="translate(80,${y0 + RH / 2})">${p.art()}</g>${satirlar(166, ys, p.sat, 13, 11.5, lh, 'start')}`);
+          if (i < 2) s += `<line x1="80" y1="${y0 + RH + 3}" x2="80" y2="${y0 + ST - 3}" class="f08-ince" marker-end="url(#f08-y-ok)"/><text x="92" y="${y0 + RH + 17}" class="f08-yl n" style="font-size:11px">${OKLAR[i]}</text>`;
+        });
+      }
+      el.innerHTML = s + '</svg>';
+      svg = el.querySelector('svg');
+      D08_isaretle(svg, S.al());
+    };
+    const S = D08_secim(el, null, M, (k) => { if (svg) D08_isaretle(svg, k); });
+    return D08_duzen(el, ciz);
+  };
+
+  /* ---------- 8 · orak hücre: mutasyondan klinik tabloya ---------- */
+  VIZ.f08_orak = (el) => {
+    const M = {
+      s1: '<b>Nokta mutasyonu.</b> HbS\'de β-globin zincirinin altıncı konumundaki glutamat valinle yer değiştirmiştir. Kalıtım otozomal resesiftir; kitaba göre semptomatik hastalık yalnız homozigotlarda görülür, heterozigotlar asemptomatik taşıyıcıdır ve taşıyıcılık sıtmaya direnç sağlar. [[K1 s. 34]]',
+      s2: '<b>Hipoksik koşullarda kümelenme.</b> Hemoglobin molekülleri kümelenir ve eritrositi orak biçimine sokar; normal venöz kanın PO₂\'si bile, özellikle dalağın yavaş akımında, oraklaşmaya yetebilir. [[K1 s. 34]]',
+      s3: '<b>Esneklik kaybı.</b> Eritrosit arteriyel ve venöz oksijen basınçları arasında gidip geldikçe yinelenen kümelenme ve dağılma, zar esnekliğini azaltır. [[K1 s. 34]]',
+      s4a: '<b>Vasküler oklüzyon.</b> Esnekliği azalmış hücreler dar kapillerlerde biçim değiştiremez: viskozite artar, venöz tromboz ve iskemi gelişir, kapiller ve venöz tıkanmalar tüm organ enfarktüsüyle tehdit eder. Çocuklukta sık görülen dalak enfarktüsü kapsüllü bakteri enfeksiyonlarına (meningokok septisemisi, salmonella osteomiyeliti) yatkınlık bırakır. [[K1 s. 34]]',
+      s4b: '<b>Eritrosit ömrü kısalır.</b> Normalde 100–120 gün olan ömür kronik hemolizle 10–20 güne iner; Hb 7–11 g/dL olur ve retikülositoz görülür. Parvovirüs B19 eritrosit öncüllerini yok ederek üretimi kısa süre (kitaba göre 2–3 gün) durdurur; ömür kısa olduğu için bu duraklama derin anemi yapabilir. [[K1 s. 34]]',
+    };
+    const orak = (cx, cy, w, h, cls) => `<path class="${cls}" d="M${cx - w / 2},${cy - h * 0.35} Q${cx},${cy + h * 0.95} ${cx + w / 2},${cy - h * 0.35} Q${cx},${cy + h * 0.22} ${cx - w / 2},${cy - h * 0.35}Z"/>`;
+    const cubuk = (cx, cy, w, h) => {
+      const p0 = [cx - w / 2 + 5, cy - h * 0.22], c = [cx, cy + h * 0.6], p2 = [cx + w / 2 - 5, cy - h * 0.22];
+      let s = '';
+      for (let i = 0; i < 6; i++) { const t = 0.12 + i * 0.152, u = 1 - t; s += `<circle cx="${(u * u * p0[0] + 2 * u * t * c[0] + t * t * p2[0]).toFixed(1)}" cy="${(u * u * p0[1] + 2 * u * t * c[1] + t * t * p2[1]).toFixed(1)}" r="2.7" class="f08-hbs"/>`; }
+      return s;
+    };
+    const ok = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="f08-ince" marker-end="url(#f08-ok-asagi)"/>`;
+    let svg;
+    const ciz = (dar) => {
+      const W = dar ? 320 : 420, fb = dar ? 11.5 : 10, fh = dar ? 13 : 11.5, lh = fb * 1.3;
+      const kut = (k, ad, x, y, w, h, cls, ic) => `<g class="f08-p" data-k="${k}" role="button" tabindex="0" aria-label="${ad}" aria-pressed="false"><rect class="f08-box ${cls} f08-k" x="${x}" y="${y}" width="${w}" height="${h}" rx="10"/>${ic}</g>`;
+      const bas = (x, y, s, w) => D08_yaz(x, y, D08_sar(s, w, fh), fh, 'f08-oh', 'start', fh * 1.25);
+      let y = 6, s = '';
+      /* 1 · mutasyon */
+      {
+        const x = 6, w = W - 12, h1 = bas(x + 10, y + 18, '1 · β-globin, 6. konum: glutamat → valin', w - 20);
+        const y1 = y + 18 + h1.h - 2, sq = 16, gp = 4, x0 = W / 2 - (10 * sq + 9 * gp) / 2 + (dar ? 14 : 0);
+        let ic = h1.svg;
+        for (let i = 0; i < 10; i++) ic += `<rect x="${x0 + i * (sq + gp)}" y="${y1 + 14}" width="${sq}" height="${sq}" rx="3" class="f08-aa${i === 5 ? ' v' : ''}"/>`;
+        const cx = x0 + 5 * (sq + gp) + sq / 2;
+        ic += `<text x="${cx}" y="${y1 + 9}" class="f08-glu" style="font-size:${fb}px" text-anchor="middle">Glu</text><line x1="${cx - 11}" y1="${y1 + 5.5}" x2="${cx + 11}" y2="${y1 + 5.5}" class="f08-ust"/>`;
+        ic += `<text x="${cx}" y="${y1 + 14 + sq + fb + 3}" class="f08-val2" style="font-size:${fb + 1}px" text-anchor="middle">Val</text>`;
+        ic += `<text x="${x0 - 6}" y="${y1 + 14 + sq - 4}" class="f08-on" style="font-size:${fb}px" text-anchor="end">β zinciri</text>`;
+        const h = y1 + 14 + sq + fb + 10 - y;
+        s += kut('s1', 'Adım 1 · nokta mutasyonu', x, y, w, h, 'w', ic); y += h;
+      }
+      s += ok(W / 2, y + 2, W / 2, y + 14); y += 16;
+      /* 2 · kümelenme */
+      {
+        const x = 6, w = W - 12, h1 = bas(x + 10, y + 18, '2 · Hipokside HbS kümelenir, eritrosit oraklaşır', w - 20);
+        const cL = W * 0.24, cR = W * 0.76, half = W / 2 - 24;
+        const lL = D08_yaz(cL, y + 18 + h1.h + 4, D08_sar('arteriyel PO₂', half, fb), fb, 'f08-on', 'middle');
+        const lR = D08_yaz(cR, y + 18 + h1.h + 4, D08_sar('venöz PO₂ · dalakta yavaş akım', half, fb), fb, 'f08-on', 'middle');
+        const cy = y + 18 + h1.h + Math.max(lL.h, lR.h) + 24;
+        let ic = h1.svg + lL.svg + lR.svg;
+        ic += `<circle cx="${cL}" cy="${cy}" r="22" class="f08-rbc2"/>`;
+        [[-9, -8], [7, -10], [-12, 6], [3, 2], [12, 8], [-2, 13]].forEach(([dx, dy]) => { ic += `<circle cx="${cL + dx}" cy="${cy + dy}" r="2.7" class="f08-hbs ok"/>`; });
+        ic += orak(cR, cy - 4, 64, 34, 'f08-orakc') + cubuk(cR, cy - 4, 64, 34);
+        const a = cL + 30, b = cR - 38;
+        ic += `<line x1="${a}" y1="${cy}" x2="${b}" y2="${cy}" class="f08-ince" marker-start="url(#f08-ok-asagi)" marker-end="url(#f08-ok-asagi)"/>`;
+        ic += D08_yaz((a + b) / 2, cy - 6, ['yinelenen'], fb, 'f08-on', 'middle').svg;
+        ic += D08_yaz((a + b) / 2, cy + fb + 6, D08_sar('kümelenme ↔ dağılma', b - a, fb), fb, 'f08-on', 'middle').svg;
+        const h = cy + 28 - y + (dar ? 10 : 0);
+        s += kut('s2', 'Adım 2 · hipoksik kümelenme', x, y, w, h, 'w', ic); y += h;
+      }
+      s += ok(W / 2, y + 2, W / 2, y + 14); y += 16;
+      /* 3 · esneklik kaybı */
+      let y3b;
+      {
+        const x = 6, w = W - 12, h1 = bas(x + 10, y + 18, '3 · Zar esnekliği azalır', w - 20);
+        const tw = W * 0.5 - 16;
+        const t = D08_yaz(x + 10, y + 18 + h1.h + 2, D08_sar('Arteriyel ↔ venöz geçişlerde yinelenen kümelenme, zar esnekliğini azaltır.', tw, fb), fb, 'f08-ot', 'start', lh);
+        const cy = y + 18 + h1.h - 2 + t.h / 2, a = W * 0.5 + 34, b = W - 18;
+        let ic = h1.svg + t.svg;
+        ic += `<line x1="${a}" y1="${cy - 8}" x2="${b}" y2="${cy - 8}" class="f08-cap"/><line x1="${a}" y1="${cy + 8}" x2="${b}" y2="${cy + 8}" class="f08-cap"/>`;
+        ic += orak(a - 8, cy - 4, 40, 30, 'f08-orakc') + `<g class="f08-x"><line x1="${a + 8}" y1="${cy - 6}" x2="${a + 20}" y2="${cy + 6}"/><line x1="${a + 20}" y1="${cy - 6}" x2="${a + 8}" y2="${cy + 6}"/></g>`;
+        ic += `<text x="${(a + b) / 2 + 14}" y="${cy + 8 + fb + 5}" class="f08-on" style="font-size:${fb}px" text-anchor="middle">dar kapiller</text>`;
+        const h = Math.max(t.h + h1.h + 18, cy + 8 + fb + 12 - y) + 4;
+        s += kut('s3', 'Adım 3 · esneklik kaybı', x, y, w, h, 'w', ic); y += h; y3b = y;
+      }
+      /* 4 · iki mekanizma */
+      const kutu4a = (x, y, w) => {
+        const h1 = bas(x + 10, y + 18, '4a · Vasküler oklüzyon', w - 20);
+        const cy = y + 18 + h1.h + 10, cx0 = x + 12;
+        let ic = h1.svg;
+        ic += `<line x1="${cx0}" y1="${cy - 7}" x2="${cx0 + 84}" y2="${cy - 7}" class="f08-cap"/><line x1="${cx0}" y1="${cy + 7}" x2="${cx0 + 84}" y2="${cy + 7}" class="f08-cap"/>`;
+        [16, 38, 60].forEach((dx) => { ic += orak(cx0 + dx, cy - 3, 24, 16, 'f08-orakc'); });
+        ic += `<rect x="${cx0 + 94}" y="${cy - 13}" width="${Math.min(76, w - 118)}" height="26" rx="6" class="f08-enf"/><text x="${cx0 + 94 + Math.min(76, w - 118) / 2}" y="${cy + 4}" class="f08-enft" style="font-size:${fb}px" text-anchor="middle">enfarkt</text>`;
+        let yy = cy + 13 + fb + 8;
+        ['viskozite ↑, venöz tromboz, iskemi', 'organ enfarktüsü: iskemik ağrı, işlev bozukluğu', 'çocuklukta dalak enfarktüsü → kapsüllü bakteri enfeksiyonu'].forEach((m) => {
+          const t = D08_yaz(x + 22, yy, D08_sar(m, w - 34, fb), fb, 'f08-ot', 'start', lh);
+          ic += `<circle cx="${x + 14}" cy="${yy - fb * 0.35}" r="2" class="f08-mad"/>` + t.svg; yy += t.h + 3;
+        });
+        return { ic, h: yy - y - fb + 8 };
+      };
+      const kutu4b = (x, y, w) => {
+        const h1 = bas(x + 10, y + 18, '4b · Eritrosit ömrü kısalır', w - 20);
+        const bx = x + 12, bw = w - 24, d = (g) => (bw * g) / 120;
+        let yy = y + 18 + h1.h + 4, ic = h1.svg;
+        ic += `<text x="${bx}" y="${yy}" class="f08-ot" style="font-size:${fb}px">normal 100–120 gün</text>`; yy += 5;
+        ic += `<rect x="${bx}" y="${yy}" width="${d(100)}" height="10" rx="2" class="f08-bar ok"/><rect x="${bx + d(100)}" y="${yy}" width="${d(20)}" height="10" class="f08-bar ok r"/>`; yy += 10 + fb + 8;
+        ic += `<text x="${bx}" y="${yy}" class="f08-ot" style="font-size:${fb}px">orak hücre 10–20 gün</text>`; yy += 5;
+        ic += `<rect x="${bx}" y="${yy}" width="${bw}" height="10" rx="2" class="f08-bar bos"/><rect x="${bx}" y="${yy}" width="${d(10)}" height="10" rx="2" class="f08-bar cb"/><rect x="${bx + d(10)}" y="${yy}" width="${d(10)}" height="10" class="f08-bar cb r"/>`; yy += 10 + fb + 10;
+        ic += `<text x="${bx}" y="${yy}" class="f08-ot b" style="font-size:${fb}px">Hb 7–11 g/dL + retikülositoz</text>`; yy += lh + 6;
+        ic += `<rect x="${bx}" y="${yy - fb + 1}" width="3.2" height="${fb}" class="f08-dur"/><rect x="${bx + 5.5}" y="${yy - fb + 1}" width="3.2" height="${fb}" class="f08-dur"/>`;
+        const t = D08_yaz(bx + 16, yy, D08_sar('parvovirüs B19: üretim 2–3 gün durur', bw - 16, fb), fb, 'f08-ot', 'start', lh);
+        ic += t.svg; yy += t.h;
+        return { ic, h: yy - y - fb + 10 };
+      };
+      if (!dar) {
+        const w = (W - 12 - 8) / 2, xa = 6, xb = 6 + w + 8, yb = y + 18;
+        s += ok(W / 2 - 10, y + 2, xa + w / 2 + 20, yb - 2) + ok(W / 2 + 10, y + 2, xb + w / 2 - 20, yb - 2);
+        const A = kutu4a(xa, yb, w), B = kutu4b(xb, yb, w), h = Math.max(A.h, B.h);
+        s += kut('s4a', 'Mekanizma 1 · vasküler oklüzyon', xa, yb, w, h, 'w', A.ic) + kut('s4b', 'Mekanizma 2 · eritrosit ömrü kısalır', xb, yb, w, h, 'b', B.ic);
+        y = yb + h;
+      } else {
+        const x = 28, w = W - 34, ya = y + 16;
+        const A = kutu4a(x, ya, w), yb2 = ya + A.h + 12, B = kutu4b(x, yb2, w);
+        s += `<path d="M${W / 2},${y3b + 1} V${y3b + 8} H14 V${yb2 + 22} " class="f08-ince" fill="none"/>` + ok(14, ya + 22, x - 2, ya + 22) + ok(14, yb2 + 22, x - 2, yb2 + 22);
+        s += kut('s4a', 'Mekanizma 1 · vasküler oklüzyon', x, ya, w, A.h, 'w', A.ic) + kut('s4b', 'Mekanizma 2 · eritrosit ömrü kısalır', x, yb2, w, B.h, 'b', B.ic);
+        y = yb2 + B.h;
+      }
+      /* klinik şerit */
+      y += 10;
+      const kl = D08_yaz(W / 2, y + fb + 7, D08_sar('Vazo-oklüzif kriz: hidrasyon · analjezi · kan değişimi transfüzyonu', W - 32, fb), fb, 'f08-ot b', 'middle', lh);
+      s += `<rect x="6" y="${y}" width="${W - 12}" height="${kl.h + 12}" rx="8" class="f08-klin"/>` + kl.svg;
+      y += kl.h + 12 + 6;
+      el.innerHTML = `<svg class="f08-osvg${dar ? ' dar' : ''}" viewBox="0 0 ${W} ${Math.ceil(y)}" role="img" aria-label="Orak hücre hastalığı: mutasyondan klinik tabloya akış şeması"><defs><marker id="f08-ok-asagi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker><pattern id="f08-tarama" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="1.2" style="fill:var(--warn)"/></pattern></defs>${s}</svg>`;
+      svg = el.querySelector('svg');
+      D08_isaretle(svg, S.al());
+    };
+    const S = D08_secim(el, null, M, (k) => { if (svg) D08_isaretle(svg, k); });
+    return D08_duzen(el, ciz);
+  };
+
+  /* ---------- 9 · MetHb, CO, siyanür: üç duraklama noktası ---------- */
+  VIZ.f08_zehir = (el) => {
+    const Z = {
+      normal: { ad: 'Normal', dur: [], kap: 'normal', egri: 'normal, P50 ≈ 3,5 kPa', ox: '≈%97', kay: false, cap: '<b>Normal yol.</b> O₂ alveolden kana geçer, hemoglobine bağlanır, doku kapillerinde bırakılır ve mitokondride sitokrom c oksidaz tarafından kullanılır. [[K1 s. 30, 36]]' },
+      methb: { ad: 'MetHb', dur: [1, 2], kap: 'azalır ("fonksiyonel anemi")', egri: 'sola kayar', ox: 'belirgin düzeyde ≈%85', kay: true, cap: '<b>MetHb · Fe³⁺.</b> Ferrik demir O₂ bağlayamaz: toplam içerik düşer ("fonksiyonel anemi") ve kalan normal hemoglobinin eğrisi sola kayarak dokuya daha az O₂ bırakılır. Kitaba göre nabız oksimetresi (belirgin MetHb\'de) ≈%85 gösterir; doğru ölçüm CO-oksimetreyledir. Tedavi hafif olguda ilave O₂, ağır olguda metilen mavisidir. [[K1 s. 35]]' },
+      cohb: { ad: 'COHb', dur: [1, 2], kap: 'azalır', egri: 'sola kayar', ox: 'yanlış yüksek (COHb, O₂Hb sayılır)', kay: true, cap: '<b>COHb.</b> Karbonmonoksit Fe²⁺\'ye O₂ gibi geri dönüşümlü ama 250 kat yüksek afiniteyle bağlanır: hemoglobin tercihen COHb oluşturur, kapasite düşer ve eğri sola kayar. Tedavi yüksek PaO₂ ile (yüksek FiO₂ ya da hiperbarik oda) CO\'nun kompetitif olarak uzaklaştırılmasıdır. [[K1 s. 35–36]]' },
+      cn: { ad: 'Siyanür', dur: [1, 3], asil: 3, kap: 'azalır (geri dönüşümsüz bağlanma)', egri: '—', ox: '—', kay: false, cap: '<b>Siyanür.</b> Kitaba göre hemoglobine geri dönüşümsüz bağlanıp O₂ ile düzelmeyen bir fonksiyonel anemi yapar; asıl toksik etki ise mitokondriyal sitokrom c oksidazın (Kompleks IV) inhibisyonudur. Kan dokudan O₂ bırakmadan geçtiği için venöz kan parlak kırmızıdır (miks venöz satürasyon yüksek) ve laktik asidoz gelişir. [[K1 s. 36]]' },
+    };
+    const SIRA = ['normal', 'methb', 'cohb', 'cn'];
+    const cap = el.closest('.viz').querySelector('.viz-cap');
+    let z = 'normal', dar = null;
+    el.innerHTML = `<div class="seg f08-zseg" role="group" aria-label="Durum">${SIRA.map((k) => `<button type="button" data-z="${k}" aria-pressed="${k === z}">${Z[k].ad}</button>`).join('')}</div>
+      <div class="f08-zs"></div>
+      <dl class="f08-zoku"><div><dt>Taşıma kapasitesi</dt><dd data-o="kap"></dd></div><div><dt>Eğri</dt><dd data-o="egri"></dd></div><div><dt>Nabız oksimetresi</dt><dd data-o="ox"></dd></div></dl>`;
+    const kap = el.querySelector('.f08-zs');
+    const mini = (kay) => {
+      const X = (p) => -36 + (p / 10) * 40, Y = (sv) => -26 - (sv / 100) * 26;
+      const yol = (p50) => { let d = ''; for (let p = 0; p <= 10.01; p += 0.25) d += (d ? ' L' : 'M') + X(p).toFixed(1) + ',' + Y(sat(p, p50)).toFixed(1); return d; };
+      return `<path d="M-36,-54 V-26 H4" class="f08-zax"/>` + (kay ? `<path d="${yol(P50N)}" class="f08-zc n d"/><path d="${yol(2.2)}" class="f08-zc w"/>` : `<path d="${yol(P50N)}" class="f08-zc n"/>`);
+    };
+    /* durak çizimleri (yerel 0,0), s = seçili durum, kes = O₂'nin kesildiği durak dizini */
+    const art = [
+      () => `<circle cx="0" cy="-18" r="28" class="f08-alv"/>${[[-10, -26], [9, -22], [-2, -6]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3.6" class="f08-o2 z"/>`).join('')}`,
+      (s) => {
+        const U = [[-15, -33, 'a'], [15, -33, 'a'], [-15, -3, 'b'], [15, -3, 'b']];
+        let g = '';
+        U.forEach(([x, y, c], i) => {
+          const sx = Math.sign(x), sy = y < -18 ? -1 : 1, hx = x + sx * 14, hy = y + sy * 13, lx = hx + sx * 9, ly = hy + sy * 6;
+          const boz = (i === 0 || i === 3) && s !== 'normal';
+          const hemc = boz && s === 'methb' ? 'f08-hem w' : 'f08-hem';
+          const lig = boz ? (s === 'methb' ? '' : `<circle cx="${lx}" cy="${ly}" r="4" class="${s === 'cohb' ? 'f08-lco' : 'f08-lcn'}"/>`) : `<circle cx="${lx}" cy="${ly}" r="4" class="f08-o2 z"/>`;
+          g += `<circle cx="${x}" cy="${y}" r="12.5" class="f08-su ${c}"/>${`<polygon class="${hemc}" points="${[0, 1, 2, 3, 4, 5].map((k) => `${(hx + 5 * Math.cos(k * Math.PI / 3)).toFixed(1)},${(hy + 5 * Math.sin(k * Math.PI / 3)).toFixed(1)}`).join(' ')}"/>`}${lig}`;
+        });
+        const lab = { normal: 'Fe²⁺·O₂', methb: 'Fe³⁺', cohb: 'Fe²⁺·CO', cn: 'CN⁻' }[s];
+        return g + `<rect x="-29" y="-26" width="58" height="16" rx="5" class="f08-zchip${s === 'normal' ? '' : ' w'}"/><text x="0" y="-14.5" class="f08-zchipt" text-anchor="middle">${lab}</text>`;
+      },
+      (s, kes) => {
+        const az = s === 'methb' || s === 'cohb';
+        let g = mini(Z[s].kay);
+        g += `<line x1="-40" y1="-14" x2="40" y2="-14" class="f08-cap"/><line x1="-40" y1="2" x2="40" y2="2" class="f08-cap"/>`;
+        g += [-26, -6, 14].map((x) => `<circle cx="${x}" cy="-6" r="3.4" class="f08-o2 z"/>`).join('');
+        g += [-20, 0, 20].map((x, i) => `<line x1="${x}" y1="5" x2="${x}" y2="17" class="f08-zo${az && i ? ' sonuk' : ''}" marker-end="url(#f08-z-ok2)"/>`).join('');
+        g += `<rect x="-40" y="20" width="80" height="6" rx="2" class="f08-doku"/>`;
+        return g;
+      },
+      () => `<ellipse cx="0" cy="-18" rx="40" ry="24" class="f08-mito"/><path d="M-30,-18 l6,-10 l6,18 l6,-18 l6,18 l6,-18 l6,18 l6,-18 l6,18 l6,-10" class="f08-krista"/><circle cx="-34" cy="-34" r="3.6" class="f08-o2 z"/>`,
+    ];
+    const ROL = ['Alım', 'Bağlanma', 'Bırakma', 'Kullanma'];
+    const AD = [['Alveol', 'PO₂ 13 kPa'], ['Hemoglobin'], ['Doku kapilleri'], ['Mitokondri', 'Kompleks IV', 'sitokrom c oksidaz']];
+    const ciz = () => {
+      const s = z, Zs = Z[s], kes = Zs.dur.length ? Math.min(...Zs.dur) : 9;
+      let W, H, pos, ws, hh = 168, fr, fn, oklar;
+      if (!dar) {
+        ws = [74, 90, 94, 110]; let x = 2; pos = ws.map((w) => { const c = [x + w / 2, 86]; x += w + 16; return c; });
+        W = 420; H = s === 'cn' ? 200 : 172; fr = 10.5; fn = 9.5;
+        oklar = [0, 1, 2].map((i) => [[pos[i][0] + ws[i] / 2 + 1, 68], [pos[i + 1][0] - ws[i + 1] / 2 - 1, 68]]);
+      } else {
+        ws = [146, 146, 146, 146]; pos = [[80, 86], [240, 86], [240, 290], [80, 290]];
+        W = 320; H = s === 'cn' ? 420 : 380; fr = 12; fn = 11;
+        oklar = [[[154, 68], [166, 68]], [[240, 171], [240, 205]], [[166, 272], [154, 272]]];
+      }
+      let g = `<svg class="f08-zsvg${dar ? ' dar' : ''}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Oksijenin alveolden mitokondriye yolu ve üç zehrin kestiği basamaklar"><defs><marker id="f08-z-ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--muted)"/></marker><marker id="f08-z-ok2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" style="fill:var(--crit)"/></marker></defs>`;
+      oklar.forEach(([[x1, y1], [x2, y2]], i) => {
+        const son = i >= kes ? ' sonuk' : '';
+        g += `<g class="f08-zok${son}"><line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="f08-ince" marker-end="url(#f08-z-ok)"/>${dar && i === 1 ? `<circle cx="${x1}" cy="${(y1 + y2) / 2 - 3}" r="3.4" class="f08-o2 z"/>` : ''}</g>`;
+      });
+      pos.forEach(([cx, cy], i) => {
+        const w = ws[i], vur = Zs.dur.includes(i), asil = Zs.asil === i, son = i > kes ? ' sonuk' : '';
+        const adl = AD[i];
+        const rol = ROL[i];
+        g += `<g transform="translate(${cx},${cy})" class="f08-dk${vur ? ' kes' : ' ok'}${asil ? ' asil' : ''}${son}">
+          <rect x="${-w / 2}" y="${-hh / 2 + 6}" width="${w}" height="${hh - 12}" rx="10" class="f08-dkf"/>
+          <text x="0" y="${-hh / 2 + 22}" class="f08-rol" style="font-size:${fr}px" text-anchor="middle">${rol}</text>
+          <g class="f08-dka">${art[i](s, kes)}</g>
+          ${adl.map((t, j) => `<text x="0" y="${42 + j * (fn * 1.3)}" class="f08-dkn${j ? '' : ' b'}" style="font-size:${fn}px" text-anchor="middle">${t}</text>`).join('')}
+          ${vur ? `<g class="f08-zx" transform="translate(${w / 2 - 8},${-hh / 2 + 10})"><circle r="10"/><line x1="-5" y1="-5" x2="5" y2="5"/><line x1="5" y1="-5" x2="-5" y2="5"/></g>` : ''}
+        </g>`;
+      });
+      if (s === 'cn') {
+        const [cx, cy] = pos[3], x = dar ? cx : W - 4, an = dar ? 'middle' : 'end', y0 = cy + hh / 2 + fn + 4;
+        g += D08_yaz(x, y0, ['asıl toksik etki: Kompleks IV'], fn, 'f08-asilt', an).svg;
+        g += D08_yaz(x, y0 + fn * 1.35, D08_sar('hidroksokobalamin mitokondriye girer', dar ? 150 : 220, fn), fn, 'f08-hk', an).svg;
+      }
+      kap.innerHTML = g + '</svg>';
+      el.querySelector('[data-o="kap"]').textContent = Zs.kap;
+      el.querySelector('[data-o="egri"]').textContent = Zs.egri;
+      el.querySelector('[data-o="ox"]').textContent = Zs.ox;
+      el.querySelectorAll('[data-z]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.z === s)));
+    };
+    el.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-z]'); if (!b) return;
+      z = b.dataset.z; cap.innerHTML = REF(Z[z].cap); ciz();
+    });
+    return D08_duzen(kap, (d) => { dar = d; ciz(); });
   };
 })();

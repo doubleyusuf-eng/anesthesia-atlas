@@ -34,7 +34,7 @@ VERI.sorular['fiz05-3'] = {
 };
 
 {
-  const NAV = [['d05-tanim', 'Katalizör'], ['d05-mekanizma', 'Nasıl çalışır?'], ['d05-aktif', 'Aktif bölge'], ['d05-ca', 'Karbonik anhidraz'], ['d05-denge', 'Ters tepkime ve denge'], ['d05-sinif', 'Sınıflar'], ['d05-kofaktor', 'Kofaktör ve koenzim'], ['d05-klinik', 'Klinik önem'], ['d05-p1', 'Part I'], ['d05-p2', 'Part II'], ['d05-ozet', 'Özet']];
+  const NAV = [['d05-tanim', 'Katalizör'], ['d05-aktif', 'Aktif bölge'], ['d05-ca', 'Karbonik anhidraz'], ['d05-sinif', 'Sınıflar'], ['d05-kofaktor', 'Kofaktör ve koenzim'], ['d05-klinik', 'Klinik önem'], ['d05-p1', 'Part I'], ['d05-p2', 'Part II'], ['d05-ozet', 'Özet']];
 
   SAYFALAR['dersler/fizyoloji/05'] = {
     grup: 'dersler', eyebrow: 'Fizyoloji · Kısım 1 · Temel bilgiler · Bölüm 5', baslik: 'Enzimler',
@@ -43,101 +43,71 @@ VERI.sorular['fiz05-3'] = {
 <nav class="wrap ders-nav" aria-label="Bu bölümde">${NAV.map(([id, ad], i) => `<button type="button" data-scroll="${id}"><span>${String(i + 1).padStart(2, '0')}</span>${ad}</button>`).join('')}</nav>
 
 <section class="wrap blk ders-sec" id="d05-tanim">
-  <h2>Katalizör ve enzim</h2>
-  <div class="blk-body">
-    <p><b>Katalizör</b>, kendisi kimyasal olarak değişmeden bir kimyasal tepkimenin hızını artıran maddedir. Tepkimede tüketilmediği için aynı molekül tepkimeye tekrar tekrar katılabilir; bu yüzden görece az sayıda katalizör molekülü yeterlidir. <b>Enzimler</b>, işlevi metabolik tepkimelerin hızını artırmak olan biyolojik katalizörlerdir. [[K1 s. 18]]</p>
-    <p>Enzimler karmaşık, üç boyutlu proteinlerdir ve üç önemli özellikleri vardır. [[K1 s. 18]]</p>
-  </div>
-  <div class="cols cols-3" style="margin-top:16px">
-    <div class="card basic"><span class="tag basic">1 · Kataliz</span><h3>Hızlandırır, tükenmez</h3><p>Enzimler biyolojik tepkimelerin katalizörüdür: tepkimeyi hızlandırır ve tepkimeden değişmeden çıkar. [[K1 s. 18]]</p></div>
-    <div class="card basic"><span class="tag basic">2 · Özgüllük</span><h3>Aktif bölge</h3><p>Üç boyutlu yapı, tepkimeye giren moleküller (substratlar) için son derece özgül bir bağlanma bölgesi oluşturur: <b>aktif bölge</b>. Aktif bölge aynı molekülün farklı stereoizomerlerini bile ayırt edebilir. [[K1 s. 18]]</p></div>
-    <div class="card basic"><span class="tag basic">3 · Düzenleme</span><h3>Hız sınırlayıcı basamak</h3><p>Biyokimyasal yollardaki (ör. glikolitik yol) birçok tepkime enzimsiz çok yavaştır. Bu yüzden yolun hızı, yol üzerindeki enzimlerin, özellikle hız sınırlayıcı basamağı kontrol eden enzimin etkinliği düzenlenerek denetlenir. Glikolizde bu enzim <b>fosfofruktokinazdır</b>. [[K1 s. 18]]</p></div>
-  </div>
-  <div class="note plain" style="margin-top:14px"><b>Atlas notu.</b> Enzimlerin hemen hepsi proteindir. Bilinen istisna katalitik RNA molekülleridir (ribozimler); örneğin ribozomda peptit bağını kuran katalitik merkez ribozomal RNA'dan oluşur.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d05-mekanizma">
-  <h2>Enzim nasıl çalışır?</h2>
-  <p class="intro">Enzim substratları belirli bir yönelimde bağlar ve onları birbirleriyle tepkimeye girecekleri en uygun konuma getirir. Bu, kimyasal tepkimenin <b>aktivasyon enerjisini</b> düşürür ve tepkime hızını çarpıcı biçimde artırır. Aşağıdaki modelde enzimin aynı engeli hem ileri hem geri yönde alçalttığına, bu yüzden dengeye çok daha çabuk ulaşıldığına ama dengenin yerinin değişmediğine bakın. [[K1 s. 18]]</p>
+  <h2>Enzim: biyolojik katalizör</h2>
+  <p class="intro">Enzimler metabolik tepkimeleri hızlandıran biyolojik katalizörlerdir: tepkimenin aktivasyon enerjisini düşürür, kendileri değişmeden çıkar. [[K1 s. 18]]</p>
   <div class="viz"><div data-viz="f05_enerji"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Enzim, başlangıç ve son durum arasındaki serbest enerji farkını (ΔG), dolayısıyla denge sabitini değiştirmez; yalnızca dengeye ulaşma süresini kısaltır. Enerjice elverişsiz bir tepkimeyi tek başına yürütemez; bunun için tepkimenin ATP hidrolizi gibi elverişli bir tepkimeyle eşleşmesi gerekir. Ligazların ATP hidrolizinden gelen enerjiyi kullanması [[K1 s. 19]] bunun örneğidir.</div>
+  <div class="blk-body">
+    <p><b>Katalizör</b>, kendisi kimyasal olarak değişmeden bir tepkimenin hızını artıran maddedir. Tüketilmediği için aynı molekül tekrar tekrar iş görür; görece az sayıda molekül yeter. Enzim substratları belirli bir yönelimde bağlar ve onları tepkimeye girecekleri en uygun konuma getirir; aktivasyon enerjisi düşer, hız çarpıcı biçimde artar. [[K1 s. 18]]</p>
+    <p>Enzimler karmaşık, üç boyutlu proteinlerdir ve üç önemli özellikleri vardır: <b>kataliz</b>, <b>özgüllük</b> (aktif bölge, aşağıda) ve <b>düzenleme</b>. Biyokimyasal yollardaki (ör. glikoliz) birçok tepkime enzimsiz çok yavaştır; bu yüzden yolun hızı enzimlerin, özellikle hız sınırlayıcı basamağı kontrol eden enzimin etkinliği düzenlenerek denetlenir. Glikolizde bu enzim <b>fosfofruktokinazdır</b>. [[K1 s. 18]]</p>
+  </div>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Enzim başlangıç ile son durum arasındaki serbest enerji farkını (ΔG), dolayısıyla dengenin yerini değiştirmez; yalnızca dengeye ulaşma süresini kısaltır. Enerjice elverişsiz bir tepkime ancak ATP hidrolizi gibi elverişli bir tepkimeyle eşleşerek yürür (ligazlar, [[K1 s. 19]]).</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d05-aktif">
-  <h2>Aktif bölge: biçim belirleyicidir</h2>
-  <p class="intro">Aktif bölgenin üç boyutlu biçimi kritik önemdedir. Biçimi değişirse, örneğin sıcaklık artışı ya da pH değişikliğiyle, enzimin işlevi bozulabilir ve tepkime yavaşlar. [[K1 s. 18]] Bölüm 1'de de geçtiği gibi enzimler dar bir pH aralığında verimli çalışır; uç pH değerleri proteinlerin üçüncül ve dördüncül yapısını bozar (denatürasyon). Enzim kinetiğinin optimal sıcaklık aralığı da dardır. [[K1 s. 2–3]]</p>
+  <h2>Aktif bölge: özgüllük ve biçim</h2>
+  <p class="intro">Enzimin üç boyutlu yapısı substratlar için son derece özgül bir bağlanma bölgesi, <b>aktif bölgeyi</b>, oluşturur; bu bölgenin biçimi bozulursa enzim iş göremez. [[K1 s. 18]]</p>
   <div class="viz"><div data-viz="f05_aktif"></div></div>
+  <p style="margin-top:12px">Özgüllük, aynı molekülün farklı stereoizomerlerini ayırt edecek düzeydedir. Aktif bölgenin biçimi örneğin sıcaklık artışı ya da pH değişikliğiyle bozulursa enzimin işlevi bozulabilir ve tepkime yavaşlar. [[K1 s. 18]] Bölüm 1'de geçtiği gibi enzimler dar bir pH ve sıcaklık aralığında verimli çalışır; uç pH proteinin üçüncül ya da dördüncül yapısını bozar (denatürasyon). [[K1 s. 2–3]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d05-ca">
-  <h2>Örnek: karbonik anhidraz</h2>
-  <p class="intro">CO₂ ile suyun karbonik asit (H₂CO₃) oluşturduğu tepkime kendiliğinden çok yavaştır. Aktif bölgesinde bir çinko atomu bulunan <b>karbonik anhidraz</b> (CA) karışıma eklenince tepkime belirgin biçimde hızlanır. Önce su çinkoya bağlanır; komşu bir histidin kalıntısı sudan bir H⁺ koparır ve çinkoya bağlı, çok etkin bir OH⁻ kalır. Aktif bölgede CO₂'nin tam oturduğu bir cep vardır: CO₂ ile OH⁻ yan yana gelince tepkime hızla gerçekleşir. Ürün enzimden ayrılır, enzim kimyasal olarak değişmeden kalır. [[K1 s. 18]]</p>
+  <h2>Örnek: karbonik anhidraz ve iki yönlü kataliz</h2>
+  <p class="intro">CO₂ ile suyun karbonik asit (H₂CO₃) oluşturduğu çok yavaş tepkimeyi, aktif bölgesinde bir çinko atomu bulunan <b>karbonik anhidraz</b> (CA) belirgin biçimde hızlandırır; aynı enzim ters tepkimeyi de katalizler. [[K1 s. 18]]</p>
   <div class="viz"><div data-viz="f05_ca"></div></div>
-  <p class="small muted" style="margin-top:10px">Kanda bu tepkime eritrositte hızla yürür: eritrosit sitoplazmasında bol miktarda CA vardır, plazmada yoktur. Ayrıntısı Bölüm 9'da (karbondioksit taşınması). [[K1 s. 37]]</p>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Mekanizma düzeyinde çinkodaki OH⁻'nin CO₂'ye bağlanmasıyla doğrudan bikarbonat (HCO₃⁻) oluşur; histidinin aldığı H⁺ ile birlikte bu, kitapta yazılan H₂CO₃'e eşdeğerdir [[K1 s. 18]]; H₂CO₃ zaten hemen hemen tamamen H⁺ ve HCO₃⁻'ye ayrışır [[K1 s. 37]]. Animasyonda ürün bu nedenle HCO₃⁻ ve H⁺ olarak gösterildi.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d05-denge">
-  <h2>Ters tepkime ve Le Chatelier ilkesi</h2>
   <div class="blk-body">
-    <p>Aynı enzim ters tepkimeyi de katalizleyebilir. CA için de durum budur: H₂CO₃'ü yeniden su ve CO₂'ye çevirir. Kitabın örneği gazlı içeceklerdir: kap açıldığında gazlarını oldukça yavaş kaybederler, CA içeren tükürükle temas edince ise çok hızlı kaybederler; kitap içeceğin dilde "köpürür" gibi hissedilmesini buna bağlar. [[K1 s. 18]]</p>
-    <p>Tepkimenin net yönü <b>Le Chatelier ilkesine</b> uyar: dengedeki bir sistemde konsantrasyon ya da parsiyel basınç değişirse denge bu değişikliği karşılayacak yönde kayar ve yeni bir denge kurulur. Yönü enzim belirlemez; enzim dengeye ulaşılma hızını artırır. Yukarıdaki enerji modelinde "S ekle" düğmesiyle bunu deneyebilirsiniz. [[K1 s. 18]]</p>
+    <p>Önce su çinkoya bağlanır; komşu bir histidin kalıntısı sudan H⁺ koparır ve çinkoda çok etkin bir OH⁻ kalır. CO₂ aktif bölgede kendisine tam uyan bir cebe oturur, OH⁻ ile yan yana geldiği için hızla tepkimeye girer. Ürün enzimden ayrılır; enzim kimyasal olarak değişmeden kalır. [[K1 s. 18]]</p>
+    <p>CA ters tepkimeyi de (H₂CO₃ → H₂O + CO₂) hızlandırır. Gazlı içecekler kap açılınca oldukça yavaş, CA içeren tükürükle temas edince çok hızlı gaz kaybeder; kitap içeceğin dilde "köpürür" gibi gelmesini buna bağlar. [[K1 s. 18]]</p>
+    <p>Net yönü <b>Le Chatelier ilkesi</b> belirler: dengedeki bir sistemde konsantrasyon ya da parsiyel basınç değişirse denge bu değişikliği karşılayacak yöne kayar ve yeni bir denge kurulur. Enzim yönü değil, dengeye ulaşma hızını belirler. [[K1 s. 18]] Kanda tepkime bu yüzden dokuda ileri, akciğerde ters yönde yürür (Bölüm 9). [[K1 s. 37–38]]</p>
   </div>
-  <div class="cols" style="margin-top:16px">
-    <div class="card clin"><span class="tag clin">Dokuda · ileri yön</span><h3>CO₂ + H₂O → H⁺ + HCO₃⁻</h3><p>Dokudan gelen CO₂ eritrositte CA ile H₂CO₃'e, o da hemen hemen tamamen H⁺ ve HCO₃⁻'ye dönüşür. HCO₃⁻ klorür kaymasıyla hücreden çıkar, H⁺ hemoglobindeki histidinlere bağlanır. Ürünler ortamdan uzaklaştırıldığı için tepkime ileri yönde sürer. [[K1 s. 37]]</p></div>
-    <div class="card clin"><span class="tag clin">Akciğerde · ters yön</span><h3>H⁺ + HCO₃⁻ → CO₂ + H₂O</h3><p>Akciğerde oksijenlenen hemoglobin H⁺ bırakır. H⁺ ile HCO₃⁻ H₂CO₃ oluşturur ve CA'nın katalizlediği tepkimeyle CO₂ açığa çıkar. CO₂ alveollere difüze olup kandan uzaklaştıkça tepkime bu yönde sürer. [[K1 s. 38]] [[K1 s. 18]]</p></div>
-  </div>
-  <div class="note plain" style="margin-top:14px"><b>Atlas notu.</b> Karbonasyon hissinde ileri tepkimenin de rolü gösterilmiştir. Farelerde yapılan deneysel çalışmalarda dildeki ekşi tat hücrelerinin yüzeyindeki bir CA izoenziminin CO₂'den H⁺ ürettiği ve bu H⁺'ın hücreleri uyardığı bulunmuştur. CA inhibitörü asetazolamid alan kişilerin (ör. yükseklik hastalığı profilaksisinde) gazlı içecekleri yavan bulması da CA'nın bu histeki payını gösterir. Sınav açısından akılda tutulacak nokta değişmez: CA iki yönü de katalizler.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d05-sinif">
   <h2>Enzim sınıfları</h2>
-  <p class="intro">Enzimler katalizledikleri tepkimenin türüne göre sınıflandırılır. Kitap altı sınıf sayar. Bir sınıfa basınca o sınıfa ait örnek bir tepkime oynar; örnek tepkimeler ve bu bölümdeki enzimlerin sınıfları atlas notudur. [[K1 s. 19]]</p>
+  <p class="intro">Enzimler katalizledikleri tepkimenin türüne göre altı sınıfa ayrılır. [[K1 s. 19]]</p>
   <div class="viz"><div data-viz="f05_sinif"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu · güncel sınıflama.</b> Kitaptaki altı sınıf, Uluslararası Biyokimya ve Moleküler Biyoloji Birliği'nin (IUBMB) EC 1–6 sınıflarıdır. IUBMB 2018'de yedinci sınıfı ekledi: <b>translokazlar</b> (EC 7), iyonların ya da moleküllerin zarlar boyunca taşınmasını katalizleyen enzimler (ör. Na⁺/K⁺-ATPaz). Bileşende bu sınıf ayrı işaretlidir.</div>
+  <p style="margin-top:12px"><b>Oksidoredüktazlar</b> redoks tepkimelerini katalizler. <b>Transferazlar</b> fonksiyonel bir grubu bir molekülden diğerine aktarır (ör. kinaz fosfat grubu aktarır). <b>Hidrolazlar</b> hidroliz tepkimelerini katalizler; <b>liyazlar</b> bağları hidroliz ve oksidasyon dışı yollarla koparır. <b>İzomerazlar</b> bir molekülün izomerleri arasında dönüşüm sağlar. <b>Ligazlar</b> ATP hidrolizinden gelen enerjiyle iki molekülü kovalent bağla birleştirir. [[K1 s. 19]] Şekilde örnek tepkimeler ve kitapta olmayan yedinci sınıf (translokazlar, IUBMB 2018) ayrıca işaretlidir.</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d05-kofaktor">
   <h2>Kofaktör ve koenzim</h2>
-  <p class="intro">Bazı enzimler yalnızca proteinden oluşur ve tepkimeyi tek başına katalizler. Diğerleri etkinlikleri için protein olmayan yardımcı moleküllere, <b>kofaktörlere</b>, gereksinim duyar. Kofaktör inorganik ya da organik olabilir; organik kofaktöre <b>koenzim</b> denir. [[K1 s. 19]]</p>
-  <div class="cols">
-    <div class="card basic"><span class="tag basic">İnorganik · metal iyonları</span><h3>Aktif bölgede metal</h3>
-      <div class="f05-kof">
-        <span><b>Zn²⁺</b>karbonik anhidraz</span>
-        <span><b>Fe²⁺</b>sitokrom P450 grubunun tümü</span>
-        <span><b>Co²⁺</b>B₁₂ vitamini</span>
-        <span><b>Cu²⁺</b>süperoksit dismutaz</span>
-        <span><b>Mg²⁺</b>hekzokinaz</span>
-      </div>
-      <p class="small muted" style="margin-top:10px">Kitaptaki liste. [[K1 s. 19]]</p>
-    </div>
-    <div class="card basic"><span class="tag basic">Organik · koenzim</span><h3>Grup ya da elektron taşıyıcısı</h3>
-      <div class="f05-kof">
-        <span><b>CoA</b>Koenzim A: açil grubu taşır; birçok enzim kullanır (ör. asetil-CoA karboksilaz)</span>
-        <span><b>NAD⁺</b>Nikotinamid adenin dinükleotit: hidrür (H⁻) iyonu kabul eder; ör. alkol dehidrogenazla birlikte</span>
-      </div>
-      <p class="small muted" style="margin-top:10px">Kitaptaki örnekler. [[K1 s. 19]]</p>
-    </div>
+  <p class="intro">Bazı enzimler yalnız proteinden oluşur ve tepkimeyi tek başına katalizler; diğerleri protein olmayan yardımcı moleküllere, <b>kofaktörlere</b>, gereksinim duyar. [[K1 s. 19]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Kofaktör: inorganik metal iyonu ya da organik koenzim</h3></div>
+    <div data-viz="f05_kofaktor"></div>
+    <p class="viz-cap" aria-live="polite">Bir kofaktöre dokunun: hangi enzimde bulunduğu ve ne iş gördüğü görünür. [[K1 s. 19]]</p>
   </div>
-  <div class="note plain" style="margin-top:14px"><b>Atlas notu · liste sadeleştirilmiştir.</b> <b>Sitokrom P450:</b> demir hem grubundadır; dinlenimdeki enzimde Fe³⁺ hâlindedir ve katalitik döngüde Fe²⁺'ye indirgenir. Adındaki 450, indirgenmiş enzimin karbon monoksit bağladığında 450 nm'de verdiği emilim tepesinden gelir. <b>B₁₂ vitamini</b> (kobalamin) bir enzim değil, kobalt içeren organik bir kofaktördür; kararlı biçimlerinde (ör. siyanokobalamin) kobalt Co³⁺ hâlindedir; metiyonin sentaz gibi enzimler onun koenzim biçimlerini kullanır. Nitröz oksit bu kobaltı oksitleyerek metiyonin sentazı inaktive eder. <b>Süperoksit dismutaz:</b> sitoplazmadaki biçimi bakır ve çinko, mitokondrideki biçimi manganez içerir. <b>Hekzokinaz:</b> Mg²⁺ asıl olarak ATP ile kompleks (MgATP) hâlinde iş görür.</div>
+  <p style="margin-top:12px">Kofaktör inorganik ya da organiktir; organik kofaktöre <b>koenzim</b> denir. İnorganik kofaktörler aktif bölgedeki metal iyonlarıdır: CA'da Zn²⁺, sitokrom P450 grubunun tümünde Fe²⁺, B₁₂ vitamininde Co²⁺, süperoksit dismutazda Cu²⁺, hekzokinazda Mg²⁺. Koenzim örnekleri: birçok enzimin (ör. asetil-CoA karboksilaz) açil grubu aktarmak için kullandığı <b>koenzim A</b> (CoA) ve hidrür (H⁻) iyonu kabul eden, örneğin alkol dehidrogenazla birlikte iş gören <b>NAD⁺</b> (nikotinamid adenin dinükleotit). [[K1 s. 19]]</p>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu · kitaptaki liste sadeleştirilmiştir.</b> P450'nin hem demiri dinlenimde Fe³⁺'tür ve katalitik döngüde Fe²⁺'ye indirgenir; B₁₂ (kobalamin) bir enzim değil, kobalt içeren bir kofaktördür (kararlı biçimlerinde Co³⁺) ve nitröz oksit bu kobaltı oksitleyerek metiyonin sentazı inaktive eder. Sitoplazmik süperoksit dismutaz bakırla birlikte çinko, mitokondriyal biçimi manganez içerir; hekzokinazda Mg²⁺ ATP ile kompleks (MgATP) hâlinde iş görür.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d05-klinik">
   <h2>Klinik önem: enzimler ve anestezist</h2>
-  <p class="intro">Enzimler anestezi pratiğinde çok önemlidir. Kullandığımız ilaçların birçoğunun etkisi enzimatik etkinlikle sonlanır; bazıları doğrudan bir enzimi inhibe ederek etki eder. Bazı hastalıklar da enzim etkinliğinin azalmasından kaynaklanır. [[K1 s. 20]]</p>
-  <div class="cols cols-3">
-    <div class="card clin"><span class="tag clin">Sitokrom P450</span><h3>Çoğu anestezi ilacı</h3><p>Bu enzim süperailesi anestezide kullanılan ilaçların çoğunun metabolizmasından sorumludur. Önemli istisnalar: atrakuryum ve sisatrakuryum (esas olarak Hofmann eliminasyonuyla yıkılır), katekolaminler, süksametonyum, mivakuryum ve remifentanil. [[K1 s. 20]]</p></div>
-    <div class="card clin"><span class="tag clin">Monoamin oksidaz</span><h3>MAO ve MAO inhibitörleri</h3><p>Monoamin katekolaminler (adrenalin, dopamin, noradrenalin) bu mitokondriyal enzimle yıkılır. MAO inhibitörleri antidepresandır: dolaylı etkili sempatomimetikler ölümcül olabilen bir hipertansif krize yol açabilir. Gerekirse doğrudan etkili sempatomimetikler azaltılmış dozda kullanılabilir, çünkü bunlar katekol-O-metil transferazla (COMT) da yıkılır. Serotoninin yıkımında da MAO rol oynar; MAO inhibitörleri petidin gibi başka serotonerjik ilaçlarla birlikte kullanılırsa serotonin sendromu ortaya çıkabilir. [[K1 s. 20]]</p></div>
-    <div class="card clin"><span class="tag clin">Psödokolinesteraz</span><h3>Süksametonyum apnesi</h3><p>Plazma kolinesterazı ya da bütirilkolinesteraz da denir. Süksametonyumu ve mivakuryumu yıkan bir plazma enzimidir. Bu enzimi olmayan ya da etkinliği azalmış hastalarda bir doz süksametonyum ya da mivakuryumdan sonra kas paralizisi uzar: "süksametonyum apnesi". [[K1 s. 20]]</p></div>
-    <div class="card clin"><span class="tag clin">Asetilkolinesteraz</span><h3>AChE ve neostigmin</h3><p>Nöromüsküler kavşağın sinaptik aralığındadır; nörotransmiter ACh'yi hidrolize ederek iletimi sonlandırır. Geri dönüşümlü bir AChE inhibitörü olan neostigmin aralıktaki ACh'yi artırır; artan ACh nondepolarizan kas gevşeticileri reseptörlerinden kompetitif olarak uzaklaştırır. [[K1 s. 20]]</p></div>
-    <div class="card clin"><span class="tag clin">Doku ve plazma esterazları</span><h3>Remifentanil</h3><p>Özgül olmayan doku ve plazma esterazları çok kısa etkili opioid remifentanili hızla hidrolize eder. Bu yüzden birikmez; bağlam duyarlı yarılanma süresi uzun süreli infüzyondan sonra bile 4 dakikada kalır. [[K1 s. 20]]</p></div>
-    <div class="card clin"><span class="tag clin">Eritrosit esterazları</span><h3>Esmolol</h3><p>Anestezide taşiaritmilerin tedavisinde, kalp cerrahisinde kalp hızı ve kan basıncının kontrolünde kullanılan "kardiyoselektif" β₁ antagonisti esmolol eritrosit esterazlarıyla hızla yıkılır; ilaç kesilince etkisi hızla biter. [[K1 s. 20]]</p></div>
+  <p class="intro">Kullandığımız ilaçların birçoğunun etkisi bir enzimle sonlanır, bazıları doğrudan bir enzimi inhibe ederek etki eder; bazı hastalıklar da enzim etkinliğinin azalmasından kaynaklanır. [[K1 s. 20]]</p>
+  <div class="viz"><div data-viz="f05_kolin"></div></div>
+  <div class="tbl-wrap" style="margin-top:14px">
+    <table class="tbl">
+      <thead><tr><th>Enzim</th><th>Ne yapar?</th><th>Klinik nokta</th></tr></thead>
+      <tbody>
+        <tr><th>Sitokrom P450 (süperaile)</th><td>Anestezi ilaçlarının çoğunu metabolize eder.</td><td>İstisnalar: atrakuryum ve sisatrakuryum (esas olarak Hofmann eliminasyonu), katekolaminler, süksametonyum, mivakuryum, remifentanil. [[K1 s. 20]]</td></tr>
+        <tr><th>Monoamin oksidaz (MAO, mitokondriyal)</th><td>Monoamin katekolaminleri (adrenalin, dopamin, noradrenalin) yıkar.</td><td>MAO inhibitörleri antidepresandır: dolaylı etkili sempatomimetikler ölümcül olabilen hipertansif krize yol açabilir. Gerekirse doğrudan etkili sempatomimetikler azaltılmış dozda verilir; bunlar katekol-O-metil transferazla (COMT) da yıkılır. Petidin gibi serotonerjik ilaçlarla serotonin sendromu ortaya çıkabilir. [[K1 s. 20]]</td></tr>
+        <tr><th>Psödokolinesteraz (plazma kolinesterazı, bütirilkolinesteraz)</th><td>Plazmada süksametonyum ve mivakuryumu yıkar.</td><td>Enzimi olmayan ya da etkinliği azalmış hastada bu ilaçlardan sonra kas paralizisi uzar: "süksametonyum apnesi". [[K1 s. 20]]</td></tr>
+        <tr><th>Asetilkolinesteraz (AChE)</th><td>Nöromüsküler kavşağın sinaptik aralığında ACh'yi hidrolize eder, iletimi sonlandırır.</td><td>Geri dönüşümlü inhibitörü neostigmin aralıkta ACh'yi artırır; ACh nondepolarizan kas gevşeticileri reseptörlerinden kompetitif olarak uzaklaştırır. [[K1 s. 20]]</td></tr>
+        <tr><th>Özgül olmayan doku ve plazma esterazları</th><td>Ultra kısa etkili opioid remifentanili hızla hidrolize eder.</td><td>Birikmez; bağlam duyarlı yarılanma süresi uzun infüzyondan sonra da 4 dk kalır. [[K1 s. 20]]</td></tr>
+        <tr><th>Eritrosit esterazları</th><td>"Kardiyoselektif" β₁ antagonisti esmololü hızla yıkar.</td><td>Kesilince etkisi hızla biter; anestezide taşiaritmilerde, kalp cerrahisinde kalp hızı ve kan basıncı kontrolünde kullanılır. [[K1 s. 20]]</td></tr>
+      </tbody>
+    </table>
   </div>
-  <div class="viz" style="margin-top:16px"><div data-viz="f05_kolin"></div></div>
-  <div class="cols" style="margin-top:14px">
-    <div class="note plain"><b>Atlas notu · MAO ve serotonin.</b> Kitaptaki "MAO inhibitörleri serotoninin yıkımında da rol oynar" cümlesinde kastedilen enzimin kendisidir: serotonini MAO yıkar, MAO inhibitörleri bu yıkımı engeller. Serotonin sendromu riski de buradan, yani serotoninin birikmesinden gelir. Dolaylı etkili sempatomimetikler sinir ucundaki noradrenalini serbestleştirerek etki eder; MAO inhibisyonu bu depoyu büyüttüğü için yanıt abartılı olur.</div>
-    <div class="note plain"><b>Atlas notu · Hofmann eliminasyonu.</b> Hofmann eliminasyonu enzimatik değildir: vücut pH'ı ve sıcaklığında kendiliğinden yürüyen kimyasal bir yıkımdır; bu yüzden karaciğer ve böbrek işlevinden büyük ölçüde bağımsızdır. Atrakuryumda özgül olmayan esterazlarla ester hidrolizi de önemli bir yoldur; sisatrakuryumda Hofmann eliminasyonu baskındır.</div>
-  </div>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu · MAO ve serotonin.</b> Kitap "MAO inhibitörleri serotoninin yıkımında rol oynar" der; serotonini yıkan MAO'nun kendisidir, inhibitör bu yıkımı engeller. Serotonin sendromu riski serotoninin bu birikiminden gelir.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d05-p1">

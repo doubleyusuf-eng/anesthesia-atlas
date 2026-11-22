@@ -1,6 +1,7 @@
 /* Fizyoloji Bölüm 2 · Hücrenin bileşenleri ve işlevi · bileşenler (K1 s. 6–8).
    f02_hucre: hücre haritası · f02_zar: zardan geçiş · f02_mito: mitokondri bölmeleri ve ATP üretimi
    f02_salgi: salgılanan bir proteinin yolculuğu · f02_tip: hücre tiplerinin organel donanımı.
+   f02_cekirdek: çekirdeğin yapısı ve hücre başına çekirdek sayısı · f02_lizozom: bir lizozom ve üç işi.
    Çizimler şematiktir; modellerdeki sayılar göreli birimlerdedir ve bileşen altlarında öyle belirtilir. */
 (function () {
   'use strict';
@@ -599,5 +600,217 @@
     el.addEventListener('click', (e) => { const b = e.target.closest('[data-t]'); if (b) { oto = false; sec(b.dataset.t); } });
     sec('plazma');
     return ticker(el, (dt) => { if (!oto) return; tt += dt; if (tt > 5.5) { tt = 0; sec(SIRA[(SIRA.indexOf(cur) + 1) % SIRA.length]); } });
+  };
+    /* ortak: sayfadaki viz-cap'i değiştir; seçim kalkınca varsayılan metne dön */
+  const capYaz = (el) => {
+    const vz = el.closest('.viz'), cap = vz && vz.querySelector('.viz-cap');
+    const ilk = cap ? cap.innerHTML : '';
+    return (html) => { if (cap) cap.innerHTML = html == null ? ilk : REF(html); };
+  };
+  const tusla = (root, sec) => {
+    const h = (e) => {
+      const b = e.target.closest('[data-p]');
+      if (!b || !root.contains(b)) return;
+      if (e.type === 'keydown') { if (b.tagName === 'BUTTON') return; if (e.key !== 'Enter' && e.key !== ' ') return; e.preventDefault(); }
+      sec(b.dataset.p);
+    };
+    root.addEventListener('click', h);
+    root.addEventListener('keydown', h);
+    return () => { root.removeEventListener('click', h); root.removeEventListener('keydown', h); };
+  };
+
+  /* ---------- 6 · çekirdeğin yapısı ve hücre başına çekirdek sayısı (K1 s. 6–7) ---------- */
+  VIZ.f02_cekirdek = (el) => {
+    const yaz = capYaz(el);
+    const CAP = {
+      zarf: '<b>Çekirdek zarfı.</b> Çekirdeği sitoplazmadan ayıran çift katlı zar. [[K1 s. 7]]',
+      por: '<b>Çekirdek porları.</b> Zarftaki delikler; hücre yüzey zarında olduğu gibi seçilmiş moleküllerin sitoplazmadan nükleoplazmaya kontrollü geçişine izin verir. [[K1 s. 7]]',
+      nukleo: '<b>Nükleoplazma.</b> DNA\'yı saran jel kıvamında madde; sitoplazmanın çekirdekteki karşılığı. [[K1 s. 7]]',
+      nukleol: '<b>Çekirdekçik (nükleol).</b> Çekirdeğin RNA sentezlenen, yoğun boyanan bölgesi; çok protein sentezleyen hücrelerde daha bol bulunur. [[K1 s. 7]]',
+      dna: '<b>DNA.</b> Hücrenin genetik materyalinin çoğu; bireyin genetik kodu, bütün vücut proteinlerinin planı. mRNA burada DNA\'nın transkripsiyonuyla sentezlenir (Bölüm 3). [[K1 s. 6–7]]',
+      h1: '<b>Tek çekirdek.</b> Vücut hücrelerinin hemen hepsinde bir çekirdek vardır; genellikle sitoplazmanın ortasında küresel bir yapıdır. [[K1 s. 7]]',
+      h2: '<b>Olgun eritrosit: çekirdeksiz.</b> [[K1 s. 7]]',
+      h3: '<b>İskelet kası hücresi: çok çekirdekli.</b> [[K1 s. 7]]',
+      h4: '<b>Kaynaşmış makrofajlar: çok çekirdekli dev hücre.</b> [[K1 s. 7]]',
+    };
+    const CX = 340, CY = 150, R1 = 110, R2 = 103, RM_ = (R1 + R2) / 2;
+    const pt = (r, a) => [r1(CX + r * Math.cos(rad(a))), r1(CY + r * Math.sin(rad(a)))];
+    const POR = [-35, 20, 70, 120, 160, 210, 255];
+    const yay = (r) => POR.map((a, i) => {
+      const a1 = a + 4.5, a2 = (i < POR.length - 1 ? POR[i + 1] : POR[0] + 360) - 4.5;
+      const [x1, y1] = pt(r, a1), [x2, y2] = pt(r, a2);
+      return `M${x1} ${y1}A${r} ${r} 0 ${a2 - a1 > 180 ? 1 : 0} 1 ${x2} ${y2}`;
+    }).join('');
+    const kapak = POR.map((a) => [a - 5, a + 5].map((b) => { const [x, y] = pt(RM_, b); return `<circle cx="${x}" cy="${y}" r="3.6"/>`; }).join('')).join('');
+    const KROM = ['M262 118C282 96 300 140 322 116S358 92 384 110', 'M268 150C288 132 302 172 322 150S346 128 352 142', 'M270 196C286 176 304 214 318 192S330 214 344 222',
+      'M300 86C318 70 336 100 356 80S392 76 404 98', 'M398 130C418 140 404 160 424 168', 'M300 238C320 226 340 246 362 232S386 218 396 226'];
+    const [mx1, my1] = pt(146, -35), [mx2, my2] = pt(80, -35);
+    /* etiketler: [parça, satırlar, y, hedef x, hedef y] */
+    const LB = [['por', ['Çekirdek porları'], 45, ...pt(R1 + 2, 255)], ['zarf', ['Çekirdek zarfı', '(çift katlı)'], 95, ...pt(R1, 188)],
+      ['dna', ['DNA'], 150, 268, 150], ['nukleol', ['Çekirdekçik'], 205, 348, 192], ['nukleo', ['Nükleoplazma'], 252, 300, 232]];
+    const lbl = LB.map(([k, sat, y, tx, ty]) => `<g class="f02-ckl" data-p="${k}" role="button" tabindex="0" aria-pressed="false">
+        <rect x="0" y="${y - 22 - (sat.length - 1) * 9}" width="${tx - 0}" height="${30 + (sat.length - 1) * 18}" class="f02-hit-f"/>
+        ${sat.map((t, i) => `<text x="170" y="${y + 5 - (sat.length - 1) * 9 + i * 18}" text-anchor="end">${t}</text>`).join('')}
+        <line x1="178" y1="${y}" x2="${tx}" y2="${ty}"/><circle cx="${tx}" cy="${ty}" r="3"/></g>`).join('');
+    const HUC = [
+      ['h1', 'Vücut hücrelerinin hemen hepsi', '1', '<circle cx="80" cy="50" r="38" class="f02-ckz"/><circle cx="80" cy="50" r="13" class="f02-ckn"/>'],
+      ['h2', 'Olgun eritrosit', '0 · çekirdeksiz', '<path d="M28 50C28 26 62 28 80 37C98 28 132 26 132 50C132 74 98 72 80 63C62 72 28 74 28 50Z" class="f02-ckr"/>'],
+      ['h3', 'İskelet kası hücresi', 'çok', `<rect x="8" y="28" width="144" height="44" rx="20" class="f02-ckz"/>${Array.from({ length: 15 }, (_, i) => `<line x1="${22 + i * 8.4}" y1="31" x2="${22 + i * 8.4}" y2="69" class="f02-cks"/>`).join('')}${[[34, 35], [70, 35], [112, 35], [50, 65], [92, 65], [130, 65]].map(([x, y]) => `<ellipse cx="${x}" cy="${y}" rx="10" ry="3.6" class="f02-ckn"/>`).join('')}`],
+      ['h4', 'Dev hücre (kaynaşmış makrofajlar)', 'çok', `<path d="M24 46C18 22 52 8 80 14C108 6 146 20 140 46C152 70 120 94 86 88C56 98 14 80 24 46Z" class="f02-ckz"/>${[[50, 34], [76, 28], [104, 32], [122, 52], [100, 70], [70, 72], [44, 58], [82, 50]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r="8.5" class="f02-ckn"/>`).join('')}`],
+    ];
+    el.innerHTML = `<div class="f02-ck">
+      <svg class="f02-cksvg" viewBox="0 0 520 300" role="group" aria-label="Çekirdeğin şematik kesiti; parçalara basın">
+        <defs><marker id="f02-ckok" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="var(--ink)"/></marker></defs>
+        <rect x="196" y="4" width="320" height="292" rx="26" class="f02-ckbg"/>
+        <text x="504" y="26" text-anchor="end" class="f02-ckk">sitoplazma</text>
+        <g class="f02-ckger"><path d="M482 52C494 82 470 112 482 142S494 202 482 238"/><path d="M500 64C510 94 488 124 500 154S510 204 500 232"/></g>
+        <g class="f02-ckrib"><path d="M490 52C502 82 478 112 490 142S502 202 490 238"/><path d="M508 64C518 94 496 124 508 154S518 204 508 232"/></g>
+        <g class="f02-ckp" data-p="nukleo"><circle cx="${CX}" cy="${CY}" r="${R2}" class="f02-np"/></g>
+        <g class="f02-ckp" data-p="dna">${KROM.map((d) => `<path d="${d}" class="f02-ckd"/><path d="${d}" class="f02-hit-s"/>`).join('')}</g>
+        <g class="f02-ckp" data-p="nukleol"><circle cx="372" cy="182" r="26" class="f02-cknl"/></g>
+        <g class="f02-ckp" data-p="zarf"><path d="${yay(R1)}${yay(R2)}" class="f02-ckzf"/><path d="${yay(RM_)}" class="f02-hit-s"/></g>
+        <g class="f02-ckp" data-p="por"><g class="f02-ckpk">${kapak}</g>
+          <circle cx="${mx1}" cy="${my1}" r="5" class="f02-ckm"/><line x1="${mx1}" y1="${my1}" x2="${mx2}" y2="${my2}" class="f02-ckmo" marker-end="url(#f02-ckok)"/></g>
+        ${lbl}
+      </svg>
+      <div class="f02-ckh">${HUC.map(([k, ad, n, svg]) => `<button type="button" class="f02-ckc" data-p="${k}" aria-pressed="false">
+        <svg viewBox="0 0 160 100" aria-hidden="true">${svg}</svg><span class="f02-cka">${ad}</span><span class="f02-ckb">${n}</span></button>`).join('')}</div>
+    </div>`;
+    const root = el.querySelector('.f02-ck');
+    let cur = '';
+    const sec = (k) => {
+      cur = cur === k ? '' : k;
+      const ust = cur && !cur.startsWith('h');
+      root.classList.toggle('f02-cksel', !!ust);
+      root.querySelectorAll('[data-p]').forEach((n) => {
+        const on = n.dataset.p === cur;
+        n.classList.toggle('on', on);
+        if (n.hasAttribute('aria-pressed')) n.setAttribute('aria-pressed', String(on));
+      });
+      yaz(cur ? CAP[cur] : null);
+    };
+    return tusla(root, sec);
+  };
+
+  /* ---------- 7 · bir lizozom ve üç işi (K1 s. 8) ---------- */
+  VIZ.f02_lizozom = (el) => {
+    const yaz = capYaz(el);
+    const CAP = {
+      bakim: '<b>Hücre bakımı.</b> Eski, bozuk ya da artık gereksiz proteinleri parçalar. [[K1 s. 8]]',
+      apop: '<b>Programlanmış hücre ölümü (apoptoz).</b> Lizozomlar bu süreçte rol oynar. [[K1 s. 8]]',
+      sav: '<b>Fagosite edilen mikroorganizmaların yok edilmesi.</b> Sindirim enzimleri, asit ve serbest radikaller mikroorganizmayı yok eder; makrofaj ve nötrofillerde lizozom bu yüzden çoktur. [[K1 s. 8]] Atlas notu: fagozom lizozomla birleşip fagolizozomu oluşturur.',
+    };
+    const pac = (x, y, s, r) => `<path d="M0 0L${r1(s * 0.87)} ${r1(-s / 2)}A${s} ${s} 0 1 0 ${r1(s * 0.87)} ${r1(s / 2)}Z" transform="translate(${x} ${y}) rotate(${r})" class="f02-lzen"/>`;
+    const kiv = (x, y, s) => `<path d="M${x} ${y - s}L${r1(x + s * 0.3)} ${r1(y - s * 0.3)}L${x + s} ${y}L${r1(x + s * 0.3)} ${r1(y + s * 0.3)}L${x} ${y + s}L${r1(x - s * 0.3)} ${r1(y + s * 0.3)}L${x - s} ${y}L${r1(x - s * 0.3)} ${r1(y - s * 0.3)}Z" class="f02-lzrd"/>`;
+    const H = (x, y) => `<text x="${x}" y="${y}" class="f02-lzh">H⁺</text>`;
+    const zinc = [[14, 52], [24, 44], [34, 52], [44, 44], [58, 54], [68, 46], [78, 54]];
+    const ZN = zinc.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="5"/>`).join('') + '<path d="M14 52L24 44L34 52L44 44M58 54L68 46L78 54"/>';
+    const AA = [[176, 40], [192, 56], [206, 38], [218, 60], [184, 72], [224, 44]];
+    const PARCA = [[0, -1], [0.95, -0.3], [0.6, 0.8], [-0.6, 0.8], [-0.95, -0.3]];
+    el.innerHTML = `<div class="f02-lzw">
+      <svg class="f02-lzsvg" viewBox="0 0 300 300" role="img" aria-label="Lizozom: sindirim enzimleri, asit ve serbest radikaller içeren zarla çevrili kese">
+        <text x="150" y="20" text-anchor="middle" class="f02-lzb"><tspan font-weight="800">Lizozom</tspan> · bütün hücrelerde;</text>
+        <text x="150" y="40" text-anchor="middle" class="f02-lzb">fagositlerde (makrofaj, nötrofil) çok</text>
+        <circle cx="150" cy="138" r="74" class="f02-lzbig"/>
+        ${pac(112, 110, 11, 20)}${pac(128, 168, 11, -60)}${pac(178, 104, 11, 160)}${pac(190, 160, 11, 210)}${pac(150, 138, 11, 90)}
+        ${H(104, 146)}${H(156, 96)}${H(176, 132)}${H(140, 194)}
+        ${kiv(118, 84, 7)}${kiv(200, 128, 7)}${kiv(104, 176, 7)}${kiv(170, 186, 7)}
+        <g class="f02-lzlej">
+          <g transform="translate(40 236)">${pac(0, 0, 9, 0)}<text x="20" y="5">Sindirim enzimleri</text></g>
+          <g transform="translate(40 260)"><text x="-9" y="5" class="f02-lzh">H⁺</text><text x="20" y="5">Asit</text></g>
+          <g transform="translate(40 284)">${kiv(0, 0, 7)}<text x="20" y="5">Serbest radikaller (•)</text></g>
+        </g>
+      </svg>
+      <div class="f02-lzks">
+        <button type="button" class="f02-lzk" data-p="bakim" aria-pressed="false"><span class="f02-lzt">1 · Hücre bakımı</span>
+          <svg viewBox="0 0 240 120" aria-hidden="true">
+            <g class="f02-lzzn">${ZN}</g><g class="f02-lzzn f02-lzkop">${ZN}</g>
+            <path d="M88 50H98M144 50H156" class="f02-lzok" marker-end="url(#f02-lzok)"/>
+            <circle cx="122" cy="50" r="22" class="f02-lzbig"/>${pac(116, 46, 6, 20)}${pac(128, 56, 6, 200)}
+            <g class="f02-lzaa">${AA.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="4" data-x="${x}" data-y="${y}"/>`).join('')}</g>
+            <text x="46" y="98" text-anchor="middle" class="f02-lzs">bozuk protein</text>
+            <text x="200" y="98" text-anchor="middle" class="f02-lzs">amino asitler</text>
+            <defs><marker id="f02-lzok" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--ink)"/></marker></defs>
+          </svg></button>
+        <button type="button" class="f02-lzk" data-p="apop" aria-pressed="false"><span class="f02-lzt">2 · Apoptoz</span>
+          <svg viewBox="0 0 240 120" aria-hidden="true">
+            <circle cx="90" cy="54" r="40" class="f02-lzcl"/><circle cx="90" cy="54" r="14" class="f02-ckn f02-lzcn"/>
+            <g class="f02-lzap">${PARCA.map(() => '<circle r="9" class="f02-lzcl"/>').join('')}</g>
+            <circle cx="196" cy="44" r="15" class="f02-lzbig"/>${pac(196, 44, 6, 30)}
+            <text x="196" y="80" text-anchor="middle" class="f02-lzs">lizozom</text>
+            <text x="90" y="112" text-anchor="middle" class="f02-lzs f02-lzapl">apoptotik cisimcikler</text>
+          </svg></button>
+        <button type="button" class="f02-lzk" data-p="sav" aria-pressed="false"><span class="f02-lzt">3 · Savunma</span>
+          <svg viewBox="0 0 240 120" aria-hidden="true">
+            <circle cx="90" cy="52" r="36" class="f02-lzfg"/><circle cx="90" cy="52" r="36" class="f02-lzbig f02-lzfl"/><g class="f02-lzfe">${pac(76, 31, 5, 40)}${pac(106, 74, 5, 220)}${pac(110, 33, 5, 140)}</g>
+            <g class="f02-lzbk"><rect x="-22" y="-8" width="22" height="16" rx="8"/><rect x="0" y="-8" width="22" height="16" rx="8"/></g>
+            <g class="f02-lzly"><circle r="18" class="f02-lzbig"/>${pac(0, 0, 6, 30)}</g>
+            <text x="90" y="110" text-anchor="middle" class="f02-lzs f02-lzt1">fagozom</text>
+            <text x="190" y="110" text-anchor="middle" class="f02-lzs f02-lzt2">lizozom</text>
+            <text x="90" y="110" text-anchor="middle" class="f02-lzs f02-lzt3">fagolizozom</text>
+          </svg></button>
+      </div>
+    </div>`;
+    const root = el.querySelector('.f02-lzw');
+    const q = (s) => root.querySelector(s), qa = (s) => root.querySelectorAll(s);
+    const op = (n, v) => n.setAttribute('opacity', r1(clamp(v, 0, 1) * 100) / 100);
+    const seg = (f, a, b) => ease((f - a) / (b - a));
+    const CIZ = {
+      bakim: (f) => {
+        const g = q('.f02-lzkop'), m = seg(f, 0, 0.45);
+        g.setAttribute('transform', `translate(${r1(lerp(46, 122, m))} 50) scale(${r1(lerp(1, 0.3, m) * 100) / 100}) translate(-46 -50)`);
+        op(g, f >= 1 ? 0 : 1 - seg(f, 0.3, 0.45));
+        const d = seg(f, 0.55, 1);
+        qa('.f02-lzaa circle').forEach((c) => {
+          c.setAttribute('cx', r1(lerp(122, +c.dataset.x, d))); c.setAttribute('cy', r1(lerp(50, +c.dataset.y, d)));
+          op(c, f < 0.55 ? 0 : d);
+        });
+      },
+      apop: (f) => {
+        const k = seg(f, 0, 0.5), a = seg(f, 0.4, 1);
+        const cl = q('.f02-lzw [data-p="apop"] .f02-lzcl');
+        cl.setAttribute('r', r1(lerp(40, 22, k)));
+        q('.f02-lzcn').setAttribute('r', r1(lerp(14, 8, k)));
+        qa('.f02-lzap circle').forEach((c, i) => {
+          const [ux, uy] = PARCA[i], dd = lerp(14, 36, a);
+          c.setAttribute('cx', r1(90 + ux * dd)); c.setAttribute('cy', r1(54 + uy * dd * 0.95)); c.setAttribute('r', r1(lerp(4, 9, a)));
+          op(c, a * 1.5);
+        });
+        op(q('.f02-lzapl'), a);
+      },
+      sav: (f) => {
+        const m = seg(f, 0, 0.5), b = seg(f, 0.5, 0.75), p = seg(f, 0.7, 1);
+        const ly = q('.f02-lzly');
+        ly.setAttribute('transform', `translate(${r1(lerp(190, 118, m))} 52) scale(${r1(lerp(1, 0.2, b) * 100) / 100})`);
+        op(ly, 1 - b);
+        op(q('.f02-lzfl'), b); op(q('.f02-lzfe'), b); op(q('.f02-lzfg'), 1 - b);
+        op(q('.f02-lzt1'), 1 - b); op(q('.f02-lzt3'), b);
+        const t2 = q('.f02-lzt2'); t2.setAttribute('x', r1(lerp(190, 132, m))); op(t2, 1 - seg(f, 0.25, 0.5));
+        const bk = q('.f02-lzbk');
+        bk.setAttribute('transform', 'translate(90 52)');
+        op(bk, 1 - 0.6 * p);
+        const [r0, r1_] = bk.querySelectorAll('rect');
+        r0.setAttribute('transform', `translate(${r1(-6 * p)} ${r1(-5 * p)}) rotate(${r1(-18 * p)})`);
+        r1_.setAttribute('transform', `translate(${r1(6 * p)} ${r1(6 * p)}) rotate(${r1(24 * p)})`);
+      },
+    };
+    const F = { bakim: 1, apop: 1, sav: 1 };
+    Object.keys(CIZ).forEach((k) => CIZ[k](1));
+    let cur = '', oyn = '';
+    const sec = (k) => {
+      cur = cur === k ? '' : k;
+      qa('.f02-lzk').forEach((n) => { const on = n.dataset.p === cur; n.classList.toggle('on', on); n.setAttribute('aria-pressed', String(on)); });
+      root.classList.toggle('f02-lzsel', !!cur);
+      yaz(cur ? CAP[cur] : null);
+      if (cur && !RM) { if (oyn && oyn !== cur) { F[oyn] = 1; CIZ[oyn](1); } oyn = cur; F[cur] = 0; CIZ[cur](0); }
+    };
+    const off = tusla(root, sec);
+    const stop = ticker(el, (dt) => {
+      if (!oyn) return;
+      F[oyn] = Math.min(1, F[oyn] + dt / 1.8);
+      CIZ[oyn](F[oyn]);
+      if (F[oyn] >= 1) oyn = '';
+    });
+    return () => { off(); stop(); };
   };
 })();

@@ -904,4 +904,103 @@
     rng.addEventListener('input', () => { st.P = +rng.value; ciz(); });
     return genislik(el, kur);
   };
+  /* ================= 6 · Solunum merkezine gelen öbür girdiler ================= */
+  VIZ.f22_girdiler = (el) => {
+    const viz = el.closest('.viz'), capEl = viz ? viz.querySelector('.viz-cap') : null;
+    const varsayilan = capEl ? capEl.innerHTML : '';
+    let sonCap = -1;
+    /* t: başlık · a: alt satır · e: [dar etiket, renk sınıfı, -, geniş etki satırı] · c: açıklama */
+    const G = [
+      { t: 'Serebral korteks', a: 'istemli kontrol; kırılma noktası', e: ['geçici bastırır', 'f22-warn', '', 'istemli olarak geçici bastırır'], c: '<b>Serebral korteks.</b> Öbür girdilerin hepsi istemli düşünceyle geçici olarak bastırılabilir. Ama kısa bir apneden sonra hipoksemi ya da hiperkapninin kemoreseptör uyarısı istemli kontrolü aşar: kırılma noktası. [[K1 s. 95]]' },
+      { t: 'Limbik sistem', a: 'aşırı duygu', e: ['V̇E ↑', 'f22-ok', '', 'V̇E ↑ (hiperventilasyon)'], c: '<b>Limbik sistem.</b> Aşırı duygusal durumlar solunum merkezini uyarır ve hiperventilasyona yol açar. [[K1 s. 95]]' },
+      { t: 'Talamus', a: 'çekirdek sıcaklık ↑', e: ['V̇E ↑', 'f22-ok'], c: '<b>Talamus.</b> Kitaba göre çekirdek vücut sıcaklığının artması ventilasyonu uyarır (sıcaklık merkezi hipotalamustur). [[K1 s. 95]]' },
+      { t: 'Gerilme reseptörleri', a: 'akciğer · bronş düz kası · vagus', e: ['derinlik ↓', 'f22-acc', '', 'insp. derinliği ↓ (Hering–Breuer)'], soru: 1, apn: 1, c: '<b>Akciğer gerilme reseptörleri.</b> Bronşiyal düz kastadır. Aşırı şişme impulsları vagusla apnöstik merkeze taşır ve inspirasyon derinliği azalır: Hering–Breuer refleksi. Normal solunumda tetiklenmesi pek olası değildir; yenidoğanda ve ventilatördeki hastada önemli olabilir. [[K1 s. 94–95]]' },
+      { t: 'J-reseptörleri', a: 'alveol duvarı · miyelinsiz C lifleri', e: ['V̇E ↑', 'f22-ok', '', 'V̇E ↑, dispne, bradikardi, hipotansiyon'], c: '<b>J-reseptörleri (jukstakapiller).</b> Alveol duvarındaki miyelinsiz C lifleri. Etkinleşince ventilasyon artar, dispne, bradikardi ve hipotansiyon olur; pulmoner ödem ve pulmoner emboliyle uyarıldıkları düşünülür. [[K1 s. 95]]' },
+      { t: 'İrritan reseptörler', a: 'hava yolu epiteli · zararlı gaz', e: ['V̇E ↑', 'f22-ok', '', 'bronkokonstriksiyon + V̇E ↑'], c: '<b>İrritan reseptörler.</b> Hava yolu epitelindedir; zararlı gazlarda bronkokonstriksiyona yol açar ve ventilasyonu uyarır. [[K1 s. 95]]' },
+      { t: 'Kas iğcikleri', a: 'egzersiz', e: ['V̇E ↑', 'f22-ok', '', 'V̇E ↑ (yanıtı başlatır)'], soru: 1, c: '<b>Kas iğcikleri.</b> Egzersize ventilatuvar yanıtı başlattığı düşünülür. [[K1 s. 95]]' },
+      { t: 'Ağrı reseptörleri', a: 'ağrı', e: ['V̇E ↑', 'f22-ok'], c: '<b>Ağrı reseptörleri.</b> Etkinleşmeleri ventilasyonu uyarır. [[K1 s. 95]]' },
+      { t: 'Eklem propriyoseptörleri', a: 'algılayıcılar arasında sayılır', e: ['', 'f22-gmut', '', 'etkisi kitapta ayrıca verilmez'], kes: 1, c: '<b>Eklem propriyoseptörleri.</b> Kitap onları ventilasyonun algılayıcıları arasında sayar. [[K1 s. 93]]' },
+    ];
+    const SERIT = ['Mekanoreseptörlerin katkısı tartışmalı: denervasyonlu nakledilmiş akciğerlerde ventilatuvar yanıt normaldir.'];
+    const SERIT_D = ['Mekanoreseptörlerin katkısı tartışmalı:', 'denervasyonlu nakledilmiş akciğerlerde', 'ventilatuvar yanıt normaldir.'];
+    let sec = -1, dar = null;
+    el.innerHTML = '<div class="f22-svgk"></div>';
+    const kap = el.querySelector('.f22-svgk');
+
+    /* geniş yerleşim: kutu [x, y, w, h], ok yolu ve etiket konumu */
+    const geniş = () => {
+      const W = 200, H = 56, top = [[50, 12], [260, 12], [470, 12]], sol = [[8, 92], [8, 162], [8, 232]], sag = [[512, 92], [512, 162], [512, 232]];
+      const kut = [...top, ...sol, ...sag].map(([x, y]) => [x, y, W, H]);
+      const hedT = [[320, 162], [360, 162], [400, 162]], hedS = [[280, 175], [280, 194], [280, 212]], hedR = [[440, 175], [440, 194], [440, 212]];
+      const ok = kut.map(([x, y, w, h], i) => {
+        if (i < 3) { const [hx, hy] = hedT[i]; return [x + w / 2, y + h, hx, hy - 2]; }
+        if (i < 6) { const [hx, hy] = hedS[i - 3]; return [x + w, y + h / 2, hx - 2, hy]; }
+        const [hx, hy] = hedR[i - 6]; return [x, y + h / 2, hx + 2, hy];
+      });
+      return { w: 720, h: 352, kut, ok, dar: false,
+        mz: [280, 162, 160, 60], mzT: [[360, 203, 'Solunum merkezi', 'f22-gb f22-gmt'], [360, 217, 'beyin sapı', 'f22-ga']], apn: [286, 167, 96, 16],
+        kas: [360, 222, 360, 256], kasT: [360, 274], serit: [12, 300, 696, 44], seritT: SERIT, seritY: 326 };
+    };
+    const darY = () => {
+      const kut = G.map((_, i) => [12, 86 + 60 * i, 300, 52]);
+      const ok = kut.map(([x, y, w, h]) => `M${x + w} ${y + h / 2} H336 V40 H${266}`);
+      return { w: 360, h: 708, kut, ok, dar: true,
+        mz: [96, 8, 168, 64], mzT: [[180, 34, 'Solunum merkezi', 'f22-gb f22-gmt'], [180, 54, 'beyin sapı', 'f22-ga']], apn: null,
+        kas: [94, 40, 16, 40], kasT: [52, 62], serit: [12, 632, 336, 70], seritT: SERIT_D, seritY: 656 };
+    };
+    const ciz = () => {
+      const g = dar ? darY() : geniş();
+      const kutuG = G.map((o, i) => {
+        const [x, y, w, h] = g.kut[i];
+        const tag = o.e ? (g.dar ? T(x + w - 12, y + 21, o.e[0], 'f22-gt ' + o.e[1], END) : T(x + w / 2, y + 49, o.e[3] || o.e[0], 'f22-gt ' + o.e[1], MID + ` data-mw="${w - 14}"`)) : '';
+        const soru = o.soru ? `<g class="f22-g-soru"><circle cx="${x + 2}" cy="${y + 2}" r="8"/>${T(x + 2, y + 6, '?', 'f22-g-sorut', MID)}</g>` : '';
+        const tx = g.dar ? x + 14 : x + w / 2, an = g.dar ? '' : MID;
+        return `<g class="f22-g-kutu" data-g="${i}" role="button" tabindex="0" aria-pressed="false" aria-label="${o.t}">${R(x, y, w, h, 10, 'f22-g-r')}${T(tx, y + (g.dar ? 22 : 18), o.t, 'f22-gb', an + ` data-mw="${g.dar ? w - 28 - (o.e ? 90 : 0) : w - 16}"`)}${T(tx, y + (g.dar ? 41 : 33), o.a, 'f22-ga', an + ` data-mw="${w - (g.dar ? 28 : 16)}"`)}${tag}${soru}</g>`;
+      });
+      const oklar = G.map((o, i) => {
+        const d = g.dar ? g.ok[i] : `M${g.ok[i][0]} ${g.ok[i][1]} L${g.ok[i][2]} ${g.ok[i][3]}`;
+        return `<path class="f22-g-ok${o.kes ? ' kes' : ''}" data-go="${i}" d="${d}" marker-end="url(#f22-ok)"/>`;
+      });
+      const [mx, my, mw, mh] = g.mz;
+      const apn = g.apn ? `<g class="f22-g-apn">${R(g.apn[0], g.apn[1], g.apn[2], g.apn[3], 6, 'f22-g-apnr')}${T(g.apn[0] + g.apn[2] / 2, g.apn[1] + 12, 'apnöstik merkez', 'f22-ga', MID)}</g>` : '';
+      const kasOk = g.dar
+        ? `<path class="f22-g-kas" d="M${mx} 40 H16" marker-end="url(#f22-okm)"/>${T(g.kasT[0], g.kasT[1], 'solunum', 'f22-ga', MID)}${T(g.kasT[0], g.kasT[1] + 15, 'kasları', 'f22-ga', MID)}`
+        : `<path class="f22-g-kas" d="M${g.kas[0]} ${g.kas[1]} V${g.kas[3]}" marker-end="url(#f22-okm)"/>${T(g.kasT[0], g.kasT[1], '→ solunum kasları', 'f22-ga', MID)}`;
+      const [sx, sy, sw, sh] = g.serit;
+      kap.innerHTML = `<svg class="f22-svg f22-gird${g.dar ? ' dar' : ''}" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="Kemoreseptör dışı dokuz girdinin solunum merkezine ulaşan yolları ve ventilasyona etkileri">
+        <defs>${okMarker('f22-ok', 'f22-mk-m')}${okMarker('f22-oka', 'f22-mk-a')}${okMarker('f22-okm', 'f22-mk-m')}</defs>
+        <g class="f22-g-oklar">${oklar.join('')}</g>
+        <g class="f22-g-mz">${R(mx, my, mw, mh, 14, 'f22-g-mzr')}${g.mzT.map(([x, y, s, c]) => T(x, y, s, c, MID)).join('')}${apn}</g>
+        ${kasOk}${kutuG.join('')}
+        ${R(sx, sy, sw, sh, 10, 'f22-g-serit')}${g.seritT.map((s, i) => T(sx + sw / 2, g.seritY + i * 17, s, 'f22-g-seritt', MID)).join('')}
+      </svg>`;
+      /* uzun yazıyı kutuya sığdır */
+      kap.querySelectorAll('text[data-mw]').forEach((t) => {
+        try { const mw2 = +t.dataset.mw; if (t.getComputedTextLength() > mw2) { t.setAttribute('textLength', mw2); t.setAttribute('lengthAdjust', 'spacingAndGlyphs'); } } catch (e) { /* görünmüyor */ }
+      });
+      uygula();
+    };
+    const uygula = () => {
+      const svg = kap.querySelector('svg');
+      if (!svg) return;
+      svg.classList.toggle('f22-g-secili', sec >= 0);
+      svg.querySelectorAll('[data-g]').forEach((k) => { const on = +k.dataset.g === sec; k.classList.toggle('on', on); k.setAttribute('aria-pressed', String(on)); });
+      svg.querySelectorAll('[data-go]').forEach((p) => {
+        const on = +p.dataset.go === sec;
+        p.classList.toggle('on', on);
+        p.setAttribute('marker-end', on ? 'url(#f22-oka)' : 'url(#f22-ok)');
+        if (on) p.parentNode.appendChild(p);
+      });
+      const apn = svg.querySelector('.f22-g-apn');
+      if (apn) apn.classList.toggle('on', sec === 3);
+      if (capEl && sonCap !== sec) { capEl.innerHTML = sec < 0 ? varsayilan : REF(G[sec].c); sonCap = sec; }
+    };
+    const sec_ = (i) => { sec = sec === i ? -1 : i; uygula(); };
+    const tik = (e) => { const k = e.target.closest('[data-g]'); if (k) sec_(+k.dataset.g); };
+    const tus = (e) => { if (e.key !== 'Enter' && e.key !== ' ') return; const k = e.target.closest('[data-g]'); if (k) { e.preventDefault(); sec_(+k.dataset.g); } };
+    el.addEventListener('click', tik);
+    el.addEventListener('keydown', tus);
+    const bitir = genislik(el, (d) => { dar = d; ciz(); });
+    return () => { bitir(); el.removeEventListener('click', tik); el.removeEventListener('keydown', tus); if (capEl) capEl.innerHTML = varsayilan; };
+  };
 })();

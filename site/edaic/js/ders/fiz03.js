@@ -579,4 +579,179 @@
     draw();
     return () => {};
   };
+  /* ---------- 8. Çekirdekten kromozoma: kromatin → kromozom → 23 çift (tarif: docs/tasarim/fiz03.md) ---------- */
+  VIZ.f03_kromozom = (el) => {
+    const MB = [249, 242, 198, 190, 181, 171, 159, 145, 138, 134, 135, 133, 114, 107, 102, 90, 83, 80, 59, 64, 47, 51];
+    const H = (mb) => mb * 70 / 249;
+    const ETIKET = [1, 5, 10, 15, 20, 22];
+    const vizEl = el.closest('.viz'), cap = vizEl ? vizEl.querySelector('.viz-cap') : null;
+    const MET = {
+      vucut: 'Çekirdekteki yoğun kromatin, bölünme öncesinde iplik benzeri kromozomlara düzenlenir; her kromozom kıvrılmış tek bir DNA molekülüdür. Hücrede 46 kromozom (23 çift): 22 çift otozom ve 1 çift allozom (XX ya da XY); gamette 23. [[K1 s. 9]]',
+      gamet: 'Gametler (sperm ve yumurta) her çiftten yalnız birini, toplam 23 kromozom taşır. [[K1 s. 9]] [[K1 s. 11]]',
+      k: 'Kadında cinsiyet kromozomu çifti XX\'tir. İki kromozom tipi de DNA taşır; cinsiyeti yalnız allozomlar belirler. [[K1 s. 9]]',
+      e: 'Erkekte cinsiyet kromozomu çifti XY\'dir. İki kromozom tipi de DNA taşır; cinsiyeti yalnız allozomlar belirler. [[K1 s. 9]]',
+      A: 'Bir kişinin genetik kodu her hücrenin çekirdeğinde kromatin denen yoğun bir yapı içinde paketlenmiştir. [[K1 s. 9]]',
+      B: 'Hücre bölünmeye hazırlanırken kromatin iplik benzeri kromozomlara düzenlenir; her kromozom aslında kıvrılmış tek parça bir DNA molekülüdür. [[K1 s. 9]]'
+    };
+    let cins = 'k', hucre = 'v', son = 'vucut', dar = null, odak = null;
+    /* sabit tohumlu sözde rastgele: kromatin iplikleri her açılışta aynı */
+    let tohum = 7;
+    const rnd = () => { tohum = (tohum * 16807) % 2147483647; return tohum / 2147483647; };
+    const kromatin = (cx, cy, R) => {
+      tohum = 7;
+      return Array.from({ length: 8 }, () => {
+        let a = rnd() * 6.283;
+        const p = Array.from({ length: 8 }, () => { a += 0.7 + rnd() * 0.9; const r = R * (0.2 + 0.72 * rnd()); return [cx + r * Math.cos(a), cy + r * Math.sin(a)]; });
+        let d = `M${p[0][0].toFixed(1)} ${p[0][1].toFixed(1)}`;
+        for (let i = 1; i < p.length - 1; i++) { const m = [(p[i][0] + p[i + 1][0]) / 2, (p[i][1] + p[i + 1][1]) / 2]; d += ` Q${p[i][0].toFixed(1)} ${p[i][1].toFixed(1)} ${m[0].toFixed(1)} ${m[1].toFixed(1)}`; }
+        return `<path class="f03-km-ip" d="${d}"/>`;
+      }).join('');
+    };
+    const ok = (x1, y1, x2, y2) => {
+      const a = Math.atan2(y2 - y1, x2 - x1), u = 7;
+      const k1 = [x2 - u * Math.cos(a - 0.45), y2 - u * Math.sin(a - 0.45)], k2 = [x2 - u * Math.cos(a + 0.45), y2 - u * Math.sin(a + 0.45)];
+      return `<line class="f03-km-ok" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"/><path class="f03-km-okb" d="M${k1[0].toFixed(1)} ${k1[1].toFixed(1)} L${x2} ${y2} L${k2[0].toFixed(1)} ${k2[1].toFixed(1)}Z"/>`;
+    };
+    const metin = (x, y, sat, sinif, anc = 'middle', ara = 15) => sat.map((s, i) => `<text class="${sinif}" x="${x}" y="${y + i * ara}" text-anchor="${anc}">${esc(s)}</text>`).join('');
+    /* X biçimli kromozom: dört kol, iki kat çizgiyle (dış çizgi + iç dolgu), enine bantlar */
+    const kromozom = (cx, cy, w, h) => {
+      const c = [[cx - 6, cy], [cx + 6, cy]];
+      const uc = [[cx - w, cy - h], [cx - w - 2, cy + h], [cx + w, cy - h], [cx + w + 2, cy + h]];
+      const kol = uc.map((u, i) => [c[i < 2 ? 0 : 1], u]);
+      const yol = kol.map(([a, b]) => `M${a[0]} ${a[1]} L${b[0]} ${b[1]}`).join(' ');
+      const bant = kol.map(([a, b]) => {
+        const dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L * 8, ny = dx / L * 8;
+        return [0.3, 0.5, 0.68, 0.85].map((t) => { const x = a[0] + dx * t, y = a[1] + dy * t; return `M${(x - nx).toFixed(1)} ${(y - ny).toFixed(1)} L${(x + nx).toFixed(1)} ${(y + ny).toFixed(1)}`; }).join(' ');
+      }).join(' ');
+      return { svg: `<path class="f03-km-kd" d="${yol}"/><path class="f03-km-ki" d="${yol}"/><path class="f03-km-bant" d="${bant}"/><circle class="f03-km-sen" cx="${cx}" cy="${cy}" r="3.2"/>`, uc: uc[2] };
+    };
+    /* büyüteç: kıvrım açılınca görülen çift sarmal merdiveni */
+    const buyutec = (mx, my, r, kim) => {
+      let o1 = '', o2 = '', bas = '';
+      for (let i = 0; i <= 40; i++) {
+        const x = mx - r - 4 + i * (2 * r + 8) / 40, f = (x - mx) * 0.11, y1 = my + 11 * Math.sin(f), y2 = my - 11 * Math.sin(f);
+        o1 += `${i ? 'L' : 'M'}${x.toFixed(1)} ${y1.toFixed(1)} `; o2 += `${i ? 'L' : 'M'}${x.toFixed(1)} ${y2.toFixed(1)} `;
+      }
+      for (let k = -2; k <= 2; k++) { const x = mx + k * 11 + 5.5, f = (x - mx) * 0.11, y = 11 * Math.sin(f); if (Math.abs(y) > 3) bas += `M${x.toFixed(1)} ${(my + y).toFixed(1)} L${x.toFixed(1)} ${(my - y).toFixed(1)} `; }
+      return `<clipPath id="${kim}"><circle cx="${mx}" cy="${my}" r="${r}"/></clipPath>
+        <circle class="f03-km-bz" cx="${mx}" cy="${my}" r="${r}"/>
+        <g clip-path="url(#${kim})"><path class="f03-km-bas" d="${bas}"/><path class="f03-km-om" d="${o1}"/><path class="f03-km-om" d="${o2}"/></g>
+        <circle class="f03-km-bc" cx="${mx}" cy="${my}" r="${r}"/>`;
+    };
+    /* çiftler: her çiftin iki çubuğu; gamette biri silik */
+    const cift = (x, taban, i) => {
+      const g = hucre === 'g', cin = i === 22;
+      const h1 = cin ? H(156) : H(MB[i]), h2 = cin ? (cins === 'e' ? H(57) : H(156)) : H(MB[i]);
+      const s = cin ? 'f03-km-al' : 'f03-km-ot';
+      if (g && cin && cins === 'e') return `<rect class="${s}" x="${x - 2.5}" y="${(taban - h1).toFixed(1)}" width="5" height="${h1.toFixed(1)}" rx="2.5"/><text class="f03-km-xy" x="${x}" y="${(taban - h1 - 4).toFixed(1)}" text-anchor="middle">X/Y</text>`;
+      return `<rect class="${s}" x="${x - 5.75}" y="${(taban - h1).toFixed(1)}" width="5" height="${h1.toFixed(1)}" rx="2.5"/><rect class="${s}${g ? ' f03-km-silik' : ''}" x="${x + 0.75}" y="${(taban - h2).toFixed(1)}" width="5" height="${h2.toFixed(1)}" rx="2.5"/>`;
+    };
+    const no = (x, y, i) => (ETIKET.includes(i + 1) ? `<text class="f03-km-n" x="${x}" y="${y}" text-anchor="middle">${i + 1}</text>` : '');
+    const cinsAd = () => (hucre === 'g' ? (cins === 'e' ? 'X ya da Y' : 'X') : cins === 'e' ? 'XY' : 'XX');
+    const sayac = () => (hucre === 'g' ? '23 kromozom (tek takım)' : '46 kromozom (23 çift)');
+    const adet = (n, c) => (hucre === 'g' ? `${n}` : `${c} çift`);
+
+    const genis = () => {
+      const k = kromozom(262, 105, 23, 63);
+      let C = '';
+      for (let i = 0; i < 22; i++) { const r = i < 11 ? 0 : 1, x = 432 + (i % 11) * 17, t = r ? 168 : 106; C += cift(x, t, i) + no(x, t + 13, i); }
+      C += cift(669, 168, 22);
+      return `<svg class="f03-km-svg" viewBox="0 0 720 290" role="img" aria-label="Çekirdekteki kromatin, bölünmeye hazırlanırken kromozomlara düzenlenir; insan hücresinde 22 çift otozom ve 1 çift allozom">
+        <g class="f03-km-pano" data-p="A" tabindex="0" role="button" aria-label="Pano A: çekirdekte kromatin">
+          <rect class="f03-km-zemin" x="0" y="0" width="160" height="260"/>
+          ${metin(80, 18, ['Çekirdek: kromatin'], 'f03-km-t')}
+          <circle class="f03-km-hc" cx="80" cy="112" r="72"/><circle class="f03-km-ck" cx="80" cy="112" r="46"/>
+          <clipPath id="f03-kr-clip-a"><circle cx="80" cy="112" r="44"/></clipPath><g clip-path="url(#f03-kr-clip-a)">${kromatin(80, 112, 46)}</g>
+          ${metin(80, 212, ['Kromatin'], 'f03-km-l')}${metin(80, 228, ['çekirdekte yoğun', 'paketlenmiş genetik kod'], 'f03-km-s', 'middle', 14)}
+        </g>
+        ${ok(160, 112, 222, 112)}${metin(191, 76, ['hücre', 'bölünmeye', 'hazırlanırken'], 'f03-km-o', 'middle', 11.5)}
+        <g class="f03-km-pano" data-p="B" tabindex="0" role="button" aria-label="Pano B: kromozom, kıvrılmış tek bir DNA molekülü">
+          <rect class="f03-km-zemin" x="226" y="0" width="142" height="260"/>
+          ${metin(280, 18, ['Kromozom'], 'f03-km-t')}
+          ${k.svg}<line class="f03-km-kes" x1="${k.uc[0] + 6}" y1="${k.uc[1] + 2}" x2="314" y2="64"/>
+          ${buyutec(334, 74, 22, 'f03-kr-clip')}${metin(334, 110, ['çift sarmal'], 'f03-km-s')}
+          ${metin(272, 212, ['Kromozom'], 'f03-km-l')}${metin(272, 228, ['kıvrılmış tek bir', 'DNA molekülü'], 'f03-km-s', 'middle', 14)}
+        </g>
+        ${ok(370, 112, 414, 112)}${metin(392, 88, ['hücrede', hucre === 'g' ? '23 tane' : '46 tane'], 'f03-km-o', 'middle', 11.5)}
+        <g class="f03-km-pano" data-p="C" tabindex="0" role="button" aria-label="Pano C: 22 çift otozom ve 1 çift allozom">
+          <rect class="f03-km-zemin" x="418" y="0" width="302" height="290"/>
+          ${metin(570, 18, [hucre === 'g' ? '23 çiftten birer' : '23 çift'], 'f03-km-t')}
+          ${C}
+          <rect class="f03-km-kutu" x="636" y="106" width="66" height="82" rx="8"/>
+          <text class="f03-km-xx" x="669" y="182" text-anchor="middle">${cinsAd()}</text>
+          ${metin(669, 44, ['Allozomlar'], 'f03-km-l f03-km-lc')}${metin(669, 59, ['(cinsiyet', 'kromozomları)', adet(1, 1)], 'f03-km-s', 'middle', 13)}
+          ${metin(669, 206, ['XX ya da XY;', 'cinsiyeti yalnız', 'bunlar belirler'], 'f03-km-s', 'middle', 13)}
+          <path class="f03-km-ayr" d="M424 190 v6 H610 v-6 M517 196 v5"/>
+          ${metin(517, 216, [`Otozomlar · ${adet(22, 22)}`], 'f03-km-l')}${metin(517, 231, ['DNA taşır, cinsiyeti belirlemez'], 'f03-km-s')}
+          ${metin(517, 268, [sayac()], 'f03-km-say')}
+        </g>
+      </svg>`;
+    };
+    const darCiz = () => {
+      const k = kromozom(160, 388, 23, 52);
+      let C = '';
+      for (let i = 0; i < 22; i++) { const r = Math.floor(i / 8), x = 40 + (i % 8) * 40, t = [640, 705, 775][r]; C += cift(x, t, i) + no(x, t + 13, i); }
+      C += cift(320, 775, 22);
+      return `<svg class="f03-km-svg" viewBox="0 0 360 912" role="img" aria-label="Çekirdekteki kromatin, bölünmeye hazırlanırken kromozomlara düzenlenir; insan hücresinde 22 çift otozom ve 1 çift allozom">
+        <g class="f03-km-pano" data-p="A" tabindex="0" role="button" aria-label="Pano A: çekirdekte kromatin">
+          <rect class="f03-km-zemin" x="0" y="0" width="360" height="244"/>
+          ${metin(180, 18, ['Çekirdek: kromatin'], 'f03-km-t')}
+          <circle class="f03-km-hc" cx="180" cy="108" r="72"/><circle class="f03-km-ck" cx="180" cy="108" r="46"/>
+          <clipPath id="f03-kr-clip-a"><circle cx="180" cy="108" r="44"/></clipPath><g clip-path="url(#f03-kr-clip-a)">${kromatin(180, 108, 46)}</g>
+          ${metin(180, 204, ['Kromatin'], 'f03-km-l')}${metin(180, 220, ['çekirdekte yoğun paketlenmiş genetik kod'], 'f03-km-s')}
+        </g>
+        ${ok(180, 246, 180, 286)}${metin(194, 262, ['hücre bölünmeye', 'hazırlanırken'], 'f03-km-o', 'start', 13)}
+        <g class="f03-km-pano" data-p="B" tabindex="0" role="button" aria-label="Pano B: kromozom, kıvrılmış tek bir DNA molekülü">
+          <rect class="f03-km-zemin" x="0" y="290" width="360" height="206"/>
+          ${metin(180, 308, ['Kromozom'], 'f03-km-t')}
+          ${k.svg}<line class="f03-km-kes" x1="${k.uc[0] + 6}" y1="${k.uc[1] + 2}" x2="223" y2="348"/>
+          ${buyutec(250, 360, 30, 'f03-kr-clip')}${metin(250, 406, ['çift sarmal'], 'f03-km-s')}
+          ${metin(180, 468, ['Kromozom'], 'f03-km-l')}${metin(180, 484, ['kıvrılmış tek bir DNA molekülü'], 'f03-km-s')}
+        </g>
+        ${ok(180, 498, 180, 538)}${metin(194, 522, [hucre === 'g' ? 'hücrede 23 tane' : 'hücrede 46 tane'], 'f03-km-o', 'start')}
+        <g class="f03-km-pano" data-p="C" tabindex="0" role="button" aria-label="Pano C: 22 çift otozom ve 1 çift allozom">
+          <rect class="f03-km-zemin" x="0" y="542" width="360" height="370"/>
+          ${metin(180, 560, [hucre === 'g' ? '23 çiftten birer' : '23 çift'], 'f03-km-t')}
+          ${C}
+          <rect class="f03-km-kutu" x="287" y="712" width="66" height="84" rx="8"/>
+          <text class="f03-km-xx" x="320" y="790" text-anchor="middle">${cinsAd()}</text>
+          <path class="f03-km-ayr" d="M22 800 v6 H262 v-6"/>
+          <rect class="f03-km-sw ot" x="20" y="818" width="10" height="10" rx="2"/>${metin(36, 828, [`Otozomlar · ${adet(22, 22)}`], 'f03-km-l', 'start')}${metin(36, 843, ['DNA taşır, cinsiyeti belirlemez'], 'f03-km-s', 'start')}
+          <rect class="f03-km-sw al" x="20" y="854" width="10" height="10" rx="2"/>${metin(36, 864, [`Allozomlar (cinsiyet kromozomları) · ${adet(1, 1)}`], 'f03-km-l', 'start')}${metin(36, 879, ['XX ya da XY; cinsiyeti yalnız bunlar belirler'], 'f03-km-s', 'start')}
+          ${metin(180, 906, [sayac()], 'f03-km-say')}
+        </g>
+      </svg>`;
+    };
+    el.innerHTML = `<div class="f03-km-ust">
+        <div class="seg" role="group" aria-label="Cinsiyet"><button type="button" data-c="k" aria-pressed="true">Kadın (XX)</button><button type="button" data-c="e" aria-pressed="false">Erkek (XY)</button></div>
+        <div class="seg" role="group" aria-label="Hücre"><button type="button" data-h="v" aria-pressed="true">Vücut hücresi</button><button type="button" data-h="g" aria-pressed="false">Gamet (sperm, yumurta)</button></div>
+      </div><div class="f03-km-cizim"></div>`;
+    const kap = el.querySelector('.f03-km-cizim');
+    const yaz = () => { if (cap) cap.innerHTML = REF(MET[odak && odak !== 'C' ? odak : son]); };
+    const vurgu = () => kap.querySelectorAll('.f03-km-pano').forEach((g) => g.classList.toggle('silik', !!odak && g.dataset.p !== odak));
+    const ciz = () => {
+      kap.innerHTML = dar ? darCiz() : genis();
+      el.querySelectorAll('[data-c]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.c === cins)));
+      el.querySelectorAll('[data-h]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.h === hucre)));
+      vurgu();
+    };
+    const bak = () => { const d = el.clientWidth < 560; if (d !== dar) { dar = d; ciz(); } };
+    const odakla = (p) => { if (p === odak) return; odak = p; vurgu(); yaz(); };
+    el.addEventListener('click', (e) => {
+      const c = e.target.closest('[data-c]');
+      if (c) { cins = c.dataset.c; son = hucre === 'g' ? 'gamet' : cins; ciz(); yaz(); return; }
+      const h = e.target.closest('[data-h]');
+      if (h) { hucre = h.dataset.h; son = hucre === 'g' ? 'gamet' : 'vucut'; ciz(); yaz(); return; }
+      const p = e.target.closest('.f03-km-pano'); odakla(p && p.dataset.p !== odak ? p.dataset.p : null);
+    });
+    const uzerinde = (e) => { const p = e.target.closest('.f03-km-pano'); odakla(p ? p.dataset.p : null); };
+    kap.addEventListener('mouseover', uzerinde);
+    kap.addEventListener('mouseleave', () => odakla(null));
+    kap.addEventListener('focusin', uzerinde);
+    kap.addEventListener('focusout', () => odakla(null));
+    bak();
+    let ro = null;
+    if ('ResizeObserver' in window) { ro = new ResizeObserver(bak); ro.observe(el); } else window.addEventListener('resize', bak);
+    return () => { if (ro) ro.disconnect(); else window.removeEventListener('resize', bak); };
+  };
 })();

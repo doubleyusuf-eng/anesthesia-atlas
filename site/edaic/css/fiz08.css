@@ -128,3 +128,112 @@
   .f08-bsvg2 .f08-tk{font-size:12px}
   .f08-koop .k-fe{font-size:10.5px}
 }
+
+/* ---------- 7–9 · yeni bileşenler: ortak ---------- */
+.f08-ysvg,.f08-osvg,.f08-zsvg{width:100%;height:auto;display:block;margin-inline:auto;overflow:visible}
+.f08-ysvg{max-width:640px}.f08-ysvg.dar{max-width:420px}
+.f08-osvg{max-width:600px}.f08-osvg.dar{max-width:420px}
+.f08-zsvg{max-width:640px}.f08-zsvg.dar{max-width:420px}
+.f08-ince{stroke:var(--muted);stroke-width:1.3;fill:none}
+.f08-cap{stroke:var(--muted);stroke-width:1.5}
+.f08-p{cursor:pointer;outline:none;transition:opacity .2s}
+.f08-p .f08-fr{fill:transparent;stroke:transparent;stroke-width:2}
+.f08-p:hover .f08-fr{stroke:var(--line)}
+.f08-p:focus-visible .f08-fr,.f08-p:focus-visible .f08-box{stroke:var(--accent);stroke-dasharray:4 3}
+.f08-p.sel .f08-fr{fill:var(--accent-soft);fill-opacity:.45;stroke:var(--accent);stroke-dasharray:none}
+.f08-p.sel .f08-k{stroke-width:3}
+.f08-has .f08-p:not(.sel){opacity:.55}
+.f08-o2{fill:var(--crit);stroke:var(--paper);stroke-width:1}
+.f08-o2l{stroke:var(--crit);stroke-width:1.2}
+.f08-hem{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:1.5}
+.f08-hem.w{fill:var(--warn-soft);stroke:var(--warn)}
+.f08-su{stroke-width:1.8}
+.f08-su.a{fill:var(--ok-soft);stroke:var(--ok)}
+.f08-su.b{fill:var(--c-basic-soft);stroke:var(--c-basic)}
+
+/* 7 · eritrosit → Hb → hem */
+.f08-rbc{fill:var(--crit-soft);stroke:var(--crit);stroke-width:2}
+.f08-hbn{fill:var(--crit)}
+.f08-sik{fill:none;stroke:var(--muted);stroke-width:1.3;stroke-dasharray:3 2.5}
+.f08-bag line{stroke:var(--muted);stroke-width:1.6;stroke-dasharray:2.5 2}
+.f08-gr{font:800 17px var(--f-display)}
+.f08-gr.a{fill:var(--ok)}.f08-gr.b{fill:var(--c-basic)}
+.f08-hemic{fill:none;stroke:var(--c-clin);stroke-width:1;stroke-dasharray:3 2;opacity:.8}
+.f08-hemi{stroke:var(--c-clin);stroke-width:1.4}
+.f08-fe{fill:var(--chip);stroke:var(--c-clin);stroke-width:1.8}
+.f08-fet{font:800 10.5px var(--f-mono);fill:var(--ink)}
+.f08-kb{stroke:var(--crit);stroke-width:1.6;stroke-dasharray:4 3}
+.f08-o2t{font:700 10px var(--f-mono);fill:var(--crit)}
+.f08-ysvg.dar .f08-o2t{font-size:11.5px}
+.f08-yl{font-family:var(--f-display);fill:var(--muted);font-weight:600}
+.f08-yl.t{fill:var(--ink);font-weight:800}
+.f08-yl.s{fill:var(--ink);font-weight:600}
+.f08-yl.n{font-weight:500}
+.f08-yl.kr{fill:var(--crit)}
+
+/* 8 · orak hücre */
+.f08-box{stroke-width:1.6}
+.f08-box.w{fill:var(--warn-soft);stroke:var(--warn)}
+.f08-box.b{fill:var(--c-basic-soft);stroke:var(--c-basic)}
+.f08-p.sel .f08-box{stroke:var(--accent);stroke-width:3}
+.f08-oh{font-family:var(--f-display);font-weight:800;fill:var(--ink)}
+.f08-ot{font-family:var(--f-display);font-weight:600;fill:var(--ink)}
+.f08-ot.b{font-weight:800}
+.f08-on{font-family:var(--f-display);font-weight:600;fill:var(--muted)}
+.f08-aa{fill:var(--paper);stroke:var(--muted);stroke-width:1.2}
+.f08-aa.v{fill:var(--warn);stroke:var(--warn)}
+.f08-glu{font-family:var(--f-mono);font-weight:600;fill:var(--muted)}
+.f08-ust{stroke:var(--muted);stroke-width:1.4}
+.f08-val2{font-family:var(--f-mono);font-weight:800;fill:var(--warn)}
+.f08-hbs{fill:var(--warn)}
+.f08-hbs.ok{fill:var(--crit)}
+.f08-rbc2{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.8}
+.f08-orakc{fill:var(--paper);stroke:var(--warn);stroke-width:1.8}
+.f08-x line{stroke:var(--warn);stroke-width:2.6;stroke-linecap:round}
+.f08-enf{fill:url(#f08-tarama);stroke:var(--warn);stroke-width:1.3;stroke-dasharray:3 2}
+.f08-enft{font-family:var(--f-display);font-weight:800;fill:var(--warn);paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+.f08-mad{fill:var(--ink)}
+.f08-bar.ok{fill:var(--ok)}
+.f08-bar.cb{fill:var(--c-basic)}
+.f08-bar.r{opacity:.4}
+.f08-bar.bos{fill:var(--paper);stroke:var(--line);stroke-width:1}
+.f08-dur{fill:var(--c-basic)}
+.f08-klin{fill:var(--chip);stroke:var(--line);stroke-width:1}
+
+/* 9 · üç zehir */
+.f08-zseg{margin-bottom:12px}
+.f08-dkf{fill:var(--paper);stroke-width:1.8}
+.f08-dk.ok .f08-dkf{stroke:var(--ok)}
+.f08-dk.kes .f08-dkf{stroke:var(--warn);stroke-width:2.6;fill:var(--warn-soft);fill-opacity:.5}
+.f08-dk.asil .f08-dkf{stroke-width:4}
+.f08-rol{font-family:var(--f-display);font-weight:800}
+.f08-dk.ok .f08-rol{fill:var(--ok)}
+.f08-dk.kes .f08-rol{fill:var(--warn)}
+.f08-dkn{font-family:var(--f-display);font-weight:600;fill:var(--muted)}
+.f08-dkn.b{fill:var(--ink);font-weight:800}
+.f08-zx circle{fill:var(--paper);stroke:var(--warn);stroke-width:2}
+.f08-zx line{stroke:var(--warn);stroke-width:3;stroke-linecap:round}
+.f08-dk.sonuk .f08-o2,.f08-zok.sonuk,.f08-dk.sonuk .f08-zo,.f08-zo.sonuk{opacity:.3}
+.f08-alv{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.6}
+.f08-lco{fill:var(--muted);stroke:var(--paper);stroke-width:1}
+.f08-lcn{fill:var(--c-clin);stroke:var(--paper);stroke-width:1}
+.f08-zchip{fill:var(--paper);stroke:var(--c-clin);stroke-width:1.3}
+.f08-zchip.w{stroke:var(--warn);fill:var(--warn-soft)}
+.f08-zchipt{font:800 9.5px var(--f-mono);fill:var(--ink)}
+.f08-zsvg.dar .f08-zchipt{font-size:10.8px}
+.f08-zax{fill:none;stroke:var(--muted);stroke-width:1}
+.f08-zc{fill:none;stroke-width:1.8}
+.f08-zc.n{stroke:var(--muted)}
+.f08-zc.n.d{stroke-dasharray:3 2;stroke-width:1.3}
+.f08-zc.w{stroke:var(--warn);stroke-width:2.2}
+.f08-zo{stroke:var(--crit);stroke-width:1.8}
+.f08-doku{fill:var(--chip);stroke:var(--line)}
+.f08-mito{fill:var(--chip);stroke:var(--muted);stroke-width:1.6}
+.f08-krista{fill:none;stroke:var(--muted);stroke-width:1.3;stroke-linejoin:round}
+.f08-hk{font-family:var(--f-display);font-weight:700;fill:var(--accent)}
+.f08-asilt{font-family:var(--f-display);font-weight:800;fill:var(--warn)}
+.f08-zoku{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:12px 0 0}
+.f08-zoku > div{border:1px solid var(--line);border-radius:10px;padding:9px 12px;background:var(--bg);min-width:0}
+.f08-zoku dt{font:600 11.5px/1.3 var(--f-mono);color:var(--muted)}
+.f08-zoku dd{margin:2px 0 0;font:750 14.5px/1.3 var(--f-display);color:var(--ink);word-break:break-word}
+@media (max-width:620px){.f08-zoku{grid-template-columns:1fr}}

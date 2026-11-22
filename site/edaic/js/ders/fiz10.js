@@ -595,4 +595,200 @@
       el.querySelectorAll('.f10-od-rbc').forEach((r, i) => { const x = 26 + ((i * 50 + t * 26) % 310); r.setAttribute('cx', x.toFixed(1)); });
     });
   };
+  /* ---------- 6 · f10_bariyer: yüzey, kalınlık, süre (#d10-alveol) ---------- */
+  VIZ.f10_bariyer = (el) => {
+    const host = el.closest('.viz'), cap = host ? host.querySelector('.viz-cap') : null, capVars = cap ? cap.innerHTML : '';
+    const CAP = {
+      a: '<b>Geniş yüzey.</b> Akciğerlerde yaklaşık 300 milyon alveol bulunur; gaz değişimi için toplam ≈ 70 m² yüzey sağlarlar. Difüzyon hızı yüzey alanıyla doğru orantılıdır. [[K1 s. 40]]',
+      b: '<b>İnce bariyer.</b> Alveol-kapiller bariyer bazı yerlerde yalnız 200 nm kalınlığındadır. Difüzyon hızı kalınlıkla ters orantılıdır. [[K1 s. 40]]',
+      c: '<b>Kısa ama yeterli süre.</b> İstirahatte eritrosit pulmoner kapilleri ortalama 0,75 s\'de geçer; O₂ difüzyonu genellikle 0,25 s içinde tamamlanır: yaklaşık üç katlık güvenlik payı. [[K1 s. 40]]',
+    };
+    const AL = [[0, -14], [-34, -4], [34, -4], [-18, 22], [18, 22], [-50, 24], [50, 24], [0, 46]];
+    const cx = 120, cy = 70;
+    const panA = `<svg class="f10-svg" viewBox="0 0 240 200" role="img" aria-label="Bronşiyol ucunda üzüm salkımı gibi alveoller ve çevrelerinde kapiller ağ: yaklaşık 300 milyon alveol, 70 metrekare yüzey">
+      <line x1="${cx}" y1="8" x2="${cx}" y2="${cy - 26}" class="f10-br-bron"/>
+      ${AL.map(([dx, dy]) => `<line x1="${cx}" y1="${cy - 26}" x2="${cx + dx}" y2="${cy + dy}" class="f10-br-dal"/>`).join('')}
+      ${AL.map(([dx, dy]) => `<circle cx="${cx + dx}" cy="${cy + dy}" r="21.5" class="f10-br-kap"/>`).join('')}
+      ${AL.map(([dx, dy]) => `<circle cx="${cx + dx}" cy="${cy + dy}" r="18" class="f10-br-alv"/>`).join('')}
+      <text x="120" y="164" text-anchor="middle" class="f10-br-buyuk">≈ 300 milyon alveol</text>
+      <text x="120" y="186" text-anchor="middle" class="f10-br-t">≈ 70 m² gaz değişim yüzeyi</text>
+    </svg>`;
+    const O2N = [[24, 34], [40, 52], [128, 30], [146, 50], [166, 36], [118, 62], [180, 60], [26, 70], [150, 70]];
+    const panB = `<svg class="f10-svg" viewBox="0 0 240 200" role="img" aria-label="Alveol duvarının kesiti: üstte alveol havası, ortada 200 nanometrelik bariyer, altta eritrositli kapiller; O2 havadan kana, CO2 kandan havaya geçer">
+      <defs>
+        <marker id="f10-br-uo2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--crit)"/></marker>
+        <marker id="f10-br-uco2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--c-basic)"/></marker>
+        <marker id="f10-br-uol" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--ink)"/></marker>
+      </defs>
+      <text x="232" y="18" text-anchor="end" class="f10-br-k">Alveol havası</text>
+      ${O2N.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="3" class="f10-br-o2n"/>`).join('')}
+      <rect x="0" y="100" width="240" height="84" class="f10-br-lum"/>
+      <rect x="-1" y="90" width="242" height="10" class="f10-br-band"/>
+      <rect x="40" y="126" width="74" height="32" rx="15" class="f10-br-rbc"/>
+      <text x="77" y="146" text-anchor="middle" class="f10-br-rbct">eritrosit</text>
+      <text x="232" y="178" text-anchor="end" class="f10-br-k">Kapiller kan</text>
+      <line x1="64" y1="30" x2="64" y2="122" class="f10-br-ok2" marker-end="url(#f10-br-uo2)"/>
+      <text x="56" y="44" text-anchor="end" class="f10-br-gaz" style="fill:var(--crit)">O₂</text>
+      <line x1="92" y1="122" x2="92" y2="30" class="f10-br-okc" marker-end="url(#f10-br-uco2)"/>
+      <text x="100" y="44" class="f10-br-gaz" style="fill:var(--c-basic)">CO₂</text>
+      <line x1="212" y1="62" x2="212" y2="88" class="f10-br-olc" marker-end="url(#f10-br-uol)"/>
+      <line x1="212" y1="128" x2="212" y2="102" class="f10-br-olc" marker-end="url(#f10-br-uol)"/>
+      <text x="204" y="82" text-anchor="end" class="f10-br-t"><tspan font-weight="700">200 nm</tspan></text>
+      <text x="204" y="118" text-anchor="end" class="f10-br-tk">en ince yerlerde</text>
+    </svg>`;
+    const X0 = 20, X1 = 280, sx = (t) => X0 + (X1 - X0) * t / 0.75;
+    const panC = `<svg class="f10-svg" viewBox="0 0 300 200" role="img" aria-label="Zaman çubuğu: eritrosit kapilleri 0,75 saniyede geçer, O2 dengesi 0,25 saniyede kurulur; kalan süre yedek, yaklaşık üç kat güvenlik payı">
+      <text x="150" y="14" text-anchor="middle" class="f10-br-tk">Eritrositin kapillerde kaldığı süre (istirahat)</text>
+      <text x="${X0 - 8}" y="34" class="f10-br-tk">kapiller başı</text>
+      <text x="${X1 + 8}" y="34" text-anchor="end" class="f10-br-tk">kapiller sonu</text>
+      <line x1="${X0}" y1="47" x2="${X1}" y2="47" class="f10-br-iz"/>
+      <ellipse cx="${X0}" cy="47" rx="9" ry="5" class="f10-br-rbcs"/>
+      <ellipse cx="${X1}" cy="47" rx="9" ry="5" class="f10-br-rbcs"/>
+      <ellipse class="f10-br-git" cx="${X1}" cy="47" rx="9" ry="5.5"/>
+      <rect x="${X0}" y="58" width="${sx(0.25) - X0}" height="36" class="f10-br-z1"/>
+      <rect x="${sx(0.25)}" y="58" width="${X1 - sx(0.25)}" height="36" class="f10-br-z2"/>
+      <rect x="${X0}" y="58" width="${X1 - X0}" height="36" class="f10-br-zc"/>
+      <text x="${(X0 + sx(0.25)) / 2}" y="73" text-anchor="middle" class="f10-br-zt">O₂ dengesi</text>
+      <text x="${(X0 + sx(0.25)) / 2}" y="87" text-anchor="middle" class="f10-br-zt">kurulur</text>
+      <text x="${(sx(0.25) + X1) / 2}" y="81" text-anchor="middle" class="f10-br-zt">yedek süre</text>
+      
+      ${[0, 0.25, 0.5, 0.75].map((t) => `<line x1="${sx(t)}" y1="94" x2="${sx(t)}" y2="100" class="f10-br-tik"/><text x="${sx(t)}" y="112" text-anchor="middle" class="f10-br-tk">${t ? fmt(t, t === 0.5 ? 1 : 2) : '0'}${t === 0.75 ? ' s' : ''}</text>`).join('')}
+      <rect x="${X0}" y="122" width="${X1 - X0}" height="28" rx="8" class="f10-br-vur"/>
+      <text x="150" y="141" text-anchor="middle" class="f10-br-vt">0,75 / 0,25 ≈ 3 kat güvenlik payı</text>
+      <text x="150" y="172" text-anchor="middle" class="f10-br-not">Hipokseminin nedeni nadiren difüzyondur;</text>
+      <text x="150" y="188" text-anchor="middle" class="f10-br-not">V̇/Q̇ uyumsuzluğu çok daha sık.</text>
+    </svg>`;
+    el.innerHTML = `<div class="f10-br">
+      <div class="f10-br-p" data-p="a" tabindex="0" role="button" aria-label="Panel A: yüzey"><div class="f10-br-bas"><b>A</b> Yüzey</div>${panA}</div>
+      <div class="f10-br-p" data-p="b" tabindex="0" role="button" aria-label="Panel B: kalınlık"><div class="f10-br-bas"><b>B</b> Kalınlık</div>${panB}</div>
+      <div class="f10-br-p" data-p="c" tabindex="0" role="button" aria-label="Panel C: süre"><div class="f10-br-bas"><b>C</b> Süre</div>${panC}</div>
+    </div>`;
+    let secili = null;
+    const sec = (k) => {
+      secili = k;
+      el.querySelectorAll('.f10-br-p').forEach((p) => { p.classList.toggle('on', p.dataset.p === k); p.setAttribute('aria-pressed', String(p.dataset.p === k)); });
+      if (cap) cap.innerHTML = k ? REF(CAP[k]) : capVars;
+    };
+    const ac = new AbortController(), o = { signal: ac.signal };
+    el.querySelectorAll('.f10-br-p').forEach((p) => {
+      p.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') sec(p.dataset.p); }, o);
+      p.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') sec(null); }, o);
+      p.addEventListener('click', () => sec(secili === p.dataset.p && !p.matches(':hover') ? null : p.dataset.p), o);
+      p.addEventListener('focus', () => sec(p.dataset.p), o);
+      p.addEventListener('blur', () => sec(null), o);
+    });
+    /* C panelinde eritrosit 0 → 0,75 s ilerler; 0,25 s'de O₂ ile dolar (rengi tam kırmızı olur) */
+    const git = el.querySelector('.f10-br-git');
+    const ciz = (t) => {
+      git.setAttribute('cx', sx(t).toFixed(1));
+      git.style.fill = t >= 0.25 ? 'var(--crit)' : 'var(--muted)';
+    };
+    ciz(0.75);
+    let t = 0, bek = 0;
+    const dur = ticker(el, (dt) => {
+      if (RM) return;
+      if (bek > 0) { bek -= dt; if (bek <= 0) t = 0; return; }
+      t += dt * 0.25; /* 4 kat yavaş: 0,75 s → 3 s */
+      if (t >= 0.75) { t = 0.75; bek = 1.2; }
+      ciz(t);
+    });
+    return () => { ac.abort(); dur(); };
+  };
+
+  /* ---------- 7 · f10_rezeksiyon: iki ölçüm → hesap → karşılaştırma → risk (#d10-rezeksiyon) ---------- */
+  VIZ.f10_rezeksiyon = (el) => {
+    const host = el.closest('.viz'), cap = host ? host.querySelector('.viz-cap') : null, capVars = cap ? cap.innerHTML : '';
+    const CAP = {
+      fev: '<b>FEV₁</b> akciğerin ve göğüs duvarının mekanik yeteneğini yansıtır. [[K1 s. 43]]',
+      dlco: '<b>DLCO</b> alveol-kapiller işlevin kaba bir ölçüsüdür; ikisi birlikte değerlendirilir. [[K1 s. 43]]',
+      hesap: '<b>Hesap.</b> Postoperatif akciğer işlevi, preoperatif ölçülen FEV₁ ve DLCO\'ya dayanan bir hesapla tahmin edilir ve beklenen değerlerle karşılaştırılır. [[K1 s. 43]]',
+      risk: '<b>Sınıflama.</b> Hasta ölüm ve postoperatif pulmoner komplikasyonlar açısından düşük ya da yüksek riskli sayılır. [[K1 s. 43]]',
+      mort: '<b>Neden önemli?</b> Pnömonektomide mortalite %8\'e kadar çıkar, lobektomide yaklaşık %2\'dir. [[K1 s. 43]]',
+    };
+    const mq = window.matchMedia('(max-width: 820px)');
+    const T = (x, y, lines, cls, anchor = 'start', lh = 14) => `<text x="${x}" y="${y}" text-anchor="${anchor}" class="${cls}">${lines.map((l, i) => `<tspan x="${x}" dy="${i ? lh : 0}">${l}</tspan>`).join('')}</text>`;
+    const kutu = (k, x, y, w, h, tur) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="10" class="f10-rz-b f10-rz-${tur}" data-k="${k}"/>`;
+    const ok = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="f10-rz-ok" marker-end="url(#f10-rz-uc)"/>`;
+    const ikonF = (x, y) => `<g class="f10-rz-ik" transform="translate(${x} ${y})"><path d="M14 0v26M14 4c-6 0-11 2-12 7M14 4c6 0 11 2 12 7M14 11c-6 0-11 2-12 7M14 11c6 0 11 2 12 7M14 18c-5 0-9 2-10 6M14 18c5 0 9 2 10 6"/></g>`;
+    const ikonD = (x, y) => `<g transform="translate(${x} ${y})"><circle cx="13" cy="11" r="9" class="f10-rz-ika"/><path d="M0 24q6.5 -5 13 0t13 0" class="f10-rz-ikk"/></g>`;
+    const defs = `<defs><marker id="f10-rz-uc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" style="fill:var(--muted)"/></marker></defs>`;
+    const seritYap = (x0, y0, lw, sc, satir) => {
+      const r1 = satir ? [x0, y0, x0 + lw, y0 - 9] : null;
+      const yap = (ad, v, y, renk, et) => `
+        ${satir ? `<text x="${x0}" y="${y + 11}" class="f10-rz-st">${ad}</text>` : `<text x="${x0}" y="${y}" class="f10-rz-st">${ad}</text>`}
+        <rect x="${x0 + lw}" y="${satir ? y : y + 6}" width="${10 * sc}" height="14" rx="3" class="f10-rz-bos"/>
+        <rect x="${x0 + lw}" y="${satir ? y : y + 6}" width="${v * sc}" height="14" rx="3" style="fill:${renk}"/>
+        <text x="${x0 + lw + v * sc + 6}" y="${(satir ? y : y + 6) + 11.5}" class="f10-rz-sv">${et}</text>`;
+      return { yap, r1 };
+    };
+    let ac = null;
+    const ciz = () => {
+      if (ac) ac.abort();
+      ac = new AbortController();
+      const dar = mq.matches;
+      let svg;
+      if (!dar) {
+        const s = seritYap(10, 0, 200, 38, true);
+        svg = `<svg class="f10-svg f10-rz-svg" viewBox="0 0 760 302" role="img" aria-label="Akış şeması: preoperatif FEV1 ve DLCO, postoperatif değer hesabı, beklenen değerle karşılaştırma, düşük ya da yüksek risk; altta pnömonektomi ve lobektomi mortalitesi">${defs}
+          <text x="10" y="17" class="f10-rz-ust">Preoperatif ölçüm (rutin solunum fonksiyon testi)</text>
+          <g class="f10-rz-g" data-k="fev" tabindex="0" role="button" aria-label="FEV1">${kutu('fev', 8, 28, 250, 102, 'fev')}${ikonF(18, 40)}
+            ${T(56, 52, ['FEV₁'], 'f10-rz-bt')}${T(56, 70, ['birinci saniyedeki zorlu ekspiratuvar hacim'], 'f10-rz-tk')}${T(56, 94, ['akciğer + göğüs duvarının', '<tspan font-weight="750">mekanik</tspan> yeteneği'], 'f10-rz-t')}</g>
+          <g class="f10-rz-g" data-k="dlco" tabindex="0" role="button" aria-label="DLCO">${kutu('dlco', 8, 142, 250, 78, 'dlco')}${ikonD(18, 154)}
+            ${T(56, 166, ['DLCO'], 'f10-rz-bt')}${T(56, 186, ['alveol-kapiller işlevin', '<tspan font-weight="750">kaba</tspan> ölçüsü'], 'f10-rz-t')}</g>
+          ${ok(258, 79, 288, 108)}${ok(258, 181, 288, 136)}
+          <g class="f10-rz-g" data-k="hesap" tabindex="0" role="button" aria-label="Hesap ve karşılaştırma">${kutu('hesap', 290, 76, 166, 92, 'ort')}
+            ${T(373, 100, ['Postoperatif değer', 'hesaplanır'], 'f10-rz-bt2', 'middle', 16)}${T(373, 138, ['ölçülen preoperatif', 'FEV₁ ve DLCO\'dan'], 'f10-rz-tk', 'middle')}
+            ${ok(456, 122, 482, 122)}
+            ${kutu('hesap', 484, 80, 128, 84, 'ort')}${T(548, 101, ['Beklenen', '(predicted)', 'değerlerle', 'karşılaştırılır'], 'f10-rz-t', 'middle', 15)}</g>
+          ${ok(612, 112, 638, 72)}${ok(612, 132, 638, 172)}
+          <g class="f10-rz-g" data-k="risk" tabindex="0" role="button" aria-label="Risk sınıflaması">${kutu('risk', 640, 40, 112, 56, 'dus')}${T(696, 73, ['Düşük risk'], 'f10-rz-bt2', 'middle')}
+            ${kutu('risk', 640, 146, 112, 56, 'yuk')}${T(696, 179, ['Yüksek risk'], 'f10-rz-bt2', 'middle')}
+            ${T(696, 222, ['ölüm ve', 'postoperatif pulmoner', 'komplikasyonlar'], 'f10-rz-tk', 'middle')}</g>
+          <g class="f10-rz-g" data-k="mort" tabindex="0" role="button" aria-label="Mortalite"><rect x="2" y="244" width="600" height="56" rx="8" class="f10-rz-sb" data-k="mort"/>
+            ${s.yap('Pnömonektomi mortalitesi', 8, 252, 'var(--crit)', '%8\'e kadar')}${s.yap('Lobektomi mortalitesi', 2, 278, 'var(--warn)', '≈ %2')}</g>
+        </svg>`;
+      } else {
+        const s = seritYap(12, 0, 0, 27, false);
+        svg = `<svg class="f10-svg f10-rz-svg dar" viewBox="0 0 360 560" role="img" aria-label="Dikey akış şeması: preoperatif FEV1 ve DLCO, postoperatif değer hesabı, beklenen değerle karşılaştırma, düşük ya da yüksek risk; altta pnömonektomi ve lobektomi mortalitesi">${defs}
+          <text x="180" y="16" text-anchor="middle" class="f10-rz-ust">Preoperatif ölçüm (rutin solunum fonksiyon testi)</text>
+          <g class="f10-rz-g" data-k="fev" tabindex="0" role="button" aria-label="FEV1">${kutu('fev', 6, 26, 170, 150, 'fev')}${ikonF(138, 34)}
+            ${T(16, 50, ['FEV₁'], 'f10-rz-bt')}${T(16, 72, ['birinci saniyedeki', 'zorlu ekspiratuvar', 'hacim'], 'f10-rz-tk')}${T(16, 126, ['akciğer + göğüs', 'duvarının <tspan font-weight="750">mekanik</tspan>', 'yeteneği'], 'f10-rz-t', 'start', 15)}</g>
+          <g class="f10-rz-g" data-k="dlco" tabindex="0" role="button" aria-label="DLCO">${kutu('dlco', 184, 26, 170, 150, 'dlco')}${ikonD(316, 34)}
+            ${T(194, 50, ['DLCO'], 'f10-rz-bt')}${T(194, 126, ['alveol-kapiller', 'işlevin <tspan font-weight="750">kaba</tspan>', 'ölçüsü'], 'f10-rz-t', 'start', 15)}</g>
+          ${ok(91, 176, 150, 200)}${ok(269, 176, 210, 200)}
+          <g class="f10-rz-g" data-k="hesap" tabindex="0" role="button" aria-label="Hesap ve karşılaştırma">${kutu('hesap', 40, 202, 280, 56, 'ort')}
+            ${T(180, 225, ['Postoperatif değer hesaplanır'], 'f10-rz-bt2', 'middle')}${T(180, 245, ['ölçülen preoperatif FEV₁ ve DLCO\'dan'], 'f10-rz-tk', 'middle')}
+            ${ok(180, 258, 180, 278)}
+            ${kutu('hesap', 40, 280, 280, 52, 'ort')}${T(180, 301, ['Beklenen (predicted) değerlerle', 'karşılaştırılır'], 'f10-rz-t', 'middle', 16)}</g>
+          ${ok(160, 332, 100, 356)}${ok(200, 332, 260, 356)}
+          <g class="f10-rz-g" data-k="risk" tabindex="0" role="button" aria-label="Risk sınıflaması">${kutu('risk', 6, 358, 170, 44, 'dus')}${T(91, 385, ['Düşük risk'], 'f10-rz-bt2', 'middle')}
+            ${kutu('risk', 184, 358, 170, 44, 'yuk')}${T(269, 385, ['Yüksek risk'], 'f10-rz-bt2', 'middle')}
+            ${T(180, 422, ['ölüm ve postoperatif pulmoner komplikasyonlar'], 'f10-rz-tk', 'middle')}</g>
+          <g class="f10-rz-g" data-k="mort" tabindex="0" role="button" aria-label="Mortalite"><rect x="2" y="436" width="356" height="120" rx="8" class="f10-rz-sb" data-k="mort"/>
+            ${s.yap('Pnömonektomi mortalitesi', 8, 458, 'var(--crit)', '%8\'e kadar')}${s.yap('Lobektomi mortalitesi', 2, 506, 'var(--warn)', '≈ %2')}</g>
+        </svg>`;
+      }
+      el.innerHTML = `<div class="f10-rz">${svg}</div>`;
+      let secili = null;
+      const sec = (k) => {
+        secili = k;
+        el.querySelectorAll('.f10-rz-g').forEach((g) => { g.classList.toggle('on', g.dataset.k === k); g.setAttribute('aria-pressed', String(g.dataset.k === k)); });
+        if (cap) cap.innerHTML = k ? REF(CAP[k]) : capVars;
+      };
+      const o = { signal: ac.signal };
+      el.querySelectorAll('.f10-rz-g').forEach((g) => {
+        g.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') sec(g.dataset.k); }, o);
+        g.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') sec(null); }, o);
+        g.addEventListener('click', (e) => { if (e.pointerType !== 'mouse') sec(secili === g.dataset.k ? null : g.dataset.k); }, o);
+        g.addEventListener('focus', () => sec(g.dataset.k), o);
+        g.addEventListener('blur', () => sec(null), o);
+        g.addEventListener('keydown', (e) => { if (e.key === 'Escape') { sec(null); g.blur(); } }, o);
+      });
+      if (cap) cap.innerHTML = capVars;
+    };
+    ciz();
+    const deg = () => ciz();
+    mq.addEventListener('change', deg);
+    return () => { mq.removeEventListener('change', deg); if (ac) ac.abort(); };
+  };
 })();

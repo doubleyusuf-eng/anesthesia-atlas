@@ -15,8 +15,8 @@ VERI.sorular['fiz08-1'] = {
 VERI.sorular['fiz08-2'] = {
   no: 2, kok: 'Oksihemoglobin dissosiyasyon eğrisi için:', kagit: 'Paper A · fizyoloji, Bölüm 8', kaynak: '[[K1 s. 32–33]]',
   onermeler: [
-    { t: 'P50, hemoglobinin %50\'sinin oksijene bağlı olduğu PO₂ değeridir.', d: true, n: 'Doğru. Eğrinin konumu P50 ile tanımlanır. [[K1 s. 32]]' },
     { t: '2,3-difosfogliserat konsantrasyonundaki artış eğriyi sola kaydırır.', d: false, n: 'Yanlış. 2,3-DPG artışı eğriyi sağa kaydırır (CADETS). 2,3-DPG deoksihemoglobinin β zincirlerine bağlanıp bu yapıyı kararlı kılar ve afiniteyi azaltır. [[K1 s. 32–33]]' },
+    { t: 'P50, hemoglobinin %50\'sinin oksijene bağlı olduğu PO₂ değeridir.', d: true, n: 'Doğru. Eğrinin konumu P50 ile tanımlanır. [[K1 s. 32]]' },
     { t: 'Sağa kayma, belirli bir PO₂ için satürasyonun daha düşük olması demektir.', d: true, n: 'Doğru. Sağa kayma afiniteyi azaltır: oksijen daha kolay bırakılır, aynı PO₂\'de SaO₂ daha düşüktür. [[K1 s. 32]]' },
     { t: 'Hipotermi eğriyi sola kaydırır.', d: true, n: 'Doğru. Sıcaklık düşüşü, düşük PCO₂, alkaloz ve azalmış 2,3-DPG eğriyi sola kaydırır. [[K1 s. 33]]' },
     { t: 'Fetal hemoglobin eğriyi sağa kaydırarak plasentadan oksijen alınmasını kolaylaştırır.', d: false, n: 'Yanlış. HbF eğriyi sola kaydırır; afinitesi maternal Hb\'den yüksek olduğu için plasentada oksijeni maternal oksihemoglobinden alabilir. Ayrıca 2,3-DPG yalnızca β zincirlerine bağlandığından fetal γ zincirine bağlanamaz ve afinite daha da artar. [[K1 s. 33]]' },
@@ -34,11 +34,10 @@ VERI.sorular['fiz08-3'] = {
 };
 
 const D8_NAV = [
-  ['d08-tasima', 'İki taşıma yolu'], ['d08-icerik', 'İçerik denklemi'], ['d08-depo', 'Depolar ve apne'],
-  ['d08-eritrosit', 'Eritrosit'], ['d08-hb', 'Hemoglobin'], ['d08-koop', 'Kooperatif bağlanma'],
-  ['d08-egri', 'Dissosiyasyon eğrisi'], ['d08-kayma', 'Kaymalar ve Bohr'], ['d08-formlar', 'Hb biçimleri'],
-  ['d08-orak', 'Orak hücre'], ['d08-methb', 'MetHb'], ['d08-co', 'Karbonmonoksit'], ['d08-siyanur', 'Siyanür'],
-  ['d08-miyoglobin', 'Miyoglobin'], ['d08-p1', 'Part I'], ['d08-p2', 'Part II'], ['d08-ozet', 'Özet'],
+  ['d08-tasima', 'Taşıma ve içerik'], ['d08-depo', 'Depolar ve apne'], ['d08-hb', 'Eritrosit ve Hb'],
+  ['d08-koop', 'Kooperatif bağlanma'], ['d08-egri', 'Eğri ve miyoglobin'], ['d08-kayma', 'Kaymalar ve Bohr'],
+  ['d08-formlar', 'Hb biçimleri'], ['d08-orak', 'Orak hücre'], ['d08-zehir', 'MetHb, CO, siyanür'],
+  ['d08-p1', 'Part I'], ['d08-p2', 'Part II'], ['d08-ozet', 'Özet'],
 ];
 
 SAYFALAR['dersler/fizyoloji/08'] = {
@@ -48,22 +47,15 @@ SAYFALAR['dersler/fizyoloji/08'] = {
 <nav class="wrap ders-nav" aria-label="Bu bölümde">${D8_NAV.map(([id, ad], i) => `<button type="button" data-scroll="${id}"><span>${String(i + 1).padStart(2, '0')}</span>${ad}</button>`).join('')}</nav>
 
 <section class="wrap blk ders-sec" id="d08-tasima">
-  <h2>İki taşıma yolu: bağlı ve çözünmüş</h2>
-  <div class="blk-body">
+  <h2>İki taşıma yolu ve oksijen içeriği denklemi</h2>
+  <p class="intro">Kanın oksijeninin %98'i hemoglobine bağlı, %2'si plazmada çözünmüş taşınır; içerik denklemi bu iki bölümü toplar. [[K1 s. 30]]</p>
+  <div class="viz"><div data-viz="f08_icerik"></div></div>
+  <div class="blk-body" style="margin-top:16px">
     <p>Oksijen dolaşımda akciğerlerden dokulara iki biçimde taşınır. Birincisi <b>hemoglobine bağlı</b> biçimdir ve kanın taşıdığı oksijenin %98'ini oluşturur: tam satüre hemoglobinin her gramı 1,34 mL oksijen bağlar; bu değer <b>Hüfner sabiti</b> olarak bilinir. İkincisi <b>plazmada çözünmüş</b> biçimdir ve yalnızca %2'sini oluşturur: çözünmüş oksijen hacmi, Henry yasası uyarınca oksijenin parsiyel basıncıyla doğru orantılıdır. Kanın toplam oksijen hacmi bu ikisinin toplamıdır. [[K1 s. 30]]</p>
     <p>Çözünmüş bölümün küçük olması onu önemsiz kılmaz. Kanın oksijen parsiyel basıncını belirleyen, plazmada çözünmüş oksijen miktarıdır; hemoglobine bağlı oksijen parsiyel basınca katkıda bulunmaz. Fick difüzyon yasasına göre difüzyon bir basınç gradyanı boyunca gerçekleşir; bu nedenle dokulara geçen oksijen hemoglobinin kendisinden değil, plazmada çözünmüş bölümden difüze olur. Plazma PO₂'si düştükçe hemoglobinden oksijen ayrılır ve çözünmüş bölümü yeniden besler. [[K1 s. 30]]</p>
+    <p>Kanın oksijen içeriği bu iki bölümün toplamıdır: <b>100 mL kandaki O₂ = (1,34 × [Hb] × SaO₂/%100) + 0,023 × PO₂</b>. Burada 1,34 mL/g Hüfner sabiti (37 °C, tipik erişkin kanı), [Hb] hemoglobin konsantrasyonu (g/dL), SaO₂ yüzde satürasyon, 0,023 oksijenin çözünürlük katsayısı (mL O₂·dL⁻¹·kPa⁻¹) ve PO₂ kanın oksijen parsiyel basıncıdır (kPa). [[K1 s. 30]]</p>
   </div>
-  <div class="cols" style="margin-top:16px">
-    <div class="card basic"><span class="tag basic">%98 · depo ve taşıyıcı</span><h3 style="margin-top:8px">Hemoglobine bağlı</h3><p>Hemoglobin, plazmada çözünmüş oksijenden çok daha verimli bir taşıma yoludur: 15 g/dL hemoglobin, tam satürasyonda 100 mL kanda 20 mL'ye yakın oksijen bağlayabilir. [[K1 s. 30]]</p></div>
-    <div class="card clin"><span class="tag clin">%2 · basıncı belirleyen</span><h3 style="margin-top:8px">Plazmada çözünmüş</h3><p>Miktarı küçüktür ama kanın PO₂'sini, dolayısıyla alveolden kana ve kandan dokuya difüzyonu sürdüren gradyanı belirleyen bu bölümdür. [[K1 s. 30, 33]]</p></div>
-  </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap ayrıca eritrosit içindeki PO₂'nin, oksijenin tamamı hemoglobine bağlı olduğu için düşük olduğunu yazar. Bu doğru değildir: oksijen eritrosit zarından serbestçe geçer ve dengede eritrosit sitoplazmasındaki PO₂ çevresindeki plazmanınkine eşittir; hemoglobinin satürasyonunu belirleyen de bu PO₂'dir. Doğru olan, bağlı oksijenin PO₂'ye katkıda bulunmaması ve difüzyonun çözünmüş oksijen üzerinden yürümesidir.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d08-icerik">
-  <h2>Oksijen içeriği denklemi</h2>
-  <p class="intro">Kanın oksijen içeriği, hemoglobine bağlı bölümle çözünmüş bölümün toplamıdır: <b>100 mL kandaki O₂ = (1,34 × [Hb] × SaO₂/%100) + 0,023 × PO₂</b>. Burada 1,34 mL/g Hüfner sabiti (37 °C, tipik erişkin kanı), [Hb] hemoglobin konsantrasyonu (g/dL), SaO₂ yüzde satürasyon, 0,023 oksijenin çözünürlük katsayısı (mL O₂·dL⁻¹·kPa⁻¹) ve PO₂ kanın oksijen parsiyel basıncıdır (kPa). [[K1 s. 30]]</p>
-  <div class="tbl-wrap" style="margin-bottom:14px">
+  <div class="tbl-wrap" style="margin:14px 0">
     <table class="tbl">
       <thead><tr><th>Kan</th><th class="num">[Hb]</th><th class="num">SaO₂</th><th class="num">PO₂</th><th class="num">Hb'ye bağlı</th><th class="num">Çözünmüş</th><th class="num">Toplam</th></tr></thead>
       <tbody>
@@ -72,16 +64,17 @@ SAYFALAR['dersler/fizyoloji/08'] = {
       </tbody>
     </table>
   </div>
-  <p class="small muted" style="margin-bottom:14px">Kitabın çözümlü örneği: her 100 mL arteriyel kanda yaklaşık 20 mL, her 100 mL venöz kanda 15 mL oksijen taşınır; aradaki ≈4,6 mL/100 mL fark dokulara bırakılan oksijendir. [[K1 s. 30]]</p>
-  <div class="viz"><div data-viz="f08_icerik"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap çözünmüş bölümü %2 olarak verir; kendi çözümlü örneğinde ise 0,30 mL / 19,8 mL, yani yaklaşık %1,5'tir. %2 yuvarlak bir değerdir, hesapta denklemi kullanın. Hüfner sabiti için de kitabın 1,34 mL/g değeriyle çalışın: hemoglobinin molekül ağırlığından hesaplanan teorik değer 1,39 mL/g, in vivo ölçülen değer ise yaklaşık 1,31 mL/g'dır; kaynaklar arasındaki bu küçük fark sınav hesabını değiştirmez.</div>
+  <p class="small muted" style="margin-bottom:14px">Kitabın çözümlü örneği: her 100 mL arteriyel kanda yaklaşık 20 mL, her 100 mL venöz kanda 15 mL oksijen taşınır; aradaki ≈4,6 mL/100 mL fark dokulara bırakılan oksijendir. Hemoglobin, plazmada çözünmüş oksijenden çok daha verimli bir taşıma yoludur; yine de çözünmüş bölüm önemsiz değildir. [[K1 s. 30]]</p>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap, oksijenin tamamı hemoglobine bağlı olduğu için eritrosit içindeki PO₂'nin düşük olduğunu yazar; bu doğru değildir. Oksijen eritrosit zarından serbestçe geçer, dengede eritrosit içindeki PO₂ plazmanınkine eşittir ve hemoglobinin satürasyonunu belirleyen de bu PO₂'dir.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d08-depo">
   <h2>Oksijen depoları tüketimin yanında ne kadar küçük?</h2>
-  <p class="intro">Vücutta çok az oksijen depolanır; bu yüzden apne hızla hipoksiye yol açar. Akciğerlerdeki oksijenin (fonksiyonel rezidüel kapasite içinde) yanı sıra oksijen kanda (plazmada çözünmüş ve hemoglobine bağlı) ve kasta (miyoglobine bağlı) depolanır. Deniz seviyesinde 70 kg bir erkekte yaklaşık 850 mL kanda, 250 mL miyoglobinde ve hava solurken 450 mL akciğerlerde olmak üzere toplam yaklaşık 1550 mL oksijen bulunur. Erişkinin istirahat oksijen tüketimi ise yaklaşık 250 mL/dk'dır: apnenin anlamlı hücresel hipoksi yapması için yalnızca birkaç dakika sürmesi yeterlidir. Taşıma kapasitesi azaldığında (anemi, karbonmonoksit zehirlenmesi) ya da tüketim hızı arttığında (ör. çocuklarda) hipoksik hasar daha da hızlı gelişir. [[K1 s. 30]]</p>
+  <p class="intro">Vücudun oksijen deposu, tüketiminin yalnızca birkaç dakikasına yeter; bu yüzden apne hızla hipoksiye yol açar. [[K1 s. 30]]</p>
   <div class="viz"><div data-viz="f08_depo"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> "1550 mL ÷ 250 mL/dk ≈ 6 dakika" basit bir bölmedir, güvenli apne süresi değildir: depoların tamamı çekilemez, doku PO₂'si bir eşiğin altına inmemelidir. Klinikte akciğer deposu belirleyicidir ve preoksijenasyonla (denitrojenizasyon) büyütülebilir: hava yerine yüksek konsantrasyonda oksijen solutulduğunda FRK içindeki oksijen deposu birkaç yüz mL'den birkaç litreye çıkar. Kitap bu hesabı yalnızca hava solurken verir.</div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>Oksijen akciğerlerde (fonksiyonel rezidüel kapasite içinde), kanda (plazmada çözünmüş ve hemoglobine bağlı) ve kasta (miyoglobine bağlı) depolanır. Erişkinin istirahat oksijen tüketimi ≈250 mL/dk'dır: anlamlı hücresel hipoksi için apnenin birkaç dakika sürmesi yeter. Taşıma kapasitesi azaldığında (anemi, karbonmonoksit zehirlenmesi) ya da tüketim hızlandığında (ör. çocuklarda) hipoksik hasar daha da çabuk gelişir. [[K1 s. 30]]</p>
+  </div>
   <div class="card clin" style="margin-top:14px">
     <span class="tag clin">Klinik önem</span>
     <h3 style="margin-top:8px">Minimal akımlı anestezi</h3>
@@ -90,42 +83,42 @@ SAYFALAR['dersler/fizyoloji/08'] = {
   </div>
 </section>
 
-<section class="wrap blk ders-sec" id="d08-eritrosit">
-  <h2>Eritrosit: "hemoglobin torbası"</h2>
-  <div class="blk-body">
+<section class="wrap blk ders-sec" id="d08-hb">
+  <h2>Eritrosit ve hemoglobin</h2>
+  <p class="intro">Eritrosit çekirdeksiz ve mitokondrisiz bir "hemoglobin torbası"dır; içindeki hemoglobin, her biri bir oksijen bağlayan dört alt birimden oluşur. [[K1 s. 31]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Eritrositten hem grubuna</h3></div>
+    <div data-viz="f08_yapi"></div>
+    <p class="viz-cap" aria-live="polite"><b>Üç ölçek.</b> Eritrosit, içindeki HbA molekülü ve tek bir hem grubu; bir parçaya dokunun. [[K1 s. 31]]</p>
+    <p class="viz-foot">Şematik çizim, ölçekler orantılı değildir; ölçüler, zincir bileşimi ve bağ tipi kitaptandır [[K1 s. 31]].</p>
+  </div>
+  <div class="blk-body" style="margin-top:16px">
     <p>Eritrositler küçük, esnek, bikonkav disklerdir (çap 6–8 µm) ve en küçük kapillerlerden (yaklaşık 3 µm) sıkışarak geçebilmek için biçim değiştirebilirler. Hücre zarının dış yüzeyinde transfüzyon tıbbı açısından önemli antijenler bulunur: ABO sistemi hücre yüzeyindeki karbonhidrat yapılı antijenlerden, rhesus sistemi ise transmembran proteinlerden oluşur. [[K1 s. 31]]</p>
     <p>Eritrositler çekirdek ve mitokondri taşımamaları bakımından benzersizdir; işlevsel olarak birer hemoglobin torbası sayılabilirler. Blast hücreleri eritropoezin son evresi olan retikülositlere dönüştüğünde çekirdek DNA'sı kaybedilmiştir; retikülositlerde onun yerine ağ benzeri bir ribozomal RNA ağı bulunur (ad buradan gelir). Retikülositler normalde dolaşımdaki eritrositlerin %1'ini oluşturur; kemik iliğinde eritropoez çok aktifse (hemolitik anemi, kanama sonrası) bu oran artar. [[K1 s. 31]]</p>
     <p>Mitokondri olmadığı için aerobik metabolizma mümkün değildir: eritrositler, enerji için tümüyle glukoza ve glikolitik yola bağımlı tek hücre tipidir. Beyin bile açlıkta keton cisimlerini kullanmaya uyum sağlayabilirken eritrositin böyle bir seçeneği yoktur. [[K1 s. 31]]</p>
+    <p>Hemoglobin, eritrositlerin içinde bulunan, demir içeren büyük bir proteindir. Erişkinde en yaygın biçim HbA'dır ve dolaşımdaki hemoglobinin %95'inden fazlasını oluşturur. Kuaterner yapısı, yaklaşık tetrahedral bir düzende dört polipeptit globin alt biriminden (iki α ve iki β zinciri) oluşur; zincirler zayıf elektrostatik kuvvetlerle bir arada tutulur. Her globin zincirinin, demiri ferröz durumda (Fe²⁺) bulunan demir içeren bir porfirin halkası olan kendi hem grubu vardır. Oksijen molekülleri her hem grubuna Fe²⁺ iyonuyla kurulan zayıf bir koordinasyon bağıyla geri dönüşümlü olarak bağlanır: her hemoglobin molekülüne, her hem grubu için bir tane olmak üzere toplam dört oksijen molekülü bağlanabilir. [[K1 s. 31]]</p>
   </div>
-</section>
-
-<section class="wrap blk ders-sec" id="d08-hb">
-  <h2>Hemoglobin nedir?</h2>
-  <p class="intro">Hemoglobin, eritrositlerin içinde bulunan, demir içeren büyük bir proteindir. Erişkinde en yaygın biçim HbA'dır ve dolaşımdaki hemoglobinin %95'inden fazlasını oluşturur. Kuaterner yapısı, yaklaşık tetrahedral bir düzende dört polipeptit globin alt biriminden (iki α ve iki β zinciri) oluşur; zincirler zayıf elektrostatik kuvvetlerle bir arada tutulur. Her globin zincirinin, demiri ferröz durumda (Fe²⁺) bulunan demir içeren bir porfirin halkası olan kendi hem grubu vardır. Oksijen molekülleri her hem grubuna Fe²⁺ iyonuyla kurulan zayıf bir koordinasyon bağıyla geri dönüşümlü olarak bağlanır: her hemoglobin molekülüne, her hem grubu için bir tane olmak üzere toplam dört oksijen molekülü bağlanabilir. [[K1 s. 31]]</p>
-  <ul class="facts">
-    <li>HbA: <b>α₂β₂</b></li>
-    <li>Hem başına <b>1 Fe²⁺</b></li>
-    <li>Molekül başına <b>4 O₂</b></li>
-    <li>Hüfner sabiti <b>1,34 mL/g</b></li>
-  </ul>
 </section>
 
 <section class="wrap blk ders-sec" id="d08-koop">
   <h2>Kooperatif bağlanma</h2>
-  <p class="intro">Kooperativite nedeniyle hemoglobin pratikte ya oksijenle tam satüredir (oksihemoglobin) ya da tam desatüredir (deoksihemoglobin). Kooperatif bağlanma, ardışık her oksijen bağlanmasıyla hemoglobinin oksijen afinitesinin artmasıdır: ilk molekül görece güç bağlanır, çünkü gereken konformasyon değişikliği için güçlü elektrostatik yüklerin aşılması gerekir; β zincirlerinin birbirinden uzak olduğu bu yapı <b>gergin</b> konformasyondur. İlk molekül bağlandıktan sonra konformasyon değişir, β zincirleri yaklaşır ve ikinci molekülün afinitesi yükselir. Bu böyle sürer; dördüncü molekül birincisinden yaklaşık 300 kat daha kolay bağlanır. Dördüncüden sonra hemoglobin <b>gevşemiş</b> konformasyondadır. [[K1 s. 32]]</p>
+  <p class="intro">Bağlanan her oksijen sonrakinin afinitesini artırır; bu yüzden hemoglobin pratikte ya tam satüredir (oksihemoglobin) ya da tam desatüre (deoksihemoglobin). [[K1 s. 32]]</p>
   <div class="viz"><div data-viz="f08_koop"></div></div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>İlk molekül görece güç bağlanır: gereken konformasyon değişikliği için güçlü elektrostatik yüklerin aşılması gerekir. β zincirlerinin birbirinden uzak olduğu bu yapı <b>gergin</b> konformasyondur. İlk molekül bağlandıktan sonra konformasyon değişir, β zincirleri yaklaşır ve ikinci molekülün afinitesi yükselir; bu böyle sürer, dördüncü molekül birincisinden yaklaşık 300 kat daha kolay bağlanır. Dördüncüden sonra hemoglobin <b>gevşemiş</b> konformasyondadır. [[K1 s. 32]]</p>
+  </div>
   <p class="small muted" style="margin-top:10px">Kooperatif bağlanmanın gerçek moleküler mekanizması kitapta da tartışmalı olarak verilir: oksijenin Fe²⁺'ye bağlanmasının eşzamanlı olarak bir histidin kalıntısının yerini değiştirdiği ve konformasyon değişikliğini bunun başlattığı öne sürülmüştür. [[K1 s. 32]]</p>
 </section>
 
 <section class="wrap blk ders-sec" id="d08-egri">
-  <h2>Oksihemoglobin dissosiyasyon eğrisi</h2>
-  <p class="intro">Oksihemoglobin dissosiyasyon (ayrışma) eğrisi, satürasyon ile kanın oksijen parsiyel basıncı arasındaki ilişkiyi tanımlar. Sigmoid biçiminden kooperatif bağlanma sorumludur ve bu biçimin önemli klinik sonuçları vardır. Eğrinin konumu <b>P50</b> ile, yani hemoglobinin %50'sinin oksijene bağlı olduğu PO₂ ile tanımlanır. [[K1 s. 32]]</p>
-  <div class="cols" style="margin-bottom:14px">
-    <div class="card"><span class="tag basic">Üst bölüm</span><h3 style="margin-top:8px">Düz</h3><p>Burada PaO₂ biraz düşse bile satürasyon hemen hemen değişmez. Ancak hastanın PaO₂'si patolojik olarak düşükse (ör. solunum hastalığında) hasta eğrinin çok daha dik bir bölümündedir; orada PaO₂'deki küçük bir azalma büyük bir desatürasyon demektir. [[K1 s. 32]]</p></div>
-    <div class="card"><span class="tag clin">Orta bölüm</span><h3 style="margin-top:8px">Dik</h3><p>PO₂'nin düşük olduğu periferik dokularda bu bölüm çok önemlidir: PO₂'de yalnızca küçük bir azalma karşılığında büyük miktarda oksijen bırakılır. [[K1 s. 32]]</p></div>
-  </div>
+  <h2>Dissosiyasyon eğrisi ve miyoglobin</h2>
+  <p class="intro">Oksihemoglobin dissosiyasyon (ayrışma) eğrisi satürasyonla kanın oksijen parsiyel basıncı arasındaki ilişkiyi tanımlar; sigmoid biçimi kooperatif bağlanmadan gelir. [[K1 s. 32]]</p>
   <div class="viz"><div data-viz="f08_egri"></div></div>
-  <p class="small muted" style="margin-top:10px">Kitabın şeklindeki başlıca noktalar: P50 ≈ 3,5 kPa; venöz kan 5,3 kPa'da %75; arteriyel kan 13,3 kPa'da yaklaşık %97 (satürasyon değeri kitabın çözümlü örneğinden). [[K1 s. 30, 32]]</p>
+  <div class="blk-body" style="margin-top:16px">
+    <p>Eğrinin konumunu <b>P50</b> verir: hemoglobinin %50'sinin oksijene bağlı olduğu PO₂. Kitabın şeklindeki başlıca noktalar P50 ≈ 3,5 kPa, venöz kan 5,3 kPa'da %75 ve arteriyel kan 13,3 kPa'da yaklaşık %97'dir (bu satürasyon kitabın çözümlü örneğinden). [[K1 s. 30, 32]]</p>
+    <p>Sigmoid biçimin önemli klinik sonuçları vardır. <b>Düz üst bölümde</b> PaO₂ biraz düşse bile satürasyon hemen hemen değişmez; ancak PaO₂'si patolojik olarak düşük bir hasta (ör. solunum hastalığı) eğrinin çok daha dik bir yerindedir ve orada küçük bir PaO₂ azalması büyük desatürasyon demektir. <b>Dik orta bölüm</b> PO₂'nin düşük olduğu periferik dokularda önemlidir: PO₂'de küçük bir azalma karşılığında büyük miktarda oksijen bırakılır. [[K1 s. 32]]</p>
+    <p><b>Miyoglobin</b> de hemoglobin gibi oksijen bağlayan, demir içeren büyük bir proteindir, ama yalnızca bir globin zinciri ve bir hem grubu taşır. Görevi oksijen depolamaktır; bu yüzden oksijen gereksiniminin yüksek olduğu iskelet kasında bulunur ve kırmızı etin rengini miyoglobinin Fe²⁺ pigmentleri verir. Tek zincir kooperatif bağlanmaya izin vermez: oksimiyoglobin eğrisi hiperboliktir ve oksihemoglobin eğrisinin belirgin solundadır. P50'si hemoglobininkinden çok daha düşüktür; oksijenin oksihemoglobinden miyoglobine aktarılabilmesi bunu gerektirir (şekilde "Miyoglobin eğrisi" düğmesi). [[K1 s. 36]]</p>
+  </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d08-kayma">
@@ -137,28 +130,38 @@ SAYFALAR['dersler/fizyoloji/08'] = {
   </div>
   <div class="viz"><div data-viz="f08_bohr"></div></div>
   <div class="blk-body" style="margin-top:16px">
-    <p>Sağa kayma önemli bir fizyolojik mekanizmadır. <b>Bohr etkisi:</b> metabolik olarak aktif dokular CO₂, ısı ve H⁺ üretir; kan bu kapillerlere ulaştığında eğri sağa kayar ve oksijen en çok gereksinim duyulduğu yerde bırakılır. <b>Anaerobik metabolizma:</b> hücresel PO₂ bir eşik değerin altına düştüğünde anaerobik metabolizma baskınlaşır; glukozun pirüvata parçalanmasıyla (glikoliz) enerji üretilir, pirüvat laktata dönüşür ve glikolitik yolun ara ürünlerinden biri yan bir yolda 2,3-DPG'ye dönüştürülür. Anaerobik metabolizma arttıkça 2,3-DPG konsantrasyonu da artar. 2,3-DPG özgül olarak deoksihemoglobinin β zincirlerine bağlanıp bu yapıyı kararlı kılar ve hemoglobinin oksijen afinitesini azaltır; böylece anaerobik metabolizma yapan hücrelere ek oksijen bırakılır. [[K1 s. 32–33]]</p>
+    <p>Sağa kayma önemli bir fizyolojik mekanizmadır. <b>Bohr etkisi:</b> metabolik olarak aktif dokular CO₂, ısı ve H⁺ üretir; kan bu kapillerlere ulaştığında eğri sağa kayar ve oksijen en çok gereksinim duyulduğu yerde bırakılır. <b>Anaerobik metabolizma:</b> hücresel PO₂ bir eşik değerin altına düştüğünde anaerobik metabolizma baskınlaşır; glukozun pirüvata parçalanmasıyla (glikoliz) enerji üretilir, pirüvat laktata dönüşür ve glikolitik yolun ara ürünlerinden biri yan bir yolda 2,3-DPG'ye dönüştürülür; bunu büyük olasılıkla oksijene duyarlı bir glikoliz enzimi, fosfofruktokinaz denetler. Anaerobik metabolizma arttıkça 2,3-DPG konsantrasyonu da artar. 2,3-DPG özgül olarak deoksihemoglobinin β zincirlerine bağlanıp bu yapıyı kararlı kılar ve hemoglobinin oksijen afinitesini azaltır; böylece anaerobik metabolizma yapan hücrelere ek oksijen bırakılır. [[K1 s. 32–33]]</p>
     <p><b>Akciğerde yüklenme:</b> kan akciğerlere ulaştığında CO₂ atılır ve pH normale döner; P50 merkezi konumuna geri gider, yani afinite artar. Çözünmüş oksijen hemoglobine bağlanır, bu da kanın oksijen parsiyel basıncını düşürerek alveol–kapiller bariyerden difüzyonu kolaylaştırır. [[K1 s. 33]]</p>
     <p><b>Fetal yaşam:</b> HbF'nin maternal oksihemoglobinden oksijen alabilmesi için afinitesinin maternal hemoglobinden yüksek olması gerekir. Bu iki mekanizmayla sağlanır: HbF eğriyi sola kaydırır ve fetal eritrositlerde 2,3-DPG bulunsa da HbF'ye bağlanamaz, çünkü 2,3-DPG yalnızca β-globin zincirlerine bağlanır, fetal γ zincirine bağlanmaz. [[K1 s. 33]]</p>
   </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap 2,3-DPG artışını dokudaki anaerobik metabolizmaya bağlar. 2,3-DPG aslında eritrositin kendi glikolizinde (Rapoport–Luebering yan yolu) yapılır ve eritrosit içinde kalır; düzeyi saniyeler değil saatler içinde değişir (kronik hipoksi, anemi, yüksek irtifa; depolanmış kanın 2,3-DPG'sinin transfüzyondan sonra normale dönmesinin saatler sürmesi de bunu gösterir). Bu yüzden kan bir doku kapillerinden geçerken ek bir 2,3-DPG kayması olmaz: dokudaki hızlı sağa kaymayı CO₂ ve H⁺ (Bohr etkisi) ile ısı yapar, 2,3-DPG ise süregen hipoksiye uyumdur.</div>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> 2,3-DPG dokuda değil eritrositin kendi glikolizinde (Rapoport–Luebering yan yolu) yapılır ve düzeyi saniyeler değil saatler içinde değişir. Bu yüzden kapiller geçişindeki hızlı sağa kaymayı CO₂ ve H⁺ (Bohr etkisi) ile ısı yapar; 2,3-DPG süregen hipoksiye (anemi, yüksek irtifa) uyumdur.</div>
   <div class="card clin" style="margin-top:14px">
     <span class="tag clin">Klinik önem</span>
     <h3 style="margin-top:8px">Kan transfüzyonu</h3>
-    <p>Depolanmış kanda eritrosit 2,3-DPG konsantrasyonu hızla azalır ve 1–2 haftalık depolamadan sonra hemen hemen sıfırdır. Düşük 2,3-DPG eğriyi sola kaydırır ve oksijen bağlanmasını artırır; transfüzyondan sonra eritrosit 2,3-DPG'sinin normale dönmesi 24 saati bulur. Bu nedenle transfüze edilen kan, oksijen bırakmada hastanın kendi kanı kadar etkili değildir. Hücre kurtarma yöntemiyle geri kazanılan kan ise 2,3-DPG'sinin hemen hemen tamamını korur; afinite ve oksijen bırakılması etkilenmez. [[K1 s. 33]]</p>
+    <p>Depolanmış kanda eritrosit 2,3-DPG konsantrasyonu hızla azalır ve 1–2 haftalık depolamadan sonra hemen hemen sıfırdır. Düşük 2,3-DPG eğriyi sola kaydırır ve oksijen bağlanmasını artırır; transfüzyondan sonra eritrosit 2,3-DPG'sinin normale dönmesi 24 saate kadar sürer. Bu nedenle transfüze edilen kan, oksijen bırakmada hastanın kendi kanı kadar etkili değildir. Hücre kurtarma yöntemiyle geri kazanılan kan ise 2,3-DPG'sinin hemen hemen tamamını korur; afinite ve oksijen bırakılması etkilenmez. [[K1 s. 33]]</p>
   </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d08-formlar">
   <h2>Başka hangi hemoglobin biçimleri var?</h2>
-  <p class="intro">Hemoglobin tipleri fizyolojik ve patolojik olarak sınıflanır. Fizyolojik olanlar HbA (α₂β₂), erişkinin diğer normal varyantı HbA₂ (α₂δ₂, toplam Hb'nin %2–3'ü) ve fetal yaşamın varyantı HbF'dir (α₂γ₂). Patolojik olanlar HbS, MetHb, COHb ve siyanohemoglobindir. [[K1 s. 34]]</p>
+  <p class="intro">Hemoglobin biçimleri fizyolojik (HbA, HbA₂, HbF) ve patolojik (HbS, MetHb, COHb, siyanohemoglobin) olarak sınıflanır. [[K1 s. 34]]</p>
   <div class="viz"><div data-viz="f08_dishb"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap HbF'nin 3 aylık yaşa kadar üretildiğini ve 6 aylık yaşta tümüyle erişkin varyantlarıyla yer değiştirmiş olması gerektiğini yazar. γ zincirinden β zincirine geçiş aslında doğumdan önce, gebeliğin son haftalarında başlar; HbF doğumda toplam hemoglobinin büyük bölümüdür ve ilk aylarda hızla azalır; altıncı ayda birkaç yüzdeye iner ve erişkin düzeyine (&lt;%1) genellikle 1–2 yaşında ulaşır. Sağlıklı erişkinde de eser miktarda HbF bulunması normaldir; β-globin sentezinin bozulduğu durumlarda (ör. β-talasemi) yüksek kalabilir.</div>
+  <div class="blk-body" style="margin-top:16px">
+    <p>Fizyolojik biçimler globin zincirleriyle ayrılır: HbA α₂β₂, erişkinin öteki normal varyantı HbA₂ α₂δ₂ (toplam Hb'nin %2–3'ü) ve fetal yaşamın varyantı HbF α₂γ₂. HbF'nin oksijen afinitesi HbA'dan yüksektir, bu yüzden plasentada maternal kandan oksijen alabilir. Kitaba göre HbF 3 aylık yaşa kadar üretilir, sonra γ-globin sentezi erişkin β-globine geçer ve 6 aylık yaşta HbF'nin yerini erişkin varyantları almış olmalıdır; β-globin sentezi bozuksa (ör. β-talasemi) HbF sürebilir. [[K1 s. 34]]</p>
+    <p>Patolojik biçimlerde ya globin zinciri ya hem grubu değişir. HbS'de β-globinin altıncı konumundaki glutamat valinle yer değiştirmiştir. MetHb'de hem demiri ferrik duruma (Fe³⁺) oksitlenmiştir ve Fe³⁺ oksijen bağlayamaz, yani MetHb taşınmaya katılmaz. COHb solunan karbonmonoksit, siyanohemoglobin ise siyanür iyonlarının bağlanmasıyla oluşur. [[K1 s. 34]]</p>
+  </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d08-orak">
   <h2>Orak hücre hastalığı: tek nokta mutasyonu nasıl hastalık yapar?</h2>
-  <div class="blk-body">
+  <p class="intro">β-globindeki tek amino asit değişikliği, hipoksik koşullarda hemoglobinin kümelenip eritrositi oraklaştırmasına yol açar; hastalık iki yoldan ortaya çıkar. [[K1 s. 34]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Mutasyondan klinik tabloya</h3></div>
+    <div data-viz="f08_orak"></div>
+    <p class="viz-cap" aria-live="polite"><b>β6 glutamat → valin.</b> Zincirdeki adımlardan birine dokunun: o adımda ne olduğu ve neye yol açtığı görünür. [[K1 s. 34]]</p>
+    <p class="viz-foot">Şematik akış şeması; bütün sayılar kitaptandır [[K1 s. 34]].</p>
+  </div>
+  <div class="blk-body" style="margin-top:16px">
     <p>Orak hücre hastalığı otozomal resesif kalıtılır. Kitaba göre semptomatik hastalık yalnızca homozigot kişilerde, yani her iki β-globin zincirinde de amino asit nokta mutasyonu bulunduğunda görülür. Heterozigotlar orak hücre taşıyıcısıdır, normalde asemptomatiktir ve taşıyıcılık sıtmaya karşı direnç sağlar. HbS'de β-globin zincirinin altıncı konumundaki glutamat valinle yer değiştirmiştir. [[K1 s. 34]]</p>
     <p>Tek bir amino asidin değişmesi molekülün davranışını belirgin biçimde etkiler: hipoksik koşullarda hemoglobin molekülleri kümelenir ve eritrositi orak biçimine sokar. Normal venöz kanın oksijen parsiyel basıncı, özellikle dalaktaki yavaş akımda oraklaşmaya yol açacak kadar düşük olabilir. Eritrositler arteriyel oksijen basınçlarından venöz düzeylere ve yeniden arteriyel düzeylere geçerken yinelenen kümelenme ve dağılma, zar esnekliğini azaltır. [[K1 s. 34]]</p>
   </div>
@@ -166,7 +169,6 @@ SAYFALAR['dersler/fizyoloji/08'] = {
     <div class="card"><span class="tag crit">1. mekanizma</span><h3 style="margin-top:8px">Vasküler oklüzyon</h3><p>Esnekliği azalmış oraklaşmış hücreler dar kapillerlerden geçerken daha az biçim değiştirir; viskozite artar, venöz tromboz ve iskemi gelişir. Kapiller ve venöz oklüzyonlar tüm organ enfarktüsü riski doğurur: iskemik ağrı ve organ işlev bozukluğu. Çocuklukta sık görülen dalak enfarktüsü, meningokok septisemisi ve salmonella osteomiyeliti gibi kapsüllü bakteri enfeksiyonlarına yatkınlık bırakır. Vazo-oklüzif krizler hidrasyon, analjezi ve kan değişimi transfüzyonuyla yönetilir. [[K1 s. 34]]</p></div>
     <div class="card"><span class="tag crit">2. mekanizma</span><h3 style="margin-top:8px">Eritrosit yaşam süresinin kısalması</h3><p>Eritrositler normalde dolaşımda 100–120 gün yaşarken orak hücre hastalığında kronik hemoliz nedeniyle yalnızca 10–20 gün yaşar; sonuçta retikülositozla birlikte hemoglobin 7–11 g/dL olur. Aplastik krizlere yatkınlık vardır: parvovirüs B19 enfeksiyonu eritrosit öncüllerini yok ederek eritropoezi kısa bir süre (kitaba göre 2–3 gün) durdurur. Normalde klinik önemi olmayan bu kısa duraklama, yaşam süresi kısa olan bu hastalarda derin anemiye yol açabilir. [[K1 s. 34]]</p></div>
   </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap semptomatik hastalığı homozigotlara (HbSS) bağlar; HbSC ya da HbS/β-talasemi gibi bileşik heterozigotlar da orak hücre hastalığıdır ve semptomatiktir. Parvovirüs B19'un eritropoezi durdurduğu süreyi kitap 2–3 gün olarak verir; klinik kaynaklarda retikülositopeni genellikle yaklaşık bir hafta sürer.</div>
   <div class="card clin" style="margin-top:14px">
     <span class="tag clin">Klinik önem</span>
     <h3 style="margin-top:8px">Orak hücre hastalığında anestezi</h3>
@@ -179,30 +181,30 @@ SAYFALAR['dersler/fizyoloji/08'] = {
   </div>
 </section>
 
-<section class="wrap blk ders-sec" id="d08-methb">
-  <h2>Methemoglobinin klinik önemi</h2>
+<section class="wrap blk ders-sec" id="d08-zehir">
+  <h2>Hemoglobini ve mitokondriyi bağlayan zehirler: MetHb, CO ve siyanür</h2>
+  <p class="intro">Methemoglobin, karbonmonoksit ve siyanür oksijen taşınmasını farklı noktalardan bozar; üçünde de eğri sola kayar ya da oksijen hiç kullanılamaz. [[K1 s. 35–36]]</p>
+  <div class="viz">
+    <div class="viz-head"><h3>Üç zehir, üç duraklama noktası</h3></div>
+    <div data-viz="f08_zehir"></div>
+    <p class="viz-cap" aria-live="polite"><b>Oksijenin yolu.</b> Bir zehri seçin: yolun hangi basamağında durduğu, nabız oksimetresinin ne gösterdiği ve tedavisi görünür. [[K1 s. 35–36]]</p>
+    <p class="viz-foot">Şematik çizim; mekanizmalar, eşikler ve tedaviler kitaptandır [[K1 s. 35–36]].</p>
+  </div>
+  <h3 style="margin:18px 0 8px">Methemoglobin</h3>
   <div class="blk-body">
     <p>Methemoglobin normalde toplam hemoglobin konsantrasyonunun %1'inden azını oluşturur. Bu düzey iki mekanizmayla düşük tutulur: <b>glutatyon/NADPH sistemi</b>, eritrosit içindeki oksitleyici ajanları hem grubundaki Fe²⁺'yi Fe³⁺'ye oksitlemeden önce indirger; pentoz fosfat yolu, glutatyonu indirgenmiş biçimine döndüren NADPH'yi sağladığı için bu sürecin ayrılmaz parçasıdır. <b>MetHb redüktaz/NADH sistemi</b> ise oluşan MetHb'nin Fe³⁺ iyonunu yeniden Fe²⁺'ye indirger. [[K1 s. 35]]</p>
     <p>Methemoglobinemi, oksitleyici ajanların glutatyon sisteminin kapasitesini aşmasıyla (sülfonamid antibiyotikler, nitrik oksit ve amid tipi lokal anestezik prilokain; prilokain Bier bloğunda ve topikal EMLA'nın bileşeni olarak kullanılır) ya da koruyucu indirgenme sisteminin yetersizliğiyle (ör. pentoz fosfat yolundaki genetik kusurun indirgenmiş glutatyon eksikliğine yol açtığı G6PD eksikliği) oluşur. [[K1 s. 35]]</p>
     <p>Klinik sorun iki yönlüdür: MetHb oksijen bağlayamaz, yani toplam oksijen içeriği azalır ("fonksiyonel anemi"); ayrıca kalan normal hemoglobinin afinitesi değişir ve eğri sola kayarak dokulara daha az oksijen bırakılır. Nabız oksimetreleri MetHb'yi yanlış okur: kitaba göre konsantrasyondan bağımsız olarak yaklaşık %85 gösterirler. Doğru ölçüm CO-oksimetreyle yapılır. Tedavi hafif olgularda ilave oksijen, ağır olgularda metilen mavisidir. [[K1 s. 35]]</p>
   </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Oksimetrenin %85'te kalması yüksek MetHb düzeyleri (ağır methemoglobinemi) için geçerlidir; düşük düzeylerde okuma MetHb arttıkça %85'e doğru iner ve gerçek satürasyonu yansıtmaz. Metilen mavisi MetHb'yi NADPH'ye bağımlı bir yolla indirger; NADPH'yi pentoz fosfat yolu sağladığı için G6PD eksikliğinde etkisizdir ve hemolizi tetikleyebilir, bu hastalarda kaçınılır. Kitap G6PD eksikliğini koruyucu indirgenme sisteminin yetersizliğine örnek verir; G6PD eksikliği aslında MetHb redüktaz/NADH sistemini değil glutatyon/NADPH sistemini bozar ve klinikte daha çok oksidan hemolizle kendini gösterir. Kalıtsal methemoglobineminin klasik nedeni ise NADH'ye bağımlı sitokrom b5 redüktazın (MetHb redüktaz) eksikliğidir.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d08-co">
-  <h2>Karbonmonoksit zehirlenmesi</h2>
+  <h3 style="margin:18px 0 8px">Karbonmonoksit</h3>
   <div class="blk-body">
     <p>Karbonmonoksit oksijene çok benzeyen bir moleküldür ve hemoglobinin Fe²⁺ iyonuna benzer biçimde geri dönüşümlü bağlanır; ancak afinitesi oksijeninkinin 250 katıdır. Karbonmonoksit varlığında hemoglobin tercihen COHb oluşturur ve taşıma kapasitesi azalır. Methemoglobinemide olduğu gibi, eğrinin sola kayması dokulara oksijen bırakılmasını azaltarak doku hipoksisini ağırlaştırır. [[K1 s. 35]]</p>
     <p>Normalde kandaki COHb oranı %2'nin altındadır. Afinitenin yüksekliği nedeniyle düşük düzeylere maruz kalan bir hastada bile anlamlı COHb bulunabilir; ağır sigara içicilerinde %9'a çıkabilir. Arızalı gazlı cihazlar, ev yangınları ve araç egzoz dumanının solunması daha yüksek düzeylere yol açabilir. Belirtiler COHb düzeyiyle ağırlaşır: %15–20'de baş ağrısı ve konfüzyon; daha yüksek düzeylerde güçsüzlük, baş dönmesi, bulantı ve kusma; %60'ın üstünde konvülziyon, koma ve ölüm. [[K1 s. 35–36]]</p>
     <p>Taşıma kapasiteleri azalmış olsa da bu hastalar siyanotik görünmez: siyanoz ancak en az 5 g/dL deoksihemoglobin varken klinik olarak belirginleşir ve karbonmonoksit bağlamamış hemoglobin genellikle oksijenle tam satüredir. Nadiren deri ve mukozalarda kiraz kırmızısı renk değişikliği olur. Tedavi, yüksek bir PaO₂ sağlayarak (yüksek FiO₂ ya da hiperbarik oda) geri dönüşümlü bağlanmış karbonmonoksitin hemoglobinden kompetitif olarak uzaklaştırılmasıdır. [[K1 s. 36]]</p>
   </div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap nabız oksimetresinin yanlış okumasını yalnızca MetHb için anlatır. İki dalga boyuyla çalışan standart nabız oksimetresi COHb'yi oksihemoglobin gibi okuduğu için karbonmonoksit zehirlenmesinde SpO₂ yanlış biçimde normal görünür; gerçek satürasyon ve COHb oranı CO-oksimetreyle ölçülür. Arteriyel kan gazında hesaplanan satürasyon da PO₂'den türetildiği için yanıltıcıdır.</div>
-</section>
-
-<section class="wrap blk ders-sec" id="d08-siyanur">
-  <h2>Siyanür toksisitesi</h2>
+  <h3 style="margin:18px 0 8px">Siyanür</h3>
   <div class="blk-body">
-    <p>Siyanürün toksisitesi iki mekanizmanın sonucudur. Birincisi oksijen taşıma kapasitesinin azalmasıdır: kitaba göre siyanür, karbonmonoksitin tersine hemoglobine geri dönüşümsüz bağlanır ve oksijenle tedavi edilemeyen bir fonksiyonel anemi yapar (bu noktaya ilişkin Atlas notu aşağıdadır). İkincisi ve başlıca toksik etki, mitokondriyal elektron taşıma zincirindeki sitokrom c oksidazın (Kompleks IV) inhibisyonudur. Böylece yalnızca taşıma kapasitesi azalmakla kalmaz, mitokondriler kendilerine ulaşan oksijeni de kullanamaz. Klinik belirtilerden biri venöz kanın parlak kırmızı olmasıdır: kan doku kapiller ağından oksijen bırakmadan geçmiştir, yani miks venöz satürasyon yükselmiştir; anaerobik metabolizma nedeniyle laktik asidoz vardır. [[K1 s. 36]]</p>
+    <p>Siyanürün toksisitesi iki mekanizmanın sonucudur. Birincisi oksijen taşıma kapasitesinin azalmasıdır: kitaba göre siyanür, karbonmonoksitin tersine hemoglobine geri dönüşümsüz bağlanır ve oksijenle tedavi edilemeyen bir fonksiyonel anemi yapar. İkincisi ve başlıca toksik etki, mitokondriyal elektron taşıma zincirindeki sitokrom c oksidazın (Kompleks IV) inhibisyonudur. Böylece yalnızca taşıma kapasitesi azalmakla kalmaz, mitokondriler kendilerine ulaşan oksijeni de kullanamaz. Klinik belirtilerden biri venöz kanın parlak kırmızı olmasıdır: kan doku kapiller ağından oksijen bırakmadan geçmiştir, yani miks venöz satürasyon yükselmiştir; anaerobik metabolizma nedeniyle laktik asidoz vardır. [[K1 s. 36]]</p>
   </div>
   <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap siyanürün hemoglobinin Fe²⁺ iyonundaki oksijen bağlanma bölgesine bağlandığını yazar. Siyanürün yüksek afinitesi aslında ferrik demire (Fe³⁺) karşıdır: methemoglobinle siyanomethemoglobin oluşturur ve sodyum nitritin siyanür zehirlenmesinde kullanılması (kasıtlı methemoglobinemi oluşturup siyanürü mitokondriden uzaklaştırma) tam olarak buna dayanır. Zehirlenmeyi öldürücü kılan da taşıma kapasitesindeki azalma değil, sitokrom c oksidaz inhibisyonudur.</div>
   <div class="card clin" style="margin-top:14px">
@@ -210,14 +212,6 @@ SAYFALAR['dersler/fizyoloji/08'] = {
     <h3 style="margin-top:8px">Siyanür zehirlenmesi</h3>
     <p>Siyanür, kısmen öldürücü dozunun yalnızca 1 mg/kg olması nedeniyle kurmaca eserlerde sık kullanılan bir ölüm biçimi olsa da gerçek yaşamda görece nadirdir. Endüstriyel ortamda ve sodyum nitroprussid uygulamasından sonra görülebilir; en sık ev yangınlarında yanan naylon malzemelerden çıkan dumanın solunmasıyla ortaya çıkar. [[K1 s. 36]]</p>
     <p>Yönetim yakın zamanda değişmiştir: olağan destekleyici önlemlere ek olarak yüksek dozda hidroksokobalamin (B₁₂a vitamini) verilir. Hidroksokobalaminin kobalt katyonu siyanür iyonlarını bağlayarak toksik olmayan ve böbrekten atılan siyanokobalamini (B₁₂ vitamini) oluşturur. Önemli olan, hidroksokobalaminin mitokondriye girebilmesidir: orada siyanürü geri dönüşümsüz bağlayarak oksidatif metabolizmayı yeniden sağlar. [[K1 s. 36]]</p>
-  </div>
-</section>
-
-<section class="wrap blk ders-sec" id="d08-miyoglobin">
-  <h2>Miyoglobin</h2>
-  <div class="blk-body">
-    <p>Miyoglobin de hemoglobin gibi oksijen bağlayan, demir içeren büyük bir proteindir; ancak yalnızca bir globin zinciri ve bir hem grubu taşır. Görevi oksijen depolamaktır, bu yüzden oksijen gereksiniminin yüksek olduğu iskelet kasında bulunur; kırmızı etin kırmızı rengi miyoglobinin Fe²⁺ pigmentlerinden gelir. [[K1 s. 36]]</p>
-    <p>Tek zincirli olduğu için miyoglobin kooperatif bağlanma gösteremez: oksimiyoglobin dissosiyasyon eğrisi hiperboliktir ve oksihemoglobin eğrisinin belirgin solunda yer alır. P50'si hemoglobininkinden çok daha düşüktür; oksijenin oksihemoglobinden miyoglobine aktarılabilmesi bunu gerektirir. Eğriyi yukarıdaki dissosiyasyon eğrisi bileşeninde "Miyoglobin eğrisi" düğmesiyle karşılaştırabilirsiniz. [[K1 s. 36]]</p>
   </div>
 </section>
 
