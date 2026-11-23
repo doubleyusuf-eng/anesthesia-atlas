@@ -1,0 +1,176 @@
+/* Ek ders · EEG, uyarılmış potansiyeller ve uyku · bileşen stilleri (fek45- önekli; renkler yalnız site.css değişkenleriyle) */
+.fek45-svg{width:100%;height:auto;display:block;overflow:visible}
+.fek45-t{font:650 12.5px var(--f-display);fill:var(--ink)}
+.fek45-tm{font:600 11.5px var(--f-mono);fill:var(--muted)}
+.fek45-tk{font:500 11px var(--f-mono);fill:var(--muted)}
+.fek45-yt{font:650 12px var(--f-display);fill:var(--ink)}
+.fek45-ht{font:600 12px var(--f-mono);fill:var(--ink)}
+.fek45-halo{paint-order:stroke;stroke:var(--paper);stroke-width:4px;stroke-linejoin:round}
+.fek45-dar .fek45-t{font-size:13.5px}
+.fek45-dar .fek45-tm{font-size:12.5px}
+.fek45-dar .fek45-tk{font-size:12px}
+.fek45-dar .fek45-yt{font-size:13.5px}
+.fek45-dar .fek45-ht{font-size:17.5px}
+.fek45-dar .fek45-hd .fek45-halo{stroke-width:5px}
+.fek45-c-b{fill:var(--c-basic)}
+.fek45-c-w{fill:var(--warn)}
+.fek45-c-ok{fill:var(--ok)}
+.fek45-c-cr{fill:var(--crit)}
+.fek45-c-cl{fill:var(--c-clin)}
+
+/* kontroller */
+.fek45-ctl{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:flex-end;margin:0 0 14px}
+.fek45-grp{display:grid;gap:5px;min-width:0}
+.fek45-gl{font:650 12.5px/1.2 var(--f-display);color:var(--muted)}
+.fek45-rng{display:grid;gap:4px;min-width:200px;flex:1 1 220px;max-width:360px}
+.fek45-rng > span{display:flex;justify-content:space-between;gap:10px;font:650 13.5px/1.25 var(--f-display);color:var(--ink)}
+.fek45-rng b{font:700 13px/1.25 var(--f-mono);color:var(--accent-ink)}
+.fek45-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+.fek45-pasif{opacity:.45}
+.fek45-uz{display:inline}.fek45-kz{display:none}
+.fek45-kz small{display:block;font:500 11px/1.1 var(--f-mono);margin-top:3px;opacity:.85}
+.fek45-darw .fek45-uz{display:none}.fek45-darw .fek45-kz{display:inline-block}
+.fek45-darw .fek45-ctl{flex-direction:column;align-items:stretch}
+.fek45-darw .fek45-rng{max-width:none;min-width:0;flex:none}
+.fek45-darw .seg{display:flex;flex-wrap:nowrap}
+.fek45-darw .seg button{flex:1 1 0;padding:9px 6px;font-size:14px;text-align:center}
+.fek45-darw .fek45-seg22{flex-wrap:wrap}
+.fek45-darw .fek45-seg22 button{flex:1 1 45%}
+.fek45-darw .btn-row .btn{flex:1 1 auto;justify-content:center}
+
+/* okuma kutuları */
+.fek45-oku{display:grid;gap:10px 16px;margin:12px 0 0;grid-template-columns:repeat(4,minmax(0,1fr))}
+.fek45-oku3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fek45-oku > div{min-width:0;border-bottom:1px solid var(--line);padding-bottom:7px}
+.fek45-oku dt{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
+.fek45-oku dd{margin:2px 0 0;font:700 14.5px/1.3 var(--f-mono);color:var(--ink);overflow-wrap:anywhere}
+.fek45-darw .fek45-oku{grid-template-columns:repeat(2,minmax(0,1fr))}
+.fek45-darw .fek45-oku3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.fek45-darw .fek45-oku3 dd{font-size:13px}
+.fek45-kayn{grid-column:1/-1}
+.fek45-kayn dd{display:flex;flex-wrap:wrap;gap:4px 14px;font-weight:600;font-size:13px}
+.fek45-kayn b{color:var(--c-clin);margin-right:4px}
+.fek45-bar{display:block;height:7px;border-radius:4px;background:var(--chip);margin:5px 0 4px;overflow:hidden}
+.fek45-bar i{display:block;height:100%;width:0;background:var(--crit);transition:width .2s linear}
+.fek45-rozet{display:inline-block;font:700 11.5px/1.2 var(--f-mono);font-style:normal;color:var(--crit);background:var(--crit-soft);border-radius:6px;padding:3px 6px}
+@media (prefers-reduced-motion: reduce){.fek45-bar i{transition:none}}
+
+/* ortak şerit */
+.fek45-zemin{fill:var(--paper);stroke:var(--line);stroke-width:1}
+.fek45-orta{stroke:var(--line);stroke-width:1;stroke-dasharray:3 4}
+.fek45-olcek{fill:none;stroke:var(--muted);stroke-width:2}
+.fek45-iz{fill:none;stroke:var(--accent);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.fek45-iz-tek{stroke:var(--muted);stroke-width:1.6;opacity:.8}
+.fek45-uc-w{fill:var(--warn)}
+.fek45-uc-b{fill:var(--c-basic)}
+.fek45-uc-i{fill:var(--ink)}
+
+/* 1 · senkron */
+.fek45-yuzey{stroke:var(--ink);stroke-width:2}
+.fek45-elk{fill:var(--chip);stroke:var(--ink);stroke-width:2}
+.fek45-elk-k{stroke:var(--muted);stroke-width:1.2;stroke-dasharray:2 3}
+.fek45-tal{fill:var(--chip);stroke:var(--c-basic);stroke-width:2}
+.fek45-nabiz{fill:var(--c-basic)}
+.fek45-ret .fek45-nabiz{opacity:.35}
+.fek45-rf{fill:var(--chip);stroke:var(--warn);stroke-width:2}
+.fek45-rfg{opacity:.35;transition:opacity .25s}
+.fek45-ret .fek45-rfg{opacity:1}
+.fek45-rfok{fill:none;stroke:var(--warn);stroke-width:2.5}
+.fek45-rflab{opacity:0}
+.fek45-ret .fek45-rflab{opacity:1}
+.fek45-lif{fill:none;stroke:var(--c-basic);stroke-width:1;opacity:.45}
+.fek45-ret .fek45-lif{stroke-dasharray:3 4;opacity:.3}
+.fek45-hucre{fill:var(--c-basic-soft);stroke:var(--ink);stroke-width:1.5;stroke-linejoin:round}
+.fek45-g0{stroke:var(--muted);stroke-width:1}
+.fek45-gst.fek45-art{fill:var(--accent)}
+.fek45-gst.fek45-eks{fill:var(--crit)}
+
+/* 2 · bant */
+.fek45-kafa{fill:var(--chip);stroke:var(--ink);stroke-width:1.6}
+.fek45-kafa-z{stroke:none}
+.fek45-kafa-c{fill:none;stroke:var(--ink);stroke-width:2}
+.fek45-orta-h{stroke:var(--muted);stroke-width:1;stroke-dasharray:4 4}
+.fek45-bolge{fill:var(--accent-soft);opacity:0;transition:opacity .3s}
+.fek45-bolge.on{opacity:1}
+.fek45-bolge[data-bo=tum].on{opacity:.75}
+.fek45-blab{fill:var(--accent-ink)}
+.fek45-not{fill:var(--accent-ink)}
+.fek45-kus{fill:var(--chip);stroke:var(--line);stroke-width:1}
+.fek45-kus.on{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.fek45-kus-t{font-size:13px}
+.fek45-tik{stroke:var(--muted);stroke-width:1}
+.fek45-ucgen{fill:var(--accent)}
+.fek45-ucgen.fek45-soluk{fill:var(--muted)}
+
+/* 3 · iskemi */
+.fek45-eksen{stroke:var(--ink);stroke-width:2}
+.fek45-altdolgu{fill:var(--crit-soft)}
+.fek45-tar{stroke:var(--crit);stroke-width:1.4;opacity:.6}
+.fek45-nor{stroke:var(--ok);stroke-width:2.5}
+.fek45-es{stroke:var(--muted);stroke-width:1.4;stroke-dasharray:4 3;opacity:.7}
+.fek45-esg .fek45-es-t{opacity:.75}
+.fek45-esg.on .fek45-es{stroke:var(--crit);stroke-width:3.5;stroke-dasharray:none;opacity:1}
+.fek45-esg.on .fek45-es-t{fill:var(--crit);font-weight:700;opacity:1}
+.fek45-imlec{fill:var(--accent)}
+
+/* 4 · ortalama */
+.fek45-bas{fill:var(--chip);stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.fek45-bas-c{fill:none;stroke:var(--ink);stroke-width:1.5}
+.fek45-uyok{fill:none;stroke:var(--ink);stroke-width:2}
+.fek45-bsap{fill:none;stroke:var(--c-basic);stroke-width:7;stroke-linecap:round;opacity:.4}
+.fek45-kay{fill:var(--c-clin)}
+.fek45-kol{fill:none;stroke:var(--ink);stroke-width:12;stroke-linecap:round;opacity:.18}
+.fek45-sinir{fill:none;stroke:var(--c-clin);stroke-width:1.6;stroke-dasharray:4 3}
+.fek45-simsek{fill:none;stroke:var(--warn);stroke-width:2.4;stroke-linejoin:round}
+.fek45-akt{fill:var(--c-clin);stroke:var(--paper);stroke-width:1.5}
+.fek45-ref{fill:var(--paper);stroke:var(--c-clin);stroke-width:2.5}
+.fek45-uyc{stroke:var(--ink);stroke-width:1.2;stroke-dasharray:5 4}
+.fek45-tek{fill:none;stroke:var(--muted);stroke-width:1.1;opacity:.45}
+.fek45-tek-son{opacity:.9;stroke-width:1.4}
+.fek45-ep{fill:none;stroke:var(--c-clin);stroke-width:2.2;stroke-linejoin:round}
+.fek45-olc{fill:none;stroke:var(--ink);stroke-width:1.4}
+.fek45-olc-k{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 3}
+
+/* 5 · uyku */
+.fek45-yapi{cursor:pointer;outline:none}
+.fek45-kor{fill:var(--chip);stroke:var(--muted);stroke-width:7;stroke-opacity:.35;transition:stroke .25s,stroke-opacity .25s}
+.fek45-yapi.on .fek45-kor{stroke:var(--accent);stroke-opacity:.8}
+.fek45-cc{fill:none;stroke:var(--line);stroke-width:6;stroke-linecap:round}
+.fek45-talam{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:1.6}
+.fek45-yapi.on .fek45-talam{stroke-width:3.5}
+.fek45-hipo{fill:var(--paper);stroke:var(--muted);stroke-width:1.2}
+.fek45-pre{fill:var(--paper);stroke:var(--muted);stroke-width:1.6}
+.fek45-yapi.on .fek45-pre{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:3}
+.fek45-dien{fill:none;stroke:var(--muted);stroke-width:1.4;stroke-dasharray:5 4}
+.fek45-yapi.on .fek45-dien{stroke:var(--c-basic);stroke-width:2.6;fill:var(--c-basic-soft);fill-opacity:.35}
+.fek45-bsap2{fill:var(--paper);stroke:var(--muted);stroke-width:1.4}
+.fek45-rfag{stroke:none;opacity:.55}
+.fek45-yapi.on .fek45-rfag{opacity:1}
+.fek45-agn{fill:var(--warn)}
+.fek45-agc{stroke:var(--warn);stroke-width:.7}
+.fek45-lc{fill:var(--paper);stroke:var(--ink);stroke-width:1.6}
+.fek45-rafe{fill:var(--ink)}
+.fek45-yapi.on .fek45-rafe{fill:var(--c-basic)}
+.fek45-lider{fill:none;stroke:var(--muted);stroke-width:1}
+.fek45-yapi.sec .fek45-yt,.fek45-yapi:focus-visible .fek45-yt{fill:var(--accent-ink);text-decoration:underline}
+.fek45-yapi:focus-visible .fek45-lider{stroke:var(--accent)}
+.fek45-yapi.on .fek45-yt{font-weight:800}
+.fek45-aras{fill:none;stroke:var(--warn);stroke-width:2.5;transition:stroke-width .3s,opacity .3s}
+[data-ok=kalin] .fek45-aras{stroke-width:5}
+[data-ok=orta] .fek45-aras{stroke-width:3}
+[data-ok=ince] .fek45-aras{stroke-width:1.4;opacity:.4}
+[data-ok=yok] .fek45-aras,[data-ok=yok] .fek45-arasl,[data-ok=yok] .fek45-ritim{opacity:0}
+.fek45-ritim path{fill:none;stroke:var(--c-basic);stroke-width:1.6;opacity:.7;transition:opacity .3s,stroke-width .3s}
+[data-ok=kalin] .fek45-ritim path{stroke-width:2.4}
+[data-ok=ince] .fek45-ritim path{stroke-width:3;opacity:.9}
+.fek45-ort{fill:var(--accent-ink)}
+.fek45-gtr{fill:var(--chip)}
+.fek45-gfl{fill:var(--ok);transition:width .4s}
+.fek45-gfl.fek45-azal{fill:var(--warn)}
+.fek45-gdu{fill:var(--ink)}
+.fek45-remnot{opacity:0}
+.fek45-gos-yok .fek45-gad,.fek45-gos-yok .fek45-gtr{opacity:.35}
+.fek45-gos-yok .fek45-remnot{opacity:1}
+.fek45-bilgi{font-size:14.5px;line-height:1.5;color:var(--ink);margin:10px 0 0;padding:9px 12px;border-left:3px solid var(--accent);background:var(--chip);border-radius:0 8px 8px 0;min-height:2.6em}
+@media (prefers-reduced-motion: reduce){.fek45-gfl,.fek45-aras,.fek45-ritim path,.fek45-bolge,.fek45-rfg{transition:none}}
+.fek45-ink{fill:var(--ink)}

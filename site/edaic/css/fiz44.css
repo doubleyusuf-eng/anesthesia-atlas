@@ -1,0 +1,224 @@
+/* Bölüm 44 · Nöronun yapısı ve işlevi · bölüme özgü stiller (f44- önekli). Renkler yalnız site.css değişkenleriyle. */
+.f44-svg{width:100%;height:auto;display:block;margin:0 auto;overflow:visible}
+.f44-kont{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:flex-end;margin-bottom:12px}
+.f44-kont > div{min-width:0;max-width:100%}
+.f44-lbl{display:block;font:600 12.5px/1.3 var(--f-mono);color:var(--muted);margin-bottom:5px}
+.f44-sayac{font:600 13px/1 var(--f-mono);color:var(--muted);min-width:68px;text-align:center}
+.f44-kont .btn:disabled{opacity:.4;cursor:default}
+.f44-t{font:650 14px var(--f-display);fill:var(--ink)}
+.f44-tb{font:750 15px var(--f-display);fill:var(--ink)}
+.f44-ts{font:500 12px var(--f-mono);fill:var(--muted)}
+.f44-ink{fill:var(--ink)}
+.f44-mini-t{font:600 11px var(--f-mono);fill:var(--muted)}
+.f44-baslik{font:750 17px var(--f-display);fill:var(--accent-ink)}
+.f44-p{cursor:pointer;outline:none}
+.f44-p:focus-visible > *{stroke:var(--accent)!important}
+.f44-lider{stroke:var(--muted);stroke-width:1;opacity:.7}
+.f44-nokta{fill:var(--accent);stroke:var(--paper);stroke-width:1.5;pointer-events:none}
+
+/* 1 · sinyal */
+.f44-ist{fill:var(--chip);stroke:var(--line);stroke-width:1.5;transition:stroke .3s,fill .3s}
+.f44-ist.on{stroke:var(--accent);stroke-width:3;fill:var(--accent-soft)}
+.f44-ok{stroke-width:3}
+.f44-ok.f44-kalin{stroke-width:6}
+.f44-aff{stroke:var(--ok)}
+.f44-eff{stroke:var(--warn)}
+.f44-uc-aff{fill:var(--ok)}
+.f44-uc-eff{fill:var(--warn)}
+.f44-uc-acc{fill:var(--accent)}
+.f44-uc-mut{fill:var(--muted)}
+.f44-sinir{fill:none;stroke-width:2.4;stroke-linejoin:round}
+.f44-uyaran{stroke:var(--accent);stroke-width:2}
+.f44-deri{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.2}
+.f44-res{fill:var(--ok-soft);stroke:var(--ok);stroke-width:2}
+.f44-beyin{fill:var(--paper);stroke:var(--ink);stroke-width:1.6;transition:fill .3s,stroke .3s}
+.f44-giri{fill:none;stroke:var(--muted);stroke-width:1.3}
+.f44-kord{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;transition:fill .3s,stroke .3s}
+.f44-cns.on .f44-beyin,.f44-cns.on .f44-kord{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2.4}
+.f44-kas{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.6}
+.f44-cizgi{stroke:var(--warn);stroke-width:1;opacity:.7}
+.f44-kasg{transform-box:fill-box;transform-origin:center;transition:transform .4s .8s}
+.f44-a3 .f44-kasg{transform:scaleX(.8) scaleY(1.25)}
+.f44-bez{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.4}
+.f44-damla{fill:var(--c-clin);opacity:0;transition:opacity .4s .9s}
+.f44-a3 .f44-damla{opacity:1}
+.f44-duz{font:650 12px var(--f-mono);fill:var(--accent-ink);opacity:0;transition:opacity .4s .8s}
+.f44-a3 .f44-duz{opacity:1}
+.f44-kutu{fill:var(--chip);stroke:var(--line);stroke-width:1.5;transition:fill .3s,stroke .3s}
+.f44-hedef.on{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2.4}
+.f44-soma{fill:var(--chip);stroke:var(--ink);stroke-width:1.6}
+.f44-akson{stroke:var(--ink);stroke-width:2.4}
+.f44-dugme{fill:var(--chip);stroke:var(--ink);stroke-width:1.6}
+.f44-yarik{stroke:var(--ink);stroke-width:2.4}
+.f44-vez{fill:var(--accent-ink)}
+.f44-damar{fill:none;stroke:var(--c-clin-soft);stroke-width:14;stroke-linecap:round}
+.f44-damar-i{fill:none;stroke:var(--c-clin);stroke-width:1.2;opacity:.6}
+.f44-hormon{fill:var(--c-clin);stroke:var(--paper);stroke-width:1.5}
+.f44-bar-z{fill:var(--chip);stroke:var(--line)}
+.f44-bar{fill:var(--accent)}
+.f44-bar-e{fill:var(--c-clin)}
+.f44-bl{fill:var(--ink)}
+
+/* 2 · nöron */
+.f44-hit{fill:none;stroke:transparent;stroke-width:16}
+.f44-hit-r{fill:transparent}
+.f44-den{fill:none;stroke:var(--ink);stroke-width:2.2;stroke-linecap:round}
+.f44-gelen{fill:var(--muted);opacity:.45}
+.f44-govde{fill:var(--chip);stroke:var(--ink);stroke-width:1.8;transition:fill .3s}
+.f44-govde-on .f44-govde{fill:var(--accent-soft)}
+.f44-cek{fill:var(--muted);stroke:var(--ink);stroke-width:1}
+.f44-tep{fill:var(--chip);stroke:var(--ink);stroke-width:1.6;transition:fill .3s,stroke .3s}
+.f44-yanik .f44-tep{fill:var(--accent);stroke:var(--accent)}
+.f44-na{fill:var(--ink)}
+.f44-na-t{font:500 11px var(--f-mono);fill:var(--muted)}
+.f44-aks{fill:none;stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.f44-iz{stroke:var(--accent);stroke-width:5;stroke-linecap:round;opacity:.85;pointer-events:none}
+.f44-iz.f44-kesik{stroke-dasharray:8 6;stroke-linecap:butt}
+.f44-miy{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:1.5}
+.f44-bogum{fill:var(--paper);stroke:var(--ink);stroke-width:1;transition:fill .12s}
+.f44-bogum.on{fill:var(--accent);stroke:var(--accent)}
+.f44-schw-z{fill:none;stroke:var(--c-basic);stroke-width:2.6}
+.f44-schw-n{fill:var(--c-basic);stroke:var(--paper);stroke-width:1}
+.f44-oligo-k{fill:none;stroke:var(--c-basic);stroke-width:2.4}
+.f44-oligo-g{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:2}
+.f44-oligo-n{fill:var(--c-basic)}
+.f44-tdug{fill:var(--chip);stroke:var(--ink);stroke-width:1.6}
+.f44-kaslif{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.6;transition:stroke-width .3s}
+.f44-hedefn{fill:var(--chip);stroke:var(--ink);stroke-width:1.4}
+.f44-hedef-on .f44-kaslif,.f44-hedef-on .f44-hedefn{stroke:var(--accent);stroke-width:3}
+.f44-bulut{fill:var(--accent-ink);pointer-events:none}
+.f44-ap rect{fill:var(--accent)}
+.f44-ap text{font:750 12px var(--f-mono);fill:var(--on-accent)}
+.f44-et{font:650 13.5px var(--f-display);fill:var(--ink)}
+.f44-dar .f44-et{font-size:15px}
+.f44-dar .f44-na-t{font-size:12.5px}
+.f44-sec .f44-et{fill:var(--accent-ink)}
+.f44-sec .f44-lider{stroke:var(--accent);opacity:1;stroke-width:1.6}
+.f44-sec .f44-den,.f44-sec .f44-aks{stroke:var(--accent)}
+.f44-sec .f44-govde,.f44-sec .f44-tdug,.f44-sec .f44-miy,.f44-sec .f44-cek{stroke:var(--accent);stroke-width:2.6}
+.f44-sec .f44-bogum{stroke:var(--accent);stroke-width:2.4}
+.f44-sec .f44-schw-z,.f44-sec .f44-oligo-k,.f44-sec .f44-oligo-g{stroke:var(--accent)}
+.f44-sec .f44-tep{stroke:var(--accent);stroke-width:2.6}
+
+/* 3 · tipler */
+.f44-kartlar{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.f44-kartlar.f44-dar{grid-template-columns:repeat(3,minmax(0,1fr))}
+.f44-tkart{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 6px;border:1.5px solid var(--line);border-radius:12px;background:var(--chip);color:var(--ink);cursor:pointer;font:650 13px/1.2 var(--f-display);min-width:0}
+.f44-tkart span{overflow-wrap:anywhere;text-align:center}
+.f44-tkart[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.f44-mini{width:100%;max-width:120px;height:auto;display:block}
+.f44-mini .f44-n-d{stroke-width:7}
+.f44-mini .f44-n-ak,.f44-mini .f44-n-sap{stroke-width:9}
+.f44-mini .f44-n-g{stroke-width:5}
+.f44-n-g{fill:var(--chip);stroke:var(--ink);stroke-width:2}
+.f44-n-d{fill:none;stroke:var(--ink);stroke-width:2;stroke-linecap:round}
+.f44-n-ak{fill:none;stroke:var(--ink);stroke-width:3.2;stroke-linecap:round}
+.f44-n-sap{fill:none;stroke:var(--ink);stroke-width:3.2;transition:stroke .2s}
+.f44-n-sap.on{stroke:var(--accent)}
+.f44-rmyol{fill:none;stroke:var(--accent);stroke-width:2.4;stroke-dasharray:6 5}
+.f44-et2{font:500 12.5px var(--f-mono);fill:var(--muted)}
+.f44-tip-g{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:14px 20px;align-items:center}
+.f44-tip-g.f44-dar{grid-template-columns:1fr}
+.f44-tip-svg{max-width:520px;width:100%;margin:0 auto}
+.f44-bilgi{border:1.5px solid var(--line);border-radius:12px;background:var(--chip);padding:12px 14px}
+.f44-bilgi h4{font:750 16px/1.2 var(--f-display);margin:0 0 8px;color:var(--accent-ink)}
+.f44-bilgi p{margin:6px 0 0;font:500 14px/1.4 var(--f-display);color:var(--ink)}
+.f44-bilgi p span{display:block;font:600 11.5px/1.3 var(--f-mono);color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+
+/* 4 · harita */
+.f44-bag{fill:none;stroke:var(--muted);stroke-width:1.4;opacity:.7}
+.f44-dg rect{fill:var(--chip);stroke:var(--line);stroke-width:1.5;transition:fill .2s,stroke .2s}
+.f44-dg-ok rect{stroke:var(--ok)}
+.f44-dg-warn rect{stroke:var(--warn)}
+.f44-dg-t{font:650 13.5px var(--f-display);fill:var(--ink);pointer-events:none}
+.f44-dg-a{font:500 11.5px var(--f-mono);fill:var(--muted);pointer-events:none}
+.f44-dg.f44-sec rect{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2.6}
+.f44-dg:hover rect{stroke:var(--accent)}
+.f44-sema{opacity:0;transition:opacity .3s;pointer-events:none}
+.f44-sema.on{opacity:1}
+.f44-sema-dar .f44-sema{opacity:1}
+.f44-s-l{fill:none;stroke:var(--muted);stroke-width:1.6}
+.f44-s-n{fill:var(--chip);stroke:var(--ink);stroke-width:1.4}
+.f44-s-a{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.f44-s-r{fill:var(--crit-soft);stroke:var(--crit);stroke-width:2}
+.f44-s-i{fill:none;stroke:var(--crit);stroke-width:2.2}
+.f44-s-rt{fill:var(--crit)}
+.f44-v-dis{fill:var(--chip);stroke:var(--line);stroke-width:1.5}
+.f44-v-kol{fill:none;stroke:var(--chip);stroke-width:20;stroke-linecap:round;stroke-linejoin:round}
+.f44-v-bacak{fill:none;stroke:var(--chip);stroke-width:20;stroke-linecap:round}
+.f44-v-p{fill:var(--paper);stroke:var(--ink);stroke-width:1.4;transition:fill .2s,stroke .2s}
+.f44-v-p.on{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2.6}
+.f44-v-kalp{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.2}
+.f44-v-bag{fill:none;stroke:var(--muted);stroke-width:2}
+.f44-v-kasi{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.4}
+.f44-v-drg{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.6}
+.f44-v-res{fill:var(--ok)}
+.f44-v-y{fill:none;stroke-width:2;opacity:.25;transition:opacity .2s,stroke-width .2s}
+.f44-v-y.on{opacity:1;stroke-width:3.4}
+.f44-v-duy{stroke:var(--ok)}
+.f44-v-mot{stroke:var(--warn)}
+.f44-v-oto{stroke:var(--accent);stroke-dasharray:5 4}
+.f44-v-ent{stroke:var(--c-clin);stroke-dasharray:3 3}
+.f44-v-aran{fill:var(--crit);stroke:none;opacity:0}
+.f44-v-aran.on{opacity:1}
+.f44-dar-ad{font:750 17px var(--f-display);fill:var(--accent-ink)}
+.f44-agac{display:grid;gap:4px;margin-top:8px}
+.f44-agac-b{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px;text-align:left;margin-left:calc(var(--d) * 16px);border:1.5px solid var(--line);border-left-width:4px;border-radius:9px;background:var(--chip);color:var(--ink);padding:8px 10px;cursor:pointer;font:650 14px/1.25 var(--f-display);min-width:0}
+.f44-agac-b span{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
+.f44-agac-b.f44-dg-ok{border-left-color:var(--ok)}
+.f44-agac-b.f44-dg-warn{border-left-color:var(--warn)}
+.f44-agac-b[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.f44-sema-dar{max-width:230px;margin:4px 0 4px 32px;width:calc(100% - 32px)}
+
+/* 5 · katman */
+.f44-kb{font:500 12.5px/1.4 var(--f-mono);color:var(--muted);margin:0 0 10px}
+.f44-adimk{gap:6px}
+.f44-kat-g{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:14px 20px;align-items:start}
+.f44-kat-g.f44-dar{grid-template-columns:1fr}
+.f44-kesit{max-width:480px;width:100%;margin:0 auto}
+.f44-yan{display:grid;gap:12px}
+.f44-lej{display:grid;gap:6px}
+.f44-lej-b{display:flex;gap:10px;align-items:flex-start;text-align:left;border:1.5px solid var(--line);border-radius:10px;background:var(--chip);color:var(--ink);padding:9px 11px;cursor:pointer;font:500 14px/1.35 var(--f-display);min-width:0}
+.f44-lej-b b{font-weight:700}
+.f44-lej-b[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.f44-lej-i{flex:none;width:16px;height:16px;border-radius:50%;margin-top:2px}
+.f44-lej-epi{background:var(--chip);border:3px solid var(--ink)}
+.f44-lej-peri{background:var(--paper);border:3px solid var(--c-basic)}
+.f44-lej-endo{background:var(--paper);border:2px solid var(--muted)}
+.f44-lej-lif{background:var(--c-basic-soft);border:2px solid var(--c-basic)}
+.f44-ins{max-width:300px;width:100%;margin:0 auto}
+.f44-epi{fill:var(--chip);stroke:var(--ink);stroke-width:3.5;transition:fill .8s}
+.f44-dam{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.2;pointer-events:none}
+.f44-fas{fill:var(--paper);stroke:var(--c-basic);stroke-width:3;transition:fill .8s}
+.f44-endo{fill:var(--paper);stroke:var(--muted);stroke-width:1;transition:fill .8s,stroke .8s}
+.f44-miy2{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:.8}
+.f44-aks2{fill:var(--ink);transition:fill .6s}
+.f44-buyut{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:3 2;pointer-events:none}
+.f44-cephe{fill:none;stroke:var(--c-clin);stroke-width:2.4;stroke-dasharray:6 4;pointer-events:none}
+.f44-la-bulut{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:1.4;stroke-dasharray:4 3;transition:opacity .8s}
+.f44-la-t{fill:var(--c-clin)}
+.f44-igne{stroke:var(--ink);stroke-width:3;stroke-linecap:round}
+.f44-igne-u{stroke:var(--muted);stroke-width:7;stroke-linecap:round}
+.f44-rozet{opacity:0;transition:opacity .5s;pointer-events:none}
+.f44-rozet rect{fill:var(--c-clin)}
+.f44-rozet text{font:750 10.5px var(--f-mono);fill:var(--paper)}
+.f44-s1 .f44-epi{fill:var(--c-clin-soft)}
+.f44-s1 .f44-la-bulut{opacity:.3}
+.f44-s2 .f44-fas{fill:var(--c-clin-soft)}
+.f44-s3 .f44-endo{fill:var(--c-clin-soft);stroke:var(--c-clin)}
+.f44-s4 .f44-aks2{fill:var(--c-clin)}
+.f44-s4 .f44-rozet{opacity:1}
+.f44-ins-z{fill:var(--paper);stroke:var(--line);stroke-width:1.5;transition:fill .8s}
+.f44-ins-endo{fill:var(--paper);stroke:var(--muted);stroke-width:2;transition:fill .8s,stroke .8s}
+.f44-ins-miy{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:2}
+.f44-ins-aks{fill:var(--chip);stroke:var(--ink);stroke-width:2;transition:fill .6s}
+.f44-ins-blok{font:750 12px var(--f-mono);fill:var(--paper);opacity:0;transition:opacity .5s}
+.f44-s2 .f44-ins-z{fill:var(--c-clin-soft)}
+.f44-s3 .f44-ins-endo{fill:var(--c-clin-soft);stroke:var(--c-clin)}
+.f44-s4 .f44-ins-aks{fill:var(--c-clin);stroke:var(--c-clin)}
+.f44-s4 .f44-ins-blok{opacity:1}
+@keyframes f44-yan{0%,100%{stroke:var(--accent);stroke-width:5}50%{stroke-width:2}}
+.f44-fl-epi .f44-epi,.f44-fl-peri .f44-fas,.f44-fl-endo .f44-endo,.f44-fl-endo .f44-ins-endo,.f44-fl-lif .f44-miy2,.f44-fl-lif .f44-ins-miy{stroke:var(--accent);animation:f44-yan .6s 3}
+.f44-fl-endo .f44-endo,.f44-fl-lif .f44-miy2{animation:none;stroke-width:2}
+@media (prefers-reduced-motion:reduce){.f44-fl-epi .f44-epi,.f44-fl-peri .f44-fas,.f44-fl-endo .f44-ins-endo,.f44-fl-lif .f44-ins-miy{animation:none;stroke-width:4}}
+.f44-sahne{max-width:860px;margin:0 auto}
