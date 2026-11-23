@@ -397,9 +397,9 @@
   /* ---------- bölüm tamamlama ---------- */
   const ANAHTAR = 'edaic-fizyoloji-tamam';
   VIZ.tamam = (el) => {
-    const no = el.dataset.bolum, durum = store.get(ANAHTAR) || {};
+    const no = el.dataset.bolum, AN = el.dataset.modul ? `edaic-${el.dataset.modul}-tamam` : ANAHTAR, durum = store.get(AN) || {};
     const ciz = () => { el.innerHTML = `<button type="button" class="btn ${durum[no] ? '' : 'ghost'} tamam-b" aria-pressed="${!!durum[no]}">${durum[no] ? '✓ Bu bölümü tamamladım' : 'Bu bölümü tamamladım olarak işaretle'}</button>`; };
-    el.addEventListener('click', (e) => { if (!e.target.closest('.tamam-b')) return; if (durum[no]) delete durum[no]; else durum[no] = true; store.set(ANAHTAR, durum); ciz(); });
+    el.addEventListener('click', (e) => { if (!e.target.closest('.tamam-b')) return; if (durum[no]) delete durum[no]; else durum[no] = true; store.set(AN, durum); ciz(); });
     ciz();
     return () => {};
   };
@@ -422,6 +422,27 @@
         return (hazir ? `<li class="icd-h"><a href="#/dersler/fizyoloji/${id}">${icerik}</a></li>` : `<li>${icerik}</li>`) + ek(no);
       }).join('')}</ol></div></details>`).join('')}
       <p class="viz-foot">${REF('Bölüm sırası ve sayfalar K1 [[K1]]; "Ek" dersler K2 [[K2]] seçkisinden, ilgili bölümün ardından.')}</p>`;
+    return () => {};
+  };
+
+  /* ---------- farmakoloji içindekiler: kısım → kitap bölümü → ders (uzun bölümler birden çok derse bölünür) ---------- */
+  VIZ.farIcindekiler = (el) => {
+    const F = window.FARMAKOLOJI, durum = store.get('edaic-farmakoloji-tamam') || {};
+    const HZ = window.FAR_HAZIR || [];
+    const hazirMi = (id) => !!SAYFALAR['dersler/farmakoloji/' + id] || HZ.includes(id);
+    const dersler = F.kisimlar.flatMap((k) => k.b.flatMap((b) => b[2]));
+    const top = dersler.length, yaz = dersler.filter(([id]) => hazirMi(id)).length, bit = dersler.filter(([id]) => durum[id]).length;
+    const satir = ([id, ad, s, e], tek) => {
+      const hz = hazirMi(id), tm = durum[id];
+      const ic = `<span class="no">${tek ? Number(id) : id}</span><span class="ad">${esc(ad)}</span><span class="sy">K3 s. ${s}–${e}</span><span class="st ${hz ? (tm ? 'ok' : 'hazir') : ''}">${hz ? (tm ? '✓ tamamlandı' : 'hazır') : 'sırada'}</span>`;
+      return hz ? `<li class="icd-h${tek ? '' : ' icd-ek'}"><a href="#/dersler/farmakoloji/${id}">${ic}</a></li>` : `<li${tek ? '' : ' class="icd-ek"'}>${ic}</li>`;
+    };
+    el.innerHTML = `<div class="chk-prog"><span>${yaz}/${top} ders hazır · ${bit} tamamladınız</span><span class="trk"><span class="fl" style="width:${(yaz / top) * 100}%"></span></span></div>
+      ${F.kisimlar.map((k, ki) => `<details class="acc icd"${ki === 0 ? ' open' : ''}><summary>Kısım ${k.no} · ${esc(k.ad)} <span class="small muted" style="margin-left:auto;margin-right:12px;font-weight:500">${k.b.length} bölüm · ${k.b.reduce((a, b) => a + b[2].length, 0)} ders</span></summary><div class="acc-b"><ol class="icd-l">${k.b.map(([no, ad, birim]) =>
+        birim.length === 1 ? satir([birim[0][0], ad, birim[0][2], birim[0][3]], true)
+          : `<li class="icd-bas"><span class="no">${no}</span><span class="ad"><b>${esc(ad)}</b></span><span class="sy">K3 s. ${birim[0][2]}–${birim[birim.length - 1][3]}</span><span class="st">${birim.length} ders</span></li>` + birim.map((x) => satir(x, false)).join('')
+      ).join('')}</ol></div></details>`).join('')}
+      <p class="viz-foot">${REF('Bölüm sırası K3 [[K3]]; sayfalar Türkçe çalışma çevirisine göredir (özgün baskıyla aynı değildir); uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünmüştür.')}</p>`;
     return () => {};
   };
 })();

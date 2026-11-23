@@ -92,4 +92,10 @@ window.KAYNAKLAR = {
     tur: 'Kitap · CRC Press (Taylor & Francis)', tarih: '2015 · sayfa numaraları İngilizce özgün baskıya göredir',
     not: 'Fizyoloji modülünün ek dersleri: K1\'de olmayan ya da kısa kalan konular (refleksler ve EEG, venöz dönüş, asit–baz kompansasyonu, bağışıklık, termoregülasyon, özel ortamlar). Metinler bu atlas için yazılır, kitaptan kopyalanmaz.',
   },
+  K3: {
+    ad: 'Peck T, Harris B. Pharmacology for Anaesthesia and Intensive Care, 5. baskı',
+    tur: 'Kitap · Cambridge University Press', tarih: '2021 · sayfa numaraları kullanıcının Türkçe çalışma çevirisine göredir (özgün baskıyla aynı değildir)',
+    not: 'Farmakoloji derslerinin ana kaynağı; dersler bu kitabın bölüm sırasını izler, uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünür. Ders metinleri, örnek sorular ve çizimler bu atlas için yazılmıştır; kitaptan metin ya da şekil kopyalanmamıştır.',
+    url: 'https://doi.org/10.1017/9781108591317',
+  },
 };

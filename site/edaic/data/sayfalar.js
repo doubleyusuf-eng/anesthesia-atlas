@@ -564,7 +564,7 @@ SAYFALAR['dersler'] = {
 <section class="wrap blk">
   <div class="modul">
     <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · bölüm bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
-    <div class="card planned"><span class="no">02 · Planlanıyor</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezi ve yoğun bakım ilaçları.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
+    <a class="card" href="#/dersler/farmakoloji"><span class="no">02 · Yazılıyor · ders ders</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezik, analjezik, kas gevşetici, kardiyovasküler ilaçlar; sıvılar, antimikrobiyaller, koagülasyon, hormonlar.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></a>
     <div class="card planned"><span class="no">03 · Planlanıyor</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, makine ve ventilatör; elektrik güvenliği.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
     <div class="card planned"><span class="no">04 · Planlanıyor</span><h3>Anatomi</h3><p class="small muted">Baş, boyun, toraks, omurga; periferik sinirler ve damarlar; yüzey işaretleri.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></div>
     <div class="card planned"><span class="no">05 · Planlanıyor</span><h3>İstatistik</h3><p class="small muted">Veri, olasılık, dağılımlar; parametrik ve parametrik olmayan testler.</p><span class="where"><span class="tag basic">Paper A</span></span></div>
@@ -618,10 +618,50 @@ SAYFALAR['dersler/fizyoloji'] = {
 </section>`,
 };
 
+SAYFALAR['dersler/farmakoloji'] = {
+  grup: 'dersler', eyebrow: 'Dersler · 02', baslik: 'Farmakoloji',
+  lede: 'Farmakoloji Part I\'de Paper A\'nın, Part II\'de SOE 2\'nin konusudur. SOE 2, 10 dakika önce verilen bir farmakoloji sorusuyla açılır; farmakokinetik ve farmakodinamik ilkeleri ayrıntılı sorulur. [[S6 s. 7]] [[S6 s. 9]] Dersler Peck ve Harris\'in Pharmacology for Anaesthesia and Intensive Care kitabının 26 bölümünü sırayla izler; uzun bölümler kitabın kendi başlıklarına göre birkaç kısa derse bölünür. [[K3]]',
+  html: `
+<section class="wrap blk">
+  <h2>Kapsam (rehbere göre)</h2>
+  <div class="cols" style="margin-top:14px">
+    <div class="card basic"><h3>Beklenen bilgi</h3><ul>
+      <li>İlaç etkisinin temel ilkeleri; farmakokinetik ve farmakodinamik</li>
+      <li>Reseptör–ilaç etkileşimi</li>
+      <li>İlaçların fizikokimyasal özellikleri ve formülasyonları</li>
+      <li>İlaç etkileri ve toksisitesi</li>
+      <li>Anestezide ve iç hastalıklarında kullanılan ilaçların farmakolojisi</li>
+    </ul><p class="small muted">[[S6 s. 4]]</p></div>
+    <div class="card basic"><h3>Nasıl sınanır?</h3><ul>
+      <li><b>Paper A:</b> temel bilim kâğıdındaki MTF soruları. [[S6 s. 6]]</li>
+      <li><b>SOE 2:</b> farmakoloji sorusuyla açılır ve anestezistle ilgili uygulamalı farmakolojiyi kapsar; en az bir soru klinik ölçümdür. [[S6 s. 7]]</li>
+      <li>Anestezi ilaçlarının ve yoğun bakımda sık kullanılan ilaçların farmakolojisi ve toksikolojisi iyi bilinmelidir. [[S6 s. 9]]</li>
+    </ul></div>
+  </div>
+</section>
+
+<section class="wrap blk">
+  <h2>Her ders nasıl işlenir?</h2>
+  <ol class="ders-format" style="margin-top:14px">
+    <li><b>Şekil ve animasyon</b>Her konu bir şekille: etki mekanizması, kinetik eğri, doz–yanıt ya da karşılaştırma.</li>
+    <li><b>Kısa anlatım</b>Kitabın bütün bilgisi, tekrar ve dolgu olmadan; ilaç özellikleri kart ve tablolarla.</li>
+    <li><b>Part I'de</b>Atlas için yazılmış üç MTF sorusu.</li>
+    <li><b>Part II'de</b>SOE 2 tarzı açılış sorusu, cevap iskeleti ve çizilecek grafik.</li>
+    <li><b>Kendini sına</b>Özet ve ilerleme kaydı.</li>
+  </ol>
+</section>
+
+<section class="wrap blk">
+  <h2>Dersler</h2>
+  <p class="intro">Hazır dersler bağlantılıdır; tamamladıklarınız bu tarayıcıda işaretli kalır. Ders metinleri ve çizimler bu atlas için yazılmıştır; kitaptan kopyalanmaz. Doz ve uygulama bilgileri sınav hazırlığı içindir, klinik karar için güncel ürün bilgisine ve kılavuzlara bakın.</p>
+  <div class="viz"><div data-viz="farIcindekiler"></div></div>
+</section>`,
+};
+
 /* ================= KAYNAKLAR ================= */
 SAYFALAR['kaynaklar'] = {
   grup: 'kaynaklar', eyebrow: 'Kaynaklar', baslik: 'Kaynaklar',
-  lede: 'S: sınav bilgilerinin dayandığı resmi ESAIC belgeleri. K: fizyoloji derslerinin kaynak kitapları. Metindeki kaynak işaretlerine (S6 · 7, K1 · 3 gibi) basınca ilgili belge ve sayfa görünür.',
+  lede: 'S: sınav bilgilerinin dayandığı resmi ESAIC belgeleri. K: ders modüllerinin kaynak kitapları. Metindeki kaynak işaretlerine (S6 · 7, K1 · 3 gibi) basınca ilgili belge ve sayfa görünür.',
   html: `
 <section class="wrap blk">
   <div data-viz="kaynaklar"></div>

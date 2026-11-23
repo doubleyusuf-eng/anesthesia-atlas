@@ -602,6 +602,8 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 .icd-l .st.ok{background:var(--ok-soft);color:var(--ok)}
 .icd-l li.icd-ek{margin-left:24px;border-left:2px dashed var(--line);border-radius:0 9px 9px 0}
 .icd-l li.icd-ek .no{color:var(--c-clin)}
+.icd-l li.icd-bas{background:none;border:0;padding-top:12px}
+.icd-l li.icd-bas .ad b{font-weight:650}
 @media (max-width:560px){.icd-l li,.icd-l li > a{grid-template-columns:30px minmax(0,1fr) auto}.icd-l .sy{display:none}}
 
 /* SEKIL kiti (js/sekil.js) — Bölüm 72'den itibaren ortak şekiller */

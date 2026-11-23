@@ -8,28 +8,35 @@
   let temizle = [];
 
   const ham = () => decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');
-  const BOLUM = /^dersler\/fizyoloji\/(ek\d\d|\d\d)$/;
+  /* ders modülleri: adres öneki → dosya öneki ve hazır listesi (data/dersler/hazir.js) */
+  const MODUL = {
+    fizyoloji: { on: 'fiz', hazir: () => window.FIZ_HAZIR || [] },
+    farmakoloji: { on: 'far', hazir: () => window.FAR_HAZIR || [] },
+  };
+  const BOLUM = /^dersler\/(fizyoloji|farmakoloji)\/(ek\d\d|\d\d[a-f]?)$/;
   function anahtar() {
     const h = ham();
     if (!h) return 'giris';
     if (VARSAYILAN[h]) return VARSAYILAN[h];
     if (SAYFALAR[h]) return h;
-    return BOLUM.test(h) ? 'dersler/fizyoloji' : 'giris'; // henüz yazılmamış bölüm → içindekiler
+    const m = h.match(BOLUM);
+    return m ? 'dersler/' + m[1] : 'giris'; // henüz yazılmamış bölüm → modülün içindekileri
   }
 
   /* bölüm dosyaları yalnız o bölüm açılınca yüklenir (data/dersler/hazir.js) */
   const yuklenen = {}, yuklendi = {}; // yuklendi: dosyalar geldi (sayfa yine yoksa içindekilere düşülür)
-  function bolumYukle(id) {
-    if (yuklenen[id]) return yuklenen[id];
+  function bolumYukle(modul, id) {
+    const on = MODUL[modul].on, anah = on + id;
+    if (yuklenen[anah]) return yuklenen[anah];
     const ekle = (tag, a) => new Promise((ok, no) => {
       const e = document.createElement(tag); if (tag === 'script') e.async = false; Object.assign(e, a);
       e.onload = ok; e.onerror = () => no(new Error(a.src || a.href)); document.head.appendChild(e);
     });
-    return (yuklenen[id] = Promise.all([
-      ekle('link', { rel: 'stylesheet', href: `css/fiz${id}.css` }),
-      ekle('script', { src: `data/dersler/fizyoloji-${id}.js` }),
-      ekle('script', { src: `js/ders/fiz${id}.js` }),
-    ]).catch((e) => { delete yuklenen[id]; throw e; }));
+    return (yuklenen[anah] = Promise.all([
+      ekle('link', { rel: 'stylesheet', href: `css/${on}${id}.css` }),
+      ekle('script', { src: `data/dersler/${modul}-${id}.js` }),
+      ekle('script', { src: `js/ders/${on}${id}.js` }),
+    ]).catch((e) => { delete yuklenen[anah]; throw e; }));
   }
 
   function sekmeler(grup, aktif) {
@@ -43,10 +50,10 @@
     temizle = [];
     kapatPop();
     const h = ham(), m = h.match(BOLUM);
-    if (m && !SAYFALAR[h] && !yuklendi[m[1]] && (window.FIZ_HAZIR || []).includes(m[1])) {
+    if (m && !SAYFALAR[h] && !yuklendi[h] && MODUL[m[1]].hazir().includes(m[2])) {
       view.innerHTML = '<div class="page"><p class="wrap muted" style="padding:64px 0">Bölüm yükleniyor…</p></div>';
-      bolumYukle(m[1]).then(() => { yuklendi[m[1]] = true; if (ham() === h) ciz(); })
-        .catch(() => { if (ham() === h) view.innerHTML = '<div class="page"><p class="wrap" style="padding:64px 0">Bölüm yüklenemedi. Bağlantınızı kontrol edip sayfayı yenileyin. <a href="#/dersler/fizyoloji">İçindekiler →</a></p></div>'; });
+      bolumYukle(m[1], m[2]).then(() => { yuklendi[h] = true; if (ham() === h) ciz(); })
+        .catch(() => { if (ham() === h) view.innerHTML = `<div class="page"><p class="wrap" style="padding:64px 0">Bölüm yüklenemedi. Bağlantınızı kontrol edip sayfayı yenileyin. <a href="#/dersler/${m[1]}">İçindekiler →</a></p></div>`; });
       return;
     }
     const k = anahtar(), S = SAYFALAR[k];
