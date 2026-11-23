@@ -1,0 +1,14 @@
+.a03b-tablo {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  overflow-wrap: anywhere;
+}
+.a03b-tablo th:first-child {
+  width: 32%;
+}
+@media (max-width: 560px) {
+  .a03b-tablo :is(th, td) {
+    padding: .6rem .45rem;
+  }
+}

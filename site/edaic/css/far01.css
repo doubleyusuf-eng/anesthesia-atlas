@@ -1,0 +1,14 @@
+/* İki sütunlu karşılaştırmalarda dar ekranda açıklamaya yer bırak. */
+[id^="a01-"] .tbl {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+[id^="a01-"] .tbl th:first-child {
+  width: 30%;
+}
+[id^="a01-"] .tbl :is(th, td) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}

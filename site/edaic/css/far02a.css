@@ -1,0 +1,6 @@
+/* Uzun grup adları ve mukoza seçenekleri dar ekranda satıra sığar. */
+[id^="a02a-"] .seg { flex-wrap: wrap; }
+[id^="a02a-"] .seg button { max-width: 100%; white-space: normal; }
+[id^="a02a-"] .tbl { min-width: 0; width: 100%; }
+[id^="a02a-"] .tbl th, [id^="a02a-"] .tbl td { overflow-wrap: anywhere; white-space: normal; }
+[id^="a02a-"] .tbl tbody th { width: 32%; text-align: start; }

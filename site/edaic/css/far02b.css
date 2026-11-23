@@ -1,0 +1,8 @@
+.a02b-tablo {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  overflow-wrap: anywhere;
+}
+.a02b-tablo th:first-child { width: 30%; }
+.a02b-tablo tbody th { white-space: normal; text-align: start; vertical-align: top; }
