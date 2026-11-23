@@ -1,0 +1,44 @@
+/* Bölüm 62 · Tükürük, özofagus ve yutma · bileşen stilleri (f62- önekli; renkler yalnız site.css değişkenleri) */
+.f62-svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+.f62-svg text{font-family:var(--f-display)}
+.f62-t{font:700 12px var(--f-display);fill:var(--ink)}
+.f62-s{font:500 11px var(--f-mono);fill:var(--muted)}
+.f62-big{font:750 15px var(--f-display);fill:var(--ink)}
+/* eşleştirme haritası */
+.f62-kut{cursor:pointer;outline:none}
+.f62-kut .f62-kr{fill:var(--paper);stroke:var(--line);stroke-width:1.5;transition:fill .2s,stroke .2s}
+.f62-kut.on .f62-kr{fill:var(--accent-soft);stroke:var(--accent)}
+.f62-kut.sol{opacity:.55}
+.f62-kut:focus-visible .f62-kr{stroke:var(--ink);stroke-width:2.5}
+.f62-bag path{transition:opacity .2s}
+.f62-bag path.sol{opacity:.35}
+.f62-bag path.on{stroke:var(--accent-ink);stroke-width:4}
+/* kontroller */
+.f62-ctl{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px}
+.f62-ctl2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));margin-bottom:6px}
+.f62-seg{margin:0 0 10px}
+.f62-seg .seg,.f62-ctl .seg,.viz .seg{max-width:100%}
+.f62-rng{display:grid;gap:4px;flex:1 1 200px;min-width:0}
+.f62-rng>span{display:flex;justify-content:space-between;gap:10px;font:650 13.5px/1.25 var(--f-display);color:var(--ink)}
+.f62-rng b{font:700 13px/1.25 var(--f-mono);color:var(--accent-ink)}
+.f62-rng input{width:100%;margin:0;accent-color:var(--accent)}
+.f62-btn{font-size:13.5px}
+.f62-chk{display:inline-flex;align-items:center;gap:8px;font:600 13.5px var(--f-display);color:var(--ink)}
+.f62-dkn{margin:8px 0 0;font:650 13.5px/1.35 var(--f-display);color:var(--ink)}
+.f62-sabit{margin:4px 0 0}
+.viz .seg{margin-top:8px}
+/* yutma */
+.f62-evre{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;margin-bottom:8px;font:650 14.5px var(--f-display);color:var(--ink)}
+.f62-rozet{font:700 12px/1 var(--f-mono);padding:5px 9px;border-radius:99px;background:var(--chip);color:var(--muted)}
+.f62-rozet.ist{background:var(--accent-soft);color:var(--accent-ink)}
+.f62-apne{margin-top:8px;border-radius:8px;padding:8px 12px;background:var(--ok-soft);color:var(--ok);font:700 13px var(--f-mono);text-align:center}
+.f62-apne.apne{background:var(--crit-soft);color:var(--crit)}
+.f62-stp .btn{padding:10px 14px}
+.f62-sn{font:600 12.5px var(--f-mono);color:var(--muted)}
+/* önlem listesi */
+.f62-ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;margin-top:12px}
+.f62-ob{display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px;cursor:pointer;color:var(--ink);font:650 13.5px/1.25 var(--f-display)}
+.f62-ob i{font:700 11.5px var(--f-mono);font-style:normal;color:var(--muted);white-space:nowrap}
+.f62-ob[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.f62-ob[aria-pressed="true"] i{color:var(--accent-ink)}
+.f62-dur{font-weight:750}
