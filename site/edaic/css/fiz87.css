@@ -1,0 +1,11 @@
+.f87-denklem {
+  padding: .8rem 1rem;
+  border-inline-start: .22rem solid var(--accent);
+  font-weight: 600;
+  line-height: 1.7;
+}
+[id^="d87-"] .viz,
+[id^="d87-"] .cols,
+[id^="d87-"] .iskelet { margin-block: 1rem; }
+[id^="d87-"] .card { min-width: 0; }
+[id^="d87-"] .seg { flex-wrap: wrap; }

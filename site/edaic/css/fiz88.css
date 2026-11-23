@@ -1,0 +1,2 @@
+/* Uzun seçenek adları dar ekranda bir sonraki satıra geçebilir. */
+[id^="d88-"] .sk-ust .seg { flex-wrap: wrap; }

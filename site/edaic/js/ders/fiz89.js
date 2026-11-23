@@ -1,0 +1,1 @@
+/* 89· Sıcaklık düzenlenmesi */

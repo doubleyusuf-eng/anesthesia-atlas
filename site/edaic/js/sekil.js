@@ -91,7 +91,7 @@
     const cap = (viz && viz.querySelector('.viz-cap')) || null;
     const q = (s) => el.querySelector(s);
     const vb = () => { const dar = el.clientWidth > 0 && el.clientWidth < 560; const v = typeof cfg.vb === 'function' ? cfg.vb(dar) : (dar && cfg.vbDar) || cfg.vb || [640, 360]; return { dar, w: v[0], h: v[1] }; };
-    const yaz = (html) => { if (html == null) return; if (cap) cap.innerHTML = html; else if (q('.sk-okuma')) q('.sk-okuma').innerHTML = html; };
+    const yaz = (html) => { if (html == null) return; if (window.REF) html = window.REF(html); if (cap) cap.innerHTML = html; else if (q('.sk-okuma')) q('.sk-okuma').innerHTML = html; };
     const ciz = (svg, V) => { q('.sk-svgw').innerHTML = `<svg viewBox="0 0 ${V.w} ${V.h}" class="sk-svg" role="img"${cfg.baslik ? ` aria-label="${esc(cfg.baslik)}"` : ''}>${svg}</svg>`; };
     return { q, vb, yaz, ciz, cap };
   }
