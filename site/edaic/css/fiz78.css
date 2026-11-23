@@ -1,0 +1,8 @@
+/* Bölüm 78 · Dar ekranda vücut haritasının sistem seçimleri. */
+@media (max-width: 560px) {
+  .f78-harita { display: flex; flex-direction: column; }
+  .f78-harita .sk-svgw { order: 0; }
+  .f78-harita .sk-ust { order: 1; }
+  .f78-harita .sk-ust .seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .f78-harita .sk-ust button { min-height: 44px; }
+}
