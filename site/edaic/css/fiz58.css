@@ -1,0 +1,102 @@
+/* Bölüm 58 · Elektrokardiyogram · bileşen stilleri (f58- önekli; renkler yalnız site.css değişkenleriyle) */
+.f58-svg{width:100%;height:auto;display:block;max-width:100%}
+.f58-tx{font:600 13px var(--f-display);fill:var(--ink)}
+.f58-s{font-size:12px}
+.f58-b{font-weight:750}
+.f58-mu{fill:var(--muted)}
+.f58-ac{fill:var(--accent-ink)}
+.f58-cr,.f58-cl{fill:var(--crit)}
+.f58-ok{fill:var(--ok)}
+.f58-wr{fill:var(--warn)}
+.f58-halo{paint-order:stroke;stroke:var(--paper);stroke-width:2.5px;stroke-opacity:.8;stroke-linejoin:round}
+@media (max-width:520px){.f58-s{font-size:11.5px}}
+
+/* ızgara ve iz */
+.f58-pp{fill:var(--paper)}
+.f58-gk{fill:none;stroke:var(--line);stroke-width:.5;opacity:.5}
+.f58-gb{fill:none;stroke:var(--line);stroke-width:1}
+.f58-fr{fill:none;stroke:var(--line);stroke-width:1.2}
+.f58-iz{stroke:var(--line);stroke-width:1.2;stroke-dasharray:3 3}
+.f58-tr{fill:none;stroke:var(--ink);stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.f58-tra{stroke:var(--accent);stroke-width:2.6}
+.f58-trm,.f58-trd{stroke:var(--muted);stroke-dasharray:5 4;stroke-width:1.6}
+.f58-trc{stroke:var(--crit);stroke-width:2.2}
+.f58-dim{opacity:.55}
+.f58-band{fill:var(--accent-soft);opacity:.75}
+.f58-hit{fill:transparent;cursor:pointer;outline:none}
+.f58-hit:hover{fill:var(--accent-soft);opacity:.5}
+.f58-hit:focus-visible{stroke:var(--accent);stroke-width:2}
+.f58-bk{fill:none;stroke:var(--accent-ink);stroke-width:1.8}
+.f58-bkz{stroke:var(--crit)}
+.f58-sh{fill:var(--accent-soft);opacity:.45}
+.f58-shz{fill:var(--crit-soft);opacity:.55}
+.f58-sm{fill:var(--paper);stroke:var(--muted);stroke-width:1}
+.f58-mk{fill:var(--warn)}
+.f58-mka{fill:var(--accent)}
+.f58-lim{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:5 4;fill:none}
+.f58-qtc{stroke:var(--accent);stroke-width:2.6}
+.f58-dot{fill:var(--ink);stroke:var(--paper);stroke-width:2}
+.f58-dota{fill:var(--accent)}
+.f58-crs{fill:var(--crit-soft);opacity:.7}
+
+/* zar ve yerel akım */
+.f58-cell{fill:var(--chip);stroke:none}
+.f58-mr{stroke:var(--c-basic);stroke-width:3.5;fill:none}
+.f58-md{stroke:var(--crit);stroke-width:3.5;fill:none}
+.f58-sr{font:750 13px var(--f-mono);fill:var(--c-basic)}
+.f58-sd{font:750 13px var(--f-mono);fill:var(--crit)}
+.f58-ah{stroke:var(--ink);stroke-width:2;fill:none}
+.f58-ak{fill:none;stroke:var(--warn);stroke-width:2}
+.f58-akf{stroke-dasharray:3 3;opacity:.85}
+.f58-sk{stroke:var(--muted);stroke-width:2.5;fill:none}
+.f58-skn{stroke-width:1.5;stroke-dasharray:3 3}
+.f58-el{fill:var(--paper);stroke:var(--ink);stroke-width:2}
+.f58-el.f58-on{fill:var(--accent-soft);stroke:var(--accent);stroke-width:3}
+.f58-cd{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.2}
+.f58-cn{fill:var(--chip);stroke:var(--line);stroke-width:1.2}
+.f58-gr.on circle{stroke:var(--crit)}
+
+/* derivasyon haritası, aks */
+.f58-hx{stroke:var(--line);stroke-width:1.6}
+.f58-hx.on{stroke:var(--accent);stroke-width:3.5}
+.f58-hrt{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.5}
+.f58-bd{fill:none;stroke:var(--muted);stroke-width:1.5;stroke-linecap:round}
+.f58-bdt{fill:none;stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 4}
+.f58-av{stroke:var(--accent);stroke-width:3;fill:none}
+.f58-sq{fill:var(--ink)}
+.f58-hd{fill:var(--accent);stroke:var(--paper);stroke-width:3;cursor:grab;touch-action:none;outline:none}
+.f58-hd:active{cursor:grabbing}
+.f58-hd:focus-visible{stroke:var(--ink)}
+.f58-bx{fill:var(--paper);stroke:var(--line);stroke-width:1.2}
+.f58-bx.on{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.f58-sn{fill:var(--ok-soft);opacity:.7}
+.f58-ss{fill:var(--warn-soft);opacity:.8}
+.f58-sr2{fill:var(--crit-soft);opacity:.7}
+.f58-s4{fill:var(--chip);opacity:.8}
+
+/* kalp, ventrikül depolarizasyonu */
+.f58-ch{fill:var(--chip);stroke:var(--muted);stroke-width:1.5}
+.f58-pnt{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.2}
+.f58-pnts{stroke-width:0}
+.f58-sep{fill:none;stroke:var(--ink);stroke-width:2}
+.f58-nod{fill:var(--accent);stroke:var(--paper);stroke-width:1.5}
+
+/* denetimler ve okuma alanları */
+.f58-ctl{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin-bottom:10px}
+.f58-gruplar{display:grid;gap:8px}
+.f58-bz{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;min-width:0}
+.f58-lb{font:700 12.5px var(--f-mono);color:var(--muted);min-width:76px}
+.f58-rng{display:grid;gap:4px;flex:1 1 220px;min-width:0}
+.f58-rng > span{font:650 13.5px var(--f-display);color:var(--ink);display:flex;justify-content:space-between;gap:10px}
+.f58-rng b{font:700 13px var(--f-mono);color:var(--accent-ink)}
+.f58-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+.f58-oku{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0 0 8px;font:500 13.5px/1.4 var(--f-display);color:var(--ink)}
+.f58-oku b{font-family:var(--f-mono)}
+.f58-oku .f58-cr{color:var(--crit);fill:none}
+.f58-say{font:700 13px var(--f-mono);color:var(--muted);min-width:34px;text-align:center}
+.f58-kv{margin-top:10px}
+.f58-kvl{margin:8px 0 0;font:500 13px/1.4 var(--f-mono);color:var(--muted)}
+.legend .f58-lg,.f58-lg{display:inline-block;width:20px;height:10px;border-radius:3px;vertical-align:middle;margin-right:6px}
+.f58-lgc{background:var(--crit-soft);border:1px solid var(--crit)}
+.legend .f58-lga{height:3px;width:20px;background:var(--accent)}
+.legend .f58-lgd{width:20px;height:0;border-top:2px dashed var(--muted)}

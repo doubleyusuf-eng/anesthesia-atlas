@@ -1,0 +1,40 @@
+/* Ek ders · Ağrının periferik mekanizmaları · bileşen stilleri (fek60- önekli). Renkler yalnız site.css değişkenleriyle. */
+.fek60-svg{width:100%;height:auto;display:block}
+.fek60-t{font-family:var(--f-display);font-weight:600;fill:var(--ink)}
+.fek60-m{fill:var(--muted)}
+.fek60-b{font-weight:750}
+.fek60-it{font-style:italic}
+.fek60-crit{fill:var(--crit);font-weight:700}
+.fek60-clin{fill:var(--c-clin)}
+.fek60-c-basic{fill:var(--c-basic);font-weight:700}
+.fek60-ok{fill:var(--ok)}
+.fek60-acc{fill:var(--accent-ink)}
+.fek60-ctl{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:12px}
+.fek60-ctl .btn,.fek60-ctl .seg button{min-height:40px}
+.fek60-wrap{min-width:0}
+.fek60-lej{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:8px;font:600 12.5px/1.3 var(--f-mono);color:var(--muted)}
+.fek60-lej span{display:inline-flex;align-items:center;gap:7px}
+.fek60-lej i{display:inline-block;width:13px;height:13px;border-radius:50%}
+.fek60-lej .k-rc{border:2.5px solid var(--c-basic);border-radius:3px 3px 50% 50%}
+.fek60-lej .k-ok{background:var(--ok);border:2.5px solid var(--c-basic);width:14px;height:14px}
+.fek60-lej .k-en{background:var(--ok);width:9px;height:9px}
+.fek60-lej .k-mo{background:var(--accent);border-radius:2px;transform:rotate(45deg);width:9px;height:9px}
+.fek60-lej .k-ag{background:var(--warn);width:9px;height:9px}
+/* reseptör simgesi */
+.fek60-rcp{fill:none;stroke:var(--c-basic);stroke-width:2.6;stroke-linecap:round}
+.fek60-rcd{fill:transparent}
+.o-rc.on .fek60-rcd{fill:var(--ok);stroke:var(--ok)}
+.o-rc.on .fek60-rcp{stroke:var(--ok)}
+/* yaklaşım panelleri */
+.y-p{cursor:pointer;transition:opacity .3s}
+.y-p:focus-visible .y-bg{stroke:var(--accent);stroke-width:3}
+.y-p[aria-pressed="true"] .y-bg{stroke:var(--accent);stroke-width:2.5}
+/* NMDA kartları */
+.m-ktr{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.m-ktt{fill:var(--muted)}
+.m-kt{opacity:.6;transition:opacity .3s}
+.m-kt.on{opacity:1}
+.m-kt.on .m-ktr{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
+.m-kt.on .m-ktt{fill:var(--ink)}
+.m-kt.ant .m-ktr{stroke:var(--crit);stroke-dasharray:5 4}
+@media (max-width:520px){.fek60-lej{font-size:12px}.fek60-ctl .seg{width:100%}.fek60-ctl .seg button{flex:1 1 auto}}
