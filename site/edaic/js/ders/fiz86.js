@@ -140,8 +140,22 @@
         ad: 'Emilim',
         metin: REF('Mide boşalması hızlanabilir ya da yavaşlayabilir; zayıf kanlanma nedeniyle cilt altı emilim azalır; kısa iğnelerle İM uygulama başarısız olabilir ve İV erişim güçleşir. [[K1 s. 428]]'),
         ciz: (S) => {
-          const cx = S.w / 2, bw = S.dar ? 340 : 500, bx = cx - bw / 2;
-          return S.kutu(bx, 34, bw, 68, { dolgu: 'warn-soft', renk: 'warn', yazi: S.dar ? ['Mide boşalması ↑/↓ · SC emilim ↓', 'İV erişim zor · kısa iğneyle İM yetersiz'] : ['Mide boşalması ↑ veya ↓ · Cilt altı emilim ↓ (düşük akım)', 'İV erişim zor · kısa iğnelerle İM uygulama başarısız olabilir'], yc: 'b k', lh: 19 });
+          if (S.dar) {
+            const items = [
+              ['Oral · Mide', 'Mide boşalması ↑ veya ↓', 'warn'],
+              ['Cilt altı (SC)', 'Zayıf kanlanma → emilim ↓', 'basic'],
+              ['Kas içi (İM)', 'Kısa iğneyle başarısız olabilir', 'crit'],
+              ['İntravenöz (İV)', 'Damar yolu erişimi zor', 'accent'],
+            ];
+            return items.map(([bas, alt, col], i) => {
+              const y = 16 + i * 66;
+              return S.kutu(20, y, 340, 56, { dolgu: col + '-soft', renk: col, r: 10, yazi: [bas, alt], yc: 'b k', lh: 19 });
+            }).join('');
+          }
+          return S.kutu(28, 22, 282, 88, { dolgu: 'warn-soft', renk: 'warn', r: 10, yazi: ['Oral · Mide', 'Mide boşalması ↑ veya ↓'], yc: 'b k', lh: 22 })
+            + S.kutu(330, 22, 282, 88, { dolgu: 'basic-soft', renk: 'basic', r: 10, yazi: ['Cilt altı (SC)', 'Zayıf kanlanma → emilim ↓'], yc: 'b k', lh: 22 })
+            + S.kutu(28, 128, 282, 88, { dolgu: 'crit-soft', renk: 'crit', r: 10, yazi: ['Kas içi (İM)', 'Kısa iğneyle başarısız olabilir'], yc: 'b k', lh: 22 })
+            + S.kutu(330, 128, 282, 88, { dolgu: 'accent-soft', renk: 'accent', r: 10, yazi: ['İntravenöz (İV)', 'Damar yolu erişimi zor'], yc: 'b k', lh: 22 });
         },
       },
       {

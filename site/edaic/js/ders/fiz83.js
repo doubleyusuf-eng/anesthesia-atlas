@@ -130,21 +130,35 @@
     y: { min: 0, max: 100, ad: 'Hb O₂ satürasyonu (%)', adimlar: [0, 25, 50, 75, 100] },
     dikey: () => [
       { x: 2.7, ad: 'UA 2,7', renk: 'crit' },
-      { x: 6.7, ad: 'İV 6,7', renk: 'basic' },
+      { x: 6.7, renk: 'basic' },
     ],
     egriler: [
       {
-        renk: 'accent', w: 3, ad: 'HbF (solda)', adYer: 0.78,
+        renk: 'accent', w: 3,
         f: (x, p) => { const p50 = p.m === 'bohr' ? 2.1 : 2.5; const n = 2.6; return (100 * Math.pow(x, n)) / (Math.pow(x, n) + Math.pow(p50, n)); },
       },
       {
-        renk: 'basic', w: 3, ad: 'HbA (sağda)', adYer: 0.58,
+        renk: 'basic', w: 3,
         f: (x, p) => { const p50 = p.m === 'bohr' ? 4.3 : 3.6; const n = 2.7; return (100 * Math.pow(x, n)) / (Math.pow(x, n) + Math.pow(p50, n)); },
       },
     ],
-    ek: (S, p, X, Y) => (p.m === 'bohr'
-      ? S.rozet(X(10.5), Y(26), S.dar ? 'HbF ← sola · HbA → sağa' : 'CO₂ (6,7→4,9 kPa): HbF ← sola, HbA → sağa', { dolgu: 'warn-soft', renk: 'warn', w: S.dar ? 215 : 325 })
-      : S.rozet(X(10.5), Y(26), 'Doğumda HbF ~18 g/dL', { dolgu: 'ok-soft', renk: 'ok', w: 195 })),
+    ek: (S, p, X, Y) => {
+      let s = '';
+      /* İV 6,7 etiketi eğrilerin altında boş alanda */
+      s += S.t(X(6.95), Y(72), 'İV 6,7', { c: 'k', renk: 'basic' });
+      /* HbF / HbA etiketleri sağdaki boş alanda kısa renk çizgileriyle */
+      const lx = X(S.dar ? 9.4 : 10.2), ly1 = Y(69), ly2 = ly1 + 24;
+      const boxW = S.dar ? 124 : 140;
+      s += S.kutu(lx - 10, ly1 - 18, boxW, 56, { dolgu: 'paper', renk: 'line', r: 8 });
+      s += S.cizgi([[lx, ly1 - 4], [lx + 18, ly1 - 4]], { renk: 'accent', w: 3 });
+      s += S.t(lx + 24, ly1, 'HbF (solda)', { c: 'b k', renk: 'accent' });
+      s += S.cizgi([[lx, ly2 - 4], [lx + 18, ly2 - 4]], { renk: 'basic', w: 3 });
+      s += S.t(lx + 24, ly2, 'HbA (sağda)', { c: 'b k', renk: 'basic' });
+      s += (p.m === 'bohr'
+        ? S.rozet(X(10.5), Y(24), S.dar ? 'HbF ← sola · HbA → sağa' : 'CO₂ (6,7→4,9 kPa): HbF ← sola, HbA → sağa', { dolgu: 'warn-soft', renk: 'warn', w: S.dar ? 215 : 325 })
+        : S.rozet(X(10.5), Y(24), 'Doğumda HbF ~18 g/dL', { dolgu: 'ok-soft', renk: 'ok', w: 195 }));
+      return s;
+    },
     okuma: (p) => REF(p.m === 'baz'
       ? '<b>HbF vs HbA.</b> 2,3-DPG maternal HbA\'nın β-globinine bağlanıp eğriyi sağa kaydırırken HbF\'nin γ-globinine zayıf bağlanır; geniş 6,7 → 2,7 kPa PO₂ gradyanıyla O₂ fetüse geçer. [[K1 s. 413–414]]'
       : '<b>Çift Bohr ve çift Haldane.</b> CO₂ fetüsten (6,7 kPa) anneye (4,9 kPa) geçtikçe HbF sola, HbA sağa kayar (çift Bohr); O₂ bırakan HbA daha çok CO₂ alır, O₂ bağlayan HbF CO₂ bırakır (çift Haldane). [[K1 s. 414]]'),
