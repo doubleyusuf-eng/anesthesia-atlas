@@ -118,7 +118,7 @@ SAYFALAR['dersler/fizyoloji/01'] = {
   <p class="intro">Organlar işlevsel olarak 11 fizyolojik sistemde örgütlenir ve hiçbir sistem diğerlerinden kopuk çalışmaz. [[K1 s. 1–2]]</p>
   <div class="viz" style="margin-top:14px"><div data-viz="sistemler"></div></div>
   <div class="blk-body" style="margin-top:14px">
-    <p>Örneğin arteriyel kan basıncı kardiyovasküler, üriner, sinir ve endokrin sistemlerin etkileşiminin ortak sonucudur. Şemadaki her sistem düğmesi ilgili organları ve temel alt ayrımları (sistemik–pulmoner devreler; merkezi–periferik, afferent–efferent, somatik, otonom ve enterik sinir sistemi; doğal ve adaptif bağışıklık) gösterir. [[K1 s. 1–2]]</p>
+    <p>Örneğin arteriyel kan basıncı kardiyovasküler, üriner, sinir ve endokrin sistemlerin etkileşiminin ortak sonucudur. Bir sisteme basınca organları ve alt ayrımları açılır. [[K1 s. 1–2]]</p>
   </div>
 </section>
 
@@ -127,7 +127,8 @@ SAYFALAR['dersler/fizyoloji/01'] = {
   <p class="intro">Homeostaz, hücreleri çevreleyen hücre dışı sıvının (ECF) kararlı, görece sabit ve hücreler için en uygun düzeyde tutulmasıdır. [[K1 s. 2]]</p>
   <div class="viz" style="margin-top:14px"><div data-viz="homeostaz"></div></div>
   <div class="blk-body" style="margin-top:14px">
-    <p>Amip gibi tek hücrelilerde dış ortamdaki küçük sıcaklık, pH, ozmotik ya da iyonik dalgalanmalar hücre ölümüne yol açabilirken, insan hücrelerinin büyük çoğunluğu dış ortamla temas etmez ve bileşimi deniz suyunu andıran ECF içinde korunur. Homeostaz dinamiktir: ECF'de sürekli küçük düzeltmeler yapılır, büyük bir bozulmadan sonra ise geniş fizyolojik değişiklikler gerekir. [[K1 s. 2–3]]</p>
+    <p>Amip gibi tek hücreli bir canlıyı dış ortamdaki küçük bir sıcaklık, pH, ozmotik ya da iyonik dalgalanma öldürebilir. İnsan hücrelerinin çoğu ise dış ortama değmez; bileşimi deniz suyunu andıran ECF içinde korunur. [[K1 s. 2]]</p>
+    <p>Homeostaz dinamiktir: ECF sürekli küçük ayarlarla düzeltilir, büyük bir bozulmadan sonra büyük fizyolojik değişiklikler gerekir. [[K1 s. 3]]</p>
   </div>
 </section>
 
@@ -135,8 +136,9 @@ SAYFALAR['dersler/fizyoloji/01'] = {
   <h2>Kontrol: yerel mi, uzaktan mı?</h2>
   <p class="intro">Homeostatik kontrol mekanizmaları organın kendi içinde (intrinsik) ya da uzak bir düzenleyici merkezden (ekstrinsik) işler. [[K1 s. 3]]</p>
   <div class="viz" style="margin-top:14px"><div data-viz="yerel"></div></div>
-  <div class="blk-body" style="margin-top:14px">
-    <p><b>İntrinsik (yerel) kontrol</b> aynı hücreye etki eden <b>otokrin</b> ya da komşu hücrelere etki eden <b>parakrin</b> kimyasal sinyallerle yürür; çalışan kasta düşen O₂ basıncı ve biriken K⁺, AMP, H⁺ metabolitlerinin damarları genişleterek kan akımını ve O₂ sunumunu artırması bunun örneğidir. <b>Ekstrinsik (sistemik) kontrol</b> ise sinir veya endokrin sistemle uzaktan çalışır; birçok organın eşgüdümlü düzenlenmesine ve <b>ileri beslemeli (feedforward)</b> kontrole olanak tanır. [[K1 s. 3]]</p>
+  <div class="cols" style="margin-top:14px">
+    <div class="card"><span class="tag">İntrinsik · yerel</span><h3 style="margin-top:8px">Organın kendi içinde</h3><p><b>Otokrin</b>: haberci salgılandığı hücreye etki eder. <b>Parakrin</b>: komşu hücrelere etki eder. Şekildeki çalışan kas bunun örneğidir. [[K1 s. 3]]</p></div>
+    <div class="card"><span class="tag">Ekstrinsik · sistemik</span><h3 style="margin-top:8px">Uzak bir bölgeden</h3><p>Sinir ya da endokrin sistem aracılığıyla çalışır. Birçok organı eşgüdümlü düzenler ve <b>ileri beslemeli (feedforward)</b> kontrole olanak verir. [[K1 s. 3]]</p></div>
   </div>
 </section>
 
@@ -154,8 +156,13 @@ SAYFALAR['dersler/fizyoloji/01'] = {
   <p class="intro">Pozitif geri bildirim sinyali büyütür: değişkendeki küçük bir artış, aynı değişkende giderek daha büyük artışları tetikler. [[K1 s. 4]]</p>
   <div class="viz" style="margin-top:14px"><div data-viz="pozitif"></div></div>
   <div class="blk-body" style="margin-top:14px">
-    <p>Vücut öncelikle homeostazı koruduğundan pozitif döngüler çok daha az görülür ve fizyolojide genellikle eşzamanlı bir negatif kontrolle sınırlanır (ör. aksiyon potansiyelinde voltaj kapılı Na⁺ kanallarının kısa sürede inaktive olması). Fizyolojik örnekler: damar hasarında açığa çıkan az miktarda subendotelin yoğun trombin üretmesi (<b>hemostaz</b>), serviks gerildikçe artan oksitosinle güçlenen <b>doğum kasılmaları</b>, midede düşük pH ile etkinleşen az miktarda <b>pepsinin</b> pepsinojeni parçalayarak çoğalması, <b>aksiyon potansiyeli depolarizasyonu</b> ve sistolde giren Ca²⁺'un sarkoplazmik retikulumdan yoğun Ca²⁺ saldırdığı <b>kalpte uyarılma–kasılma eşleşmesidir</b>. [[K1 s. 4–5]]</p>
-    <p>Patolojide kontrolsüz bir kısır döngü doğabilir: <b>dekompanse kanamada</b> kan basıncı düşüşü organ perfüzyonunu azaltıp doku hipoksisi yapar; gelişen vazodilatasyon basıncı daha da düşürerek ölümcül olabilir. [[K1 s. 5]]</p>
+    <p>Vücut öncelikle homeostazla uğraştığı için pozitif döngüler azdır ve genellikle eşzamanlı bir negatif kontrolle sınırlanır. Şekildeki iki örnek: doğum eylemi (fizyolojik) ve dekompanse kanama (patolojik kısır döngü, ölümcül olabilir). [[K1 s. 4–5]]</p>
+  </div>
+  <div class="cols" style="margin-top:12px">
+    <div class="card"><h3>Hemostaz</h3><p class="small">Damar hasarında açığa çıkan az miktarda subendotel, büyük miktarda trombin üretimini başlatır. [[K1 s. 4]]</p></div>
+    <div class="card"><h3>Midede protein sindirimi</h3><p class="small">Düşük pH ile etkinleşen az miktarda pepsin, pepsinojeni parçalayarak daha çok pepsin oluşturur. [[K1 s. 4]]</p></div>
+    <div class="card"><h3>Aksiyon potansiyeli</h3><p class="small">Depolarizasyon Na⁺ kanallarını açar, giren Na⁺ depolarizasyonu artırır. Fren: kanalların kısa sürede inaktive olması. [[K1 s. 4–5]]</p></div>
+    <div class="card"><h3>Kalpte uyarılma–kasılma</h3><p class="small">Sistolde giren Ca²⁺, sarkoplazmik retikulumdan büyük miktarda Ca²⁺ salınımını tetikler. [[K1 s. 4–5]]</p></div>
   </div>
 </section>
 
