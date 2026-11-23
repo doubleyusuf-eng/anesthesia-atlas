@@ -1,0 +1,4 @@
+/* Bölüm 76 · Dokunma ve klavye seçimi */
+.f76-sec{cursor:pointer}
+.f76-sec:focus{outline:2px solid var(--accent);outline-offset:3px}
+.f76-sec[aria-pressed="true"] rect{stroke:var(--accent);stroke-width:3}
