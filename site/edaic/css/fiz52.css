@@ -1,0 +1,41 @@
+/* Bölüm 52 · Sinir aksiyon potansiyeli ve yayılması · bileşen stilleri (f52- önekli). Renkler yalnız site.css değişkenleriyle. */
+.f52-svg{width:100%;max-width:620px;margin:0 auto;display:block;height:auto}
+.f52-tk{font:500 14px var(--f-mono);fill:var(--muted)}
+.f52-tx{font:600 14px var(--f-display);fill:var(--ink)}
+.f52-mu{font:500 14px var(--f-display);fill:var(--muted)}
+.f52-b{font-weight:750}
+.f52-ch{font:700 15px var(--f-mono);fill:var(--muted)}
+.f52-gr{stroke:var(--line);stroke-width:1}
+.f52-ax{stroke:var(--muted);stroke-width:1.2;fill:none}
+.f52-ref{stroke-width:1.4;stroke-dasharray:5 4;fill:none}
+.f52-ctl{display:grid;gap:12px;margin-top:12px}
+.f52-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.f52-rng{display:grid;gap:4px}
+.f52-rng > span{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 10px;font:650 14px/1.25 var(--f-display);color:var(--ink)}
+.f52-rng b{font:700 14px/1.25 var(--f-mono);color:var(--accent-ink)}
+.f52-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+.f52-chk{display:inline-flex;align-items:center;gap:8px;font:600 14px var(--f-display);color:var(--ink);cursor:pointer}
+.f52-chk input{accent-color:var(--accent);width:18px;height:18px}
+.f52-dots{display:flex;flex-wrap:wrap;gap:6px}
+.f52-dots button{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--muted);font:700 14px var(--f-mono);cursor:pointer}
+.f52-dots button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.f52-badge{display:inline-block;font:700 14px/1.2 var(--f-mono);padding:6px 10px;border-radius:8px;background:var(--chip);color:var(--muted)}
+.f52-badge.ok{background:var(--ok-soft);color:var(--ok)}
+.f52-badge.no{background:var(--crit-soft);color:var(--crit)}
+.f52-badge.wa{background:var(--warn-soft);color:var(--warn)}
+.f52-badge.ac{background:var(--accent-soft);color:var(--accent-ink)}
+.f52-read{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
+.f52-read > div{background:var(--chip);border-radius:10px;padding:9px 12px;min-width:0}
+.f52-read dt,.f52-read span.k{font:500 13px/1.3 var(--f-mono);color:var(--muted);display:block}
+.f52-read b{font:750 18px/1.25 var(--f-mono);color:var(--ink);display:block;margin-top:2px}
+.f52-card{background:var(--chip);border-radius:12px;padding:12px 14px;font:500 15px/1.5 var(--f-body);color:var(--ink)}
+.f52-card ul{margin:6px 0 0;padding-left:18px}
+.f52-card li{margin:3px 0;opacity:.85}
+.f52-card li.on{opacity:1;font-weight:700;color:var(--accent-ink)}
+.f52-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px}
+.f52-rules > div{background:var(--chip);border-radius:10px;padding:10px 12px;font:500 14.5px/1.45 var(--f-body)}
+.f52-faint{opacity:.35}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .f52-faint{opacity:.5}}
+:root[data-theme="dark"] .f52-faint{opacity:.5}
+.f52-ln{fill:none;stroke-linejoin:round;stroke-linecap:round}
+@media (max-width:520px){.f52-card{font-size:14.5px}}

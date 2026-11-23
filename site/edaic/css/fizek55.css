@@ -1,0 +1,13 @@
+/* Ek ders · Omurilik refleksleri, kas tonusu ve postür */
+.fek55{display:block;max-width:100%}
+.fek55-ctl{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 10px}
+.fek55-ctl .btn,.fek55-ctl .seg button{min-height:40px}
+.fek55-ctl .btn{padding:10px 14px}
+.fek55-ctl [data-alt-wrap]:empty,.fek55-ctl [data-w]:empty{display:none}
+.fek55-ctl [data-w]{display:inline-flex;gap:8px;flex-wrap:wrap}
+.fek55-kart{width:100%}
+.fek55-kart button{flex:1 1 auto}
+.fek55-svg{display:block;width:100%;height:auto;max-width:100%;overflow:visible}
+.fek55-svg text{font-family:var(--f-display);font-stretch:100%}
+.fek55-lb{paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
+@media (max-width:560px){.fek55-kart{display:grid;grid-template-columns:1fr 1fr}.fek55-kart button{min-height:44px}}

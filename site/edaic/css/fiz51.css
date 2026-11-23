@@ -1,0 +1,80 @@
+/* Bölüm 51 · İstirahat membran potansiyeli · bölüme özgü stiller (sınıflar f51- önekli) */
+.f51-w{display:grid;gap:12px;min-width:0}
+.f51-row{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:16px;align-items:start}
+.f51-row > *{min-width:0}
+@media (max-width:720px){.f51-row{grid-template-columns:1fr}}
+.f51-svg{width:100%;height:auto;display:block;overflow:visible}
+.f51-tk{font:600 12.5px var(--f-display);fill:var(--muted)}
+.f51-mt{font-family:var(--f-mono);font-weight:700}
+.f51-isym{font:800 12px var(--f-mono)}
+.f51-ion.big .f51-isym{font:800 12px var(--f-display)}
+.f51-halo{paint-order:stroke;stroke:var(--paper);stroke-width:3px}
+.f51-ion{transition:transform .3s ease,opacity .3s ease}
+.f51-pn .f51-ion{transition:transform .9s ease,opacity .5s ease}
+.f51-flow .f51-ion,.f51-parts .f51-ion{transition:none}
+.f51-ctl{display:grid;gap:12px;min-width:0}
+.f51-grp{display:grid;gap:6px}
+.f51-gl{font:700 12px var(--f-display);color:var(--muted)}
+.f51-sl{display:grid;gap:6px;font:600 13px/1.3 var(--f-display);color:var(--muted)}
+.f51-sl b{color:var(--ink);font-family:var(--f-mono);font-size:14px}
+.f51-sl input[type=range]{width:100%;accent-color:var(--accent);min-width:0}
+.f51-sl.gri{opacity:.5}
+.f51-ctl .seg{max-width:100%}
+.f51-ctl .seg button{padding:9px 11px}
+
+/* gerilim ölçeği */
+.f51-vm{display:grid;gap:8px;justify-items:center;align-content:start}
+.f51-big{font:800 26px/1.1 var(--f-mono);color:var(--accent-ink);text-align:center}
+.f51-gv{display:block;width:100%;max-width:190px;height:auto}
+.f51-gh{display:none;width:100%;height:auto}
+@media (max-width:720px){.f51-gv{display:none}.f51-gh{display:block}}
+.f51-gsv .mk{transition:opacity .2s}
+.f51-lg{font:600 12.5px/1.4 var(--f-display);color:var(--muted);margin:0}
+.f51-dash{display:inline-block;width:22px;border-top:2px dashed var(--muted);vertical-align:middle;margin-right:4px}
+.f51-badge{justify-self:center;font:800 12.5px var(--f-display);background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok);border-radius:999px;padding:5px 12px}
+.f51-badge[hidden]{display:none}
+.f51-st{margin:0;font:700 13px/1.4 var(--f-display);color:var(--ok);background:var(--ok-soft);border-radius:8px;padding:8px 12px}
+.f51-st[hidden]{display:none}
+.f51-eq{font:600 14px/1.5 var(--f-mono);color:var(--ink);background:var(--chip);border-radius:8px;padding:9px 12px;overflow-wrap:anywhere}
+.f51-terim summary{font:700 13px var(--f-display);color:var(--accent-ink);cursor:pointer}
+.f51-terim p{font:500 13px/1.5 var(--f-display);color:var(--muted);margin:8px 0 0}
+.f51-denk{overflow-wrap:anywhere;min-width:0}
+.f51-denk p{overflow-wrap:anywhere}
+@media (max-width:720px){.f51-denk{font-size:15px !important}}
+
+/* pompa */
+.f51-cnt{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media (min-width:721px){.f51-cnt{grid-template-columns:1fr}}
+.f51-sayac{background:var(--chip);border-radius:10px;padding:10px 12px;display:grid;gap:2px}
+.f51-sayac span{font:600 12.5px var(--f-display);color:var(--muted)}
+.f51-sayac b{font:800 24px var(--f-mono);color:var(--accent-ink)}
+.f51-steps{display:flex;flex-wrap:wrap;gap:6px}
+.f51-steps button{width:36px;height:36px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--muted);font:700 13px var(--f-mono);cursor:pointer}
+.f51-steps button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.f51-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media (max-width:720px){.f51-cards{grid-template-columns:1fr}}
+.f51-card{border:1px solid var(--line);border-radius:10px;background:var(--paper);padding:0;overflow:hidden}
+.f51-card.on{border-color:var(--accent);background:var(--accent-soft)}
+.f51-ck{display:block;width:100%;text-align:left;border:0;background:transparent;font:800 14px var(--f-display);color:var(--ink);padding:11px 12px;cursor:pointer}
+.f51-cb{padding:0 12px 12px}
+.f51-cb p{font:500 13px/1.45 var(--f-display);color:var(--muted);margin:0 0 8px}
+.f51-mini{width:100%;height:auto;display:block}
+@media (max-width:720px){.f51-card:not(.on) .f51-cb{display:none}}
+
+/* potasyum / kalsiyum */
+.f51-zone{font:800 20px var(--f-display);padding:8px 12px;border-radius:10px;text-align:center;background:var(--chip);color:var(--ink);margin-bottom:8px}
+.f51-zone.hiper,.f51-zone.hipo{background:var(--crit-soft);color:var(--crit)}
+.f51-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.f51-chips:empty{display:none}
+.f51-chip{font:700 12.5px var(--f-display);border-radius:999px;padding:5px 11px;background:var(--ok-soft);color:var(--ok);border:1px solid var(--ok)}
+.f51-chip.hiper,.f51-chip.hipo{background:var(--crit-soft);color:var(--crit);border-color:var(--crit)}
+.f51-ekg{margin-top:2px}
+.f51-sum{display:grid;gap:6px;border-top:1px solid var(--line);padding-top:10px}
+.f51-nac [data-v]{transition:opacity .3s}
+.f51-ln-t,.f51-ln-r{transform:translateY(100px)}
+.f51-nac .cc{transform-box:fill-box}
+
+.f51-svg{max-width:560px;margin-inline:auto}
+.f51-row .f51-svg{max-width:100%}
+.f51-ekg,.f51-nac,.f51-sum .f51-svg{max-width:520px}
+@media (min-width:721px){.f51-row .f51-col > .f51-svg{max-width:520px}}
