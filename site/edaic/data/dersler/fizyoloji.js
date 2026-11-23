@@ -36,8 +36,8 @@ VERI.sorular = VERI.sorular || {};
 VERI.sorular['fiz01-1'] = {
   no: 1, kok: 'Üç germ yaprağından gelişen yapılar için:', kagit: 'Paper A · fizyoloji, Bölüm 1', kaynak: '[[K1 s. 1]]',
   onermeler: [
-    { t: 'Sinir sistemi ektodermden gelişir.', d: true, n: 'Doğru. Sinir sistemi ve epidermis ektodermden gelişir. [[K1 s. 1]]' },
     { t: 'Kan hücreleri endodermden gelişir.', d: false, n: 'Yanlış. Kan hücreleri mezodermden gelişir (bağ dokusu, kemik ve kemik iliği, kıkırdak, yağ ve kasla birlikte). [[K1 s. 1]]' },
+    { t: 'Sinir sistemi ektodermden gelişir.', d: true, n: 'Doğru. Sinir sistemi ve epidermis ektodermden gelişir. [[K1 s. 1]]' },
     { t: 'Akciğerlerin ve gastrointestinal sistemin epitel örtüsü endodermden gelişir.', d: true, n: 'Doğru. Endoderm karaciğer, pankreas ve mesanenin yanı sıra akciğerlerin ve Gİ sistemin epitel örtüsünü oluşturur. [[K1 s. 1]]' },
     { t: 'Epidermis mezodermden gelişir.', d: false, n: 'Yanlış. Epidermis ektodermden gelişir. [[K1 s. 1]]' },
     { t: 'Kemik iliği ve yağ dokusu mezodermden gelişir.', d: true, n: 'Doğru. Mezodermden gelişenler: bağ dokusu, kan hücreleri, kemik ve kemik iliği, kıkırdak, yağ ve kas. [[K1 s. 1]]' },
@@ -56,11 +56,11 @@ VERI.sorular['fiz01-2'] = {
 VERI.sorular['fiz01-3'] = {
   no: 3, kok: 'Homeostatik kontrol mekanizmaları için:', kagit: 'Paper A · fizyoloji, Bölüm 1', kaynak: '[[K1 s. 3–4]]',
   onermeler: [
-    { t: 'Otokrin sinyalde kimyasal haberci, onu salgılayan hücrenin kendisine etki eder.', d: true, n: 'Doğru. Otokrin: aynı hücre; parakrin: komşu hücreler. İkisi de organ içindeki (intrinsik) kontroldür. [[K1 s. 3]]' },
     { t: 'Parakrin sinyalde haberci, kan yoluyla uzak organlara taşınır.', d: false, n: 'Yanlış. Parakrin haberci komşu hücrelere etki eder. Kanla taşınıp çoğu zaman uzaktaki hücreleri düzenleyen haberciler hormonlardır (endokrin sistem). [[K1 s. 2–3]]' },
+    { t: 'Otokrin sinyalde kimyasal haberci, onu salgılayan hücrenin kendisine etki eder.', d: true, n: 'Doğru. Otokrin: aynı hücre; parakrin: komşu hücreler. İkisi de organ içindeki (intrinsik) kontroldür. [[K1 s. 3]]' },
+    { t: 'PaCO₂ artışını algılayan merkezi kemoreseptörler hipotalamustadır.', d: false, n: 'Yanlış. Merkezi kemoreseptörler de kontrol merkezi olan solunum merkezi de medulla oblongatadadır. [[K1 s. 3–4]]' },
     { t: 'Çalışan kasta K⁺, AMP ve H⁺ birikimi kası besleyen damarlarda vazodilatasyona yol açar.', d: true, n: 'Doğru. Bu yerel (intrinsik) kontrolün kitaptaki örneğidir: kan akımı ve O₂ sunumu artar. [[K1 s. 3]]' },
     { t: 'Ekstrinsik kontrol, birçok organın eşgüdümlü düzenlenmesine ve ileri beslemeli kontrole olanak verir.', d: true, n: 'Doğru. Ekstrinsik mekanizmalar uzak bir bölgede, sinir ya da endokrin sistem aracılığıyla çalışır. [[K1 s. 3]]' },
-    { t: 'PaCO₂ artışını algılayan merkezi kemoreseptörler hipotalamustadır.', d: false, n: 'Yanlış. Merkezi kemoreseptörler de kontrol merkezi olan solunum merkezi de medulla oblongatadadır. [[K1 s. 3–4]]' },
   ],
 };
 
@@ -68,65 +68,95 @@ const D1_NAV = [['d1-ic', 'İç ortam'], ['d1-gelisim', 'Gelişim'], ['d1-sistem
 
 SAYFALAR['dersler/fizyoloji/01'] = {
   grup: 'dersler', eyebrow: 'Fizyoloji · Kısım 1 · Temel bilgiler · Bölüm 1', baslik: 'Vücudun genel organizasyonu',
-  lede: 'Sonraki bütün konuların dayandığı iskelet: organlar nasıl gelişir, sistemler nasıl örgütlenir, iç ortam nasıl korunur ve vücut bunu hangi kontrol döngüleriyle yapar. [[K1 s. 1–5]]',
+  lede: 'Organlar nasıl gelişir, 11 sistem nasıl birlikte çalışır ve vücut iç ortamı hangi geri bildirim döngüleriyle en uygun düzeyde tutar. [[K1 s. 1–5]]',
   html: `
 <nav class="wrap ders-nav" aria-label="Bu bölümde">${D1_NAV.map(([id, ad], i) => `<button type="button" data-scroll="${id}"><span>${String(i + 1).padStart(2, '0')}</span>${ad}</button>`).join('')}</nav>
 
 <section class="wrap blk ders-sec" id="d1-ic">
   <h2>Fizyoloji: sabit değil, en uygun iç ortam</h2>
-  <div class="blk-body">
-    <p>Fizyoloji vücudun, organlarının ve onları oluşturan hücrelerin işlevlerini inceler. Sık söylenen tanım, fizyolojinin durumu korumakla, yani <b>homeostazla</b> uğraştığıdır. Ama normal fizyoloji de sabit değildir: çocukluk, gebelik ve yaşlanmayla, yüksek irtifa, dalış ve egzersiz gibi çevresel zorlanmalarla değişir. Bu yüzden fizyolojiyi <b>en uygun (optimal) iç ortamı</b> sürdürme olarak düşünmek daha doğrudur. Pek çok hastalık bu ortamın bozulmasıyla ilişkilidir. [[K1 s. 1]]</p>
-    <p>Anestezistin işi, cerrahi ve yoğun bakım sırasında bu karmaşık fizyolojiyi bilerek yönlendirmektir. Kitabın ilk beş bölümü bu nedenle yalnızca mutlaka bilinmesi gereken temele indirgenmiştir. [[K1 s. 1]]</p>
+  <p class="intro">Fizyoloji vücudun, organlarının ve hücrelerinin işlevlerini inceler; amacı sabit bir durumu değil, değişen koşullara uyum sağlayan <b>en uygun (optimal) iç ortamı</b> sürdürmektir. [[K1 s. 1]]</p>
+  <div class="viz" style="margin-top:14px">
+    <div class="viz-head"><h3>Değişen koşullar, optimal iç ortam ve anestezi</h3></div>
+    <svg viewBox="0 0 320 318" style="display:block;width:100%;max-width:440px;margin:0 auto;height:auto" role="img" aria-label="Gelişim ve çevresel zorlanmalar altında optimal iç ortamın korunması">
+      <defs>
+        <marker id="f01-ok" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="var(--muted)"/></marker>
+      </defs>
+      <rect x="10" y="8" width="300" height="52" rx="12" fill="var(--c-basic-soft)" stroke="var(--c-basic)" stroke-width="1.6"/>
+      <text x="160" y="30" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="14" fill="var(--ink)">Gelişimsel değişim</text>
+      <text x="160" y="50" text-anchor="middle" font-family="var(--f-display)" font-size="12.5" fill="var(--muted)">Çocukluk · Gebelik · Yaşlanma</text>
+      <rect x="10" y="68" width="300" height="52" rx="12" fill="var(--warn-soft)" stroke="var(--warn)" stroke-width="1.6"/>
+      <text x="160" y="90" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="14" fill="var(--ink)">Çevresel zorlanmalar</text>
+      <text x="160" y="110" text-anchor="middle" font-family="var(--f-display)" font-size="12.5" fill="var(--muted)">İrtifa · Dalış · Egzersiz</text>
+      <path d="M160 122 L160 144" stroke="var(--muted)" stroke-width="1.8" marker-end="url(#f01-ok)" fill="none"/>
+      <rect x="10" y="146" width="300" height="42" rx="12" fill="var(--ok-soft)" stroke="var(--ok)" stroke-width="1.6"/>
+      <text x="160" y="172" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="14" fill="var(--ink)">Dinamik en uygun (optimal) iç ortam</text>
+      <path d="M160 190 L160 212" stroke="var(--muted)" stroke-width="1.8" marker-end="url(#f01-ok)" fill="none"/>
+      <rect x="10" y="214" width="300" height="42" rx="12" fill="var(--crit-soft)" stroke="var(--crit)" stroke-width="1.6"/>
+      <text x="160" y="240" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="14" fill="var(--ink)">Bozulması → Hastalık</text>
+      <rect x="10" y="264" width="300" height="46" rx="12" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.6"/>
+      <text x="160" y="292" text-anchor="middle" font-family="var(--f-display)" font-weight="700" font-size="14" fill="var(--ink)">Anestezi ve YBÜ → bilinçli yönlendirme</text>
+    </svg>
+    <p class="viz-foot">Şematik özet; normal fizyoloji gelişim ve çevreyle değişir [[K1 s. 1]].</p>
+  </div>
+  <div class="blk-body" style="margin-top:14px">
+    <p>Normal fizyoloji sabit kalmaz; çocukluk, gebelik ve yaşlanmayla, ayrıca yüksek irtifa, dalış ve egzersiz gibi zorlanmalarla uyarlanır. Pek çok hastalık bu optimal ortamın bozulmasıyla ilişkilidir; anestezist cerrahi ve yoğun bakım yönetimini kolaylaştırmak için bu fizyolojiyi bilinçli biçimde yönlendirir. [[K1 s. 1]]</p>
   </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-gelisim">
   <h2>Organlar nasıl gelişir?</h2>
-  <p class="intro">Vücut yaklaşık 100 trilyon hücreden oluşur. Hepsi, herhangi bir hücre tipine farklılaşabilen (totipotent) tek bir embriyonik hücreden gelir. Bu hücre defalarca bölünür ve üç germ yaprağı oluşur. Her organ, aynı işlev için birlikte çalışan farklı dokulardan kurulur. Örneğin kalp; kalp kası, Purkinje liflerini de içeren ileti dokusu ve kan damarlarıyla kanı damar sistemine pompalar. [[K1 s. 1]]</p>
-  <div class="viz"><div data-viz="germ"></div></div>
-  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap üç germ yaprağının ikinci haftanın sonunda oluştuğunu yazar. Embriyoloji kaynaklarında ikinci haftanın sonunda iki tabakalı bir disk vardır; üç tabakalı disk üçüncü haftada gastrulasyonla oluşur. Sınavda bu ayrıntı sorulursa embriyoloji kaynağındaki zamanlamayı esas alın.</div>
+  <p class="intro">Yaklaşık 100 trilyon hücreden oluşan insan vücudu, her hücre tipine farklılaşabilen tek bir <b>totipotent</b> embriyonik hücrenin bölünüp üç germ yaprağını oluşturmasıyla gelişir. [[K1 s. 1]]</p>
+  <div class="viz" style="margin-top:14px"><div data-viz="germ"></div></div>
+  <div class="blk-body" style="margin-top:14px">
+    <p>Her organ, ortak bir işlev için birlikte çalışan farklı dokulardan oluşur. Örneğin kalp; kalp kası, Purkinje liflerini içeren ileti dokusu ve kan damarlarının uyumuyla kanı damar yatağına pompalar. [[K1 s. 1]]</p>
+  </div>
+  <div class="note plain" style="margin-top:12px"><b>Atlas notu.</b> Kitap üç germ yaprağının ikinci haftanın sonunda oluştuğunu yazar [[K1 s. 1]]. Embriyoloji kaynaklarında ikinci haftanın sonunda iki tabakalı disk vardır; üç tabakalı disk üçüncü haftada gastrulasyonla oluşur.</div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-sistem">
   <h2>Organlardan sistemlere: 11 fizyolojik sistem</h2>
-  <p class="intro">Organlar işlevlerine göre 11 fizyolojik sistemde örgütlenir. Sistemler tek başına çalışmaz: arteriyel kan basıncı, kardiyovasküler, üriner, sinir ve endokrin sistemlerin etkileşiminin sonucudur. Bir sisteme basınca bileşenleri açılır. [[K1 s. 1–2]]</p>
-  <div class="viz"><div data-viz="sistemler"></div></div>
+  <p class="intro">Organlar işlevsel olarak 11 fizyolojik sistemde örgütlenir ve hiçbir sistem diğerlerinden kopuk çalışmaz. [[K1 s. 1–2]]</p>
+  <div class="viz" style="margin-top:14px"><div data-viz="sistemler"></div></div>
+  <div class="blk-body" style="margin-top:14px">
+    <p>Örneğin arteriyel kan basıncı kardiyovasküler, üriner, sinir ve endokrin sistemlerin etkileşiminin ortak sonucudur. Şemadaki her sistem düğmesi ilgili organları ve temel alt ayrımları (sistemik–pulmoner devreler; merkezi–periferik, afferent–efferent, somatik, otonom ve enterik sinir sistemi; doğal ve adaptif bağışıklık) gösterir. [[K1 s. 1–2]]</p>
+  </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-homeo">
   <h2>Homeostaz: iç ortamın düzenlenmesi</h2>
-  <p class="intro">Amip gibi tek hücreli bir canlı besinini doğrudan dış ortamdan alır, atığını doğrudan dışarı verir; sıcaklığı, pH'ı, ozmotik ve iyonik gradyanları da dış ortama bağlıdır. Dış ortamdaki küçük dalgalanmalar bile onu öldürebilir. İnsan hücrelerinin büyük çoğunluğunun ise dış ortamla teması yoktur: vücut hücrelerini, bileşimi deniz suyunu andıran hücre dışı sıvıyla (ECF) çevreler. Homeostaz, bu iç ortamın hücreler için kararlı, görece sabit ve en uygun düzeyde tutulmasıdır. [[K1 s. 2]]</p>
-  <div class="viz"><div data-viz="homeostaz"></div></div>
-  <p class="small muted" style="margin-top:10px">Homeostaz dinamiktir: mekanizmalar ECF'yi sürekli küçük ayarlarla düzeltir, büyük bir bozulmadan sonra ise büyük fizyolojik değişiklikler gerekebilir. [[K1 s. 3]]</p>
+  <p class="intro">Homeostaz, hücreleri çevreleyen hücre dışı sıvının (ECF) kararlı, görece sabit ve hücreler için en uygun düzeyde tutulmasıdır. [[K1 s. 2]]</p>
+  <div class="viz" style="margin-top:14px"><div data-viz="homeostaz"></div></div>
+  <div class="blk-body" style="margin-top:14px">
+    <p>Amip gibi tek hücrelilerde dış ortamdaki küçük sıcaklık, pH, ozmotik ya da iyonik dalgalanmalar hücre ölümüne yol açabilirken, insan hücrelerinin büyük çoğunluğu dış ortamla temas etmez ve bileşimi deniz suyunu andıran ECF içinde korunur. Homeostaz dinamiktir: ECF'de sürekli küçük düzeltmeler yapılır, büyük bir bozulmadan sonra ise geniş fizyolojik değişiklikler gerekir. [[K1 s. 2–3]]</p>
+  </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-kontrol">
   <h2>Kontrol: yerel mi, uzaktan mı?</h2>
-  <div class="cols" style="margin:14px 0">
-    <div class="card"><span class="tag">İntrinsik · yerel</span><h3 style="margin-top:8px">Organın kendi içinde</h3><p>Otokrin sinyalde hücre, kendisine etki eden bir haberci salgılar; parakrin sinyalde haberci komşu hücrelere etki eder. Kitaptaki örnek çalışan kastır: O₂ hızla tükenir, metabolizmanın atıkları (K⁺, AMP, H⁺) kası besleyen damarları genişletir, kan akımı ve O₂ sunumu artar. [[K1 s. 3]]</p></div>
-    <div class="card"><span class="tag">Ekstrinsik · sistemik</span><h3 style="margin-top:8px">Uzak bir bölgeden</h3><p>İki büyük düzenleyici sistemden biri, sinir sistemi ya da endokrin sistem aracılığıyla çalışır. Üstünlüğü, birçok organı eşgüdümlü düzenleyebilmesi ve ileri beslemeli (feedforward) kontrole olanak vermesidir. [[K1 s. 3]]</p></div>
+  <p class="intro">Homeostatik kontrol mekanizmaları organın kendi içinde (intrinsik) ya da uzak bir düzenleyici merkezden (ekstrinsik) işler. [[K1 s. 3]]</p>
+  <div class="viz" style="margin-top:14px"><div data-viz="yerel"></div></div>
+  <div class="blk-body" style="margin-top:14px">
+    <p><b>İntrinsik (yerel) kontrol</b> aynı hücreye etki eden <b>otokrin</b> ya da komşu hücrelere etki eden <b>parakrin</b> kimyasal sinyallerle yürür; çalışan kasta düşen O₂ basıncı ve biriken K⁺, AMP, H⁺ metabolitlerinin damarları genişleterek kan akımını ve O₂ sunumunu artırması bunun örneğidir. <b>Ekstrinsik (sistemik) kontrol</b> ise sinir veya endokrin sistemle uzaktan çalışır; birçok organın eşgüdümlü düzenlenmesine ve <b>ileri beslemeli (feedforward)</b> kontrole olanak tanır. [[K1 s. 3]]</p>
   </div>
-  <div class="viz"><div data-viz="yerel"></div></div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-neg">
   <h2>Negatif geri bildirim</h2>
-  <p class="intro">Sinir ve endokrin sistemin homeostatik mekanizmalarının çok büyük bölümü negatif geri bildirime dayanır: bir değişken ölçülür, bir ayar noktasıyla karşılaştırılır ve fark varsa düzeltilir. Bunun için üç öğe gerekir: değişikliği saptayan <b>algılayıcı</b>, sinyalleri bütünleştirip yanıt veren <b>kontrol merkezi</b> ve değişkeni ayar noktasına döndüren <b>efektör</b>. Kitabın örneği PaCO₂'dir. [[K1 s. 3–4]]</p>
-  <div class="viz"><div data-viz="geribildirim"></div></div>
+  <p class="intro">Sinir ve endokrin sistemin homeostatik mekanizmalarının çok büyük bölümü, ölçülen değişkeni bir ayar noktasıyla karşılaştırıp sapmayı düzelten negatif geri bildirime dayanır. [[K1 s. 3]]</p>
+  <div class="viz" style="margin-top:14px"><div data-viz="geribildirim"></div></div>
+  <div class="blk-body" style="margin-top:14px">
+    <p>Döngü üç bileşen ister: değişimi saptayan <b>algılayıcı</b>, sinyalleri bütünleştirip yanıt gönderen <b>kontrol merkezi</b> ve değişkeni ayar noktasına döndüren <b>efektör</b>. PaCO₂ yükseldiğinde medulladaki merkezi kemoreseptörler bunu algılar, medulladaki solunum merkezi solunum kaslarını uyarır ve artan alveoler ventilasyon PaCO₂'yi ayar noktasına indirir. [[K1 s. 3–4]]</p>
+  </div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-poz">
   <h2>Pozitif geri bildirim</h2>
-  <p class="intro">Pozitif geri bildirim sinyali büyütür: değişkendeki küçük bir artış, aynı değişkende giderek daha büyük artışları tetikler. Vücut öncelikle homeostazla uğraştığı için negatif geri bildirim çok daha sık görülür. Fizyolojideki pozitif döngüler genellikle eşzamanlı bir negatif geri bildirimle sıkı biçimde sınırlanır. Patolojide ise kontrolsüz bir kısır döngüye dönüşebilir. [[K1 s. 4–5]]</p>
-  <div class="cols cols-3" style="margin-bottom:14px">
-    <div class="card"><h3>Hemostaz</h3><p class="small">Damar hasarında az miktarda subendotelin açığa çıkması, büyük miktarda trombin üretimine giden bir olaylar zincirini başlatır. [[K1 s. 4]]</p></div>
-    <div class="card"><h3>Doğum eylemi</h3><p class="small">Oksitosin kasılmaları başlatır; bebeğin başı serviksi gerer; gerilme daha fazla oksitosin salınımına yol açar. Döngü bebek doğup gerilme bitene kadar sürer. [[K1 s. 4]]</p></div>
-    <div class="card"><h3>Midede protein sindirimi</h3><p class="small">Düşük pH ile etkinleşen az miktarda pepsin, inaktif öncülü pepsinojeni parçalayarak daha fazla pepsin oluşturur. [[K1 s. 4]]</p></div>
-    <div class="card"><h3>Aksiyon potansiyeli</h3><p class="small">Depolarizasyon voltaj kapılı Na⁺ kanallarını açar, giren Na⁺ daha fazla depolarizasyona ve daha fazla kanal açılmasına yol açar. Kanalların kısa sürede inaktive olması sürekli depolarizasyonu önler. [[K1 s. 4–5]]</p></div>
-    <div class="card"><h3>Kalpte uyarılma–kasılma</h3><p class="small">Sistolde hücre içine giren Ca²⁺, sarkoplazmik retikulumdan büyük miktarda Ca²⁺ salınımını tetikler; miyozin aktine bağlanır. [[K1 s. 4–5]]</p></div>
-    <div class="card"><h3>Dekompanse kanama</h3><p class="small">Arteriyel basınç düşer, organ kan akımı azalır, doku hipoksisi gelişir, damar yatakları genişler ve basınç daha da düşer. Bu kısır döngü ölümcül olabilir. [[K1 s. 5]]</p></div>
+  <p class="intro">Pozitif geri bildirim sinyali büyütür: değişkendeki küçük bir artış, aynı değişkende giderek daha büyük artışları tetikler. [[K1 s. 4]]</p>
+  <div class="viz" style="margin-top:14px"><div data-viz="pozitif"></div></div>
+  <div class="blk-body" style="margin-top:14px">
+    <p>Vücut öncelikle homeostazı koruduğundan pozitif döngüler çok daha az görülür ve fizyolojide genellikle eşzamanlı bir negatif kontrolle sınırlanır (ör. aksiyon potansiyelinde voltaj kapılı Na⁺ kanallarının kısa sürede inaktive olması). Fizyolojik örnekler: damar hasarında açığa çıkan az miktarda subendotelin yoğun trombin üretmesi (<b>hemostaz</b>), serviks gerildikçe artan oksitosinle güçlenen <b>doğum kasılmaları</b>, midede düşük pH ile etkinleşen az miktarda <b>pepsinin</b> pepsinojeni parçalayarak çoğalması, <b>aksiyon potansiyeli depolarizasyonu</b> ve sistolde giren Ca²⁺'un sarkoplazmik retikulumdan yoğun Ca²⁺ saldırdığı <b>kalpte uyarılma–kasılma eşleşmesidir</b>. [[K1 s. 4–5]]</p>
+    <p>Patolojide kontrolsüz bir kısır döngü doğabilir: <b>dekompanse kanamada</b> kan basıncı düşüşü organ perfüzyonunu azaltıp doku hipoksisi yapar; gelişen vazodilatasyon basıncı daha da düşürerek ölümcül olabilir. [[K1 s. 5]]</p>
   </div>
-  <div class="viz"><div data-viz="pozitif"></div></div>
 </section>
 
 <section class="wrap blk ders-sec" id="d1-p1">
