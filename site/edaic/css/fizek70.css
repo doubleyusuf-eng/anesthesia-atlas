@@ -1,0 +1,72 @@
+/* Ek 70 · bileşen stilleri (fek70- önekli). Renkler yalnız site.css değişkenleriyle. */
+.fek70-ctl{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;margin-bottom:10px}
+.fek70-ctl .seg button{min-height:40px}
+.fek70-btn{font:650 13px/1 var(--f-display);min-height:40px;padding:0 16px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.fek70-btn:hover{border-color:var(--accent)}
+.fek70-rng{display:grid;gap:4px;flex:1 1 240px;min-width:0}
+.fek70-rng > span{font:650 13.5px/1.25 var(--f-display);color:var(--ink)}
+.fek70-rng b{font:700 13px/1.25 var(--f-mono);color:var(--accent-ink)}
+.fek70-rng input{width:100%;margin:0;accent-color:var(--accent);min-height:28px}
+.fek70-oku{margin:0 0 8px;font:500 14px/1.4 var(--f-mono);color:var(--ink)}
+.fek70-pro{color:var(--c-clin)}.fek70-bik{color:var(--ok)}
+.fek70-gv{display:grid;gap:10px}
+.fek70-svg{width:100%;height:auto;display:block;max-width:100%}
+.fek70-svg text{font-family:var(--f-display);fill:var(--ink)}
+.fek70-t{font-size:12.5px;font-weight:600}
+.fek70-t2{font-size:12.5px;fill:var(--muted)!important}
+.fek70-not{font-size:12px;fill:var(--muted)!important}
+.fek70-tk{font-size:11.5px;fill:var(--muted)!important;font-family:var(--f-mono)!important}
+.fek70-lb{font-size:13.5px;font-weight:700}
+.fek70-lb-v{fill:var(--c-basic)!important}.fek70-lb-i{fill:var(--accent-ink)!important}
+.fek70-nl{font-size:12px;font-weight:700}.fek70-nl-pro{fill:var(--c-clin)!important}.fek70-nl-bik{fill:var(--ok)!important}
+.fek70-hucre{fill:var(--paper);stroke:var(--line);stroke-width:2}
+.fek70-kutu{fill:var(--c-clin-soft);stroke:var(--c-clin);stroke-width:1.5}
+.fek70-h{fill:var(--warn)}.fek70-serbest{opacity:.85}
+.fek70-bant{fill:var(--c-clin-soft);opacity:.55}
+.fek70-gr{stroke:var(--line);stroke-width:1}
+.fek70-eks{stroke:var(--muted);stroke-width:1.2}
+.fek70-pl{stroke:var(--line);stroke-width:1.5;stroke-dasharray:4 4}
+.fek70-e{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.fek70-e-pro{stroke:var(--c-clin)}.fek70-e-bik{stroke:var(--ok);stroke-dasharray:6 4;stroke-width:2}
+.fek70-imlec{stroke:var(--ink);stroke-width:1.5}
+.fek70-nk{stroke:var(--paper);stroke-width:1.5}.fek70-nk-pro{fill:var(--c-clin)}.fek70-nk-bik{fill:var(--ok)}
+.fek70-nk-v{fill:var(--c-basic)}.fek70-nk-i{fill:var(--accent)}
+/* tüp / vücut */
+.fek70-tup{fill:none;stroke:var(--ink);stroke-width:2.5;stroke-linecap:round}
+.fek70-kan{fill:var(--crit-soft)}
+.fek70-rbc{fill:var(--crit-soft);stroke:var(--crit);stroke-width:2}.fek70-rbc2{fill:none;stroke:var(--crit);stroke-width:1;opacity:.7}
+.fek70-co2{fill:var(--muted)}.fek70-hco{fill:var(--ok)}
+.fek70-ok{stroke:var(--muted);stroke-width:2}.fek70-okuc{fill:var(--muted)}
+.fek70-plz{fill:var(--accent-soft)}.fek70-ist{fill:var(--chip)}
+.fek70-duvar{stroke:var(--line);stroke-width:2.5;stroke-dasharray:6 5}
+.fek70-ayr{stroke:var(--line);stroke-width:1}
+.fek70-okk{fill:var(--paper);stroke:var(--line);stroke-width:1.5}.fek70-okk.fek70-uy{stroke:var(--warn);stroke-width:2.5}
+.fek70-zb0{fill:var(--paper);stroke:var(--line)}.fek70-zb1{fill:var(--accent)}
+/* eğriler */
+.fek70-ok-bant{fill:var(--ok-soft);opacity:.7}
+.fek70-eg{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.fek70-eg-v{stroke:var(--c-basic)}.fek70-eg-i{stroke:var(--accent)}
+.fek70-fark{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:3 3}
+.fek70-seri{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font:500 13.5px/1.4 var(--f-display);color:var(--ink)}
+.fek70-ks{display:flex;align-items:center;gap:8px;flex:1 1 240px}
+.fek70-ks i{width:22px;height:4px;border-radius:2px;flex:none}
+.fek70-ks-v i{background:var(--c-basic)}.fek70-ks-i i{background:var(--accent)}
+.fek70-ks b,.fek70-be b{font-family:var(--f-mono)}
+.fek70-be{flex:1 1 100%;padding:9px 12px;border-radius:10px;border:2px solid var(--ok);background:var(--ok-soft)}
+.fek70-be-uy{border-color:var(--warn);background:var(--warn-soft)}
+/* solunum */
+.fek70-kb{fill:var(--accent-soft);stroke:var(--line);stroke-width:1.5}
+.fek70-ph.fek70-pu{fill:var(--warn)!important}
+.fek70-rk{fill:var(--paper);stroke:var(--muted);stroke-width:1.5}
+.fek70-lob{fill:var(--c-basic-soft);stroke:var(--c-basic);stroke-width:2.5}
+.fek70-trk{stroke:var(--c-basic);stroke-width:3}
+.fek70-akc{transform-box:view-box}
+.fek70-yk{fill:none;stroke:var(--muted);stroke-width:2}.fek70-mk{fill:var(--muted)}
+.fek70-tz{fill:none;stroke:var(--ink);stroke-width:2}.fek70-tzb{stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+.fek70-w-h{fill:var(--ok)}.fek70-w-p{fill:var(--muted)}
+.fek70-pb{fill:var(--paper);stroke:var(--line);stroke-width:1.5}.fek70-pn{fill:var(--ok-soft)}.fek70-pc{stroke:var(--ink);stroke-width:2}
+.fek70-pa{stroke:var(--muted);stroke-width:2}
+.fek70-m0{fill:var(--paper);stroke:var(--muted);stroke-width:2.5}.fek70-m1{fill:var(--accent);stroke:var(--paper);stroke-width:1.5}
+.fek70-kmp{fill:var(--accent-ink)!important}
+.fek70-vt{font-size:13px}
+@media (max-width:560px){.fek70-t,.fek70-t2{font-size:13px}.fek70-not,.fek70-tk{font-size:12.5px}.fek70-lb{font-size:14px}.fek70-nl{font-size:13px}}

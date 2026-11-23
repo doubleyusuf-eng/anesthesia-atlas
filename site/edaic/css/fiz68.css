@@ -1,0 +1,145 @@
+/* Bölüm 68 · Renal filtrasyon ve geri emilim · bileşen stilleri (f68- önekli). Renkler yalnız site.css değişkenleriyle. */
+.f68-svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+.f68-t{font:600 12px var(--f-display);fill:var(--ink)}
+.f68-b{font-weight:800}
+.f68-muted{fill:var(--muted);color:var(--muted)}
+@media (max-width:520px){.f68-t{font-size:12.6px}}
+.f68-kan{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1}
+.f68-suz{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}
+.f68-tub{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1}
+.f68-hucre{fill:var(--chip);stroke:var(--ink);stroke-width:1.2}
+.f68-ax{stroke:var(--muted);stroke-width:1}
+.f68-gr{stroke:var(--line);stroke-width:1}
+.f68-svg text{paint-order:stroke;stroke:var(--paper);stroke-width:3px;stroke-linejoin:round}
+
+/* ---- ortak kontroller ---- */
+.f68-rng{display:grid;gap:4px;margin-top:10px}
+.f68-rng>span{display:flex;flex-wrap:wrap;justify-content:space-between;gap:2px 10px;font:650 13.5px/1.25 var(--f-display);color:var(--ink)}
+.f68-rng b{font:700 13px/1.25 var(--f-mono);color:var(--accent-ink)}
+.f68-rng input[type=range]{width:100%;margin:0;accent-color:var(--accent)}
+[class^="f68-"] .seg,.seg{margin-top:10px}
+.f68-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:10px}
+.f68-row .seg{margin-top:0}
+.f68-lej{display:flex;flex-wrap:wrap;gap:6px 16px;margin:8px 0 0;font:600 12.5px/1.3 var(--f-mono);color:var(--muted);min-height:4px}
+.f68-lej span{display:inline-flex;align-items:center;gap:7px}
+.f68-lej i{display:inline-block;width:18px;height:6px;border-radius:3px;background:var(--k,var(--muted))}
+.f68-lej i.kesik{background:repeating-linear-gradient(90deg,var(--k) 0 5px,transparent 5px 8px)}
+.f68-yk{color:var(--crit)}
+.f68-kv,.f68-kvrow dl{margin:0}
+.f68-kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px 14px;margin-top:10px}
+.f68-kv dt{font:500 12px/1.3 var(--f-mono);color:var(--muted)}
+.f68-kv dd{margin:2px 0 0;font:700 15px/1.25 var(--f-mono);color:var(--ink)}
+.f68-formul{margin-top:10px;font:600 14.5px/1.4 var(--f-mono);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 12px}
+.f68-note{margin:8px 0 0;font:500 12.5px/1.4 var(--f-display);color:var(--muted)}
+.f68-uy{margin:6px 0 0;font:650 13px/1.35 var(--f-display);color:var(--ink)}
+.f68-tr .f68-tas,.f68-tas{fill:var(--paper);stroke:var(--muted);stroke-width:1.6}
+.f68-kat{fill:var(--chip)}
+.f68-tasf{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1.6}
+.f68-yol{stroke-width:2;stroke-dasharray:5 4;opacity:.8}
+.f68-akis{stroke-dasharray:6 5}
+@media (prefers-reduced-motion:no-preference){.f68-akis{animation:f68-ak 1.1s linear infinite}}
+@keyframes f68-ak{to{stroke-dashoffset:-11}}
+
+/* ---- 1 bariyer ---- */
+.f68-bar-top{display:flex;justify-content:flex-end;margin-bottom:6px;min-height:28px}
+.f68-badge{font:750 13px/1.2 var(--f-display);padding:5px 11px;border-radius:999px;border:1.5px solid currentColor}
+.f68-badge.ok{color:var(--ok);background:var(--ok-soft)}.f68-badge.warn{color:var(--warn);background:var(--warn-soft)}.f68-badge.crit{color:var(--crit);background:var(--crit-soft)}
+.f68-endo{fill:var(--chip);stroke:var(--muted);stroke-width:1}
+.f68-gbm{fill:var(--chip);stroke:var(--muted);stroke-width:1;stroke-dasharray:none}
+.f68-foot{fill:var(--chip);stroke:var(--ink);stroke-width:1}
+.f68-minus{font:700 12px var(--f-mono);fill:var(--c-clin);opacity:.55;transition:opacity .2s}
+.f68-glow .f68-minus{opacity:1;font-size:15px}
+.f68-rbc{fill:var(--crit);opacity:.55;stroke:var(--crit)}
+.f68-mol-c{fill:var(--accent);stroke:var(--ink);stroke-width:1.2}
+.f68-mol-m{font:800 12px var(--f-mono);fill:var(--paper)}
+.f68-drug{fill:var(--c-clin);stroke:var(--ink);stroke-width:1}
+.f68-olc{margin:12px 0 4px}
+.f68-olc-bar{position:relative;display:flex;height:12px;border-radius:6px;overflow:visible}
+.f68-olc-bar i{display:block;height:100%}
+.f68-olc-bar i.s{background:var(--ok);border-radius:6px 0 0 6px}.f68-olc-bar i.k{background:var(--warn)}.f68-olc-bar i.g{background:var(--crit);border-radius:0 6px 6px 0}
+.f68-olc-bar u{position:absolute;top:-5px;width:4px;height:22px;margin-left:-2px;background:var(--ink);border-radius:2px;text-decoration:none;box-shadow:0 0 0 2px var(--paper)}
+.f68-olc-t{display:flex;font:600 11.5px/1.2 var(--f-mono);color:var(--muted);margin-top:4px}
+.f68-olc-t span{box-sizing:border-box;padding-right:2px}
+.f68-ozel{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
+.f68-ozel>b{font:750 13.5px var(--f-display)}
+
+/* ---- 2 pkt ---- */
+.f68-mv line{stroke:var(--ink);stroke-width:1.4}
+.f68-gtr{fill:var(--paper);stroke:var(--line)}
+.f68-gfill{fill:var(--c-clin)}
+.f68-tr{opacity:1}
+.f68-dim .f68-tr:not(.on){opacity:.4}
+.f68-tr.on .f68-tas,.f68-tr.on .f68-tasf{stroke:var(--accent);stroke-width:3;fill:var(--accent-soft)}
+.f68-pay{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px;margin-top:8px}
+.f68-pay span{font:600 13px/1.3 var(--f-display);color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:6px 9px;background:var(--paper)}
+.f68-pay span.on{color:var(--ink);border-color:var(--accent);background:var(--accent-soft)}
+.f68-adim .seg{margin-top:8px}
+
+/* ---- 3 tmax ---- */
+.f68-l{fill:none;stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.f68-lf{stroke:var(--accent);stroke-dasharray:6 5;stroke-width:2.4}.f68-lr{stroke:var(--ok)}.f68-le{stroke:var(--crit)}
+.f68-tmaxl{stroke:var(--muted);stroke-width:1;stroke-dasharray:3 4}
+.f68-esik{stroke:var(--ink);stroke-width:1;stroke-dasharray:4 4}
+.f68-im{stroke:var(--ink);stroke-width:1.4;opacity:.7}
+.f68-nf{fill:var(--accent);stroke:var(--paper);stroke-width:1.5}.f68-nr{fill:var(--ok);stroke:var(--paper);stroke-width:1.5}.f68-ne{fill:var(--crit);stroke:var(--paper);stroke-width:1.5}
+.f68-kvrow{display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.f68-kvrow .f68-kv{flex:1 1 220px}
+.f68-tup{display:flex;align-items:center;gap:8px;font:600 12.5px/1.3 var(--f-display);color:var(--muted)}
+.f68-tup b{color:var(--ink)}
+.f68-tupk{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.5}.f68-tupk.on{fill:var(--paper)}
+.f68-lej i[style*="--k"]{background:var(--k)}
+
+/* ---- 4 salgı ---- */
+.f68-bp{stroke:var(--paper);stroke-width:.8}
+.f68-mt{display:grid;gap:8px;margin-top:10px}
+.f68-mrow{display:grid;grid-template-columns:minmax(0,150px) 1fr;gap:4px 10px;align-items:center;font:600 13px/1.25 var(--f-display)}
+.f68-mrow b{grid-column:1 / -1;font:700 12.5px/1.3 var(--f-mono);color:var(--muted)}
+.f68-mrow>span{color:var(--ink)}
+.f68-trk{height:12px;border-radius:6px;background:var(--chip);overflow:hidden}
+.f68-trk i{display:block;height:100%;background:var(--ok);border-radius:6px;transition:width .5s}
+.f68-trk i.p{background:var(--accent)}
+.f68-liste{display:grid;gap:4px;margin-top:10px;font:500 12.5px/1.4 var(--f-display);color:var(--muted)}
+.f68-liste b{color:var(--ink)}
+
+/* ---- 5 klirens ---- */
+.f68-temiz{fill:var(--ok-soft);stroke:var(--ok);stroke-width:1.2;stroke-dasharray:5 4}
+.f68-xd{fill:var(--ink);stroke:none;opacity:.85}
+.f68-xf{fill:var(--accent)}
+.f68-bobrek{fill:var(--chip);stroke:var(--ink);stroke-width:1.4}
+.f68-bad{stroke:var(--crit);stroke-dasharray:4 3}.f68-good{stroke:var(--ok);stroke-width:2.2;fill:var(--ok-soft)}
+.f68-kap{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1.5}
+
+/* ---- 6 starling ---- */
+.f68-bari{stroke:var(--ink);stroke-width:1.5;stroke-dasharray:6 3}
+.f68-neta{font-size:14px}
+.f68-gfr{margin-top:8px}
+.f68-gfr .f68-mrow{grid-template-columns:minmax(0,110px) 1fr}
+.f68-gt{font:600 14px/1.3 var(--f-mono);margin-top:6px;color:var(--ink)}
+
+/* ---- 7 belirteç ---- */
+.f68-tubul{fill:none;stroke:var(--warn);stroke-width:9;stroke-linejoin:round;stroke-linecap:round;opacity:.8}
+.f68-bow{fill:var(--paper);stroke:var(--accent);stroke-width:1.5}
+.f68-glom{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1.5}
+.f68-cmp{display:grid;gap:8px;margin-top:10px}
+.f68-cmp .f68-mrow{grid-template-columns:minmax(0,130px) 1fr}
+.f68-cmp .f68-mrow b.f68-w{grid-column:2}
+.f68-kutu{margin:8px 0 0;font:600 13px/1.4 var(--f-display);padding:8px 11px;border-radius:10px;border:1px dashed var(--line);color:var(--muted)}
+.f68-kutu.on{color:var(--ink);border:2px solid var(--crit);background:var(--crit-soft)}
+.f68-ek{color:var(--muted)}
+
+/* ---- 8 rrt ---- */
+.f68-kart{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}
+.f68-k{border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;background:var(--paper);display:grid;gap:2px;transition:background .3s,border-color .3s}
+.f68-k b{font:750 13px/1.25 var(--f-display)}.f68-k span{font:500 12px/1.3 var(--f-display);color:var(--muted)}
+.f68-k.bad{background:var(--crit-soft);border-color:var(--crit)}.f68-k.good{background:var(--ok-soft);border-color:var(--ok)}
+.f68-per{fill:none;stroke:var(--ink);stroke-width:1.2;stroke-dasharray:6 4}
+.f68-mem{stroke:var(--ink);stroke-width:2;stroke-dasharray:5 4}
+.f68-hat{stroke:var(--crit);stroke-width:4;opacity:.45;stroke-linejoin:round}
+
+/* ---- 9 ff ---- */
+.f68-rb-t{fill:var(--crit);opacity:.25;stroke:var(--crit)}
+.f68-rb-r,.f68-rb-r2{fill:var(--crit-soft);stroke:var(--crit);stroke-width:1}.f68-rb-r2{fill:var(--crit);opacity:.55}
+.f68-rb-p,.f68-rb-p2{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}.f68-rb-p2{fill:var(--accent);opacity:.55}
+.f68-rb-f,.f68-rb-f2{fill:var(--warn-soft);stroke:var(--warn);stroke-width:1}.f68-rb-f2{fill:var(--warn);opacity:.7}
+.f68-rb-e,.f68-rb-e2{fill:var(--accent-soft);stroke:var(--accent);stroke-width:1}.f68-rb-e2{fill:var(--accent);opacity:.4}
+.f68-rb-r,.f68-rb-p,.f68-rb-f,.f68-rb-e{opacity:.9}
