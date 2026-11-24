@@ -1,0 +1,9 @@
+.a13b-tablo {
+  width: 100%;
+  table-layout: fixed;
+  overflow-wrap: break-word;
+}
+
+.a13b-tablo th:first-child {
+  width: 34%;
+}

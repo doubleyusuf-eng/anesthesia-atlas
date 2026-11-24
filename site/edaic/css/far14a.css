@@ -1,0 +1,9 @@
+.a14a-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.a14a-kartlar > .card { min-width: 0; }
+.a14a-kartlar ul { padding-inline-start: 1.2rem; }
+.a14a-kartlar li + li { margin-block-start: .5rem; }

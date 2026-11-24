@@ -1,0 +1,20 @@
+.a13a-preparat {
+  width: 100%;
+  table-layout: fixed;
+  overflow-wrap: anywhere;
+}
+
+[id^="a13a-"] .sk-ust .seg {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+[id^="a13a-"] .sk-ust button {
+  white-space: normal;
+}
+
+@media (max-width: 560px) {
+  [id^="a13a-"] .sk-svg .sk-t {
+    font-size: 16px;
+  }
+}

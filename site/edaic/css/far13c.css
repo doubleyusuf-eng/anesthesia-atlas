@@ -1,0 +1,17 @@
+.a13c-tablo {
+  width: 100%;
+  table-layout: fixed;
+}
+.a13c-tablo th:first-child {
+  width: 24%;
+}
+.a13c-tablo :is(th, td) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
+@media (max-width: 560px) {
+  .a13c-tablo :is(th, td) {
+    padding: .5rem .35rem;
+  }
+}

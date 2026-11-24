@@ -1,0 +1,28 @@
+.a14b-profil { margin-block: 1rem; }
+.a14b-profil dt { font-weight: 700; margin-block-start: .65rem; }
+.a14b-profil dd { margin: .15rem 0 .65rem; }
+.a14b-tablo { max-width: 100%; overflow-x: auto; }
+.a14b-tablo th, .a14b-tablo td { white-space: normal; }
+
+@media (max-width: 560px) {
+  .a14b-tablo table, .a14b-tablo tbody, .a14b-tablo tr, .a14b-tablo tbody th {
+    display: block;
+  }
+  .a14b-tablo caption { display: block; padding: .65rem; }
+  .a14b-tablo thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .a14b-tablo tbody th { background: var(--chip); }
+  .a14b-tablo td {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: .5rem;
+    align-items: start;
+    overflow-wrap: anywhere;
+  }
+  .a14b-tablo td::before { content: attr(data-label); color: var(--muted); }
+}

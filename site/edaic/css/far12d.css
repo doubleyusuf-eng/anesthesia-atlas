@@ -1,0 +1,11 @@
+.a12d-ilaclar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+.a12d-ilaclar ul { padding-inline-start: 1.2rem; }
+.a12d-ilaclar li + li { margin-block-start: .65rem; }
+table.a12d-kiyas { width: 100%; min-width: 0; table-layout: fixed; }
+.a12d-kiyas caption { text-align: start; font-weight: 700; padding-block: 1rem .5rem; }
+.a12d-kiyas th, .a12d-kiyas td { overflow-wrap: anywhere; white-space: normal; }
