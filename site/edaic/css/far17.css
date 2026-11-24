@@ -1,0 +1,32 @@
+.a17-karsilastir {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(0, 4fr);
+  margin: 1rem 0;
+}
+.a17-karsilastir dt, .a17-karsilastir dd {
+  margin: 0;
+  padding: .65rem .8rem;
+  border-bottom: 1px solid var(--line);
+}
+.a17-karsilastir dt {
+  font-weight: 700;
+  background: var(--chip);
+}
+@media (max-width: 620px) {
+  .a17-karsilastir { display: block; }
+}
+.a17-kinetik {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.a17-kinetik th, .a17-kinetik td {
+  padding: .65rem;
+  text-align: start;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.a17-kinetik th:first-child { width: 29%; }
+.a17-kinetik thead { background: var(--chip); }

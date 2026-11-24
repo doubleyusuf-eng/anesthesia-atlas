@@ -1,0 +1,29 @@
+.a15a-kinetik {
+  width: 100%;
+  table-layout: fixed;
+  overflow-wrap: anywhere;
+}
+.a15a-kinetik th:first-child { width: 18%; }
+@media (max-width: 600px) {
+  .a15a-kinetik, .a15a-kinetik tbody, .a15a-kinetik tr,
+  .a15a-kinetik td, .a15a-kinetik th[scope="row"] {
+    display: block;
+    min-width: 0;
+    width: auto;
+  }
+  .a15a-kinetik thead {
+    position: absolute;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .a15a-kinetik th[scope="row"] { background: var(--accent-soft); }
+  .a15a-kinetik td::before {
+    display: block;
+    color: var(--muted);
+    font-weight: bold;
+  }
+  .a15a-kinetik td:nth-child(2)::before { content: "Emilim ve dağılım"; }
+  .a15a-kinetik td:nth-child(3)::before { content: "Eliminasyon"; }
+}

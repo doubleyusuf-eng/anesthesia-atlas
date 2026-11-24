@@ -1,0 +1,10 @@
+.a15b-profil {
+  padding-inline-start: 1.3em;
+  max-width: 78ch;
+  overflow-wrap: anywhere;
+}
+.a15b-profil li + li { margin-block-start: .55em; }
+.a15b-profil li::marker { color: var(--accent); }
+.a15b-tablo { width: 100%; min-width: 0; table-layout: fixed; }
+.a15b-tablo th:first-child { width: 28%; }
+.a15b-tablo :is(td, th) { white-space: normal; overflow-wrap: anywhere; }

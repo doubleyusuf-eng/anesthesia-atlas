@@ -1,0 +1,11 @@
+.a16a-tablo .tbl {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+.a16a-tablo th:first-child { width: 30%; }
+.a16a-tablo :is(td, th) {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  vertical-align: top;
+}
