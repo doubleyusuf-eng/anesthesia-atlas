@@ -1,0 +1,10 @@
+.tbl.a04-tablo {
+  table-layout: fixed;
+  width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.tbl.a04-tablo th:first-child {
+  width: 34%;
+  white-space: normal;
+}

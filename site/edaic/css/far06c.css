@@ -1,0 +1,11 @@
+.a06c-tablo {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+}
+.a06c-tablo th:first-child {
+  width: 36%;
+}
+.a06c-tablo th, .a06c-tablo td {
+  overflow-wrap: anywhere;
+}

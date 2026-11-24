@@ -1,0 +1,16 @@
+.a07a-karsilastirma {
+  width: 100%;
+  table-layout: fixed;
+}
+.a07a-karsilastirma caption {
+  text-align: start;
+  font-weight: 700;
+  padding-block: .75rem;
+}
+.a07a-karsilastirma :is(td, th) {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 560px) {
+  .tbl.a07a-karsilastirma { min-width: 0; }
+  .a07a-karsilastirma :is(td, th) { padding-inline: .4rem; }
+}

@@ -1,0 +1,3 @@
+/* Uzun formüller dar ekranda kartın içinde kalır. */
+[id^="a06a-"] .card { min-width: 0; overflow-wrap: break-word; }
+[id^="a06a-"] .sk-ust .seg { flex-wrap: wrap; }
