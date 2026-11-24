@@ -1,0 +1,13 @@
+.a09e-tablo { width: 100%; margin-block: 1.25rem; }
+.a09e-tablo caption { text-align: start; font-weight: 700; padding-block: .6rem; }
+.a09e-tablo th, .a09e-tablo td { white-space: normal; }
+.a09e-etiket { display: none; }
+@media (max-width: 840px) {
+  .a09e-tablo, .a09e-tablo tbody, .a09e-tablo tr { display: block; min-width: 0; }
+  .a09e-tablo thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .a09e-tablo caption { display: block; }
+  .a09e-tablo tbody tr { margin-bottom: .8rem; border: 1px solid var(--line); border-radius: .5rem; }
+  .a09e-tablo th[scope="row"] { display: block; background: var(--accent-soft); }
+  .a09e-tablo td { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: .5rem; align-items: baseline; }
+  .a09e-etiket { display: inline; color: var(--muted); }
+}

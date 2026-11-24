@@ -1,0 +1,4 @@
+.a09f-tablo { margin-block: 1rem; }
+.a09f-tablo .tbl { width: 100%; min-width: 0; }
+.a09f-tablo .tbl :is(td, th) { white-space: normal; overflow-wrap: anywhere; }
+.a09f-sekil .seg { flex-wrap: wrap; }

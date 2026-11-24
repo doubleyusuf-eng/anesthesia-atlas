@@ -1,0 +1,23 @@
+.a10a-tablo {
+  margin-block: 1rem;
+  max-width: 100%;
+}
+.a10a-tablo caption {
+  text-align: start;
+  padding: .7rem .9rem;
+  color: var(--ink);
+  font-weight: 700;
+}
+.a10a-tablo tbody th {
+  text-align: start;
+}
+@media (max-width: 560px) {
+  .a10a-tablo .tbl th,
+  .a10a-tablo .tbl td {
+    white-space: normal;
+    padding: .45rem;
+  }
+  [id^="a10a-"] .sk-ust .seg {
+    flex-wrap: wrap;
+  }
+}

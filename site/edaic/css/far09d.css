@@ -1,0 +1,11 @@
+.a09d-liste { padding-inline-start: 1.25em; }
+.a09d-liste li + li { margin-top: .5em; }
+.a09d-tablo { width: 100%; border-collapse: collapse; }
+.a09d-tablo th, .a09d-tablo td {
+  padding: .55em .45em;
+  text-align: start;
+  vertical-align: top;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+}
+.a09d-tablo thead th { color: var(--muted); }
