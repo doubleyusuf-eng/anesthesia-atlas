@@ -1,0 +1,8 @@
+.a09a-sekil .seg {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem;
+}
+.a09a-sekil .viz-cap {
+  overflow-wrap: break-word;
+}

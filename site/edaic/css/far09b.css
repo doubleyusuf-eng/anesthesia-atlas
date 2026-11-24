@@ -1,0 +1,5 @@
+.a09b-liste li + li { margin-block-start: .65em; }
+.a09b-tablo { max-width: 100%; overflow-x: auto; }
+.a09b-tablo th { text-align: start; }
+.a09b-gecis { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-block-start: 1.5rem; }
+.a09b-gecis a { max-width: 100%; overflow-wrap: anywhere; }

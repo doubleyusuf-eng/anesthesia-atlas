@@ -1,0 +1,9 @@
+/* Şeker tablosu ve ilaç karşılaştırmalarında dar ekrana uyum. */
+#a08a-taslar .tbl,
+.tbl.a08a-tablo {
+  width: 100%;
+  min-width: 0;
+}
+.a08a-sekiller .seg {
+  flex-wrap: wrap;
+}

@@ -1,0 +1,14 @@
+.a07b-table th, .a07b-table td {
+  white-space: normal;
+  overflow-wrap: break-word;
+  vertical-align: top;
+}
+@media (max-width: 540px) {
+  .tbl.a07b-table {
+    min-width: 0;
+    width: 100%;
+  }
+  .tbl.a07b-table th, .tbl.a07b-table td {
+    padding: .45rem .3rem;
+  }
+}
