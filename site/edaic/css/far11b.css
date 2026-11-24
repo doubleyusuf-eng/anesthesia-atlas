@@ -1,0 +1,21 @@
+.a11b-kartlar,
+.a11b-liste {
+  margin-block-start: 1rem;
+}
+.a11b-kartlar > .card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.a11b-kartlar li + li,
+.a11b-liste li + li {
+  margin-block-start: .6rem;
+}
+.a11b-tablo {
+  width: 100%;
+  min-width: 0;
+  table-layout: fixed;
+  overflow-wrap: anywhere;
+}
+.a11b-tablo th:first-child {
+  width: 31%;
+}

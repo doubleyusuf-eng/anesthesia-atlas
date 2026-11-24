@@ -1,0 +1,10 @@
+.a11a-profiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 21rem), 1fr));
+  gap: 1rem;
+}
+.a11a-profiles table { width: 100%; border-collapse: collapse; table-layout: fixed; color: var(--ink); }
+.a11a-profiles th, .a11a-profiles td { padding: .45rem .28rem; border-bottom: 1px solid var(--line); text-align: center; overflow-wrap: anywhere; font-variant-numeric: tabular-nums; }
+.a11a-profiles th:first-child { width: 45%; text-align: left; }
+.a11a-profiles th[scope="row"] { font-weight: 500; }
+.a11a-profiles caption { text-align: left; padding: .4rem 0; color: var(--muted); }
