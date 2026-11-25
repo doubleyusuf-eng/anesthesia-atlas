@@ -6,7 +6,7 @@ VERI.rehber = {
   bolumler: [
     { no: 1, ad: 'Giriş', kisim: 1, kagit: 'Giriş', s: 23, son: 25, rota: 'sinav/genel',
       ozet: 'Diplomanın hangi eğitim ihtiyacından doğduğunu ve adayların yazılıya hazırlanırken kullanabileceği araçları tanıtır. [[K4 s. 23–25]]',
-      odak: ['Avrupa’da ortak eğitim hedefi [[K4 s. 23–24]]', 'Diplomanın amaçları [[K4 s. 25]]', 'Çevrim içi öz değerlendirme (OLA) [[K4 s. 25]]'] },
+      odak: ['Avrupa’da ortak eğitim hedefi [[K4 s. 23–24]]', 'Diplomanın amaçları [[K4 s. 25]]', 'Çevrim içi değerlendirme (OLA) [[K4 s. 25]]'] },
     { no: 2, ad: 'EDAIC sınavının yapısı (Part I ve II)', kisim: 1, kagit: 'Giriş', s: 26, son: 30, rota: 'sinav/part1',
       ozet: 'Yazılı oturumların konu dağılımından başlayıp sözlü sınavın işleyişine ve değerlendirmenin nasıl yapıldığına geçer. [[K4 s. 26–30]]',
       odak: ['Temel bilimlerin kapsamı [[K4 s. 26–27]]', 'Klinik konu dağılımı [[K4 s. 27–28]]', 'Sözlüde puanlama [[K4 s. 30]]'] },
@@ -15,7 +15,7 @@ VERI.rehber = {
       odak: ['Bağımsız önermeler [[K4 s. 32]]', 'Sorudaki varsayımlar [[K4 s. 34]]', 'İkinci okuma [[K4 s. 37–38]]'] },
     { no: 4, ad: 'Part II sınavı nasıl geçilir?', kisim: 1, kagit: 'Part II', s: 41, son: 51, rota: 'hazirlik/part2',
       ozet: 'Sözlü oturumların her birinde adaydan ne beklendiğini anlatır. Hazırlık notundan görüşmenin sonuna kadar prova önerileri verir. [[K4 s. 41–51]]',
-      odak: ['Grafik hazırlığı [[K4 s. 43]]', 'Karşılıklı prova [[K4 s. 46–47]]', 'Görevlinin geri bildirimi [[K4 s. 50]]'] },
+      odak: ['Grafik hazırlığı [[K4 s. 43]]', 'Karşılıklı prova [[K4 s. 46–47]]', 'Görevlinin tarafsız tutumu [[K4 s. 50]]'] },
     { no: 5, ad: 'Fizyoloji', kisim: 2, kagit: 'Paper A', s: 54, son: 103, rota: 'dersler/fizyoloji',
       ozet: '45 MTF sorusu, organların tek tek işlevlerinden gebelikteki uyuma uzanır. Sorulardan sonra gerekçeler yer alır. [[K4 s. 54–103]]',
       odak: ['Solunumun denetimi [[K4 s. 54–55]]', 'Kalp döngüsü [[K4 s. 58–59]]', 'Gebelik fizyolojisi [[K4 s. 64]]'] },
@@ -27,28 +27,28 @@ VERI.rehber = {
       odak: ['Omurilikte ağrı iletimi [[K4 s. 138]]', 'Larinksin sinirleri [[K4 s. 139]]', 'Uyluğun damar ve sinirleri [[K4 s. 140–141]]'] },
     { no: 8, ad: 'Fizik', kisim: 2, kagit: 'Paper A', s: 152, son: 181, rota: null,
       ozet: '25 MTF sorusu gaz davranışından ameliyathane donanımına geçer. Ölçüm araçları ve elektrik güvenliği de kapsamdadır. [[K4 s. 152–181]]',
-      odak: ['Tüpte akış [[K4 s. 153]]', 'Vaporizatörler [[K4 s. 155]]', 'Elektriksel korunma [[K4 s. 156]]'] },
+      odak: ['Tüpte akış [[K4 s. 153]]', 'Vaporizatörler [[K4 s. 155]]', 'Elektriksel korunma [[K4 s. 156–157]]'] },
     { no: 9, ad: 'İstatistik', kisim: 2, kagit: 'Paper A', s: 182, son: 191, rota: null,
       ozet: '10 MTF sorusu veriyi betimleme, araştırma tasarımı ve istatistiksel çıkarım arasında bağlantı kurar. [[K4 s. 182–191]]',
-      odak: ['Yayılım ölçüleri [[K4 s. 182]]', 'Körleme [[K4 s. 183]]', 'Test sonuçlarının yorumu [[K4 s. 184]]'] },
+      odak: ['Yayılım ölçüleri [[K4 s. 182]]', 'Körleme [[K4 s. 183]]', 'Test sonuçlarının yorumu [[K4 s. 184–185]]'] },
     { no: 10, ad: 'Genel anestezi', kisim: 3, kagit: 'Paper B', s: 194, son: 217, rota: null,
       ozet: '25 MTF sorusunda ameliyat öncesi değerlendirme, anestezi izlemi ve perioperatif komplikasyonlar birlikte ele alınır. [[K4 s. 194–217]]',
-      odak: ['Hava yolu değerlendirmesi [[K4 s. 194]]', 'Kapnografi [[K4 s. 198]]', 'Kanama izlemi [[K4 s. 201]]'] },
+      odak: ['Hava yolu değerlendirmesi [[K4 s. 194]]', 'Kapnografi [[K4 s. 198]]', 'Perioperatif kanama yönetimi [[K4 s. 201]]'] },
     { no: 11, ad: 'Rejyonal anestezi', kisim: 3, kagit: 'Paper B', s: 218, son: 235, rota: null,
       ozet: '15 MTF sorusu periferik ve nöroaksiyel teknikleri, girişim bölgesinin anatomisini ve hastaya özgü riskleri işler. [[K4 s. 218–235]]',
       odak: ['Eklem cerrahisinde analjezi [[K4 s. 218]]', 'Lomber ultrason [[K4 s. 220]]', 'Üst ekstremite blokları [[K4 s. 222]]'] },
     { no: 12, ad: 'Özel anestezi', kisim: 3, kagit: 'Paper B', s: 236, son: 283, rota: null,
       ozet: '30 MTF sorusu farklı cerrahi uzmanlık alanlarını, obstetrik ve pediatrik anesteziyi, ayrıca kronik ağrıyı kapsar. [[K4 s. 236–283]]',
-      odak: ['Peripartum sorunlar [[K4 s. 236–237]]', 'Akciğer izolasyonu [[K4 s. 239]]', 'Nöropatik ağrı [[K4 s. 244–245]]'] },
+      odak: ['Peripartum sorunlar [[K4 s. 236–237]]', 'Akciğer izolasyonu [[K4 s. 239–240]]', 'Nöropatik ağrı [[K4 s. 244–245]]'] },
     { no: 13, ad: 'Yoğun bakım', kisim: 3, kagit: 'Paper B', s: 284, son: 327, rota: null,
       ozet: '22 MTF sorusunda ameliyat sonrası kötüleşmeden çoklu organ sorunlarına kadar kritik hastanın değerlendirilmesi tartışılır. [[K4 s. 284–327]]',
-      odak: ['Şok tipleri [[K4 s. 285–286]]', 'Ventilatörden ayırma [[K4 s. 289]]', 'Beslenme ve deliryum [[K4 s. 291]]'] },
+      odak: ['Şok tipleri [[K4 s. 285–286]]', 'Ventilatörden ayırma [[K4 s. 289]]', 'Beslenme ve deliryum [[K4 s. 291–292]]'] },
     { no: 14, ad: 'İç hastalıkları', kisim: 3, kagit: 'Paper B', s: 328, son: 347, rota: null,
       ozet: '15 MTF sorusu eşlik eden hastalıkları öykü, laboratuvar, EKG ve solunum testleriyle ilişkilendirir. [[K4 s. 328–347]]',
       odak: ['Elektrolitler ve EKG [[K4 s. 328]]', 'Solunum fonksiyon testleri [[K4 s. 329]]', 'Adrenal ve renal hastalıklar [[K4 s. 331]]'] },
     { no: 15, ad: 'Acil tıp', kisim: 3, kagit: 'Paper B', s: 348, son: 378, rota: null,
       ozet: '20 MTF sorusu akut başvurularda tanıyı ve ilk müdahaleyi ele alır. Travma ve zehirlenme de soru grupları arasındadır. [[K4 s. 348–378]]',
-      odak: ['Göğüs ağrısı [[K4 s. 348–349]]', 'Toksikolojik aciller [[K4 s. 351]]', 'Gebede travma [[K4 s. 354]]'] },
+      odak: ['Göğüs ağrısı [[K4 s. 348–349]]', 'Toksikolojik aciller [[K4 s. 351–352]]', 'Gebede travma [[K4 s. 354]]'] },
     { no: 16, ad: 'Uygulamalı fizyoloji', kisim: 4, kagit: 'SOE', s: 381, son: 397, rota: 'dersler/fizyoloji',
       ozet: 'Beş sözlü soru dizisi oksijen taşınması, beyin, akciğer, böbrek ve kalsiyum dengesi etrafında ilerler. [[K4 s. 381–397]]',
       odak: ['Hemoglobin eğrileri [[K4 s. 381]]', 'Gaz değişimi [[K4 s. 382]]', 'Kalsiyum dengesi [[K4 s. 383]]'] },
@@ -78,13 +78,13 @@ VERI.rehber = {
 
 VERI.sorular['htp-1'] = {
   no: 1, kagit: "Paper A · Fizyoloji",
-  kok: "Bir saatte 90 mL idrar toplanıyor. X maddesinin idrardaki derişimi 40 mg/L, aynı süre boyunca plazmadaki derişimi 2 mg/L.", kaynak: '[[K4 s. 393]]',
+  kok: "Bir saatte 90 mL idrar toplanıyor. X maddesinin idrardaki derişimi 40 mg/L, aynı süre boyunca plazmadaki derişimi 2 mg/L.", kaynak: '[[K4 s. 393–394]]',
   onermeler: [
     { t: "X’in idrarla atılma hızı 3,6 mg/saattir.", d: true, n: "Bir saatte atılan kütle 0,09 L × 40 mg/L ile bulunur. [[K4 s. 393]]" },
     { t: "Klirens hesabında 90 mL/dk idrar akımı kullanılmalıdır.", d: false, n: "Toplama süresi 60 dakikadır. Dakikadaki hacim 1,5 mL olur. [[K4 s. 393]]" },
     { t: "Bu ölçümler X için 30 mL/dk klirens verir.", d: true, n: "Dakikadaki idrar hacmi, idrar/plazma derişim oranı olan 20 ile çarpılır. [[K4 s. 393]]" },
     { t: "Plazma derişiminin ölçülmesi gereksizdir.", d: false, n: "Atılan kütleden arındırılmış plazma hacmine geçmek için plazmadaki derişim gerekir. [[K4 s. 393]]" },
-    { t: "Bu sonuç tek başına hastanın glomerüler filtrasyon hızını verir.", d: false, n: "X’in tübüllerdeki taşınması bilinmiyor. Geri emilim ve sekresyon klirensi filtrasyondan farklılaştırabilir. [[K4 s. 393]]" },
+    { t: "Bu sonuç tek başına hastanın glomerüler filtrasyon hızını verir.", d: false, n: "X’in tübüllerdeki taşınması bilinmiyor. Geri emilim ve sekresyon klirensi filtrasyondan farklılaştırabilir. [[K4 s. 393–394]]" },
   ],
 };
 
@@ -92,8 +92,8 @@ VERI.sorular['htp-2'] = {
   no: 2, kagit: "Paper A · Farmakoloji",
   kok: "Aynı dokuda X ve Y aynı reseptörü uyarıyor. Tam reseptör işgalinde yanıt X ile 80, Y ile 32 birim. Bu sistemde ulaşılabilen en büyük yanıt 80 birim.", kaynak: '[[K4 s. 405–408]]',
   onermeler: [
-    { t: "Y’nin bu deneydeki en büyük etkisi X’inkinin %60’ıdır.", d: false, n: "32/80 oranı 0,40 eder. [[K4 s. 406]]" },
-    { t: "Y, bu dokuda parsiyel agonist gibi davranır.", d: true, n: "Bütün reseptörler doluyken bile Y, dokunun verebildiği yanıtın ancak bir kısmını oluşturur. [[K4 s. 405]]" },
+    { t: "Y’nin bu deneydeki en büyük etkisi X’inkinin %60’ıdır.", d: false, n: "32/80 oranı 0,40 eder. [[K4 s. 405–406]]" },
+    { t: "Y, bu dokuda parsiyel agonist gibi davranır.", d: true, n: "Bütün reseptörler doluyken bile Y, dokunun verebildiği yanıtın ancak bir kısmını oluşturur. [[K4 s. 405–406]]" },
     { t: "İki tepe değerinden X’in reseptöre daha sıkı bağlandığı anlaşılır.", d: false, n: "Bağlanma gücünü gösteren afiniteyi ölçmek için yalnız etki büyüklüğü yeterli değildir. [[K4 s. 405]]" },
     { t: "Y’nin derişimini artırarak 80 birime çıkılması beklenmez.", d: true, n: "Reseptör işgali zaten tamken sınırı Y’nin oluşturabildiği en büyük etki belirler. [[K4 s. 408]]" },
     { t: "Y’nin etkisi nötr bir antagonistin tek başına oluşturacağı yanıtla eşdeğerdir.", d: false, n: "Y reseptörü uyarır. Nötr antagonistin kendine ait uyarıcı etkisi yoktur. [[K4 s. 405]]" },
@@ -132,13 +132,13 @@ VERI.sorular['htp-5'] = {
     { t: "68–72 ms aralığı bireysel ölçümlerin yaklaşık %95’ini kapsar.", d: false, n: "Bu çubuk ortalamanın belirsizliğini anlatır. Tek tek ölçümlerin kapsanma oranı buradan çıkmaz. [[K4 s. 187]]" },
     { t: "Bağımsız ölçüm sayısı 144’e çıkar ve standart sapma aynı kalırsa yeni standart hata 1 ms olur.", d: true, n: "Karekök paydası 12’ye yükselir. [[K4 s. 187]]" },
     { t: "Bütün ölçümlere 5 ms eklemek ilk hata çubuğunu genişletir.", d: false, n: "Sabit eklemek ortalamayı kaydırır. Yayılım ve örneklem büyüklüğü aynı kalır. [[K4 s. 187]]" },
-    { t: "Grafikte standart sapma seçilseydi ilk çubuğun yarı uzunluğu 6 ms olurdu.", d: false, n: "Standart sapma doğrudan kullanılırsa ortalamadan her yöne 12 ms gösterilir. [[K4 s. 187]]" },
+    { t: "Grafikte standart sapma seçilseydi ilk çubuk ortalamadan her iki yöne 6 ms uzanırdı.", d: false, n: "Standart sapma doğrudan kullanılırsa ortalamadan her yöne 12 ms gösterilir. [[K4 s. 187]]" },
   ],
 };
 
 VERI.sorular['htp-6'] = {
   no: 6, kagit: "Paper B · Genel anestezi",
-  kok: "Cihaz değişiminde iki kapnograf deneniyor. K gazı ince bir hatla uzaktaki analizöre çekiyor. L’nin ölçüm başlığı solunum devresinde. İkisine de aynı test akciğeri bağlı.", kaynak: '[[K4 s. 465]]',
+  kok: "Cihaz değişiminde iki kapnograf deneniyor. K gazı ince bir hatla uzaktaki analizöre çekiyor. L’nin ölçüm başlığı solunum devresinde. İkisine de CO₂ verilen aynı test akciğeri bağlı.", kaynak: '[[K4 s. 465]]',
   onermeler: [
     { t: "K’de örnek alma hattı kıvrılırsa test akciğeri ventile edilirken CO₂ eğrisi kaybolabilir.", d: true, n: "Gaz analizöre ulaşmayınca örnek akışı kesilir. [[K4 s. 465]]" },
     { t: "K’deki örnek taşıma süresi, gazın kaynaktan çekilme hızından bağımsızdır.", d: false, n: "Belirli bir hat hacminin taşınma süresi örnek akımına bağlıdır. [[K4 s. 465]]" },
@@ -164,7 +164,7 @@ VERI.sorular['htp-8'] = {
   no: 8, kagit: "Paper B · Özel anestezi",
   kok: "Toraks cerrahisi provasında tek akciğer ventilasyonu bir modelle gösteriliyor. Sağ akciğere gaz gitmiyor. Başlangıçta toplam pulmoner kan akımının %30’u sağa gidiyor, sol akciğerde gaz değişimi normal.", kaynak: '[[K4 s. 390–392]]',
   onermeler: [
-    { t: "Modelde sağ akciğerden gelen kan arteriyel karışıma oksijenlenmeden katılır.", d: true, n: "Ventilasyonun sıfır olduğu bölgede perfüzyon sürerse kan alveol gazından oksijen alamaz. [[K4 s. 390]]" },
+    { t: "Modelde sağ akciğerden gelen kan arteriyel karışıma oksijenlenmeden katılır.", d: true, n: "Ventilasyonun sıfır olduğu bölgede perfüzyon sürerse kan alveol gazından oksijen alamaz. [[K4 s. 390–391]]" },
     { t: "Sağ akciğerin bu durumunu alveoler ölü boşluk olarak adlandırmak uygundur.", d: false, n: "Ölü boşlukta gazın ulaştığı bölgeye yeterli kan gelmez. Burada kesilen akım havadır. [[K4 s. 391]]" },
     { t: "Sağa giden pay %10’a inerse modeldeki şant payı 20 yüzde puanı azalır.", d: true, n: "Ventile edilmeyen taraftaki akım toplamın %30’undan %10’una düşmüştür. [[K4 s. 391]]" },
     { t: "Sağdaki hipoksik vazokonstriksiyon, kanı özellikle ventilasyonsuz tarafa yönlendirir.", d: false, n: "Yerel direnç artışı akımı gaz alan tarafa yöneltir. [[K4 s. 392]]" },
@@ -186,19 +186,19 @@ VERI.sorular['htp-9'] = {
 
 VERI.sorular['htp-10'] = {
   no: 10, kagit: "Paper B · Acil tıp",
-  kok: "Acilde iki hastanın ilk troponin sonucu laboratuvarın üst referans sınırının üç katıdır. Birinde eforla göğüs baskısı, diğerinde ateş ve yeni gelişen nefes darlığı vardır.", kaynak: '[[K4 s. 357–358]]',
+  kok: "Acilde iki hastanın ilk troponin sonucu laboratuvarın üst referans sınırının üç katıdır. Birinde eforla göğüs baskısı, diğerinde ateş ve yeni gelişen nefes darlığı vardır.", kaynak: '[[K4 s. 348]] [[K4 s. 357–358]]',
   onermeler: [
     { t: "Eşit değerler, iki hastada aynı koroner lezyonu gösterir.", d: false, n: "Troponin miyokart hasarını bildirir. Hasarın yeri ve nedeni bu sayıdan okunamaz. [[K4 s. 357]]" },
     { t: "İkinci hastada miyokardit olasılığı bu laboratuvar sonucu ile bağdaşır.", d: true, n: "Kalp kasındaki inflamasyon da troponin salınmasına yol açabilir. [[K4 s. 358]]" },
     { t: "İlk hastanın iskemik belirtileri, troponin sonucunun yorumunu etkilemez.", d: false, n: "Kardiyak hasarı açıklamak için yakınmanın niteliği ve EKG birlikte değerlendirilir. [[K4 s. 357]]" },
+    { t: "Tek örnek, iki hastada da troponinin son saatlerde yükseldiğini gösterir.", d: false, n: "Troponin akut olaydan sonra iki haftaya dek yüksek kalabilir; tek ölçüm değişimin yönünü vermez, zaman içindeki ölçümler karşılaştırılır. [[K4 s. 348]] [[K4 s. 357]]" },
     { t: "Akciğer embolisi ikinci hastadaki yüksekliği açıklayabilecek tanılar arasındadır.", d: true, n: "Pulmoner embolide kalbin yükü artabilir ve miyokart hasarı gelişebilir. [[K4 s. 358]]" },
-    { t: "Tek örnek, iki hastada da troponinin son saatlerde yükseldiğini gösterir.", d: false, n: "Bir düzeyin yüksek olması değişimin yönünü vermez. Bunun için zaman içindeki ölçümler karşılaştırılır. [[K4 s. 357]]" },
   ],
 };
 
 SAYFALAR['rehber/genel'] = {
   grup: 'rehber', eyebrow: 'Kitap rehberi · How to Pass the EDAIC', baslik: 'EDAIC Sınavı Nasıl Geçilir?',
-  lede: 'How to Pass the EDAIC (Oxford University Press, 2023), yazılı ve sözlü sınava adayın karşılaşacağı soru biçimleri üzerinden hazırlık sağlar. Editörleri Andrey Varvinskiy, Mario Zerafa ve Sue Hill, EDAIC sınavlarında görev almış ve sınav komitelerine başkanlık etmiş hekimlerdir. [[K4 s. 6–7]]',
+  lede: 'How to Pass the EDAIC (Oxford University Press, 2023), yazılı ve sözlü sınava adayın karşılaşacağı soru biçimleri üzerinden hazırlık sağlar. Editörleri Andrey Varvinskiy, Mario Zerafa ve Sue Hill, EDAIC sınavlarında görev almış ve sınav komitelerine başkanlık etmiş hekimlerdir. [[K4 s. 4]] [[K4 s. 6–7]]',
   html: `
 <section class="wrap blk"><h2>Kitabın dört kısmı</h2>
 <p class="intro">İlk kısım sınavın mantığını anlatır. İkinci kısımda temel bilimleri Paper A, üçüncüde klinik kararları Paper B sorularıyla çalışırsınız. Dördüncü kısımda aynı bilgiyi yapılandırılmış sözlü sınavda (SOE) kullanırsınız. [[K4 s. 23]] [[K4 s. 11–12]]</p>
@@ -213,11 +213,11 @@ SAYFALAR['rehber/genel'] = {
 
 SAYFALAR['rehber/part1'] = {
   grup: 'rehber', eyebrow: 'Kitap rehberi · How to Pass the EDAIC', baslik: 'Part I bölümleri',
-  lede: 'Kitabın 2. bölümü iki oturumda neyin ölçüldüğünü, 3. bölümü ise bir önermeyi okurken hangi ayrıntıların kararı değiştirdiğini gösterir. [[K4 s. 26–32]]',
+  lede: 'Kitabın 2. bölümü iki oturumda neyin ölçüldüğünü, 3. bölümü ise bir önermeyi okurken hangi ayrıntıların kararı değiştirdiğini gösterir. [[K4 s. 26–40]]',
   html: `
 <section class="wrap blk"><h2>Bir MTF setini çözerken</h2><div class="cols">
 <article class="card"><h3>İki oturumu ayrı değerlendirin</h3><p>Denemeden sonra temel bilim ve klinik puanlarınızı ayrı çıkarın. Kitapta tarif edilen puanlamada her oturum kendi geçme sınırına göre değerlendirilir. [[K4 s. 29]]</p></article>
-<article class="card"><h3>Kökü her maddeyle yeniden okuyun</h3><p>Kökteki koşulu beş önermeye de taşıyın. Bir önceki maddede verdiğiniz karar, sıradakinin doğru olma olasılığına ilişkin bir ipucu vermez. [[K4 s. 32]]</p></article>
+<article class="card"><h3>Kökü her maddeyle yeniden okuyun</h3><p>Kökteki koşulu beş önermeye de taşıyın. Bir önceki maddede verdiğiniz karar, sıradakinin doğru olma olasılığına ilişkin bir ipucu vermez. [[K4 s. 32–33]]</p></article>
 <article class="card"><h3>Hangi hastadan söz ediliyor?</h3><p>Bir fizyoloji sorusunda yaş, hastalık veya anestezi belirtilmiş mi diye bakın. Özel bir koşul verilmemişse kitabın başlangıç varsayımı uyanık, sağlıklı erişkindir. [[K4 s. 34]]</p></article>
 <article class="card"><h3>Tereddüde dönüş zamanı ayırın</h3><p>İlk geçişte emin olduklarınızı kaydedin. İkinci geçişte işlem veya akıl yürütme isteyenlere dönün. Son turda boşları tarayın. Kitabın puanlama örneğinde yanlış seçim puan eksiltmez. [[K4 s. 37–40]]</p></article>
 </div></section>
@@ -232,7 +232,7 @@ SAYFALAR['rehber/part2'] = {
 <article class="card"><h3>Çizimi konuşmadan önce kurun</h3><p>Hazırlık sırasında açıklamanızı kolaylaştıracak grafiği seçin. Eksenlerin adlarını yazın ve kâğıdı karşınızdaki kişinin rahatça okuyabileceği ölçekte kullanın. [[K4 s. 43]]</p></article>
 <article class="card"><h3>Olguyu bir kararla açın</h3><p>İlk cümlenizde planınızı değiştiren bulguyu söyleyin. Ardından hangi olasılığı araştıracağınızı ve sonucun yönetiminizi nasıl etkileyeceğini belirtin. [[K4 s. 43–44]]</p></article>
 <article class="card"><h3>Dinleyiciye bir görev verin</h3><p>Bir meslektaşınızla önceden konu seçin. Beş dakikalık provada takıldığınız yeri not etmesini isteyin. Geri bildirimi alınca aynı açıklamayı sınav dilinde yeniden yapın. [[K4 s. 46–47]]</p></article>
-<article class="card"><h3>Bir sorudan diğerine geçin</h3><p>Hatırlayamadığınız ayrıntıyı açıkça söyleyin. Görevlinin yüz ifadesinden puan çıkarmaya çalışmak sonraki soruya ayıracağınız dikkati dağıtır. [[K4 s. 48–50]]</p></article>
+<article class="card"><h3>Bir sorudan diğerine geçin</h3><p>Hatırlayamadığınız ayrıntıyı açıkça söyleyin. Görevlinin tarafsız tepkisinden puan çıkarmaya çalışmak sonraki soruya ayıracağınız dikkati dağıtır. [[K4 s. 48–50]]</p></article>
 </div></section>
 <section class="wrap blk"><h2>Sözlü prova için konular</h2><div data-viz="bolumharita" data-kisim="4"></div></section>`,
 };
@@ -257,7 +257,7 @@ SAYFALAR['rehber/sorular'] = {
 <div class="cols"><article class="card soe-soru"><h3>Kritik olay · Nakil sırasında oksijen alarmı</h3>
 <p><b>Açılış sorusu.</b> Entübe hastayı tomografiye götürürken transport ventilatörü oksijen besleme basıncı alarmı veriyor. SpO₂ %98. İlk dakika içinde ekibin işlerini nasıl paylaştırırsınız?</p>
 <h4>Ek sorular</h4><ol><li>Hasta başındaki kişi ventilasyonun sürdüğünü nasıl değerlendirir?</li><li>Tüp manometresi basınç gösterirken ventilatöre gaz ulaşmamasını hangi bağlantılar açıklayabilir?</li><li>Nakle yeniden başlamadan önce neyi doğrularsınız?</li></ol>
-<details><summary>Beklenen yanıtın başlıkları</summary><ul class="iskelet"><li>Nakli durdurma, yardım çağırma ve hasta başında görev paylaşımı.</li><li>Göğüs hareketi, hava yolu açıklığı, kapnogram ve oksijenlenmenin birlikte kontrolü. [[K4 s. 493]]</li><li>Gerektiğinde bağımsız oksijen kaynağı ve kendiliğinden şişen balonla ventilasyon. Tüp vanası, regülatör ve besleme hattının kontrolü. [[K4 s. 493]]</li><li>Yeterli oksijen rezervi, çalışan ventilatör ve stabil hasta ile nakle devam. [[K4 s. 166]] [[K4 s. 493]]</li></ul></details></article>
+<details><summary>Beklenen yanıtın başlıkları</summary><ul class="iskelet"><li>Nakli durdurma, yardım çağırma ve hasta başında görev paylaşımı.</li><li>Göğüs hareketi, hava yolu açıklığı, kapnogram ve oksijenlenmenin birlikte kontrolü. [[K4 s. 493–494]]</li><li>Gerektiğinde bağımsız oksijen kaynağı ve kendiliğinden şişen balonla ventilasyon. Tüp vanası, regülatör ve besleme hattının kontrolü. [[K4 s. 27]] [[K4 s. 493]] [[K4 s. 500–501]]</li><li>Yeterli oksijen rezervi, çalışan ventilatör ve stabil hasta ile nakle devam. [[K4 s. 166]] [[K4 s. 493–494]]</li></ul></details></article>
 <article class="card soe-soru"><h3>Klinik ölçüm · Masa yükselince değişen basınç</h3>
 <p><b>Açılış sorusu.</b> Ameliyat masası 20 cm yükseltiliyor. Arter transdüseri duvarda sabit. Arter hattında ortalama basınç birden yükselirken kalp düzeyindeki manşonun ölçümü değişmiyor. Bu farkı nasıl sınarsınız?</p>
 <h4>Ek sorular</h4><ol><li>Yatak hareketi tek başına hangi yönde ve yaklaşık kaç mmHg fark yaratır?</li><li>Transdüseri atmosfere açıp sıfırlamak tek başına yeter mi?</li><li>Seviyeyi düzelttikten sonra dalga tepesi hâlâ küntse hatta ne ararsınız?</li></ol>
