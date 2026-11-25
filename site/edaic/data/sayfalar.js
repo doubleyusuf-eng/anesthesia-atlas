@@ -3,6 +3,7 @@
 window.GRUPLAR = {
   sinav: { ad: 'Sınavlar', sekmeler: [['genel', 'Genel bakış'], ['part1', 'Part I'], ['part2', 'Part II'], ['ola', 'Deneme sınavları']] },
   hazirlik: { ad: 'Hazırlık', sekmeler: [['bilgi', 'Beklenen bilgi'], ['part1', 'Part I stratejisi'], ['part2', 'Part II stratejisi'], ['gun', 'Sınav günü'], ['araclar', 'Araçlar ve okuma'], ['liste', 'Hazırlık listem']] },
+  rehber: { ad: 'Kitap rehberi', sekmeler: [['genel', 'Kitap ve kullanım'], ['part1', 'Part I bölümleri'], ['part2', 'Part II bölümleri'], ['sorular', 'Deneme soruları']] },
 };
 
 window.SAYFALAR = {};
@@ -564,7 +565,7 @@ SAYFALAR['dersler'] = {
 <section class="wrap blk">
   <div class="modul">
     <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · bölüm bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
-    <a class="card" href="#/dersler/farmakoloji"><span class="no">02 · Yazılıyor · ders ders</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezik, analjezik, kas gevşetici, kardiyovasküler ilaçlar; sıvılar, antimikrobiyaller, koagülasyon, hormonlar.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></a>
+    <a class="card" href="#/dersler/farmakoloji"><span class="no">02 · Yayında · ders ders</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezik, analjezik, kas gevşetici, kardiyovasküler ilaçlar; sıvılar, antimikrobiyaller, koagülasyon, hormonlar.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></a>
     <div class="card planned"><span class="no">03 · Planlanıyor</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, makine ve ventilatör; elektrik güvenliği.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
     <div class="card planned"><span class="no">04 · Planlanıyor</span><h3>Anatomi</h3><p class="small muted">Baş, boyun, toraks, omurga; periferik sinirler ve damarlar; yüzey işaretleri.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></div>
     <div class="card planned"><span class="no">05 · Planlanıyor</span><h3>İstatistik</h3><p class="small muted">Veri, olasılık, dağılımlar; parametrik ve parametrik olmayan testler.</p><span class="where"><span class="tag basic">Paper A</span></span></div>

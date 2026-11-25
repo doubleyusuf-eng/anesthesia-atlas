@@ -625,3 +625,9 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 .sk-rng input{width:100%;accent-color:var(--accent);min-height:28px}
 .sk-okuma{font-size:15px;line-height:1.5;color:var(--muted)}
 @media (max-width:560px){.sk-t{font-size:17px}.sk-t.sk-k{font-size:15.5px}.sk-adimlar button{padding:9px 9px}}
+/* Kitap rehberi · bölüm haritası (js/rehber.js) */
+.bharita{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.bharita .no{font-family:var(--f-mono);font-size:.75rem;color:var(--muted);margin:0 0 4px}
+.bharita .no a{color:var(--accent-ink)}
+.bharita ul{margin:8px 0 0;padding-left:18px}
+@media (max-width:760px){.bharita{grid-template-columns:1fr}}

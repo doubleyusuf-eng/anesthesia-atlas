@@ -4,7 +4,7 @@
   'use strict';
   const view = document.getElementById('view');
   const SITE = 'EDAIC’e Hazırlık Atlası';
-  const VARSAYILAN = { sinav: 'sinav/genel', hazirlik: 'hazirlik/bilgi' };
+  const VARSAYILAN = { sinav: 'sinav/genel', hazirlik: 'hazirlik/bilgi', rehber: 'rehber/genel' };
   let temizle = [];
 
   const ham = () => decodeURIComponent(location.hash.replace(/^#\/?/, '')).replace(/\/+$/, '');

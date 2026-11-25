@@ -98,4 +98,10 @@ window.KAYNAKLAR = {
     not: 'Farmakoloji derslerinin ana kaynağı; dersler bu kitabın bölüm sırasını izler, uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünür. Ders metinleri, örnek sorular ve çizimler bu atlas için yazılmıştır; kitaptan metin ya da şekil kopyalanmamıştır.',
     url: 'https://doi.org/10.1017/9781108591317',
   },
+  K4: {
+    ad: 'Varvinskiy A, Zerafa M, Hill S (ed.). How to Pass the EDAIC',
+    tur: 'Kitap · Oxford University Press', tarih: '2023 · sayfa numaraları kitabın PDF sürümünün fiziksel sayfalarıdır (basılı sayfa numaralarıyla aynı değildir)',
+    not: 'Kitap rehberi bölümünün kaynağı: kitabın yapısı, bölüm haritası ve sınav önerileri bu atlas için kendi cümlelerimizle özetlenmiştir. Kitabın metni, soruları ve model yanıtları yayımlanmaz; rehberdeki deneme soruları bu atlas için yazılmıştır. Kitabın kendisi için yayıncıya başvurun.',
+    url: 'https://doi.org/10.1093/med/9780198867029.001.0001',
+  },
 };
