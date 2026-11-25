@@ -58,7 +58,7 @@
     }
     const k = anahtar(), S = SAYFALAR[k];
     const bas = S.grup
-      ? `<header class="wrap page-head"><p class="eyebrow">${S.eyebrow || ''}</p><h1>${S.baslik}</h1>${S.lede ? `<p class="lede">${REF(S.lede)}</p>` : ''}${sekmeler(S.grup, k)}</header>`
+      ? `<header class="wrap page-head"><p class="eyebrow">${S.eyebrow || ''}</p><h1>${S.baslik}</h1>${S.lede ? `<p class="lede">${REF(S.lede)}</p>` : ''}${sekmeler(S.grup, S.sekme || k)}</header>`
       : '';
     view.innerHTML = `<div class="page">${bas}${REF(S.html)}</div>`;
     view.querySelectorAll('[data-viz]').forEach((el) => {
