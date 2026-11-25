@@ -1,0 +1,11 @@
+.a10b-karsilastir {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1rem;
+}
+:is(#a10b-petidin, #a10b-tramadol) .card ul {
+  padding-inline-start: 1.2rem;
+}
+:is(#a10b-petidin, #a10b-tramadol) .card li + li {
+  margin-block-start: .65rem;
+}

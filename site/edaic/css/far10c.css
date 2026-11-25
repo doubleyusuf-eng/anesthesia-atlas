@@ -1,0 +1,10 @@
+.a10c-veriler {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  gap: 1rem;
+}
+.a10c-veriler .tbl { width: 100%; min-width: 0; table-layout: fixed; }
+.a10c-veriler .tbl :is(th, td) { padding: .45rem .3rem; overflow-wrap: anywhere; }
+.a10c-veriler .tbl th:first-child { width: 31%; }
+.a10c-veriler .tbl tbody th { text-align: start; }
+.a10c-veriler caption { text-align: start; font-weight: bold; padding-block: .6rem; }

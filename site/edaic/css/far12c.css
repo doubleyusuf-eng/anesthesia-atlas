@@ -1,0 +1,20 @@
+.a12c-liste { padding-inline-start: 1.3rem; }
+.a12c-liste li + li { margin-top: .5rem; }
+.a12c-tablo { margin-block: 1rem; max-width: 100%; overflow-x: auto; }
+.a12c-tablo caption { text-align: start; font-weight: 700; padding-bottom: .55rem; }
+.a12c-tablo th[scope="row"] { text-align: start; }
+.a12c-kart { margin-block: .9rem; }
+[id^="a12c-"] .sk .seg { flex-wrap: wrap; }
+.a12c-tablo .tbl tbody th { white-space: normal; }
+@media (max-width: 600px) {
+  .a12c-tablo .tbl,
+  .a12c-tablo caption,
+  .a12c-tablo tbody,
+  .a12c-tablo tr,
+  .a12c-tablo tbody th { display: block; }
+  .a12c-tablo caption { padding: .8rem; }
+  .a12c-tablo thead { position: absolute; width: 1px; height: 1px; clip-path: inset(50%); overflow: hidden; }
+  .a12c-tablo tbody th { background: var(--chip); }
+  .a12c-tablo td { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: .6rem; align-items: baseline; }
+  .a12c-tablo td::before { content: attr(data-alan); color: var(--muted); font-weight: 600; }
+}

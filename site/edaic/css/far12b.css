@@ -1,0 +1,14 @@
+.a12b-gen caption {
+  text-align: left;
+  padding: 0.75rem;
+  color: var(--ink);
+}
+@media (max-width: 560px) {
+  .tbl.a12b-faz, .tbl.a12b-gen { table-layout: fixed; }
+  .tbl.a12b-faz th, .tbl.a12b-faz td,
+  .tbl.a12b-gen th, .tbl.a12b-gen td {
+    padding: 0.55rem 0.35rem;
+    overflow-wrap: anywhere;
+  }
+  .a12b-faz th:first-child { width: 36%; }
+}
