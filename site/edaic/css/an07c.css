@@ -1,0 +1,12 @@
+.an07c-satir {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) 3fr;
+  gap: .65rem 1.2rem;
+  align-items: baseline;
+}
+.an07c-satir dt { color: var(--accent-ink); font-weight: 700; }
+.an07c-satir dd { margin: 0; }
+@media (max-width: 560px) {
+  .an07c-satir { display: block; }
+  .an07c-satir dt { margin-top: .85rem; }
+}

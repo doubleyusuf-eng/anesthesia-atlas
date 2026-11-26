@@ -1,0 +1,7 @@
+.an06d-iliskiler {
+  display: grid;
+  gap: .8rem;
+  margin: 1rem 0;
+}
+.an06d-iliskiler dt { font-weight: 700; }
+.an06d-iliskiler dd { margin: .2rem 0 0; }

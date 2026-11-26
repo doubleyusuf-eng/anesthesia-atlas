@@ -1,0 +1,6 @@
+.an08-okuma {
+  margin-block: 1rem;
+  padding-inline-start: 1rem;
+  border-inline-start: 3px solid var(--accent);
+}
+.an08-okuma p { margin-block: .4rem; }

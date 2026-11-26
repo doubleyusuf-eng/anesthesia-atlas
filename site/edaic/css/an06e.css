@@ -1,0 +1,17 @@
+.an06e-liste {
+  display: grid;
+  grid-template-columns: minmax(8rem, 13rem) minmax(0, 1fr);
+  column-gap: 1.2rem;
+  margin: 0 0 1.5rem;
+}
+.an06e-liste dt, .an06e-liste dd {
+  margin: 0;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.an06e-liste dt { font-weight: 700; }
+@media (max-width: 600px) {
+  .an06e-liste { display: block; }
+  .an06e-liste dt { padding-bottom: .15rem; border: 0; }
+  .an06e-liste dd { padding-top: 0; }
+}

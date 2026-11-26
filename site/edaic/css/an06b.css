@@ -1,0 +1,7 @@
+.an06b-liste { margin: 1rem 0; }
+.an06b-liste > div { display: grid; grid-template-columns: minmax(9rem, 1fr) 4fr; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--line, #d9dedb); }
+.an06b-liste dt { font-weight: 700; }
+.an06b-liste dd { margin: 0; }
+@media (max-width: 600px) {
+  .an06b-liste > div { grid-template-columns: 1fr; gap: .25rem; }
+}

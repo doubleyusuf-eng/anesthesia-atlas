@@ -1,0 +1,11 @@
+.an06c-dallar {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) minmax(0, 3fr);
+  gap: .65rem 1.25rem;
+}
+.an06c-dallar dt { font-weight: 700; }
+.an06c-dallar dd { margin: 0; }
+@media (max-width: 600px) {
+  .an06c-dallar { display: block; }
+  .an06c-dallar dt { margin-top: 1rem; }
+}

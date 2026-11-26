@@ -1,0 +1,14 @@
+.an07a-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.an07a-kartlar > div, .an07a-ayrinti {
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  padding: 1rem;
+  background: var(--paper);
+}
+.an07a-kartlar h3 { margin-top: 0; }
+.an07a-ayrinti summary { cursor: pointer; font-weight: 600; }

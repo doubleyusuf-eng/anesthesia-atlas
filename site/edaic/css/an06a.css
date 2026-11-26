@@ -1,0 +1,12 @@
+.an06a-liste {
+  display: grid;
+  grid-template-columns: minmax(9rem, 1fr) minmax(0, 3fr);
+  gap: .75rem 1.5rem;
+  align-items: baseline;
+}
+.an06a-liste dt { font-weight: 700; }
+.an06a-liste dd { margin: 0; }
+@media (max-width: 640px) {
+  .an06a-liste { display: block; }
+  .an06a-liste dt { margin-top: 1rem; }
+}
