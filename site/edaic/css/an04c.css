@@ -1,0 +1,11 @@
+.an04c-dallar { margin: 1.25rem 0; }
+.an04c-dallar > div { display: grid; grid-template-columns: minmax(9rem, 1fr) 3fr; gap: 1rem; padding: .8rem 0; border-bottom: 1px solid var(--line, #d6dcda); }
+.an04c-dallar dt { font-weight: 700; }
+.an04c-dallar dd { margin: 0; }
+.an04c-atlas { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem 1rem; margin-block: 1rem; }
+.an04c-okuma { margin-block: .65rem; }
+.an04c-okuma summary { cursor: pointer; font-weight: 650; }
+.an04c-okuma p { max-width: 72ch; }
+@media (max-width: 640px) {
+  .an04c-dallar > div { grid-template-columns: 1fr; gap: .25rem; }
+}

@@ -1,0 +1,8 @@
+.an04d-bulgular { display: grid; grid-template-columns: minmax(8rem, 1fr) minmax(0, 4fr); gap: .85rem 1.2rem; }
+.an04d-bulgular dt { font-weight: 700; }
+.an04d-bulgular dd { margin: 0; }
+.an04d-baglar { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; list-style: none; padding: 0; }
+@media (max-width: 600px) {
+  .an04d-bulgular { display: block; }
+  .an04d-bulgular dt { margin-top: 1rem; }
+}

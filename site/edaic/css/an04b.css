@@ -1,0 +1,9 @@
+.an04b-atlas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem 1.25rem;
+}
+.an04b-atlas a {
+  padding-block: .35rem;
+  text-underline-offset: .2em;
+}

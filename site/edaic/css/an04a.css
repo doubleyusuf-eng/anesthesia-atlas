@@ -1,0 +1,16 @@
+.an04a-atlas {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  margin-block: 1rem;
+}
+.an04a-okuma {
+  margin-block: 1rem;
+  padding: .75rem 1rem;
+  border-inline-start: 3px solid currentColor;
+}
+.an04a-okuma summary {
+  cursor: pointer;
+  font-weight: 650;
+}
