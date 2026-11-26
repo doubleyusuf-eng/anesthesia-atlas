@@ -32,59 +32,49 @@
     ] }]
   });
 
-  VIZ.an01e_bolmeler = (el) => SEKIL.sahne(el, {
-    baslik: 'Mediastenin sagittal yerleşim şeması', vb: [510, 220], vbDar: [360, 220],
-    ciz: (S) => {
-      const w = S.w, kenar = 22, orta = w * .34;
-      return S.t(kenar, 22, 'ÖN · sternum', { c: 'm' }) + S.t(w - kenar, 22, 'ARKA · omurga', { a: 'end', c: 'm' })
-        + S.kutu(kenar, 40, w - 2 * kenar, 48, { yazi: 'Üst mediasten', dolgu: 'basic-soft' })
-        + S.kutu(kenar, 96, orta - kenar - 4, 86, { yazi: 'Ön' })
-        + S.kutu(orta, 96, w - 2 * orta, 86, { yazi: ['Orta', 'Perikard'], dolgu: 'accent-soft' })
-        + S.kutu(w - orta + 4, 96, orta - kenar - 4, 86, { yazi: 'Arka' })
-        + S.t(w / 2, 208, 'Diyafram', { a: 'middle', c: 'm' });
-    },
-    metin: () => 'Şemada perikardı bulun. Sternuma doğru ön, toraks girişine doğru üst mediastene geçilir. [[K5 s. 56–57]]'
+  VIZ.an01e_bolmeler = (el) => SEKIL.cizim(el, {
+    baslik: 'Sagittal görünümde mediasten',
+    giris: 'Sternum önde, omurga arkadadır. Perikardı bulup çevresindeki üç bölgeyi izleyin. [[K5 s. 56–57]]',
+    gorunumler: [{ ad: 'Sagittal', resim: 'img/anatomi/01e-mediasten.webp', en: 1024, boy: 1089, noktalar: [
+      { x: 405, y: 644, ad: 'Orta mediasten', metin: 'Orta mediasten perikardı ve içindekileri kapsar. [[K5 s. 57]]' },
+      { x: 222, y: 499, ad: 'Ön mediasten', metin: 'Ön mediasten sternumun arka yüzü ile perikard arasında kalan dar alandır. [[K5 s. 57]]' },
+      { x: 678, y: 678, ad: 'Arka mediasten', metin: 'Arka mediasten yukarıda perikardın, aşağıda diyaframın arkasında yer alır. [[K5 s. 57]]' },
+      { x: 497, y: 200, ad: 'Üst mediasten', metin: 'Perikarddan toraks girişine doğru çıkıldığında üst mediastene geçilir. [[K5 s. 57]]' },
+      { x: 397, y: 903, ad: 'Diyafram', metin: 'Sagittal görünümde diyaframı perikardın altında izleyin. [[K5 s. 57]]' }
+    ] }]
   });
 
-  VIZ.an01e_hilus = (el) => SEKIL.sahne(el, {
-    baslik: 'Akciğer kökünün dış komşuları', vb: [540, 275], vbDar: [360, 275],
-    secenek: { id: 'taraf', ad: 'Kök', liste: [{ d: 'sag', ad: 'Sağ' }, { d: 'sol', ad: 'Sol' }] },
-    ciz: (S, t, p) => {
-      const sag = p.taraf === 'sag', x = S.w / 2, y = 138;
-      const on = sag ? ['Ön', 'V. kava superior', 'Frenik sinir'] : ['Ön', 'Frenik sinir'];
-      const arka = sag ? ['Arka', 'Vagus'] : ['Arka', 'İnen aort', 'Vagus'];
-      return S.cizgi([[x, 50], [x, 225]], { renk: 'line' }) + S.cizgi([[28, y], [S.w - 28, y]], { renk: 'line' })
-        + S.kutu(x - 75, 10, 150, 55, { yazi: ['Üst', sag ? 'Azigos veni' : 'Aort arkı'], dolgu: 'basic-soft' })
-        + S.kutu(4, 100, x - 45, 76, { yazi: on })
-        + S.kutu(x + 41, 100, x - 45, 76, { yazi: arka })
-        + S.daire(x, y, 31, { dolgu: 'accent-soft', renk: 'accent' }) + S.t(x, y + 5, 'Kök', { a: 'middle', c: 'b' })
-        + S.kutu(x - 75, 209, 150, 55, { yazi: ['Alt', 'Pulmoner bağ'] });
-    },
-    metin: (p) => p.taraf === 'sag' ? 'Sağda kökün üzerinden azigos veni, önünden superior vena kava ve frenik sinir geçer. [[K5 s. 63]]' : 'Solda üstte aort arkı, arkada inen aort ve vagus bulunur. [[K5 s. 62]]'
+  VIZ.an01e_hilus = (el) => SEKIL.cizim(el, {
+    baslik: 'Akciğer kökünün dış komşuları',
+    giris: 'Akciğer kaldırıldığında kökün önünden frenik sinir, arkasından vagus geçer. Her iki görünümde öne bakan tarafı bu sinirlerle bulun. [[K5 s. 62–63]]',
+    gorunumler: [{ ad: 'Sağ kök', resim: 'img/anatomi/01e-hilus-sag.webp', en: 1024, boy: 936, noktalar: [
+      { x: 583, y: 335, ad: 'Sağ kök', metin: 'Kökte üst lob bronşunun kesiti pulmoner damarların üstünde ve arkasındadır. [[K5 s. 62]]' },
+      { x: 483, y: 202, ad: 'Azigos veni', metin: 'Azigos veni sağ kökün üzerinden bir yay çizerek geçer. [[K5 s. 63]]' },
+      { x: 265, y: 330, ad: 'Superior vena kava', metin: 'Superior vena kava sağ kökün önündedir. [[K5 s. 63]]' },
+      { x: 369, y: 561, ad: 'Frenik sinir', metin: 'Sağ frenik sinir kökün önünden geçer. [[K5 s. 63]]' },
+      { x: 686, y: 554, ad: 'Vagus', metin: 'Sağ vagus kökün arkasında seyreder. [[K5 s. 63]]' },
+      { x: 531, y: 725, ad: 'Pulmoner bağ', metin: 'Sağ kökün altında pulmoner bağ uzanır. [[K5 s. 63]]' }
+    ] }, { ad: 'Sol kök', resim: 'img/anatomi/01e-hilus-sol.webp', en: 1024, boy: 936, noktalar: [
+      { x: 426, y: 419, ad: 'Sol kök', metin: 'Kökte bronş, pulmoner damarların arkasında kalır. [[K5 s. 62]]' },
+      { x: 551, y: 130, ad: 'Aort arkı', metin: 'Aort arkı sol kökün üzerinden geçer. [[K5 s. 62]]' },
+      { x: 280, y: 601, ad: 'İnen aort', metin: 'Arkın devamı olan inen aort kökün arkasındadır. [[K5 s. 62]]' },
+      { x: 347, y: 536, ad: 'Vagus', metin: 'Sol vagus kökün arkasından geçer. [[K5 s. 62]]' },
+      { x: 694, y: 485, ad: 'Frenik sinir', metin: 'Sol frenik sinir kökün önünde seyreder. [[K5 s. 62]]' },
+      { x: 492, y: 744, ad: 'Pulmoner bağ', metin: 'Sol kökün altında pulmoner bağ bulunur. [[K5 s. 62]]' }
+    ] }]
   });
 
-  const loblar = [
-    ['Sağ üst', ['1 · Apikal', '2 · Posterior', '3 · Anterior'], 'Üç dal tek bir üçlenmeyle veya iki yakın çatallanmayla ayrılır. [[K5 s. 63–64]]'],
-    ['Sağ orta', ['4 · Lateral', '5 · Medial'], 'Orta lob dalları sağ ana bronşun alt bölümünden gelen orta lob bronşuna bağlıdır. [[K5 s. 63–64]]'],
-    ['Sağ alt', ['6 · Apikal', '7 · Medial bazal', '8 · Anterior bazal', '9 · Lateral bazal', '10 · Posterior bazal'], 'Apikal segment bronşunun çıkışından daha distalde bazal dallar sıralanır. [[K5 s. 63–64]]'],
-    ['Sol üst bölüm', ['1–2 · Apikoposterior', '3 · Anterior'], 'Apikal ve posterior bronşlar genellikle tek bir gövdeyi paylaşır. [[K5 s. 65]]'],
-    ['Lingula', ['4 · Üst', '5 · Alt'], 'Sol üst lobun lingular bölümü üst ve alt segmentlere dağılır. [[K5 s. 65–66]]'],
-    ['Sol alt', ['6 · Apikal', '8 · Anterior bazal', '9 · Lateral bazal', '10 · Posterior bazal'], 'Kitabın sol alt lob haritasında medial bazal dal yer almaz. [[K5 s. 64–66]]']
-  ];
-  VIZ.an01e_segment = (el) => SEKIL.sahne(el, {
-    baslik: 'Segment bronşu seçicisi', vb: [510, 238], vbDar: [360, 238],
-    secenek: { id: 'lob', ad: 'Bölge', liste: loblar.map(([ad], i) => ({ d: String(i), ad })) },
-    ciz: (S, t, p) => {
-      const [ad, dallar] = loblar[p.lob], x = S.w * .43;
-      const ilk = 118 - (dallar.length - 1) * 22;
-      return S.kutu(5, 94, x - 27, 48, { yazi: ad, dolgu: 'accent-soft' })
-        + dallar.map((dal, i) => {
-          const y = ilk + i * 44;
-          return S.cizgi([[x - 22, 118], [x, 118], [x, y], [x + 15, y]], { renk: 'basic' })
-            + S.kutu(x + 15, y - 18, S.w - x - 22, 36, { yazi: dal });
-        }).join('');
-    },
-    metin: (p) => loblar[p.lob][2]
+  VIZ.an01e_segment = (el) => SEKIL.cizim(el, {
+    baslik: 'Loblara göre segment bronşları',
+    giris: 'Bir lob bölgesi seçin. Açıklamadaki sayılar o bölgeye dağılan segment bronşlarının numaralarıdır. [[K5 s. 63–66]]',
+    gorunumler: [{ ad: 'Anterolateral', resim: 'img/anatomi/01e-segment-brons.webp', en: 1024, boy: 936, noktalar: [
+      { x: 338, y: 357, ad: 'Sağ üst lob', metin: 'Apikal (1), posterior (2) ve anterior (3) dallar tek üçlenmeyle veya birbirine yakın iki çatallanmayla ayrılır. [[K5 s. 63–64]]' },
+      { x: 357, y: 574, ad: 'Sağ orta lob', metin: 'Sağ ana bronşun alt bölümünden çıkan orta lob bronşu lateral (4) ve medial (5) dalları verir. [[K5 s. 63–64]]' },
+      { x: 190, y: 728, ad: 'Sağ alt lob', metin: 'Apikal (6) dalın distalinde medial bazal (7), anterior bazal (8), lateral bazal (9) ve posterior bazal (10) dallar ayrılır. [[K5 s. 63–64]]' },
+      { x: 696, y: 359, ad: 'Sol üst lobun üst bölümü', metin: 'Apikal ve posterior dallar genellikle ortak apikoposterior gövdeden (1–2) çıkar. Anterior dal (3) ayrıdır. [[K5 s. 64–65]]' },
+      { x: 581, y: 644, ad: 'Lingula', metin: 'Sol üst lobun lingular bölümü üst (4) ve alt (5) segment bronşlarına ayrılır. [[K5 s. 64–66]]' },
+      { x: 827, y: 733, ad: 'Sol alt lob', metin: 'Apikal (6), anterior bazal (8), lateral bazal (9) ve posterior bazal (10) dallar bulunur. Kitabın haritasında ayrı medial bazal dal yoktur. [[K5 s. 64–66]]' }
+    ] }]
   });
 
   // Bir yol seçildiğinde durakları yukarıdan aşağıya okutur.
@@ -97,10 +87,17 @@
     }).join('');
   }
 
-  VIZ.an01e_hava = (el) => SEKIL.sahne(el, {
-    baslik: 'Hava boşluklarının devamlılığı', vb: [540, 346], vbDar: [360, 346],
-    ciz: (S) => yol(S, ['Bronşiyol', 'Respiratuvar bronşiyol', 'Alveoler kanal', 'Atriyum', 'Alveoler kese', 'Alveol']),
-    metin: () => 'Respiratuvar bronşiyolde ilk duvar alveollerini, kanalın sonunda atriyumları, keselerin duvarında ise alveolleri arayın. [[K5 s. 68–69]]'
+  VIZ.an01e_hava = (el) => SEKIL.cizim(el, {
+    baslik: 'Bronşiyolden alveole',
+    giris: 'Havanın izlediği yolu sol üstteki bronşiyolden başlayarak kese duvarına kadar takip edin. [[K5 s. 68–69]]',
+    gorunumler: [{ ad: 'Boyuna açılmış hava yolu', resim: 'img/anatomi/01e-asinus.webp', en: 1024, boy: 768, noktalar: [
+      { x: 106, y: 138, ad: 'Bronşiyol', metin: 'Bronşiyolün kıkırdaksız duvarında düz kas ve silyalı kübik epitel vardır. [[K5 s. 68]]' },
+      { x: 308, y: 199, ad: 'Respiratuvar bronşiyol', metin: 'Duvara açılan ilk seyrek alveoller respiratuvar bronşiyolü tanıtır. [[K5 s. 68–69]]' },
+      { x: 533, y: 395, ad: 'Alveoler kanal', metin: 'Respiratuvar bronşiyolün distal ucu alveoler kanal olarak devam eder. [[K5 s. 69]]' },
+      { x: 724, y: 529, ad: 'Atriyum', metin: 'Her alveoler kanalın ucunda yaklaşık küresel 3–6 atriyum bulunur. Resimde bunlardan birinin keseye açılışı izlenir. [[K5 s. 69]]' },
+      { x: 843, y: 620, ad: 'Alveoler kese', metin: 'Atriyumdan açılan kesenin ortak boşluğunu çevresindeki alveoller sınırlar. [[K5 s. 69]]' },
+      { x: 911, y: 672, ad: 'Alveol', metin: 'Kese duvarındaki ince duvarlı hava hücrelerinin her biri bir alveoldür. [[K5 s. 69]]' }
+    ] }]
   });
 
   VIZ.an01e_kan = (el) => SEKIL.sahne(el, {

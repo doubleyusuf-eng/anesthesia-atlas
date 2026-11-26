@@ -33,7 +33,7 @@ VERI.sorular = VERI.sorular || {};
     ]
   };
 
-  const nav = [['zar','Meninksler'],['epidural','Epidural aralık'],['bos','BOS'],['konus','Konus ve düzeyler'],['kesit','Omurilik kesiti'],['yollar','İleti yolları'],['damar','Kanlanma'],['lezyon','Lezyonlar'],['p1','Part I'],['p2','Part II'],['ozet','Özet']];
+  const nav = [['zar','Meninksler'],['epidural','Epidural aralık'],['bos','BOS üretimi'],['akis','BOS dolaşımı'],['konus','Konus ve kökler'],['duzey','Konus düzeyi'],['kesit','Omurilik kesiti'],['yollar','İleti yolları'],['damar','Kanlanma'],['lezyon','Lezyonlar'],['p1','Part I'],['p2','Part II'],['ozet','Özet']];
   function sekil(id, baslik) {
     return `<div class="viz"><div class="viz-head"><h3>${baslik}</h3></div><div data-viz="an03c_${id}"></div><p class="viz-cap" aria-live="polite"></p></div>`;
   }
@@ -45,7 +45,7 @@ VERI.sorular = VERI.sorular || {};
 <section class="wrap blk ders-sec" id="an03c-zar"><h2>Omuriliği hangi zarlar sarar?</h2>
 <p class="intro">Dura dış kılıfı oluşturur, araknoid bu kılıfın iç yüzünü döşer, pia ise omuriliğin oluk ve fissürlerine kadar girer. [[K5 s. 130–131]]</p>
 ${sekil('katman','Dışarıdan içeriye zarları ve aralıkları izleyin')}
-<p class="an03c-rehber">Şemayı arkadan öne okuyun. Dura ile araknoidin birbirine bakan yüzlerini bulun ve aralarında yalnızca ince bir seröz sıvı katmanı olduğunu hatırlayın. [[K5 s. 132]] BOS’u ararken araknoidin iç tarafına geçin, omuriliğe vardığınızda yüzeyi örten zar piadır. [[K5 s. 131–132]]</p>
+<p class="an03c-rehber">Kaldırılmış dura ile saydam araknoidin serbest kenarlarını karşılaştırın. [[K5 s. 130–132]]</p>
 <h3>Dural kesenin tutunma noktaları</h3>
 <p>Kafa içinde dura iki katlıdır ve venöz sinüsler bu katlar arasında yer alır. [[K5 s. 130]] Yoğun fibröz meningeal kat spinal dura olarak sürer. [[K5 s. 130–131]] Endosteal kat foramen magnumda kafatası periostuyla birleşir, aşağıda kanal duvarını vertebral periost döşer. [[K5 s. 131]]</p>
 <ul class="ozet">
@@ -70,7 +70,7 @@ ${sekil('katman','Dışarıdan içeriye zarları ve aralıkları izleyin')}
 <section class="wrap blk ders-sec" id="an03c-epidural"><h2>Epidural aralığın sınırları ve klinik karşılığı</h2>
 <p class="intro">Kanalın dura dışında kalan bölümü foramen magnumdan sakrokoksigeal membrana uzanır, alt uçta aralığı döşeyen zarlar birleşir. [[K5 s. 132]]</p>
 ${sekil('epidural','Sarı bağdan epidural aralığa')}
-<p class="an03c-rehber">Ok, seçilen basamakta iğne ağzının ulaştığı yeri gösterir. Kateter, iğne ağzı sarı bağdan çıkıp direnç azaldıktan sonra epidural aralıkta ilerletilir. [[K5 s. 135]] Kombine tekniği izlerken epidural kateterin bulunduğu bölmeyle ince spinal iğnenin ulaştığı bölmeyi ayrı ayrı gösterin. [[K5 s. 132–135]] Şeritlerin kalınlıkları ölçekli değildir.</p>
+<p class="an03c-rehber">Önce epidural kateterin, sonra kombine teknikteki spinal ilacın hangi zarın iç veya dış tarafında kaldığını gösterin. [[K5 s. 132–135]]</p>
 <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Yön</th><th>Sınır veya içerik</th></tr></thead><tbody>
 <tr><td>Arka</td><td>Laminalar ve sarı bağ arka sınırı oluşturur. [[K5 s. 132]] Kadavrada 2–5 mm kalınlığındaki bağın spinöz çıkıntılarla ayrılan iki parçası birer laminadan başlar. [[K5 s. 132]]</td></tr>
 <tr><td>Yan</td><td>Pediküller ve intervertebral aralıklar [[K5 s. 132]]</td></tr>
@@ -92,12 +92,14 @@ ${sekil('epidural','Sarı bağdan epidural aralığa')}
 <p>Sürekli epidural analjezi veya anestezi majör abdominotorasik cerrahide yaygındır. [[K5 s. 135]] Teknik omurganın herhangi bir bölümünde uygulanabilir ve kitap L4/L5 düzeyindeki kateteri örnekler. [[K5 s. 135]] Uzaması beklenen obstetrik girişimlerde kombine teknikte ince spinal iğne Tuohy içinden geçirilebilir. [[K5 s. 135]]</p>
 <details class="an03c-okuma"><summary>Bir epidural enjeksiyonda sıvı nereye yayılabilir?</summary><p>Bir taraftaki paravertebral aralığa ulaşan sıvı için, komşu düzeylere doğrudan giden bir koridor çizmeyin. [[K5 s. 133]] Önce epidural aralığa dönün, ardından komşu düzeye veya karşı tarafa çıkan spinal sinirin manşetini izleyin. [[K5 s. 133]] Aynı bağlantı torakstaki plevra basıncının epidural aralığa nasıl yansıdığını da açıklar. [[K5 s. 134]] Kateterden sonra geniş, yamalı ve tek taraflı bir blok görülmesi, lokal anesteziğin yanlışlıkla subdural aralığa verilmiş olabileceğini düşündürür. [[K5 s. 132]]</p><p>Kateterin yön değiştirmesini açıklarken ise düzensiz fibröz bantlarla MRG’de doğrulanamayan arka orta hat kıvrımını birbirinden ayırın. [[K5 s. 133]]</p></details></section>
 
-<section class="wrap blk ders-sec" id="an03c-bos"><h2>BOS nerede üretilir, nereye gider?</h2>
+<section class="wrap blk ders-sec" id="an03c-bos"><h2>BOS nerede üretilir?</h2>
 <p class="intro">Ventrikülleri ve subaraknoid aralığı dolduran berrak beyin omurilik sıvısının erişkindeki yaklaşık 150 mL’lik hacminin 25 mL kadarı spinal teka içindedir. [[K5 s. 136]]</p>
 ${sekil('ventrikuller','Ventriküllerin boşluk kalıbı')}
 <p class="an03c-rehber">Kalıpta mavi alanlar sıvının bulunduğu boşlukları temsil eder. Lateral ventrikülden üçüncü ventriküle açılan interventriküler foramenle, üçüncü ve dördüncü ventrikülü bağlayan akueduktu birbirinden ayırın. [[K5 s. 136]] Burada sıvı yolunu izleyin, sıvıyı salgılayan koroid pleksuslar kalıpta gösterilmez.</p>
 <p>BOS’u lateral, üçüncü ve dördüncü ventriküllerdeki koroid pleksuslar üretir. [[K5 s. 136]] Bunlar pianın içe uzanan damarlı kıvrımlarıdır ve yüzeyleri tek kat ependim epiteliyle örtülüdür. [[K5 s. 136]] Ameliyatta pleksustan sıvı sızdığı görülür. [[K5 s. 136]] Bir Monro forameni kapanınca o yanda hidrosefali gelişmesi ve pleksus önceden çıkarıldığında bunun görülmemesi üretim yerini destekler. [[K5 s. 136]]</p>
 <p>BOS’un bileşimi basit bir plazma diyalizatından farklıdır ve birçok çözünür ilaç kan-beyin bariyerini aşamaz. [[K5 s. 136]] Bu gözlemler ependim hücrelerinde aktif salgılama ve seçici difüzyonu düşündürür. [[K5 s. 136]]</p>
+</section>
+<section class="wrap blk ders-sec" id="an03c-akis"><h2>BOS dolaşımı ve basıncı</h2>
 ${sekil('akis','Dördüncü ventrikülden geri emilime')}
 <p class="an03c-rehber">İki çıkış kolunu ayrı ayrı izleyin. Kollar dördüncü ventrikülün farklı açıklıklarından geçse de her ikisi BOS’u beyin subaraknoid aralığına ulaştırır. [[K5 s. 136]] Çıkış açıklıklarından geçen akımı, venöz sinüslere komşu villuslarda gerçekleşen geri emilimden ayırın. [[K5 s. 136]]</p>
 <ul class="ozet">
@@ -110,17 +112,19 @@ ${sekil('akis','Dördüncü ventrikülden geri emilime')}
 <p>Öksürme, ıkınma veya juguler ven kompresyonu (Queckenstedt testi) serebral ve vertebral venlerde dolgunluk oluşturur ve tampon görevi gören BOS’un basıncını hızla yükseltir. [[K5 s. 137]] Öksürme ve ıkınmada kanın epidural venöz sinüslere yönelmesi de bu artışa katılır. [[K5 s. 135]] [[K5 s. 137]]</p>
 <details class="an03c-okuma"><summary>Aynı hastada basınç iki farklı yolla nasıl yükselebilir?</summary><p>Hasta yan yatıştan oturmaya geçtiğinde birbirine bağlı sıvı boşlukları arasındaki yükseklik farkı değişir. [[K5 s. 137]] Aynı anda lomber tekada basınç yükselirken ventrikül basıncının düşmesi bu hidrostatik ilişkiyle açıklanır. [[K5 s. 137]]</p><p>Hasta öksürdüğünde ise açıklama venöz sistemdedir. [[K5 s. 135–137]] Torakal ve abdominal venlerden spinal epidural venlere kan yönelir, venöz dolgunluk BOS’a yansır. [[K5 s. 135]] [[K5 s. 137]] Bu nedenle basınç değerini aktarırken ölçüm yerini ve hastanın pozisyonunu birlikte belirtin. [[K5 s. 137]]</p></details></section>
 
-<section class="wrap blk ders-sec" id="an03c-konus"><h2>Konus, kauda ekuina ve vertebra düzeyleri</h2>
+<section class="wrap blk ders-sec" id="an03c-konus"><h2>Konus, filum ve kauda ekuina</h2>
 <p class="intro">Omurilik konus medullarise doğru incelirken lomber ve sakral kökler kendi foramenlerine ulaşmak üzere aşağıya uzanır. [[K5 s. 137]]</p>
 ${sekil('konus','Konusun ucundan filumu ve kökleri izleyin')}
 <p class="an03c-rehber">Önce omuriliğin giderek daralan gövdesini aşağıya doğru izleyin. Merkezde konusun ucuyla devamlılık gösteren parlak ipliği seçin, ardından iki yanda kendi çıkış düzeylerine inen köklere geçin. [[K5 s. 137]] Dura kaldırılmıştır, vertebralar ve koksiksteki tutunma bu görünümün dışındadır.</p>
 <p>Erişkin omuriliği yaklaşık 45 cm’dir, bu uzunluk femurun ve vas deferensin uzunluğuna ve dudaklardan özofagogastrik bileşkeye uzaklığa karşılık gelir. [[K5 s. 137]] Genel biçimi silindiriktir ve özellikle lomber bölümde önden arkaya hafif yassılaşır. [[K5 s. 137]] Servikal ve lomber genişlemeler sırasıyla brakiyal ve lumbosakral pleksusların kökenlerine karşılık gelir. [[K5 s. 137]]</p>
+</section>
+<section class="wrap blk ders-sec" id="an03c-duzey"><h2>Konus hangi vertebra düzeyinde biter?</h2>
 <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Yaş</th><th>Omuriliğin alt ucu</th></tr></thead><tbody>
 <tr><td>Fetüs</td><td>Üçüncü aya dek kanalın bütün uzunluğunu kaplar. [[K5 s. 137–138]]</td></tr>
 <tr><td>Yenidoğan</td><td>Vertebralar omurilikten daha hızlı büyür ve doğumda konus L3 gövdesinin alt kenarına gelir. [[K5 s. 137–138]]</td></tr>
 <tr><td>Erişkin</td><td>Ortalama L1–L2 diskinde, sıklıkla L1 veya L2 gövdesi hizasında, nadiren T12 ya da L3 hizasında biter. [[K5 s. 137–138]]</td></tr></tbody></table></div>
 ${sekil('duzey','Yenidoğanda ve erişkinde konusun kemik işareti')}
-<p class="an03c-rehber">Kesikli çizgi konusun ucunu vertebra gövdesine taşır. Yaşı değiştirirken yenidoğandaki alt kenar ile erişkindeki disk aralığını karşılaştırın. [[K5 s. 137–138]] Erişkin görünümü ortalamayı gösterir, bireysel farklılıkları tablodaki düzeylerle birlikte okuyun. [[K5 s. 137–139]]</p>
+<p class="an03c-rehber">Her iki konusun ucundan öne doğru aynı hizada ilerleyip karşısına gelen kemik işaretini bulun. [[K5 s. 137–138]]</p>
 <p>Servikal kökler kanal içinde hemen hemen yana gider, üst torakal kökler hafif eğimlidir. [[K5 s. 137]] Alt köklerin boyca uzaması kauda ekuinayı oluşturur. [[K5 s. 137]] Konustan koksikse uzanan parlak filumun üst bölümünde santral kanalın kısa bir devamı bulunur. [[K5 s. 137]]</p>
 <h3>Segment ile gövdeyi eşleştirin</h3>
 <p>Segment ile vertebra gövdesi arasındaki yaklaşık fark servikal bölgede bir, üst toraksta iki, alt toraksta üç, lomber ve sakral bölgede dört veya beş segmenttir. [[K5 s. 139]]</p>
@@ -132,7 +136,7 @@ ${sekil('duzey','Yenidoğanda ve erişkinde konusun kemik işareti')}
 <section class="wrap blk ders-sec" id="an03c-kesit"><h2>Omurilik kesitinde yön bulma</h2>
 <p class="intro">Ön yüzde median fissürü, arka yüzde sığ median sulkusu bulun ve ortadaki H biçimli gri cevheri çevresindeki beyaz cevherden ayırın. [[K5 s. 139–140]]</p>
 ${sekil('kesit','Enine kesitte gri ve beyaz cevher')}
-<p class="an03c-rehber">Yönü arka boynuzun sivri ucundan ve ön median fissürden doğrulayın. [[K5 s. 139–140]] Ardından aynı kesitte ön boynuzun geniş motor bölgesini, iki boynuz arasındaki gri bağlantıyı ve onun merkezindeki BOS kanalını bulun. [[K5 s. 140]] Şema temel kesit planını gösterir.</p>
+<p class="an03c-rehber">Ön median fissür ile arka median sulkusu karşılaştırarak kesitin yönünü doğrulayın. [[K5 s. 139–140]]</p>
 <p>Arka median sulkustan giren glial septum omurilik kalınlığının yaklaşık yarısına iner. [[K5 s. 139–140]] İki yandaki posterolateral sulkuslar arka köklerin çıkış çizgisini gösterir. [[K5 s. 140]] Ön köklerin küçük demetler hâlinde çıktığı yerde belirgin bir oluk bulunmaz. [[K5 s. 140]]</p>
 <ul class="ozet">
 <li><b>Santral kanal.</b> Dördüncü ventrikülden başlayan, silyalı ependimle döşeli dar BOS kanalı omurilik boyunca uzanır, konusta biraz genişleyip filumda kısa süre devam eder. [[K5 s. 140]]</li>
@@ -144,8 +148,8 @@ ${sekil('kesit','Enine kesitte gri ve beyaz cevher')}
 
 <section class="wrap blk ders-sec" id="an03c-yollar"><h2>İleti yolları nerede çaprazlaşır?</h2>
 <p class="intro">Motor korteksten inen lateral piramidal yol medullada, ağrı ve sıcaklık lifleri ise sinapstan sonra omurilikte karşı tarafa geçer. [[K5 s. 140–141]]</p>
-${sekil('yollar','Bir yol seçin ve taraf değişimini izleyin')}
-<p class="an03c-rehber">Oku başlangıçtan hedefe doğru izleyin. İnen motor yolda medulladaki çaprazdan sonraki bölüm omuriliğe gider, çıkan arka kolon yolunda ise medulladaki çaprazdan sonraki bölüm talamusa yönelir. [[K5 s. 140–142]] Spinotalamik yolu seçtiğinizde çaprazın omurilikte olduğunu görün. [[K5 s. 141]]</p>
+${sekil('yollar','İleti yollarının kesitteki yerleri')}
+<p class="an03c-rehber">Arka kökten gelen ince dokunma ve ağrı bilgilerini karşılaştırın. Hangi yol omurilikte, hangisi medullada taraf değiştirir? [[K5 s. 141]]</p>
 <h3>İnen motor yollar</h3>
 <p><b>Lateral serebrospinal traktus</b> başlıca motor yoldur ve lateral beyaz kolonun arka kısmında seyreder. [[K5 s. 140]] Motor korteksin piramidal hücrelerinden çıkan lifler internal kapsül, orta beyindeki serebral pedinkül ve pons üzerinden medulla piramidine ulaşır. [[K5 s. 140]] [[K5 s. 142]] Piramidal çaprazdan sonra lifler karşı tarafta iner ve her segmentte ön boynuz motor hücrelerine dallar verir. [[K5 s. 140]] Böylece üst motor nöron alt motor nörona bağlanır ve traktus aşağıya doğru küçülür. [[K5 s. 140]]</p>
 <p><b>Ön serebrospinal traktus</b> ön median fissüre komşu küçük bir demettir ve doğrudan piramidal yol olarak da adlandırılır. [[K5 s. 141]] Motor korteksten gelen lifler medullada çapraz yapmadan iner, segmentte ayrılan dallar karşı ön boynuzun motor hücrelerine ulaşır. [[K5 s. 141]] Torakal kesitte inen ekstrapiramidal yollar da gösterilir. [[K5 s. 141]]</p>
@@ -159,7 +163,7 @@ ${sekil('yollar','Bir yol seçin ve taraf değişimini izleyin')}
 <section class="wrap blk ders-sec" id="an03c-damar"><h2>Omuriliğin kanlanması ve venöz dönüşü</h2>
 <p class="intro">Foramen magnumdan inen ön ve arka spinal arterlere, sinir kökleri boyunca gelen segmental damarlar katılır. [[K5 s. 142–145]]</p>
 ${sekil('damar','Spinal arterlerin kökeni ve dağılımı')}
-<p class="an03c-rehber">İşaretler spinal arterlerin kesitteki yüzey konumlarını, alttaki satırlar seçilen damarın kökenini ve dağılımını gösterir. [[K5 s. 142–145]] Adamkiewicz görünümünde ön ve arka yüzün birlikte işaretlenmesi, büyük radiküler arterin bu iki sisteme verdiği desteği temsil eder. [[K5 s. 144–145]]</p>
+<p class="an03c-rehber">Önden görünümde hastanın solu resmin sağına düşer. Büyük radiküler arteri kökten orta hatta kadar izleyin. [[K5 s. 144–145]]</p>
 <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Damar</th><th>Köken, seyir ve beslenme alanı</th></tr></thead><tbody>
 <tr><td>Ön spinal arter</td><td>Foramen magnumda iki vertebral arterden birer dal birleşir ve ön median fissür üzerinde daha büyük tek bir orta hat damarı oluşur. [[K5 s. 142]] Arka gri kolonların önünde kalan dokuyu besler. [[K5 s. 142]] Çapı boyunca değişir ve kısa bir kesimde tamamen kaybolabilir. [[K5 s. 142–143]]</td></tr>
 <tr><td>Arka spinal arterler</td><td>Her yanda arka alt serebellar arterden bir veya iki damar çıkar, arka gri ve beyaz kolonları besler. [[K5 s. 143]]</td></tr>

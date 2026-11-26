@@ -32,7 +32,7 @@ VERI.sorular['an03b-3'] = {
 
 (() => {
   const bolumler = [
-    ['sakrum', 'Sakrumun yüzleri'], ['hiatus', 'Hiatus ve kaudal blok'], ['anomali', 'Gelişim ve anomaliler'],
+    ['sakrum', 'Sakrumun yüzleri'], ['hiatus', 'Hiatus ve kaudal blok'], ['anomali', 'Ark defektleri'], ['gecis', 'Segment anomalileri'],
     ['bag', 'Diskler ve bağlar'], ['ust', 'Kafatası ile bağlantılar'], ['p1', 'Part I'], ['p2', 'Part II'], ['ozet', 'Özet'],
   ];
   const sekil = (ad, baslik) => `<div class="viz"><div class="viz-head"><h3>${baslik}</h3></div><div data-viz="an03b_${ad}"></div><p class="viz-cap" aria-live="polite"></p></div>`;
@@ -78,31 +78,27 @@ ${sekil('kaudal','Yüzeyden sakral kanala')}
 <li><b>Arka bağ.</b> İki kemiğin boynuzlarını birleştiren bağ yayılarak hiatusu örter ve kanalın alt açıklığını kapatır. [[K5 s. 130]]</li>
 <li><b>Lateral bağ.</b> Her yanda sakrumun alt dış köşesini koksiksin transvers çıkıntısına bağlar, boynuzlar arasından çıkan S5 sinirini örter. [[K5 s. 130]]</li></ul>
 <h3>Kaudal bloğun anatomik karşılığı</h3>
-<p>Yan veya yüzüstü pozisyonda iki arka üst iliak çıkıntıdan aşağıya doğru yaklaşık eşkenar bir üçgen kurulur. [[K5 s. 123]] Üçgenin alt köşesi hiatusun beklenen yerini, iki boynuz arasındaki çöküntü ise doğrudan giriş bölgesini gösterir. [[K5 s. 123–124]]</p>
-<p>Kitaptaki tarifte sıklıkla 21 G hipodermik iğne kullanılır. [[K5 s. 124]] İğne başlangıçta deriyle yaklaşık 45° açı yapar, arka sakrokoksigeal bağı geçince göbeği indirilir. [[K5 s. 124]] Bu yön değişikliği iğneyi deri yüzeyine daha paralel hale getirir ve kanal içinde yukarı doğru ilerlemesine olanak tanır. [[K5 s. 124]]</p>
 <p>Hiatustan epidural aralığa verilen lokal anestezik önce sakral kökleri etkiler, perinede anestezi veya analjezi sağlar. [[K5 s. 123]] Daha büyük hacim alt lomber köklere ulaşır. [[K5 s. 123]] Çocuklarda bu yoldan kateter bazen lomber, hatta torakal bölgeye ilerletilir, teknik erişkinlerde de tarif edilmiştir. [[K5 s. 123]]</p>
-<p>Boyuna kesitte dural kesenin altında ekstradural aralıkta filum terminale görülür. [[K5 s. 124]] İğne deri altında, kanal içinde veya dışında periost altında ya da epidural vende kalabilir, fazla ilerletilirse durayı geçebilir. [[K5 s. 124]]</p>
+<p>İğne deri altında, kanal içinde veya dışında periost altında ya da epidural vende kalabilir, fazla ilerletilirse durayı geçebilir. [[K5 s. 124]]</p>
 <p>Kitap, enjeksiyon öncesi damar içi veya subaraknoid yerleşimi araştırmak için aspirasyonu ve enjeksiyonun kolaylığını kontrol etmeyi vurgular. [[K5 s. 124]] Görüntü yoğunlaştırıcı kullanılırken konum sıklıkla radyopak kontrastla doğrulanır. [[K5 s. 124]]</p>
 </section>
 <section class="wrap blk ders-sec" id="an03b-anomali">
 <h2>Gelişim kusuru hangi yapıyı etkiler?</h2>
 <p class="intro">Vertebra gövdesinin oluşumu, nöral arkın kapanması ve segmentlerin ayrılması farklı aşamalardır, bu aşamalardaki anomaliler spinal veya epidural bloğu zorlaştırabilir, hatta olanaksız kılabilir. [[K5 s. 125]]</p>
 ${sekil('defekt','Ark defektinde kesenin içeriği')}
-<p>Mezodermal somitler notokord ve nöral tüp çevresinde yoğunlaşır. [[K5 s. 125]] Komşu iki somitin birer yarısı birleştiğinden vertebra gövdesi intersegmentaldir. [[K5 s. 125]] Primer kemikleşme merkezleri arkın iki yanında birer tane ve gövdede bir tanedir, bazen gövdede birleşmeden kalan iki komşu merkez vardır. [[K5 s. 125]]</p>
-<ul class="ozet"><li><b>Gövde oluşumu.</b> Ek vertebra ya da konjenital skolyoza yol açan hemivertebra gelişebilir. [[K5 s. 125]] Gövdenin iki merkezinin ayrı kalması özellikle servikal ve lomber bölgede anterior spina bifidaya neden olur. [[K5 s. 125]] Vertebralar eksik olabilir, alt sakrum ve koksiksin yokluğuna sıklıkla rektal ve üriner inkontinans eşlik eder. [[K5 s. 125]]</li>
-<li><b>Segmentlerin birleşmesi.</b> İki veya daha çok vertebra kısmen ya da bütünüyle kaynaşabilir, bu özellikle sakral bölgede görülür. [[K5 s. 125]] L5’in sakruma katılması sakralizasyon, S1’in sakrumdan ayrı kalması lomberizasyondur ve her ikisi de tam ya da kısmi olabilir. [[K5 s. 125]]</li>
-<li><b>Nöral ark.</b> İki ark merkezinin birleşmemesi spina bifidaya yol açar. [[K5 s. 125]] Gizli biçimde nörolojik anormallik genellikle görülmez, ancak çukurcuk, lipom veya kıl demeti alttaki kusurun ipucu olabilir. [[K5 s. 125]] Daha seyrek olarak bir veya birkaç arkta belirgin defekt vardır, omurilik ya da kılıfları dışarı çıkar. [[K5 s. 125]]</li></ul>
-${sekil('gecis','L5 mi sakruma katılıyor, S1 mi ayrılıyor?')}
+<ul class="ozet"><li><b>Nöral ark.</b> İki ark merkezinin birleşmemesi spina bifidaya yol açar. [[K5 s. 125]] Gizli biçimde nörolojik anormallik genellikle görülmez, ancak çukurcuk, lipom veya kıl demeti alttaki kusurun ipucu olabilir. [[K5 s. 125]] Daha seyrek olarak bir veya birkaç arkta belirgin defekt vardır, omurilik ya da kılıfları dışarı çıkar. [[K5 s. 125]]</li></ul>
 <p>Spina bifida her düzeyde görülebilir, büyük çoğunluğu L5 veya üst sakral bölgededir. [[K5 s. 125]] Kaynak L5 için %6, üst iki sakral segment için %11 sıklık bildirir. [[K5 s. 125]]</p>
-<h3>Ark defektinin üzerinde ne görülür?</h3>
-<dl class="an03b-dizi"><dt>Spina bifida occulta</dt><dd>Kemik ark ayrık kalır, meninksler ve sinir dokusu normaldir. [[K5 s. 125]]</dd>
-<dt>Meningosel</dt><dd>Arka defektten dışarı uzanan keseyi meninksler oluşturur, sinir dokusu keseye katılmaz. [[K5 s. 125]]</dd>
-<dt>Miyelomeningosel</dt><dd>Kesenin içinde omurilik veya kökler bulunur, nöral doku kese duvarına yapışabilir. [[K5 s. 125]]</dd>
-<dt>Miyelosel (raşişizis)</dt><dd>Nöral tüpün kapanmadığı yerde kırmızı, granüler bir spinal plak açıktadır. [[K5 s. 125]] Merkezinden beyin omurilik sıvısı sızan bu tabloyu kitap yaşamla bağdaşmaz olarak tanımlar. [[K5 s. 125]]</dd></dl>
 <h3>Hiatusun tepesini her hastada aynı düzeyde bekler misiniz?</h3>
 <dl class="an03b-dizi"><dt>%35</dt><dd>Klasik yerleşimde tepe S4 gövdesinin alt üçte birindedir. [[K5 s. 126]]</dd><dt>%20</dt><dd>Tepe daha aşağıdadır, S5’in alt kenarına inebilir. [[K5 s. 126]]</dd><dt>%45</dt><dd>Tepe daha yukarıdadır, S2 gövdesinin alt üçte birine ulaşabilir. [[K5 s. 126]]</dd></dl>
 <p>Arka duvar nadiren boydan boya açıktır. [[K5 s. 126]] Üst ve alt sınırlar arasında orta hatta, tek yanda ya da iki yanda açıklık kalabilir. [[K5 s. 126]] Hiatus olağan görünse bile üst sakral laminalar ve spinöz çıkıntılar kusurlu olabilir. [[K5 s. 126]]</p>
 <p>Kanal kısmen ya da tamamen üç yolla kapanabilir. [[K5 s. 126]] Arka duvarda enine kıvrıma aynı düzeyde gövdenin öne çıkıntısı eşlik edebilir, sakral gövde dorsale doğru kanala taşabilir veya aşırı kemik büyümesi hiatusu örtebilir. [[K5 s. 126]]</p>
+</section>
+<section class="wrap blk ders-sec" id="an03b-gecis">
+<h2>Omur gövdesi ve segment sınırları</h2>
+<p class="intro">İki veya daha çok vertebra kısmen ya da bütünüyle kaynaşabilir. Bu durum özellikle sakral bölgede görülür. [[K5 s. 125]]</p>
+${sekil('gecis','L5 mi sakruma katılıyor, S1 mi ayrılıyor?')}
+<p>Mezodermal somitler notokord ve nöral tüp çevresinde yoğunlaşır. [[K5 s. 125]] Komşu iki somitin birer yarısı birleştiğinden vertebra gövdesi intersegmentaldir. [[K5 s. 125]] Primer kemikleşme merkezleri arkın iki yanında birer tane ve gövdede bir tanedir, bazen gövdede birleşmeden kalan iki komşu merkez vardır. [[K5 s. 125]]</p>
+<ul class="ozet"><li><b>Gövde oluşumu.</b> Ek vertebra ya da konjenital skolyoza yol açan hemivertebra gelişebilir. [[K5 s. 125]] Gövdenin iki merkezinin ayrı kalması özellikle servikal ve lomber bölgede anterior spina bifidaya neden olur. [[K5 s. 125]] Vertebralar eksik olabilir, alt sakrum ve koksiksin yokluğuna sıklıkla rektal ve üriner inkontinans eşlik eder. [[K5 s. 125]]</li></ul>
 <h3>Spondilolistezis</h3>
 <p>L5 nöral arkındaki defekt iki kemik grubunu ayırır, bazen L4 etkilenir. [[K5 s. 126]] Olası açıklamaya göre iki kemikleşme merkezi kaynaşmaz, aralarında kalan fibröz doku zamanla gerilerek öne kaymaya izin verebilir. [[K5 s. 126]]</p>
 <dl class="an03b-dizi"><dt>Öne kayan</dt><dd>Omurga, L5 gövdesi, pedikülleri ve üst eklem çıkıntılarıyla birlikte sakrum üzerinde öne yer değiştirir. [[K5 s. 126–127]]</dd><dt>Geride kalan</dt><dd>L5 laminaları, spinöz çıkıntısı ve alt eklem çıkıntıları sakruma bağlı kalır. [[K5 s. 126]]</dd></dl>
@@ -117,10 +113,6 @@ ${sekil('baglar','Hangi bağ hangi iki yüzü birleştirir?')}
 <dt>Halka</dt><dd>Annulus fibrosusta fibröz doku ve fibrokıkırdak, çekirdeğin çevresinde iç içe halkalar oluşturur. [[K5 s. 128]]</dd>
 <dt>Tutunma</dt><dd>Disk üstte ve altta komşu gövdenin hiyalin eklem kıkırdağına, önde ve arkada ilgili longitudinal bağa tutunur. [[K5 s. 128]]</dd></dl>
 <p>Torakal disklerin kalınlığı eşittir, eğriliği omur gövdelerinin biçimi belirler. [[K5 s. 128]] Servikal ve lomber eğrilere ise kama biçimli diskler önemli katkıda bulunur, bu özellik özellikle L5/S1’de belirgindir. [[K5 s. 128]] Yaşlılıkta disk atrofisi ile vertebral osteoporoz birlikte boy kısalmasına ve kifotik deformiteye yol açar. [[K5 s. 128]]</p>
-<h3>Spinöz uçtan gövdeye doğru</h3>
-<dl class="an03b-dizi"><dt>Spinöz çıkıntı</dt><dd>Uçları C7’den sakruma kadar supraspinöz bağ birleştirir. [[K5 s. 128]] İki çıkıntının gövdeleri arasına geçildiğinde interspinöz bağ görülür, bu bağlar özellikle servikal bölgede narindir. [[K5 s. 128]]</dd>
-<dt>Lamina</dt><dd>Komşu laminaların arasını sarı bağ kapatır. [[K5 s. 128]]</dd>
-<dt>Gövde ve disk</dt><dd>Ön longitudinal bağ C2’den üst sakruma inerken genişler, her diskin önüne ve komşu gövdelerin kenarlarına yapışır. [[K5 s. 128]] Arka longitudinal bağ gövdelerin arkasında seyreder ve karşılık gelen disk yüzü ile gövde kenarlarına tutunur. [[K5 s. 128]]</dd></dl>
 <h3>Bağ dokusunun yaşla değişmesi ponksiyonu nasıl etkiler?</h3>
 <ul class="ozet"><li><b>Sarı bağ.</b> Laminalar arasındaki dikey elastik lifler aşağıya doğru kalınlaşır. [[K5 s. 128]] İğne bağ içindeyken enjektörde hissedilen elastik geri tepme bu nedenle lomber bölgede torakale göre daha belirgindir. [[K5 s. 128]] Yaşlılıkta elastikiyet azalma eğilimindedir ve bağ kalsifiye olabilir. [[K5 s. 128]]</li>
 <li><b>Supraspinöz bağ.</b> Yaşla kemikleşebilen bu güçlü fibröz sütun, orta hattan spinal ponksiyona engel oluşturabilir. [[K5 s. 128]]</li>
@@ -131,10 +123,6 @@ ${sekil('baglar','Hangi bağ hangi iki yüzü birleştirir?')}
 <p class="intro">“Evet” hareketi atlanto-oksipital eklemde, “hayır” hareketi atlanto-aksiyal eklemde gerçekleşir. [[K5 s. 128–129]]</p>
 ${sekil('dens','Densi yerinde tutan bağlantılar')}
 <p>Oksiput, atlas ve aksisin karşılıklı fasetlerine dens ile atlasın ön arkı arasındaki eklem eklenir. [[K5 s. 128]] Atlanto-oksipital eklemde baş bir miktar yana da eğilebilir. [[K5 s. 129]] Hareket eksenine yakın bağlar kısa ve güçlüdür, çevrede arklar ile eklem çıkıntılarını bağlayanlar daha zayıftır. [[K5 s. 129]]</p>
-<h3>Densi hangi bağlar tutar?</h3>
-<ul class="ozet"><li><b>Transvers ve çapraz bağ.</b> Atlasın iki lateral kitlesinin medial yüzleri arasındaki yatay bant, densi ön arkın arka yüzündeki fasete bastırır. [[K5 s. 130]] Bu banttan yukarıda oksiputa, aşağıda aksis gövdesine daha zayıf lifler ayrılır, üç bölüm birlikte çapraz bağı oluşturur. [[K5 s. 130]]</li>
-<li><b>Alar ve aksesuar alar bağlar.</b> Dens tepesinin iki yanından oksipital kondillerin medialine giden kısa, güçlü alar bağlar aşırı baş rotasyonunu sınırlar. [[K5 s. 130]] Aksesuar alar bağın alt ucu aksis gövdesinde, üst ucu atlasın lateral kitlesindedir. [[K5 s. 130]]</li>
-<li><b>Apikal bağ.</b> İnce bir lif demeti densin ucunu foramen magnumun ön kenarına bağlar. [[K5 s. 130]] Apikal bağ notokordun yukarı uzanan bölümünün kalıntısıdır. [[K5 s. 130]]</li></ul>
 <h3>Omurgadan kafatasına uzanan membranlar</h3>
 <dl class="an03b-dizi"><dt>Tektoryal membran</dt><dd>Arka longitudinal bağ aksisten oksiputa güçlü bir membran olarak uzanır ve atlası örter. [[K5 s. 130]]</dd>
 <dt>Ön atlanto-oksipital membran</dt><dd>Ön longitudinal bağ orta hatta kordon biçiminde oksiputa çıkar, yanlarda ise yayılarak ince bir membrana dönüşür. [[K5 s. 130]]</dd>

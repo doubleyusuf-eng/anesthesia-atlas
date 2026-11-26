@@ -72,13 +72,9 @@ VERI.sorular['an01b-3'] = {
 <div class="note"><b>Yüzeyden duyuya.</b> Üst laringeal sinirin internal dalı fossa mukozasının altında seyreder. [[K5 s. 18]] Kitapta Krause pensiyle tutulan pamukla bu yüzeye uygulanan lokal anesteziğin ses tellerinin üstündeki larinkste anestezi sağladığı anlatılır. [[K5 s. 18]] Bu etki laringoskopide ağız anestezisini tamamlar. [[K5 s. 18]]</div></section>
 
 <section class="wrap blk ders-sec" id="an01b-duvar"><h2>Farinks duvarı ve konstriktörler</h2>
-<p class="intro">Farinks lümeninden dışa doğru mukoza, fibröz tabaka, kas ve fasya geçilir. [[K5 s. 18–19]]</p>
+<p class="intro">Farinks duvarının dört tabakası lümenden dışa doğru izlenebilir. [[K5 s. 18–19]]</p>
 <div class="viz"><div class="viz-head"><h3>Duvarı içten dışa inceleyin</h3></div><div data-viz="an01b_katman"></div><p class="viz-cap" aria-live="polite"></p></div>
-<h3>Doku kesitini okuyun</h3>
-<ul class="ozet"><li><b>Lümene bakan yüz.</b> Nazofarinksin silyalı silindirik epiteli, ağız ve larinks arkasındaki bölgelerin çok katlı yassı epitelinden ayrılır. [[K5 s. 18]] Her iki örtünün altında üzüm salkımları biçiminde kümelenen çok sayıda müköz bez vardır. [[K5 s. 18]]</li>
-<li><b>Kasın iç yüzü.</b> Fibröz tabaka çoğu yerde incedir. [[K5 s. 18]] Kas örtüsünün yukarıda eksik kaldığı yerde kalınlaşıp faringobaziler fasyayı, tonsilin derininde kapsülü, arka orta hatta ise rafeyi oluşturur. [[K5 s. 18]]</li>
-<li><b>Kasın dış yüzü.</b> Farinksi dıştan saran ince fibröz kılıf bukkofarengeal fasyadır. [[K5 s. 19]] Enfeksiyon ödeminin yayılma sınırını anlamak için izlenecek tabaka bu dış kılıftır. [[K5 s. 19]]</li></ul>
-<h3>Üç konstriktörün tutunma yerleri</h3><p>Kas tabakasında birbiri üzerine binen üç konstriktöre stilofaringeus, salpingofaringeus ve palatofaringeus eşlik eder. [[K5 s. 19]] Konstriktörler iki yanda kafatası, mandibula, hiyoid ve larinksten başlayıp farinksi sararak arkadaki median rafeye ulaşır. [[K5 s. 19]]</p>
+<h3>Üç konstriktörün tutunma yerleri</h3><p>Konstriktörler iki yanda kafatası, mandibula, hiyoid ve larinksten başlayıp farinksi sararak arkadaki median rafeye ulaşır. [[K5 s. 19]]</p>
 <p>Rafenin üst ucu oksipital kemiğin baziler bölümündeki farengeal tüberküle tutunur, alt ucu özofagus duvarına karışır. [[K5 s. 19–20]]</p>
 <dl class="an01b-liste"><dt>Üst konstriktör</dt><dd>Medial pterigoid plağın alt bölümü, pterigoid hamulus, pterigomandibular rafe ve mandibulanın iç yüzündeki milohiyoid çizginin arka ucu başlangıç yerleridir. [[K5 s. 20]] Serbest üst kenarla kafa tabanı arasında kalan aralıktan Östaki tüpü nazofarinkse geçer. [[K5 s. 20]]</dd>
 <dt>Orta konstriktör</dt><dd>Hiyoidin küçük boynuzundan, büyük boynuzunun üst kenarından ve stilohiyoid bağın en alt parçasından yelpaze biçiminde açılır. [[K5 s. 20]]</dd>
@@ -109,11 +105,11 @@ VERI.sorular['an01b-3'] = {
 <p class="intro">Sırtüstü hastada indüksiyon sonrası tıkanıklığı açıklarken dilin yanında yumuşak damağın konumunu da değerlendirin. [[K5 s. 22–23]]</p>
 <div class="viz"><div class="viz-head"><h3>Hava geçişini hangi yapı kesiyor?</h3></div><div data-viz="an01b_hava"></div><p class="viz-cap" aria-live="polite"></p></div>
 <p>Klasik açıklama çene kaslarının gevşemesiyle dilin geriye düşüp orofarinksi tıkamasıdır. [[K5 s. 22]] Orofarengeal hava yolu aracı bu tıkanmayı azaltabilir. [[K5 s. 22]] İndüksiyon radyografileri yumuşak damağın arka nazofarinks mukozasına dayanmasının daha önemli bir neden olduğunu göstermiştir. [[K5 s. 22]]</p>
-<p>Önerilen sırada dil önce damağa dayanır, oral geçiş kapanır ve horlama ortaya çıkar. [[K5 s. 22]] Ardından yumuşak damak geriye düşerek nazal geçişi kapatır. [[K5 s. 22]] Bu iki geçitten herhangi birinin açılması hava geçişini sağlar. [[K5 s. 22]]</p>
+<p>Ağız veya burun yolundaki tıkanıklıklardan birinin giderilmesi hava geçişini sağlar. [[K5 s. 22]]</p>
 <details class="an01b-okuma"><summary>Tıkanma ile aspirasyonu klinik örnekte nasıl ayırırsınız?</summary>
-<p>İndüksiyon sırasında horlayan hastada önce havanın ağızdan ve burundan farinkse hangi yoldan ulaşabildiğini sorun. [[K5 s. 22]] Dil ile damak arasındaki temas ağızdan geçişi, damağın arka duvara dayanması burundan geçişi etkiler. [[K5 s. 22]]</p>
+<p>İndüksiyon sırasında horlayan hastada önce havanın ağızdan ve burundan farinkse hangi yoldan ulaşabildiğini sorun. [[K5 s. 22]]</p>
 <p>Yutma sonrasında trakeaya sıvı kaçtığında ise larinksin yükselmesini, girişinin kapanmasını ve koruyucu refleksin bütünlüğünü sorgulayın. [[K5 s. 21–22]] Larinks yükselirken solunumun kısa süre baskılanması normal yutmanın bir parçasıdır. [[K5 s. 22]]</p></details>
-<p><b>Laringeal maske (LMA).</b> Maske ağızdan larinks açıklığına ilerletilir, şişirilen kaf larinks ağzı üzerinde sızdırmazlık sağlar. [[K5 s. 23–24]] Genel anestezide arka farinks tıkanıklığını aşmak için dili elle öne çekme gereğini ortadan kaldırır. [[K5 s. 23]]</p>
+<p><b>Laringeal maske (LMA).</b> Genel anestezide arka farinks tıkanıklığını aşmak için dili elle öne çekme gereğini ortadan kaldırır. [[K5 s. 23]]</p>
 <div class="note"><b>Aspirasyonu açıklayan iki mekanizma.</b> Björk tipi ön flepli trakeostomi trakeayı sabitleyip larinksin yükselmesini kısıtlayabilir ve yutulan sıvı trakeaya kaçabilir. [[K5 s. 21]] Farengeal lokal anestezi veya farinks kaslarının cerrahisi koruyucu refleksi ortadan kaldırır. [[K5 s. 21]] Opioidler, anestezi ve beyin travması refleksin merkezi bileşenini baskılar. [[K5 s. 21]] Bu koşullarda yabancı materyal özellikle sırtüstü veya başı yüksekte yatan hastada aspire edilebilir. [[K5 s. 21]]</div></section>
 
 <section class="wrap blk ders-sec" id="an01b-p1"><h2>Part I · Çoklu doğru–yanlış</h2><p>Her önermeyi bağımsız yanıtlayın.</p>

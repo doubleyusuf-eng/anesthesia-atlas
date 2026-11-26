@@ -41,19 +41,17 @@
       ] }],
   });
 
-  const katmanlar = [
-    { ad: 'Mukoza', metin: 'Nazofarinkste silyalı silindirik, diğer bölgelerde çok katlı yassı epitel bulunur. [[K5 s. 18]] Yüzey altında üzüm salkımı biçiminde çok sayıda müköz bez vardır. [[K5 s. 18]]' },
-    { ad: 'Fibröz tabaka', metin: 'Kas duvarının eksik olduğu üst bölümde fibröz doku faringobaziler fasyayı oluşturur. [[K5 s. 18]] Tonsil kapsülünde ve arka median rafede de yoğunlaşır, diğer yerlerde incedir. [[K5 s. 18]]' },
-    { ad: 'Kas', metin: 'Üst, orta ve alt konstriktörler iç içe geçmiş üç saksı gibi dizilir, bunlara stilofaringeus, salpingofaringeus ve palatofaringeus eşlik eder. [[K5 s. 19]]' },
-    { ad: 'Fasya', metin: 'En dışta bukkofarengeal fasya farinksi çok ince bir fibröz kapsül olarak sarar. [[K5 s. 19]]' },
-  ];
-  VIZ.an01b_katman = el => SEKIL.adim(el, {
-    baslik: 'Farinks duvarının şematik kesiti', vb: [640, 240], vbDar: [360, 240], oto: false,
-    adimlar: katmanlar,
-    ortak: (S, i) => S.t(S.w / 2, 22, 'Lümen', { a: 'middle' }) +
-      katmanlar.map((k, j) => S.kutu(S.w * .12, 35 + j * 42, S.w * .76, 38, {
-        yazi: k.ad, renk: j === i ? 'accent' : 'line', dolgu: j === i ? 'accent-soft' : 'paper',
-      })).join('') + S.t(S.w / 2, 224, 'Dış yüz', { a: 'middle' }),
+  VIZ.an01b_katman = el => SEKIL.cizim(el, {
+    baslik: 'Farinks yan duvarının dört tabakası',
+    giris: 'Solda lümene bakan mukoza, sağda dış yüzü örten fasya görülür. [[K5 s. 18–19]]',
+    gorunumler: [{ ad: 'Orofarinks duvarı', resim: 'img/anatomi/01b-duvar.webp', en: 1024, boy: 512,
+      noktalar: [
+        nokta(114, 208, 'Mukoza', 'Orofarinks ve laringofarinkste epitel çok katlı yassı, nazofarinkste silyalı silindiriktir. [[K5 s. 18]]'),
+        nokta(192, 313, 'Müköz bezler', 'Mukoza yüzeyinin altında üzüm salkımını andıran çok sayıda bez bulunur. [[K5 s. 18]]'),
+        nokta(347, 229, 'Fibröz tabaka', 'Çoğu yerde incedir. [[K5 s. 18]] Kas duvarının eksik kaldığı üst kesimde yoğunlaşarak faringobaziler fasyayı oluşturur. [[K5 s. 18]] Tonsil kapsülü ve arka median rafe de bu tabakanın yoğunlaşmalarıdır. [[K5 s. 18]]'),
+        nokta(563, 253, 'Kas tabakası', 'Üst, orta ve alt konstriktörler iç içe geçen üç saksı gibi birbirini örter. [[K5 s. 19]] Stilofaringeus, salpingofaringeus ve palatofaringeus da farinks kasları arasındadır. [[K5 s. 19]]'),
+        nokta(817, 205, 'Bukkofarengeal fasya', 'En dıştaki bu çok ince fibröz kapsül farinksi sarar. [[K5 s. 19]] Enfeksiyon ödeminin aşağı yayılımı bu fasyayla sınırlanır. [[K5 s. 19]]'),
+      ] }],
   });
 
   const evreler = [
@@ -79,23 +77,15 @@
     },
   });
 
-  const yollar = [
-    { ad: 'Dil', metin: 'Önerilen ilk olayda dilin damağa dayanması oral hava geçişini keser. [[K5 s. 22]]' },
-    { ad: 'Yumuşak damak', metin: 'Ardından yumuşak damak arka nazofarinks mukozasına dayanarak burundan hava geçişini de kesebilir. [[K5 s. 22]]' },
-    { ad: 'Laringeal maske', metin: 'Ağızdan yerleştirilen LMA, kafı larinks ağzına oturduğunda farengeal tıkanıklığı aşar. [[K5 s. 23–24]]' },
-  ];
-  VIZ.an01b_hava = el => SEKIL.adim(el, {
-    baslik: 'İndüksiyonda hava geçiş yolları ve LMA', vb: [640, 238], vbDar: [360, 238], oto: false, adimlar: yollar,
-    ortak: (S, i) => {
-      const x = S.w / 2, a = S.w * .27, b = S.w - a;
-      const yol = (ust, ad, kapali) => S.kutu(ust - 68, 12, 136, 36, { yazi: ad })
-        + S.cizgi([[ust, 49], [ust, 144], [x, 177]], { renk: kapali ? 'muted' : 'accent', kesik: kapali, w: 3 });
-      const engel = (ust, ad) => S.kutu(ust - 74, 80, 148, 44, { yazi: ad, dolgu: 'clin-soft', renk: 'clin' });
-      let svg = yol(a, 'Ağız', i !== 2) + yol(b, 'Burun', i !== 0);
-      if (i !== 2) svg += engel(a, ['Dil–damak', 'teması']);
-      if (i === 1) svg += engel(b, ['Damak–arka', 'duvar teması']);
-      if (i === 2) svg += S.kutu(a - 60, 82, 120, 38, { yazi: 'LMA tüpü', dolgu: 'accent-soft' });
-      return svg + S.kutu(x - 82, 180, 164, 42, { yazi: i === 2 ? 'Kaf · larinks ağzı' : 'Larinks ağzı' });
-    },
+  VIZ.an01b_hava = el => SEKIL.cizim(el, {
+    baslik: 'İndüksiyonda tıkanma ve laringeal maske',
+    giris: 'Soldaki kesitte ağız ve burun yollarının kapanabileceği iki yeri, sağdakinde maskenin larinks ağzıyla ilişkisini izleyin. [[K5 s. 22–24]]',
+    gorunumler: [{ ad: 'Sagittal kesitler', resim: 'img/anatomi/01b-hava.webp', en: 1024, boy: 512,
+      noktalar: [
+        nokta(214, 142, 'Dil–damak teması', 'Önerilen olay dizisinde önce dil damağa dayanır, ağızdan hava geçişi kesilir ve horlama ortaya çıkar. [[K5 s. 22]]'),
+        nokta(327, 179, 'Yumuşak damak–arka duvar teması', 'Ardından yumuşak damak geriye düşüp arka nazofarinks mukozasına dayanarak burundan hava geçişini kapatabilir. [[K5 s. 22]]'),
+        nokta(676, 196, 'Laringeal maske tüpü', 'Ağızdan giren laringeal maske (LMA), farenksteki tıkanıklığı aşarak larinks açıklığına ulaşır. [[K5 s. 23–24]]'),
+        nokta(839, 335, 'Larinks ağzındaki kaf', 'Şişirilen kaf larinks ağzının çevresinde sızdırmazlık sağlar. [[K5 s. 23–24]]'),
+      ] }],
   });
 })();

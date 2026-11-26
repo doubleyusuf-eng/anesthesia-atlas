@@ -33,7 +33,7 @@ VERI.sorular['an01c-3'] = {
 const AN01C_NAV = [
   ['iskelet', 'Kıkırdaklar'], ['bosluk', 'Bağlar ve boşluk'], ['erisim', 'Cerrahi hava yolu'],
   ['kas', 'Kaslar'], ['damar', 'Damarlar ve lenf'], ['sinir', 'Sinirler ve felç'],
-  ['gorunum', 'Laringoskopi'], ['p1', 'Part I'], ['p2', 'Part II'], ['ozet', 'Özet'],
+  ['gorunum', 'Laringoskopi'], ['derece', 'Görünüm dereceleri'], ['p1', 'Part I'], ['p2', 'Part II'], ['ozet', 'Özet'],
 ];
 SAYFALAR['dersler/anatomi/01c'] = {
   grup: 'dersler', eyebrow: 'Anatomi · Bölüm 1 · Ders 01c', baslik: 'Larinks',
@@ -67,11 +67,7 @@ SAYFALAR['dersler/anatomi/01c'] = {
 <h2>İki kıvrım arasında bir sinüs</h2>
 <p class="intro">Larinks boşluğunun yan duvarında sinüs, üstteki vestibüler kıvrım ile alttaki vokal kıvrım arasında ince bir yarık açar. [[K5 s. 29]]</p>
 <div class="viz"><div data-viz="an01c_katman"></div><p class="viz-cap" aria-live="polite"></p></div>
-<p>Sinüsün ön kısmından yukarı uzanan kör kese sakküldür. [[K5 s. 29]] Kesenin bir yanında vestibüler kıvrım, diğer yanında tiroid laminasının iç yüzü bulunur. [[K5 s. 29]] Sinüs, mukoza altındaki fibröz çatıyı iki kata ayırır. [[K5 s. 29]]</p>
-<ul class="an01c-iliskiler">
-<li><b>Üst kat.</b> Kuadrangüler membran ariepiglottik kıvrımı ve dolayısıyla girişin kenarını destekler. [[K5 s. 29]] Alt kenarının kalınlaşmasıyla oluşan vestibüler bağ, yalancı ses telinin altında uzanır. [[K5 s. 29]]</li>
-<li><b>Alt kat.</b> Elastik liften zengin krikovokal membran aşağıda krikoidin üst kenarına tutunur. [[K5 s. 29]] Serbest üst kenarı, önde tiroid çıkıntısının orta noktasından arkada aritenoidin vokal çıkıntısına uzanan vokal bağdır. [[K5 s. 29]] Gerçek ses telini bu bağ destekler. [[K5 s. 29]] Membranın önde kalınlaşan bölümü, tiroid ile krikoidi ortada birleştiren krikotiroid bağı oluşturur. [[K5 s. 29]]</li>
-</ul>
+<p>Vokal bağ önde tiroid çıkıntısının orta noktasına, arkada aritenoidin vokal çıkıntısına tutunur. [[K5 s. 29]] Krikovokal membranın önde kalınlaşan bölümü, tiroid ile krikoidi orta çizgide birleştiren krikotiroid bağı oluşturur. [[K5 s. 29]]</p>
 <h3>Dış bağlantıları yukarıdan aşağıya izleyin</h3>
 <ul class="an01c-iliskiler">
 <li><b>Hiyoid–tiroid.</b> Tirohiyoid membran tiroidin üst kenarından hiyoid kemiğe uzanır. [[K5 s. 26]] Öndeki yoğun lifler orta tirohiyoid bağı, kalın arka kenar ise hiyoidin büyük boynuzu ile tiroidin üst boynuzunun uçları arasındaki lateral bağı yapar. [[K5 s. 26]] Üst laringeal damarlar ve üst laringeal sinirin internal dalı membrandan geçer. [[K5 s. 26]]</li>
@@ -90,9 +86,9 @@ SAYFALAR['dersler/anatomi/01c'] = {
 <div class="viz"><div data-viz="an01c_erisim"></div><p class="viz-cap" aria-live="polite"></p></div>
 <p>Gelişmekte olan ya da akut supraglottik tıkanmada standart trakeostominin gerektirdiği süre ve cerrahi beceri önem kazanır. [[K5 s. 29]] Birleşik Krallık Kraliyet Anestezistler Kolejinin dördüncü ulusal denetiminde kanülle krikotiroid girişlerin %60’a kadarı başarısız kalmış, acil cerrahi hava yolu hemen her olguda sağlanmıştır. [[K5 s. 29]] Kitap bu bağlamda anestezi ve yoğun bakım uzmanlarının dilatasyonlu trakeostomi eğitimi almasını önerir. [[K5 s. 29]]</p>
 <h3>Krikotiroid aralık</h3>
-<p>K5’in tarifinde hasta sırtüstüdür, boyun nötr tutulur veya servikal yaralanma yoksa ekstansiyona alınabilir. [[K5 s. 29]] Tiroidin alt kenarından krikoide doğru inildiğinde bağın üzerindeki oluk hissedilir. [[K5 s. 29]] Duruma ve aciliyete göre cilt altına lokal anestezik uygulanabilir. [[K5 s. 29]]</p>
+<p>K5’in tarifinde hasta sırtüstüdür, boyun nötr tutulur veya servikal yaralanma yoksa ekstansiyona alınabilir. [[K5 s. 29]] Duruma ve aciliyete göre cilt altına lokal anestezik uygulanabilir. [[K5 s. 29]]</p>
 <ul class="an01c-iliskiler">
-<li><b>Cerrahi açıklık.</b> Larinks sabitlenerek bağ üzerinde 1–2 cm yatay cilt kesisi ve ardından bağda küçük bir kesi yapılır. [[K5 s. 29–30]] K5, açıklığın bistüri sapının döndürülmesiyle genişletilmesini ve küçük trakeal tüp ya da trakeostomi tüpüyle ventilasyonu tarif eder. [[K5 s. 30]] K5 açık krikotirotomiyi görece kolay bir girişim olarak tanımlar ve bağın nispeten damarsız olması nedeniyle kuramsal olarak az kanama bekler. [[K5 s. 30]]</li>
+<li><b>Cerrahi açıklık.</b> Larinks sabitlenerek bağ üzerinde 1–2 cm yatay cilt kesisi ve ardından bağda küçük bir kesi yapılır. [[K5 s. 29–30]] K5’in tarifinde genişletme için bistürinin sapı döndürülür. [[K5 s. 30]] Tüp seçiminde trakeal tüp ve trakeostomi tüpü seçenekleri vardır. [[K5 s. 30]] K5 açık krikotirotomiyi görece kolay bir girişim olarak tanımlar ve bağın nispeten damarsız olması nedeniyle kuramsal olarak az kanama bekler. [[K5 s. 30]]</li>
 <li><b>Minitrakeostomi.</b> Daha az travmatik olabilen bu yaklaşımda aynı pozisyonda, sıklıkla 1 cm dikey cilt kesisi kullanılır. [[K5 s. 30]] İğneden geçirilen tel yerleştiriciye kılavuzluk eder, bazı setlerde membranı yerleştiricinin kendisi geçer. [[K5 s. 30]] Yerleştirici üzerinden 4,0 mm tüp ilerletilir. [[K5 s. 30]]</li>
 <li><b>Kullanım amacı.</b> Kitap küçük tüp için birikmiş balgamın aspirasyonunu, oksijen verilmesini ve üst hava yolu tıkanmasında acil erişimi sayar. [[K5 s. 30]] K5’in anlattığı dönemde Birleşik Krallık’ta minitrakeostominin ventilasyon amacıyla kullanımı bırakılmıştır. [[K5 s. 30]]</li>
 </ul>
@@ -195,6 +191,10 @@ SAYFALAR['dersler/anatomi/01c'] = {
 <li><b>Glottis.</b> Soluk parlak teller tiroid açısındaki ortak ön uçtan arkadaki iki vokal çıkıntıya uzanır. [[K5 s. 39]] Aralarındaki rima glottidis öne bakan tepesiyle üçgen oluşturur, derininde ilk iki ya da üç trakea halkası seçilebilir. [[K5 s. 39]]</li>
 </ul>
 <p>Az gelişmiş mandibula ve gerideki çene, özellikle çene açısı ile tiroid kıkırdak arasındaki mesafe de kısaysa oral entübasyonu güçleştirebilir. [[K5 s. 40]] Kabarık dil epiglotu altına saklar, pala ucunun vallekulaya yerleştirilmesi güçleşir. [[K5 s. 40]]</p>
+</section>
+
+<section class="wrap blk ders-sec" id="an01c-derece">
+<h2>Laringoskopi görünümünü derecelendirme</h2>
 <div class="viz"><div data-viz="an01c_derece"></div><p class="viz-cap" aria-live="polite"></p></div>
 <p><b>Cormack–Lehane</b> direkt laringoskopide elde edilen görünümü derecelendirip kaydeder ve günümüzde en yaygın kullanılan sistemdir. [[K5 s. 41]] <b>Mallampati</b> ise kişi ağzını tam açtığında görülen yapılardan entübasyonun muhtemel güçlüğünü önceden değerlendirir ve dört sınıf kullanır. [[K5 s. 41–42]]</p>
 </section>

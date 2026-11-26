@@ -49,7 +49,7 @@ SAYFALAR['dersler/anatomi/01d'] = {
 </nav>
 <section class="wrap blk ders-sec" id="an01d-trakea">
   <h2>Trakeanın düzeyi ve komşuları</h2>
-  <p class="intro">Krikoid kıkırdağın alt kenarında C6’dan başlayan trakeanın sonlandığı düzey, vücudun konumuna ve solunuma göre değişir. [[K5 s. 42]]</p>
+  <p class="intro">Trakeanın sonlandığı düzey, vücudun konumuna ve solunuma göre değişir. [[K5 s. 42]]</p>
   <div class="viz"><div class="viz-head"><h3>Krikoidden bifurkasyona</h3></div><div data-viz="an01d_duzey"></div><p class="viz-cap" aria-live="polite"></p></div>
   <div class="an01d-kartlar">
     <div class="card"><h3>Boyut ve duvar</h3>
@@ -140,8 +140,8 @@ SAYFALAR['dersler/anatomi/01d'] = {
   </div>
   <details class="note plain"><summary>Yüzey işaretinden resese</summary>
     <p><b>Böbreğe on ikinci kaburganın yatağından yaklaşırken, sakin solunumda akciğerin doldurmadığı hangi alan açılabilir?</b></p>
-    <p>Arkada T12 spinöz çıkıntısını bulun ve plevra alt kenarını kostovertebral açıya doğru izleyin. [[K5 s. 49]] Kenar burada kostal sınırın biraz aşağısına uzanır. [[K5 s. 49]] Kostal ve diyafragmatik plevranın karşılaştığı bu bölüm, sakin solunumda akciğer tarafından tümüyle doldurulmaz. [[K5 s. 49]]</p>
-    <p>Dolayısıyla cerrahi alanla komşu olan yapı kostodiyafragmatik resestir. [[K5 s. 49]] Aynı sınırı yandan tarif etmeniz istenirse referansı değiştirin. Midaksiller hatta en alçak nokta onuncu kaburga düzeyindedir. [[K5 s. 49]]</p>
+    <p>Kostal ve diyafragmatik plevranın karşılaştığı bu bölüm, sakin solunumda akciğer tarafından tümüyle doldurulmaz. [[K5 s. 49]]</p>
+    <p>Dolayısıyla cerrahi alanla komşu olan yapı kostodiyafragmatik resestir. [[K5 s. 49]]</p>
   </details>
 </section>
 <section class="wrap blk ders-sec" id="an01d-dren">
@@ -153,7 +153,6 @@ SAYFALAR['dersler/anatomi/01d'] = {
       <p>K5, sıvı drenajında lokülasyonları ve plevral kalınlaşmayı belirlemek için Britanya Toraks Derneğinin ultrason kılavuzluğu önerisini aktarır. [[K5 s. 49]] Gerçek zamanlı görüntüleme solunumla hareket eden diyaframı ayırt ettirerek güvenliği artırır, uç koşullarda uygulanamayabilir. [[K5 s. 49–50]]</p>
     </div>
     <div class="card"><h3>Konum ve giriş</h3>
-      <p>Aynı taraftaki el baş arkasına alındığında latissimus dorsinin ön kenarıyla pektoralis majörün lateral kenarı arasındaki alan açılır. [[K5 s. 50]] Tepesi aksillanın altında olan üçgenin tabanı beşinci interkostal aralıktan geçen yatay çizgidir. [[K5 s. 50]]</p>
       <p>K5’in çiziminde midaksiller hat ve meme başı düzeyi de gösterilir. [[K5 s. 50]] Yer belirlendikten sonra gerekirse cilt altına epinefrinli lidokain (en çok 3 mg/kg) infiltre edilip küçük bir deri kesisi yapılır. [[K5 s. 50]]</p>
     </div>
     <div class="card"><h3>Küçük ve orta çap</h3>
@@ -166,7 +165,7 @@ SAYFALAR['dersler/anatomi/01d'] = {
   </div>
   <details class="note plain"><summary>İki ayrı konum sorusu</summary>
     <p><b>Plevral sıvı için giriş yeri seçimiyle tüpün son konumunu doğrulamak arasında nasıl bir ayrım yaparsınız?</b></p>
-    <p>Girişten önce ultrason sıvının bölmelere ayrıldığı yerleri ve plevra kalınlaşmasını gösterir. [[K5 s. 49]] Gerçek zamanlı izlemenin ek yararı, solunum boyunca diyaframı seçebilmektir. [[K5 s. 49]] Yan göğüs duvarında güvenli üçgeni sınırlandırmak için iki kas kenarını ve beşinci interkostal aralığı kullanın. [[K5 s. 50]]</p>
+    <p>Girişten önce ultrason sıvının bölmelere ayrıldığı yerleri ve plevra kalınlaşmasını gösterir. [[K5 s. 49]] Gerçek zamanlı izlemenin ek yararı, solunum boyunca diyaframı seçebilmektir. [[K5 s. 49]]</p>
     <p>Tüpün hangi teknikle ilerletildiğini çapıyla birlikte belirtin. [[K5 s. 51]] Küçük çapta tel ve dilatör kullanılabilirken büyük çapta künt diseksiyon gerekir. [[K5 s. 51]] Son konumu değerlendirme adımı tüm intraplevral kateterler için akciğer grafisidir. [[K5 s. 51]]</p>
   </details>
 </section>
@@ -228,7 +227,7 @@ SAYFALAR['dersler/anatomi/01d'] = {
 <section class="wrap blk ders-sec" id="an01d-sinir">
   <h2>Göğüs duvarının sinirlerini blok anatomisiyle okumak</h2>
   <p class="intro">İnterkostal sinirler T1–T11’in anterior primer ramuslarıdır ve her biri kendi aralığının nörovasküler demetinde ilerler. [[K5 s. 54]]</p>
-  <div class="viz"><div class="viz-head"><h3>İnterkostal blokta kemik, demet ve iğne ucu</h3></div><div data-viz="an01d_blok"></div><p class="viz-cap" aria-live="polite"></p></div>
+  <div class="viz"><div class="viz-head"><h3>İnterkostal blokta kemik ve demet</h3></div><div data-viz="an01d_blok"></div><p class="viz-cap" aria-live="polite"></p></div>
   <div class="an01d-kartlar">
     <div class="card"><h3>Segmental dağılım</h3>
       <p>İnterkostal sinirler gövdenin ve üst kol medial yüzünün segmental duyusunu, interkostal ve ön karın duvarı kaslarının motor innervasyonunu sağlar. [[K5 s. 55]] Alt beş sinir (T7–T11) karında internal oblik ile transversus abdominis arasında, ikinci ve üçüncü kas katmanları arasındaki düzlemi korur. [[K5 s. 54–55]]</p>
@@ -244,8 +243,7 @@ SAYFALAR['dersler/anatomi/01d'] = {
     </div>
     <div class="card"><h3>Blokta uygulama ve doz</h3>
       <p>K5, interkostal bloğu toraks veya üst karın cerrahisi sonrası ağrıda, kaburga kırıklarında ve postherpetik nevralji gibi kronik ağrılarda tarif eder. [[K5 s. 56]]</p>
-      <p>Hedef kaburga açısına yakındır, hasta oturabilir, yan veya yüzüstü yatabilir. [[K5 s. 56]] Cilt altı infiltrasyonunu alt kenarın palpasyonu, derinin hafifçe sefalade kaydırılması ve kısa iğneyle kemik teması izler. [[K5 s. 56]]</p>
-      <p>Alt kenardan sıyrılan iğne hafif sefalade 3–5 mm ilerletilir, dikkatli aspirasyonun ardından 3–5 mL lokal anestezik verilir. [[K5 s. 56]] Birden çok enjeksiyon gerekebildiğinden ve bölgeden dolaşıma emilim hızlı olduğundan toplam doz gözetilir. [[K5 s. 56]]</p>
+      <p>Birden çok enjeksiyon gerekebildiğinden ve bölgeden dolaşıma emilim hızlı olduğundan toplam doz gözetilir. [[K5 s. 56]]</p>
     </div>
   </div>
   <nav class="ders-gec" aria-label="Sinir Bloğu Atlası">

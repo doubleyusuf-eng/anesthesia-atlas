@@ -52,18 +52,6 @@ SAYFALAR['dersler/anatomi/01e'] = {
   <h2>Mediastenin dört bölümü</h2>
   <p class="intro">İki plevra kesesi arasında kalan mediasteni tarif ederken perikardı sınır olarak kullanırız. [[K5 s. 56–57]]</p>
   <div class="viz"><div class="viz-head"><h3>Perikardın çevresini okuyun</h3></div><div data-viz="an01e_bolmeler"></div><p class="viz-cap" aria-live="polite"></p></div>
-  <dl class="an01e-satirlar">
-    <div><dt>Orta</dt><dd>Perikard ve içindekiler orta mediasteni doldurur. [[K5 s. 57]]</dd></div>
-    <div><dt>Ön</dt><dd>Sternumun arka yüzünden perikarda kadar uzanır. [[K5 s. 57]]</dd></div>
-    <div><dt>Arka</dt><dd>Üst kısmı perikardın, alt kısmı diyaframın arkasında kalır. [[K5 s. 57]]</dd></div>
-    <div><dt>Üst</dt><dd>Perikardın üstünden toraks girişine uzanır. [[K5 s. 57]]</dd></div>
-  </dl>
-  <details class="an01e-okuma"><summary>Sagittal şemada yönünüzü nasıl bulursunuz?</summary>
-    <p>Önce sternumu ve omurgayı iki karşı sınır olarak bulun. [[K5 s. 57]] Kalbi içine alan perikardı işaretlediğinizde orta mediastenin yerini belirlemiş olursunuz. [[K5 s. 57]] Perikarddan sternuma ilerleyen bir çizgi ön mediastene girer. [[K5 s. 57]] Aynı çizgiyi yukarı, toraks girişine doğru izlerseniz üst mediastene geçersiniz. [[K5 s. 57]]</p>
-  </details>
-  <details class="an01e-okuma"><summary>Arka mediasteni neden iki komşuyla tarif ediyoruz?</summary>
-    <p>Şemayı önce perikard hizasında, sonra daha aşağıda okuyun. [[K5 s. 57]] Üst kısımda arka mediastenin ön komşusu perikarddır. [[K5 s. 57]] Daha aşağıda bu komşuluğu diyafram üstlenir. [[K5 s. 57]] Bu dört bölüm, iki plevra kesesi arasındaki yapılara konum tarif etmek için kullanılan yaklaşık sınırlardır. [[K5 s. 56–57]]</p>
-  </details>
 </section>
 
 <section class="wrap blk ders-sec" id="an01e-loblar">
@@ -100,12 +88,7 @@ SAYFALAR['dersler/anatomi/01e'] = {
     <div><dt>Derin komşuluklar</dt><dd>Akciğer kaldırıldığında birinci kaburga, torakal sempatik zincir ve büyük splanknik sinire katılan lifler de görülebilir. [[K5 s. 60–61]] Sağ kökte bronş ve pulmoner damarlarla birlikte kesilmiş plevra kenarı seçilir. [[K5 s. 60]]</dd></div>
     <div><dt>Kökün kılıfı</dt><dd>Plevra kılıfı bronşu, pulmoner arteri, iki pulmoner veni, bronşiyal damarları, lenf damarlarını, düğümleri ve otonom sinirleri sarar. [[K5 s. 62]] Kök yapıları ön ve arka pulmoner sinir pleksusları arasındadır. [[K5 s. 62]]</dd></div>
     <div><dt>Kökün iç düzeni</dt><dd>Kalp ve büyük damar kökleri bronşların önünde olduğundan hilusta bronş pulmoner damarların arkasında kalır. [[K5 s. 62]] Bronşiyal damarlar bronşun arka yüzüne yaslanır. [[K5 s. 62]] Pulmoner arter atriyumların üst kenarını izlediği için sol atriyuma açılan venlerin üstündedir. [[K5 s. 62]] Sağda üst lob bronşu damarların hem üstünde hem arkasındadır. [[K5 s. 62]]</dd></div>
-    <div><dt>Kökün dış düzeni</dt><dd>Solda önde frenik sinir, arkada inen aort ve vagus, üstte aort arkı, altta pulmoner bağ bulunur. [[K5 s. 62]] Sağda önde superior vena kava ve frenik sinir, arkada vagus, üstte azigos veni, altta pulmoner bağ vardır. [[K5 s. 63]]</dd></div>
   </dl>
-  <details class="an01e-okuma"><summary>Bir damar ve bir sinirle tarafı nasıl bulursunuz?</summary>
-    <p>Kökün önündeki frenik siniri tek başına görmek tarafı ayırt ettirmez, çünkü aynı komşuluk iki tarafta da vardır. [[K5 s. 62–63]] Sinirin yanında superior vena kavayı ve kökün üzerinde bir ven arkını bulursanız sağ köke bakıyorsunuz. [[K5 s. 63]]</p>
-    <p>Üstte aort arkı, arkada ise vagusun yanında inen aort varsa kök soldadır. [[K5 s. 62]] Her iki görünümde de pulmoner bağı arayacağınız yer kökün altıdır. [[K5 s. 62–63]]</p>
-  </details>
   <details class="an01e-okuma"><summary>Kök içindeki yapıları hangi ipuçlarıyla sıralarsınız?</summary>
     <p>İki pulmoner veni önce boşaldıkları sol atriyuma kadar düşünün. [[K5 s. 62]] Atriyumların üst kenarından gelen pulmoner arter bu venlerin üzerinde yer alır. [[K5 s. 62]] Bronş kalbin arkasındaki düzlemden geldiğinden kesitte pulmoner damarların arkasındadır. [[K5 s. 62]] Sağda damarların üzerinde de bir bronş kesiti görmeniz bu mantığı bozmaz: üst lob bronşu daha yukarıda olsa da damarların arkasındadır. [[K5 s. 62]]</p>
   </details>
@@ -114,23 +97,16 @@ SAYFALAR['dersler/anatomi/01e'] = {
 <section class="wrap blk ders-sec" id="an01e-segment">
   <h2>Segment bronşlarının yol haritası</h2>
   <p class="intro">Bir bronkopulmoner segmentin kendine ait bronşu, pulmoner arter dalı ve komşularından ayrı parankimi vardır. [[K5 s. 63]] Rezeksiyon, postüral drenaj ve radyolojik lokalizasyon bu düzene dayanır. [[K5 s. 63]]</p>
-  <div class="viz"><div class="viz-head"><h3>Lob seçerek segmentleri karşılaştırın</h3></div><div data-viz="an01e_segment"></div><p class="viz-cap" aria-live="polite"></p></div>
+  <div class="viz"><div class="viz-head"><h3>Bir lob seçip segment bronşlarını okuyun</h3></div><div data-viz="an01e_segment"></div><p class="viz-cap" aria-live="polite"></p></div>
   <dl class="an01e-satirlar">
-    <div><dt>Sağ üst lob · 1–3</dt><dd>Ana bronş yaklaşık 2,5 cm sonra üst lob bronşunu dik açıyla verir. [[K5 s. 63]] Yaklaşık 1 cm sonra tek üçlenme veya birbirine yakın iki çatallanma görülür. [[K5 s. 63]] Apikal dal (1) yukarı ve yana, posterior (2) arkaya, yana ve hafif yukarı, anterior (3) öne, hafif yana ve aşağı gider. [[K5 s. 63–64]]</dd></div>
-    <div><dt>Sağ orta lob · 4–5</dt><dd>Ana bronş üst lob ayrımından sonra yaklaşık 3 cm daha ilerler. [[K5 s. 63]] Öne ve aşağı ayrılan orta lob bronşu 1–1,5 cm sonra lateral (4) ve medial (5) dallara bölünür. [[K5 s. 63–64]] Pulmoner arter, kesin adı yerleşmemiş bu ara bölümün üzerinden geçer. [[K5 s. 63]] Eski adlandırmada ana bronşun alt bölümüne hiparteriyel, arterin üstündeki sağ üst lob bronşuna eparteriyel bronş denir. [[K5 s. 63]]</dd></div>
+    <div><dt>Sağ üst lob · 1–3</dt><dd>Ana bronş yaklaşık 2,5 cm sonra üst lob bronşunu dik açıyla verir. [[K5 s. 63]] Üst lob bronşunun ilk ayrımı yaklaşık 1 cm sonradır. [[K5 s. 63]] Apikal dal (1) yukarı ve yana, posterior (2) arkaya, yana ve hafif yukarı, anterior (3) öne, hafif yana ve aşağı gider. [[K5 s. 63–64]]</dd></div>
+    <div><dt>Sağ orta lob · 4–5</dt><dd>Ana bronş üst lob ayrımından sonra yaklaşık 3 cm daha ilerler. [[K5 s. 63]] Orta lob bronşu öne ve aşağı ilerler, 1–1,5 cm sonra dallanır. [[K5 s. 63–64]] Pulmoner arter, kesin adı yerleşmemiş bu ara bölümün üzerinden geçer. [[K5 s. 63]] Eski adlandırmada ana bronşun alt bölümüne hiparteriyel, arterin üstündeki sağ üst lob bronşuna eparteriyel bronş denir. [[K5 s. 63]]</dd></div>
     <div><dt>Sağ alt lob · 6</dt><dd>Apikal (superior) segment bronşu orta lob çıkışının karşısından ve hemen altından, bazen aynı düzeyden çıkar. [[K5 s. 63]] En çok 1 cm’lik gövdesi arkaya uzanıp superior, medial ve lateral dalları verir. [[K5 s. 63]] Yatan hastada geriye yönelen bu dalda yabancı cisim veya atılamayan sekresyon sık birikir. [[K5 s. 63]]</dd></div>
     <div><dt>Sağ alt lob · 7–10</dt><dd>Superior dalın yaklaşık 1,5 cm altında ana gövdenin medialinden medial bazal (kardiyak, 7) bronş çıkar. [[K5 s. 64]] Sonraki anterior bazal (8) aşağı, öne ve yana, lateral bazal (9) aşağı ve yana gider. [[K5 s. 64]] En büyük dal olan posterior bazal (10), ana gövdenin doğrultusunda aşağı ve arkaya iner. [[K5 s. 64]]</dd></div>
-    <div><dt>Sol üst lob · 1–3</dt><dd>Sol ana bronş üst lob dalını vermeden önce 5 cm ilerler. [[K5 s. 65]] Pulmoner arter bronşun üstünden kavis çizdiği için solda eparteriyel bronş bulunmaz. [[K5 s. 65]] Üst lob bronşu yaklaşık 1 cm laterale gider, sonra üst ve alt (lingular) bölümlere ayrılır. [[K5 s. 65]] Üst bölümde ayrı anterior (3) daldan sonra genellikle apikal ve posterior dalları veren ortak apikoposterior gövde (1–2) çıkar. [[K5 s. 64–65]] Bazen üçü ayrı kökten doğar. [[K5 s. 65]]</dd></div>
-    <div><dt>Lingula · 4–5</dt><dd>Lingula sol üst lobun ön-altındaki dil biçimli çıkıntıdır. [[K5 s. 65–66]] Bronşu aşağı, öne ve biraz laterale gidip 1–2 cm sonra üst (4) ve alt (5) dallara ayrılır. [[K5 s. 64–66]] Bu aşağı yönelim, enfeksiyon ve bronşektazide lingulanın sol alt lobla birlikte sık tutulmasını açıklar. [[K5 s. 66]]</dd></div>
-    <div><dt>Sol alt lob · 6, 8–10</dt><dd>Apikal, anterior bazal, lateral bazal ve posterior bazal dalların düzeni sağa benzer. [[K5 s. 64–66]] Kitabın tarif ettiği dağılımda ayrı medial bazal dal yoktur. [[K5 s. 66]]</dd></div>
+    <div><dt>Sol üst lob · 1–3</dt><dd>Sol ana bronş üst lob dalını vermeden önce 5 cm ilerler. [[K5 s. 65]] Pulmoner arter bronşun üstünden kavis çizdiği için solda eparteriyel bronş bulunmaz. [[K5 s. 65]] Üst lob bronşu yaklaşık 1 cm laterale gider, sonra üst ve alt (lingular) bölümlere ayrılır. [[K5 s. 65]] Üst bölümde genellikle önce anterior dal, sonra apikoposterior gövde ayrılır. [[K5 s. 64–65]] Bazen üçü ayrı kökten doğar. [[K5 s. 65]]</dd></div>
+    <div><dt>Lingula · 4–5</dt><dd>Lingula sol üst lobun ön-altındaki dil biçimli çıkıntıdır. [[K5 s. 65–66]] Bronşu aşağı, öne ve biraz laterale gider, 1–2 cm sonra dallanır. [[K5 s. 64–66]] Bu aşağı yönelim, enfeksiyon ve bronşektazide lingulanın sol alt lobla birlikte sık tutulmasını açıklar. [[K5 s. 66]]</dd></div>
+
   </dl>
-  <details class="an01e-okuma"><summary>‘Dördüncü segment’ iki tarafta aynı yönü mü gösterir?</summary>
-    <p>Önce tarafı, sonra lobu söyleyin. [[K5 s. 63–66]] Sağda 4 ve 5 numaraları orta lobun lateral ve medial segmentleridir. [[K5 s. 64]] Solda aynı numaralar üst loba ait lingulanın superior ve inferior segmentlerini gösterir. [[K5 s. 64–66]] Bu nedenle bronşu tarif ederken numaranın yanına yönü eklemek, karşı akciğerdeki eş numaralı dalı işaretleme hatasını önler. [[K5 s. 64–66]]</p>
-  </details>
-  <details class="an01e-okuma"><summary>Alt lob haritasında iki ayrı ‘apikal’ ifadesini nasıl ayırırsınız?</summary>
-    <p>Sağ üst lobun apikal bronşu yukarı ve yana giden 1 numaralı daldır. [[K5 s. 63–64]] Sağ alt lobun apikal bronşu ise 6 numaralı daldır ve orta lob çıkışının hemen altında arkaya döner. [[K5 s. 63–64]]</p>
-    <p>Sağ bazal bronşları ararken 6 numaralı dalın çıkışından yaklaşık 1,5 cm daha aşağı inmek, ilk olarak medialdeki kardiyak dalı bulmanızı sağlar. [[K5 s. 64]] Solda aynı karşılaştırmayı yaptığınızda haritada 6’dan sonra 8, 9 ve 10 gelir. [[K5 s. 64–66]]</p>
-  </details>
 </section>
 
 <section class="wrap blk ders-sec" id="an01e-bronkoskopi">
@@ -162,7 +138,7 @@ SAYFALAR['dersler/anatomi/01e'] = {
     <div><dt>Kas ağı</dt><dd>Elastik tabakanın derinindeki düz kas lifleri yüzeyin iki noktası arasındaki en kısa yolu izleyen jeodezik bir ağ kurar. [[K5 s. 68]] Bu düzen lif kaymasını sınırlarken tüp içinde basınç üretmeye ve basınca dayanmaya elverişlidir. [[K5 s. 68]] Dallar daraldıkça kasın göreli payı artar ve terminal bronşiyollerde en yüksek düzeye çıkar. [[K5 s. 68]] Kas, alveoler kanaldan atriyuma geçişte sfinkter oluşturur ve daha distalde kaybolur. [[K5 s. 68]]</dd></div>
     <div><dt>Kıkırdak desteği</dt><dd>Akciğer dışındaki ana bronşların halkaları, akciğer içindeki dallarda yerini dış fibröz tabakaya gömülü düzensiz plaklara bırakır. [[K5 s. 68]] Çatallanmayı eyer biçimli kıkırdak destekler. [[K5 s. 68]] Distale doğru küçülüp seyrekleşen kıkırdaklar yaklaşık 0,6 mm çapındaki bronşiyollerde kaybolur. [[K5 s. 68]]</dd></div>
     <div><dt>Bronşiyol ve respiratuvar bronşiyol</dt><dd>Bronşiyolde görece kalın kasla az goblet hücreli silyalı kübik epitel arasında ince elastik lamina vardır. [[K5 s. 68]] Respiratuvar bronşiyol duvarındaki küçük alveoller ve silyasız kübik epitel geçişi tanıtır. [[K5 s. 68–69]]</dd></div>
-    <div><dt>Kanal, atriyum, kese</dt><dd>Respiratuvar bronşiyolün distal ucu alveoler kanaldır. [[K5 s. 69]] Her kanal yaklaşık küresel 3–6 atriyuma açılır. [[K5 s. 69]] Atriyumlardan çıkan hava keselerinin duvarlarında ince duvarlı hava hücreleri (alveoller) bulunur. [[K5 s. 69]] Bir bronşiyol ve bütün alt dalları primer akciğer lobülünü oluşturur. [[K5 s. 69]]</dd></div>
+    <div><dt>Primer akciğer lobülü</dt><dd>Bir bronşiyol ve bütün alt dalları primer akciğer lobülünü oluşturur. [[K5 s. 69]]</dd></div>
     <div><dt>Hava–kan bariyeri</dt><dd>Alveol epiteli çekirdek dışında yalnız 0,2 µm kalınlığa iner ve rutin preparatta çoğu zaman seçilemez. [[K5 s. 67]] Elektron mikroskopisi ve özel boyalar ince bazal membran üzerindeki epitelin kesintisiz olduğunu gösterir. [[K5 s. 67]] Kandan havaya sırayla kapiller duvar, kapiller bazal membran, alveoler bazal membran ve alveoler epitel geçilir. [[K5 s. 67]]</dd></div>
     <div><dt>Sürfaktan</dt><dd>Yassı alveol hücreleri arasındaki iri, vakuollü tip II pnömositler alveollerin kollapsını önleyen yüzey etkin lipoprotein kompleksi salgılar. [[K5 s. 67]] Miktarı fetal olgunlaşmayla artar ve amniyon sıvısındaki lesitin üretime işaret eder. [[K5 s. 68]] İmmatüriteye veya genetik bozukluğa bağlı eksiklik yenidoğanda solunum sıkıntısı sendromuna yol açar. [[K5 s. 68]]</dd></div>
   </dl>

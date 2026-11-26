@@ -39,11 +39,12 @@ SAYFALAR['dersler/anatomi/01a'] = {
 <button type="button" data-scroll="an01a-damak"><span>02</span>Damak</button>
 <button type="button" data-scroll="an01a-burun"><span>03</span>Burun duvarları</button>
 <button type="button" data-scroll="an01a-sinus"><span>04</span>Sinüs drenajı</button>
-<button type="button" data-scroll="an01a-duyu"><span>05</span>Damarlar ve duyu</button>
-<button type="button" data-scroll="an01a-hava"><span>06</span>Hava ve tüp</button>
-<button type="button" data-scroll="an01a-p1"><span>07</span>Part I</button>
-<button type="button" data-scroll="an01a-p2"><span>08</span>Part II</button>
-<button type="button" data-scroll="an01a-ozet"><span>09</span>Özet</button>
+<button type="button" data-scroll="an01a-antrum"><span>05</span>Sinüs komşulukları</button>
+<button type="button" data-scroll="an01a-duyu"><span>06</span>Damarlar ve duyu</button>
+<button type="button" data-scroll="an01a-hava"><span>07</span>Hava ve tüp</button>
+<button type="button" data-scroll="an01a-p1"><span>08</span>Part I</button>
+<button type="button" data-scroll="an01a-p2"><span>09</span>Part II</button>
+<button type="button" data-scroll="an01a-ozet"><span>10</span>Özet</button>
 </nav>
 <section class="wrap blk ders-sec an01a-icerik" id="an01a-agiz">
 <h2>Ağız muayenesinde hangi açıklık nerede aranır?</h2>
@@ -126,8 +127,12 @@ SAYFALAR['dersler/anatomi/01a'] = {
 </tbody></table></div>
 <p>Sfenoetmoidal reses kısa üst konka ile sfenoid gövdenin ön yüzü arasındadır. [[K5 s. 8]] Orta meatusta orta etmoid hücreler etmoid bullayı kabartır ve yüzeyine açılır. [[K5 s. 8]] Bullanın altındaki semilunar hiatus, önde kıvrılıp ön etmoid hücrelerin boşaldığı infundibulumu oluşturur. [[K5 s. 8]]</p>
 <p>Sinüslerin boyutu ve yayılımı kişiye göre değişir, iki taraf nadiren simetriktir. [[K5 s. 9]] Yenidoğanda maksiller ve sfenoid taslaklar vardır. [[K5 s. 9]] Diğer sinüsler daimi dişlerin sürmesi ve yüzün uzamasıyla yaklaşık 7–8 yaşında belirginleşir, sinüsler tam boyutlarına ancak ergenlikte ulaşır. [[K5 s. 9]]</p>
+</section>
+
+<section class="wrap blk ders-sec an01a-icerik" id="an01a-antrum">
+<h2>Sinüslerin komşulukları</h2>
+<p class="intro">En büyük sinüs olan Highmore antrumu maksilla gövdesinde piramit biçimindedir. [[K5 s. 9]] Piramidin tabanı burun yan duvarına dayanır, tepesi dışa, zigomatik çıkıntıya yönelir. [[K5 s. 9]]</p>
 <div class="viz"><div class="viz-head"><h3>Maksiller sinüsün komşuları</h3></div><div data-viz="an01a_antrum"></div><p class="viz-cap" aria-live="polite"></p></div>
-<p>En büyük sinüs olan Highmore antrumu maksilla gövdesinde piramit biçimindedir. [[K5 s. 9]] Piramidin tabanı burun yan duvarına dayanır, tepesi dışa, zigomatik çıkıntıya yönelir. [[K5 s. 9]]</p>
 <ul class="ozet">
 <li><b>Alt duvar.</b> Sinüs alveoler çıkıntıya uzanır, bu çıkıntı burun tabanının yaklaşık 1,25 cm altındadır. [[K5 s. 9]] En az birinci ve ikinci moların kökleri kabarıklık yapar. [[K5 s. 9]] Sayı değişebilir, kanin, premolar ve molar dişlerin tümü iz bırakabilir ve bir veya birkaç kök tabanı delebilir. [[K5 s. 9]]</li>
 <li><b>Tavan.</b> Maksillanın orbital plağı aynı zamanda maksiller sinirin infraorbital dalının geçtiği kanalı taşır. [[K5 s. 9]]</li>
@@ -147,8 +152,6 @@ SAYFALAR['dersler/anatomi/01a'] = {
 <h2>Burunda damar ve sinir dağılımı</h2>
 <p class="intro">Burun vestibülünün hemen iç tarafındaki ön-alt septumda yüzeyel damarlar birleşir ve burun kanamalarının yaklaşık %90’ı bu Little alanından kaynaklanır. [[K5 s. 11]] [[K5 s. 13]]</p>
 <div class="viz"><div class="viz-head"><h3>Septumdan venöz bağlantılara</h3></div><div data-viz="an01a_damar"></div><p class="viz-cap" aria-live="polite"></p></div>
-<div class="cols"><div class="card"><h3>Üst bölümden septuma</h3><p>Burun boşluğunun üst kısmındaki ön ve arka etmoidal arterleri geriye doğru izleyince oftalmik artere, oradan internal karotise ulaşılır. [[K5 s. 10–11]]</p><p>Alt kısımda maksiller arterin sfenopalatin dalı dağılır. [[K5 s. 11]] Ön-alt septumda ona katılan damar, fasiyal arterin üst labial dalından ayrılan septal daldır. [[K5 s. 11]]</p></div>
-<div class="card"><h3>Pleksustan kafa içine</h3><p>Submukozal venöz pleksusun kanı sfenopalatin, fasiyal ve oftalmik venlere gider. [[K5 s. 11]] Oftalmik venlerin bağlantısı kavernöz sinüse uzanır. [[K5 s. 11]]</p><p>İkinci bağlantıda küçük venler kribriform plağı geçer ve beynin orbital lobunun alt yüzündeki venlere katılır. [[K5 s. 11]]</p></div></div>
 <p>Damarları örten mukoza Little alanında incelir ve damarlar yüzeyden görülebilir. [[K5 s. 13]] Burun içinde veya yakınındaki çıban ve diğer enfeksiyonların tehlikesi, venlerin kafa içine uzanan bağlantılarından kaynaklanır. [[K5 s. 11]]</p>
 <h3>Koku alanı ve genel duyu</h3>
 <p>Olfaktör sinir (I), septum ve yan duvarların en üstündeki yaklaşık 2 cm²’lik özelleşmiş alana dağılır. [[K5 s. 11]] Genel duyuyu trigeminal sinirin oftalmik bölümünden (V1) nazosiliyer dallar ve maksiller bölümünden (V2) gelen dallar taşır. [[K5 s. 11]]</p>
@@ -167,7 +170,7 @@ SAYFALAR['dersler/anatomi/01a'] = {
 
 <section class="wrap blk ders-sec an01a-icerik" id="an01a-hava">
 <h2>Havanın ve nazal tüpün izlediği yollar</h2>
-<p class="intro">Solunan hava burun boşluğunun üst bölümünde kavis çizerken nazotrakeal tüp için geçit alt konka ile burun tabanı arasındadır. [[K5 s. 13–14]]</p>
+<p class="intro">Burunda hava ısınır, nemlenir ve süzülür. [[K5 s. 13]] Nazal entübasyonda dar bir geçit, tüpün ilerlemesini güçleştirebilir. [[K5 s. 14]]</p>
 <div class="viz"><div class="viz-head"><h3>Havanın kavisli yolu ve tüpün taban boyunca geçişi</h3></div><div data-viz="an01a_yol"></div><p class="viz-cap" aria-live="polite"></p></div>
 <h3>Solunum yüzeyi</h3>
 <ul class="ozet">

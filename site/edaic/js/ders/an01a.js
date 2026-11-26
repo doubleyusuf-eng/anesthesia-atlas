@@ -76,29 +76,24 @@
     ],
   });
 
-  VIZ.an01a_damar = (el) => SEKIL.adim(el, {
-    baslik: 'Burunda damar bağlantıları', vb: [480, 200], vbDar: [350, 200], oto: false,
-    adimlar: [
-      baglanti('Üst bölüm', ['İnternal karotis', 'Oftalmik arter', 'Ön ve arka etmoidal arterler'], 'Oftalmik arterin iki etmoidal dalı burun boşluğunun üst bölümünü besler. [[K5 s. 10–11]]'),
-      baglanti('Little alanı', [['Maksiller → sfenopalatin', 'Fasiyal → üst labial → septal dal'], 'Ön-alt septum'], 'Alt bölüme dağılan sfenopalatin arter, vestibülün hemen içindeki septumda üst labial arterin septal dalıyla birleşir. [[K5 s. 11]]'),
-      baglanti('Venöz dönüş', ['Submukozal venöz pleksus', ['Sfenopalatin, fasiyal', 've oftalmik venler']], 'Zengin submukozal ağ bu üç venöz sisteme boşalır, oftalmik venler kavernöz sinüsle bağlantı kurar. [[K5 s. 11]]'),
-      baglanti('Kribriform plak', ['Küçük nazal venler', 'Kribriform plak', 'Orbital lobun alt yüzündeki venler'], 'Küçük venler kribriform plağı geçerek beynin orbital lobunun alt yüzündeki venlere ulaşır. [[K5 s. 11]]'),
-    ],
+  VIZ.an01a_damar = (el) => SEKIL.cizim(el, {
+    baslik: 'Nazal septumun arterleri ve venleri',
+    giris: 'Septumun üstündeki arterleri, vestibülün hemen içindeki damar birleşimini ve tavandan geçen venleri bulun. [[K5 s. 10–11]]',
+    gorunumler: [{ ad: 'Septuma yandan bakış', resim: 'img/anatomi/01a-septum.webp', en: 1024, boy: 683, noktalar: [
+      nokta(471, 159, 'Etmoidal arterler', 'Burun boşluğunun üst bölümünü ön ve arka etmoidal arterler besler. Bu damarlar internal karotisten ayrılan oftalmik arterin dallarıdır. [[K5 s. 10–11]]'),
+      nokta(191, 454, 'Little alanı', 'Maksiller arterin sfenopalatin dalı alt bölümü besler. Vestibülün hemen içindeki ön-alt septumda fasiyal arterin üst labial dalından gelen septal dalla birleşir. [[K5 s. 11]]'),
+      nokta(456, 319, 'Submukozal venöz pleksus', 'Pleksus sfenopalatin, fasiyal ve oftalmik venlere boşalır. Oftalmik venler aracılığıyla kavernöz sinüsle bağlantı kurar. [[K5 s. 11]]'),
+      nokta(529, 108, 'Kribriform plağı geçen ven', 'Küçük nazal venler kribriform plağı geçerek beynin orbital lobunun alt yüzündeki venlere ulaşır. [[K5 s. 11]]'),
+    ] }],
   });
 
-  VIZ.an01a_yol = (el) => SEKIL.adim(el, {
-    baslik: 'Hava ile nazotrakeal tüpün yolları', vb: [512, 289], vbDar: [512, 289], oto: false,
-    ortak: (S) => S.cizgi([[28, 180], [84, 123], [140, 61], [214, 36], [317, 37], [386, 73], [414, 129], [416, 240], [395, 272]], { renk: 'muted' })
-      + S.cizgi([[35, 199], [115, 205], [338, 205], [361, 214], [366, 238], [343, 265]], { renk: 'muted' })
-      + S.t(220, 229, 'Burun tabanı', { a: 'middle', c: 'b' })
-      + S.t(18, 267, 'Ön', { c: 'b' }) + S.t(462, 267, 'Arka', { c: 'b' }),
-    adimlar: [
-      { ad: 'Solunan hava', metin: 'Hava alt meatusu doğrudan izlemez, burun boşluğunun üst kesimlerine doğru kavis çizerek nazofarenkse ulaşır (şematik yandan görünüm). [[K5 s. 13]]',
-        ciz: (S) => S.ok([[42, 184], [84, 158], [126, 118], [173, 88], [228, 75], [287, 76], [334, 92], [363, 120], [381, 161], [390, 203]], { renk: 'basic', w: 4 }) },
-      { ad: 'Nazal tüp', metin: 'Tüp burun tabanını izleyerek alt konkanın altından doğrudan arkaya yönelir. [[K5 s. 14]]',
-        ciz: (S) => S.ok([[40, 187], [118, 193], [265, 193], [375, 193]], { renk: 'clin', w: 5 }) },
-      { ad: 'Nazofarenkste dönüş', metin: 'Nazofarenksten geçerken tüp öne kıvrılmalıdır. [[K5 s. 14]]',
-        ciz: (S) => S.ok([[40, 187], [118, 193], [327, 193], [354, 195], [372, 202], [384, 216], [388, 232], [385, 247], [376, 263]], { renk: 'clin', w: 5 }) },
-    ],
+  VIZ.an01a_yol = (el) => SEKIL.cizim(el, {
+    baslik: 'Burun boşluğundan nazofarenkse geçiş',
+    giris: 'Yandan kesitte ön taraf solda, arka taraf sağdadır. Havanın geçtiği bölgeyi bulun, ardından mavi tüpü burun tabanından nazofarenkse kadar izleyin. [[K5 s. 13–14]]',
+    gorunumler: [{ ad: 'Yandan kesit', resim: 'img/anatomi/01a-pasaj.webp', en: 1024, boy: 683, noktalar: [
+      nokta(640, 153, 'Solunan hava', 'Hava alt meatusu doğrudan izlemez. Burun boşluğunun üst kesimlerine doğru kavis çizerek nazofarenkse ulaşır. [[K5 s. 13]]'),
+      nokta(414, 357, 'Burun tabanındaki tüp', 'Nazal tüp alt konkanın altından, burun tabanı boyunca doğruca arkaya ilerler. [[K5 s. 14]]'),
+      nokta(870, 505, 'Nazofarenkste dönüş', 'Tüp nazofarenksten geçerken öne doğru kıvrılmalıdır. [[K5 s. 14]]'),
+    ] }],
   });
 })();

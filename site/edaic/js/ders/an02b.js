@@ -1,49 +1,49 @@
 (function () {
   'use strict';
   const VIZ = window.VIZ;
-  const merkez = { a: 'middle', c: 'b' };
   const secenek = (ad, adlar) => ({ ad, id: 'secim', liste: adlar.map(ad => ({ ad, d: ad })) });
 
-  // İki septumun hangi yönden geliştiğini ve iki çıkışın nasıl oluştuğunu karşılaştırır.
-  const bolunmeler = [
-    ['AV açıklık', 'Dorsal ve ventral endokardiyal yastıklar orta hatta birleşerek ortak açıklığı sağ triküspit ve sol mitral açıklıklara ayırır. [[K5 s. 92]]',
-      'Ortak AV açıklık', 'Dorsal ve ventral yastıklar', 'Triküspit açıklık', 'Mitral açıklık'],
-    ['Atriyum', 'Primumda üst açıklık oluşurken sağındaki sekundum aşağı uzanır ve iki yaprak arasından sağdan sola geçiş mümkün olur. [[K5 s. 92]]',
-      'Ortak atriyum', 'Örtüşen iki septum', 'Sağ atriyum', 'Sol atriyum'],
-    ['Çıkış yolu', 'Aşağı büyüyen spiral septum, yukarı büyüyen kaslı septumla buluşunca iki ventrikülün çıkışları ayrılır. [[K5 s. 93]]',
-      'Trunkus arteriozus', 'Spiral septum', 'Pulmoner trunkus', 'Aort'],
-  ];
-  VIZ.an02b_bolunme = el => SEKIL.adim(el, {
-    baslik: 'Ortak boşlukların bölünmesi', vb: [640, 215], vbDar: [360, 215], oto: false,
-    adimlar: bolunmeler.map(([ad, metin, ortak, bolme, sag, sol]) => ({
-      ad, metin, ciz: S => {
-        const x = S.w / 2;
-        const dal = S.w / 4;
-        return S.kutu(x - 110, 8, 220, 45, { yazi: ortak })
-          + S.t(x, 88, bolme, merkez)
-          + S.ok([[x,100],[x,111],[dal,111],[dal,143]], { renk: 'basic' })
-          + S.ok([[x,100],[x,111],[3*dal,111],[3*dal,143]], { renk: 'clin' })
-          + S.kutu(8, 149, 2*dal-16, 46, { yazi: sag, dolgu: 'basic-soft' })
-          + S.kutu(2*dal+8, 149, 2*dal-16, 46, { yazi: sol, dolgu: 'clin-soft' });
-      },
-    })),
+  VIZ.an02b_bolunme = el => SEKIL.cizim(el, {
+    baslik: 'Gelişen kalpte bölünme', giris: 'Ortak atriyoventriküler açıklığı, atriyumu ve çıkış yolunu ayrı kesitlerde inceleyin. [[K5 s. 92–93]]',
+    gorunumler: [
+      { ad: 'AV açıklık', resim: 'img/anatomi/02b-septasyon.webp', en: 1024, boy: 437, kirp: [0, 12, 330, 408],
+        noktalar: [
+          { x: 166, y: 218, ad: 'Endokardiyal yastıklar', metin: 'Dorsal ve ventral yastıklar orta hatta birleşerek ortak atriyoventriküler açıklığı ikiye ayırır. [[K5 s. 92]]' },
+          { x: 82, y: 218, ad: 'Sağ açıklık', metin: 'Birleşen yastıkların sağında triküspit açıklık kalır. [[K5 s. 92]]' },
+          { x: 245, y: 219, ad: 'Sol açıklık', metin: 'Yastıkların solundaki geçit mitral açıklıktır. [[K5 s. 92]]' },
+        ] },
+      { ad: 'Atriyum', resim: 'img/anatomi/02b-septasyon.webp', en: 1024, boy: 437, kirp: [334, 23, 402, 382],
+        noktalar: [
+          { x: 569, y: 141, ad: 'Foramen sekundum', metin: 'Septum primum ortak atriyumun tavanından ve arka duvarından iner. [[K5 s. 92]] Yastıklarla birleşmeden önce üst bölümünde foramen sekundum oluşur. [[K5 s. 92]]' },
+          { x: 459, y: 224, ad: 'Septum sekundum', metin: 'Primumun sağındaki ikinci yaprak aşağı uzanır ve serbest alt kenarı primumdaki deliği örter. [[K5 s. 92]]' },
+          { x: 426, y: 277, ad: 'Serbest alt kenar', metin: 'Örtüşen iki yaprak, kanın sağ atriyumdan sol atriyuma geçebildiği kapaklı yolu, foramen ovaleyi oluşturur. [[K5 s. 92–93]]' },
+        ] },
+      { ad: 'Çıkış yolu', resim: 'img/anatomi/02b-septasyon.webp', en: 1024, boy: 437, kirp: [739, 0, 285, 437],
+        noktalar: [
+          { x: 881, y: 167, ad: 'Spiral septum', metin: 'Trunkus arteriozusu bölen spiral septum aşağı büyüyüp ventriküller arasındaki kaslı septumla birleşir. [[K5 s. 93]]' },
+          { x: 849, y: 40, ad: 'Pulmoner trunkus', metin: 'Ortak çıkış ayrılınca sağ ventrikülden gelen kan pulmoner trunkusa yönelir. [[K5 s. 93]]' },
+          { x: 966, y: 24, ad: 'Aort', metin: 'Sol ventrikülün çıkışı aorta açılır. [[K5 s. 93]]' },
+        ] },
+    ],
   });
 
-  VIZ.an02b_ark = el => SEKIL.sahne(el, {
-    baslik: 'Rekürren sinirin arterle ilişkisi', vb: [640, 245], vbDar: [360, 245],
-    secenek: secenek('Taraf', ['Sağ', 'Sol']),
-    metin: p => p.secim === 'Sağ'
-      ? 'Beşinci ark ve distal altıncı ark gerileyince sinir sağ dördüncü ark türevi olan subklavyen arterin altından döner. [[K5 s. 94]]'
-      : 'Sinir distal altıncı arkın kalıntısı olan ligamentum arteriozumu dolanır, çok daha büyük aort arkı bu bağın üzerinden geçer. [[K5 s. 94–95]]',
-    ciz: (S, t, p) => {
-      const x = S.w / 2, sag = p.secim === 'Sağ', y = sag ? 100 : 150;
-      return S.t(x-78, 24, 'Vagus', merkez) + S.t(x+76, 24, 'Larinkse', merkez)
-        + S.cizgi([[x-78,36],[x-78,222]], { renk: 'accent', w: 6 })
-        + S.ok([[x-78,54],[x-48,93],[x-31,y+27],[x-15,y+40],[x+12,y+40],[x+37,y+18],[x+76,36]], { renk: 'accent', w: 5 })
-        + S.daire(x, y, sag ? 22 : 11, { renk: sag ? 'crit' : 'muted', dolgu: sag ? 'crit-soft' : 'line' })
-        + (sag ? '' : S.daire(x, y-60, 36, { renk: 'crit', dolgu: 'crit-soft' }))
-        + S.t(x, 235, sag ? 'Sağ subklavyen arter' : 'Aort arkı ve altındaki bağ', merkez);
-    },
+  VIZ.an02b_ark = el => SEKIL.cizim(el, {
+    baslik: 'Rekürren laringeal sinirin dönüşü', giris: 'Her tarafta vagusu bulun ve dalının larinkse doğru döndüğü yeri seçin. [[K5 s. 94–95]]',
+    gorunumler: [
+      { ad: 'Sağ', resim: 'img/anatomi/02b-rekurren.webp', en: 1024, boy: 512, kirp: [0, 0, 425, 508],
+        noktalar: [
+          { x: 225, y: 140, ad: 'Sağ vagus', metin: 'Larinkse giden rekürren dal vagustan ayrılır. [[K5 s. 94]]' },
+          { x: 141, y: 258, ad: 'Sağ subklavyen arter', metin: 'Beşinci ark ile distal altıncı ark gerileyince sağdaki dönüşü dördüncü arkın türevi olan subklavyen arter belirler. [[K5 s. 94]]' },
+          { x: 240, y: 323, ad: 'Sağ rekürren sinir', metin: 'Dal subklavyen arterin altından döner ve larinkse doğru yükselir. [[K5 s. 94]]' },
+        ] },
+      { ad: 'Sol', resim: 'img/anatomi/02b-rekurren.webp', en: 1024, boy: 512, kirp: [500, 0, 524, 510],
+        noktalar: [
+          { x: 836, y: 83, ad: 'Sol vagus', metin: 'Sol rekürren laringeal sinir vagusun bir dalıdır. [[K5 s. 94]]' },
+          { x: 661, y: 210, ad: 'Aort arkı', metin: 'Aort arkı, kendisinden çok daha küçük olan ligamentum arteriozumun üzerinden geçer. [[K5 s. 94–95]]' },
+          { x: 766, y: 303, ad: 'Ligamentum arteriozum', metin: 'Pulmoner trunkusla bağlantılı kalan sol altıncı ark dorsal aortla bağlantısını korur: fetüste duktus arteriozusu, erişkinde bu bağı oluşturur. [[K5 s. 94–95]]' },
+          { x: 808, y: 294, ad: 'Sol rekürren sinir', metin: 'Sinir arkın altında bağı dolanarak larinkse döner. [[K5 s. 94–95]]' },
+        ] },
+    ],
   });
 
   // Her basamakta seçilen akım yukarıdan aşağıya okunur.
@@ -116,32 +116,23 @@
       ] }],
   });
 
-  VIZ.an02b_kesit = el => SEKIL.sahne(el, {
-    baslik: 'Ultrason kesiti ve kateterin son konumu', vb: [520, 255], vbDar: [360, 255],
-    secenek: secenek('Görünüm', ['Boyun kesiti', 'Kateter ucu']),
-    metin: p => p.secim === 'Boyun kesiti'
-      ? 'Şemada iğne ucu internal juguler ven içindedir, komşu karotis aynı kesitte izlenir. [[K5 s. 102–103]]'
-      : 'Uç, sağ atriyumun girişinde superior vena kava tarafında kalır. [[K5 s. 103]]',
-    ciz: (S, t, p) => {
-      const x = S.w/2;
-      if (p.secim === 'Kateter ucu') {
-        return S.kutu(x-65,10,130,139,{ yazi: ['Superior', 'vena kava'], dolgu:'basic-soft' })
-          + S.kutu(x-90,149,180,77,{ yazi:'Sağ atriyum', dolgu:'clin-soft' })
-          + S.cizgi([[x-38,12],[x-38,141]],{ renk:'accent', w:4 })
-          + S.daire(x-38,141,5,{ dolgu:'accent' })
-          + S.t(x-82,136,'Uç',{a:'end',c:'b'});
-      }
-      return S.kutu(8,32,S.w-16,13,{ dolgu:'muted' })
-        + S.t(S.w-18,25,'Deri',{a:'end'})
-        + S.kutu(8,46,S.w-16,48,{ dolgu:'line' })
-        + S.t(S.w-18,76,'Deri altı',{a:'end'})
-        + S.daire(x-62,143,39,{ dolgu:'basic-soft',renk:'basic' })
-        + S.daire(x+59,165,29,{ dolgu:'crit-soft',renk:'crit' })
-        + S.cizgi([[x-142,17],[x-62,143]],{ renk:'ink',w:3 })
-        + S.daire(x-62,143,4,{ dolgu:'ink' })
-        + S.t(x-114,23,'İğne',merkez)
-        + S.t(x-62,222,['İnternal','juguler ven'],merkez)
-        + S.t(x+59,222,'Karotis',merkez);
-    },
+  VIZ.an02b_kesit = el => SEKIL.cizim(el, {
+    baslik: 'Juguler giriş ve kateter ucunun konumu', giris: 'Boyun kesitinde ultrasonla tanınan yapıları, ikinci görünümde kateter ucunun kava ile ilişkisini seçin. [[K5 s. 102–103]]',
+    gorunumler: [
+      { ad: 'Boyun kesiti', resim: 'img/anatomi/02b-juguler-kesit.webp', en: 1024, boy: 683, kirp: [0, 0, 850, 468],
+        noktalar: [
+          { x: 452, y: 78, ad: 'Deri', metin: 'Kesitin yüzeyindeki ince tabaka deridir. [[K5 s. 102]]' },
+          { x: 398, y: 129, ad: 'Deri altı', metin: 'İğne deriyi geçtikten sonra deri altı dokusundan ilerler. [[K5 s. 102]]' },
+          { x: 354, y: 390, ad: 'İğne ucu', metin: 'Uç internal juguler ven lümenindedir ve ultrasonla gerçek zamanlı izlenebilir. [[K5 s. 102–103]]' },
+          { x: 241, y: 366, ad: 'İnternal juguler ven', metin: 'İğnenin girdiği ven, sağ alt boyunda ana karotisin lateralindedir. [[K5 s. 99]] [[K5 s. 102]]' },
+          { x: 542, y: 403, ad: 'Karotis arteri', metin: 'Vene komşu karotis aynı ultrason kesitinde ayırt edilir. [[K5 s. 102–103]]' },
+        ] },
+      { ad: 'Kateter ucu', resim: 'img/anatomi/02b-kaval-uc.webp', en: 1024, boy: 683, kirp: [398, 25, 280, 465],
+        noktalar: [
+          { x: 441, y: 155, ad: 'Superior vena kava', metin: 'Juguler ve subklavyen yollardan ilerletilen santral kateterin hedef damarı superior vena kavadır. [[K5 s. 103]]' },
+          { x: 467, y: 281, ad: 'Kateter ucu', metin: 'Uç, kavanın sağ atriyuma giriş düzeyinde ve damarın içinde kalır. [[K5 s. 103]]' },
+          { x: 530, y: 395, ad: 'Sağ atriyum', metin: 'Kavanın açıldığı sağ atriyum, resimde kateter ucunun aşağısındadır. [[K5 s. 103]]' },
+        ] },
+    ],
   });
 })();

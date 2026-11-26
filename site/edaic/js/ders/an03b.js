@@ -64,66 +64,47 @@
       + (kanalda ? '' : S.t(176,92,'≈45°',ortali));
   }
 
-  VIZ.an03b_defekt = el => SEKIL.adim(el, {
-    baslik: 'Nöral ark defektinde değişen dokular, şematik kesit', vb: [360, 195], oto: false,
-    adimlar: [
-      ['Occulta','Yalnız ark kapanmamıştır, meninksler ve sinir dokusu normaldir. [[K5 s. 125]]'],
-      ['Meningosel','Meninksler arka kemik açıklığından kese halinde çıkar, sinir dokusu keseye girmez. [[K5 s. 125]]'],
-      ['Miyelomeningosel','Omurilik veya kökler meningeal kesenin içine uzanır ve duvarına yapışık olabilir. [[K5 s. 125]]'],
-      ['Miyelosel','Nöral tüp kapanmayınca defektte kırmızı, granüler bir açık plak görülür ve merkezinden BOS sızar. [[K5 s. 125]] Kitap bu raşişizis biçimini yaşamla bağdaşmaz olarak tanımlar. [[K5 s. 125]]'],
-    ].map(([ad,metin]) => ({ad,metin})),
-    ortak: (S,i) => {
-      const kese = i === 1 || i === 2;
-      const zar = kese ? [[148,128],[163,91],[159,63],[164,41],[182,33],[200,41],[205,62],[197,91],[211,128]]
-        : [[148,128],[150,112],[164,101],[185,98],[202,107],[211,128]];
-      return S.t(12,23,'Arka', {c:'k'})
-        + S.cizgi([[84,161],[96,116],[149,87]],{renk:'muted',w:10})
-        + S.cizgi([[211,87],[264,116],[276,161]],{renk:'muted',w:10})
-        + (i < 3 ? S.cizgi(zar,{renk:'clin',w:4}) : '')
-        + (i === 3 ? S.cizgi([[155,89],[165,96],[175,89],[182,97],[193,88],[205,94]],{renk:'crit',w:8})
-          : S.daire(180,i === 2 ? 65 : 125,10,{renk:'basic',dolgu:'basic-soft'}))
-        + S.t(180,186,i === 3 ? 'Açık nöral plak' : ['Kese yok','Kesede yalnız meninks','Kesede sinir dokusu'][i],ortali);
-    },
+  VIZ.an03b_defekt = el => SEKIL.cizim(el, {
+    baslik: 'Arka ark açıklığı ve kesenin içeriği',
+    giris: 'Omurlara üstten bakıyorsunuz. Her örnekte arka taraf yukarıdadır. [[K5 s. 125–126]]',
+    gorunumler: [{ ad: 'Üstten', resim: 'img/anatomi/03b-defekt.webp', en: 1024, boy: 1024, noktalar: [
+      nokta(258, 235, 'Occulta · kanal içindeki sinir dokusu', 'Yalnız kemik ark kapanmamıştır. Kese yoktur, meninksler ve sinir dokusu normaldir. [[K5 s. 125]]'),
+      nokta(770, 83, 'Meningosel · meningeal kese', 'Meninksler arka açıklıktan kese halinde çıkar. Kesenin içinde sinir dokusu bulunmaz. [[K5 s. 125]]'),
+      nokta(270, 646, 'Miyelomeningosel · kesedeki kökler', 'Omurilik veya kökler kesenin içine uzanır ve duvarına yapışık olabilir. [[K5 s. 125]]'),
+      nokta(795, 626, 'Ayrık arkın kemik kenarı', 'Bu preparatta yalnız kemik kenarları görülür. Miyeloselde (raşişizis) nöral tüp kapanmaz, açıklığı kırmızı, granüler bir nöral plak doldurur. [[K5 s. 125]] Plağın merkezinden BOS sızar. [[K5 s. 125]] Kitap bu biçimi yaşamla bağdaşmaz olarak tanımlar. [[K5 s. 125]]'),
+    ] }],
   });
 
-  VIZ.an03b_gecis = el => SEKIL.adim(el, {
-    baslik: 'L5 ve S1 arasında segment sınırları, şematik', vb:[360,185], oto:false,
-    adimlar: [
-      { ad:'Sakralizasyon', metin:'L5 kısmen veya tamamen sakrumla kaynaşabilir, burada tam kaynaşma gösterilir. [[K5 s. 125]]' },
-      { ad:'Lomberizasyon', metin:'S1 sakrumun geri kalanından kısmen veya tamamen ayrılabilir, burada tam ayrılık gösterilir. [[K5 s. 125]]' },
-    ],
-    ortak: (S,i) => {
-      const blok = (y,h) => S.kutu(72,y,216,h,{dolgu:'basic-soft',renk:'basic'});
-      return (i === 0 ? blok(8,160) : blok(8,40) + blok(64,40) + blok(120,48))
-        + S.t(180,36,'L5',ortali) + S.t(180,89,'S1',ortali)
-        + S.t(180,150,'Sakrumun geri kalanı',ortali);
-    },
+  VIZ.an03b_gecis = el => SEKIL.cizim(el, {
+    baslik: 'L5 ve S1 geçiş varyantları',
+    giris: 'İki örnekte L5, S1 ve sakrumun geri kalanı arasındaki sınırları karşılaştırın. [[K5 s. 125]]',
+    gorunumler: [{ ad: 'Önden', resim: 'img/anatomi/03b-gecis.webp', en: 1024, boy: 1024, noktalar: [
+      nokta(260, 340, 'Sakralizasyon · L5–S1 sınırı', 'L5 sakrumla kısmen veya tamamen kaynaşabilir. Solda L5 ile hemen altındaki S1 arasında tam kaynaşma görülür. [[K5 s. 125]]'),
+      nokta(764, 393, 'Lomberizasyon · ayrı S1', 'S1 sakrumun geri kalanından kısmen veya tamamen ayrılabilir. Sağda en üstte L5, onun altında tamamen ayrılmış S1, altta sakrumun geri kalanı görülür. [[K5 s. 125]]'),
+    ] }],
   });
 
-  // Her seçimde bağ ortada, iki tutunma noktası üstte ve altta okunur.
-  function bagHaritasi(el, baslik, baglar) {
-    return SEKIL.adim(el, {
-      baslik, vb:[360,185], oto:false,
-      adimlar: baglar.map(([ad,ust,alt,metin]) => ({
-        ad, metin, ciz: S => S.cizgi([[180,39],[180,147]],{renk:'accent',w:4})
-          + S.kutu(18,8,324,40,{yazi:ust,dolgu:'paper'})
-          + S.kutu(45,70,270,40,{yazi:ad,dolgu:'accent-soft'})
-          + S.kutu(18,137,324,40,{yazi:alt,dolgu:'paper'}),
-      })),
-    });
-  }
-  VIZ.an03b_baglar = el => bagHaritasi(el,'Omurga bağlarının tutunma haritası',[
-    ['Supraspinöz','Spinöz çıkıntı ucu','Komşu spinöz çıkıntı ucu','Güçlü fibröz bağ C7’den sakruma kadar spinöz çıkıntıların uçlarını birleştirir. [[K5 s. 128]]'],
-    ['İnterspinöz','Spinöz çıkıntı gövdesi','Komşu spinöz çıkıntı gövdesi','İnterspinöz bağlar komşu çıkıntıların gövdeleri arasında uzanır ve özellikle boyunda ince, narindir. [[K5 s. 128]]'],
-    ['Sarı bağ','Lamina','Komşu lamina','Ligamenta flava komşu laminaları dikey elastik liflerle birleştirir. [[K5 s. 128]]'],
-    ['Ön longitudinal','Gövdenin ön kenarı','Diskin ön yüzü ve komşu kenar','C2’den üst sakruma uzanan bağ aşağıya doğru genişler, disklerin ön yüzlerine ve komşu gövde kenarlarına yapışır. [[K5 s. 128]]'],
-    ['Arka longitudinal','Gövdenin arka kenarı','Diskin arka yüzü ve komşu kenar','Gövde arkasındaki bağın disk ve gövde kenarlarındaki tutunmaları, ön longitudinal bağın tutunmalarına karşılık gelir. [[K5 s. 128]]'],
-  ]);
-  VIZ.an03b_dens = el => bagHaritasi(el,'Dens çevresinde bağların tutunma haritası',[
-    ['Transvers','Atlasın bir lateral kitlesi','Karşı lateral kitle','Medial yüzler arasında uzanan transvers bağ densi atlasın ön arkının arka fasetine bastırır. [[K5 s. 130]]'],
-    ['Çapraz','Oksiput','Aksis gövdesi','Transvers bağdan yukarı ve aşağı ayrılan zayıf longitudinal demetler transvers bölümle birlikte çapraz bağı oluşturur. [[K5 s. 130]]'],
-    ['Alar','Dens tepesinin yanı','Oksipital kondilin medial yüzü','İki kısa, güçlü alar bağ kafatasının aşırı dönmesini sınırlar. [[K5 s. 130]]'],
-    ['Aksesuar alar','Aksis gövdesi','Atlasın lateral kitlesi','Her yanda aksis gövdesinden atlasın lateral kitlesine bir aksesuar alar bağ uzanır. [[K5 s. 130]]'],
-    ['Apikal','Densin ucu','Foramen magnumun ön kenarı','İnce apikal demet embriyonik notokordun kraniyal uzantısından kalır. [[K5 s. 130]]'],
-  ]);
+  VIZ.an03b_baglar = el => SEKIL.cizim(el, {
+    baslik: 'Lomber omurlar arasında beş bağ',
+    giris: 'Boyuna kesitte gövdeler solda, spinöz çıkıntıların uçları sağdadır. [[K5 s. 128]]',
+    gorunumler: [{ ad: 'Boyuna kesit', resim: 'img/anatomi/03b-baglar.webp', en: 1024, boy: 683, noktalar: [
+      nokta(980, 292, 'Supraspinöz bağ', 'Bu güçlü fibröz bağ, C7’den sakruma kadar komşu spinöz çıkıntıların uçlarını birleştirir. [[K5 s. 128]]'),
+      nokta(811, 298, 'İnterspinöz bağ', 'Komşu spinöz çıkıntıların gövdeleri arasında uzanır. [[K5 s. 128]] Bu bağlar özellikle boyunda ince ve narindir. [[K5 s. 128]]'),
+      nokta(613, 300, 'Sarı bağ', 'Komşu laminaları ligamentum flavumun dikey elastik lifleri birleştirir. [[K5 s. 128]]'),
+      nokta(30, 332, 'Ön longitudinal bağ', 'C2’den üst sakruma inerken genişler. [[K5 s. 128]] Disklerin ön yüzlerine ve komşu omur gövdelerinin ön kenarlarına yapışır. [[K5 s. 128]]'),
+      nokta(423, 332, 'Arka longitudinal bağ', 'Gövdenin arkasında seyreder. [[K5 s. 128]] Ön longitudinal bağın öndeki tutunmalarına karşılık, diskin arka yüzüne ve komşu gövdelerin arka kenarlarına tutunur. [[K5 s. 128]]'),
+    ] }],
+  });
+
+  VIZ.an03b_dens = el => SEKIL.cizim(el, {
+    baslik: 'Densi çevreleyen bağlar',
+    giris: 'Arkadan bakışta solda çapraz bağ, sağda bu bağ kaldırıldığında görülen derin bağlar yer alır. [[K5 s. 129–130]]',
+    gorunumler: [{ ad: 'Arkadan', resim: 'img/anatomi/03b-dens.webp', en: 1024, boy: 512, noktalar: [
+      nokta(175, 313, 'Transvers bağ', 'Atlasın iki lateral kitlesinin medial yüzleri arasında uzanır ve densi ön arkın arka yüzündeki fasete bastırır. [[K5 s. 130]]'),
+      nokta(254, 225, 'Çapraz bağ · üst demet', 'Transvers bağdan oksiputa ve aksis gövdesine daha zayıf uzunlamasına demetler ayrılır. [[K5 s. 130]] Yatay bant ve iki dikey demet birlikte çapraz bağı oluşturur. [[K5 s. 130]]'),
+      nokta(815, 235, 'Alar bağ', 'Dens tepesinin iki yanından oksipital kondillerin medial yüzlerine uzanan iki kısa, güçlü bağ başın aşırı dönmesini sınırlar. [[K5 s. 130]]'),
+      nokta(866, 374, 'Aksesuar alar bağ', 'Her yanda aksis gövdesini atlasın lateral kitlesine bağlar. [[K5 s. 130]]'),
+      nokta(768, 194, 'Apikal bağ', 'Densin ucunu foramen magnumun ön kenarına bağlayan ince demet, embriyonik notokordun kraniyal uzantısından kalır. [[K5 s. 130]]'),
+    ] }],
+  });
 })();

@@ -60,18 +60,32 @@
     });
   }
 
-  VIZ.an01c_katman = (el) => yol(el, 'Yan duvarda bağ ve kıvrım ilişkileri', [
-    ['Üst kat', ['Kuadrangüler membran', 'Alt kenarda vestibüler bağ', 'Vestibüler kıvrım'], 'Girişin fibröz çatısını oluşturan üst tabakayı aşağı doğru izlediğinizde yalancı telin desteğine ulaşırsınız. [[K5 s. 29]]'],
-    ['Aradaki cep', ['Vestibüler kıvrım', 'Larinks sinüsü', 'Vokal kıvrım'], 'Arkadan açılmış bir larinkste iki kıvrım arasındaki yarık görülür. [[K5 s. 27]] Bu yarığın ön tarafından yukarı uzanan sakkül tiroid laminasının iç yüzüne komşudur. [[K5 s. 29]]'],
-    ['Alt kat', ['Krikovokal membran', 'Üst kenarda vokal bağ', 'Vokal kıvrım'], 'Krikoidden yukarı uzanan membranın serbest kenarı vokal bağ olur. [[K5 s. 28–29]] Bu bağı taşıyan kıvrım, ses oluşumunda gerginliği değiştirilen gerçek teldir. [[K5 s. 33–35]]'],
-  ]);
+  VIZ.an01c_katman = (el) => SEKIL.cizim(el, {
+    baslik: 'Larinksin yan duvarı, arkadan görülen koronal kesit',
+    giris: 'Mukoza altındaki fibröz çatıyı larinks sinüsü üst ve alt kata ayırır. [[K5 s. 29]]',
+    gorunumler: [{ ad: 'Koronal kesit', resim: 'img/anatomi/01c-katman.webp', en: 1024, boy: 683, noktalar: [
+      nokta(286, 142, 'Kuadrangüler membran', 'Üst kat, ariepiglottik kıvrıma ve larinks girişine destek verir. [[K5 s. 29]]'),
+      nokta(332, 254, 'Vestibüler kıvrım', 'Kuadrangüler membranın kalınlaşan alt kenarı vestibüler bağdır. [[K5 s. 29]] Bu bağ üstteki yalancı ses telini destekler. [[K5 s. 29]]'),
+      nokta(346, 306, 'Larinks sinüsü', 'Arkadan açılan larinkste vestibüler kıvrım ile vokal kıvrım arasında yarık biçiminde görülür. [[K5 s. 27]]'),
+      nokta(663, 149, 'Sakkül', 'Sinüsün ön kısmından yukarı uzanan bu kör kese, vestibüler kıvrımla tiroid laminasının iç yüzü arasındadır. [[K5 s. 29]]'),
+      nokta(681, 345, 'Vokal kıvrım', 'Krikovokal membranın serbest üst kenarı vokal bağı oluşturur. [[K5 s. 28–29]] Bu bağın desteklediği gerçek ses telinin gerginliği ses üretimi sırasında değişir. [[K5 s. 33–35]]'),
+      nokta(669, 455, 'Krikovokal membran', 'Alt katın elastik lifleri krikoidin üst kenarından vokal bağa doğru yükselir. [[K5 s. 29]]'),
+    ] }],
+  });
 
-  VIZ.an01c_erisim = (el) => yol(el, 'Krikotiroid aralığı yüzeyden tanıma', [
-    ['Üst sınırı bul', ['Tiroid çentiği', 'Tiroid laminası', 'Tiroidin alt kenarı'], 'Tiroid kıkırdağın alt sınırı oluğun üst dudağıdır. [[K5 s. 29]]'],
-    ['Aralığı doğrula', ['Tiroidin alt kenarı', 'Palpe edilen yumuşak oluk', 'Krikoidin ön arkı'], 'Ortadaki yumuşak alanda krikotiroid bağ yer alır, krikoid ise onun kaudal sınırını verir. [[K5 s. 25–26]]'],
-    ['Açıklığı izle', ['Krikotiroid bağda kesi', 'Açıklığın genişletilmesi', 'Küçük tüple ventilasyon'], 'K5’in cerrahi tarifinde bağdaki açıklık genişletildikten sonra küçük tüp geçirilir. [[K5 s. 30]]'],
-    ['Trakeal düzey', ['Krikoid', 'Birinci trakea halkası', 'İlk iki halka arası'], 'Krikotiroid aralıktan aşağı doğru krikoidi ve ilk halkayı geçince sık kullanılan perkütan trakeostomi düzeyine ulaşılır. [[K5 s. 33]]'],
-  ]);
+  VIZ.an01c_erisim = (el) => SEKIL.cizim(el, {
+    baslik: 'Ön boyunda krikotiroid oluk ve üst trakea halkaları',
+    giris: 'Tiroid çentiğinden başlayıp orta çizgi boyunca krikoide, ardından trakea halkalarına inin. [[K5 s. 24–26]]',
+    gorunumler: [{ ad: 'Önden diseksiyon', resim: 'img/anatomi/01c-erisim.webp', en: 1024, boy: 1121, noktalar: [
+      nokta(506, 127, 'Tiroid çentiği', 'İki tiroid laminasının birleştiği yerdeki üst girintidir. [[K5 s. 24]]'),
+      nokta(401, 330, 'Tiroid laminası', 'Laminayı aşağı izleyince tiroidin alt kenarına ulaşılır. [[K5 s. 24–25]]'),
+      nokta(555, 504, 'Tiroidin alt kenarı', 'Palpe edilen yumuşak oluğun üst sınırıdır. [[K5 s. 29]]'),
+      nokta(509, 589, 'Krikotiroid bağ', 'Oluk bu bağın üzerindedir. [[K5 s. 29]] K5’in cerrahi tarifinde bağdaki kesi genişletilir ve küçük bir tüple ventilasyon sağlanır. [[K5 s. 30]]'),
+      nokta(516, 724, 'Krikoidin ön arkı', 'Oluğun alt sınırını krikoid oluşturur. [[K5 s. 29]]'),
+      nokta(467, 863, 'Birinci trakea halkası', 'Krikoidin altında palpe edilen ilk halkadır. [[K5 s. 31–33]]'),
+      nokta(548, 928, 'İlk iki halka arası', 'Perkütan trakeostomi için sık kullanılan düzeydir. [[K5 s. 33]]'),
+    ] }],
+  });
 
   const hareket = [
     ['Abdüksiyon', 58, 164, 'Posterior krikoaritenoid', 'İki aritenoid dışa döndüğünde vokal çıkıntılar ve bunlara bağlı teller birbirinden uzaklaşır. [[K5 s. 35]]'],
@@ -104,24 +118,16 @@
     ['İki rekürren', ['İki taraflı sinir hasarı', 'İnspirasyonda teller yaklaşır', 'Stridor ve ağır dispne'], 'İnspirasyonda birbirine yönelen felçli teller glottiste kapak benzeri tıkanma oluşturur. [[K5 s. 38]]'],
   ]);
 
-  const dereceler = [
-    ['1', 'Tüm yapılar', 'Tüm yapılar görünür. [[K5 s. 41]]'],
-    ['2', 'Arka glottis', 'Glottik açıklığın yalnız arka bölümü seçilir. [[K5 s. 41]]'],
-    ['3', 'Yalnız epiglot', 'Epiglot tanınır ancak glottis görülemez. [[K5 s. 41]]'],
-    ['4', 'Tanınabilir yapı yok', 'Tanınabilir hiçbir yapı görünmez. [[K5 s. 41]]'],
-  ];
-  VIZ.an01c_derece = (el) => SEKIL.adim(el, {
-    baslik: 'Cormack–Lehane görünüm dereceleri, şematik', vb: [640, 225], vbDar: [360, 225], oto: false,
-    adimlar: dereceler.map(([no, ad, metin], i) => ({
-      ad: 'Derece ' + no, metin, ciz: S => {
-        const x = S.w / 2;
-        let sekil = '';
-        if (i < 3) sekil += S.cizgi([[x - 67, 61], [x - 35, 40], [x, 34], [x + 35, 40], [x + 67, 61]], { renk: 'clin', w: 12 });
-        if (i === 0) sekil += S.cizgi([[x - 39, 148], [x, 60], [x + 39, 148]], { renk: 'basic', w: 7 });
-        if (i === 1) sekil += [-1, 1].map(yon => S.cizgi([[x + yon * 28, 123], [x + yon * 39, 148]], { renk: 'basic', w: 7 })).join('');
-        if (i === 3) sekil += S.kutu(x - 66, 52, 132, 84, { yazi: 'Görüş kapalı', renk: 'muted', dolgu: 'paper', kesik: true });
-        return sekil + S.t(x, 195, ad, { a: 'middle', c: 'b' });
-      },
+  VIZ.an01c_derece = (el) => SEKIL.cizim(el, {
+    baslik: 'Direkt laringoskopide Cormack–Lehane dereceleri',
+    giris: 'Glottisin ve epiglotun ne kadarının seçilebildiğine göre görünüm dört dereceye ayrılır. [[K5 s. 41]]',
+    gorunumler: [
+      ['Derece 1', [120, 74, 264, 364], nokta(251, 322, 'Tüm yapılar', 'Glottik açıklığın tamamı dahil tüm yapılar görünür. [[K5 s. 41]]')],
+      ['Derece 2', [636, 74, 264, 364], nokta(763, 388, 'Arka glottis', 'Glottik açıklığın yalnız arka bölümü seçilir. [[K5 s. 41]]')],
+      ['Derece 3', [120, 586, 264, 364], nokta(250, 715, 'Yalnız epiglot', 'Epiglot görülür, glottis görüş alanının dışında kalır. [[K5 s. 41]]')],
+      ['Derece 4', [636, 586, 264, 364], nokta(769, 798, 'Görüş kapalı', 'Görüş alanında tanınabilir hiçbir larinks yapısı yoktur. [[K5 s. 41]]')],
+    ].map(([ad, kirp, alan]) => ({
+      ad, kirp, resim: 'img/anatomi/01c-derece.webp', en: 1024, boy: 1024, noktalar: [alan],
     })),
   });
 })();

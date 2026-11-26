@@ -55,18 +55,13 @@ SAYFALAR['dersler/anatomi/02b'] = {
   <p class="intro">Başlangıçta tek tüpte art arda bulunan venöz giriş ile arteriyel çıkış, tüpün kıvrılmasıyla ön-arka komşuluğu kazanır. [[K5 s. 92]]</p>
   <div class="viz"><div class="viz-head"><h3>Ortak boşluklar nasıl ayrılır?</h3></div><div data-viz="an02b_bolunme"></div><p class="viz-cap" aria-live="polite"></p></div>
   <p>Tüpün dışındaki oluklar arkadan öne sinüs venozusu, atriyumu, ventrikülü ve bulbus kordisi sınırlar. [[K5 s. 92]] Büyüyen tüpte kaudal venöz uç, sefalik arteriyel ucun arkasına geçer. [[K5 s. 92]] Sinüs atriyuma, bulbus ventriküle katılır. [[K5 s. 92]] Erişkinde atriyumlar ve büyük venler bu nedenle ventriküllerin ve büyük arter köklerinin arkasındadır. [[K5 s. 92]]</p>
-  <h3>Atriyumda iki bölme, tek kapak</h3>
-  <ol class="iskelet">
-    <li>Septum primum ortak atriyumun tavanından ve arka duvarından endokardiyal yastıklara doğru iner. [[K5 s. 92]] Yastıklarla birleşmesi bitmeden üst bölümünde yeni bir açıklık, foramen sekundum oluşur. [[K5 s. 92]]</li>
-    <li>Primumun sağında gelişen septum sekundumun alt kenarı serbest kalır, ancak primumdaki deliği örtecek kadar aşağı uzanır. [[K5 s. 92]] Açıklıkların örtüşmesi, sağdan sola geçişe izin veren kapak benzeri foramen ovaleyi oluşturur. [[K5 s. 92–93]]</li>
-    <li>Doğum sonrası kapanma genellikle tamamlanır ve sağ atriyumun septal yüzünde fossa ovalis kalır. [[K5 s. 92–93]] K5’e göre erişkinlerin yaklaşık %10’unda geçiş işlevsel olarak kapalıyken açıklıktan sonda geçebilir. [[K5 s. 93]]</li>
-  </ol>
-  <h3>Ventrikülün çatısı ile çıkış yolu nasıl birleşir?</h3>
-  <p>Kaslı septum apeksten yastıklara doğru yükselir, ancak üst kenarı bir süre serbest kalır. [[K5 s. 93]] Bu kenarın üzerindeki açıklık geçici interventriküler foramendir. [[K5 s. 93]] Trunkus arteriozustaki spiral septum aşağıya büyüyüp kaslı septumla birleşir ve küçük membranöz bölüm kalan açıklığı kapatır. [[K5 s. 93]]</p>
-  <p>Aort ile pulmoner trunkusun birbirini dolanan seyri, ortak çıkışın spiral biçimde bölünmesinden gelir. [[K5 s. 93]] Ayrılma tamamlandığında sol ventrikül kanı aorta, sağ ventrikül kanı pulmoner trunkusa yönelir. [[K5 s. 93]]</p>
+  <h3>Doğumdan sonra atriyal septum</h3>
+  <p>Foramen ovale genellikle tamamen kapanır ve sağ atriyumun septal yüzünde fossa ovalis kalır. [[K5 s. 92–93]] K5’e göre erişkinlerin yaklaşık %10’unda geçiş işlevsel olarak kapalıyken açıklıktan sonda geçebilir. [[K5 s. 93]]</p>
+  <h3>Geçici interventriküler foramen</h3>
+  <p>Kaslı septum apeksten yastıklara doğru yükselir. [[K5 s. 93]] Serbest üst kenarının üzerinde kalan geçici interventriküler foramen, septumun küçük membranöz bölümü oluşunca kapanır. [[K5 s. 93]] İki büyük arterin birbirini dolanan seyri, ortak çıkışın spiral biçimde bölünmesinden gelir. [[K5 s. 93]]</p>
   <div class="cols"><div class="card"><h3>Sağ atriyum duvarı</h3><p>Sinüs venozusun katıldığı yüz düzdür ve daha önce sinüse dökülen iki vena kava artık ayrı ağızlarla atriyuma açılır. [[K5 s. 93]] Pektinat kasların kabarttığı bölüm ilkel atriyumdan kalır. [[K5 s. 93]]</p></div>
   <div class="card"><h3>Sol atriyum duvarı</h3><p>Başlangıçtaki tek pulmoner venöz trunkus atriyuma katılınca düzgün yüzlü bölüm ve dört ayrı pulmoner ven ağzı ortaya çıkar. [[K5 s. 93]] Trabeküllü bölümün kaynağı ilkel atriyum duvarıdır. [[K5 s. 93]]</p></div></div>
-  <details class="an02b-okuma"><summary>Foramen sekundum ile foramen ovaleyi çizimde nasıl ayırırsınız?</summary><p>Önce yalnız septum primumu çizin ve üst bölümünde bir delik bırakın. [[K5 s. 92]] Bu delik foramen sekundumdur. [[K5 s. 92]] Sağına ikinci yaprağı ekleyin ve serbest alt kenarını ilk yapraktaki deliği örtecek kadar uzatın. [[K5 s. 92]] Artık kanın iki yaprak arasından izlediği kapaklı geçişi, foramen ovaleyi gösterebilirsiniz. [[K5 s. 92–93]]</p></details>
+
 </section>
 <section class="wrap blk ders-sec" id="an02b-ark">
   <h2>Aort arkları ve rekürren laringeal sinirler</h2>
@@ -81,7 +76,7 @@ SAYFALAR['dersler/anatomi/02b'] = {
   <tr><th>Altıncı çift</th><td>Trunkus uzunlamasına çıkan aort ve pulmoner trunkusa ayrılınca altıncı arklar pulmoner trunkusa bağlı kalır ve iki pulmoner arteri verir. [[K5 s. 94]] Soldaki dorsal bağlantı fetüste duktus arteriozus, erişkinde ligamentum arteriozum olarak izlenir. [[K5 s. 94]]</td></tr>
   </tbody></table></div>
   <p>Erken dönemde vagus farenksin lateralindedir, arada aort arkları bulunur. [[K5 s. 94]] Larinksi innerve edecek dallar arkların kaudalinden mediale geçer. [[K5 s. 94]] Boyun uzayıp kalp aşağı indikçe sinirlerin arkların altından geçen bölümleri de aşağı çekilir. [[K5 s. 94]]</p>
-  <details class="an02b-okuma"><summary>Soldaki siniri bulmak için neden yalnızca aort arkına bakmak yetmez?</summary><p>Önce pulmoner trunkusu bulun, sonra sol pulmoner arter ile dorsal aort arasındaki fetal bağlantıyı izleyin. [[K5 s. 94]] Duktusun erişkindeki kalıntısı, büyük aort arkının altında kalan küçük bağdır. [[K5 s. 94–95]] Soldaki sinirin dönüşü bu bağla ilişkilidir ve duktus açık kaldığında da sinir hemen komşusundadır. [[K5 s. 95]] [[K5 s. 98]]</p></details>
+  <p>Duktus arteriozus açık kaldığında sol rekürren sinir bu damarın hemen komşusundadır. [[K5 s. 98]]</p>
 </section>
 <section class="wrap blk ders-sec" id="an02b-fetus">
   <h2>Plasentadan beyne ve yeniden plasentaya</h2>
@@ -145,8 +140,8 @@ SAYFALAR['dersler/anatomi/02b'] = {
 </section>
 <section class="wrap blk ders-sec" id="an02b-kateter">
   <h2>Santral venöz kateterin yolu ve uç konumu</h2>
-  <p class="intro">İnternal juguler ve subklavyen yollarda hedef, kateter ucunun sağ atriyum girişinde, superior vena kava içinde kalmasıdır. [[K5 s. 103]]</p>
-  <div class="viz"><div class="viz-head"><h3>Ultrason kesitinde ven, arter ve iğne ucu</h3></div><div data-viz="an02b_kesit"></div><p class="viz-cap" aria-live="polite"></p></div>
+  <p class="intro">Juguler girişte ultrason iğne ucunu gösterir. [[K5 s. 102–103]] Yerinde bırakılan kateterin konumu radyografiyle kontrol edilir. [[K5 s. 102]]</p>
+  <div class="viz"><div class="viz-head"><h3>Boyunda iğne ucu ve toraksta kateter ucu</h3></div><div data-viz="an02b_kesit"></div><p class="viz-cap" aria-live="polite"></p></div>
   <h3>Hangi amaçla, hangi yoldan?</h3>
   <p>Boyun ve üst mediasten venlerine erişim yüksek riskli cerrahi ve yoğun bakımın yanı sıra ara yoğun bakımda ve servislerde de kullanılır. [[K5 s. 101]] Santral venöz basınç izlemi, sağ kalp kateterizasyonu ve gerektiğinde pulmoner arter kateteriyle kalp debisi ile mikst venöz oksijen satürasyonu (SvO₂) ölçümü bu yolla yapılabilir. [[K5 s. 101]]</p>
   <p>Diğer kullanım alanları hızlı kan transfüzyonu, uzun süreli parenteral beslenme, intravenöz ilaç tedavisi ve kalp pili uygulamalarıdır. [[K5 s. 98]] [[K5 s. 101]] Ameliyathane ve yoğun bakımda çok lümenli kateterler kullanılır. [[K5 s. 102]] En sık yollar juguler ve subklavyen venlerdir. [[K5 s. 102]] Antekübital fossadan ilerletilen uzun kanül kendi üzerine kıvrılabilir ya da yukarı dönüp internal jugulere girebilir. [[K5 s. 102]]</p>
@@ -167,7 +162,7 @@ SAYFALAR['dersler/anatomi/02b'] = {
   <li><b>Damar ve plevra.</b> Antikoagülasyon sonrasında büyük hematom gelişebilir. [[K5 s. 102]] K5’in kör teknikler için bildirdiği oranlar pnömotoraksta %3, karotis ponksiyonunda %9,4’tür. [[K5 s. 102]] Hemotoraks, karotis vazospazmı veya embolisi ve arteriyovenöz fistül de bildirilmiştir. [[K5 s. 102]]</li>
   <li><b>Kateter ve çevre dokular.</b> Hava veya kateter embolisi, tromboflebit, yanlışlıkla sağ ventriküle giriş, hemoperikardiyuma bağlı tamponad ve trakeal tüp kafının delinmesi görülebilir. [[K5 s. 102]] Bebeklerde geç tortikollis bildirilmiştir. [[K5 s. 102]] Kısmen çıkan kanülden boyun veya göğüs dokularına kaçan sıvı ve ilaçlar kimyasal hasar yapabilir. [[K5 s. 102]]</li>
   <li><b>Enfeksiyon.</b> K5 en sık komplikasyon olarak kateter ilişkili sepsisi verir, sıklığını %10’a kadar, geliştiğinde mortaliteyi yaklaşık %20 olarak bildirir. [[K5 s. 102]] Olağanüstü koşullar dışında tam aseptik yerleştirme gerekir, kateterlerin birçoğu antibiyotik kaplıdır. [[K5 s. 102]]</li></ul>
-  <details class="an02b-okuma"><summary>Venöz kanın aspirasyonu ile kateter ucunun konumu aynı soruyu mu yanıtlar?</summary><p>Juguler girişte aspirasyon iğne ilerlerken ven lümenine ulaşılmasını değerlendirmek için kullanılır. [[K5 s. 105]] Kateterin son konumu ayrı bir anatomik sorudur, çünkü kılavuz üzerinden ilerleyen kateter sağ atriyuma kadar ulaşabilir. [[K5 s. 103]] Bu nedenle uç hedefini anlatırken hem damarın adını hem de seviyeyi belirtin. [[K5 s. 103]] Hedef superior vena kava içinde, sağ atriyuma giriş düzeyindedir. [[K5 s. 103]]</p></details>
+  <details class="an02b-okuma"><summary>Venöz kanın aspirasyonu ile kateter ucunun konumu aynı soruyu mu yanıtlar?</summary><p>Juguler girişte aspirasyon iğne ilerlerken ven lümenine ulaşılmasını değerlendirmek için kullanılır. [[K5 s. 105]] Kateterin son konumu ayrı bir anatomik sorudur, çünkü kılavuz üzerinden ilerleyen kateter sağ atriyuma kadar ulaşabilir. [[K5 s. 103]] Bu nedenle uç hedefini anlatırken hem damarın adını hem de seviyeyi belirtin. [[K5 s. 103]]</p></details>
 </section>
 <section class="wrap blk ders-sec" id="an02b-p1">
   <h2>Part I · Çoklu doğru–yanlış</h2><p>Her önermeyi bağımsız yanıtlayın.</p>

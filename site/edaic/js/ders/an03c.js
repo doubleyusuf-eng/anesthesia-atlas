@@ -23,38 +23,28 @@
     ]}]
   });
 
-  function katmanlar(el, klinik) {
-    const adlar = ['Sarı bağ','Epidural aralık','Dura','Araknoid','Subaraknoid aralık','Pia'];
-    const aciklama = [
-      'Sarı bağ ve laminalar epidural aralığın arka sınırını oluşturur. [[K5 s. 132]]',
-      'Epidural yağ dural keseyi destekler. [[K5 s. 131]]',
-      'Spinal dura kraniyal duranın fibröz meningeal katından devam eder. [[K5 s. 130–131]]',
-      'Araknoid duranın hemen iç yüzündedir, arada yalnız ince seröz sıvı bulunur. [[K5 s. 132]]',
-      'BOS, araknoid ile pia arasındaki subaraknoid aralıkta bulunur. [[K5 s. 131–132]]',
-      'Damar taşıyan pia omuriliğe tutunur ve oluklarına girer. [[K5 s. 131]]'
-    ];
-    const durak = klinik ? [0,1,4] : [1,2,3,4,5];
-    const uygulama = [
-      'Tuohy iğnesi sarı bağ içinde ilerlerken serum fizyolojiğe sürekli basınç uygulanır. [[K5 s. 135]]',
-      'İğne ağzı bağdan çıkınca direnç aniden azalır ve ince epidural kateter dura dışında ilerletilir. [[K5 s. 135]]',
-      'Kombine teknikte ince spinal iğne Tuohy içinden geçer ve intratekal ilaç BOS’a ulaşır. [[K5 s. 132–135]]'
-    ];
-    return SEKIL.adim(el,{baslik:'Arka yaklaşımla katman sırası',vb:[640,270],vbDar:[360,270],oto:false,
-      adimlar:durak.map((d,i)=>({ad:adlar[d],metin:klinik ? uygulama[i] : aciklama[d]})),
-      ortak:(S,i)=>{
-        const y = [30,68,111,137,172,218], h=[38,43,26,35,46,27], hedef=durak[i];
-        let svg=S.t(12,19,'Arka',{c:'k'});
-        adlar.forEach((ad,j)=>{
-          svg+=S.kutu(34,y[j],S.w-52,h[j],{r:0,dolgu:j===hedef?'accent-soft':'paper',renk:j===hedef?'accent':'line'});
-          svg+=S.t(S.w/2+18,y[j]+h[j]/2+5,ad,middle);
-        });
-        svg+=S.t(12,265,'Ön',{c:'k'});
-        if(klinik) svg+=S.ok([[64,14],[64,y[hedef]+h[hedef]/2]],{renk:'accent',w:4});
-        return svg;
-      }});
-  }
-  VIZ.an03c_katman = el => katmanlar(el,false);
-  VIZ.an03c_epidural = el => katmanlar(el,true);
+  const meninks = { ad:'Arkadan açılmış kanal', resim:'img/anatomi/03c-meninks.webp', en:1024, boy:1229 };
+  VIZ.an03c_katman = el => SEKIL.cizim(el, {
+    baslik:'Vertebral kanalın arka duvarından omuriliğe',
+    giris:'Arkadan açılan kanalda sarı bağdan başlayıp öne, omurilik yüzeyine doğru ilerleyin. [[K5 s. 130–132]]',
+    gorunumler:[{...meninks, noktalar:[
+      nokta(513,103,'Sarı bağ','Laminalarla birlikte epidural aralığın arka sınırını oluşturur. [[K5 s. 132]]'),
+      nokta(516,206,'Epidural aralık','Dural keseyi dışarıdan destekleyen yağ bu aralıkta bulunur. [[K5 s. 131]]'),
+      nokta(714,455,'Dura','Yana kaldırılmış fibröz kılıf, kraniyal duranın meningeal katının devamıdır. [[K5 s. 130–131]]'),
+      nokta(456,437,'Araknoid','İnce zar duranın iç yüzünü döşer. [[K5 s. 131]] Birbirine bakan yüzleri yalnızca ince bir seröz sıvı tabakası ayırır. [[K5 s. 132]]'),
+      nokta(540,533,'Subaraknoid aralık','Araknoid ile pia arasında BOS bulunur. [[K5 s. 131–132]]'),
+      nokta(472,818,'Pia','Damar taşıyan pia omurilik yüzeyine tutunur ve oluklarına girer. [[K5 s. 131]]')
+    ]}]
+  });
+  VIZ.an03c_epidural = el => SEKIL.cizim(el, {
+    baslik:'Epidural ve intratekal hedefler',
+    giris:'Arkadan öne doğru sıra sarı bağ, epidural aralık, dura, araknoid, subaraknoid aralık ve piadır. [[K5 s. 130–132]] Numaralar iki tekniğin doku hedeflerini gösterir. [[K5 s. 132–135]]',
+    gorunumler:[{...meninks, noktalar:[
+      nokta(513,103,'Sarı bağda direnç','Tuohy iğnesi sarı bağda ilerlerken enjektördeki serum fizyolojiğe sürekli basınç uygulanır. [[K5 s. 135]]'),
+      nokta(516,206,'Epidural aralıkta direnç kaybı','İğne ağzı bağdan çıktığında direnç aniden azalır. [[K5 s. 135]] İnce epidural kateter dura dışında ilerletilir. [[K5 s. 135]]'),
+      nokta(540,533,'Kombine teknikte intratekal hedef','İnce spinal iğne Tuohy içinden geçer. [[K5 s. 135]] İntratekal ilaç subaraknoid aralıktaki BOS’a ulaşır. [[K5 s. 132–135]]')
+    ]}]
+  });
 
   VIZ.an03c_akis = el => SEKIL.adim(el,{
     baslik:'BOS çıkışı ve geri emilimi',vb:[640,245],vbDar:[360,245],oto:false,
@@ -78,88 +68,50 @@
     }
   });
 
-  VIZ.an03c_duzey = el => SEKIL.sahne(el,{
-    baslik:'Konus medullaris ve lomber vertebralar',vb:[640,236],vbDar:[360,236],
-    secenek:secim('Yaş',['Yenidoğan','Erişkin']),
-    metin:p=>p.secim==='Yenidoğan'
-      ? 'Yenidoğanda konus üçüncü lomber vertebra gövdesinin alt kenarına gelir. [[K5 s. 137–138]]'
-      : 'Erişkin için ortalama düzey L1 ve L2 gövdeleri arasındaki disktir, bireysel sonlanma T12 ile L3 arasında değişebilir. [[K5 s. 137–138]]',
-    ciz:(S,t,p)=>{
-      const cx=S.w/2, uc=p.secim==='Yenidoğan'?199:74;
-      let svg='';
-      ['L1','L2','L3'].forEach((ad,i)=>{
-        svg+=S.kutu(cx-110,18+i*64,78,53,{yazi:ad});
-      });
-      svg+=S.cizgi([[cx+17,8],[cx+16,uc-39],[cx+28,uc],[cx+40,uc-39],[cx+39,8]],{renk:'basic',dolgu:'basic-soft'});
-      svg+=S.cizgi([[cx+28,uc],[cx+28,221]],{renk:'basic'});
-      svg+=S.cizgi([[cx-32,uc],[cx+25,uc]],{kesik:true,renk:'accent'});
-      return svg+S.t(cx+45,uc+4,'Konus',{c:'k'});
-    }
+  VIZ.an03c_duzey = el => SEKIL.cizim(el, {
+    baslik:'Konus ucunun vertebra gövdelerine göre düzeyi',
+    giris:'Solda erişkin, sağda yenidoğan görülüyor. Her iki görünümde gövdeleri yukarıdan aşağıya L1, L2, L3 olarak sayın. [[K5 s. 137–138]]',
+    gorunumler:[{ad:'Sagittal karşılaştırma', resim:'img/anatomi/03c-duzey.webp', en:1024, boy:683, noktalar:[
+      nokta(329,234,'Erişkinde konus ucu','Ortalama sonlanma L1–L2 diskidir. [[K5 s. 137–138]] Bireysel düzey T12 ile L3 arasında değişebilir. [[K5 s. 137–138]]'),
+      nokta(735,552,'Yenidoğanda konus ucu','Konus üçüncü lomber vertebra gövdesinin alt kenarına ulaşır. [[K5 s. 137–138]]')
+    ]}]
   });
 
-  function kesit(S) {
-    const cx=S.w/2, pts = [];
-    for(let i=0;i<=64;i++){
-      const a=i*Math.PI/32;
-      pts.push([cx+125*Math.cos(a),127+84*Math.sin(a)]);
-    }
-    let svg=S.cizgi(pts,{dolgu:'paper',renk:'ink'});
-    const yari=[[0,115],[24,109],[52,69],[59,76],[43,119],[46,135],[66,158],[59,174],[40,177],[21,147],[0,138]];
-    const h=yari.concat(yari.slice().reverse().map(([x,y])=>[-x,y]),[yari[0]]).map(([x,y])=>[cx+x,y]);
-    svg+=S.cizgi(h,{dolgu:'basic-soft',renk:'basic'});
-    svg+=S.cizgi([[cx,44],[cx,100]],{renk:'line'});
-    svg+=S.cizgi([[cx-4,210],[cx,163],[cx+4,210]],{renk:'ink'});
-    svg+=S.daire(cx,127,3,{renk:'accent'});
-    return svg+S.t(cx,25,'Arka',middle)+S.t(cx,236,'Ön',middle);
-  }
-  const kesitler={
-    'Arka boynuz':[50,81,'İnce arka boynuzun tepesinde substantia gelatinosa yer alır. [[K5 s. 140]]'],
-    'Ön boynuz':[46,159,'Ön boynuzun büyük hücreleri motor nöronlardır. [[K5 s. 140]]'],
-    'Santral kanal':[0,127,'Gri cevherin ortasındaki dar kanal BOS içerir. [[K5 s. 140]]'],
-    'Beyaz cevher':[-87,125,'Gri cevheri çevreleyen beyaz cevherin büyük bölümünü uzunlamasına miyelinli lifler oluşturur. [[K5 s. 140]]']
-  };
-  VIZ.an03c_kesit = el => SEKIL.sahne(el,{
-    baslik:'Omuriliğin temel kesit planı',vb:[640,245],vbDar:[360,245],secenek:secim('Yapı',Object.keys(kesitler)),
-    metin:p=>kesitler[p.secim][2],ciz:(S,t,p)=>{
-      const [x,y]=kesitler[p.secim];
-      return kesit(S)+S.daire(S.w/2+x,y,7,{renk:'accent',dolgu:'accent-soft',w:3});
-    }
+  const damarLevhasi = { resim:'img/anatomi/03c-damar.webp', en:1024, boy:512 };
+  const enineKesit = { ...damarLevhasi, ad:'Enine kesit', kirp:[0,0,625,512] };
+  VIZ.an03c_kesit = el => SEKIL.cizim(el, {
+    baslik:'Omuriliğin temel kesit planı',
+    giris:'Arka yüz üstte, ön yüz alttadır. Ön median fissürden merkeze doğru bakın. [[K5 s. 139–140]]',
+    gorunumler:[{...enineKesit, noktalar:[
+      nokta(441,154,'Arka boynuz','İnce arka boynuzun tepesinde substantia gelatinosa yer alır. [[K5 s. 140]]'),
+      nokta(441,299,'Ön boynuz','Geniş ön boynuzun büyük hücreleri motor nöronlardır. [[K5 s. 140]]'),
+      nokta(323,243,'Santral kanal','Gri cevherin merkezindeki dar kanal BOS içerir. [[K5 s. 140]]'),
+      nokta(134,235,'Beyaz cevher','Gri cevheri çevreler ve büyük ölçüde uzunlamasına uzanan miyelinli liflerden oluşur. [[K5 s. 140]]')
+    ]}]
   });
 
-  const yollar={
-    'Lateral piramidal':['Motor korteks','Medulla','Ön boynuz','Medullada piramidal çaprazdan geçen lifler karşı omurilik yarısında aşağı iner. [[K5 s. 140]]'],
-    'Arka kolon':['Arka kök','Medulla','Talamus','Arka kolonda aynı tarafta çıkan lifler medulladaki sinapstan sonra karşıya geçer. [[K5 s. 141]]'],
-    'Spinotalamik':['Arka kök','Omurilik','Talamus','Bir veya iki segment yükselen aferentler arka boynuzda sinaps yapar ve lifler sinapstan sonra omurilikte çaprazlaşır. [[K5 s. 141]]']
-  };
-  VIZ.an03c_yollar = el => SEKIL.sahne(el,{
-    baslik:'Başlangıçtan hedefe çaprazlaşma',vb:[640,245],vbDar:[360,245],secenek:secim('Traktus',Object.keys(yollar)),
-    metin:p=>yollar[p.secim][3],ciz:(S,t,p)=>{
-      const w=S.w,[start,cross,end]=yollar[p.secim],inen=p.secim==='Lateral piramidal',ilk=inen?40:195,son=235-ilk;
-      let svg=S.cizgi([[w/2,9],[w/2,232]],{kesik:true,renk:'muted'});
-      svg+=S.ok([[w*.25,ilk],[w*.25,inen?95:143],[w*.75,inen?143:95],[w*.75,son]],{renk:'accent',w:4});
-      svg+=S.kutu(w*.25-70,ilk-16,140,32,{yazi:start});
-      svg+=S.kutu(w*.75-70,son-16,140,32,{yazi:end});
-      return svg+S.kutu(w/2-58,102,116,33,{yazi:cross,dolgu:'accent-soft'});
-    }
+  VIZ.an03c_yollar = el => SEKIL.cizim(el, {
+    baslik:'Omurilikte inen ve çıkan yollar',
+    giris:'Noktalar beyaz cevherdeki yol bölgelerini gösterir. Her yolun omuriliğe giriş veya çıkış tarafını çapraz yaptığı düzeyle ilişkilendirin. [[K5 s. 140–141]]',
+    gorunumler:[{...enineKesit, noktalar:[
+      nokta(495,159,'Lateral piramidal yol','Motor korteksten gelen lifler medullada piramidal çaprazı yapar, karşı omurilik yarısında iner ve ön boynuzun motor hücreleriyle sinaps kurar. [[K5 s. 140]]'),
+      nokta(357,107,'Arka kolon','Arka kökten giren liflerin çoğu çaprazlaşmadan aynı tarafta medullaya yükselir ve oradaki çekirdeklerde sinaps yapar. [[K5 s. 141]] Sinapstan sonra karşıya geçen lifler talamusa ulaşır. [[K5 s. 141]]'),
+      nokta(530,250,'Lateral spinotalamik yol','Arka kökten giren aferentler bir veya iki segment yükselerek arka boynuzda sinaps yapar. [[K5 s. 141]] Ardından lifler omurilikte çaprazlaşır ve karşı taraftan talamusa yükselir. [[K5 s. 141]]')
+    ]}]
   });
 
-  const kan = {
-    'Ön spinal':['Vertebral arterler','Ön median fissür','Arka gri kolonların önü','İki vertebral dal foramen magnumda birleşir. [[K5 s. 142]]'],
-    'Arka spinal':['Arka alt serebellar arter','Arka spinal arterler','Arka gri ve beyaz kolonlar','Her iki yanda bir veya iki damar arka kolonları besler. [[K5 s. 143]]'],
-    'Adamkiewicz':['Büyük ön radiküler arter','Ön ve arka spinal arterler','Alt omuriliğe destek','Çoğunlukla soldan gelir ve omuriliğin alt üçte ikisinin kanlanmasının büyük bölümünü sağlayabilir. [[K5 s. 144–145]]']
-  };
-  VIZ.an03c_damar = el => SEKIL.sahne(el,{
-    baslik:'Omuriliğin arteriyel beslenmesi',vb:[640,370],vbDar:[360,370],secenek:secim('Damar',Object.keys(kan)),
-    metin:p=>kan[p.secim][3],ciz:(S,t,p)=>{
-      const cx=S.w/2, yol=kan[p.secim], on=p.secim==='Ön spinal', arka=p.secim==='Arka spinal';
-      let svg=kesit(S);
-      if(!arka) svg+=S.daire(cx,209,5,{renk:'crit',dolgu:'crit'});
-      if(!on) [-1,1].forEach(k=>{svg+=S.daire(cx+k*58,52,4,{renk:'crit',dolgu:'crit'});});
-      svg+=S.kutu(cx-155,248,310,31,{yazi:yol[0],yc:'k'});
-      svg+=S.ok([[cx,279],[cx,294]],{renk:'crit'});
-      svg+=S.kutu(cx-155,295,310,31,{yazi:yol[1],yc:'k',dolgu:'crit-soft'});
-      return svg+S.t(cx,354,yol[2],{a:'middle',c:'b'});
-    }
+  VIZ.an03c_damar = el => SEKIL.cizim(el, {
+    baslik:'Omuriliğin arteriyel beslenmesi',
+    giris:'Kesitte ön ve arka spinal arterleri, önden görünümde büyük radiküler arterin ön spinal artere katıldığı yeri bulun. [[K5 s. 142–145]]',
+    gorunumler:[
+      {...enineKesit, noktalar:[
+        nokta(322,458,'Ön spinal arter','Foramen magnumda iki vertebral arterden gelen birer dal birleşir. [[K5 s. 142]] Oluşan arter ön median fissür boyunca iner ve arka gri kolonların önünde kalan omuriliği besler. [[K5 s. 142]]'),
+        nokta(192,83,'Arka spinal arterler','Her yanda arka alt serebellar arterden çıkan bir veya iki damar arka gri ve beyaz kolonları besler. [[K5 s. 143]]')
+      ]},
+      {...damarLevhasi, ad:'Önden görünüm', kirp:[630,0,394,512], noktalar:[
+        nokta(906,182,'Adamkiewicz arteri','Bu büyük ön radiküler arter çoğunlukla soldan gelir. [[K5 s. 144]] Ön ve arka spinal arterleri destekler ve omuriliğin alt üçte ikisinin kanlanmasının büyük bölümünü sağlayabilir. [[K5 s. 144–145]]')
+      ]}
+    ]
   });
   const bulgular={
     'Hareket':['Paralizi','Motor işlev korunur','Sol lateral piramidal yolun kesilmesi lezyonun altında solda paralizi yapar. [[K5 s. 146]]'],

@@ -2,10 +2,10 @@
   'use strict';
   const VIZ = window.VIZ;
   const merkez = { a: 'middle', c: 'b' };
-  function resim(el, ad, dosya, gorunum, giris, noktalar) {
+  function resim(el, ad, dosya, gorunum, giris, noktalar, boy = 1024) {
     return SEKIL.cizim(el, {
       baslik: ad, giris,
-      gorunumler: [{ ad: gorunum, resim: 'img/anatomi/01d-' + dosya + '.webp', en: 1024, boy: 1024,
+      gorunumler: [{ ad: gorunum, resim: 'img/anatomi/01d-' + dosya + '.webp', en: 1024, boy,
         noktalar: noktalar.map(([x, y, ad, metin]) => ({ x, y, ad, metin })) }],
     });
   }
@@ -27,51 +27,28 @@
       [605, 606, 'En iç interkostal', 'Yan duvarda demet, en iç tabakayı internal interkostal kastan ayırır. [[K5 s. 53]]'],
     ]);
 
-  VIZ.an01d_duzey = el => SEKIL.adim(el, {
-    baslik: 'Bifurkasyon hangi düzeyde?', vb: [400, 255], vbDar: [360, 255], oto: false,
-    adimlar: [
-      { ad: 'Kadavra', metin: 'Korunmuş, sırtüstü kadavrada bifurkasyon T4 ve Louis açısı düzeyindedir. [[K5 s. 42]] [[K5 s. 46]]' },
-      { ad: 'Ayakta', metin: 'Canlıda dik çekilen oblik grafide alt uç T5’e kadar inebilir. [[K5 s. 42]]' },
-      { ad: 'Tam inspirasyon', metin: 'Ayakta tam inspirasyonda bifurkasyon T6 düzeyine inebilir. [[K5 s. 42]] [[K5 s. 46]]' },
-    ],
-    ortak: (S, i) => {
-      const x = S.w * 0.52, y = 122 + 45 * i;
-      let s = S.t(24, 30, 'C6 · Krikoid') + S.cizgi([[x,26],[x,y]], {renk:'basic',w:10});
-      ['T4','T5','T6'].forEach((ad, j) => {
-        s += S.t(24, 126 + j * 45, ad, { c: i === j ? 'b' : 'm' })
-          + S.cizgi([[62,122+j*45],[x-12,122+j*45]], { renk:'line',kesik:true });
-      });
-      return s + S.cizgi([[x-15,y+28],[x,y],[x+28,y+28]], {renk:'accent',w:9});
-    },
-  });
+  VIZ.an01d_duzey = el => resim(el, 'Trakeanın başlangıç ve sonlanma düzeyleri', 'duzey', 'Omurganın yandan görünümü',
+    'Trakeanın başlangıç ve sonlanma düzeylerini omur gövdeleri üzerinde karşılaştırın. [[K5 s. 42]]', [
+      [400, 105, 'C6 · Krikoid', 'Trakea C6 düzeyinde krikoid kıkırdağın alt kenarından başlar. [[K5 s. 42]]'],
+      [395, 954, 'T4 · Kadavra', 'Korunmuş, sırtüstü kadavrada bifurkasyon T4 ve manubriosternal bileşke (Louis açısı) düzeyindedir. [[K5 s. 42]] [[K5 s. 46]]'],
+      [395, 1140, 'T5 · Ayakta', 'Canlıda dik çekilen oblik grafide trakeanın alt ucu T5’e kadar inebilir. [[K5 s. 42]]'],
+      [395, 1350, 'T6 · Tam inspirasyon', 'Ayakta tam inspirasyonda bifurkasyon T6 düzeyine inebilir. [[K5 s. 42]] [[K5 s. 46]]'],
+    ], 1536);
 
-  VIZ.an01d_yansima = el => SEKIL.adim(el, {
-    baslik: 'Plevranın alt kenarını önden arkaya izleyin', vb:[400,215], vbDar:[360,215], oto:false,
-    adimlar: [
-      { ad:'Ön', metin:'Midklaviküler hatta alt sınır 8. kaburgayı keser. [[K5 s. 49]]' },
-      { ad:'Yan', metin:'En alçak nokta midaksiller hatta 10. kaburga düzeyindedir. [[K5 s. 49]]' },
-      { ad:'Arka', metin:'Arkada sınır T12 spinöz çıkıntısına ulaşır, kostovertebral açıda kostal kenarın biraz altına sarkar. [[K5 s. 49]]' },
-    ],
-    ortak:(S,i) => {
-      const xs=[64,S.w/2,S.w-64], ys=[65,140,108];
-      let s=S.cizgi(xs.map((x,j)=>[x,ys[j]]),{renk:'basic',w:4});
-      return s + xs.map((x,j)=>S.daire(x,ys[j],7,{dolgu:i===j?'accent':'paper',renk:'accent'})
-        + S.t(x,ys[j]-20,['8. kaburga','10. kaburga','T12'][j],merkez)
-        + S.t(x,ys[j]+32,['Midklaviküler','Midaksiller','Spinöz çıkıntı'][j],{a:'middle',c:'k'})).join('');
-    },
-  });
-  VIZ.an01d_ucgen = el => SEKIL.sahne(el, {
-    baslik:'Aksillanın altında güvenli üçgen', vb:[400,205], vbDar:[360,205],
-    ciz:S=>{
-      const x=S.w/2;
-      return S.cizgi([[x,40],[x-85,150],[x+85,150],[x,40]],{renk:'accent',dolgu:'accent-soft',w:3})
-        + S.t(x,26,'Aksillanın altı',merkez)
-        + S.t(10,85,['Pektoralis','majör','lateral kenarı'],{c:'k',lh:18})
-        + S.t(S.w-10,85,['Latissimus','dorsi','ön kenarı'],{a:'end',c:'k',lh:18})
-        + S.t(x,182,'5. interkostal aralık',merkez);
-    },
-    metin:()=> 'Şema yan göğüs duvarını gösterir. [[K5 s. 50]] Etkilenen taraftaki eli başın arkasına almak alanı açar. [[K5 s. 50]]',
-  });
+  VIZ.an01d_yansima = el => resim(el, 'Plevranın alt kenarının yüzey izdüşümü', 'yansima', 'Önden, yandan ve arkadan',
+    'Noktalar plevra alt kenarının kemik izdüşümlerini gösterir. Sırayla ön, yan ve arka göğüs duvarını inceleyin. [[K5 s. 49]]', [
+      [90, 316, 'Ön · 8. kaburga', 'Önde plevranın alt kenarı midklaviküler hatta sekizinci kaburgayı keser. [[K5 s. 49]]'],
+      [500, 361, 'Yan · 10. kaburga', 'Alt kenarın en alçak noktası midaksiller hatta onuncu kaburga düzeyindedir. [[K5 s. 49]]'],
+      [832, 366, 'Arka · T12', 'Arkada alt kenar T12 spinöz çıkıntısına ulaşır. [[K5 s. 49]] Kostovertebral açıda kostal kenarın biraz altına sarkar. [[K5 s. 49]]'],
+    ], 428);
+
+  VIZ.an01d_ucgen = el => resim(el, 'Aksillanın altında güvenli üçgen', 'ucgen', 'Yan göğüs duvarı',
+    'Etkilenen taraftaki eli başın arkasına almak yan göğüs duvarındaki alanı açar. [[K5 s. 50]]', [
+      [588, 326, 'Tepe · Aksillanın altı', 'Üçgenin tepesi aksillanın hemen altındadır. [[K5 s. 50]]'],
+      [411, 468, 'Ön sınır · Pektoralis majör', 'Pektoralis majörün lateral kenarı üçgeni önden sınırlar. [[K5 s. 50]]'],
+      [680, 470, 'Arka sınır · Latissimus dorsi', 'Latissimus dorsinin ön kenarı üçgeni arkadan sınırlar. [[K5 s. 50]]'],
+      [478, 541, 'Taban · 5. interkostal aralık', 'Beşinci interkostal aralıktan geçen yatay çizgi üçgenin tabanını oluşturur. [[K5 s. 50]]'],
+    ]);
   const damarlar = [
     ['1.–2.', 'Superior interkostal', 'İnternal torasik', 'Arkada kostoservikal trunkusun superior interkostal dalı, önde internal torasik arterin dalları bulunur. [[K5 s. 54]]'],
     ['3.–6.', 'Torasik aorta', 'İnternal torasik', 'Posterior arter doğrudan aortadan, anterior çift internal torasik arterden gelir. [[K5 s. 54]]'],
@@ -90,22 +67,11 @@
       return svg;
     },
   });
-  VIZ.an01d_blok = el => SEKIL.adim(el, {
-    baslik:'Kaburga açısında iğne ile demetin ilişkisi', vb:[400,210], vbDar:[360,210], oto:false,
-    adimlar:[
-      {ad:'Palpasyon',metin:'Oturur, lateral veya pron hastada kaburga açısı düzeyi seçilir, cilt altı infiltrasyonundan sonra alt kenar palpe edilir ve deri hafifçe sefalade kaydırılır. [[K5 s. 56]]'},
-      {ad:'Kemik teması',metin:'Kısa hipodermik iğne, kaburganın alt kenarına doğru kemikle temas edene kadar ilerletilir. [[K5 s. 56]]'},
-      {ad:'Alt kenarı geçiş',metin:'İğne alt kenardan sıyrıldıktan sonra hafifçe sefalade doğru 3–5 mm ilerletilir. [[K5 s. 56]]'},
-      {ad:'Aspirasyon',metin:'İntravasküler yerleşimi dışlamak için dikkatle aspirasyon yapılır, ardından 3–5 mL lokal anestezik verilir. [[K5 s. 56]]'},
-    ],
-    ortak:(S,i)=>{
-      const x=S.w/2;
-      let s=S.kutu(x-48,20,96,85,{r:20,yazi:'Kaburga',dolgu:'paper',renk:'basic'})
-        + S.t(x+65,120,['Ven','Arter','Sinir'],{c:'k',lh:20});
-      ['basic','crit','warn'].forEach((renk,j)=>{s+=S.daire(x+30,117+20*j,7,{dolgu:renk,renk});});
-      if(i===1) s+=S.ok([[x-145,128],[x-48,92]],{renk:'accent'});
-      if(i>=2) s+=S.ok([[x-145,179],[x+12,150]],{renk:'accent'});
-      return s + S.t(12,202,'Dış yüz',{c:'k'}) + S.t(S.w-12,202,'Plevra yönü',{a:'end',c:'k'});
-    },
-  });
+  VIZ.an01d_blok = el => resim(el, 'Kaburga açısında blok adımları', 'aralik', 'Göğüs duvarı kesiti',
+    'Dış yüz solda, plevra yönü sağdadır. [[K5 s. 51–53]] Kaburganın alt kenarındaki olukta yukarıdan aşağıya ven, arter ve sinir yer alır. [[K5 s. 53]] Noktalar blok sırasındaki anatomik hedefleri gösterir. [[K5 s. 56]]', [
+      [311, 222, 'Palpasyon · Kaburga', 'Oturur, lateral veya pron hastada kaburga açısı düzeyi seçilir. [[K5 s. 56]] Cilt altı infiltrasyonundan sonra alt kenar palpe edilir ve deri hafifçe sefalade kaydırılır. [[K5 s. 56]]'],
+      [394, 277, 'Kemik teması · Alt kenar', 'Kısa hipodermik iğne kaburganın alt kenarına doğru kemikle temas edene kadar ilerletilir. [[K5 s. 56]]'],
+      [485, 294, 'Alt kenarı geçiş', 'İğne alt kenardan sıyrıldıktan sonra hafifçe sefalade doğru 3–5 mm ilerletilir. [[K5 s. 56]]'],
+      [548, 429, 'Aspirasyon · Sinir komşuluğu', 'Damar içi yerleşimi dışlamak için dikkatle aspirasyon yapılır, ardından 3–5 mL lokal anestezik verilir. [[K5 s. 56]]'],
+    ]);
 })();

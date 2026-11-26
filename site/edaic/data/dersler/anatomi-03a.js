@@ -32,49 +32,6 @@ VERI.sorular['an03a-3'] = {
 
 (() => {
   const nav = [['plan','Temel plan'],['boyun','Servikal'],['gogus','Torasik'],['bel','Lomber'],['yuzey','Yüzey işaretleri'],['giris','İğnenin yolu'],['p1','Part I'],['p2','Part II'],['ozet','Özet']];
-  const nokta = (x, y, ad, metin) => ({ x, y, ad, metin });
-  const cizimler = {
-    servikal: { baslik: 'Tipik servikal vertebra · üstten', giris: 'Önde gövdeyi, arkada iki uçlu spinöz çıkıntıyı bulun. [[K5 s. 109–111]]', noktalar: [
-      nokta(506, 122, 'Gövde', 'Tipik servikal gövde küçük ve yassıdır. [[K5 s. 109]]'),
-      nokta(504, 331, 'Vertebral foramen', 'Ortadaki geniş açıklığın biçimi üçgene yaklaşır. [[K5 s. 109]]'),
-      nokta(779, 179, 'Foramen transversarium', 'Vertebral damarların geçtiği açıklık transvers çıkıntının içindedir. [[K5 s. 109]]'),
-      nokta(883, 97, 'Ön tüberkül', 'Ön kökün lateral ucunda yer alır. [[K5 s. 109]]'),
-      nokta(862, 185, 'Kostotransvers çubuk', 'İki kök foramenin lateralinde bu kemik köprüyle birleşir. [[K5 s. 109]]'),
-      nokta(912, 264, 'Arka tüberkül', 'Arka kökün lateral ucunu işaretler. [[K5 s. 109]]'),
-      nokta(276, 352, 'Üst eklem yüzü', 'Pedikülle lamina arasındaki artiküler sütunun üst faseti yukarı ve arkaya bakar. [[K5 s. 109]]'),
-      nokta(389, 439, 'Lamina', 'Lamina nöral arkın arka bölümünü oluşturur. [[K5 s. 109]] [[K5 s. 111]]'),
-      nokta(460, 613, 'Bifid spinöz çıkıntı', 'İki uç tek ve kısa bir spinöz çıkıntıya aittir. [[K5 s. 110–111]]')
-    ] },
-    atlas: { baslik: 'Atlas · üstten', giris: 'Ön ark üstte, arka ark altta görülüyor. [[K5 s. 110–112]]', noktalar: [
-      nokta(513, 89, 'Ön tüberkül', 'Ön arkın ön yüzündedir. [[K5 s. 110]]'),
-      nokta(419, 120, 'Ön ark', 'Arka yüzündeki fasete C2’nin densi dayanır. [[K5 s. 110–111]]'),
-      nokta(310, 265, 'Üst eklem yüzü', 'Lateral kitlenin belirgin konkav üst yüzü oksipital kondille eklemleşir. [[K5 s. 110]]'),
-      nokta(820, 304, 'Foramen transversarium', 'Transvers çıkıntıdaki açıklık lateral kitlenin dış yanındadır. [[K5 s. 112]]'),
-      nokta(932, 295, 'Transvers çıkıntı', 'Lateral kitleden uzanan uzun çıkıntıda tüberkül bulunmaz. [[K5 s. 110]]'),
-      nokta(689, 469, 'Vertebral arter oluğu', 'Üst fasetin hemen arkasındaki geniş, derin oluktan vertebral arter ve C1’in posterior primer dalı geçer. [[K5 s. 110]]'),
-      nokta(391, 539, 'Arka ark', 'Ön ve arka arkları iki yanda kalın lateral kitleler birleştirir. [[K5 s. 110]]'),
-      nokta(512, 598, 'Arka tüberkül', 'Spinöz çıkıntının yerini küçük bir tüberkül alır. [[K5 s. 110]]')
-    ] },
-    torasik: { baslik: 'Orta torasik vertebra · yandan', giris: 'Gövde solda, spinöz çıkıntı sağda ve aşağıdadır. [[K5 s. 110]] [[K5 s. 114]]', noktalar: [
-      nokta(207, 287, 'Gövde', 'Tipik torasik gövde klasik kalp biçimindedir. [[K5 s. 113]]'),
-      nokta(360, 208, 'Üst yarım faset', 'Kosta başına bakan üst yarım faset pedikül tabanında, gövdenin üst kenarındadır. [[K5 s. 113]]'),
-      nokta(349, 392, 'Alt yarım faset', 'Alt yarım faset gövdenin alt kenarında, alt vertebral çentiğin önündedir. [[K5 s. 113]]'),
-      nokta(436, 253, 'Pedikül', 'Pediküller gövdeden doğrudan arkaya uzanır. [[K5 s. 113–114]]'),
-      nokta(425, 312, 'Alt çentik', 'Alt çentik derindir, üst çentik ise T1 dışında belirsizdir. [[K5 s. 114]]'),
-      nokta(557, 65, 'Üst eklem yüzü', 'Üst faset arkaya ve dışa, alt faset öne ve içe yönelir. [[K5 s. 114]]'),
-      nokta(784, 214, 'Kosta tüberkülü için faset', 'Arkaya ve dışa uzanan büyük transvers çıkıntının uç faseti, aynı düzeydeki kostanın tüberkülüyle eklemleşir. [[K5 s. 114]]'),
-      nokta(756, 550, 'Spinöz çıkıntı', 'Orta torasik bölgede uzun spinöz çıkıntı kaudale eğimlidir. [[K5 s. 114]]')
-    ] },
-    lomber: { baslik: 'L3 · üstten', giris: 'Gövde üstte, tek spinöz çıkıntı altta görülüyor. [[K5 s. 114–116]]', noktalar: [
-      nokta(505, 140, 'Gövde', 'Büyük lomber gövde böbrek biçimindedir. [[K5 s. 114]]'),
-      nokta(510, 355, 'Vertebral foramen', 'Kabaca üçgen açıklık torasik foramenlerden geniş, servikal foramenlerden dardır. [[K5 s. 114]]'),
-      nokta(369, 313, 'Pedikül', 'Kalın pedikülün üst çentiği sığdır. [[K5 s. 114]]'),
-      nokta(838, 382, 'Transvers çıkıntı', 'İnce çıkıntının boyu L1’den L3’e artar, sonra yeniden azalır; üçüncü transvers çıkıntı en uzunudur. [[K5 s. 114]]'),
-      nokta(628, 404, 'Üst eklem yüzü', 'Üst yüz arkaya ve içe bakar, alt yüz ise öne ve dışa yönelir. [[K5 s. 115]]'),
-      nokta(441, 475, 'Lamina', 'Lomber laminalar kısa, geniş ve sağlamdır. [[K5 s. 115]]'),
-      nokta(505, 591, 'Spinöz çıkıntı', 'Spinöz çıkıntı yatay uzanır ve dikdörtgene yakın biçimdedir. [[K5 s. 115]]')
-    ] },
-  };
   const katmanlar = [
     { ad: 'Deri', metin: 'Lokal anestezik infiltrasyonunu izleyen orta hat girişinde ilk geçilen tabaka deridir. [[K5 s. 119]]' },
     { ad: 'Deri altı', metin: 'Deri altı dokusu, yüzey ile omurganın arka bağları arasında geçilir. [[K5 s. 119]]' },
@@ -85,23 +42,21 @@ VERI.sorular['an03a-3'] = {
   ];
   const okumalar = {
     katman: 'Şemayı yüzeyden derine doğru okuyun. Renkli satır seçtiğiniz katmanı gösterir. Orta hat girişini paramedyan girişle karşılaştırırken, kalsifikasyonu iğne geçişini güçleştirebilen iki bağı bulun. [[K5 s. 119]]', 
-    egri: 'Yayları yandan izleyin. Önce tek bir öne konkav eğri, sonra başın dik tutulmasıyla boyunda ters yönlü bir kıvrım görülür. [[K5 s. 109]] Beli öne konveks hâle getiren ikinci postür değişikliği oturma ve ayakta durmadır. [[K5 s. 109]]',
+    egri: 'Soldan sağa ilerleyin. Hangi evrede bel eğriliği ilk kez öne konveks görünüyor? [[K5 s. 109]]',
     atlas: 'Kemik halkayı önden arkaya izleyin. Öndeki kısa arkın iç yüzü densi karşılar, arka ark üzerindeki oluk ise damarın foramen magnuma dönüş yeridir. [[K5 s. 110–112]] İki konkav üst eklem yüzünün derinliği, atlasın üstünde oturan oksipital kondillerle ilişkisini gösterir. [[K5 s. 110]]',
     servikal: 'Ortadaki geniş açıklığı iki yandaki küçük açıklıklardan ayırın. Ortada omurilik için vertebral foramen, yanlarda vertebral damarlar için birer foramen transversarium vardır. [[K5 s. 109]] Yan açıklığın dış sınırı boyunca önden arkaya ilerlerseniz ön tüberkül, kostotransvers çubuk ve arka tüberkülü sırasıyla bulursunuz. [[K5 s. 109–111]]',
     torasik: 'Gövdenin yan yüzündeki iki küçük eklem yüzünü bulun. Üstteki pedikülün tabanına oturur, alttaki ise alt vertebral çentiğin hemen önünde kalır. [[K5 s. 113]] Transvers çıkıntının ucuna doğru ilerlediğinizde bu kez kosta başını değil, kosta tüberkülünü karşılayan yüzü görürsünüz. [[K5 s. 110]] [[K5 s. 114]]',
     lomber: 'Gövdenin arka kenarından başlayarak foramenin bir yanını izleyin. Kalın pedikülü geçince eklem çıkıntısına, oradan kısa ve geniş laminaya ulaşırsınız. [[K5 s. 114–116]] İki lamina arkada orta hatta buluşur, yatay spinöz çıkıntı bu hattın devamında yer alır. [[K5 s. 109]] [[K5 s. 115–116]]',
-    isaret: 'Ense oluğunda parmağınızın ilk takıldığı çıkıntı ile en kolay seçilen çıkıntı iki ayrı düzeyi gösterir. [[K5 s. 111]] [[K5 s. 114]] Belde ise iki krest tepesini aynı çizgide birleştirerek önce gövde düzeyini, sonra çizginin üstündeki ve altındaki aralığı adlandırın. [[K5 s. 118–119]]',
-    yaklasim: 'Omurları yandan karşılaştırın. Orta torasik bölgede üst omurun spinöz çıkıntısı aşağı sarkar ve orta hattan geçişi başa yöneltir. [[K5 s. 114]] Belde çıkıntılar yataya yakındır, öne eğilmek komşu laminalar arasındaki açıklığı büyütür. [[K5 s. 114–115]] Son görünümde genişleyen aralığı bulun. [[K5 s. 117]]'
+    isaret: 'Sakrumdan yukarı doğru sayarak krestlerin hizasındaki gövdeyi kontrol edin. [[K5 s. 118–119]]',
+    yaklasim: 'İlk iki örnekte spinöz çıkıntının üst kenarını, son örnekte iki lamina arasındaki sarı bağı bulun. [[K5 s. 114–115]] [[K5 s. 117]]'
   };
   function lejant(id) {
-    const cizim = cizimler[id];
     if (id === 'katman') return `<ol>${katmanlar.map(k => `<li><b>${k.ad}.</b> ${k.metin}</li>`).join('')}</ol>`;
-    if (!cizim) return '';
-    return `<ol>${cizim.noktalar.map(n => `<li><b>${n.ad}.</b> ${n.metin}</li>`).join('')}</ol>`;
+    return '';
   }
   const sekil = (id, ad) => `<div class="viz"><div class="viz-head"><h3>${ad}</h3></div><div data-viz="an03a_${id}">${lejant(id)}</div><p class="viz-cap" aria-live="polite"></p><p class="viz-foot">${okumalar[id]}</p></div>`;
   SAYFALAR['dersler/anatomi/03a'] = {
-    cizimler, katmanlar, grup: 'dersler', eyebrow: 'Anatomi · Bölüm 3 · Ders 03a', baslik: 'Servikal, torasik ve lomber vertebralar',
+    katmanlar, grup: 'dersler', eyebrow: 'Anatomi · Bölüm 3 · Ders 03a', baslik: 'Servikal, torasik ve lomber vertebralar',
     lede: 'Spinal ve epidural blokta aynı kemik işaretler önce parmakla, sonra ilerleyen iğneyle tanınır. [[K5 s. 109]]',
     html: `
 <nav class="wrap ders-nav" aria-label="Bu derste">${nav.map(([id, ad], i) => `<button type="button" data-scroll="an03a-${id}"><span>${String(i+1).padStart(2,'0')}</span>${ad}</button>`).join('')}</nav>
@@ -120,6 +75,8 @@ ${sekil('egri','Tek fetal eğrilikten erişkin omurgasına')}
 <section class="wrap blk ders-sec" id="an03a-boyun"><h2>Boyunda hangi omuru tutuyorsunuz?</h2>
 <p class="intro">C3–C6 tipik servikal omurlardır, C1 ise gövdesiz bir halkadır. [[K5 s. 109–110]]</p>
 ${sekil('atlas','Atlası üstten okuyun')}
+</section>
+<section class="wrap blk ders-sec" id="an03a-tipik"><h2>Tipik servikal omur ve komşulukları</h2>
 ${sekil('servikal','C3–C6’da orta ve yan açıklıkları ayırt edin')}
 <ul class="an03a-liste">
 <li><b>Gövde ve kanal.</b> Küçük, yassı gövdenin arkasında geniş, üçgen bir vertebral foramen bulunur. [[K5 s. 109]]</li>
@@ -169,16 +126,17 @@ ${sekil('lomber','L3’te gövdeden spinöz çıkıntıya')}
 <section class="wrap blk ders-sec" id="an03a-yuzey"><h2>Palpasyonla düzey bulma</h2>
 <p class="intro">Boyunda ense oluğu, belde iliak krestlerin en yüksek noktaları omur düzeyini bulmaya yardım eder. [[K5 s. 111]] [[K5 s. 118–119]]</p>
 ${sekil('isaret','Ense oluğundan ve interkristal çizgiden düzeyi okuyun')}
-<p>C7’nin hemen altında hissedilen T1, spinöz çıkıntılar arasında en kolay palpe edilendir. [[K5 s. 111]] [[K5 s. 114]] İnterkristal çizginin hemen üstündeki aralık genellikle L3/4, altındaki L4/5’tir. [[K5 s. 119]]</p>
 <p>Erişkinde omurilik genellikle L1’de sonlanır, ancak L2’ye, hatta L3’e uzanabilir. [[K5 s. 119]] Bu nedenle tanısal ya da anestezi amaçlı spinal iğne, istisnai durumlar dışında L3/4’ün üzerinden ilerletilmez. [[K5 s. 119]]</p></section>
 
 <section class="wrap blk ders-sec" id="an03a-giris"><h2>Kemik aralıktan dural kılıfa</h2>
 <p class="intro">Orta hattan yaklaşırken spinöz çıkıntıların eğimi iğnenin yönünü, lomber fleksiyon ise giriş aralığının genişliğini belirler. [[K5 s. 114–115]] [[K5 s. 118]]</p>
 ${sekil('yaklasim','Orta torasik ve lomber aralığı karşılaştırın')}
 <div class="an03a-kartlar">
-<div class="card"><h3>Orta hat</h3><p>Lomber ponksiyon veya spinal anestezi için hasta genellikle yan yatar ya da oturur ve belini olabildiğince büker. [[K5 s. 118]] Lokal infiltrasyondan sonra orta hatta sırasıyla deri, deri altı, supraspinöz bağ, interspinöz bağ, ligamentum flavum ve dura geçilir. [[K5 s. 119]] Dura delinirken sıklıkla direnç kaybı hissedilir, stile çıkarıldığında iğne ucunun bağlantı yerinde beyin omurilik sıvısı görülmelidir. [[K5 s. 119]]</p></div>
+<div class="card"><h3>Orta hat</h3><p>Lomber ponksiyon veya spinal anestezi için hasta genellikle yan yatar ya da oturur ve belini olabildiğince büker. [[K5 s. 118]]</p></div>
 <div class="card"><h3>Paramedyan giriş</h3><p>Bazı merkezlerde lomber ponksiyon, spinal veya epidural anestezi için lateral yaklaşım tercih edilir. [[K5 s. 119]] Fleksiyon kısıtlıysa veya supraspinöz ve interspinöz bağların kalsifikasyonu geçişi güçleştiriyorsa özellikle yararlı olabilir. [[K5 s. 119]] Üst torasik epiduralde orta hattın gerektirdiği dik sefalad açıdan kaçınmayı sağlar. [[K5 s. 119]]</p>
 <p>Yaygın tariflerden birinde giriş, spinöz çıkıntının alt kenarının yaklaşık 1,5 cm lateralindedir. [[K5 s. 120]] İğne başa ve hafif mediale yöneltilir. [[K5 s. 120]] Laminaya değerse küçük adımlarla başa kaydırılarak sarı bağ geçilir, ardından epidural ya da subaraknoid aralığa ulaşılabilir. [[K5 s. 120]]</p></div></div>
+</section>
+<section class="wrap blk ders-sec" id="an03a-katmanlar"><h2>Orta hat ponksiyonunda doku katmanları</h2>
 ${sekil('katman','Orta hatta hangi katman geçilir?')}
 <h3>Görüntüleme ve klinik kullanım</h3>
 <ul class="an03a-liste"><li>Bağlardan geçişte direncin değişimini ve kemiklerle sinir dokusu ve dural kılıfın ilişkisini bilmek gerekir. [[K5 s. 109]] Bazı anestezistler spinal enjeksiyona yardımcı olarak ultrason veya X ışını kullanır. [[K5 s. 109]]</li>

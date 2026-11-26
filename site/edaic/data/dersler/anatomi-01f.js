@@ -31,7 +31,7 @@ VERI.sorular['an01f-3'] = {
 };
 
 const AN01F_NAV = [
-  ['kas', 'Tutunmalar'], ['gecit', 'Açıklıklar'], ['solunum', 'Sinir ve hareket'], ['kardiya', 'Kardiya'],
+  ['kas', 'Tutunmalar'], ['gecit', 'Açıklıklar'], ['solunum', 'Solunum hareketi'], ['frenik', 'Frenik sinir'], ['kardiya', 'Kardiya'],
   ['herni', 'Gelişim ve herniler'], ['p1', 'Part I'], ['p2', 'Part II'], ['ozet', 'Özet'],
 ];
 SAYFALAR['dersler/anatomi/01f'] = {
@@ -55,11 +55,6 @@ SAYFALAR['dersler/anatomi/01f'] = {
   <h2>Hangi yapı nereden geçer?</h2>
   <p class="intro">Diyaframdaki üç ana geçişi yukarıdan aşağı vena kava inferior, özofagus ve aort sırasıyla izleyin. [[K5 s. 72–74]]</p>
   <div class="viz"><div class="viz-head"><h3>Düzeyi seçin, eşlik eden yapıları bulun</h3></div><div data-viz="an01f_gecit"></div><p class="viz-cap" aria-live="polite"></p></div>
-  <dl class="an01f-cift">
-    <dt>T8 · ven</dt><dd>Vena kava inferior sekizinci torakal vertebra gövdesi düzeyinde geçer. [[K5 s. 72]] Kaval açıklığı sağ frenik sinirin bütününün geçtiği yer olarak düşünmeyin, vene yalnız bazı lifler eşlik edebilir. [[K5 s. 75]]</dd>
-    <dt>T10 · sindirim yolu</dt><dd>Özofagusla birlikte vagus sinirleri ve sol gastrik damarların özofagusa giden dalları geçer. [[K5 s. 74]]</dd>
-    <dt>T12 · aort</dt><dd>Aort median arkuat bağın arkasında torasik kanal ve azigos venle birlikte seyreder. [[K5 s. 74]]</dd>
-  </dl>
   <p>Özofageal hiatusu genellikle sağ krustan gelen kas lifleri askı gibi sarar. [[K5 s. 74]] Sol krusun askıya katılması nadir değildir, bazen bütün askıyı sol krus oluşturur. [[K5 s. 74]]</p>
   <h3>Diğer geçiş yolları</h3>
   <dl class="an01f-cift">
@@ -72,26 +67,23 @@ SAYFALAR['dersler/anatomi/01f'] = {
   <p>Abdominal yüzden komşulukları incelerken arka karın duvarında iliohipogastrik sinir de görülür. [[K5 s. 73]]</p>
 </section>
 <section class="wrap blk ders-sec" id="an01f-solunum">
-  <h2>Frenik sinir ve solunum hareketi</h2>
-  <p class="intro">Kasın motor uyarısı frenik sinirden (C3–C5) gelir, kruslara T11 ve T12’den küçük bir katkı ulaşır. [[K5 s. 74–75]]</p>
+  <h2>Solunumda diyafram hareketi</h2>
+  <p class="intro">Diyaframın hareket açıklığı sakin solunumda 1,5 cm, derin solunumda 7–13 cm’dir. [[K5 s. 75]]</p>
   <div class="viz"><div class="viz-head"><h3>Kubbelerin hareket yönü</h3></div><div data-viz="an01f_hareket"></div><p class="viz-cap" aria-live="polite"></p></div>
-  <dl class="an01f-cift">
-    <dt>Sağ frenik sinir</dt><dd>Vena kava inferiorun lateralinde santral tendonu deler, bazı lifleri kaval açıklıkta vene eşlik edebilir. [[K5 s. 75]]</dd>
-    <dt>Sol frenik sinir</dt><dd>Perikardın tutunduğu yerin yaklaşık 1 cm lateralinde kası deler. [[K5 s. 75]] Her iki sinirin uç dalları kasa abdominal yüzden girer. [[K5 s. 75]]</dd>
-    <dt>Duyu ve denervasyon</dt><dd>Merkezin propriyosepsiyonunu frenik sinir, çevredeki kasın duyusunu alt torasik sinirler taşır. [[K5 s. 75]] Frenik sinir kesilirse aynı taraftaki hemidiyafram tam atrofiye uğrar. [[K5 s. 75]]</dd>
-  </dl>
-  <div class="viz"><div class="viz-head"><h3>İki frenik sinirin geçiş yolları</h3></div><div data-viz="an01f_frenik"></div><p class="viz-cap" aria-live="polite"></p></div>
-  <h3>Bir soluk boyunca</h3>
-  <p>İnspirasyonda kubbeler dikey olarak inerken santral tendon daha az yer değiştirir. [[K5 s. 75]] Böylece toraks boşluğu piston hareketiyle genişler, ardından alt kostal kenar yükselip dışa dönerek toraks tabanını genişletir. [[K5 s. 75]]</p>
-  <p>Ekspirasyonda diyafram gevşer. [[K5 s. 75]] Nefes zorlu verildiğinde ön karın duvarı kasları kasılır ve artan basınç diyaframı karından toraksa doğru iter. [[K5 s. 75]]</p>
   <h3>Yatak başında kubbenin konumu</h3>
   <ul class="ozet">
     <li>Kubbenin tepesi midklaviküler çizgide 5. kaburga hizasına, meme başının yaklaşık 2,5 cm altına kadar çıkar. [[K5 s. 75]] Sağ hemidiyafram soldakinden biraz daha yüksektir. [[K5 s. 75]] Yatay konumda iki kubbe de biraz yükselir. [[K5 s. 75]] Yan yatışta üstteki kubbe daha aşağıda kalır ve hareketi görece azalır. [[K5 s. 75]]</li>
     <li>Geç gebelik, belirgin asit, obezite, pnömoperiton ve büyük abdominal tümörler diyaframı yükselterek solunumu bir ölçüde kısıtlar. [[K5 s. 75]]</li>
-    <li>Hareket açıklığı sakin solunumda 1,5 cm, derin solunumda 7–13 cm’dir. [[K5 s. 75]] Diyaframın tidal hacmin yaklaşık %60–75’ini sağladığı tahmin edilir ve bazı kişilerde sakin inspirasyonun tek aktif kası olabilir. [[K5 s. 75]]</li>
+    <li>Diyaframın tidal hacmin yaklaşık %60–75’ini sağladığı tahmin edilir ve bazı kişilerde sakin inspirasyonun tek aktif kası olabilir. [[K5 s. 75]]</li>
     <li>Akciğerler görece normalse iki frenik sinirin kesintisine bağlı tam diyafram paralizisi çok az solunum güçlüğüne yol açabilir. [[K5 s. 75]]</li>
   </ul>
   <p>Diyafram ayrıca dışkılama, işeme, kusma ve doğum sırasında karın içi basıncın artmasına yardım eder. [[K5 s. 75]]</p>
+</section>
+<section class="wrap blk ders-sec" id="an01f-frenik">
+  <h2>Frenik sinir</h2>
+  <p class="intro">Kasın motor uyarısı frenik sinirden (C3–C5) gelir, kruslara T11 ve T12’den küçük bir katkı ulaşır. [[K5 s. 74–75]]</p>
+  <div class="viz"><div class="viz-head"><h3>İki frenik sinirin geçiş yolları</h3></div><div data-viz="an01f_frenik"></div><p class="viz-cap" aria-live="polite"></p></div>
+  <p>Merkezin propriyosepsiyonunu frenik sinir, çevredeki kasın duyusunu alt torasik sinirler taşır. [[K5 s. 75]] Frenik sinir kesilirse aynı taraftaki hemidiyafram tam atrofiye uğrar. [[K5 s. 75]]</p>
 </section>
 <section class="wrap blk ders-sec" id="an01f-kardiya">
   <h2>Kardiyayı ne kapalı tutar?</h2>
@@ -112,10 +104,6 @@ SAYFALAR['dersler/anatomi/01f'] = {
   <h2>Gelişim ve herniler</h2>
   <p class="intro">Doğumsal defektleri yerleriyle, edinilmiş hiatus hernilerini ise yukarı çıkan mide bölümüyle ayırt edin. [[K5 s. 77–78]]</p>
   <div class="viz"><div class="viz-head"><h3>Hiatus hernisinde bileşke nerede?</h3></div><div data-viz="an01f_herni"></div><p class="viz-cap" aria-live="polite"></p></div>
-  <dl class="an01f-cift">
-    <dt>Kayma tipi</dt><dd>Hasta uzandığında ya da öne eğildiğinde alt özofagus ile üst mide genişlemiş hiatustan birlikte toraksa çıkar. [[K5 s. 78]] Bileşke yukarı kaydığı için normalde kapak gibi işleyen özofagogastrik açı düzleşir. [[K5 s. 76]]</dd>
-    <dt>Paraözofageal tip</dt><dd>Çok daha seyrek görülen bu tipte kardiya olağan konumunu korur. [[K5 s. 78]] Özofagusun önünden geçerek toraksa yuvarlanan bölüm mide fundusudur, herni adını fundusun izlediği bu yoldan alır. [[K5 s. 78]]</dd>
-  </dl>
   <h3>Dört embriyonik katkı</h3>
   <ul class="ozet">
     <li>Baş ucunun önündeki mezodermden gelişen septum transversum santral tendonu oluşturur. [[K5 s. 76]] Baş kıvrılırken ventrale ve kaudale taşınarak diyaframın ön bölümüne yerleşir. [[K5 s. 76]]</li>

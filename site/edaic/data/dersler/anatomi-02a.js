@@ -32,7 +32,7 @@ VERI.sorular['an02a-3'] = {
 
 const AN02A_NAV = [
   ['perikard','Perikard'], ['yuzler','Kalbin yüzleri'], ['bosluklar','Boşluklar ve kapaklar'],
-  ['klinik','TEE ve kateter'], ['ileti','İleti'], ['koroner','Koroner dolaşım'],
+  ['klinik','TEE ve kateter'], ['ileti','İleti'], ['koroner','Koroner arterler'], ['donus','Venöz dönüş'], ['sinus','Koroner sinüs'],
   ['izdusum','Yüzey ve grafi'], ['p1','Part I'], ['p2','Part II'], ['ozet','Özet'],
 ];
 SAYFALAR['dersler/anatomi/02a'] = {
@@ -103,13 +103,9 @@ SAYFALAR['dersler/anatomi/02a'] = {
 <div class="cols"><div class="card"><h3>Düğümlerin arterleri</h3><p>Sinoatriyal düğümün kanı olguların yaklaşık %65’inde sağ koroner arterden, geri kalanlarda genellikle sol koroner arterin sirkumfleks dalından gelir. [[K5 s. 89]] Atriyoventriküler düğümü kişilerin %80’inde sağ koroner arter besler. [[K5 s. 89]]</p></div>
 <div class="card"><h3>Otonom innervasyon</h3><p>Vagustan (kardiyoinhibitör) ve servikal ile üst torakal sempatik ganglionlardan (kardiyoakseleratör) gelen lifler, yüzeyel ve derin kardiyak pleksuslar üzerinden kalbe ulaşır. [[K5 s. 90]]</p></div></div></section>
 
-<section class="wrap blk ders-sec" id="an02a-koroner"><h2>Koroner arterler ve venöz dönüş</h2>
+<section class="wrap blk ders-sec" id="an02a-koroner"><h2>Koroner arterler</h2>
 <p class="intro">Miyokardı besleyen iki koroner arter farklı aort sinüslerinden çıkar ve dalları kalbin oluklarında buluşur. [[K5 s. 86]] [[K5 s. 89]]</p>
 <div class="viz"><h3>Aort sinüsünden koroner dallara</h3><div data-viz="an02a_arter"></div><p class="viz-cap" aria-live="polite"></p></div>
-<div class="cols"><div class="card"><h3>Sağ koroner arter</h3><p>Anterior aort sinüsünden çıkıp pulmoner trunkus ile sağ atriyum arasından öne geçer. [[K5 s. 89]] Sağ atriyoventriküler olukta aşağı iner, alt kenarı dönüp aynı olukta ilerler ve inferior interventriküler olukta sol koroner arterle anastomoz yapar. [[K5 s. 89]]</p>
-<ul><li><b>Marjinal dal</b> kalbin alt kenarını izler. [[K5 s. 89]]</li><li><b>İnterventriküler dal</b> inferior interventriküler olukta öne yönelir ve apeks yakınında sol koroner arterin karşı dalıyla birleşir. [[K5 s. 89]]</li></ul></div>
-<div class="card"><h3>Sol koroner arter</h3><p>Sağdan daha büyük olan sol koroner arter, sol posterior aort sinüsünden çıkar. [[K5 s. 89]] Pulmoner trunkusun önce arkasından, sonra solundan geçerek sol atriyoventriküler oluğa girer. [[K5 s. 89]]</p>
-<ul><li><b>Sirkumfleks arter</b> bu olukta sol kenarı dıştan dolanır ve inferior interventriküler oluğa ulaşır. [[K5 s. 89]]</li><li><b>Anterior interventriküler arter</b> en önemli daldır, iki ventrikülün ön yüzünü besler. [[K5 s. 89]] Apeksi dolanıp sağ koroner arterin interventriküler dalına katılır. [[K5 s. 89]]</li></ul></div></div>
 <h3>Kim neyi besler?</h3>
 <div class="tbl-wrap"><table class="tbl"><thead><tr><th>Bölge</th><th>Arter</th></tr></thead><tbody>
 <tr><th>Sinoatriyal düğüm</th><td>Yaklaşık %65 sağ koroner; kalanında genellikle sirkumfleks. [[K5 s. 89]]</td></tr>
@@ -119,7 +115,13 @@ SAYFALAR['dersler/anatomi/02a'] = {
 <tr><th>Anastomoz yerleri</th><td>İnferior interventriküler oluk ve apeks yakını. [[K5 s. 89]]</td></tr>
 </tbody></table></div>
 <div class="note plain"><b>Atlas notu.</b> Kitap inferior interventriküler dalı yalnız sağ koroner artere bağlar; bu dal çoğunlukla sağdan, bir azınlıkta sirkumfleksten çıkar ve onu veren arter "dominant" sayılır. Oluklardaki anastomozlar ani tıkanmada yeterli kollateral akım sağlamaz; koroner dallar işlevsel olarak uç arter gibi davranır. [[K5 s. 89]]</div>
-<div class="viz"><h3>Venöz kan hangi yoldan döner?</h3><div data-viz="an02a_ven"></div><p class="viz-cap" aria-live="polite"></p></div>
+</section>
+
+<section class="wrap blk ders-sec" id="an02a-donus"><h2>Miyokardın venöz dönüşü</h2>
+<div class="viz"><h3>Üç dönüş yolunu karşılaştırın</h3><div data-viz="an02a_ven"></div><p class="viz-cap" aria-live="polite"></p></div>
+</section>
+
+<section class="wrap blk ders-sec" id="an02a-sinus"><h2>Koroner sinüs ve dalları</h2>
 <div class="viz"><h3>Arkadan görünümde sinüsün yerini bulun</h3><div data-viz="an02a_arka"></div><p class="viz-cap" aria-live="polite"></p></div>
 <p>Arka yüzde dikey doğrultuda birbirine yaklaşan iki kava sağ atriyuma açılır. [[K5 s. 83–85]] Sol atriyumun altındaki enine yolu izlerseniz posterior atriyoventriküler olukta seyreden koroner sinüsü bulursunuz. [[K5 s. 83]] [[K5 s. 90]]</p>
 <h3>Koroner sinüse katılan dört ven</h3>
@@ -132,9 +134,8 @@ SAYFALAR['dersler/anatomi/02a'] = {
 
 <section class="wrap blk ders-sec" id="an02a-izdusum"><h2>Göğüs duvarından PA grafiye</h2>
 <p class="intro">Kalbin göğüs duvarındaki dış sınırı dört nokta birleştirilerek çizilir. [[K5 s. 90–91]]</p>
-<div class="viz"><h3>Dört köşeyi yerleştirin</h3><div data-viz="an02a_yuzey"></div><p class="viz-cap" aria-live="polite"></p><p class="viz-foot">Önden görünüm, şematik izdüşüm. [[K5 s. 90–91]]</p></div>
+<div class="viz"><h3>Dört köşeyi yerleştirin</h3><div data-viz="an02a_yuzey"></div><p class="viz-cap" aria-live="polite"></p></div>
 <p>Dörtgenin sağ kenarını sağ atriyum, sol kenarının hemen tamamını sol ventrikül oluşturur. [[K5 s. 90]] Alt kenar boyunca başlıca sağ ventrikül ve sol ventrikülün apikal bölümü izlenir. [[K5 s. 90]]</p>
-<div class="note plain"><b>İzdüşümü çizerken.</b> İlk üç nokta için referans sternum kenarıdır. [[K5 s. 90]] Önce sol ikinci kıkırdakta üst köşeyi koyun, sonra sağda üçüncü ve altıncı kıkırdaklardaki iki noktayı birleştirin. [[K5 s. 90–91]] Apeks için ölçümün başlangıcını orta hatta taşıyın ve son noktayı kıkırdağın üzerine değil, sol beşinci interkostal aralığa yerleştirin. [[K5 s. 90]]</div>
 <h3>Posteroanterior (PA) grafide kalp gölgesi</h3>
 <p>Kalp ve büyük damarlar mediasten gölgesinin çoğunu oluşturur. [[K5 s. 91]] Normalde kalbin enine çapı göğüs genişliğinin yarısını aşmamalıdır, ancak vücut yapısı ve kalbin konumu bu çapı belirgin biçimde etkiler. [[K5 s. 91–92]] Dikey kalbin gölgesi uzun ve dar, yatay kalbinki geniş ve yuvarlaktır. [[K5 s. 92]]</p>
 <ul><li><b>Sağ kontur, yukarıdan aşağıya.</b> Sağ brakiyosefalik ven, superior vena kava, sağ atriyum. [[K5 s. 91–92]]</li>
