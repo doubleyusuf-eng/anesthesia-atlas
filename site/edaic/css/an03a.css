@@ -1,0 +1,4 @@
+.an03a-kartlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 1rem; margin-block: 1rem; }
+.an03a-kartlar h3 { margin-top: 0; }
+.an03a-kartlar p:last-child { margin-bottom: 0; }
+.an03a-liste li + li { margin-top: .55rem; }

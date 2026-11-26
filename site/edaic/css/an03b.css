@@ -1,0 +1,14 @@
+.an03b-dizi {
+  display: grid;
+  grid-template-columns: minmax(5rem, 1fr) 4fr;
+  gap: .5rem 1rem;
+  padding: 1rem;
+  border-inline-start: .2rem solid var(--accent);
+  background: var(--paper);
+}
+.an03b-dizi dt { font-weight: 700; }
+.an03b-dizi dd { margin: 0; }
+@media (max-width: 520px) {
+  .an03b-dizi { grid-template-columns: 1fr; }
+  .an03b-dizi dd + dt { margin-top: .5rem; }
+}

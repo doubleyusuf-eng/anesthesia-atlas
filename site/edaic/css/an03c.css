@@ -1,0 +1,6 @@
+/* Konus resminde uzun kökler ve lejant dar ekranda da birlikte okunabilsin. */
+[data-viz="an03c_konus"] .sk-cz-svg { max-height: 32rem; }
+.an03c-okuma { margin-block: 1rem; border-top: 1px solid var(--line); padding-block: .8rem; }
+.an03c-okuma summary { cursor: pointer; font-weight: 650; }
+.an03c-okuma p { margin-block: .7rem 0; }
+.an03c-rehber { border-inline-start: 2px solid var(--line); padding-inline-start: 1em; }
