@@ -1,0 +1,10 @@
+.an01e-satirlar { margin: 1.25rem 0; }
+.an01e-satirlar > div { display: grid; grid-template-columns: minmax(9rem, 1fr) 4fr; gap: 1rem; padding: .85rem 0; border-bottom: 1px solid var(--line); }
+.an01e-satirlar dt { font-weight: 700; }
+.an01e-satirlar dd { margin: 0; max-width: 72ch; }
+@media (max-width: 600px) {
+  .an01e-satirlar > div { grid-template-columns: 1fr; gap: .25rem; }
+}
+.an01e-okuma { margin: .65rem 0; padding: .7rem 1rem; border: 1px solid var(--line); border-radius: .5rem; }
+.an01e-okuma summary { cursor: pointer; font-weight: 650; }
+.an01e-okuma p { max-width: 72ch; }

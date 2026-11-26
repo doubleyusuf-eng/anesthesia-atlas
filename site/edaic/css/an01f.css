@@ -1,0 +1,11 @@
+.an01f-cift {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) 3fr;
+  gap: .75rem 1.5rem;
+}
+.an01f-cift dt { font-weight: 700; }
+.an01f-cift dd { margin: 0; }
+@media (max-width: 540px) {
+  .an01f-cift { grid-template-columns: 1fr; gap: .2rem; }
+  .an01f-cift dd { margin-bottom: .65rem; }
+}
