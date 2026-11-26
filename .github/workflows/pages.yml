@@ -33,5 +33,7 @@ jobs:
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site
+      # The artifact listing can lag the upload by several seconds ("Found 0 artifact(s)").
+      - run: sleep 30
       - id: deployment
         uses: actions/deploy-pages@v5
