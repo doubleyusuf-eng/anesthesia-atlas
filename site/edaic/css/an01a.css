@@ -1,0 +1,20 @@
+.an01a-icerik .tbl th[scope="row"] {
+  text-align: start;
+  vertical-align: top;
+}
+.an01a-icerik .tbl td {
+  vertical-align: top;
+}
+.an01a-muayene {
+  margin-block: 1rem;
+  padding: .85rem 1rem;
+  border-inline-start: 3px solid var(--accent);
+  background: var(--paper);
+}
+.an01a-muayene summary {
+  cursor: pointer;
+  font-weight: 650;
+}
+.an01a-muayene p {
+  margin-block: .65rem 0;
+}

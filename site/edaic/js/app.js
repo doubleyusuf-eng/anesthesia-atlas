@@ -12,8 +12,9 @@
   const MODUL = {
     fizyoloji: { on: 'fiz', hazir: () => window.FIZ_HAZIR || [] },
     farmakoloji: { on: 'far', hazir: () => window.FAR_HAZIR || [] },
+    anatomi: { on: 'an', hazir: () => window.AN_HAZIR || [] },
   };
-  const BOLUM = /^dersler\/(fizyoloji|farmakoloji)\/(ek\d\d|\d\d[a-f]?)$/;
+  const BOLUM = /^dersler\/(fizyoloji|farmakoloji|anatomi)\/(ek\d\d|\d\d[a-f]?)$/;
   function anahtar() {
     const h = ham();
     if (!h) return 'giris';

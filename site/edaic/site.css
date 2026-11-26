@@ -631,3 +631,20 @@ footer .wrap{display:flex;flex-direction:column;gap:6px}
 .bharita .no a{color:var(--accent-ink)}
 .bharita ul{margin:8px 0 0;padding-left:18px}
 @media (max-width:760px){.bharita{grid-template-columns:1fr}}
+/* SEKIL.cizim: anatomik resim + numaralı noktalar */
+.sk-cz{display:grid;gap:12px}
+.sk-cz-ic{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(200px,1fr);gap:16px;align-items:start}
+.sk-cz-res{background:#fff;border-radius:12px;border:1px solid var(--line);overflow:hidden}
+.sk-cz-svg{display:block;width:100%;height:auto;max-height:78vh}
+.sk-cz-p{cursor:pointer}
+.sk-cz-p circle{fill:var(--accent);stroke:#fff;stroke-width:3;opacity:.92}
+.sk-cz-p.on circle{fill:var(--crit);opacity:1}
+.sk-cz-p text{fill:#fff;font-family:var(--f-display);font-weight:700;pointer-events:none}
+.sk-cz-p:focus-visible circle{stroke:var(--ink);stroke-width:5}
+.sk-cz-yan{display:grid;gap:10px;align-content:start}
+.sk-cz-l{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+.sk-cz-l button{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;background:none;border:1px solid transparent;border-radius:8px;padding:6px 8px;font:500 15px/1.3 var(--f-display);color:var(--ink);cursor:pointer}
+.sk-cz-l button b{font-family:var(--f-mono);color:var(--accent-ink);min-width:1.6em}
+.sk-cz-l button[aria-pressed="true"]{border-color:var(--crit);background:var(--crit-soft)}
+.sk-cz-l button:hover{border-color:var(--line)}
+@media (max-width:640px){.sk-cz-ic{grid-template-columns:1fr}.sk-cz-l{grid-template-columns:1fr 1fr}.sk-cz-l button{font-size:14px;padding:6px 4px}}

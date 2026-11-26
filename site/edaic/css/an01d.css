@@ -1,0 +1,8 @@
+.an01d-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.an01d-kartlar h3 { margin-top: 0; }
+.an01d-kartlar p:last-child { margin-bottom: 0; }

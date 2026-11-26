@@ -445,4 +445,22 @@
       <p class="viz-foot">${REF('Bölüm sırası K3 [[K3]]; sayfalar Türkçe çalışma çevirisine göredir (özgün baskıyla aynı değildir); uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünmüştür.')}</p>`;
     return () => {};
   };
+
+  /* ---------- anatomi içindekiler: kitap bölümü → ders ---------- */
+  VIZ.anIcindekiler = (el) => {
+    const A = window.ANATOMI, durum = store.get('edaic-anatomi-tamam') || {};
+    const HZ = window.AN_HAZIR || [];
+    const hazirMi = (id) => !!SAYFALAR['dersler/anatomi/' + id] || HZ.includes(id);
+    const dersler = A.bolumler.flatMap((b) => b[2]);
+    const top = dersler.length, yaz = dersler.filter(([id]) => hazirMi(id)).length, bit = dersler.filter(([id]) => durum[id]).length;
+    const satir = ([id, ad, s, e]) => {
+      const hz = hazirMi(id), tm = durum[id];
+      const ic = `<span class="no">${id}</span><span class="ad">${esc(ad)}</span><span class="sy">K5 s. ${s}–${e}</span><span class="st ${hz ? (tm ? 'ok' : 'hazir') : ''}">${hz ? (tm ? '✓ tamamlandı' : 'hazır') : 'sırada'}</span>`;
+      return hz ? `<li class="icd-h"><a href="#/dersler/anatomi/${id}">${ic}</a></li>` : `<li>${ic}</li>`;
+    };
+    el.innerHTML = `<div class="chk-prog"><span>${yaz}/${top} ders hazır · ${bit} tamamladınız</span><span class="trk"><span class="fl" style="width:${(yaz / top) * 100}%"></span></span></div>
+      ${A.bolumler.map(([no, ad, birim], bi) => `<details class="acc icd"${bi === 0 ? ' open' : ''}><summary>Bölüm ${no} · ${esc(ad)} <span class="small muted" style="margin-left:auto;margin-right:12px;font-weight:500">${birim.length} ders</span></summary><div class="acc-b"><ol class="icd-l">${birim.map(satir).join('')}</ol></div></details>`).join('')}
+      <p class="viz-foot">${REF('Bölüm sırası K5 [[K5]]; uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünmüştür.')}</p>`;
+    return () => {};
+  };
 })();

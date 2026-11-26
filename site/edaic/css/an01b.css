@@ -1,0 +1,22 @@
+.an01b-liste {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) 4fr;
+  margin-block: 1.25rem;
+}
+.an01b-liste dt, .an01b-liste dd {
+  border-block-start: 1px solid var(--line);
+  padding: .7rem .5rem;
+  margin: 0;
+}
+.an01b-liste dt { font-weight: 700; }
+@media (max-width: 560px) {
+  .an01b-liste { display: block; }
+  .an01b-liste dt { padding-bottom: .15rem; }
+  .an01b-liste dd { border: 0; padding-top: .1rem; }
+}
+.an01b-okuma {
+  border-block: 1px solid var(--line);
+  padding: .85rem .5rem;
+  margin-block: 1.2rem;
+}
+.an01b-okuma summary { cursor: pointer; font-weight: 700; }

@@ -567,7 +567,7 @@ SAYFALAR['dersler'] = {
     <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · bölüm bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
     <a class="card" href="#/dersler/farmakoloji"><span class="no">02 · Yayında · ders ders</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezik, analjezik, kas gevşetici, kardiyovasküler ilaçlar; sıvılar, antimikrobiyaller, koagülasyon, hormonlar.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></a>
     <div class="card planned"><span class="no">03 · Planlanıyor</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, makine ve ventilatör; elektrik güvenliği.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
-    <div class="card planned"><span class="no">04 · Planlanıyor</span><h3>Anatomi</h3><p class="small muted">Baş, boyun, toraks, omurga; periferik sinirler ve damarlar; yüzey işaretleri.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></div>
+    <a class="card" href="#/dersler/anatomi"><span class="no">04 · Hazırlanıyor · ders ders</span><h3>Anatomi</h3><p class="small muted">Hava yolu, toraks ve kalp; omurga ve vertebral kanal; periferik, otonom ve kraniyal sinirler; orbita, karın duvarı, ağrı yolları.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
     <div class="card planned"><span class="no">05 · Planlanıyor</span><h3>İstatistik</h3><p class="small muted">Veri, olasılık, dağılımlar; parametrik ve parametrik olmayan testler.</p><span class="where"><span class="tag basic">Paper A</span></span></div>
     <div class="card planned"><span class="no">06 · Planlanıyor</span><h3>Klinik anesteziyoloji</h3><p class="small muted">Preoperatif değerlendirme, genel ve rejyonel anestezi, obstetrik, yan dallar, komplikasyonlar.</p><span class="where"><span class="tag clin">Paper B</span><span class="tag clin">SOE 3</span></span></div>
     <div class="card planned"><span class="no">07 · Planlanıyor</span><h3>Yoğun bakım</h3><p class="small muted">Dolaşım ve solunum yetmezliği, sepsis, sıvı-elektrolit, böbrek yetmezliği, travma, etik.</p><span class="where"><span class="tag clin">Paper B</span><span class="tag clin">SOE 4</span></span></div>
@@ -656,6 +656,28 @@ SAYFALAR['dersler/farmakoloji'] = {
   <h2>Dersler</h2>
   <p class="intro">Hazır dersler bağlantılıdır; tamamladıklarınız bu tarayıcıda işaretli kalır. Ders metinleri ve çizimler bu atlas için yazılmıştır; kitaptan kopyalanmaz. Doz ve uygulama bilgileri sınav hazırlığı içindir, klinik karar için güncel ürün bilgisine ve kılavuzlara bakın.</p>
   <div class="viz"><div data-viz="farIcindekiler"></div></div>
+</section>`,
+};
+
+SAYFALAR['dersler/anatomi'] = {
+  grup: 'dersler', eyebrow: 'Dersler · 04', baslik: 'Anatomi',
+  lede: 'Anatomi Part I\'de Paper A\'nın, Part II\'de SOE 1\'in konusudur. [[S6 s. 4–7]] Dersler Ellis ve Lawson\'ın Anatomy for Anaesthetists kitabının 8 bölümünü sırayla izler; uzun bölümler kitabın kendi başlıklarına göre birkaç kısa derse bölünür. [[K5]]',
+  html: `
+<section class="wrap blk">
+  <h2>Her ders nasıl işlenir?</h2>
+  <ol class="ders-format" style="margin-top:14px">
+    <li><b>Anatomik çizim</b>Her konu bir çizimle; yapılar üzerinde etiketler ve tıklanabilir noktalar.</li>
+    <li><b>Kısa anlatım</b>Kitabın bütün bilgisi, tekrar ve dolgu olmadan; komşuluklar ve düzeyler kart ve tablolarla.</li>
+    <li><b>Part I'de</b>Atlas için yazılmış üç MTF sorusu.</li>
+    <li><b>Part II'de</b>SOE 1 tarzı uygulamalı anatomi sorusu ve cevap iskeleti.</li>
+    <li><b>Kendini sına</b>Özet ve ilerleme kaydı.</li>
+  </ol>
+</section>
+
+<section class="wrap blk">
+  <h2>Dersler</h2>
+  <p class="intro">Hazır dersler bağlantılıdır; tamamladıklarınız bu tarayıcıda işaretli kalır. Ders metinleri ve çizimler bu atlas için hazırlanmıştır; kitaptan kopyalanmaz.</p>
+  <div class="viz"><div data-viz="anIcindekiler"></div></div>
 </section>`,
 };
 

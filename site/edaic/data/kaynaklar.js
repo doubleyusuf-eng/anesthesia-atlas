@@ -104,4 +104,9 @@ window.KAYNAKLAR = {
     not: 'Kitap rehberi bölümünün kaynağı: kitabın yapısı, bölüm haritası ve sınav önerileri bu atlas için kendi cümlelerimizle özetlenmiştir. Kitabın metni, soruları ve model yanıtları yayımlanmaz; rehberdeki deneme soruları bu atlas için yazılmıştır. Kitabın kendisi için yayıncıya başvurun.',
     url: 'https://doi.org/10.1093/med/9780198867029.001.0001',
   },
+  K5: {
+    ad: 'Ellis H, Lawson A. Anatomy for Anaesthetists, 9. baskı',
+    tur: 'Kitap · John Wiley & Sons', tarih: '2014 · sayfa numaraları basılı kitap sayfalarıdır',
+    not: 'Anatomi derslerinin ana kaynağı; dersler kitabın 8 bölümünü sırayla izler, uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünür. Ders metinleri, sorular ve çizimler bu atlas için yazılmış/üretilmiştir; kitaptan metin ya da şekil kopyalanmamıştır.',
+  },
 };

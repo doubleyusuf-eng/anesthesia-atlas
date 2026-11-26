@@ -225,5 +225,39 @@
     return () => { dur(); bz(); };
   }
 
-  window.SEKIL = { adim, grafik, sahne, yardim, renk };
+  /* ---------- 4) anatomik çizim: resim + numaralı noktalar + lejant ----------
+     cfg = { baslik, gorunumler:[{ ad:'Önden', resim:'img/anatomi/01c-larinks-on.webp', en:1024, boy:1536,
+               kirp:[x,y,w,h] (isteğe bağlı; resim koordinatında görünen alan),
+               noktalar:[{ x, y, ad:'Krikoid kıkırdak', metin:'açıklama HTML [[K5 s. n]]' }] }],
+             giris:'nokta seçilmeden viz-cap metni' }
+     Koordinatlar resmin piksel koordinatıdır (sol üst 0,0). Sına kipi adları gizler; nokta seçilince ad görünür. */
+  function cizim(el, cfg) {
+    const G = cfg.gorunumler;
+    el.classList.add('sk', 'sk-cz');
+    el.innerHTML = `${G.length > 1 ? `<div class="seg sk-cz-g" role="group" aria-label="Görünüm">${G.map((g, k) => `<button type="button" data-g="${k}" aria-pressed="${k === 0}">${g.ad}</button>`).join('')}</div>` : ''}
+      <div class="sk-cz-ic"><div class="sk-cz-res"></div><div class="sk-cz-yan"><ol class="sk-cz-l"></ol><button type="button" class="btn ghost sk-cz-sina" aria-pressed="false">Kendini sına</button></div></div>`;
+    const viz = el.closest('.viz'), cap = viz && viz.querySelector('.viz-cap');
+    const yaz = (h) => { if (cap && h != null) cap.innerHTML = window.REF ? window.REF(h) : h; };
+    let g = 0, sec = -1, sina = false, acik = new Set();
+    const draw = () => {
+      const V = G[g], [kx, ky, kw, kh] = V.kirp || [0, 0, V.en, V.boy], r = Math.max(kw, kh) / 42;
+      const pin = (n, k) => { const on = k === sec, ad = !sina || acik.has(k);
+        return `<g class="sk-cz-p${on ? ' on' : ''}" data-p="${k}" role="button" tabindex="0" aria-label="${k + 1}${ad ? ' ' + esc(n.ad) : ''}"><circle cx="${f(n.x)}" cy="${f(n.y)}" r="${f(on ? r * 1.25 : r)}"/><text x="${f(n.x)}" y="${f(n.y + r * 0.42)}" text-anchor="middle" style="font-size:${f(r * 1.15)}px">${k + 1}</text></g>`; };
+      el.querySelector('.sk-cz-res').innerHTML = `<svg viewBox="${kx} ${ky} ${kw} ${kh}" class="sk-cz-svg" role="img" aria-label="${esc(cfg.baslik || V.ad || 'Anatomik çizim')}"><image href="${V.resim}" x="0" y="0" width="${V.en}" height="${V.boy}"/>${V.noktalar.map(pin).join('')}</svg>`;
+      el.querySelector('.sk-cz-l').innerHTML = V.noktalar.map((n, k) => `<li><button type="button" data-p="${k}" aria-pressed="${k === sec}"><b>${k + 1}</b><span>${!sina || acik.has(k) ? n.ad : '?'}</span></button></li>`).join('');
+    };
+    const sein = (k) => { sec = k; if (sina) acik.add(k); draw(); yaz(k < 0 ? cfg.giris || '' : `<b>${G[g].noktalar[k].ad}.</b> ${G[g].noktalar[k].metin || ''}`); };
+    el.addEventListener('click', (e) => {
+      const p = e.target.closest('[data-p]'), b = e.target.closest('button');
+      if (p) { sein(+p.dataset.p === sec ? -1 : +p.dataset.p); return; }
+      if (!b) return;
+      if (b.dataset.g) { g = +b.dataset.g; sec = -1; acik.clear(); el.querySelectorAll('[data-g]').forEach((z) => z.setAttribute('aria-pressed', z === b)); sein(-1); }
+      else if (b.classList.contains('sk-cz-sina')) { sina = !sina; acik.clear(); b.setAttribute('aria-pressed', sina); b.textContent = sina ? 'Adları göster' : 'Kendini sına'; sein(-1); }
+    });
+    el.addEventListener('keydown', (e) => { const p = e.target.closest('g[data-p]'); if (p && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); sein(+p.dataset.p); } });
+    sein(-1);
+    return () => {};
+  }
+
+  window.SEKIL = { adim, grafik, sahne, cizim, yardim, renk };
 })();
