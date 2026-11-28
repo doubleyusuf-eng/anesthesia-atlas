@@ -1,0 +1,12 @@
+.fk09a-kart, .fk09a-not {
+  margin-block: 1rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--paper);
+  overflow-wrap: break-word;
+}
+.fk09a-not { border-inline-start: 0.25rem solid var(--accent); }
+.fk09a-kart > :first-child, .fk09a-not > :first-child { margin-top: 0; }
+.fk09a-kart > :last-child, .fk09a-not > :last-child { margin-bottom: 0; }
+[id^="fk09a-"] .sk-svg .sk-t { font-size: 17px; }

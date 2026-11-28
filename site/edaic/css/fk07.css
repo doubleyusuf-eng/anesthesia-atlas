@@ -1,0 +1,12 @@
+.fk07-liste dt { margin-top: 1rem; font-weight: 700; }
+.fk07-liste dd { margin: .3rem 0 1rem; }
+.fk07-kartlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: .8rem; }
+[id^="fk07-"] .sk-ust .seg { flex-wrap: wrap; }
+[id^="fk07-"] .sk-svg { max-height: 22rem; }
+@media (max-width: 560px) {
+  [id^="fk07-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk07-"] .sk-svg .sk-k { font-size: 15px; }
+}
+@media (max-width: 560px) {
+  [id^="fk07-"] .sk-cz-p text { font-size: 41px !important; }
+}

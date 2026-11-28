@@ -1,0 +1,18 @@
+.fk11b-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+.fk11b-denklem {
+  padding: .7rem 1rem;
+  border-inline-start: .2rem solid var(--accent);
+  line-height: 1.8;
+}
+@media (max-width: 480px) {
+  [id^="fk11b-"] .sk-cz-p text {
+    font-size: 40px !important;
+  }
+  [id^="fk11b-"] .sk-svg .sk-t {
+    font-size: 15px;
+  }
+}

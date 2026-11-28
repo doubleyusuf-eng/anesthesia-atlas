@@ -1,0 +1,10 @@
+.fk08a-hesap { border-inline-start: .24rem solid var(--accent); }
+.fk08a-hesap li + li { margin-block-start: .5rem; }
+.fk08a-sekil .sk-svg { max-height: 22rem; }
+.fk08a-sekil .sk-rng { min-width: 0; }
+.fk08a-sekil .sk-rng input { max-width: 100%; }
+.fk08a-sekil .sk-t.sk-k { font-size: 14px; }
+.fk08a-sekil .sk-cz-p text { font-size: 42px !important; }
+@media (max-width: 560px) {
+  .fk08a-sekil .sk-param { display: grid; grid-template-columns: minmax(0, 1fr); }
+}

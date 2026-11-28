@@ -1,0 +1,12 @@
+.fk11a-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+}
+.fk11a-kartlar > .card { min-width: 0; }
+.fk11a-kartlar li + li { margin-top: .5rem; }
+[id^="fk11a-"] .seg { flex-wrap: wrap; }
+@media (max-width: 560px) {
+  [id^="fk11a-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk11a-"] .sk-cz-p text { font-size: 40px !important; }
+}

@@ -1,0 +1,16 @@
+.fk08b-formul {
+  padding: 0.8rem 1rem;
+  border-inline-start: 3px solid var(--accent);
+  background: var(--accent-soft);
+  overflow-wrap: anywhere;
+}
+[id^="fk08b-"] .sk-svg .sk-t { font-size: 16px; }
+[id^="fk08b-"] .sk-svg .sk-k { font-size: 15px; }
+[id^="fk08b-"] .seg { flex-wrap: wrap; }
+[id^="fk08b-"] .tbl { min-width: 0; width: 100%; }
+[id^="fk08b-"] .tbl caption { text-align: start; padding-block: .6rem; }
+@media (max-width: 600px) {
+  [id^="fk08b-"] .sk-cz-p text { font-size: 42px !important; }
+  [id^="fk08b-"] .sk-cz-p circle { r: 29px; }
+  #fk08b-rotametre .sk-cz-p circle { r: 35px; }
+}
