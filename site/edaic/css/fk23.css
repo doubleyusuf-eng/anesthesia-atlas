@@ -1,0 +1,22 @@
+.fk23-terimler {
+  display: grid;
+  grid-template-columns: minmax(8rem, 1fr) minmax(0, 3fr);
+  gap: .65rem 1.25rem;
+  align-items: baseline;
+}
+.fk23-terimler dt { font-weight: 700; }
+.fk23-terimler dd { margin: 0; }
+.fk23-tablo { width: 100%; }
+.fk23-tablo caption { text-align: start; padding-block: .6rem; }
+.fk23-tablo td { font-variant-numeric: tabular-nums; }
+@media (max-width: 560px) {
+  .fk23-terimler { grid-template-columns: minmax(0, 1fr); gap: .25rem; }
+  .fk23-terimler dd { margin-bottom: .65rem; }
+  .fk23-tablo { min-width: 0; }
+  [id^="fk23-"] .sk-t, [id^="fk23-"] .sk-t.sk-k { font-size: 16px; }
+}
+[id^="fk23-"] details { margin-block: 1rem; }
+[id^="fk23-"] summary { cursor: pointer; font-weight: 650; }
+@media (max-width: 560px) {
+  #fk23-prob .sk-cz-p text { font-size: 40px !important; }
+}

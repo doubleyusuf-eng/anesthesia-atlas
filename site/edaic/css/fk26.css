@@ -1,0 +1,13 @@
+.fk26-hesap {
+  margin-block: 1rem;
+  padding: 1rem 1.2rem;
+  border-inline-start: 3px solid var(--accent);
+  background: var(--accent-soft);
+  color: var(--ink);
+  border-radius: .4rem;
+}
+.fk26-hesap p { margin-block: .45rem 0; }
+.fk26-yontem { display: grid; gap: .3rem; }
+.fk26-yontem dt { font-weight: 700; margin-top: .5rem; }
+.fk26-yontem dd { margin: 0; max-width: 78ch; }
+[id^="fk26-"] .sk-svgw { max-width: 42rem; margin-inline: auto; }

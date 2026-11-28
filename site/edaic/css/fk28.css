@@ -1,0 +1,18 @@
+.fk28-tablo {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-block: 1rem;
+}
+.fk28-tablo th, .fk28-tablo td {
+  padding: .55rem .7rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+.fk28-tablo thead { background: var(--accent-soft); color: var(--accent-ink); }
+.fk28-tablo th:first-child { width: 40%; }
+[id^="fk28-"] .viz { margin-block: 1rem; }
+[id^="fk28-"] .sk-svg .sk-t { font-size: 16px; }
+[id^="fk28-"] .sk-svg .sk-k { font-size: 14px; }

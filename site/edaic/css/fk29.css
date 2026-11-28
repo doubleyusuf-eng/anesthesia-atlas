@@ -1,0 +1,15 @@
+.fk29-izgara {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 0.8rem;
+  margin-block: 1rem;
+}
+.fk29-kart, .fk29-not { min-width: 0; overflow-wrap: break-word; }
+.fk29-kart h3, .fk29-not p { margin-top: 0.35rem; }
+.fk29-kart p:last-child, .fk29-not p:last-child { margin-bottom: 0; }
+.fk29-not { border-inline-start: 4px solid var(--warn); margin-block: 1rem; }
+[id^="fk29-"] .seg { flex-wrap: wrap; }
+[id^="fk29-"] .sk-t { font-size: 16px; }
+[id^="fk29-"] .tbl { min-width: 0; width: 100%; }
+[id^="fk29-"] .tbl th, [id^="fk29-"] .tbl td { white-space: normal; overflow-wrap: anywhere; }
+.fk29-gecis { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; margin-top: 1rem; }

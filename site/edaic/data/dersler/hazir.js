@@ -8,5 +8,5 @@ window.FAR_HAZIR = ['01', '02a', '02b', '02c', '03a', '03b', '04', '05', '06a', 
 
 /* Anatomi: kimlik 'NN' ya da 'NNa'… (data/dersler/anatomi.js içindekiler). Dosyalar: css/anX.css, data/dersler/anatomi-X.js, js/ders/anX.js. */
 /* Fizik: kimlik 'NN' ya da 'NNa'… (data/dersler/fizik.js içindekiler). Dosyalar: css/fkX.css, data/dersler/fizik-X.js, js/ders/fkX.js. */
-window.FK_HAZIR = ['01', '02', '03', '04a', '04b', '05a', '05b', '06a', '06b', '07', '08a', '08b', '09a', '09b', '10', '11a', '11b', '12', '13', '14a', '14b', '15a', '15b', '16', '17'];
+window.FK_HAZIR = ['01', '02', '03', '04a', '04b', '05a', '05b', '06a', '06b', '07', '08a', '08b', '09a', '09b', '10', '11a', '11b', '12', '13', '14a', '14b', '15a', '15b', '16', '17', '23', '24', '25', '26', '27', '28', '29'];
 window.AN_HAZIR = ['01a', '01b', '01c', '01d', '01e', '01f', '02a', '02b', '03a', '03b', '03c', '04a', '04b', '04c', '04d', '04e', '04f', '05', '06a', '06b', '06c', '06d', '06e', '07a', '07b', '07c', '08'];

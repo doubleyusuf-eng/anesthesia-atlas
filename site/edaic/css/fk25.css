@@ -1,0 +1,16 @@
+.fk25-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.fk25-kartlar > .card { min-width: 0; }
+.fk25-kartlar p:last-child { margin-bottom: 0; }
+.fk25-tablo { width: 100%; min-width: 0; table-layout: fixed; }
+.fk25-tablo th:first-child { width: 38%; }
+.fk25-tablo :is(th, td) { overflow-wrap: anywhere; }
+[id^="fk25-"] .sk-svg { max-width: 46rem; margin-inline: auto; display: block; }
+@media (max-width: 560px) {
+  [id^="fk25-"] .sk-svg .sk-t { font-size: 17px; }
+  [id^="fk25-"] .sk-svg .sk-t.sk-k { font-size: 15px; }
+}

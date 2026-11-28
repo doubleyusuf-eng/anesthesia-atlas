@@ -1,0 +1,8 @@
+.fk27-ders .sk-svg {max-width: 640px}
+.fk27-ders .sk-t, .fk27-ders .sk-t.sk-k {font-size: 15px}
+.fk27-ders .sk-param {grid-template-columns: minmax(0,1fr)}
+.fk27-ders .fk27-hesap {border-inline-start: 3px solid var(--accent); padding: .8rem 1rem; background: var(--accent-soft); margin-block: 1rem}
+.fk27-ders .fk27-hesap p {margin: .35rem 0}
+.fk27-ders .tbl {min-width: 0; width: 100%}
+.fk27-ders td, .fk27-ders th {white-space: normal; overflow-wrap: anywhere}
+.fk27-ders li + li {margin-top:.45rem}

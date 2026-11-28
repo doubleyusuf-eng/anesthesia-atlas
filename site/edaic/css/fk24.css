@@ -1,0 +1,13 @@
+.fk24-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 1rem;
+}
+.fk24-sinif {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: baseline;
+  gap: .55rem 1rem;
+}
+.fk24-sinif dt { font-weight: 700; color: var(--accent-ink); }
+.fk24-sinif dd { margin: 0; }
