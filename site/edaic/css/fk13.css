@@ -1,0 +1,14 @@
+.fk13-kartlar { display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,16rem),1fr)); gap:1rem; }
+.fk13-kartlar article, .fk13-kart { padding:1rem; border:1px solid var(--line); border-radius:.65rem; }
+.fk13-kartlar h3, .fk13-kart h3 { margin-top:0; }
+.fk13-kartlar p { margin:.5rem 0; }
+.fk13-gecis { display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem; margin-block:2rem; }
+.fk13-gecis a { max-width:100%; overflow-wrap:anywhere; }
+details.fk13-kart { margin-block:1rem; }
+details.fk13-kart summary { font-weight:650; cursor:pointer; }
+details.fk13-kart dt { font-weight:650; }
+details.fk13-kart dd { margin:0 0 .75rem; }
+@media (max-width:560px) {
+  [id^="fk13-"] .sk-cz-p text { font-size:42px !important; }
+  #fk13-entonox .sk-cz-p text { font-size:58px !important; }
+}

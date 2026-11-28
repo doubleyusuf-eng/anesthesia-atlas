@@ -1,0 +1,12 @@
+/* Kaydırıcı yalnız konumu değiştirir; klinik ölçüm değeri göstermez. */
+.fk17-kayma .sk-rng [data-o] { display: none; }
+@media (max-width: 560px) {
+  [data-viz="fk17_otoklav"] .sk-cz-p text { font-size: 42px !important; }
+}
+.fk17-vaka { margin-block: 1em; }
+.fk17-vaka dt { font-weight: 700; margin-top: 1em; }
+.fk17-vaka dd { margin: .35em 0 0; border-inline-start: 2px solid var(--line); padding-inline-start: .85em; }
+@media (max-width: 560px) {
+  [id^="fk17-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk17-"] .sk-svg .sk-k { font-size: 14.5px; }
+}

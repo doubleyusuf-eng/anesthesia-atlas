@@ -1,0 +1,6 @@
+.fk15b-formul { font-size: 1.15em; overflow-wrap: anywhere; }
+.fk15b-kartlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: 1rem; }
+.fk15b-kartlar .card { min-width: 0; }
+@media (max-width: 560px) {
+  #fk15b-prob .sk-cz-p text, #fk15b-nirs .sk-cz-p text { font-size: 40px !important; }
+}

@@ -1,0 +1,10 @@
+.fk15a-kartlar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  gap: 1rem;
+  margin-block: 1rem;
+}
+.fk15a-kartlar h3 { margin-top: 0; }
+.fk15a-kartlar p { margin-bottom: 0; }
+[id^="fk15a-"] .sk-svgw .sk-t { font-size: 17px; }
+[id^="fk15a-"] .sk-cz-p text { font-size: 42px !important; }

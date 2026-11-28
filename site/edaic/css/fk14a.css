@@ -1,0 +1,8 @@
+.fk14a-kartlar { display: grid; grid-template-columns: minmax(8rem, 1fr) minmax(0, 3fr); column-gap: 1.25rem; }
+.fk14a-kartlar dt, .fk14a-kartlar dd { margin: 0; padding: .8rem 0; border-top: 1px solid var(--line); }
+.fk14a-kartlar dt { font-weight: 700; color: var(--accent-ink); }
+@media (max-width: 600px) {
+  .fk14a-kartlar { display: block; }
+  .fk14a-kartlar dt { padding-bottom: .15rem; }
+  .fk14a-kartlar dd { border: 0; padding-top: .2rem; }
+}

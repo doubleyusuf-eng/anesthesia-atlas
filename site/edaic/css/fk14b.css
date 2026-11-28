@@ -1,0 +1,10 @@
+.fk14b-kartlar { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 1rem; margin-block: 1rem; }
+.fk14b-kartlar > * { min-width: 0; }
+.fk14b-kartlar h3 { margin-top: 0; }
+.fk14b-kartlar p:last-child { margin-bottom: 0; }
+[id^="fk14b-"] .sk .seg { flex-wrap: wrap; }
+.fk14b-sinama { margin-block: 1rem; padding: .85rem 1rem; background: var(--chip); border-radius: .5rem; }
+.fk14b-sinama summary { font-weight: 650; cursor: pointer; }
+@media (max-width: 640px) {
+  [id^="fk14b-"] .sk-cz-p text { font-size: 41px !important; }
+}
