@@ -1,0 +1,10 @@
+.fk18-hesap { border-inline-start: 3px solid var(--accent); }
+.fk18-tablo { width: 100%; table-layout: fixed; }
+.fk18-tablo th, .fk18-tablo td { overflow-wrap: anywhere; }
+
+@media (max-width: 560px) {
+  [id^="fk18-"] .sk-svg .sk-t { font-size: 17px; }
+  [id^="fk18-"] .sk-svg .sk-k { font-size: 15.5px; }
+  [id^="fk18-"] .sk-param { min-width: 0; }
+  [id^="fk18-"] .sk-rng input { max-width: 100%; }
+}

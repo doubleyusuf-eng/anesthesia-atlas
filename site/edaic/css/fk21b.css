@@ -1,0 +1,16 @@
+.fk21b-hesap { border-inline-start: 3px solid var(--accent); }
+.fk21b-tablo { width: 100%; table-layout: fixed; }
+.fk21b-tablo th, .fk21b-tablo td { overflow-wrap: anywhere; }
+@media (max-width: 560px) {
+  [id^="fk21b-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk21b-"] .sk-svg .sk-k { font-size: 14.5px; }
+  [id^="fk21b-"] .sk-cz-svg text { font-size: 38px !important; }
+}
+@media (max-width: 560px) {
+  #fk21b-eeg .fk21b-tablo th,
+  #fk21b-eeg .fk21b-tablo td { padding: 8px 5px; }
+  #fk21b-eeg .fk21b-tablo th:first-child { width: 18%; }
+  #fk21b-eeg .fk21b-tablo th:nth-child(2) { width: 18%; }
+  [id^="fk21b-"] .sk-cz-l { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  [id^="fk21b-"] .sk-cz-l button { overflow-wrap: anywhere; }
+}

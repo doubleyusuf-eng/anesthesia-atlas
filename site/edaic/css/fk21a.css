@@ -1,0 +1,16 @@
+.fk21a-hesap { border-inline-start: 3px solid var(--accent); }
+.fk21a-tablo { width: 100%; table-layout: fixed; }
+.fk21a-tablo th, .fk21a-tablo td { overflow-wrap: anywhere; }
+@media (max-width: 560px) {
+  [id^="fk21a-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk21a-"] .sk-svg .sk-k { font-size: 14.5px; }
+  [id^="fk21a-"] .sk-cz-svg text { font-size: 38px !important; }
+}
+@media (max-width: 560px) {
+  .fk21a-tablo { display: block; min-width: 0; }
+  .fk21a-tablo caption, .fk21a-tablo tbody, .fk21a-tablo tr,
+  .fk21a-tablo tbody th, .fk21a-tablo td { display: block; }
+  .fk21a-tablo thead { position: absolute; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; }
+  .fk21a-tablo tbody th { text-align: start; background: var(--chip); }
+  .fk21a-tablo td::before { content: attr(data-alan); display: block; color: var(--muted); font-weight: 600; }
+}

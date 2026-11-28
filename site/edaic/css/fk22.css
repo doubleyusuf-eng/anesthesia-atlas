@@ -1,0 +1,11 @@
+.fk22-hesap { border-inline-start: 3px solid var(--accent); }
+.fk22-tablo { width: 100%; table-layout: fixed; }
+.fk22-tablo th, .fk22-tablo td { overflow-wrap: anywhere; }
+@media (max-width: 560px) {
+  [id^="fk22-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk22-"] .sk-svg .sk-k { font-size: 14.5px; }
+}
+@media (max-width: 560px) {
+  #fk22-prob .sk-cz-p text { font-size: 40px !important; }
+  .fk22-tablo th, .fk22-tablo td { padding-inline: 7px; }
+}
