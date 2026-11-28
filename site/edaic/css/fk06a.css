@@ -1,0 +1,9 @@
+.fk06a-birim { width: 100%; table-layout: fixed; border-collapse: collapse; }
+.fk06a-birim th, .fk06a-birim td { padding: .55em .4em; overflow-wrap: anywhere; text-align: start; border-bottom: 1px solid var(--line); }
+.fk06a-birim th:nth-child(2) { width: 23%; }
+[id^="fk06a-"] .viz, [id^="fk06a-"] .card { margin-block: 1rem; }
+[id^="fk06a-"] .sk-svg { max-height: 22rem; }
+@media (max-width: 560px) {
+  [id^="fk06a-"] .sk-cz-p text { font-size: 42px !important; }
+  [id^="fk06a-"] .sk-t { font-size: 16px; }
+}

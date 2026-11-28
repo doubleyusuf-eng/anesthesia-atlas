@@ -13,8 +13,9 @@
     fizyoloji: { on: 'fiz', hazir: () => window.FIZ_HAZIR || [] },
     farmakoloji: { on: 'far', hazir: () => window.FAR_HAZIR || [] },
     anatomi: { on: 'an', hazir: () => window.AN_HAZIR || [] },
+    fizik: { on: 'fk', hazir: () => window.FK_HAZIR || [] },
   };
-  const BOLUM = /^dersler\/(fizyoloji|farmakoloji|anatomi)\/(ek\d\d|\d\d[a-f]?)$/;
+  const BOLUM = /^dersler\/(fizyoloji|farmakoloji|anatomi|fizik)\/(ek\d\d|\d\d[a-f]?)$/;
   function anahtar() {
     const h = ham();
     if (!h) return 'giris';

@@ -566,7 +566,7 @@ SAYFALAR['dersler'] = {
   <div class="modul">
     <a class="card" href="#/dersler/fizyoloji"><span class="no">01 · Yayında · bölüm bölüm</span><h3>Fizyoloji</h3><p class="small muted">Solunum, kardiyovasküler, nöro, böbrek, karaciğer, endokrin; gebelik, çocukluk, yaşlanma; koagülasyon, asit–baz; fizyolojik ölçüm.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
     <a class="card" href="#/dersler/farmakoloji"><span class="no">02 · Yayında · ders ders</span><h3>Farmakoloji</h3><p class="small muted">Farmakokinetik, farmakodinamik, reseptörler; anestezik, analjezik, kas gevşetici, kardiyovasküler ilaçlar; sıvılar, antimikrobiyaller, koagülasyon, hormonlar.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></a>
-    <div class="card planned"><span class="no">03 · Planlanıyor</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, makine ve ventilatör; elektrik güvenliği.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></div>
+    <a class="card" href="#/dersler/fizik"><span class="no">03 · Hazırlanıyor · ders ders</span><h3>Fizik ve klinik ölçüm</h3><p class="small muted">Gazlar, buharlar, akım ve basınç; monitörler, vaporizatör ve ventilatör; optik, ultrason, elektrik güvenliği; temel matematik ve istatistik.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 2</span></span></a>
     <a class="card" href="#/dersler/anatomi"><span class="no">04 · Hazırlanıyor · ders ders</span><h3>Anatomi</h3><p class="small muted">Hava yolu, toraks ve kalp; omurga ve vertebral kanal; periferik, otonom ve kraniyal sinirler; orbita, karın duvarı, ağrı yolları.</p><span class="where"><span class="tag basic">Paper A</span><span class="tag basic">SOE 1</span></span></a>
     <div class="card planned"><span class="no">05 · Planlanıyor</span><h3>İstatistik</h3><p class="small muted">Veri, olasılık, dağılımlar; parametrik ve parametrik olmayan testler.</p><span class="where"><span class="tag basic">Paper A</span></span></div>
     <div class="card planned"><span class="no">06 · Planlanıyor</span><h3>Klinik anesteziyoloji</h3><p class="small muted">Preoperatif değerlendirme, genel ve rejyonel anestezi, obstetrik, yan dallar, komplikasyonlar.</p><span class="where"><span class="tag clin">Paper B</span><span class="tag clin">SOE 3</span></span></div>
@@ -656,6 +656,28 @@ SAYFALAR['dersler/farmakoloji'] = {
   <h2>Dersler</h2>
   <p class="intro">Hazır dersler bağlantılıdır; tamamladıklarınız bu tarayıcıda işaretli kalır. Ders metinleri ve çizimler bu atlas için yazılmıştır; kitaptan kopyalanmaz. Doz ve uygulama bilgileri sınav hazırlığı içindir, klinik karar için güncel ürün bilgisine ve kılavuzlara bakın.</p>
   <div class="viz"><div data-viz="farIcindekiler"></div></div>
+</section>`,
+};
+
+SAYFALAR['dersler/fizik'] = {
+  grup: 'dersler', eyebrow: 'Dersler · 03', baslik: 'Fizik ve klinik ölçüm',
+  lede: 'Fizik ve klinik ölçüm Part I\'de Paper A\'nın, Part II\'de SOE 2\'nin konusudur. [[S6 s. 4–7]] Dersler Middleton, Phillips ve Stacey\'nin Physics in Anaesthesia kitabının 29 bölümünü sırayla izler; uzun bölümler kitabın kendi başlıklarına göre birkaç kısa derse bölünür. [[K6]]',
+  html: `
+<section class="wrap blk">
+  <h2>Her ders nasıl işlenir?</h2>
+  <ol class="ders-format" style="margin-top:14px">
+    <li><b>Şekille anlatım</b>Her konu bir şekille: eğri ve devreler etkileşimli şema, cihazlar etiketli çizim.</li>
+    <li><b>Kısa anlatım</b>Kitabın bütün bilgisi, tekrar ve dolgu olmadan; denklemler, birimler ve sayılar kart ve tablolarla.</li>
+    <li><b>Part I'de</b>Atlas için yazılmış üç MTF sorusu.</li>
+    <li><b>Part II'de</b>SOE 2 tarzı ölçüm/ekipman sorusu ve cevap iskeleti.</li>
+    <li><b>Kendini sına</b>Özet ve ilerleme kaydı.</li>
+  </ol>
+</section>
+
+<section class="wrap blk">
+  <h2>Dersler</h2>
+  <p class="intro">Hazır dersler bağlantılıdır; tamamladıklarınız bu tarayıcıda işaretli kalır. Ders metinleri ve şekiller bu atlas için hazırlanmıştır; kitaptan kopyalanmaz.</p>
+  <div class="viz"><div data-viz="fkIcindekiler"></div></div>
 </section>`,
 };
 

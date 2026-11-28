@@ -1,0 +1,8 @@
+.fk05a-sekil .sk-t { font-size: 16px; }
+.fk05a-sekil .sk-t.sk-k { font-size: 15px; }
+.fk05a-sekil .sk-rng { min-width: 0; }
+.fk05a-sekil .sk-rng input { max-width: 100%; }
+@media (max-width: 520px) {
+  .fk05a-sekil .sk-cz-ic { grid-template-columns: minmax(0, 1fr); }
+  .fk05a-sekil .sk-cz-p text { font-size: 43px !important; }
+}

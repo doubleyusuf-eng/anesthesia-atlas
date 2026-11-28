@@ -109,4 +109,9 @@ window.KAYNAKLAR = {
     tur: 'Kitap · John Wiley & Sons', tarih: '2014 · sayfa numaraları basılı kitap sayfalarıdır',
     not: 'Anatomi derslerinin ana kaynağı; dersler kitabın 8 bölümünü sırayla izler, uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünür. Ders metinleri, sorular ve çizimler bu atlas için yazılmış/üretilmiştir; kitaptan metin ya da şekil kopyalanmamıştır.',
   },
+  K6: {
+    ad: 'Middleton B, Phillips J, Stacey S. Physics in Anaesthesia, 2. baskı',
+    tur: 'Kitap · Scion Publishing', tarih: '2021 · sayfa numaraları kitabın PDF sürümünün fiziksel sayfalarıdır',
+    not: 'Fizik ve klinik ölçüm derslerinin ana kaynağı; dersler kitabın 29 bölümünü sırayla izler, uzun bölümler kitabın kendi başlıklarına göre birkaç derse bölünür. Ders metinleri, sorular ve şekiller bu atlas için yazılmış/üretilmiştir; kitaptan metin ya da şekil kopyalanmamıştır.',
+  },
 };

@@ -1,0 +1,6 @@
+[id^="fk06b-"] .seg { flex-wrap: wrap; }
+[id^="fk06b-"] .sk-svg { max-width: 100%; }
+@media (max-width: 560px) {
+  [id^="fk06b-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk06b-"] .sk-cz-p text { font-size: 38px !important; }
+}

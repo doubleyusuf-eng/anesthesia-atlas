@@ -1,0 +1,4 @@
+.fk01-hesap { border-inline-start: 3px solid var(--accent); }
+.fk01-tablo { width: 100%; table-layout: fixed; }
+.fk01-tablo th, .fk01-tablo td { overflow-wrap: anywhere; }
+[id^="fk01-"] .sk-svgw svg text { font-size: 16px; }

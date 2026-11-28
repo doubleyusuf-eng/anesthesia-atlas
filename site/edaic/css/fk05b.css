@@ -1,0 +1,11 @@
+.fk05b-hesap {
+  margin-block: 1rem;
+  border-inline-start: .25rem solid var(--accent);
+  overflow-wrap: break-word;
+}
+
+@media (max-width: 600px) {
+  [data-viz="fk05b_transduser"] .sk-cz-p text {
+    font-size: 42px !important;
+  }
+}

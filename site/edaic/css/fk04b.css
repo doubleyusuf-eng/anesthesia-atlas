@@ -1,0 +1,8 @@
+.fk04b-formul { margin-block: 1rem; }
+.fk04b-formul > p:first-of-type { font-size: 1.2rem; }
+[id^="fk04b-"] .viz { min-width: 0; }
+@media (max-width: 560px) {
+  [id^="fk04b-"] .sk-t, [id^="fk04b-"] .sk-t.sk-k { font-size: 16px; }
+  [id^="fk04b-"] .sk-cz-p text { font-size: 40px !important; }
+  [id^="fk04b-"] .sk-cz-p circle { r: 32px; }
+}

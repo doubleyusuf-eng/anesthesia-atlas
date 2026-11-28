@@ -1,0 +1,27 @@
+.fk03-terimler {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, auto) minmax(0, 1fr);
+  gap: .5rem 1rem;
+}
+.fk03-terimler dt { font-weight: 700; }
+.fk03-terimler dd { margin: 0; }
+.fk03-hesap {
+  margin-block: 1.25rem;
+  padding: 1rem clamp(.85rem, 3vw, 1.5rem);
+  border-inline-start: .25rem solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: .5rem;
+  overflow-wrap: anywhere;
+}
+.fk03-hesap h3 { margin-top: 0; }
+.fk03-hesap li + li { margin-top: .5rem; }
+.fk03-okuma {
+  margin-block: 1.25rem;
+  padding-inline-start: 1rem;
+  border-inline-start: .15rem solid var(--line);
+}
+@media (max-width: 560px) {
+  [id^="fk03-"] .sk-svg .sk-t { font-size: 16px; }
+  [id^="fk03-"] .sk-svg .sk-k { font-size: 15px; }
+  #fk03-koruk .sk-cz-p text { font-size: 40px !important; }
+}
